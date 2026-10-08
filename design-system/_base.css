@@ -1,0 +1,9 @@
+/* shared layout for the preview cards (not used by the deck) */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito+Sans:wght@400;600;700;800&display=swap');
+*{box-sizing:border-box}
+body{margin:0;padding:28px;background:var(--light);color:var(--navy);font-family:var(--ff-body);font-size:15px;line-height:1.45}
+h1{font-family:var(--ff-head);font-weight:700;font-size:22px;margin:0 0 4px}
+.sub{color:var(--gray);font-size:13px;margin:0 0 22px}
+.grid{display:grid;gap:14px}
+.lbl{font-size:12px;color:var(--gray);font-weight:700}
+.mono{font-family:var(--ff-mono);font-size:11px;color:var(--gray)}

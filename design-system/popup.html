@@ -1,0 +1,24 @@
+<!-- @dsCard group="Components" -->
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pop-up spiegazione</title>
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="_base.css">
+<style>
+body{background:linear-gradient(135deg,#9AA6B8,#C7CFDB);min-height:100vh}
+.card{background:var(--card);border-radius:var(--r-xl);box-shadow:var(--sh-pop);max-width:560px;margin:0 auto;padding:26px;display:flex;flex-direction:column;gap:12px}
+.hd{display:flex;gap:14px;align-items:center}.hd span{font-size:44px;line-height:1}.hd h2{font-family:var(--ff-head);font-size:28px;margin:0}
+.r{display:flex;gap:12px;padding:10px 14px;border-radius:12px;background:var(--light);border-left:4px solid var(--border)}
+.r.data{border-left-color:var(--cyan);background:rgba(0,180,216,.07)}.r.ai{border-left-color:#9B59B6;background:rgba(155,89,182,.07)}
+.r p{margin:0}.r b{display:flex;gap:8px;align-items:center}
+.tag{font-size:11px;font-weight:800;padding:2px 9px;border-radius:var(--r-pill)}
+.tag.data{background:var(--tag-data-bg);color:var(--tag-data-ink)}.tag.ai{background:var(--tag-ai-bg);color:var(--tag-ai-ink)}
+.bar{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;padding:10px 14px;border:2px solid var(--border);border-radius:12px;font-weight:700}
+.bar div{height:12px;background:var(--light);border-radius:6px;overflow:hidden}.bar i{display:block;height:100%;width:39%;background:var(--green)}
+.ok{align-self:flex-end;font-family:var(--ff-head);font-weight:600;font-size:17px;padding:.5em 1.4em;border-radius:var(--r-md);border:none;background:var(--cyan);color:#fff}
+</style></head><body>
+<div class="card">
+  <div class="hd"><span>❤️</span><h2>Hai messo like!</h2></div>
+  <div class="r data"><p><b>Cosa ha registrato <span class="tag data">📡 Dati</span></b>Un like a un video di 😂 Comedy, dopo 2,1 s di visione.</p></div>
+  <div class="r ai"><p><b>Come lo usa l'AI <span class="tag ai">🧠 AI</span></b>Il like è un segnale positivo, ma non il più forte: conta di più quanto a lungo guardi.</p></div>
+  <div class="bar"><span>😂 Comedy</span><div><i></i></div><span>13% → <span style="color:#1E9E57">39%</span></span></div>
+  <button class="ok">Ok, continua ▶</button>
+</div>
+</body></html>

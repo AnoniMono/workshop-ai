@@ -1,0 +1,22 @@
+/* Workshop AI — "Il viaggio dell'AI" era themes (slide 3)
+   Each room restyles the page in the look of its decade. Apply the class to the slide root.
+   Tokens: --bg page · --ink text · --muted/--faint secondary · --rule lines · --accent highlight
+           --fd display font · --fb body font · --fm mono/details · --r corner radius · --card pop-up surface */
+.era-0{ /* 1739 — stampa del Settecento */
+  --bg:#EDE3CB;--ink:#2B1D0E;--muted:#6E5A3E;--faint:#A8957A;--rule:#B9A482;--accent:#8B2E16;
+  --fd:'IM Fell English',Georgia,serif;--fb:'EB Garamond',Georgia,serif;--fm:'EB Garamond',Georgia,serif;--r:0;--card:#F1E8D2}
+.era-1{ /* 1950 — dattiloscritto */
+  --bg:#F2EEE3;--ink:#232323;--muted:#5E5A52;--faint:#9C978C;--rule:#B8B2A4;--accent:#B3261E;
+  --fd:'Special Elite','Courier New',monospace;--fb:'Courier Prime','Courier New',monospace;--fm:'Courier Prime','Courier New',monospace;--r:0;--card:#FAF7EE}
+.era-2{ /* 1966 — terminale a fosfori verdi */
+  --bg:#070B07;--ink:#3BEA6C;--muted:#2FA552;--faint:#1F6B36;--rule:#1E4A2A;--accent:#B8FFC9;
+  --fd:'VT323',monospace;--fb:'VT323',monospace;--fm:'VT323',monospace;--r:0;--card:#0A120B}
+.era-3{ /* 1997 — Windows anni '90 */
+  --bg:#008080;--ink:#000;--muted:#404040;--faint:#606060;--rule:#808080;--accent:#000080;
+  --fd:'Times New Roman',Times,serif;--fb:Tahoma,Verdana,'Segoe UI',sans-serif;--fm:'Courier New',monospace;--r:0;--card:#C0C0C0}
+.era-4{ /* 2016 — app anni 2010 (Material) */
+  --bg:#F1F3F4;--ink:#202124;--muted:#5F6368;--faint:#9AA0A6;--rule:#DADCE0;--accent:#1A73E8;
+  --fd:'Roboto',Arial,sans-serif;--fb:'Roboto',Arial,sans-serif;--fm:'Roboto',Arial,sans-serif;--r:4px;--card:#fff}
+.era-5{ /* 2022 — oggi */
+  --bg:#FAFAFB;--ink:#0B0B0F;--muted:#6B6B76;--faint:#A1A1AA;--rule:#E6E6EB;--accent:#6D5BFF;
+  --fd:'Inter',system-ui,sans-serif;--fb:'Inter',system-ui,sans-serif;--fm:ui-monospace,Menlo,monospace;--r:14px;--card:#fff}

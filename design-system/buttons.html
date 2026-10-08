@@ -1,0 +1,19 @@
+<!-- @dsCard group="Components" -->
+<!doctype html><html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Pulsanti</title>
+<link rel="stylesheet" href="tokens.css"><link rel="stylesheet" href="_base.css">
+<style>
+.btn{font-family:var(--ff-head);font-weight:600;font-size:18px;padding:.5em 1.4em;border-radius:var(--r-md);border:none;cursor:pointer;color:#fff;background:var(--orange);transition:transform var(--dur-fast),box-shadow var(--dur-fast)}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--sh-2)}
+.btn.cyan{background:var(--cyan)}
+.btn.ghost{background:#fff;color:var(--orange);box-shadow:inset 0 0 0 2px var(--orange)}
+.btn:disabled{opacity:.45;cursor:default;transform:none;box-shadow:none}
+.tab{font-family:var(--ff-head);font-weight:600;font-size:14px;padding:.5em 1em;border-radius:var(--r-pill);border:2px solid var(--border);background:#fff;color:var(--navy);cursor:pointer}
+.tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:8px 0 22px}
+</style></head><body>
+<h1>Pulsanti</h1><p class="sub">Arancione per l'azione principale (una per schermata), ciano per le azioni secondarie, schede a pillola per navigare.</p>
+<p class="lbl">Azioni</p>
+<div class="row"><button class="btn">Invia il segnale</button><button class="btn cyan">↺ Reset</button><button class="btn ghost">Annulla</button><button class="btn" disabled>Disattivato</button></div>
+<p class="lbl">Schede</p>
+<div class="row"><button class="tab on">📱 TikTok</button><button class="tab">🎵 Spotify</button><button class="tab">📸 Instagram</button><button class="tab">🎬 Netflix</button></div>
+</body></html>
