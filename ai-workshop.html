@@ -831,6 +831,8 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 .agp-btns button:disabled{background:#BDC1C6;box-shadow:none;cursor:default}
 .agp-new{width:100%}
 .agp-sc{margin:0;font-size:.9rem;color:#5F6368;text-align:center}
+.agp-bn{margin:0;background:#E8F0FE;color:#174EA6;border-radius:8px;padding:12px 14px;font-weight:500;line-height:1.4}
+.agp-closed{border-left:4px solid #F9AB00}
 /* badge extra per i pop-up */
 .pl-b.mech{background:rgba(200,150,62,.2);color:#8A5A12}
 .pl-b.rule{background:rgba(0,180,216,.15);color:#0077A0}
@@ -2185,12 +2187,13 @@ var VOTE_PAGE='https://anonimono.github.io/workshop-ai/ai-workshop.html';
 var VOTE_ROOM=(function(){try{return new URLSearchParams(location.search).get('vota')}catch(e){return null}})();
 var VT={room:null,ch:null,votes:{},joined:{},qrLib:false,sb:null,sbWait:[],state:{},k:-1};
 function vtOn(){return !!(SUPA_URL&&SUPA_KEY)}
-function vtRoom(){if(VOTE_ROOM)return VOTE_ROOM;if(!VT.room){var c='';for(var i=0;i<4;i++)c+='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[rnd(0,31)];VT.room=c}return VT.room}
+function vtRoom(){if(VOTE_ROOM)return VOTE_ROOM;if(!VT.room){try{var sv=JSON.parse(localStorage.getItem('wsRoom')||'null');if(sv&&Date.now()-sv.t<8*3600e3)VT.room=sv.c}catch(e){}
+  if(!VT.room){var c='';for(var i=0;i<4;i++)c+='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[rnd(0,31)];VT.room=c;try{localStorage.setItem('wsRoom',JSON.stringify({c:c,t:Date.now()}))}catch(e){}}}return VT.room}
 function vtUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?vota='+vtRoom():''}
 function vtSb(cb){if(!vtOn())return;if(VT.sb)return cb(VT.sb);VT.sbWait.push(cb);if(VT.sbWait.length>1)return;
   var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js';
   s.onload=function(){VT.sb=window.supabase.createClient(SUPA_URL,SUPA_KEY,{auth:{persistSession:false}});var w=VT.sbWait;VT.sbWait=[];w.forEach(function(f){f(VT.sb)})};document.head.appendChild(s)}
-function vtState(st){VT.state=st;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom(),state:st,updated_at:new Date().toISOString()}).then(function(r){if(r.error)console.warn('voto:',r.error.message)})})}
+function vtState(st){if(st.open===undefined)st.open=true;VT.open=st.open;VT.pub=true;VT.state=st;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom(),state:st,updated_at:new Date().toISOString()}).then(function(r){if(r.error)console.warn('voto:',r.error.message)})})}
 function vtStop(){clearInterval(VT.poll);VT.poll=null;VT.k=-1}
 function vtPoll(){var k=VT.k;vtSb(function(sb){sb.from('votes').select('voter,q,choice').eq('room',vtRoom()).in('q',[-1,k]).range(0,999).then(function(res){if(!res.data||VT.k!==k)return;var v={},j={};res.data.forEach(function(r){if(r.q===-1)j[r.voter]=1;else v[r.voter]=r.choice});VT.votes=v;VT.joined=j;vtBars();vtJoinCount()})})}
 function vtListen(k){VT.k=k;VT.votes={};vtBars();clearInterval(VT.poll);vtPoll();VT.poll=setInterval(function(){if(document.hidden||hsCur!==1||!G('s3').classList.contains('current'))return;vtPoll()},2000)}
@@ -2279,13 +2282,14 @@ function vtPhone(){document.documentElement.classList.add('vote');var app=docume
   var S={},mine={};
   function draw(){var h='<p class="vp-hd">IL GIOCO DELL\'IMITAZIONE<br><span>Stanza '+esc(VOTE_ROOM)+'</span></p>';
     if(!vtOn())h+='<p class="vp-st">Il voto non è configurato su questa presentazione.</p>';
+    else if(S.open===false)h+='<p class="vp-q">Il gioco è chiuso.</p><p class="vp-st">Guardate lo schermo: l\'insegnante sta spiegando. Se riapre il gioco, questa pagina si riattiva da sola.</p>';
     else if(S.k===undefined||S.k===-2)h+='<p class="vp-st">Collegato. Aspetta che l\'insegnante mostri la prima domanda...</p>';
     else if(S.k<0)h+='<p class="vp-q">Fine del gioco!</p><p class="vp-st">La classe ha riconosciuto '+S.score+' macchine su '+S.n+'. Guarda lo schermo.</p>';
     else{var v=mine[S.k],rev=S.rev>=0?S.rev:-1;h+='<p class="vp-st">Domanda '+(S.k+1)+' di '+S.n+'</p><p class="vp-q">'+esc(S.q)+'</p><p class="vp-st">Quale risposta è della <b>macchina</b>?</p>'+
       [0,1].map(function(i){var x='AB'[i];return '<button class="vp-o'+(v===x?' sel':'')+(rev===i?' mac':'')+'" '+(rev>=0?'disabled':'')+' onclick="vtVote(\''+x+'\')"><b>'+x+(rev===i?' · MACCHINA':rev>=0?' · UMANO':'')+'</b>'+esc(S.a[i])+'</button>'}).join('')+
       '<p class="vp-st">'+(rev>=0?(v?(v==='AB'[rev]?'Hai indovinato!':'Ti ha ingannato!'):'Risposta svelata.'):(v?'Voto inviato: '+v+'. Puoi cambiarlo finché la risposta non viene svelata.':''))+'</p>'}
     app.innerHTML=h}
-  window.vtVote=function(x){if(S.k===undefined||S.k<0||S.rev>=0)return;mine[S.k]=x;draw();var k=S.k;vtSb(function(sb){sb.from('votes').upsert({room:VOTE_ROOM,q:k,voter:me,choice:x},{onConflict:'room,q,voter'}).then(function(r){if(r.error)console.warn('voto:',r.error.message)})})};
+  window.vtVote=function(x){if(S.open===false||S.k===undefined||S.k<0||S.rev>=0)return;mine[S.k]=x;draw();var k=S.k;vtSb(function(sb){sb.from('votes').upsert({room:VOTE_ROOM,q:k,voter:me,choice:x},{onConflict:'room,q,voter'}).then(function(r){if(r.error)console.warn('voto:',r.error.message)})})};
   draw();if(!vtOn())return;
   vtSb(function(sb){
     sb.from('votes').upsert({room:VOTE_ROOM,q:-1,voter:me,choice:'A'},{onConflict:'room,q,voter'}).then(function(){});
@@ -2441,7 +2445,10 @@ var AGV={poll:null,ver:0,hist:{0:0},res:[]};
 function agRoomId(){return (AG_ROOM||vtRoom())+'G'}
 function agUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?gioca='+vtRoom():''}
 function agQPack(){var q=[];for(var s=1;s<=15;s++)for(var a=1;a<=3;a++)q.push(Math.round(agQv(s,a)*100)/100);return q}
-function agPublish(){vtSb(function(sb){sb.from('vote_rooms').upsert({room:agRoomId(),state:{ver:AGV.ver,games:AG.games,wr:AG.wr,q:agQPack()},updated_at:new Date().toISOString()}).then(function(r){if(r.error)console.warn('alphago:',r.error.message)})})}
+function agRestore(cb){if(AGV.restored)return cb();AGV.restored=true;vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',agRoomId()).maybeSingle().then(function(res){var s=res.data&&res.data.state;
+  if(s&&s.q&&s.games>AG.games){AG.games=s.games;AG.wr=s.wr;AGV.ver=s.ver||0;if(s.hist)AGV.hist=s.hist;AG.Q={};AG.N={};
+    for(var x=1;x<=15;x++)for(var a=1;a<=3;a++){var v=s.q[(x-1)*3+a-1];if(v){AG.Q[agK(x,a)]=v;AG.N[agK(x,a)]=20}}}cb()},function(){cb()})})}
+function agPublish(){AGV.pub=true;vtSb(function(sb){sb.from('vote_rooms').upsert({room:agRoomId(),state:{ver:AGV.ver,games:AG.games,wr:AG.wr,q:agQPack(),hist:AGV.hist,open:AGV.open},updated_at:new Date().toISOString()}).then(function(r){if(r.error)console.warn('alphago:',r.error.message)})})}
 function agvStop(){clearInterval(AGV.poll);AGV.poll=null}
 function agvPoll(){vtSb(function(sb){var room=agRoomId(),all=[];
   (function page(from){sb.from('votes').select('voter,q,choice').eq('room',room).range(from,from+999).then(function(res){if(!res.data)return;all=all.concat(res.data);if(res.data.length===1000)page(from+1000);else{AGV.res=all;agBoard()}})})(0)})}
@@ -2451,7 +2458,7 @@ function agInit(){agvStop();if(AG.wr===null)AG.wr=agEval();var d=G('hsDev');d.cl
     '<p class="ag-p">'+(ok?'Inquadrate il codice. A turno si tolgono 1, 2 o 3 pietre: chi prende l\'ultima perde. Tutti giocano contro la stessa AI, quella che alleniamo qui.':'Apri la versione online della presentazione per giocare dal telefono.')+'</p>'+
     '<div class="ag-lvl"><span>Partite di allenamento dell\'AI: <b id="agG">'+AG.games.toLocaleString('it-IT')+'</b></span><span class="mu-btns"><button class="mu-btn" onclick="agTrainBtn(10)">Allena +10</button><button class="mu-btn fill" onclick="agTrainBtn(100)">Allena +100</button></span></div>'+
     '<div id="agScore" class="ag-score"></div></div></div>';
-  if(ok){vtQr(G('agQr'),u,180);agPublish();agvPoll();AGV.poll=setInterval(function(){if(document.hidden||hsCur!==4||!G('s3').classList.contains('current'))return;agvPoll()},3000)}
+  if(ok){vtQr(G('agQr'),u,180);agRestore(function(){AGV.open=true;agPublish();var g=G('agG');if(g)g.textContent=AG.games.toLocaleString('it-IT');agLive();agBoard()});agvPoll();AGV.poll=setInterval(function(){if(document.hidden||hsCur!==4||!G('s3').classList.contains('current'))return;agvPoll()},3000)}
   agBoard();agLive()}
 function agBoard(){var el=G('agScore');if(!el)return;var by={},pl={},tot=0;
   AGV.res.forEach(function(r){if(r.q<0)return;var v=Math.floor(r.q/1000);pl[r.voter]=1;tot++;(by[v]=by[v]||{A:0,B:0})[r.choice]++});
@@ -2466,31 +2473,40 @@ function agTrainBtn(n){var wb=AG.wr;agTrainN(n);AG.wr=agEval();AGV.ver++;AGV.his
   muPop('hs:ag1',{t:'Ha giocato '+n+' partite contro se stessa',sub:'Dalla prossima partita, sui vostri telefoni giocate contro questa AI più allenata.',rows:[R('','Come impara','ai','Nessuno le spiega come vincere. Gioca contro se stessa: le mosse che portano alla vittoria diventano più probabili, quelle che portano alla sconfitta meno. Si chiama apprendimento per rinforzo.'),R('','AlphaGo, 2016','ai','Prima ha studiato 30 milioni di mosse di partite umane, poi ha giocato milioni di partite contro se stesso. Così è diventato più forte di qualsiasi umano.')],
     bars:[['Vittorie',wb,AG.wr]],toast:'+'+n+' partite: vittorie '+wb+'% → '+AG.wr+'%'})}
 
-/* ---- pagina sul telefono (?gioca=CODICE) ---- */
+/* apre e chiude le stanze sui telefoni quando l'insegnante entra o esce */
+function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM)return;var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
+  var tOpen=on3&&hsCur===1&&TU.mode==='q';if(VT.pub&&tOpen!==VT.open)vtState(Object.assign({},VT.state,{open:tOpen}));
+  var aOpen=on3&&hsCur===4;if(AGV.pub&&aOpen!==AGV.open){AGV.open=aOpen;agPublish()}}
+setInterval(roomsSync,1500);
+/* ---- pagina sul telefono (?gioca=CODICE) ----
+   Controlla lo stato ogni 3 s: vede subito l'AI appena allenata e si chiude quando l'insegnante esce dalla sala. */
 function agPhone(){var root=document.documentElement;root.classList.add('vote');root.classList.add('agm');var app=document.createElement('div');app.id='vtApp';app.className='ag';document.body.appendChild(app);
   var me;try{me=localStorage.getItem('agId')}catch(e){}if(!me){me='g'+Math.random().toString(36).slice(2,10);try{localStorage.setItem('agId',me)}catch(e){}}
-  var room=AG_ROOM+'G',S=null,st={s:15,over:true,busy:false,msg:'',w:0,l:0,n:Math.floor(Math.random()*900),ver:-1,wait:false};
+  var room=AG_ROOM+'G',S=null,st={s:15,over:true,busy:false,msg:'',w:0,l:0,n:Math.floor(Math.random()*900),ver:-1,banner:'',bAge:0,started:false};
   function q(s,a){return S&&S.q?(S.q[(s-1)*3+a-1]||0):0}
   function pick(s){var acts=[1,2,3].filter(function(a){return a<=s}),bv=-9,bs=[];acts.forEach(function(a){var v=q(s,a);if(v>bv+1e-9){bv=v;bs=[a]}else if(Math.abs(v-bv)<1e-9)bs.push(a)});return bs[Math.floor(Math.random()*bs.length)]}
+  function score(){return '<p class="agp-sc">Le tue partite: vinte <b>'+st.w+'</b> · perse <b>'+st.l+'</b></p>'}
   function draw(){var h='<p class="agp-hd">ALPHAGO · LA SFIDA<br><span>Stanza '+esc(AG_ROOM)+'</span></p>';
     if(!vtOn())h+='<div class="agp-card"><p>Il gioco non è configurato su questa presentazione.</p></div>';
     else if(!S)h+='<div class="agp-card"><p>Collegato. Aspetta che l\'insegnante apra la sfida…</p></div>';
-    else{h+='<div class="agp-card"><p class="agp-lv">L\'AI si è allenata con <b>'+S.games.toLocaleString('it-IT')+'</b> partite contro se stessa</p><p class="agp-r">A turno togliete 1, 2 o 3 pietre. Chi prende l\'ultima <b>perde</b>. Inizia l\'AI.</p></div>'+
+    else if(S.open===false)h+='<div class="agp-card agp-closed"><p class="agp-lv"><b>La sfida è chiusa.</b></p><p class="agp-r">Guardate lo schermo: l\'insegnante sta spiegando. Quando riapre la sfida, questa pagina si riattiva da sola.</p></div>'+score();
+    else{h+=(st.banner?'<p class="agp-bn">'+st.banner+'</p>':'')+'<div class="agp-card"><p class="agp-lv">L\'AI si è allenata con <b>'+S.games.toLocaleString('it-IT')+'</b> partite contro se stessa</p><p class="agp-r">A turno togliete 1, 2 o 3 pietre. Chi prende l\'ultima <b>perde</b>. Inizia l\'AI.</p></div>'+
       '<div class="agp-board">'+Array.apply(null,{length:15}).map(function(_,i){return '<span class="ag-s'+(i>=st.s?' gone':'')+'"></span>'}).join('')+'</div>'+
       '<p class="agp-st">'+(st.msg||(st.busy?'L\'AI ci pensa…':'Tocca a te: restano '+st.s+' pietre.'))+'</p>'+
-      (st.over?'<button class="agp-new" onclick="agNew()">Nuova partita</button>':'<div class="agp-btns">'+[1,2,3].map(function(a){return '<button '+(st.busy||a>st.s?'disabled':'')+' onclick="agMe('+a+')">Prendi '+a+'</button>'}).join('')+'</div>')+
-      '<p class="agp-sc">Le tue partite: vinte <b>'+st.w+'</b> · perse <b>'+st.l+'</b></p>'}
+      (st.over?'<button class="agp-new" onclick="agNew()">Nuova partita</button>':'<div class="agp-btns">'+[1,2,3].map(function(a){return '<button '+(st.busy||a>st.s?'disabled':'')+' onclick="agMe('+a+')">Prendi '+a+'</button>'}).join('')+'</div>')+score()}
     app.innerHTML=h}
-  function brain(cb){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',room).maybeSingle().then(function(res){if(res.data&&res.data.state)S=res.data.state;cb()},function(){cb()})})}
-  function aiMove(){st.busy=true;st.msg='';draw();setTimeout(function(){var a=pick(st.s);st.s-=a;st.busy=false;
-    if(st.s===0)return end(true);st.msg='L\'AI prende '+a+'. Restano '+st.s+' pietre: tocca a te.';draw()},750)}
+  function onState(){if(!S){draw();return}
+    if(st.ver>=0&&S.ver!==st.ver){st.banner='L\'insegnante ha allenato l\'AI: ora si è allenata con '+S.games.toLocaleString('it-IT')+' partite. Gioca già con il nuovo cervello!';st.bAge=0}
+    st.ver=S.ver;if(S.open!==false&&!st.started){st.started=true;window.agNew();return}draw()}
+  function poll(){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',room).maybeSingle().then(function(res){var ns=res.data&&res.data.state;
+    if(ns&&JSON.stringify(ns)!==JSON.stringify(S)){S=ns;onState()}else if(!S)draw()})})}
+  function aiMove(){st.busy=true;draw();setTimeout(function(){if(S.open===false){setTimeout(aiMove,1000);return}
+    var a=pick(st.s);st.s-=a;st.busy=false;if(st.s===0)return end(true);st.msg='L\'AI prende '+a+'. Restano '+st.s+' pietre: tocca a te.';draw()},750)}
   function end(win){st.over=true;if(win)st.w++;else st.l++;st.msg=win?'Hai vinto! L\'AI ha preso l\'ultima pietra.':'Hai perso: l\'ultima pietra l\'hai presa tu.';
     var qn=(S.ver||0)*1000+(st.n++%1000);vtSb(function(sb){sb.from('votes').upsert({room:room,q:qn,voter:me,choice:win?'A':'B'},{onConflict:'room,q,voter'}).then(function(){})});draw()}
-  window.agMe=function(a){if(st.over||st.busy||a>st.s)return;st.s-=a;if(st.s===0)return end(false);st.msg='';aiMove()};
-  window.agNew=function(){if(st.wait)return;st.wait=true;brain(function(){st.wait=false;if(!S){draw();setTimeout(window.agNew,3000);return}
-    var trained=st.ver>=0&&S.ver!==st.ver;st.ver=S.ver;st.s=15;st.over=false;draw();
-    if(trained){st.busy=true;st.msg='L\'insegnante ha allenato l\'AI: ora si è allenata con '+S.games.toLocaleString('it-IT')+' partite!';draw();setTimeout(aiMove,1600)}else aiMove()})};
-  draw();if(vtOn())window.agNew()}
+  window.agMe=function(a){if(!S||S.open===false||st.over||st.busy||a>st.s)return;st.s-=a;if(st.s===0)return end(false);st.msg='';aiMove()};
+  window.agNew=function(){if(!S||S.open===false)return;if(st.banner&&++st.bAge>1)st.banner='';st.s=15;st.over=false;st.msg='';aiMove()};
+  draw();if(!vtOn())return;poll();setInterval(function(){if(!document.hidden)poll()},3000)}
 
 /* Sala 6 — ChatGPT: la parola successiva */
 var GP_TXT=['oggi a scuola il prof di matematica ha spiegato le equazioni .','oggi a scuola abbiamo fatto una verifica di storia .','oggi a scuola il prof di italiano ha letto una poesia .','oggi a scuola abbiamo giocato a pallavolo in palestra .','oggi pomeriggio vado al campetto con i miei amici .','domani ho una verifica di matematica e sono preoccupato .','domani ho una verifica di storia .','domani vado al mare con i miei amici .','domani vado al cinema con mia sorella .','stasera guardo una serie su netflix con mia sorella .','stasera mangio la pizza con i miei amici .','stasera vado a dormire presto .','il mio gatto dorme tutto il giorno sul divano .','il mio migliore amico ha un cane che si chiama pippo .','il mio cibo preferito è la pizza .','il mio prof di matematica ha dato tanti compiti .','il prof di storia ha spiegato la rivoluzione francese .','la pizza è il cibo più buono del mondo .','la verifica di matematica è andata bene .','la verifica di storia è andata male .','i miei amici giocano a calcio tutto il pomeriggio .','mia sorella ascolta musica tutto il giorno .','ho studiato tutto il pomeriggio per la verifica .','il mio cane dorme sul divano tutto il giorno .','sabato vado al cinema con i miei amici .'];
