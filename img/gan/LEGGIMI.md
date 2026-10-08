@@ -7,11 +7,11 @@ In questa cartella servono 9 file:
 | File | Cosa contiene |
 |---|---|
 | `vero.jpg` | La foto vera: un gattino tigrato sdraiato su un divano grigio. Già presente. È una foto CC0 (pubblico dominio) presa da Wikimedia Commons ("Cat resting on a couch", Unsplash). |
-| `ai-1.jpg` … `ai-8.jpg` | 8 gatti generati con un'AI. Da creare. |
+| `ai-1.jpg` … `ai-8.jpg` | 8 gatti generati con un'AI. Già presenti: potete sostituirli con altri, con gli stessi nomi. |
 
 Se un file manca, nella griglia compare la scritta "manca il file".
 
-## Come creare gli 8 gatti AI
+## Come creare (o cambiare) gli 8 gatti AI
 
 1. Usate un generatore di immagini gratuito, per esempio ChatGPT, Gemini o Bing Image Creator.
 2. Generate un'immagine per ogni prompt qui sotto, in formato **quadrato (1:1)**.
