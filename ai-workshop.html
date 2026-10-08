@@ -978,6 +978,40 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 .tx-leg{display:flex;flex-direction:column;gap:.5em}
 .tx-leg button{display:flex;align-items:center;gap:.7em;background:none;border:none;padding:.2em 0;cursor:pointer;font-family:var(--ff-head);font-weight:600;font-size:clamp(1rem,1.6vw,1.25rem);color:var(--navy);text-align:left}
 .tx-leg i{width:18px;height:18px;border-radius:50%;border:3px solid;flex:none}
+/* slide 7: come impara una rete neurale */
+#s8.current{height:100svh}
+.nn-top{display:flex;justify-content:space-between;align-items:center;gap:.5em 1.5em;flex-wrap:wrap}
+.nn-ctl{display:flex;gap:.5em}
+.nn-ctl .btn{font-size:clamp(.85rem,1.3vw,1rem);padding:.45em 1.1em}
+.nn-ctl .btn.ghost{color:var(--navy);box-shadow:inset 0 0 0 2px #C9D1DC;background:#fff}
+.nn-phases{display:flex;align-items:center;gap:.6em;flex-wrap:wrap}
+.nn-phases span{display:flex;align-items:center;gap:.5em;padding:.4em .9em .4em .45em;border-radius:999px;background:var(--light);color:#9AA4B2;font-weight:800;font-size:clamp(.8rem,1.2vw,.95rem);transition:background .3s,color .3s}
+.nn-phases span b{width:1.7em;height:1.7em;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#DCE2EA;color:#fff;font-family:var(--ff-head);transition:background .3s}
+.nn-phases span.on{background:var(--navy);color:#fff}
+.nn-phases span.on b{background:var(--orange)}
+.nn-phases i{width:clamp(14px,2vw,32px);height:2px;background:#DCE2EA}
+.nn-net{flex:1;min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(.6rem,1.6vw,1.4rem);align-items:center}
+.nn-svg{width:100%;height:100%;max-height:54vh;display:block}
+.nn-in,.nn-out{display:flex;flex-direction:column;align-items:center;gap:.4em;width:clamp(120px,14vw,190px)}
+.nn-img{width:100%;aspect-ratio:1;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:clamp(3rem,7vw,5.5rem);background:var(--light);border:2px solid var(--border);transition:transform .3s}
+.nn-img.pop{animation:nnPop .35s ease-out}
+@keyframes nnPop{from{transform:scale(.85);opacity:.4}to{transform:none;opacity:1}}
+.nn-cap{font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gray);text-align:center}
+.nn-bar{width:100%;display:grid;grid-template-columns:3.6em 1fr 2.8em;gap:.4em;align-items:center;font-size:.85rem;font-weight:700}
+.nn-bar div{height:12px;background:var(--light);border-radius:6px;overflow:hidden}
+.nn-bar i{display:block;height:100%;border-radius:6px;transition:width .5s}
+.nn-bar b{text-align:right;font-variant-numeric:tabular-nums}
+.nn-verdict{font-family:var(--ff-head);font-weight:700;font-size:clamp(.95rem,1.5vw,1.15rem);min-height:1.4em;text-align:center}
+.nn-svg .e{transition:stroke .5s,stroke-width .5s}
+.nn-svg .n{stroke:#fff;stroke-width:3;transition:fill .25s}
+.nn-svg .lt{font:800 12px 'Nunito Sans',sans-serif;fill:#9AA4B2;text-anchor:middle;letter-spacing:.08em}
+.nn-ep{display:flex;flex-direction:column;gap:.3em}
+.nn-eph{display:flex;justify-content:space-between;align-items:baseline;gap:1em;flex-wrap:wrap}
+.nn-eph b{font-family:var(--ff-head);font-size:clamp(1.05rem,1.8vw,1.4rem);color:var(--navy);font-variant-numeric:tabular-nums}
+.nn-eph #nnErrT{color:var(--orange)}
+.nn-eph span{flex:1;text-align:center;font-size:clamp(.85rem,1.3vw,1rem);color:var(--gray)}
+.nn-chart{width:100%;height:clamp(70px,13vh,120px);display:block;background:var(--light);border-radius:12px}
+.nn-ax{display:flex;justify-content:space-between;font-size:.72rem;color:#9AA4B2;font-weight:700}
 /* badge extra per i pop-up */
 .pl-b.mech{background:rgba(200,150,62,.2);color:#8A5A12}
 .pl-b.rule{background:rgba(0,180,216,.15);color:#0077A0}
@@ -1365,23 +1399,27 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 </section>
 
 <!-- 8 HOWLEARN -->
-<section class="slide darktext s-white" data-section="Come funziona">
-  <h2 class="fz-h2">Come impara una rete neurale?</h2>
-  <p class="fz-lead" style="color:var(--gray)">Premi <b>Avvia</b> per vedere il <i>gradient descent</i> in azione!</p>
-  <div class="wrap-flex" style="flex:1">
-    <div class="col min0" style="flex:0 0 34%">
-      <div class="hl-step active" id="hlS0"><b class="fz-num" style="color:var(--orange);min-width:1.5em;text-align:center">1</b><div><h3 class="fz-h3">Dataset</h3><p class="fz-small" style="color:var(--gray)">Migliaia di esempi etichettati</p></div></div>
-      <div class="hl-step" id="hlS1"><b class="fz-num" style="color:var(--cyan);min-width:1.5em;text-align:center">2</b><div><h3 class="fz-h3">Previsione</h3><p class="fz-small" style="color:var(--gray)">La rete prova a indovinare</p></div></div>
-      <div class="hl-step" id="hlS2"><b class="fz-num" style="color:var(--orange);min-width:1.5em;text-align:center">3</b><div><h3 class="fz-h3">Errore</h3><p class="fz-small" style="color:var(--gray)">Quanto ha sbagliato?</p></div></div>
-      <div class="hl-step" id="hlS3"><b class="fz-num" style="color:var(--cyan);min-width:1.5em;text-align:center">4</b><div><h3 class="fz-h3">Correzione</h3><p class="fz-small" style="color:var(--gray)">Aggiusta i pesi e riprova!</p></div></div>
-    </div>
-    <div class="panel col min0" style="flex:1;background:var(--light);align-items:center;justify-content:center">
-      <svg viewBox="0 0 520 240" style="width:100%;max-width:520px"><path d="M0,120 Q65,20 130,105 Q195,205 260,55 Q325,-5 390,95 Q455,190 520,75" fill="none" stroke="#CBD5E0" stroke-width="2"/><path d="M0,120 Q65,20 130,105 Q195,205 260,55 Q325,-5 390,95 Q455,190 520,75 L520,240 L0,240 Z" fill="var(--cyan)" opacity=".06"/><text x="312" y="16" text-anchor="middle" font-size="13" fill="var(--cyan)" font-weight="600">Minimo errore!</text><circle id="hlBall" cx="50" cy="95" r="11" fill="var(--orange)"/><text id="hlLbl" x="50" y="78" text-anchor="middle" font-size="12" fill="var(--orange)" font-weight="700">Epoca 0</text></svg>
-      <div style="display:flex;align-items:center;gap:.7em;width:100%"><span class="fz-small" style="color:var(--gray)">Errore:</span><div style="flex:1;height:22px;background:var(--border);border-radius:11px;overflow:hidden"><div id="hlBar" style="height:100%;width:87%;background:linear-gradient(90deg,var(--cyan),var(--orange));border-radius:11px;transition:width .4s"></div></div><b class="fz-body" id="hlPct" style="min-width:3em;text-align:right">87%</b></div>
-      <div style="display:flex;gap:.6em"><button class="btn" id="hlBtn" onclick="hlStart()">▶ Avvia</button><button class="btn cyan" id="hlReset" onclick="hlResetF()" style="display:none">↺ Reset</button></div>
-    </div>
+<section class="slide darktext s-white" data-section="Come funziona" id="s8">
+  <div class="nn-top">
+    <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Come impara una rete neurale?</h2>
+    <div class="nn-ctl"><button class="btn cyan" id="nnPlay" onclick="nnToggle()">Pausa</button><button class="btn ghost" onclick="nnRestart()">Ricomincia</button></div>
   </div>
-  <p class="fz-concl" style="color:var(--navy);text-align:center">Questo ciclo si ripete migliaia di volte al secondo!</p>
+  <div class="nn-phases" id="nnPh">
+    <span data-p="0"><b>1</b>Vede un esempio</span><i></i>
+    <span data-p="1"><b>2</b>Prova a indovinare</span><i></i>
+    <span data-p="2"><b>3</b>Misura l'errore</span><i></i>
+    <span data-p="3"><b>4</b>Corregge i pesi</span>
+  </div>
+  <div class="nn-net">
+    <div class="nn-in" id="nnIn"></div>
+    <svg class="nn-svg" id="nnSvg" viewBox="0 0 760 300" preserveAspectRatio="xMidYMid meet" aria-label="Una rete neurale con quattro strati che si allena"></svg>
+    <div class="nn-out" id="nnOut"></div>
+  </div>
+  <div class="nn-ep">
+    <div class="nn-eph"><b id="nnEpT">Epoca 0</b><span id="nnMsg">Ogni epoca: la rete guarda gli esempi, sbaglia, si corregge.</span><b id="nnErrT">Errore 50%</b></div>
+    <svg class="nn-chart" id="nnChart" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-label="Errore della rete a ogni epoca"></svg>
+    <div class="nn-ax"><span>epoca 1</span><span>epoca 40</span></div>
+  </div>
 </section>
 
 <!-- 9 ACT1 Teachable Machine -->
@@ -2854,6 +2892,55 @@ function txOut(){TX.cur=-1;var svg=G('txSvg');if(!svg)return;svg.classList.remov
   G('txCard').innerHTML='<div class="tx-idle"><p>Sono come <b>scatole cinesi</b>: ogni cerchio sta dentro quello più grande. Tutto il deep learning è machine learning, e tutto il machine learning è intelligenza artificiale.</p>'+
     '<div class="tx-leg">'+TX_S.map(function(t,k){return '<button onmouseenter="txOn('+k+')" onclick="txOn('+k+')"><i style="border-color:'+t.c+';background:'+t.c+'22"></i>'+t.h+'</button>'}).join('')+'</div></div>'}
 
+/* ===== slide "Come impara una rete neurale?": allenamento in loop ===== */
+var NN={L:[4,5,5,2],X:[90,290,490,690],W:[],ep:0,maxEp:40,err:[],run:true,phase:-1,t:0,last:0,done:false,ex:0,dur:0,hold:0};
+var NN_EX=[{e:'🐱',c:'gatto',k:0},{e:'🐶',c:'cane',k:1},{e:'🐈',c:'gatto',k:0},{e:'🐕',c:'cane',k:1}];
+function nnY(l,i){var n=NN.L[l],gap=n>4?52:62;return 150+(i-(n-1)/2)*gap}
+function nnLoss(e){return Math.max(.02,.5*Math.exp(-e/9)+(e<35?.04*Math.sin(e*1.7):0))}
+function nnInit(){if(!G('nnSvg'))return;nnBuild();nnLoop()}
+function nnBuild(){NN.W=[];for(var l=0;l<3;l++){var m=[];for(var a=0;a<NN.L[l];a++){var r=[];for(var b=0;b<NN.L[l+1];b++){var t=Math.random()*2-1;r.push({w:(Math.random()-.5)*.4,t:t})}m.push(r)}NN.W.push(m)}
+  NN.ep=0;NN.err=[];NN.done=false;NN.phase=-1;NN.t=0;NN.hold=0;
+  var h='';for(var l=0;l<3;l++)for(var a=0;a<NN.L[l];a++)for(var b=0;b<NN.L[l+1];b++)h+='<line class="e" id="nnE'+l+'_'+a+'_'+b+'" x1="'+NN.X[l]+'" y1="'+nnY(l,a)+'" x2="'+NN.X[l+1]+'" y2="'+nnY(l+1,b)+'"/>';
+  var names=['INGRESSO','STRATO NASCOSTO','STRATO NASCOSTO','USCITA'];
+  NN.L.forEach(function(n,l){for(var i=0;i<n;i++)h+='<circle class="n" id="nnN'+l+'_'+i+'" cx="'+NN.X[l]+'" cy="'+nnY(l,i)+'" r="'+(l===3?20:16)+'" fill="#C9D1DC"/>';h+='<text class="lt" x="'+NN.X[l]+'" y="292">'+names[l]+'</text>'});
+  h+='<g id="nnFx"></g>';G('nnSvg').innerHTML=h;nnEdges();nnChart();nnPh(-1);nnExample();nnOutput(null)}
+function nnEdges(){for(var l=0;l<3;l++)for(var a=0;a<NN.L[l];a++)for(var b=0;b<NN.L[l+1];b++){var w=NN.W[l][a][b].w,e=G('nnE'+l+'_'+a+'_'+b);
+  e.setAttribute('stroke',w>=0?'#FF6B35':'#2E86DE');e.setAttribute('stroke-opacity',(.18+Math.min(1,Math.abs(w))*.7).toFixed(2));e.setAttribute('stroke-width',(1+Math.abs(w)*4).toFixed(1))}}
+function nnPh(p){NN.phase=p;[].forEach.call(document.querySelectorAll('#nnPh span'),function(s){s.classList.toggle('on',+s.getAttribute('data-p')===p)})}
+function nnExample(){var x=NN_EX[NN.ex%4];G('nnIn').innerHTML='<div class="nn-img pop">'+x.e+'</div><p class="nn-cap">Foto di un '+x.c+'</p>'}
+function nnOutput(conf){var x=NN_EX[NN.ex%4],o=G('nnOut');
+  if(!conf){o.innerHTML='<p class="nn-cap">La rete risponde</p><div class="nn-bar"><span>Gatto</span><div><i style="width:0"></i></div><b>–</b></div><div class="nn-bar"><span>Cane</span><div><i style="width:0"></i></div><b>–</b></div><p class="nn-verdict"></p>';return}
+  var pc=[x.k===0?conf:1-conf,x.k===1?conf:1-conf],ok=conf>.5;
+  o.innerHTML='<p class="nn-cap">La rete risponde</p>'+['Gatto','Cane'].map(function(n,i){return '<div class="nn-bar"><span>'+n+'</span><div><i style="width:'+Math.round(pc[i]*100)+'%;background:'+(i===x.k?'#2ECC71':'#E74C3C')+'"></i></div><b>'+Math.round(pc[i]*100)+'%</b></div>'}).join('')+
+    '<p class="nn-verdict" style="color:'+(ok?'#1E9E57':'#E74C3C')+'">'+(ok?'Giusto: '+x.c+'!':'Sbagliato!')+'</p>'}
+function nnChart(){var c=G('nnChart'),pts=NN.err.map(function(v,i){return ((i+.5)/NN.maxEp*1000).toFixed(1)+','+(110-v/.55*100).toFixed(1)}),last=pts[pts.length-1];
+  c.innerHTML='<line x1="0" y1="'+(110-.05/.55*100)+'" x2="1000" y2="'+(110-.05/.55*100)+'" stroke="#2ECC71" stroke-width="1.5" stroke-dasharray="6 6" vector-effect="non-scaling-stroke"/>'+
+    (pts.length?'<polygon points="0,110 '+pts.join(' ')+' '+last.split(',')[0]+',110" fill="#FF6B35" fill-opacity=".12"/><polyline points="'+pts.join(' ')+'" fill="none" stroke="#FF6B35" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>':'');
+  G('nnEpT').textContent='Epoca '+NN.ep+' di '+NN.maxEp;G('nnErrT').textContent='Errore '+Math.round((NN.err.length?NN.err[NN.err.length-1]:.5)*100)+'%'}
+function nnDot(x,y,c,r){var d=document.createElementNS('http://www.w3.org/2000/svg','circle');d.setAttribute('cx',x);d.setAttribute('cy',y);d.setAttribute('r',r||4);d.setAttribute('fill',c);return d}
+function nnPulse(dir,k){/* k: 0..1 lungo tutta la rete; avanti (dir=1) o indietro (dir=-1) */
+  var fx=G('nnFx');fx.innerHTML='';var seg=Math.min(2.999,k*3),l=Math.floor(seg),p=seg-l;if(dir<0){l=2-l;p=1-p}
+  for(var a=0;a<NN.L[l];a++)for(var b=0;b<NN.L[l+1];b++){if((a+b)%2)continue;var x1=NN.X[l],y1=nnY(l,a),x2=NN.X[l+1],y2=nnY(l+1,b);fx.appendChild(nnDot(x1+(x2-x1)*p,y1+(y2-y1)*p,dir>0?'#FFB300':'#E74C3C',3.5))}
+  for(var ll=0;ll<4;ll++)for(var i=0;i<NN.L[ll];i++){var lit=dir>0?(ll<=l+(p>.95?1:0)):(ll>=l+(p<.05?0:1));G('nnN'+ll+'_'+i).setAttribute('fill',lit?(dir>0?'#FFB300':'#F28B82'):'#C9D1DC')}}
+function nnLoop(){var now=performance.now(),dt=NN.last?Math.min(100,now-NN.last):16;NN.last=now;
+  var on=G('s8')&&G('s8').classList.contains('current')&&NN.run&&!document.hidden&&!XP.open;
+  if(on)nnTick(dt);requestAnimationFrame(nnLoop)}
+function nnTick(dt){
+  if(NN.done){NN.hold+=dt;if(NN.hold>3500){nnBuild()}return}
+  var sp=NN.ep<4?1:NN.ep<12?1.8:3.2;NN.t+=dt*sp;
+  var T=[700,1000,700,1000,500],acc=0,ph=0;for(;ph<T.length;ph++){if(NN.t<acc+T[ph])break;acc+=T[ph]}var k=(NN.t-acc)/T[ph];
+  if(ph>=T.length){nnEpochEnd();return}
+  if(ph===0){if(NN.phase!==0){NN.ex=(NN.ex+1)%4;nnExample();nnOutput(null);nnPh(0);G('nnFx').innerHTML=''}}
+  else if(ph===1){if(NN.phase!==1)nnPh(1);nnPulse(1,k)}
+  else if(ph===2){if(NN.phase!==2){nnPh(2);G('nnFx').innerHTML='';var l=nnLoss(NN.ep);nnOutput(1-l+(Math.random()-.5)*.08);G('nnMsg').textContent='La rete confronta la sua risposta con quella giusta: ecco quanto ha sbagliato.'}}
+  else if(ph===3){if(NN.phase!==3){nnPh(3);G('nnMsg').textContent='L\'errore torna indietro e ogni peso si sposta un po\'.'}nnPulse(-1,k);
+    var m=.04*(1-k*0)*dt/300;for(var l2=0;l2<3;l2++)NN.W[l2].forEach(function(r){r.forEach(function(c){c.w+=(c.t-c.w)*m*(1+Math.random())})});nnEdges()}
+  else if(ph===4){G('nnFx').innerHTML='';for(var ll=0;ll<4;ll++)for(var i=0;i<NN.L[ll];i++)G('nnN'+ll+'_'+i).setAttribute('fill','#C9D1DC')}}
+function nnEpochEnd(){NN.t=0;NN.err.push(nnLoss(NN.ep));NN.ep++;nnChart();
+  if(NN.ep>=NN.maxEp){NN.done=true;NN.hold=0;nnPh(-1);G('nnMsg').innerHTML='<b style="color:#1E9E57">Allenata!</b> Dopo '+NN.maxEp+' epoche riconosce gatti e cani quasi sempre. Ricomincia da zero…'}}
+function nnToggle(){NN.run=!NN.run;G('nnPlay').textContent=NN.run?'Pausa':'Riprendi'}
+function nnRestart(){NN.run=true;G('nnPlay').textContent='Pausa';nnBuild()}
+
 var tlTexts=["Nel 1739 Jacques de Vaucanson costruì un'anatra meccanica che sembrava mangiare, digerire e defecare: il primo tentativo di simulare la vita con una macchina!","Nel 1950 Alan Turing propose il suo test: se un computer può ingannare un umano facendogli credere di parlare con un altro umano, allora \"pensa\". La domanda che ha dato il via a tutto!","Nel 1997 Deep Blue di IBM batte il campione mondiale di scacchi Garry Kasparov. Per la prima volta una macchina supera l'uomo in un gioco di strategia. Shock mondiale!","Nel 2016 AlphaGo di Google DeepMind batte Lee Sedol a Go, un gioco con più combinazioni degli atomi nell'universo: impossibile con la forza bruta, l'AI ha dovuto IMPARARE.","Nel 2022 OpenAI lancia ChatGPT: 1 milione di utenti in 5 giorni. Per la prima volta chiunque può conversare con un'AI. La rivoluzione è iniziata!"];
 function tlShow(i,el){document.getElementById('tlDetail').textContent=tlTexts[i];[].forEach.call(document.querySelectorAll('.tl-card'),function(c){c.classList.remove('active')});el.classList.add('active')}
 
@@ -2952,5 +3039,6 @@ hsInit();
 n4Init();
 w6Init();
 txInit();
+nnInit();
 if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();
 </script>
