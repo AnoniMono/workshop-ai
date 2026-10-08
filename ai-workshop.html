@@ -453,13 +453,24 @@ img{max-width:100%}
 .mu-title em{font-style:italic;color:var(--accent)}
 .mu-link{font-size:.85rem;color:var(--ink);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;white-space:nowrap}
 .mu-link:hover{color:var(--accent)}
-.mu-tl{display:grid;grid-template-columns:repeat(6,1fr);border-bottom:1px solid var(--rule)}
-.mu-yr{background:none;border:none;text-align:left;padding:.45em .2em .6em;cursor:pointer;color:var(--faint);font-family:inherit;position:relative}
-.mu-yr b{display:block;font-family:var(--fd);font-weight:var(--fdw);font-size:clamp(1.1rem,2vw,1.6rem);line-height:1.1}
-.mu-yr span{font-size:.75rem}
-.mu-yr:hover,.mu-yr.seen{color:var(--muted)}
-.mu-yr.on{color:var(--ink)}
-.mu-yr.on::after{content:"";position:absolute;left:.2em;width:2.2em;bottom:-1px;height:3px;background:var(--accent)}
+.mu-tl{position:relative;display:grid;grid-template-columns:repeat(6,1fr);padding:.15em 0 .1em}
+.mu-rail,.mu-fill{position:absolute;top:calc(.15em + 27px);left:calc(100%/12);height:3px;border-radius:2px}
+.mu-rail{right:calc(100%/12);background:var(--rule)}
+.mu-fill{width:0;background:var(--accent);transition:width .6s cubic-bezier(.4,0,.2,1)}
+.mu-yr{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:.35em;background:none;border:none;padding:0;cursor:pointer;font-family:inherit;color:var(--faint)}
+.mu-yr b{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--bg);border:3px solid var(--rule);font-family:var(--fd);font-weight:var(--fdw);font-size:1rem;color:var(--faint);transition:transform .3s,background .3s,border-color .3s,color .3s}
+.mu-yr span{font-size:.75rem;transition:color .3s}
+.mu-yr:hover b{border-color:var(--muted)}
+.mu-yr.seen b{border-color:var(--accent);color:var(--ink)}
+.mu-yr.seen span{color:var(--muted)}
+.mu-yr.on b{background:var(--accent);border-color:var(--accent);color:var(--bg);transform:scale(1.15)}
+.mu-yr.on span{color:var(--ink);font-weight:700}
+.era-3 .mu-yr.on b{color:#fff}
+.era-3 .mu-yr span{color:#E0FFFF}
+.era-2 .mu-yr b{font-size:1.25rem}
+.era-2 .mu-yr span{font-size:1rem}
+.era-3 .mu-yr b{color:#D8F0F0;border-color:#9CC9C9}
+.era-3 .mu-yr.seen b{border-color:#000080;color:#fff}
 .mu-main{flex:1;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,1fr);gap:clamp(1rem,2.5vw,2.4rem);min-height:0}
 @media (max-width:820px){.mu-main{grid-template-columns:1fr}.mu-yr span{display:none}}
 .mu-frame{display:flex;flex-direction:column;min-width:0}
@@ -522,14 +533,13 @@ img{max-width:100%}
 .era-0 .mu-nav{border-top:3px double var(--ink)}
 .era-0 .mu-vit{border:3px double var(--ink)}
 .era-0 .mu-title{letter-spacing:0}
-.era-0 .mu-yr span,.era-0 .mu-no,.era-0 .mu-style{font-style:italic;font-size:.9rem}
+.era-0 .mu-no,.era-0 .mu-style{font-style:italic;font-size:.9rem}
 .era-0 .mu-desc{font-size:clamp(1rem,1.35vw,1.12rem)}
 .era-0 .mu-meta,.era-0 .mu-k,.era-0 .mu-note,.era-0 .mu-live,.era-0 .mu-sc{font-size:.95rem}
 .era-0 .mu-btn{font-variant:small-caps;letter-spacing:.04em;font-size:1rem;padding:.35em 1em}
 /* 1950 — dattiloscritto */
 .era-1{--bg:#F2EEE3;--ink:#232323;--muted:#5E5A52;--faint:#9C978C;--rule:#B8B2A4;--accent:#B3261E;--fd:'Special Elite','Courier New',monospace;--fb:'Courier Prime','Courier New',monospace;--fm:'Courier Prime','Courier New',monospace;--r:0;--card:#FAF7EE}
 .s-mu.era-1{background-image:repeating-linear-gradient(0deg,transparent 0 31px,rgba(70,100,150,.09) 31px 32px)}
-.era-1 .mu-tl{border-bottom-style:dashed}
 .era-1 .mu-rule{border-top-style:dashed}
 .era-1 .mu-title{text-transform:uppercase;letter-spacing:.02em;font-size:clamp(1.3rem,2.7vw,2.2rem)}
 .era-1 .mu-title em{font-style:normal;color:var(--ink);text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:5px}
@@ -544,10 +554,9 @@ img{max-width:100%}
 .era-2 .mu-title{text-transform:uppercase;font-size:clamp(1.9rem,3.6vw,3rem);letter-spacing:.02em}
 .era-2 .mu-title em{font-style:normal}
 .era-2 .mu-title::after{content:"_";animation:blink 1s steps(1) infinite}
-.era-2 .mu-yr b{font-size:clamp(1.5rem,2.5vw,2.1rem)}
 .era-2 .mu-h{text-transform:uppercase;font-size:clamp(1.9rem,3vw,2.6rem)}
 .era-2 .mu-desc{font-size:1.4rem;line-height:1.25}
-.era-2 .mu-meta,.era-2 .mu-k,.era-2 .mu-sc,.era-2 .mu-note,.era-2 .mu-live,.era-2 .mu-no,.era-2 .mu-yr span,.era-2 .mu-nav,.era-2 .mu-style,.era-2 .mu-try,.era-2 .mu-link{font-size:1.15rem}
+.era-2 .mu-meta,.era-2 .mu-k,.era-2 .mu-sc,.era-2 .mu-note,.era-2 .mu-live,.era-2 .mu-no,.era-2 .mu-nav,.era-2 .mu-style,.era-2 .mu-try,.era-2 .mu-link{font-size:1.15rem}
 .era-2 .mu-try,.era-2 .mu-scn,.era-2 .mu-style{font-style:normal}
 .era-2 .mu-vit{border-color:var(--rule)}
 .era-2 .mu-btn{font-size:1.2rem;border-color:transparent;padding:.15em .5em}
@@ -561,13 +570,7 @@ img{max-width:100%}
 .era-3 .mu-title{font-style:italic;text-shadow:2px 2px 0 #004040}
 .era-3 .mu-title em{color:#FFFF00}
 .era-3 .mu-link{color:#FFFF00}
-.era-3 .mu-tl{border:none;background:#C0C0C0;padding:3px;gap:4px;box-shadow:inset 1px 1px #fff,inset -1px -1px #000}
-.era-3 .mu-yr,.era-3 .mu-btn{background:#C0C0C0;color:#000;box-shadow:inset -1px -1px #000,inset 1px 1px #fff,inset -2px -2px #808080,inset 2px 2px #DFDFDF;border:none;border-radius:0}
-.era-3 .mu-yr{display:flex;align-items:baseline;gap:.5em;padding:.3em .6em}
-.era-3 .mu-yr b{font-family:var(--fb);font-weight:700;font-size:.95rem}
-.era-3 .mu-yr span{font-size:.75rem}
-.era-3 .mu-yr.on{box-shadow:inset 1px 1px #000,inset -1px -1px #fff,inset 2px 2px #808080;background:#D4D0C8}
-.era-3 .mu-yr.on::after{display:none}
+.era-3 .mu-btn{background:#C0C0C0;color:#000;box-shadow:inset -1px -1px #000,inset 1px 1px #fff,inset -2px -2px #808080,inset 2px 2px #DFDFDF;border:none;border-radius:0}
 .era-3 .mu-btn:hover{background:#C0C0C0;color:#000}
 .era-3 .mu-btn:active{box-shadow:inset 1px 1px #000,inset -1px -1px #fff,inset 2px 2px #808080}
 .era-3 .mu-btn.fill{font-weight:700;outline:1px dotted #000;outline-offset:-5px}
@@ -597,10 +600,6 @@ img{max-width:100%}
 .era-4{--bg:#F1F3F4;--ink:#202124;--muted:#5F6368;--faint:#9AA0A6;--rule:#DADCE0;--accent:#1A73E8;--fd:'Roboto',Arial,sans-serif;--fb:'Roboto',Arial,sans-serif;--fm:'Roboto',Arial,sans-serif;--fdw:500;--r:4px;--card:#fff;--bbg:transparent;--bink:#1A73E8;--bbd:#DADCE0;--fbg:#1A73E8;--fink:#fff}
 .era-4 .mu-top,.era-4 .mu-nav{border:none}
 .era-4 .mu-title em{font-style:normal}
-.era-4 .mu-tl{background:#fff;border:none;border-radius:4px;box-shadow:0 1px 2px rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15)}
-.era-4 .mu-yr{text-align:center}
-.era-4 .mu-yr.on{color:#1A73E8}
-.era-4 .mu-yr.on::after{left:0;width:100%;background:#1A73E8}
 .era-4 .mu-vit{border:none;border-radius:8px;box-shadow:0 1px 3px rgba(60,64,67,.3),0 4px 8px 3px rgba(60,64,67,.15)}
 .era-4 .mu-lab{background:#fff;border:none;border-radius:8px;box-shadow:0 1px 2px rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15);padding:1.2em 1.4em}
 .era-4 .mu-no{text-transform:uppercase;letter-spacing:.1em;font-weight:500;color:#1A73E8}
@@ -615,12 +614,6 @@ img{max-width:100%}
 .era-5 .mu-top,.era-5 .mu-nav{border:none}
 .era-5 .mu-title,.era-5 .mu-h{letter-spacing:-.035em}
 .era-5 .mu-title em{font-style:normal;background:linear-gradient(90deg,#6D5BFF,#00B4D8);-webkit-background-clip:text;background-clip:text;color:transparent}
-.era-5 .mu-tl{border:1px solid var(--rule);border-radius:999px;background:rgba(255,255,255,.7);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:4px}
-.era-5 .mu-yr{border-radius:999px;text-align:center;padding:.35em}
-.era-5 .mu-yr b{font-size:1rem;font-weight:600}
-.era-5 .mu-yr span{font-size:.7rem}
-.era-5 .mu-yr.on{background:#0B0B0F;color:#fff}
-.era-5 .mu-yr.on::after{display:none}
 .era-5 .mu-vit{border-color:var(--rule);border-radius:20px;box-shadow:0 24px 50px -24px rgba(20,20,60,.3)}
 .era-5 .mu-lab{border:1px solid var(--rule);border-radius:20px;background:rgba(255,255,255,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);padding:1.3em 1.4em}
 .era-5 .mu-try{font-family:var(--fb);font-style:normal;color:var(--muted)}
@@ -955,6 +948,35 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 .w6-svg .ed{stroke:rgba(255,255,255,.55);stroke-width:3}
 .w6-svg .big{font:700 64px 'Fredoka',sans-serif;fill:#fff;text-anchor:middle}
 .w6-svg .sm{font:700 18px 'Nunito Sans',sans-serif;fill:var(--muted);text-anchor:middle}
+/* slide 6: la famiglia dell'AI, uno zoom in quattro passi */
+.tx-steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);padding:.2em 0}
+.tx-rail,.tx-fill{position:absolute;top:calc(.2em + clamp(32px,4.4vw,44px));left:12.5%;height:4px;border-radius:2px}
+.tx-rail{right:12.5%;background:#DCE2EA}
+.tx-fill{width:0;background:linear-gradient(90deg,#2D6CDF,#1E9E57 33%,#E8590C 66%,#8E44AD);transition:width .6s cubic-bezier(.4,0,.2,1)}
+.tx-step{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:.45em;background:none;border:none;padding:0;cursor:pointer;font-family:var(--ff-body);color:var(--gray)}
+.tx-dot{width:clamp(64px,8.8vw,88px);aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:4px solid #DCE2EA;font-family:var(--ff-head);font-weight:700;font-size:clamp(1rem,1.8vw,1.35rem);color:#9AA4B2;transition:transform .3s,background .3s,border-color .3s,color .3s,box-shadow .3s}
+.tx-step span{font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;transition:color .3s}
+.tx-step:hover .tx-dot{border-color:#A9B4C2}
+.tx-step.done .tx-dot{border-color:var(--c);color:var(--c)}
+.tx-step.on .tx-dot{background:var(--c);border-color:var(--c);color:#fff;transform:scale(1.12);box-shadow:0 0 0 8px color-mix(in srgb,var(--c) 18%,transparent)}
+.tx-step.on span,.tx-step.done span{color:var(--c)}
+.tx-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(1.2rem,4vw,4rem);align-items:center}
+@media (max-width:820px){.tx-stage{grid-template-columns:1fr}}
+.tx-vis{display:flex;justify-content:center;align-items:center;min-height:0;height:100%}
+.tx-svg{width:min(100%,54vh,480px);aspect-ratio:1;display:block;overflow:visible}
+.tx-svg circle{transition:opacity .5s,fill .5s,stroke .5s}
+.tx-svg text{font:800 14px 'Nunito Sans',sans-serif;letter-spacing:.06em;text-anchor:middle;transition:opacity .5s,fill .5s}
+.tx-txt{display:flex;flex-direction:column;gap:clamp(.6rem,1.6vh,1.1rem)}
+.tx-kick{margin:0;font-family:var(--ff-head);font-weight:600;font-size:clamp(.9rem,1.5vw,1.15rem);letter-spacing:.14em;text-transform:uppercase}
+.tx-h{margin:0;font-family:var(--ff-head);font-weight:700;font-size:clamp(1.8rem,4.2vw,3.4rem);line-height:1.05;color:var(--navy);text-wrap:balance}
+.tx-p{margin:0;font-size:clamp(1.05rem,1.8vw,1.4rem);line-height:1.5;color:var(--gray);max-width:30em}
+.tx-p b{color:var(--navy)}
+.tx-ex{display:flex;flex-wrap:wrap;gap:.45em;align-items:center}
+.tx-ex span{font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-right:.2em}
+.tx-ex b{font-size:clamp(.85rem,1.3vw,1rem);font-weight:700;padding:.35em .85em;border-radius:999px;background:#fff;border:2px solid var(--c);color:var(--navy)}
+.tx-nav{display:flex;gap:.6em;margin-top:.4em}
+.tx-nav .btn.ghost{background:transparent;color:var(--navy);box-shadow:inset 0 0 0 2px #C9D1DC}
+.tx-nav .btn:disabled{opacity:.3}
 /* badge extra per i pop-up */
 .pl-b.mech{background:rgba(200,150,62,.2);color:#8A5A12}
 .pl-b.rule{background:rgba(0,180,216,.15);color:#0077A0}
@@ -1330,21 +1352,19 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 </section>
 
 <!-- 7 TAXONOMY -->
-<section class="slide center darktext s-light" data-section="Storia e fondamenti">
-  <h2 class="fz-h2">La famiglia dell'Intelligenza Artificiale</h2>
-  <p class="fz-lead" style="color:var(--gray)">Clicca su ogni anello per scoprire di più</p>
-  <div style="display:flex;flex-direction:column;gap:.5rem;width:min(680px,100%);margin-top:.3rem">
-    <div class="tax-ring" onclick="taxShow(0,this)" style="background:rgba(27,42,74,.08);border:3px solid var(--navy);padding:1.1em;border-radius:16px;cursor:pointer">
-      <b class="fz-h3" style="color:var(--navy)">INTELLIGENZA ARTIFICIALE</b>
-      <div class="tax-ring" onclick="taxShow(1,this);event.stopPropagation()" style="background:rgba(0,180,216,.12);border:3px solid var(--cyan);padding:1em;border-radius:14px;cursor:pointer;margin-top:.7em">
-        <b class="fz-h3" style="color:var(--cyan)">MACHINE LEARNING</b>
-        <div class="tax-ring" onclick="taxShow(2,this);event.stopPropagation()" style="background:rgba(255,107,53,.15);border:3px solid var(--orange);padding:.9em;border-radius:12px;cursor:pointer;margin-top:.6em">
-          <b class="fz-h3" style="color:var(--orange)">DEEP LEARNING</b>
-        </div>
-      </div>
+<section class="slide darktext s-light" data-section="Storia e fondamenti" id="s7">
+  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">La famiglia dell'Intelligenza Artificiale</h2>
+  <div class="tx-steps" id="txSteps"></div>
+  <div class="tx-stage">
+    <div class="tx-vis"><svg class="tx-svg" id="txSvg" viewBox="0 0 400 400" aria-label="Cerchi uno dentro l'altro: intelligenza artificiale, machine learning, deep learning, AI generativa"></svg></div>
+    <div class="tx-txt">
+      <p class="tx-kick" id="txKick"></p>
+      <h3 class="tx-h" id="txH"></h3>
+      <p class="tx-p" id="txP"></p>
+      <div class="tx-ex" id="txEx"></div>
+      <div class="tx-nav"><button class="btn ghost" id="txPrev" onclick="txGo(TX.i-1)">← Indietro</button><button class="btn" id="txNext" onclick="txGo(TX.i+1)">Avanti →</button></div>
     </div>
   </div>
-  <div class="panel fz-body" id="taxDetail" style="background:var(--navy);color:var(--light);border:none;min-height:3.5em;width:min(680px,100%);text-align:center">Clicca un anello per la spiegazione. Sono come scatole cinesi: ognuna contiene la successiva.</div>
 </section>
 
 <!-- 8 HOWLEARN -->
@@ -2273,13 +2293,13 @@ var HS=[
  f:'Un milione di utenti in cinque giorni: in quel momento, una delle app cresciute più in fretta della storia.'}];
 var hsCur=0,hsSeen={};
 function hsInit(){
-  G('muTl').innerHTML=HS.map(function(H,i){return '<button class="mu-yr" onclick="hsGo('+i+')"><b>'+H.y+'</b><span>'+H.s+'</span></button>'}).join('');
+  G('muTl').innerHTML='<i class="mu-rail"></i><i class="mu-fill" id="muFill"></i>'+HS.map(function(H,i){return '<button class="mu-yr" onclick="hsGo('+i+')"><b>'+H.y+'</b><span>'+H.s+'</span></button>'}).join('');
   G('muSc').innerHTML=MU_LV.map(function(l){return '<span>'+l+'</span>'}).join('');
   hsGo(0)}
 var MU_FILE=['anatra.bmp','turing.txt','eliza.exe','deepblue.exe','alphago.exe','chatgpt'],MU_STY=['una stampa del Settecento','un dattiloscritto degli anni \'50','un terminale degli anni \'60','Windows, anni \'90','un\'app degli anni 2010','un\'interfaccia di oggi'];
 function hsGo(i){if(i<0||i>=HS.length)return;vtStop();agvStop();clearInterval(EN.auto);hsCur=i;hsSeen[i]=1;var H=HS[i];
   var sec=G('s3');for(var e=0;e<6;e++)sec.classList.remove('era-'+e);sec.classList.add('era-'+i);G('muTb1').textContent=MU_FILE[i];G('muStyle').textContent='Lo stile di questa pagina: '+MU_STY[i];
-  [].forEach.call(document.querySelectorAll('.mu-yr'),function(s,k){s.classList.toggle('on',k===i);s.classList.toggle('seen',!!hsSeen[k]&&k!==i)});
+  [].forEach.call(document.querySelectorAll('.mu-yr'),function(s,k){s.classList.toggle('on',k===i);s.classList.toggle('seen',k<i)});G('muFill').style.width='calc((100% - 100%/6) * '+(i/5)+')';
   G('muNo').textContent='Sala '+(i+1)+' di '+HS.length;
   G('muH').textContent=H.n;G('muMeta').textContent=H.meta+', '+H.y;G('muDesc').innerHTML=H.d;
   [].forEach.call(document.querySelectorAll('#muSc span'),function(s,k){s.classList.toggle('on',k===H.lv)});
@@ -2797,13 +2817,34 @@ function w6Deep(){var L=[3,5,5,5,2],xs=[50,125,200,275,350],h='';
   L.forEach(function(n,l){for(var a=0;a<n;a++)h+='<circle cx="'+xs[l]+'" cy="'+(200+(a-(n-1)/2)*60)+'" r="15" fill="'+(l===0?'#7FB3E8':l===L.length-1?'#2ECC71':'#FF6B35')+'" stroke="#fff" stroke-width="3"/>'});
   G('w6Svg').innerHTML=h+'<text class="sm" x="200" y="378">tanti strati di neuroni = deep learning</text>'}
 
+/* ===== slide "La famiglia dell'AI": uno zoom in quattro passi ===== */
+var TX={i:0};
+var TX_S=[
+ {d:'AI',l:'Intelligenza artificiale',c:'#2D6CDF',k:'Il cerchio più grande',h:'Intelligenza Artificiale',
+  p:'Qualsiasi macchina che fa qualcosa che <b>sembra intelligente</b>. Anche con regole scritte a mano da una persona: ricordate <b>ELIZA</b> e <b>Deep Blue</b>?',ex:['Deep Blue','ELIZA','Il navigatore che trova la strada']},
+ {d:'ML',l:'Machine learning',c:'#1E9E57',k:'Un cerchio più dentro',h:'Machine Learning: impara dai dati',
+  p:'Nessuno scrive le regole: la macchina le <b>scopre da sola</b> guardando tantissimi esempi. Come <b>AlphaGo</b>, che ha imparato giocando contro se stesso.',ex:['AlphaGo','I consigli di Spotify','Il filtro anti-spam']},
+ {d:'DL',l:'Deep learning',c:'#E8590C',k:'Ancora più dentro',h:'Deep Learning: tanti strati di neuroni',
+  p:'Machine learning fatto con <b>reti neurali profonde</b>, quelle della slide precedente. È bravissimo con immagini, suoni e parole.',ex:['Lo sblocco con il volto','TikTok che "guarda" i video','La voce di Siri']},
+ {d:'Gen',l:'AI generativa',c:'#8E44AD',k:'Il cerchio più piccolo',h:'AI generativa: crea cose nuove',
+  p:'Deep learning che non si limita a riconoscere: <b>produce</b> testi, immagini, musica e video. È il cerchio più piccolo, ma è quello di cui parlano tutti.',ex:['ChatGPT','Claude','Gemini','Immagini create dall\'AI']}];
+var TX_C=[[200,200,190],[200,240,148],[200,280,106],[200,318,66]];   /* cx, cy, r: cerchi uno dentro l'altro */
+function txInit(){if(!G('txSteps'))return;
+  G('txSteps').innerHTML='<i class="tx-rail"></i><i class="tx-fill" id="txFill"></i>'+TX_S.map(function(s,i){return '<button class="tx-step" onclick="txGo('+i+')" style="--c:'+s.c+'"><b class="tx-dot">'+s.d+'</b><span>'+s.l+'</span></button>'}).join('');txGo(0)}
+function txGo(i){if(i<0||i>=TX_S.length)return;TX.i=i;var s=TX_S[i];
+  [].forEach.call(document.querySelectorAll('.tx-step'),function(b,k){b.classList.toggle('on',k===i);b.classList.toggle('done',k<i)});G('txFill').style.width=(i/3*75)+'%';
+  var kk=G('txKick');kk.textContent=s.k;kk.style.color=s.c;G('txH').textContent=s.h;G('txP').innerHTML=s.p;
+  var ex=G('txEx');ex.style.setProperty('--c',s.c);ex.innerHTML='<span>Esempi</span>'+s.ex.map(function(e){return '<b>'+e+'</b>'}).join('');
+  G('txPrev').disabled=i===0;G('txNext').disabled=i===TX_S.length-1;
+  G('txSvg').innerHTML=TX_S.map(function(t,k){var c=TX_C[k],shown=k<=i,cur=k===i;
+    return '<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'" fill="'+(cur?t.c:'#fff')+'" fill-opacity="'+(cur?.16:.6)+'" stroke="'+t.c+'" stroke-width="'+(cur?5:3)+'" opacity="'+(shown?1:0)+'"/>'+
+      '<text x="'+c[0]+'" y="'+(k===3?c[1]+5:c[1]-c[2]+[48,44,42][k])+'" fill="'+t.c+'" opacity="'+(shown?(cur?1:.75):0)+'" style="font-size:'+(cur?13:12)+'px">'+t.l.toUpperCase()+'</text>'}).join('')}
+
 var tlTexts=["Nel 1739 Jacques de Vaucanson costruì un'anatra meccanica che sembrava mangiare, digerire e defecare: il primo tentativo di simulare la vita con una macchina!","Nel 1950 Alan Turing propose il suo test: se un computer può ingannare un umano facendogli credere di parlare con un altro umano, allora \"pensa\". La domanda che ha dato il via a tutto!","Nel 1997 Deep Blue di IBM batte il campione mondiale di scacchi Garry Kasparov. Per la prima volta una macchina supera l'uomo in un gioco di strategia. Shock mondiale!","Nel 2016 AlphaGo di Google DeepMind batte Lee Sedol a Go, un gioco con più combinazioni degli atomi nell'universo: impossibile con la forza bruta, l'AI ha dovuto IMPARARE.","Nel 2022 OpenAI lancia ChatGPT: 1 milione di utenti in 5 giorni. Per la prima volta chiunque può conversare con un'AI. La rivoluzione è iniziata!"];
 function tlShow(i,el){document.getElementById('tlDetail').textContent=tlTexts[i];[].forEach.call(document.querySelectorAll('.tl-card'),function(c){c.classList.remove('active')});el.classList.add('active')}
 
 function brReveal(el){el.classList.toggle('on')}
 
-var taxTexts=["<b>Intelligenza Artificiale</b> — il concetto più ampio: qualsiasi sistema che simula capacità cognitive umane, comprese le prime macchine a regole scritte a mano (es. gli scacchi anni '50).","<b>Machine Learning</b> — un sottoinsieme dell'AI: invece di programmare regole, la macchina IMPARA dai dati. Esempio: Spotify impara i tuoi gusti da cosa ascolti.","<b>Deep Learning</b> — il cuore dell'AI moderna: reti neurali con molti strati (deep = profondo). ChatGPT ha 175 miliardi di parametri. È la tecnologia dietro tutto ciò che usate ogni giorno!"];
-function taxShow(i,el){var d=document.getElementById('taxDetail');if(d.dataset.cur==i){d.innerHTML='Clicca un anello per la spiegazione. Sono come scatole cinesi: ognuna contiene la successiva.';d.dataset.cur='';return}d.innerHTML=taxTexts[i];d.dataset.cur=i}
 
 var hlPath=[{x:50,y:95},{x:80,y:52},{x:130,y:105},{x:180,y:150},{x:230,y:115},{x:260,y:58},{x:285,y:28},{x:305,y:12}];
 var hlErr=[87,72,60,48,35,22,12,3];var hlEp=[0,5,10,15,25,30,40,50];var hlF=0,hlT=null;
@@ -2896,5 +2937,6 @@ fdBoot();
 hsInit();
 n4Init();
 w6Init();
+txInit();
 if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();
 </script>
