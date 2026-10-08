@@ -765,6 +765,72 @@ html.vote,html.vote body{background:#F2EEE3}
 .vp-o.sel{background:#222;color:#FBF8F1}
 .vp-o.mac{border-color:#B3261E;box-shadow:0 0 0 2px #B3261E}
 .vp-o:disabled{cursor:default}
+/* sala Deep Blue: partita simulata */
+.ch-wrap{flex:1;display:flex;gap:1.1em;min-height:0;align-items:center}
+.ch-board{flex:none;width:min(calc(55vh - 115px),420px,58%);aspect-ratio:1;display:grid;grid-template-columns:repeat(8,1fr);grid-template-rows:repeat(8,1fr);border:2px solid #6F7F96}
+.ch-sq{position:relative;display:flex;align-items:center;justify-content:center;font-size:clamp(1rem,3.5vh,2.1rem);line-height:1;font-family:'Segoe UI Symbol','DejaVu Sans',sans-serif}
+.ch-sq.lt{background:#DCE3EA}
+.ch-sq.dk{background:#6F87A6}
+.ch-sq.hl.lt{background:#F1DE98}
+.ch-sq.hl.dk{background:#C7A954}
+.ch-sq.ck{background:radial-gradient(circle,#F08A72 30%,#B4432A 100%)}
+.ch-sq .pw{color:#fff;text-shadow:0 0 1px #000,0 0 1px #000,0 1px 2px rgba(0,0,0,.6)}
+.ch-sq .pb{color:#14171C;text-shadow:0 0 1px rgba(255,255,255,.55)}
+.ch-sq em{position:absolute;font-style:normal;font-size:.45rem;font-family:ui-monospace,Menlo,monospace;opacity:.8;line-height:1}
+.ch-sq .rk{left:2px;top:2px}
+.ch-sq .fl{right:2px;bottom:2px}
+.ch-sq.lt em{color:#4F6684}
+.ch-sq.dk em{color:#E8EDF2}
+.ch-side{flex:1;min-width:0;align-self:stretch;display:flex;flex-direction:column;gap:.6em;font-size:.82rem;padding:.2em 0}
+.ch-pl{display:flex;gap:.6em;align-items:center;line-height:1.3}
+.ch-pl b{display:block;color:#E8E4DA}
+.ch-pl small{color:#9AA7B8}
+.ch-dot{width:14px;height:14px;border-radius:50%;flex:none;border:1px solid #9AA7B8}
+.ch-dot.w{background:#fff}
+.ch-dot.b{background:#14171C}
+.ch-ev{display:grid;grid-template-columns:auto 1fr 4.5em;gap:.5em;align-items:center;font-size:.75rem;color:#9AA7B8}
+.ch-ev div{height:10px;background:#14171C;border:1px solid #6F7F96}
+.ch-ev i{display:block;height:100%;width:50%;background:#fff;transition:width .5s}
+.ch-ev b{color:#E8E4DA;font-family:ui-monospace,Menlo,monospace;font-weight:400;text-align:right}
+.ch-mv{flex:1;min-height:0;overflow-y:auto;margin:0;padding:0 0 0 2em;font-family:ui-monospace,Menlo,monospace;font-size:.8rem;color:#C9D2DE;scrollbar-width:thin;border-top:1px solid #2A3A52;border-bottom:1px solid #2A3A52}
+.ch-mv li{padding:.12em 0}
+.ch-mv li span{display:inline-block;min-width:5.5em}
+.ch-ctl{display:flex;flex-wrap:wrap;gap:.4em}
+.ch-ctl .mu-btn{font-size:.75rem;padding:.4em .7em}
+@media (max-width:820px){.ch-wrap{flex-direction:column;align-items:stretch}.ch-board{width:100%}}
+/* AlphaGo: sfida dal telefono */
+.ag-class{flex:1;width:100%;display:flex;gap:1.6em;align-items:center;justify-content:center;background:rgba(255,255,255,.94);border-radius:8px;padding:1.2em 1.4em;min-height:0;color:#202124;font-family:'Roboto',Arial,sans-serif}
+.ag-join{display:flex;flex-direction:column;align-items:center;gap:.5em;flex:none}
+.ag-join p{margin:0;font-size:.9rem}
+.ag-join b{font-size:1.3rem;letter-spacing:.08em}
+.ag-cl{flex:1;min-width:0;display:flex;flex-direction:column;gap:.65em;align-self:stretch;justify-content:center}
+.ag-h{margin:0;font-size:1.35rem;font-weight:500}
+.ag-p{margin:0;font-size:.88rem;line-height:1.5;color:#5F6368}
+.ag-lvl{display:flex;justify-content:space-between;align-items:center;gap:.6em;flex-wrap:wrap;font-size:.88rem;border-top:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0;padding:.5em 0}
+.ag-lvl .mu-btn{font-size:.75rem;padding:.4em .8em}
+.ag-score{display:flex;flex-direction:column;gap:.35em;overflow-y:auto;min-height:0}
+.ag-sh{margin:0;font-size:.78rem;color:#5F6368}
+.ag-row{display:grid;grid-template-columns:9.5em 1fr auto;gap:.6em;align-items:center;font-size:.82rem;padding:.25em .4em;border-radius:4px}
+.ag-row.now{background:#E8F0FE}
+.ag-row div{height:10px;background:#F28B82;border-radius:5px;overflow:hidden}
+.ag-row i{display:block;height:100%;background:#1A73E8;transition:width .5s}
+.ag-row b{font-weight:500;white-space:nowrap}
+html.vote.agm,html.vote.agm body{background:#F1F3F4}
+#vtApp.ag{font-family:'Roboto',Arial,sans-serif;color:#202124}
+.agp-hd{margin:0;font-size:.8rem;letter-spacing:.08em;color:#1A73E8;font-weight:500;line-height:1.5}
+.agp-hd span{letter-spacing:0;color:#5F6368}
+.agp-card{background:#fff;border-radius:8px;box-shadow:0 1px 2px rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15);padding:14px 16px}
+.agp-card p{margin:0;line-height:1.45}
+.agp-lv{font-size:.95rem}
+.agp-r{font-size:.85rem;color:#5F6368;margin-top:6px!important}
+.agp-board{background-color:#D6AE68;background-image:linear-gradient(rgba(60,40,10,.3) 1px,transparent 1px),linear-gradient(90deg,rgba(60,40,10,.3) 1px,transparent 1px);background-size:30px 30px;border-radius:8px;padding:20px 12px;display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.agp-board .ag-s{width:36px}
+.agp-st{margin:0;font-size:1.05rem;font-weight:500;min-height:2.6em;line-height:1.3}
+.agp-btns{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.agp-btns button,.agp-new{font:500 1rem 'Roboto',Arial,sans-serif;padding:16px 0;border:none;border-radius:4px;background:#1A73E8;color:#fff;cursor:pointer;box-shadow:0 1px 2px rgba(60,64,67,.3)}
+.agp-btns button:disabled{background:#BDC1C6;box-shadow:none;cursor:default}
+.agp-new{width:100%}
+.agp-sc{margin:0;font-size:.9rem;color:#5F6368;text-align:center}
 /* badge extra per i pop-up */
 .pl-b.mech{background:rgba(200,150,62,.2);color:#8A5A12}
 .pl-b.rule{background:rgba(0,180,216,.15);color:#0077A0}
@@ -2026,11 +2092,11 @@ var HS=[
  f:'Weizenbaum la creò per dimostrare che le macchine non capiscono. Rimase sconvolto da quanto le persone si fidassero di lei.'},
 {y:'1997',n:'Deep Blue',s:'Deep Blue',meta:'IBM · New York',lv:2,init:dbInit,
  d:'Un supercomputer costruito per gli scacchi batte il campione del mondo Garry Kasparov. Non impara: calcola milioni di mosse al secondo e sceglie la migliore.',
- tr:'Sfida la macchina a tris. Tu sei X.',
+ tr:'Guardate la partita: Deep Blue (bianco) contro un giocatore umano simulato. A destra, quante posizioni analizza a ogni mossa.',
  f:'Nel 1996 vinse Kasparov. Nel 1997, dopo un aggiornamento, Deep Blue vinse la rivincita per 3,5 a 2,5.'},
 {y:'2016',n:'AlphaGo',s:'AlphaGo',meta:'Google DeepMind · Seul',lv:3,init:agInit,
  d:'Batte Lee Sedol a Go, un gioco con troppe posizioni per poterle calcolare tutte. Ha dovuto imparare: giocando milioni di partite contro se stesso.',
- tr:'Gioca contro l\'AI. Poi falla allenare contro se stessa e sfidala di nuovo.',
+ tr:'Inquadrate il QR e sfidate l\'AI dal telefono. Poi alleniamola qui e guardiamo cosa cambia nei risultati.',
  f:'Nel Go ci sono più posizioni possibili che atomi nell\'universo: la forza bruta di Deep Blue qui non basta.'},
 {y:'2022',n:'ChatGPT',s:'ChatGPT',meta:'OpenAI · San Francisco',lv:3,init:gpInit,
  d:'Un modello che ha letto una parte enorme di internet e scrive prevedendo, una dopo l\'altra, la parola più probabile.',
@@ -2042,7 +2108,7 @@ function hsInit(){
   G('muSc').innerHTML=MU_LV.map(function(l){return '<span>'+l+'</span>'}).join('');
   hsGo(0)}
 var MU_FILE=['anatra.bmp','turing.txt','eliza.exe','deepblue.exe','alphago.exe','chatgpt'],MU_STY=['una stampa del Settecento','un dattiloscritto degli anni \'50','un terminale degli anni \'60','Windows, anni \'90','un\'app degli anni 2010','un\'interfaccia di oggi'];
-function hsGo(i){if(i<0||i>=HS.length)return;vtStop();clearInterval(EN.auto);hsCur=i;hsSeen[i]=1;var H=HS[i];
+function hsGo(i){if(i<0||i>=HS.length)return;vtStop();agvStop();clearInterval(EN.auto);hsCur=i;hsSeen[i]=1;var H=HS[i];
   var sec=G('s3');for(var e=0;e<6;e++)sec.classList.remove('era-'+e);sec.classList.add('era-'+i);G('muTb1').textContent=MU_FILE[i];G('muStyle').textContent='Lo stile di questa pagina: '+MU_STY[i];
   [].forEach.call(document.querySelectorAll('.mu-yr'),function(s,k){s.classList.toggle('on',k===i);s.classList.toggle('seen',!!hsSeen[k]&&k!==i)});
   G('muNo').textContent='Sala '+(i+1)+' di '+HS.length;
@@ -2125,12 +2191,10 @@ function vtSb(cb){if(!vtOn())return;if(VT.sb)return cb(VT.sb);VT.sbWait.push(cb)
   var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js';
   s.onload=function(){VT.sb=window.supabase.createClient(SUPA_URL,SUPA_KEY,{auth:{persistSession:false}});var w=VT.sbWait;VT.sbWait=[];w.forEach(function(f){f(VT.sb)})};document.head.appendChild(s)}
 function vtState(st){VT.state=st;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom(),state:st,updated_at:new Date().toISOString()}).then(function(r){if(r.error)console.warn('voto:',r.error.message)})})}
-function vtStop(){if(VT.ch&&VT.sb)VT.sb.removeChannel(VT.ch);VT.ch=null;VT.k=-1}
-function vtLoad(k){vtSb(function(sb){sb.from('votes').select('voter,choice').eq('room',vtRoom()).eq('q',k).then(function(res){if(VT.k!==k||!res.data)return;res.data.forEach(function(r){VT.votes[r.voter]=r.choice});vtBars()})})}
-function vtListen(k){VT.k=k;VT.votes={};vtBars();vtSb(function(sb){var room=vtRoom();
-  if(!VT.ch)VT.ch=sb.channel('voti-'+room).on('postgres_changes',{event:'*',schema:'public',table:'votes',filter:'room=eq.'+room},function(p){var r=p.new;if(!r)return;if(r.q===-1){VT.joined[r.voter]=1;vtJoinCount()}else if(r.q===VT.k){VT.votes[r.voter]=r.choice;vtBars()}}).subscribe();
-  vtLoad(k);setTimeout(function(){if(VT.k===k)vtLoad(k)},2000)})}
-function vtJoinLoad(){vtSb(function(sb){sb.from('votes').select('voter').eq('room',vtRoom()).eq('q',-1).then(function(res){if(!res.data)return;res.data.forEach(function(r){VT.joined[r.voter]=1});vtJoinCount()})})}
+function vtStop(){clearInterval(VT.poll);VT.poll=null;VT.k=-1}
+function vtPoll(){var k=VT.k;vtSb(function(sb){sb.from('votes').select('voter,q,choice').eq('room',vtRoom()).in('q',[-1,k]).range(0,999).then(function(res){if(!res.data||VT.k!==k)return;var v={},j={};res.data.forEach(function(r){if(r.q===-1)j[r.voter]=1;else v[r.voter]=r.choice});VT.votes=v;VT.joined=j;vtBars();vtJoinCount()})})}
+function vtListen(k){VT.k=k;VT.votes={};vtBars();clearInterval(VT.poll);vtPoll();VT.poll=setInterval(function(){if(document.hidden||hsCur!==1||!G('s3').classList.contains('current'))return;vtPoll()},2000)}
+function vtJoinLoad(){vtPoll()}
 function vtJoinCount(){var n=Object.keys(VT.joined).length;[].forEach.call(document.querySelectorAll('.vt-n'),function(e){e.textContent=n})}
 function vtCount(){var n={A:0,B:0};for(var key in VT.votes){var v=VT.votes[key];if(v==='A'||v==='B')n[v]++}return n}
 function vtBars(){var el=G('vtBars');if(!el)return;var n=vtCount(),t=n.A+n.B;
@@ -2225,8 +2289,8 @@ function vtPhone(){document.documentElement.classList.add('vote');var app=docume
   draw();if(!vtOn())return;
   vtSb(function(sb){
     sb.from('votes').upsert({room:VOTE_ROOM,q:-1,voter:me,choice:'A'},{onConflict:'room,q,voter'}).then(function(){});
-    sb.from('vote_rooms').select('state').eq('room',VOTE_ROOM).maybeSingle().then(function(res){if(res.data&&res.data.state){S=res.data.state;draw()}});
-    sb.channel('stanza-'+VOTE_ROOM).on('postgres_changes',{event:'*',schema:'public',table:'vote_rooms',filter:'room=eq.'+VOTE_ROOM},function(p){if(p.new&&p.new.state){S=p.new.state;draw()}}).subscribe()})}
+    function pull(){sb.from('vote_rooms').select('state').eq('room',VOTE_ROOM).maybeSingle().then(function(res){if(res.data&&res.data.state&&JSON.stringify(res.data.state)!==JSON.stringify(S)){S=res.data.state;draw()}})}
+    pull();setInterval(function(){if(!document.hidden)pull()},3000)})}
 
 /* Sala 3 — ELIZA */
 var EZ_RULES=[
@@ -2254,22 +2318,113 @@ function ezSay(v){var r=ezReply(v);EZ.log.push(['u','TU: '+esc(v)]);EZ.log.push(
   hsLive(r.rule?'Regola usata:<br>'+r.rule:'Nessuna parola chiave trovata.<br>Risposta generica pescata a caso.');
   if(EZ.first){EZ.first=false;setTimeout(function(){muPop('hs:eliza',{t:'ELIZA non ha capito niente',sub:'Eppure sembrava una conversazione vera.',rows:[R('','Come funziona','rule','Cerca una parola chiave nella tua frase e applica una regola scritta a mano: «mi sento X» diventa «Perché ti senti X?». Non sa cosa vuol dire X: lo ricopia.'),R('','L\'effetto ELIZA','fun','Le persone si affezionavano lo stesso. La segretaria di Weizenbaum gli chiese di uscire dalla stanza per poter parlare da sola con ELIZA.'),R('','E ChatGPT?','ai','Non ha regole scritte a mano: ha imparato da miliardi di frasi. Prova a scrivere a ELIZA «Il cielo è blu».')]})},500)}}
 
-/* Sala 4 — Deep Blue (a tris) */
-var DB={b:[],over:false,busy:false,first:true},DB_L=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]],dbN=0;
-function dbWin(b){for(var i=0;i<8;i++){var l=DB_L[i];if(b[l[0]]&&b[l[0]]===b[l[1]]&&b[l[1]]===b[l[2]])return{w:b[l[0]],l:l}}return b.indexOf('')<0?{w:'draw'}:null}
-function dbMM(b,turn,depth){dbN++;var r=dbWin(b);if(r)return r.w==='O'?10-depth:r.w==='X'?depth-10:0;var best=turn==='O'?-99:99;for(var i=0;i<9;i++)if(!b[i]){b[i]=turn;var s=dbMM(b,turn==='O'?'X':'O',depth+1);b[i]='';if(turn==='O'?s>best:s<best)best=s}return best}
-function dbInit(){DB.b=['','','','','','','','',''];DB.over=false;DB.busy=false;var d=G('hsDev');d.className='mu-vit ex-db mu-dark';
-  d.innerHTML='<p class="db-hd"><b>IBM · DEEP BLUE</b><span id="dbSt">Tocca a te. Tu sei X.</span></p><div class="db-grid">'+DB.b.map(function(_,i){return '<button class="db-c" id="dbC'+i+'" onclick="dbPlay('+i+')"></button>'}).join('')+'</div><div class="mu-btns"><button class="mu-btn" onclick="dbInit()">Nuova partita</button></div>';
-  hsLive('')}
-function dbDraw(win){DB.b.forEach(function(v,i){var c=G('dbC'+i);c.textContent=v;c.className='db-c'+(v==='O'?' o':'')+(win&&win.l&&win.l.indexOf(i)>=0?' win':'');c.disabled=!!v||DB.over})}
-function dbPlay(i){if(DB.over||DB.busy||DB.b[i])return;DB.b[i]='X';var r=dbWin(DB.b);dbDraw(r);if(r)return dbEnd(r);DB.busy=true;G('dbSt').textContent='Calcolo in corso...';
-  setTimeout(function(){if(!G('dbSt'))return;dbN=0;var t0=performance.now(),best=-1,bs=-99;for(var j=0;j<9;j++)if(!DB.b[j]){DB.b[j]='O';var s=dbMM(DB.b,'X',1);DB.b[j]='';if(s>bs){bs=s;best=j}}
-    var ms=Math.max(1,Math.round(performance.now()-t0)),n=dbN;DB.b[best]='O';DB.busy=false;var r2=dbWin(DB.b);dbDraw(r2);G('dbSt').textContent='Tocca a te.';
-    hsLive('Posizioni analizzate per questa mossa: '+n.toLocaleString('it-IT')+'<br>Tempo: '+ms+(ms===1?' millisecondo':' millisecondi')+'<br>Deep Blue, a scacchi: circa 200 milioni al secondo.');
-    if(DB.first){DB.first=false;muPop('hs:db',{t:'Ha provato tutte le mosse',sub:'In un attimo ha analizzato '+n.toLocaleString('it-IT')+' posizioni.',rows:[R('','Come funziona','math','Per ogni casella libera immagina tutte le risposte possibili, e le risposte alle risposte, fino alla fine della partita. Poi sceglie la mossa migliore. Si chiama forza bruta.'),R('','Deep Blue, 1997','math','Faceva lo stesso a scacchi: circa 200 milioni di posizioni al secondo. Così batté il campione del mondo Garry Kasparov.'),R('','Ma impara?','idea','No. Erano gli ingegneri IBM a modificarlo tra una partita e l\'altra. È pura matematica, velocissima.')]})}
-    if(r2)dbEnd(r2)},450)}
-function dbEnd(r){DB.over=true;dbDraw(r);var t=r.w==='O'?'Ha vinto la macchina.':r.w==='X'?'Hai vinto.':'Pareggio.';G('dbSt').textContent=t;
-  muPop('hs:dbEnd',{t:t,rows:[R('','Perché non puoi vincere','math','A tris esistono «solo» 255.168 partite possibili: la macchina le può controllare tutte. Contro chi calcola tutto, il massimo è pareggiare.'),R('','E negli scacchi?','math','Le partite possibili sono più degli atomi dell\'universo: nemmeno Deep Blue poteva vederle tutte. Guardava qualche mossa avanti, velocissimo.')],toast:t})}
+/* Sala 4 — Deep Blue: partita a scacchi simulata */
+/* motore di scacchi minimo (0x88): mosse legali, arrocco, promozione a donna; ricerca alfa-beta */
+var CH_V={p:100,n:320,b:330,r:500,q:900,k:0};
+var CH_PST={p:[0,0,0,0,0,0,0,0,50,50,50,50,50,50,50,50,10,10,20,30,30,20,10,10,5,5,10,25,25,10,5,5,0,0,0,20,20,0,0,0,5,-5,-10,0,0,-10,-5,5,5,10,10,-20,-20,10,10,5,0,0,0,0,0,0,0,0],
+n:[-50,-40,-30,-30,-30,-30,-40,-50,-40,-20,0,0,0,0,-20,-40,-30,0,10,15,15,10,0,-30,-30,5,15,20,20,15,5,-30,-30,0,15,20,20,15,0,-30,-30,5,10,15,15,10,5,-30,-40,-20,0,5,5,0,-20,-40,-50,-40,-30,-30,-30,-30,-40,-50],
+b:[-20,-10,-10,-10,-10,-10,-10,-20,-10,0,0,0,0,0,0,-10,-10,0,5,10,10,5,0,-10,-10,5,5,10,10,5,5,-10,-10,0,10,10,10,10,0,-10,-10,10,10,10,10,10,10,-10,-10,5,0,0,0,0,5,-10,-20,-10,-10,-10,-10,-10,-10,-20],
+r:[0,0,0,0,0,0,0,0,5,10,10,10,10,10,10,5,-5,0,0,0,0,0,0,-5,-5,0,0,0,0,0,0,-5,-5,0,0,0,0,0,0,-5,-5,0,0,0,0,0,0,-5,-5,0,0,0,0,0,0,-5,0,0,0,5,5,0,0,0],
+q:[-20,-10,-10,-5,-5,-10,-10,-20,-10,0,0,0,0,0,0,-10,-10,0,5,5,5,5,0,-10,-5,0,5,5,5,5,0,-5,0,0,5,5,5,5,0,-5,-10,5,5,5,5,5,0,-10,-10,0,5,0,0,0,0,-10,-20,-10,-10,-5,-5,-10,-10,-20],
+k:[-30,-40,-40,-50,-50,-40,-40,-30,-30,-40,-40,-50,-50,-40,-40,-30,-30,-40,-40,-50,-50,-40,-40,-30,-30,-40,-40,-50,-50,-40,-40,-30,-20,-30,-30,-40,-40,-30,-30,-20,-10,-20,-20,-20,-20,-20,-20,-10,20,20,0,0,0,0,20,20,20,30,10,0,0,10,30,20]};
+var CH_N=[-33,-31,-18,-14,14,18,31,33],CH_DB=[-17,-15,15,17],CH_DR=[-16,-1,1,16],CH_DK=[-17,-16,-15,-1,1,15,16,17];
+var CH={b:[],side:'w',cast:'KQkq',kw:116,kb:4,nodes:0};
+function chCol(p){return p?(p===p.toUpperCase()?'w':'b'):''}
+function chReset(){var rows=['rnbqkbnr','pppppppp','','','','','PPPPPPPP','RNBQKBNR'];CH.b=[];for(var i=0;i<128;i++)CH.b.push('');
+  for(var r=0;r<8;r++)for(var f=0;f<rows[r].length;f++)CH.b[r*16+f]=rows[r][f];CH.side='w';CH.cast='KQkq';CH.kw=116;CH.kb=4}
+function chAtt(sq,by){var b=CH.b,i,c,q,w=by==='w';
+  if(w){if(!((sq+15)&0x88)&&b[sq+15]==='P')return true;if(!((sq+17)&0x88)&&b[sq+17]==='P')return true}
+  else{if(!((sq-15)&0x88)&&b[sq-15]==='p')return true;if(!((sq-17)&0x88)&&b[sq-17]==='p')return true}
+  var N=w?'N':'n',B=w?'B':'b',R=w?'R':'r',Q=w?'Q':'q',K=w?'K':'k';
+  for(i=0;i<8;i++){c=sq+CH_N[i];if(!(c&0x88)&&b[c]===N)return true;c=sq+CH_DK[i];if(!(c&0x88)&&b[c]===K)return true}
+  for(i=0;i<4;i++){c=sq+CH_DB[i];while(!(c&0x88)){q=b[c];if(q){if(q===B||q===Q)return true;break}c+=CH_DB[i]}
+    c=sq+CH_DR[i];while(!(c&0x88)){q=b[c];if(q){if(q===R||q===Q)return true;break}c+=CH_DR[i]}}
+  return false}
+function chAdd(mv,f,t,p,c,promo,k){mv.push({f:f,t:t,p:p,c:c,pr:promo?(chCol(p)==='w'?'Q':'q'):'',k:k||''})}
+function chGen(caps){var b=CH.b,s=CH.side,mv=[],up=s==='w',opp=up?'b':'w';
+  for(var sq=0;sq<128;sq++){if(sq&0x88){sq+=7;continue}var p=b[sq];if(!p||chCol(p)!==s)continue;var t=p.toLowerCase();
+    if(t==='p'){var d=up?-16:16,st=up?6:1,pr=up?0:7,to=sq+d;
+      if(!(to&0x88)&&!b[to]&&(!caps||(to>>4)===pr)){chAdd(mv,sq,to,p,'',(to>>4)===pr);if(!caps&&(sq>>4)===st&&!b[to+d])chAdd(mv,sq,to+d,p,'',false)}
+      for(var j=-1;j<=1;j+=2){var c=sq+d+j;if(!(c&0x88)&&b[c]&&chCol(b[c])!==s)chAdd(mv,sq,c,p,b[c],(c>>4)===pr)}}
+    else{var dirs=t==='n'?CH_N:t==='b'?CH_DB:t==='r'?CH_DR:CH_DK,slide=t==='b'||t==='r'||t==='q';
+      for(var i=0;i<dirs.length;i++){var c2=sq+dirs[i];while(!(c2&0x88)){var q=b[c2];if(q){if(chCol(q)!==s)chAdd(mv,sq,c2,p,q,false);break}if(!caps)chAdd(mv,sq,c2,p,'',false);if(!slide)break;c2+=dirs[i]}}
+      if(t==='k'&&!caps){var cs=CH.cast;
+        if(up&&sq===116){if(cs.indexOf('K')>=0&&!b[117]&&!b[118]&&b[119]==='R'&&!chAtt(116,opp)&&!chAtt(117,opp)&&!chAtt(118,opp))chAdd(mv,116,118,p,'',false,'K');
+          if(cs.indexOf('Q')>=0&&!b[115]&&!b[114]&&!b[113]&&b[112]==='R'&&!chAtt(116,opp)&&!chAtt(115,opp)&&!chAtt(114,opp))chAdd(mv,116,114,p,'',false,'Q')}
+        if(!up&&sq===4){if(cs.indexOf('k')>=0&&!b[5]&&!b[6]&&b[7]==='r'&&!chAtt(4,opp)&&!chAtt(5,opp)&&!chAtt(6,opp))chAdd(mv,4,6,p,'',false,'k');
+          if(cs.indexOf('q')>=0&&!b[3]&&!b[2]&&!b[1]&&b[0]==='r'&&!chAtt(4,opp)&&!chAtt(3,opp)&&!chAtt(2,opp))chAdd(mv,4,2,p,'',false,'q')}}}}
+  return mv}
+var CH_ROOK={K:[119,117],Q:[112,115],k:[7,5],q:[0,3]};
+function chMake(m){var b=CH.b;m.cs=CH.cast;b[m.t]=m.pr||m.p;b[m.f]='';
+  if(m.k){var r=CH_ROOK[m.k];b[r[1]]=b[r[0]];b[r[0]]=''}
+  if(m.p==='K')CH.kw=m.t;else if(m.p==='k')CH.kb=m.t;
+  var c=CH.cast;if(c){if(m.p==='K')c=c.replace('K','').replace('Q','');if(m.p==='k')c=c.replace('k','').replace('q','');
+    if(m.f===119||m.t===119)c=c.replace('K','');if(m.f===112||m.t===112)c=c.replace('Q','');if(m.f===7||m.t===7)c=c.replace('k','');if(m.f===0||m.t===0)c=c.replace('q','');CH.cast=c}
+  CH.side=CH.side==='w'?'b':'w'}
+function chUnmake(m){var b=CH.b;CH.side=CH.side==='w'?'b':'w';b[m.f]=m.p;b[m.t]=m.c;
+  if(m.k){var r=CH_ROOK[m.k];b[r[0]]=b[r[1]];b[r[1]]=''}
+  if(m.p==='K')CH.kw=m.f;else if(m.p==='k')CH.kb=m.f;CH.cast=m.cs}
+function chInCheck(s){s=s||CH.side;return chAtt(s==='w'?CH.kw:CH.kb,s==='w'?'b':'w')}
+function chLegal(caps){var s=CH.side,mv=chGen(caps),out=[];for(var i=0;i<mv.length;i++){chMake(mv[i]);if(!chInCheck(s))out.push(mv[i]);chUnmake(mv[i])}return out}
+function chEval(){var b=CH.b,s=0;for(var sq=0;sq<128;sq++){if(sq&0x88){sq+=7;continue}var p=b[sq];if(!p)continue;var t=p.toLowerCase(),r=sq>>4,f=sq&7;
+  if(p!==t)s+=CH_V[t]+CH_PST[t][r*8+f];else s-=CH_V[t]+CH_PST[t][(7-r)*8+f]}return CH.side==='w'?s:-s}
+function chOrder(mv){for(var i=0;i<mv.length;i++){var m=mv[i];m.o=(m.c?10*CH_V[m.c.toLowerCase()]-CH_V[m.p.toLowerCase()]/10:0)+(m.pr?800:0)}mv.sort(function(x,y){return y.o-x.o})}
+function chQ(a,bt,d){CH.nodes++;var sp=chEval();if(sp>=bt)return bt;if(sp>a)a=sp;if(d<=0)return a;var mv=chLegal(true);chOrder(mv);
+  for(var i=0;i<mv.length;i++){chMake(mv[i]);var s=-chQ(-bt,-a,d-1);chUnmake(mv[i]);if(s>=bt)return bt;if(s>a)a=s}return a}
+function chAB(d,a,bt,ply){CH.nodes++;if(d===0)return chQ(a,bt,4);var mv=chLegal(false);if(!mv.length)return chInCheck()?-99000+ply:0;chOrder(mv);
+  for(var i=0;i<mv.length;i++){chMake(mv[i]);var s=-chAB(d-1,-bt,-a,ply+1);chUnmake(mv[i]);if(s>=bt)return bt;if(s>a)a=s}return a}
+/* tutte le mosse alla radice con il loro punteggio (dal punto di vista di chi muove) */
+function chRoot(depth){CH.nodes=0;var mv=chLegal(false),res=[];chOrder(mv);
+  for(var i=0;i<mv.length;i++){chMake(mv[i]);res.push({m:mv[i],s:-chAB(depth-1,-1e9,1e9,1)});chUnmake(mv[i])}
+  res.sort(function(x,y){return y.s-x.s});return res}
+var CH_IT={k:'R',q:'D',r:'T',b:'A',n:'C',p:''};
+function chSq(sq){return 'abcdefgh'[sq&7]+(8-(sq>>4))}
+/* notazione italiana (R re, D donna, T torre, A alfiere, C cavallo); va chiamata PRIMA di eseguire la mossa */
+function chSan(m){var t=m.p.toLowerCase(),s;
+  if(m.k)s=(m.k==='K'||m.k==='k')?'O-O':'O-O-O';
+  else{s=t==='p'?(m.c?'abcdefgh'[m.f&7]+'x':'')+chSq(m.t)+(m.pr?'=D':''):CH_IT[t]+(m.c?'x':'')+chSq(m.t)}
+  chMake(m);var chk=chInCheck(),mate=chk&&!chLegal(false).length;chUnmake(m);return s+(mate?'#':chk?'+':'')}
+function chKey(){return CH.b.join(',')+CH.side+CH.cast}
+/* partita simulata: Deep Blue (bianco) contro un giocatore umano simulato (nero). Si guarda, non si gioca. */
+var CHG={run:true,speed:1,timer:null,over:false,moves:[],last:null,first:true,ev:0,keys:{},ply:0};
+var CH_GL={k:'♚',q:'♛',r:'♜',b:'♝',n:'♞',p:'♟'};
+function chFmt(s){return Math.abs(s)>90000?(s>0?'matto':'subisce matto'):(s>0?'+':'')+(s/100).toFixed(1).replace('.',',')}
+function dbInit(){clearTimeout(CHG.timer);chReset();CHG.over=false;CHG.moves=[];CHG.last=null;CHG.ev=0;CHG.keys={};CHG.ply=0;CHG.run=true;CHG.speed=1;
+  var d=G('hsDev');d.className='mu-vit ex-db mu-dark';
+  d.innerHTML='<p class="db-hd"><b>IBM · DEEP BLUE</b><span id="chSt">La partita sta per cominciare…</span></p><div class="ch-wrap"><div class="ch-board" id="chB"></div><div class="ch-side">'+
+    '<div class="ch-pl"><i class="ch-dot w"></i><span><b>Deep Blue</b><small>AI · bianco · guarda 3 mosse avanti</small></span></div>'+
+    '<div class="ch-pl"><i class="ch-dot b"></i><span><b>Luca</b><small>giocatore simulato · nero · guarda 2 mosse avanti</small></span></div>'+
+    '<div class="ch-ev"><span>Vantaggio</span><div><i id="chEv"></i></div><b id="chEvT">0,0</b></div>'+
+    '<ol class="ch-mv" id="chMv"></ol>'+
+    '<div class="ch-ctl"><button class="mu-btn fill" id="chPlay" onclick="chToggle()">Pausa</button><button class="mu-btn" id="chSp" onclick="chSpeed()">Velocità 1×</button><button class="mu-btn" onclick="dbInit()">Nuova partita</button></div></div></div>';
+  chDraw();hsLive('Deep Blue gioca col bianco. A ogni sua mossa qui compare quante posizioni ha analizzato.');CHG.timer=setTimeout(chTick,1300)}
+function chDraw(){var B=G('chB');if(!B)return;var h='',chk=chInCheck()?(CH.side==='w'?CH.kw:CH.kb):-1;
+  for(var r=0;r<8;r++)for(var f=0;f<8;f++){var sq=r*16+f,p=CH.b[sq],cls='ch-sq '+((r+f)%2?'dk':'lt');
+    if(CHG.last&&(sq===CHG.last.f||sq===CHG.last.t))cls+=' hl';if(sq===chk)cls+=' ck';
+    h+='<div class="'+cls+'">'+(p?'<span class="'+(chCol(p)==='w'?'pw':'pb')+'">'+CH_GL[p.toLowerCase()]+'︎</span>':'')+(f===0?'<em class="rk">'+(8-r)+'</em>':'')+(r===7?'<em class="fl">'+'abcdefgh'[f]+'</em>':'')+'</div>'}
+  B.innerHTML=h;
+  var ev=Math.max(-1000,Math.min(1000,CHG.ev));G('chEv').style.width=(50+ev/20)+'%';G('chEvT').textContent=chFmt(CHG.ev);
+  var L=G('chMv'),mh='';for(var i=0;i<CHG.moves.length;i+=2)mh+='<li><span>'+CHG.moves[i]+'</span><span>'+(CHG.moves[i+1]||'')+'</span></li>';L.innerHTML=mh;L.scrollTop=L.scrollHeight}
+function chToggle(){CHG.run=!CHG.run;var b=G('chPlay');if(b)b.textContent=CHG.run?'Pausa':'Riprendi';if(CHG.run)chTick()}
+function chSpeed(){CHG.speed=CHG.speed>=4?1:CHG.speed*2;var b=G('chSp');if(b)b.textContent='Velocità '+CHG.speed+'×'}
+function chTick(){clearTimeout(CHG.timer);if(CHG.over||!G('chB'))return;
+  if(!CHG.run||XP.open||hsCur!==3||!G('s3').classList.contains('current')){CHG.timer=setTimeout(chTick,300);return}
+  var ai=CH.side==='w';G('chSt').textContent=ai?'Deep Blue sta calcolando…':'Luca ci pensa…';
+  setTimeout(function(){if(!G('chB')||CHG.over)return;
+    var t0=performance.now(),res=chRoot(ai?3:2),ms=Math.max(1,Math.round(performance.now()-t0)),n=CH.nodes,pick,dist=false;
+    if(ai)pick=res[0];else{var best=res[0].s,c=res.filter(function(x){return x.s>=best-50});if(Math.random()<.12){dist=true;c=res.slice(0,6)}pick=c[rnd(0,c.length-1)]}
+    var top=ai?res.slice(0,3).map(function(x){return {san:chSan(x.m),s:x.s}}):null,san=chSan(pick.m);
+    CHG.ev=ai?pick.s:-pick.s;chMake(pick.m);CHG.last=pick.m;CHG.moves.push(san);CHG.ply++;
+    var key=chKey();CHG.keys[key]=(CHG.keys[key]||0)+1;
+    if(ai){G('chSt').textContent='Deep Blue gioca '+san;
+      hsLive('Mossa di Deep Blue: <b>'+san+'</b><br>Posizioni analizzate: '+n.toLocaleString('it-IT')+' in '+ms+' ms<br>Ha guardato 3 mosse avanti, più tutte le catture.<br><br>Le sue tre mosse migliori:'+top.map(function(x){return '<br>'+x.san+' → '+chFmt(x.s)}).join(''));
+      if(CHG.first){CHG.first=false;muPop('hs:db',{t:'Prima di muovere, prova tutto',sub:'Per questa mossa ha analizzato '+n.toLocaleString('it-IT')+' posizioni in '+ms+' millisecondi.',rows:[R('','Come sceglie la mossa','math','Immagina ogni mossa possibile, ogni risposta dell\'avversario e ogni sua contro-risposta. Dà un punteggio a ogni posizione (quanti pezzi ha, dove sono) e sceglie la strada migliore. Si chiama forza bruta.'),R('','Deep Blue, 1997','math','Il vero Deep Blue analizzava circa 200 milioni di posizioni al secondo. Così batté il campione del mondo Garry Kasparov.'),R('','Ma impara?','idea','No. Non ricorda le partite e non migliora da solo: erano gli ingegneri IBM a modificarlo tra una partita e l\'altra. È pura matematica, velocissima.')],toast:'Deep Blue: '+n.toLocaleString('it-IT')+' posizioni per una mossa'})}}
+    else G('chSt').textContent='Luca gioca '+san+(dist?' (si è distratto!)':'');
+    var end=null;if(!chLegal(false).length)end=chInCheck()?(ai?'ai':'human'):'stallo';else if(CHG.keys[key]>=3)end='ripetizione';else if(CHG.ply>=200)end='stop';
+    chDraw();if(end)return chEnd(end);CHG.timer=setTimeout(chTick,(ai?1100:1500)/CHG.speed)},60)}
+function chEnd(e){CHG.over=true;var T={ai:'Scacco matto: vince Deep Blue',human:'Scacco matto: vince Luca!',stallo:'Stallo: patta',ripetizione:'Patta per ripetizione',stop:'Partita interrotta dopo 100 mosse'}[e];
+  G('chSt').textContent=T;var b=G('chPlay');if(b)b.disabled=true;
+  muPop('hs:dbEnd',{t:T,sub:'Dopo '+Math.ceil(CHG.ply/2)+' mosse.',rows:[R('','Perché vince quasi sempre',e==='ai'?'math':'idea','Deep Blue non ha intuizioni: a ogni mossa controlla decine di migliaia di posizioni e sceglie quella col punteggio più alto. Luca guarda solo 2 mosse avanti, e ogni tanto si distrae. Basta un errore e la macchina lo punisce.'),R('','E negli scacchi veri?','math','Le partite possibili sono più degli atomi dell\'universo: nemmeno Deep Blue poteva vederle tutte. Guardava qualche mossa avanti, ma velocissimo.'),R('','Ma impara?','idea','No. Se Luca rifacesse le stesse mosse, Deep Blue risponderebbe sempre allo stesso modo. Per imparare davvero bisognerà aspettare AlphaGo, nella prossima sala.')],toast:T})}
 
 /* Sala 5 — AlphaGo: impara giocando contro se stessa */
 var AG={Q:{},N:{},games:0,s:15,over:false,busy:false,wr:null};
@@ -2278,27 +2433,64 @@ function agQv(s,a){return AG.Q[agK(s,a)]||0}
 function agPick(s,eps){var acts=[1,2,3].filter(function(a){return a<=s});if(Math.random()<eps)return acts[rnd(0,acts.length-1)];var bv=-9,bs=[];acts.forEach(function(a){var q=agQv(s,a);if(q>bv+1e-9){bv=q;bs=[a]}else if(Math.abs(q-bv)<1e-9)bs.push(a)});return bs[rnd(0,bs.length-1)]}
 function agTrainN(n){for(var g=0;g<n;g++){var s=15,p=0,mv=[];while(s>0){var a=agPick(s,.3);mv.push([s,a,p]);s-=a;if(s===0)break;p=1-p}var loser=p;mv.forEach(function(m){var k=agK(m[0],m[1]),r=m[2]===loser?-1:1;AG.N[k]=(AG.N[k]||0)+1;AG.Q[k]=agQv(m[0],m[1])+(r-agQv(m[0],m[1]))/AG.N[k]})}AG.games+=n}
 function agEval(){var w=0;for(var g=0;g<400;g++){var s=15,p=0;while(true){var a=p===0?agPick(s,0):rnd(1,Math.min(3,s));s-=a;if(s===0)break;p=1-p}if(p===1)w++}return Math.round(w/4)}
-function agInit(){AG.s=15;AG.over=false;AG.busy=false;if(AG.wr===null)AG.wr=agEval();var d=G('hsDev');d.className='mu-vit ex-ag';
-  d.innerHTML='<p class="ag-cap">A turno si tolgono 1, 2 o 3 pietre. Chi prende l\'ultima perde. Inizia l\'AI.</p><p class="ag-st" id="agSt"></p><div class="ag-stones" id="agStones"></div><div class="mu-btns" id="agMv">'+[1,2,3].map(function(a){return '<button class="mu-btn fill" onclick="agHuman('+a+')">Prendi '+a+'</button>'}).join('')+'</div><div class="ag-train"><span>Allenamento</span><button class="mu-btn" onclick="agTrainBtn(10)">+10 partite</button><button class="mu-btn" onclick="agTrainBtn(100)">+100 partite</button><button class="mu-btn" onclick="agInit()">Nuova partita</button></div>';
-  agDraw();setTimeout(agAI,700)}
-function agDraw(){if(!G('agStones'))return;G('agStones').innerHTML=Array.apply(null,{length:15}).map(function(_,i){return '<span class="ag-s'+(i>=AG.s?' gone':'')+'"></span>'}).join('');
-  [].forEach.call(document.querySelectorAll('#agMv button'),function(b,k){b.disabled=AG.over||AG.busy||k+1>AG.s});agLive()}
-function agLive(){var s=AG.s,h='Partite contro se stessa: '+AG.games.toLocaleString('it-IT')+'<br>Vittorie contro un giocatore a caso: '+AG.wr+'%';
-  if(s>0&&!AG.over)h+='<br><br>Con '+s+' pietre, quanto valuta ogni mossa:'+[1,2,3].filter(function(a){return a<=s}).map(function(a){var v=Math.round((agQv(s,a)+1)*50);return '<div class="mu-q"><span>Prendi '+a+'</span><div><i style="width:'+v+'%"></i></div><b>'+v+'%</b></div>'}).join('');
-  hsLive(h)}
-function agAI(){if(AG.over||!G('agSt'))return;AG.busy=true;G('agSt').textContent='L\'AI sta pensando...';agDraw();
-  setTimeout(function(){if(!G('agSt'))return;var a=agPick(AG.s,0);AG.s-=a;AG.busy=false;
-    if(AG.s===0){G('agSt').textContent='L\'AI ha preso l\'ultima pietra.';return agEnd('human')}
-    G('agSt').textContent='L\'AI prende '+a+'. Ne restano '+AG.s+'.';agDraw()},800)}
-function agHuman(a){if(AG.over||AG.busy||a>AG.s)return;AG.s-=a;if(AG.s===0){G('agSt').textContent='Hai preso l\'ultima pietra.';return agEnd('ai')}G('agSt').textContent='Hai preso '+a+'.';agDraw();agAI()}
-function agEnd(w){AG.over=true;agDraw();
-  if(w==='ai'){G('agSt').textContent='Ha vinto l\'AI.';
-    if(AG.games>=200)muPop('hs:agWin',{t:'L\'AI ti ha battuto',rows:[R('','Ha scoperto la strategia da sola','ai','Il segreto è lasciare all\'avversario 13, 9, 5 o 1 pietre. Nessuno gliel\'ha detto: l\'ha scoperto giocando centinaia di partite contro se stessa.'),R('','La «mossa 37»','fun','Anche AlphaGo, contro Lee Sedol, giocò una mossa che nessun umano avrebbe fatto. I commentatori pensarono a un errore. Era geniale.')],toast:'Ha vinto l\'AI'});
-    else muPop('hs:agWin0',{t:'Ha vinto l\'AI, per fortuna',rows:[R('','Non sa ancora giocare','ai','Con '+AG.games+' partite di allenamento sceglie quasi a caso: stavolta le è andata bene. Allenala e vedrai la differenza.')],toast:'Ha vinto l\'AI, per fortuna'})}
-  else{G('agSt').textContent='Hai vinto.';muPop('hs:agLose',{t:'Hai battuto l\'AI',rows:[R('','Non sa ancora giocare','ai',AG.games<200?'Con '+AG.games+' partite di allenamento sceglie quasi a caso. Allenala qualche volta e sfidala di nuovo.':'Allenala ancora un po\' e riprova: tra poco non riuscirai più a batterla.')],toast:'Hai vinto'})}}
-function agTrainBtn(n){var wb=AG.wr;agTrainN(n);AG.wr=agEval();agLive();
-  muPop('hs:ag1',{t:'Ha giocato '+n+' partite contro se stessa',rows:[R('','Come impara','ai','Nessuno le spiega come vincere. Gioca contro se stessa: le mosse che portano alla vittoria diventano più probabili, quelle che portano alla sconfitta meno. Si chiama apprendimento per rinforzo.'),R('','AlphaGo, 2016','ai','Prima ha studiato 30 milioni di mosse di partite umane, poi ha giocato milioni di partite contro se stesso. Così è diventato più forte di qualsiasi umano.')],
+/* ---- AlphaGo: la classe sfida l'AI dal telefono; il proiettore allena e mostra i risultati ----
+   Pensato per ~200 telefoni: nessuna connessione "live" sui telefoni (scaricano il cervello a inizio
+   partita e inviano il risultato alla fine); il proiettore legge i risultati ogni 3 secondi. */
+var AG_ROOM=(function(){try{return new URLSearchParams(location.search).get('gioca')}catch(e){return null}})();
+var AGV={poll:null,ver:0,hist:{0:0},res:[]};
+function agRoomId(){return (AG_ROOM||vtRoom())+'G'}
+function agUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?gioca='+vtRoom():''}
+function agQPack(){var q=[];for(var s=1;s<=15;s++)for(var a=1;a<=3;a++)q.push(Math.round(agQv(s,a)*100)/100);return q}
+function agPublish(){vtSb(function(sb){sb.from('vote_rooms').upsert({room:agRoomId(),state:{ver:AGV.ver,games:AG.games,wr:AG.wr,q:agQPack()},updated_at:new Date().toISOString()}).then(function(r){if(r.error)console.warn('alphago:',r.error.message)})})}
+function agvStop(){clearInterval(AGV.poll);AGV.poll=null}
+function agvPoll(){vtSb(function(sb){var room=agRoomId(),all=[];
+  (function page(from){sb.from('votes').select('voter,q,choice').eq('room',room).range(from,from+999).then(function(res){if(!res.data)return;all=all.concat(res.data);if(res.data.length===1000)page(from+1000);else{AGV.res=all;agBoard()}})})(0)})}
+function agInit(){agvStop();if(AG.wr===null)AG.wr=agEval();var d=G('hsDev');d.className='mu-vit ex-ag';var u=agUrl(),ok=vtOn()&&u;
+  d.innerHTML='<div class="ag-class">'+(ok?'<div class="ag-join"><div class="tu-qr" id="agQr" data-qr="'+u+'" data-size="180"></div><p>Stanza <b>'+vtRoom()+'</b></p></div>':'')+
+    '<div class="ag-cl"><p class="ag-h">'+(ok?'Sfidate l\'AI dal telefono':'Gioco dal telefono non attivo')+'</p>'+
+    '<p class="ag-p">'+(ok?'Inquadrate il codice. A turno si tolgono 1, 2 o 3 pietre: chi prende l\'ultima perde. Tutti giocano contro la stessa AI, quella che alleniamo qui.':'Apri la versione online della presentazione per giocare dal telefono.')+'</p>'+
+    '<div class="ag-lvl"><span>Partite di allenamento dell\'AI: <b id="agG">'+AG.games.toLocaleString('it-IT')+'</b></span><span class="mu-btns"><button class="mu-btn" onclick="agTrainBtn(10)">Allena +10</button><button class="mu-btn fill" onclick="agTrainBtn(100)">Allena +100</button></span></div>'+
+    '<div id="agScore" class="ag-score"></div></div></div>';
+  if(ok){vtQr(G('agQr'),u,180);agPublish();agvPoll();AGV.poll=setInterval(function(){if(document.hidden||hsCur!==4||!G('s3').classList.contains('current'))return;agvPoll()},3000)}
+  agBoard();agLive()}
+function agBoard(){var el=G('agScore');if(!el)return;var by={},pl={},tot=0;
+  AGV.res.forEach(function(r){if(r.q<0)return;var v=Math.floor(r.q/1000);pl[r.voter]=1;tot++;(by[v]=by[v]||{A:0,B:0})[r.choice]++});
+  var vs=Object.keys(by).map(Number).sort(function(a,b){return a-b}),np=Object.keys(pl).length;
+  el.innerHTML='<p class="ag-sh">Risultati della classe · '+np+' telefoni · '+tot+' partite</p>'+(vs.length?vs.map(function(v){var x=by[v],t=x.A+x.B;
+    return '<div class="ag-row'+(v===AGV.ver?' now':'')+'"><span>AI con '+(AGV.hist[v]!==undefined?AGV.hist[v].toLocaleString('it-IT'):'?')+' partite</span><div><i style="width:'+(t?x.A/t*100:0)+'%"></i></div><b>Voi '+x.A+' · AI '+x.B+'</b></div>'}).join(''):'<p class="ag-sh">Ancora nessuna partita finita: aspettiamo i telefoni…</p>');
+  var L=G('agLiveN');if(L)L.textContent=np+' telefoni, '+tot+' partite'}
+function agLive(){hsLive('Dai telefoni: <b id="agLiveN">'+Object.keys(AGV.res.reduce(function(o,r){o[r.voter]=1;return o},{})).length+' telefoni</b><br>Partite di allenamento: '+AG.games.toLocaleString('it-IT')+'<br>Vittorie contro un giocatore a caso: '+AG.wr+'%<br><br>Con 15 pietre, quanto vale ogni prima mossa:'+
+  [1,2,3].map(function(a){var v=Math.round((agQv(15,a)+1)*50);return '<div class="mu-q"><span>Prendi '+a+'</span><div><i style="width:'+v+'%"></i></div><b>'+v+'%</b></div>'}).join(''))}
+function agTrainBtn(n){var wb=AG.wr;agTrainN(n);AG.wr=agEval();AGV.ver++;AGV.hist[AGV.ver]=AG.games;agPublish();
+  var g=G('agG');if(g)g.textContent=AG.games.toLocaleString('it-IT');agLive();agBoard();
+  muPop('hs:ag1',{t:'Ha giocato '+n+' partite contro se stessa',sub:'Dalla prossima partita, sui vostri telefoni giocate contro questa AI più allenata.',rows:[R('','Come impara','ai','Nessuno le spiega come vincere. Gioca contro se stessa: le mosse che portano alla vittoria diventano più probabili, quelle che portano alla sconfitta meno. Si chiama apprendimento per rinforzo.'),R('','AlphaGo, 2016','ai','Prima ha studiato 30 milioni di mosse di partite umane, poi ha giocato milioni di partite contro se stesso. Così è diventato più forte di qualsiasi umano.')],
     bars:[['Vittorie',wb,AG.wr]],toast:'+'+n+' partite: vittorie '+wb+'% → '+AG.wr+'%'})}
+
+/* ---- pagina sul telefono (?gioca=CODICE) ---- */
+function agPhone(){var root=document.documentElement;root.classList.add('vote');root.classList.add('agm');var app=document.createElement('div');app.id='vtApp';app.className='ag';document.body.appendChild(app);
+  var me;try{me=localStorage.getItem('agId')}catch(e){}if(!me){me='g'+Math.random().toString(36).slice(2,10);try{localStorage.setItem('agId',me)}catch(e){}}
+  var room=AG_ROOM+'G',S=null,st={s:15,over:true,busy:false,msg:'',w:0,l:0,n:Math.floor(Math.random()*900),ver:-1,wait:false};
+  function q(s,a){return S&&S.q?(S.q[(s-1)*3+a-1]||0):0}
+  function pick(s){var acts=[1,2,3].filter(function(a){return a<=s}),bv=-9,bs=[];acts.forEach(function(a){var v=q(s,a);if(v>bv+1e-9){bv=v;bs=[a]}else if(Math.abs(v-bv)<1e-9)bs.push(a)});return bs[Math.floor(Math.random()*bs.length)]}
+  function draw(){var h='<p class="agp-hd">ALPHAGO · LA SFIDA<br><span>Stanza '+esc(AG_ROOM)+'</span></p>';
+    if(!vtOn())h+='<div class="agp-card"><p>Il gioco non è configurato su questa presentazione.</p></div>';
+    else if(!S)h+='<div class="agp-card"><p>Collegato. Aspetta che l\'insegnante apra la sfida…</p></div>';
+    else{h+='<div class="agp-card"><p class="agp-lv">L\'AI si è allenata con <b>'+S.games.toLocaleString('it-IT')+'</b> partite contro se stessa</p><p class="agp-r">A turno togliete 1, 2 o 3 pietre. Chi prende l\'ultima <b>perde</b>. Inizia l\'AI.</p></div>'+
+      '<div class="agp-board">'+Array.apply(null,{length:15}).map(function(_,i){return '<span class="ag-s'+(i>=st.s?' gone':'')+'"></span>'}).join('')+'</div>'+
+      '<p class="agp-st">'+(st.msg||(st.busy?'L\'AI ci pensa…':'Tocca a te: restano '+st.s+' pietre.'))+'</p>'+
+      (st.over?'<button class="agp-new" onclick="agNew()">Nuova partita</button>':'<div class="agp-btns">'+[1,2,3].map(function(a){return '<button '+(st.busy||a>st.s?'disabled':'')+' onclick="agMe('+a+')">Prendi '+a+'</button>'}).join('')+'</div>')+
+      '<p class="agp-sc">Le tue partite: vinte <b>'+st.w+'</b> · perse <b>'+st.l+'</b></p>'}
+    app.innerHTML=h}
+  function brain(cb){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',room).maybeSingle().then(function(res){if(res.data&&res.data.state)S=res.data.state;cb()},function(){cb()})})}
+  function aiMove(){st.busy=true;st.msg='';draw();setTimeout(function(){var a=pick(st.s);st.s-=a;st.busy=false;
+    if(st.s===0)return end(true);st.msg='L\'AI prende '+a+'. Restano '+st.s+' pietre: tocca a te.';draw()},750)}
+  function end(win){st.over=true;if(win)st.w++;else st.l++;st.msg=win?'Hai vinto! L\'AI ha preso l\'ultima pietra.':'Hai perso: l\'ultima pietra l\'hai presa tu.';
+    var qn=(S.ver||0)*1000+(st.n++%1000);vtSb(function(sb){sb.from('votes').upsert({room:room,q:qn,voter:me,choice:win?'A':'B'},{onConflict:'room,q,voter'}).then(function(){})});draw()}
+  window.agMe=function(a){if(st.over||st.busy||a>st.s)return;st.s-=a;if(st.s===0)return end(false);st.msg='';aiMove()};
+  window.agNew=function(){if(st.wait)return;st.wait=true;brain(function(){st.wait=false;if(!S){draw();setTimeout(window.agNew,3000);return}
+    var trained=st.ver>=0&&S.ver!==st.ver;st.ver=S.ver;st.s=15;st.over=false;draw();
+    if(trained){st.busy=true;st.msg='L\'insegnante ha allenato l\'AI: ora si è allenata con '+S.games.toLocaleString('it-IT')+' partite!';draw();setTimeout(aiMove,1600)}else aiMove()})};
+  draw();if(vtOn())window.agNew()}
 
 /* Sala 6 — ChatGPT: la parola successiva */
 var GP_TXT=['oggi a scuola il prof di matematica ha spiegato le equazioni .','oggi a scuola abbiamo fatto una verifica di storia .','oggi a scuola il prof di italiano ha letto una poesia .','oggi a scuola abbiamo giocato a pallavolo in palestra .','oggi pomeriggio vado al campetto con i miei amici .','domani ho una verifica di matematica e sono preoccupato .','domani ho una verifica di storia .','domani vado al mare con i miei amici .','domani vado al cinema con mia sorella .','stasera guardo una serie su netflix con mia sorella .','stasera mangio la pizza con i miei amici .','stasera vado a dormire presto .','il mio gatto dorme tutto il giorno sul divano .','il mio migliore amico ha un cane che si chiama pippo .','il mio cibo preferito è la pizza .','il mio prof di matematica ha dato tanti compiti .','il prof di storia ha spiegato la rivoluzione francese .','la pizza è il cibo più buono del mondo .','la verifica di matematica è andata bene .','la verifica di storia è andata male .','i miei amici giocano a calcio tutto il pomeriggio .','mia sorella ascolta musica tutto il giorno .','ho studiato tutto il pomeriggio per la verifica .','il mio cane dorme sul divano tutto il giorno .','sabato vado al cinema con i miei amici .'];
@@ -2423,5 +2615,5 @@ sfShow(0,document.getElementById('sfS0'));
 cnnInit();
 fdBoot();
 hsInit();
-if(VOTE_ROOM)vtPhone();
+if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();
 </script>
