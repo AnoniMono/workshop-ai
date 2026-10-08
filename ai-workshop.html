@@ -1165,9 +1165,40 @@ html.vote.drm,html.vote.drm body{background:#F5F7FA}
 .gn-intro .gn-acr span{font-size:.72rem}
 .gn-why{margin:0;font-size:clamp(.85rem,1.2vw,.98rem);line-height:1.45;color:var(--gray);border-left:3px solid var(--orange);padding-left:.8em}
 .gn-why b{color:var(--navy)}
-@media (max-height:800px){#s12 .gn-pair,#s12 .gn-judge{width:min(100%,48vh,560px)}#s12 .gn-judge{padding:.45em .8em}#s12 .gn-judge>i{font-size:1.5rem}#s12 .gn-intro{padding:.5em 1em;gap:.4em 1.6rem}#s12 .gn-ip{font-size:.88rem;line-height:1.4}#s12 .gn-why{font-size:.8rem}#s12 .gn-steps .dr-dot{width:40px}#s12 .gn-steps .dr-rail,#s12 .gn-steps .dr-fill{top:18px}#s12 .dr-h{font-size:clamp(1.4rem,3vw,2.2rem)}#s12 .dr-p{font-size:1rem}#s12 .gn-card figcaption{font-size:.95rem}}
+@media (max-height:800px){#s12 .gn-pair,#s12 .gn-judge{width:min(100%,48vh,560px)}#s12 .gn-grid{width:min(100%,43vh,480px);gap:6px}#s12.vote .dr-h{font-size:clamp(1.3rem,2.6vw,1.9rem)}#s12.vote .dr-p{font-size:.95rem}#s12.vote .dr-txt{gap:.45rem}#s12 .gn-join .tu-qr canvas,#s12 .gn-join .tu-qr img{width:84px!important;height:84px!important}#s12 .gn-judge{padding:.45em .8em}#s12 .gn-judge>i{font-size:1.5rem}#s12 .gn-intro{padding:.5em 1em;gap:.4em 1.6rem}#s12 .gn-ip{font-size:.88rem;line-height:1.4}#s12 .gn-why{font-size:.8rem}#s12 .gn-steps .dr-dot{width:40px}#s12 .gn-steps .dr-rail,#s12 .gn-steps .dr-fill{top:18px}#s12 .dr-h{font-size:clamp(1.4rem,3vw,2.2rem)}#s12 .dr-p{font-size:1rem}#s12 .gn-card figcaption{font-size:.95rem}}
 @media (max-width:820px){.gn-intro{grid-template-columns:1fr}.gn-ih{white-space:normal}}
-.gn-steps{max-width:none}
+.gn-steps{max-width:none;grid-template-columns:repeat(5,1fr)}
+.gn-steps .dr-rail,.gn-steps .dr-fill{left:10%}
+.gn-steps .dr-rail{right:10%}
+.gn-grid{display:none;width:min(100%,45vh,480px);grid-template-columns:repeat(3,1fr);gap:8px}
+#s12.vote .gn-grid{display:grid}
+#s12.vote .gn-pair,#s12.vote .gn-judge{display:none}
+.gn-t{position:relative;aspect-ratio:1;border-radius:12px;overflow:hidden;border:3px solid #fff;box-shadow:0 6px 16px rgba(27,42,74,.14);background:#E2E8F0;transition:opacity .4s}
+.gn-t img{width:100%;height:100%;object-fit:cover;display:block}
+.gn-t .n{position:absolute;top:6px;left:6px;width:1.7em;height:1.7em;border-radius:50%;background:rgba(20,33,58,.85);color:#fff;font:700 .95rem var(--ff-head);display:flex;align-items:center;justify-content:center}
+.gn-t .c{position:absolute;right:6px;bottom:6px;background:#fff;color:var(--navy);font:800 .78rem var(--ff-body);padding:.15em .55em;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.gn-t .miss{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font:700 .72rem var(--ff-body);color:var(--gray);text-align:center;padding:.5em;line-height:1.3}
+.gn-t.real{border-color:#2ECC71;box-shadow:0 0 0 4px rgba(46,204,113,.4)}
+.gn-t.ai{opacity:.45}
+.gn-t .tag{position:absolute;left:0;right:0;bottom:0;background:#2ECC71;color:#fff;font:700 .85rem var(--ff-head);font-style:normal;padding:.25em;text-align:center}
+.gn-t.ai .tag{background:rgba(20,33,58,.85)}
+.gn-t.ai .c{display:none}
+.gn-join{display:flex;gap:.9em;align-items:center;background:#fff;border:2px solid var(--border);border-radius:14px;padding:.6em .8em;max-width:30em}
+.gn-join .tu-qr{padding:4px;border:none}
+.gn-join p{margin:0;font-size:.9rem;color:var(--gray);line-height:1.45}
+.gn-join b.big{display:block;font-family:var(--ff-head);font-size:1.3rem;color:var(--navy);letter-spacing:.06em}
+.gn-votes{display:block;font-weight:800;color:var(--navy);margin-bottom:.4em}
+.gn-join .gn-rev{font-size:.9rem;padding:.45em 1em}
+html.vote.gtm,html.vote.gtm body{background:#F5F7FA}
+#vtApp.gt{font-family:var(--ff-body);color:var(--navy);align-items:center;text-align:center}
+.gtp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;width:min(94vw,420px)}
+.gtp-t{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;border:3px solid #fff;padding:0;background:#E2E8F0;cursor:pointer}
+.gtp-t img{width:100%;height:100%;object-fit:cover;display:block}
+.gtp-t b{position:absolute;top:4px;left:4px;background:rgba(20,33,58,.85);color:#fff;border-radius:50%;width:1.6em;height:1.6em;display:flex;align-items:center;justify-content:center;font:700 .85rem 'Fredoka',sans-serif}
+.gtp-t.sel{border-color:#FF6B35;box-shadow:0 0 0 3px rgba(255,107,53,.45)}
+.gtp-ov{position:fixed;inset:0;background:rgba(20,33,58,.94);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:16px;z-index:50}
+.gtp-ov img{width:min(92vw,520px);aspect-ratio:1;object-fit:cover;border-radius:14px}
+.gtp-big{width:min(80vw,320px);aspect-ratio:1;object-fit:cover;border-radius:14px;border:4px solid #2ECC71}
 .gn-acr{display:grid;grid-template-columns:repeat(3,1fr);gap:.5em;max-width:34em}
 .gn-acr div{background:#fff;border:2px solid var(--border);border-radius:12px;padding:.5em .7em;font-family:var(--ff-head);font-weight:600;font-size:1.05rem;color:var(--navy);line-height:1.2}
 .gn-acr b{color:var(--orange);font-size:1.4em}
@@ -1646,6 +1677,7 @@ html.vote.drm,html.vote.drm body{background:#F5F7FA}
         <figure class="gn-card" id="gnFigB"><figcaption id="gnLabB"></figcaption><div class="gn-img" id="gnB"></div></figure>
       </div>
       <div class="gn-judge" id="gnJudge"></div>
+      <div class="gn-grid" id="gnGrid"></div>
     </div>
     <div class="dr-txt">
       <p class="dr-kick" id="gnKick"></p>
@@ -2858,7 +2890,8 @@ function agTrainBtn(n){var wb=AG.wr;agTrainN(n);AG.wr=agEval();AGV.ver++;AGV.his
     bars:[['Vittorie',wb,AG.wr]],toast:'+'+n+' partite: vittorie '+wb+'% → '+AG.wr+'%'})}
 
 /* apre e chiude le stanze sui telefoni quando l'insegnante entra o esce */
-function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM)return;var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
+function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM)return;var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
+  var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
   var tOpen=on3&&hsCur===1&&TU.mode==='q';if(VT.pub&&tOpen!==VT.open)vtState(Object.assign({},VT.state,{open:tOpen}));
   var aOpen=on3&&hsCur===4;if(AGV.pub&&aOpen!==AGV.open){AGV.open=aOpen;agPublish()}}
 setInterval(roomsSync,1500);
@@ -3342,7 +3375,8 @@ var GN_R=[1,50,500,5000];
 var GN_S=[{c:'#8A94A6',s:'Round 1',k:'Round 1 · Si parte',h:'Il falsario parte dal caos',p:'Il <b>falsario</b> non ha mai visto un gatto e dipinge macchie a caso. L\'<b>esperto</b> ha visto migliaia di foto vere: lo scopre subito.'},
   {c:'#FF6B35',s:'Round 50',k:'Round 50',h:'Ogni errore è una lezione',p:'Ogni volta che viene scoperto, il falsario riceve un indizio su cosa ha sbagliato e si corregge. Ora i colori sono giusti, la forma ancora no.'},
   {c:'#00A6C8',s:'Round 500',k:'Round 500',h:'Quasi… ma ha tre occhi',p:'Il falso ormai sembra un gatto. Ma anche l\'esperto nel frattempo è migliorato, e trova l\'errore.'},
-  {c:'#2ECC71',s:'Round 5.000',k:'Round 5.000',h:'Quale dei due è falso?',p:'Il falsario è diventato così bravo che l\'esperto tira a indovinare. Ora sa creare gatti <b>che non sono mai esistiti</b>.'}];
+  {c:'#2ECC71',s:'Round 5.000',k:'Round 5.000',h:'Quale dei due è falso?',p:'Il falsario è diventato così bravo che l\'esperto tira a indovinare. Ora sa creare gatti <b>che non sono mai esistiti</b>.'},
+  {c:'#8E44AD',s:'Tocca a voi',k:'Tocca a voi',h:'Una sola è una foto vera',p:'Le altre 8 le ha create un\'AI. Inquadrate il codice e votate dal telefono la foto <b>vera</b>.'}];
 var GN_J=[{v:'«FALSO!» Solo macchie a caso',c:'no',f:99},{v:'«FALSO!» I colori ci sono, il gatto no',c:'no',f:94},{v:'«FALSO!» Ha tre occhi!',c:'no',f:72},{v:'«Boh… non lo so»',c:'mh',f:50}];
 /* il pittore nell'angolo: basco, baffi, tavolozza; il braccio col pennello si muove mentre dipinge */
 var GN_PAINTER='<svg class="gn-painter" id="gnPainter" viewBox="0 0 120 140" aria-hidden="true">'+
@@ -3381,11 +3415,11 @@ function gnFrames(){var im=GN.img,f=[],c,g,s,rnd=gnRnd(7),P=['#E74C3C','#00A6C8'
   c=gnCv();c.getContext('2d').drawImage(im,0,0,400,400);f.push(c);GN.fr=f}
 function gnLoop(fn,dur){var tok=++GN.tok,t0=performance.now();(function f(now){if(tok!==GN.tok)return;var t=Math.min(1,Math.max(0,(now-t0)/dur));fn(t);if(t<1)requestAnimationFrame(f)})(t0)}
 function gnHead(i){var s=GN_S[i];G('s12').style.setProperty('--c',s.c);
-  [].forEach.call(document.querySelectorAll('#gnSteps .dr-step'),function(b,k){b.classList.toggle('on',k===i&&!GN.idle);b.classList.toggle('done',k<i&&!GN.idle)});G('gnFill').style.width=(GN.idle?0:i/3*75)+'%';
+  [].forEach.call(document.querySelectorAll('#gnSteps .dr-step'),function(b,k){b.classList.toggle('on',k===i&&!GN.idle);b.classList.toggle('done',k<i&&!GN.idle)});G('gnFill').style.width=(GN.idle?0:i/(GN_S.length-1)*(100-100/GN_S.length))+'%';G('s12').classList.toggle('vote',!GN.idle&&i===4);
   G('gnKick').textContent=GN.idle?'Pronti?':s.k;G('gnH').textContent=GN.idle?'Il falsario sta per dipingere':s.h;
   G('gnP').innerHTML=GN.idle?'Premete <b>▶ Avvia la sfida</b> e guardate cosa succede, round dopo round.':s.p;
   G('gnPrev').disabled=GN.idle||i===0;G('gnNext').disabled=!GN.idle&&i===GN_S.length-1;gnPlayBtn()}
-function gnPlayBtn(){var b=G('gnPlay');if(!b)return;b.textContent=GN.auto?'⏹ Ferma':(!GN.idle&&GN.i===3&&GN.shown===3?'↺ Ricomincia':'▶ Avvia la sfida')}
+function gnPlayBtn(){var b=G('gnPlay');if(!b)return;b.textContent=GN.auto?'⏹ Ferma':(!GN.idle&&GN.i>=3&&GN.shown===3?'↺ Ricomincia':'▶ Avvia la sfida')}
 function gnPainter(on,show){var p=G('gnPainter');if(!p)return;p.classList.toggle('on',!!on);p.style.opacity=show===false?0:1}
 /* tela bianca, prima di iniziare */
 function gnIdle(){gnAutoStop();GN.tok++;GN.idle=true;GN.i=0;GN.shown=-1;gnHead(0);gnCards();
@@ -3398,7 +3432,7 @@ function gnNextBtn(){if(GN.idle)gnGo(0);else gnGo(GN.i+1)}
 /* a sinistra la foto vera, a destra la tela del falsario (all'ultimo round le carte si mescolano) */
 function gnCards(){G('gnA').innerHTML='<img src="'+CV_IMG+'" alt="Foto vera di un gatto">';G('gnB').innerHTML='<canvas width="400" height="400" id="gnFake"></canvas>';
   G('gnFigA').style.transform=G('gnFigB').style.transform='';GN.mixed=false;GN.swap=false;gnLabels()}
-function gnGo(i,auto){if(i<0||i>=GN_S.length)return;if(!auto)gnAutoStop();clearTimeout(GN.next);
+function gnGo(i,auto){if(i<0||i>=GN_S.length)return;if(!auto)gnAutoStop();clearTimeout(GN.next);if(i===4){gnVote();return}
   var from=GN.idle?-1:GN.shown;GN.idle=false;GN.i=i;if(i===3)GN.rev=false;
   gnHead(i);G('gnBox').innerHTML='';if(!GN.ready){GN.tok++;return}
   var old=G('gnFake'),keep=null;if(old&&from>=0){keep=gnCv();keep.getContext('2d').drawImage(old,0,0)}
@@ -3406,7 +3440,7 @@ function gnGo(i,auto){if(i<0||i>=GN_S.length)return;if(!auto)gnAutoStop();clearT
   var start=from>=0&&from<i?keep:(i?GN.fr[i-1]:null),r0=from>=0&&from<i?GN_R[from]:(i?GN_R[i-1]:0);GN.shown=i;
   gnPaint(i,start,r0,function(){
     function after(){gnJudge(i);gnBox();gnPlayBtn();if(GN.auto){if(i<3)GN.next=setTimeout(function(){if(GN.auto&&GN.i===i)gnGo(i+1,true)},2600);else gnAutoStop()}}
-    if(i===3){gnPainter(false,false);setTimeout(function(){if(GN.i===3)gnShuffle(after)},500)}else after()})}
+    after()})}
 /* il pittore dipinge: la foto-obiettivo compare attraverso le pennellate */
 function gnPaint(i,start,r0,done){var g=G('gnFake').getContext('2d'),tgt=GN.fr[i],rnd=gnRnd(11+i*97),
   W=[[56,32,30],[46,22,70],[30,11,170],[22,7,260]][i],plan=gnPlan(rnd,W[0],W[1],W[2]),dur=[3000,3400,3800,4000][i],n=0,
@@ -3417,10 +3451,6 @@ function gnPaint(i,start,r0,done){var g=G('gnFake').getContext('2d'),tgt=GN.fr[i
     g.globalAlpha=1;g.drawImage(base,0,0);g.drawImage(tmp,0,0);if(t>.85){g.globalAlpha=t>=1?1:(t-.85)/.15;g.drawImage(tgt,0,0);g.globalAlpha=1}
     var lab=G('gnRound');if(lab)lab.textContent='round '+Math.round(r0+(GN_R[i]-r0)*(1-Math.pow(1-t,2)));
     if(t>=1){gnPainter(false);if(i===2){g.strokeStyle='#E74C3C';g.lineWidth=6;g.beginPath();g.ellipse(200,150,52,44,0,0,Math.PI*2);g.stroke()}done()}},dur)}
-/* le due carte si scambiano di posto qualche volta, così nessuno sa più dov'è il falso */
-function gnShuffle(cb){var A=G('gnFigA'),B=G('gnFigB'),n=3+Math.floor(Math.random()*2),s=0;
-  G('gnLabA').innerHTML=G('gnLabB').innerHTML='🔀 <small>mescolo…</small>';
-  (function step(k){if(!k||GN.i!==3){GN.swap=s===1;GN.mixed=true;gnLabels();cb();return}s^=1;A.style.transform=s?'translateX(calc(100% + var(--gp)))':'';B.style.transform=s?'translateX(calc(-100% - var(--gp)))':'';setTimeout(function(){step(k-1)},560)})(n)}
 function gnLabels(){var i=GN.i,A=G('gnLabA'),B=G('gnLabB'),fa=G('gnA'),fb=G('gnB');fa.className=fb.className='gn-img';
   if(i===3&&GN.mixed&&!GN.rev){(GN.swap?B:A).innerHTML='A <small>?</small>';(GN.swap?A:B).innerHTML='B <small>?</small>';return}
   A.innerHTML='📷 Foto vera';B.innerHTML='🎨 Il falso <small id="gnRound">'+(GN.idle?'':'round '+GN_R[i])+'</small>';
@@ -3430,9 +3460,57 @@ function gnJudge(i){var j=GN_J[i];G('gnJudge').innerHTML='<i>🔍</i><p>L\'esper
 function gnBox(){var i=GN.i,h='';
     if(i===1)h='<div class="gn-loop"><div><span>1</span>Il falsario crea un\'immagine</div><div><span>2</span>L\'esperto dice «vera» o «falsa»</div><div><span>3</span>Il falsario si corregge <em>· e si ricomincia, migliaia di volte</em></div></div>';
   if(i===2)h='<p class="gn-tip">Vi ricorda qualcosa? <b>Mani con sei dita</b>, scritte senza senso, orecchini diversi: sono gli errori tipici delle immagini fatte dall\'AI.</p>';
-  if(i===3)h=GN.rev?'<p class="gn-tip">Il falso era <b>'+(GN.swap?'A':'B')+'</b>. Volti di persone che <b>non esistono</b>, creati da una GAN: <a class="gn-link" href="https://thispersondoesnotexist.com" target="_blank" rel="noopener">thispersondoesnotexist.com ↗</a></p>':'<p class="dr-hint">Alzate la mano: secondo voi il falso è <b>A</b> o <b>B</b>?</p><button class="btn gn-rev" onclick="gnReveal()">🔍 Rivela il falso</button>';
+  if(i===3)h='<p class="gn-tip">Il sito <a class="gn-link" href="https://thispersondoesnotexist.com" target="_blank" rel="noopener">thispersondoesnotexist.com ↗</a> mostra volti di persone che <b>non esistono</b>: li crea una GAN.</p><p class="dr-hint">E voi, riuscite a fare meglio dell\'esperto? Premete <b>Avanti</b>: tocca a voi.</p>';
   G('gnBox').innerHTML=h}
 function gnReveal(){GN.rev=true;gnLabels();gnBox()}
+
+/* ---- Tocca a voi: 3x3 gatti, uno solo è vero; si vota dal telefono (?gatti=CODICE) ---- */
+var GT_ROOM=(function(){try{return new URLSearchParams(location.search).get('gatti')}catch(e){return null}})();
+function gtImg(id){return id?'img/gan/ai-'+id+'.jpg':'img/gan/vero.jpg'}
+function gtUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?gatti='+vtRoom():''}
+function gtNew(){var o=[0,1,2,3,4,5,6,7,8];for(var i=8;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=o[i];o[i]=o[j];o[j]=t}
+  var g='';for(var i=0;i<4;i++)g+='abcdefghjkmnpqrstuvwxyz23456789'[Math.floor(Math.random()*31)];GN.cg=g;GN.cord=o;GN.crev=-1;GN.cvotes=[0,0,0,0,0,0,0,0,0];GN.cn=0;
+  try{localStorage.setItem('gtGen',JSON.stringify({r:vtRoom(),g:g,o:o}))}catch(e){}}
+function gnVote(){GN.idle=false;GN.i=4;GN.tok++;gnHead(4);gnPainter(false);
+  if(!GN.cg){try{var sv=JSON.parse(localStorage.getItem('gtGen')||'null');if(sv&&sv.r===vtRoom()&&sv.o&&sv.o.length===9){GN.cg=sv.g;GN.cord=sv.o;GN.crev=-1;GN.cvotes=[0,0,0,0,0,0,0,0,0];GN.cn=0}}catch(e){}if(!GN.cg)gtNew()}
+  G('gnGrid').innerHTML=GN.cord.map(function(id,p){return '<div class="gn-t" id="gnT'+p+'"><img src="'+gtImg(id)+'" alt="Gatto numero '+(p+1)+'"><b class="n">'+(p+1)+'</b><span class="c"></span></div>'}).join('');
+  [].forEach.call(document.querySelectorAll('#gnGrid img'),function(im){im.onerror=function(){im.style.display='none';im.parentNode.insertAdjacentHTML('beforeend','<span class="miss">manca il file<br>'+im.getAttribute('src')+'</span>')}});
+  gnVoteBox();gnVoteDraw();gtPull();clearInterval(GN.vpoll);
+  GN.vpoll=setInterval(function(){if(GN.i===4&&!GN.idle&&G('s12').classList.contains('current')&&!document.hidden)gtPull()},3000);if(typeof roomsSync==='function')roomsSync()}
+function gnVoteBox(){var u=gtUrl(),ok=vtOn()&&u,h='',real=GN.cord.indexOf(0);
+  if(GN.crev<0)h=(ok?'<div class="gn-join"><div class="tu-qr" id="gnQr"></div><p>Inquadrate il codice e votate dal telefono<b class="big">Stanza '+vtRoom()+'</b><span class="gn-votes" id="gnVN">0 voti</span><button class="btn gn-rev" onclick="gnVoteReveal()">🔍 Rivela la foto vera</button></p></div>':'<p class="dr-hint">Il voto dal telefono funziona nella versione online. Intanto votate per alzata di mano.</p><button class="btn gn-rev" onclick="gnVoteReveal()">🔍 Rivela la foto vera</button>');
+  else{var pc=GN.cn?Math.round(GN.cvotes[real]/GN.cn*100):0;h='<p class="gn-tip">La foto vera era la <b>n° '+(real+1)+'</b>'+(GN.cn?': l\'ha trovata il <b>'+pc+'%</b> di voi ('+GN.cvotes[real]+' su '+GN.cn+').':'.')+' Le altre 8 le ha create un\'AI.</p>'}
+  h+='<button class="dr-reset" onclick="gnVoteNew()">↺ Nuovo voto (nuova classe)</button>';G('gnBox').innerHTML=h;if(ok&&GN.crev<0)vtQr(G('gnQr'),u,110)}
+function gnVoteDraw(){var real=GN.cord.indexOf(0);GN.cord.forEach(function(id,p){var t=G('gnT'+p);if(!t)return;var c=GN.cvotes[p],b=t.querySelector('.c');b.textContent=c+' '+(c===1?'voto':'voti');b.style.display=GN.cn?'':'none';
+    t.classList.toggle('real',GN.crev>=0&&p===real);t.classList.toggle('ai',GN.crev>=0&&p!==real);var tg=t.querySelector('.tag');
+    if(GN.crev>=0&&!tg)t.insertAdjacentHTML('beforeend','<em class="tag">'+(p===real?'📷 FOTO VERA':'AI')+'</em>');if(GN.crev<0&&tg)tg.remove()});
+  var n=G('gnVN');if(n)n.textContent=GN.cn+(GN.cn===1?' voto':' voti')}
+function gtPull(){if(!vtOn()||!GN.cg)return;vtSb(function(sb){var g=GN.cg;sb.from('vote_rooms').select('room,state').like('room',vtRoom()+'C%').limit(1000).then(function(res){if(!res.data||g!==GN.cg)return;var v=[0,0,0,0,0,0,0,0,0],n=0;
+  res.data.forEach(function(r){if(r.room.length!==8||!r.state||r.state.g!==g)return;var p=r.state.v;if(p>=0&&p<9){v[p]++;n++}});GN.cvotes=v;GN.cn=n;gnVoteDraw();if(GN.crev>=0)gnVoteBox()})})}
+function gnVoteReveal(){GN.crev=GN.cord.indexOf(0);gnVoteDraw();gnVoteBox();gtPull();if(typeof roomsSync==='function')roomsSync()}
+function gnVoteNew(){if(!confirm('Cancellare i voti e mescolare di nuovo le foto?'))return;gtNew();gnVote()}
+/* telefono */
+function gtPhone(){var root=document.documentElement;root.classList.add('vote');root.classList.add('gtm');var app=document.createElement('div');app.id='vtApp';app.className='gt';document.body.appendChild(app);
+  var id;try{id=localStorage.getItem('drId')}catch(e){}if(!id){id='';for(var i=0;i<3;i++)id+='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random()*32)];try{localStorage.setItem('drId',id)}catch(e){}}
+  var key=GT_ROOM+'C'+id,S={st:null,k:'',mine:-1,g:null,zoom:-1};
+  function pull(){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',GT_ROOM+'CS').maybeSingle().then(function(res){var st=(res.data&&res.data.state)||{open:false,rev:-1},k=JSON.stringify(st);if(k===S.k)return;S.k=k;
+    if(st.g!==S.g){S.g=st.g;S.mine=-1;try{var m=JSON.parse(localStorage.getItem('gtMine')||'null');if(m&&m.g===st.g)S.mine=m.v}catch(e){}}S.st=st;draw()})})}
+  function vote(p){S.mine=p;S.zoom=-1;try{localStorage.setItem('gtMine',JSON.stringify({g:S.g,v:p}))}catch(e){}
+    vtSb(function(sb){sb.from('vote_rooms').upsert({room:key,state:{g:S.g,v:p},updated_at:new Date().toISOString()}).then(function(){})});draw()}
+  function draw(){var h='<p class="drp-hd">Il gatto vero · stanza '+esc(GT_ROOM)+'</p>',st=S.st;
+    if(!vtOn()){app.innerHTML=h+'<p class="drp-note">Il voto non è configurato su questa presentazione.</p>';return}
+    if(!st){app.innerHTML=h+'<p class="drp-note">Collegamento…</p>';return}
+    var o=st.o||[],rv=typeof st.rev==='number'?st.rev:-1;
+    if(rv>=0&&o.length===9){var ok=S.mine===rv;app.innerHTML=h+'<p class="drp-big">'+(S.mine<0?'📷':ok?'🎉':'🤖')+'</p><p class="drp-q">La foto vera era la <b>n° '+(rv+1)+'</b></p><img class="gtp-big" src="'+gtImg(0)+'" alt="La foto vera">'+
+      '<p class="drp-note">'+(S.mine<0?'Non hai votato.':ok?'Hai indovinato!':'Tu avevi votato la n° '+(S.mine+1)+': l\'ha creata un\'AI.')+'</p>';return}
+    if(!st.open||o.length!==9){app.innerHTML=h+'<p class="drp-big">👀</p><p class="drp-q">Guardate lo schermo</p><p class="drp-note">Si vota quando l\'insegnante apre la sfida. Questa pagina si riattiva da sola.</p>';return}
+    h+='<p class="drp-q">Quale è la foto <b>vera</b>?</p><p class="drp-note">Le altre 8 le ha create un\'AI. Tocca una foto per ingrandirla.</p><div class="gtp-grid">'+
+      o.map(function(idd,p){return '<button class="gtp-t'+(S.mine===p?' sel':'')+'" onclick="gtpZoom('+p+')"><img src="'+gtImg(idd)+'" alt="Foto '+(p+1)+'"><b>'+(p+1)+'</b></button>'}).join('')+'</div>'+
+      (S.mine>=0?'<p class="drp-prog">Hai votato la n° '+(S.mine+1)+' · puoi cambiare idea</p>':'');
+    if(S.zoom>=0)h+='<div class="gtp-ov"><img src="'+gtImg(o[S.zoom])+'" alt="Foto '+(S.zoom+1)+'"><p class="drp-q" style="color:#fff">Foto n° '+(S.zoom+1)+'</p><div class="drp-row"><button class="drp-btn sec" onclick="gtpZoom(-1)">Chiudi</button><button class="drp-btn" onclick="gtpVote('+S.zoom+')">✓ È la vera</button></div></div>';
+    app.innerHTML=h}
+  window.gtpZoom=function(p){S.zoom=p;draw()};window.gtpVote=vote;
+  draw();if(!vtOn())return;pull();setInterval(function(){if(!document.hidden)pull()},4000)}
 
 function artUpdate(){var p=[];['artSubj','artSet','artExtra','artStyle','artMood'].forEach(function(id){var v=document.getElementById(id).value.trim();if(v)p.push(v)});var o=document.getElementById('artOut');if(!p.length){o.innerHTML='<span style="opacity:.55;font-style:italic">Compila i campi per costruire il prompt...</span>'}else{o.textContent=p.join(', ')+'.'}}
 function artCopy(){var t=document.getElementById('artOut').textContent;if(t&&t.indexOf('Compila')===-1){copyTxt(t);flash(document.getElementById('artOut'))}}
@@ -3492,5 +3570,5 @@ w6Init();
 txInit();
 nnInit();
 if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM)drInit();
-if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();
+if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();else if(GT_ROOM)gtPhone();
 </script>
