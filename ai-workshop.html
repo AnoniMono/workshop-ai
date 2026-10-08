@@ -948,35 +948,36 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 .w6-svg .ed{stroke:rgba(255,255,255,.55);stroke-width:3}
 .w6-svg .big{font:700 64px 'Fredoka',sans-serif;fill:#fff;text-anchor:middle}
 .w6-svg .sm{font:700 18px 'Nunito Sans',sans-serif;fill:var(--muted);text-anchor:middle}
-/* slide 6: la famiglia dell'AI, uno zoom in quattro passi */
-.tx-steps{position:relative;display:grid;grid-template-columns:repeat(4,1fr);padding:.2em 0}
-.tx-rail,.tx-fill{position:absolute;top:calc(.2em + clamp(32px,4.4vw,44px));left:12.5%;height:4px;border-radius:2px}
-.tx-rail{right:12.5%;background:#DCE2EA}
-.tx-fill{width:0;background:linear-gradient(90deg,#2D6CDF,#1E9E57 33%,#E8590C 66%,#8E44AD);transition:width .6s cubic-bezier(.4,0,.2,1)}
-.tx-step{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:.45em;background:none;border:none;padding:0;cursor:pointer;font-family:var(--ff-body);color:var(--gray)}
-.tx-dot{width:clamp(64px,8.8vw,88px);aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#fff;border:4px solid #DCE2EA;font-family:var(--ff-head);font-weight:700;font-size:clamp(1rem,1.8vw,1.35rem);color:#9AA4B2;transition:transform .3s,background .3s,border-color .3s,color .3s,box-shadow .3s}
-.tx-step span{font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;transition:color .3s}
-.tx-step:hover .tx-dot{border-color:#A9B4C2}
-.tx-step.done .tx-dot{border-color:var(--c);color:var(--c)}
-.tx-step.on .tx-dot{background:var(--c);border-color:var(--c);color:#fff;transform:scale(1.12);box-shadow:0 0 0 8px color-mix(in srgb,var(--c) 18%,transparent)}
-.tx-step.on span,.tx-step.done span{color:var(--c)}
-.tx-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(1.2rem,4vw,4rem);align-items:center}
-@media (max-width:820px){.tx-stage{grid-template-columns:1fr}}
+/* slide 6: la famiglia dell'AI, cerchi da esplorare */
+#s7.current{height:100svh}
+.tx-top{display:flex;justify-content:space-between;align-items:baseline;gap:.3em 1.5em;flex-wrap:wrap}
+.tx-hint{margin:0;font-size:var(--fs-small);font-weight:700;color:var(--gray)}
+.tx-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:clamp(1.2rem,4vw,4rem);align-items:center}
+@media (max-width:820px){.tx-stage{grid-template-columns:1fr}#s7.current{height:auto}}
 .tx-vis{display:flex;justify-content:center;align-items:center;min-height:0;height:100%}
-.tx-svg{width:min(100%,54vh,480px);aspect-ratio:1;display:block;overflow:visible}
-.tx-svg circle{transition:opacity .5s,fill .5s,stroke .5s}
-.tx-svg text{font:800 14px 'Nunito Sans',sans-serif;letter-spacing:.06em;text-anchor:middle;transition:opacity .5s,fill .5s}
-.tx-txt{display:flex;flex-direction:column;gap:clamp(.6rem,1.6vh,1.1rem)}
-.tx-kick{margin:0;font-family:var(--ff-head);font-weight:600;font-size:clamp(.9rem,1.5vw,1.15rem);letter-spacing:.14em;text-transform:uppercase}
-.tx-h{margin:0;font-family:var(--ff-head);font-weight:700;font-size:clamp(1.8rem,4.2vw,3.4rem);line-height:1.05;color:var(--navy);text-wrap:balance}
-.tx-p{margin:0;font-size:clamp(1.05rem,1.8vw,1.4rem);line-height:1.5;color:var(--gray);max-width:30em}
-.tx-p b{color:var(--navy)}
-.tx-ex{display:flex;flex-wrap:wrap;gap:.45em;align-items:center}
-.tx-ex span{font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-right:.2em}
-.tx-ex b{font-size:clamp(.85rem,1.3vw,1rem);font-weight:700;padding:.35em .85em;border-radius:999px;background:#fff;border:2px solid var(--c);color:var(--navy)}
-.tx-nav{display:flex;gap:.6em;margin-top:.4em}
-.tx-nav .btn.ghost{background:transparent;color:var(--navy);box-shadow:inset 0 0 0 2px #C9D1DC}
-.tx-nav .btn:disabled{opacity:.3}
+.tx-svg{width:min(100%,70vh,600px);aspect-ratio:1;display:block}
+.tx-svg .ring{cursor:pointer}
+.tx-svg .ring circle{transition:fill-opacity .25s,stroke-width .25s,opacity .25s}
+.tx-svg .ring text{font:800 15px 'Nunito Sans',sans-serif;letter-spacing:.08em;text-anchor:middle;pointer-events:none;transition:opacity .25s}
+.tx-svg .ring .sub{font:600 12.5px 'Nunito Sans',sans-serif;letter-spacing:0;fill:#5B6B82}
+.tx-svg.hov .ring circle{opacity:.45}
+.tx-svg.hov .ring.on circle{opacity:1;stroke-width:6;fill-opacity:.22}
+.tx-svg.hov .ring.in circle{opacity:.85}
+.tx-card{display:flex;flex-direction:column;gap:clamp(.55rem,1.4vh,.9rem);min-height:clamp(300px,52vh,460px);justify-content:center}
+.tx-kick{margin:0;font-family:var(--ff-head);font-weight:600;font-size:clamp(.85rem,1.4vw,1.05rem);letter-spacing:.14em;text-transform:uppercase}
+.tx-h{margin:0;font-family:var(--ff-head);font-weight:700;font-size:clamp(1.8rem,3.8vw,3.1rem);line-height:1.05;color:var(--navy)}
+.tx-row{display:grid;grid-template-columns:7.5em 1fr;gap:1em;align-items:baseline;border-top:1px solid #DCE2EA;padding-top:.55em}
+.tx-row span{font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--c)}
+.tx-row p{margin:0;font-size:clamp(.98rem,1.5vw,1.18rem);line-height:1.5;color:var(--gray)}
+.tx-row p b{color:var(--navy)}
+.tx-ex{display:flex;flex-wrap:wrap;gap:.4em}
+.tx-ex b{font-size:clamp(.82rem,1.2vw,.95rem);font-weight:700;padding:.3em .8em;border-radius:999px;background:#fff;border:2px solid var(--c);color:var(--navy)}
+.tx-idle{display:flex;flex-direction:column;gap:1em}
+.tx-idle p{margin:0;font-size:clamp(1.05rem,1.8vw,1.4rem);line-height:1.5;color:var(--gray);max-width:28em}
+.tx-idle p b{color:var(--navy)}
+.tx-leg{display:flex;flex-direction:column;gap:.5em}
+.tx-leg button{display:flex;align-items:center;gap:.7em;background:none;border:none;padding:.2em 0;cursor:pointer;font-family:var(--ff-head);font-weight:600;font-size:clamp(1rem,1.6vw,1.25rem);color:var(--navy);text-align:left}
+.tx-leg i{width:18px;height:18px;border-radius:50%;border:3px solid;flex:none}
 /* badge extra per i pop-up */
 .pl-b.mech{background:rgba(200,150,62,.2);color:#8A5A12}
 .pl-b.rule{background:rgba(0,180,216,.15);color:#0077A0}
@@ -1353,17 +1354,13 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 
 <!-- 7 TAXONOMY -->
 <section class="slide darktext s-light" data-section="Storia e fondamenti" id="s7">
-  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">La famiglia dell'Intelligenza Artificiale</h2>
-  <div class="tx-steps" id="txSteps"></div>
+  <div class="tx-top">
+    <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">La famiglia dell'Intelligenza Artificiale</h2>
+    <p class="tx-hint">Passate sopra un cerchio per scoprire cos'è</p>
+  </div>
   <div class="tx-stage">
-    <div class="tx-vis"><svg class="tx-svg" id="txSvg" viewBox="0 0 400 400" aria-label="Cerchi uno dentro l'altro: intelligenza artificiale, machine learning, deep learning, AI generativa"></svg></div>
-    <div class="tx-txt">
-      <p class="tx-kick" id="txKick"></p>
-      <h3 class="tx-h" id="txH"></h3>
-      <p class="tx-p" id="txP"></p>
-      <div class="tx-ex" id="txEx"></div>
-      <div class="tx-nav"><button class="btn ghost" id="txPrev" onclick="txGo(TX.i-1)">← Indietro</button><button class="btn" id="txNext" onclick="txGo(TX.i+1)">Avanti →</button></div>
-    </div>
+    <div class="tx-vis"><svg class="tx-svg" id="txSvg" viewBox="0 0 500 500" aria-label="Cerchi uno dentro l'altro: intelligenza artificiale, machine learning, deep learning, AI generativa" onmouseleave="txOut()"></svg></div>
+    <div class="tx-card" id="txCard"></div>
   </div>
 </section>
 
@@ -2817,28 +2814,45 @@ function w6Deep(){var L=[3,5,5,5,2],xs=[50,125,200,275,350],h='';
   L.forEach(function(n,l){for(var a=0;a<n;a++)h+='<circle cx="'+xs[l]+'" cy="'+(200+(a-(n-1)/2)*60)+'" r="15" fill="'+(l===0?'#7FB3E8':l===L.length-1?'#2ECC71':'#FF6B35')+'" stroke="#fff" stroke-width="3"/>'});
   G('w6Svg').innerHTML=h+'<text class="sm" x="200" y="378">tanti strati di neuroni = deep learning</text>'}
 
-/* ===== slide "La famiglia dell'AI": uno zoom in quattro passi ===== */
-var TX={i:0};
+/* ===== slide "La famiglia dell'AI": cerchi uno dentro l'altro, da esplorare ===== */
+var TX={cur:-1};
 var TX_S=[
- {d:'AI',l:'Intelligenza artificiale',c:'#2D6CDF',k:'Il cerchio più grande',h:'Intelligenza Artificiale',
-  p:'Qualsiasi macchina che fa qualcosa che <b>sembra intelligente</b>. Anche con regole scritte a mano da una persona: ricordate <b>ELIZA</b> e <b>Deep Blue</b>?',ex:['Deep Blue','ELIZA','Il navigatore che trova la strada']},
- {d:'ML',l:'Machine learning',c:'#1E9E57',k:'Un cerchio più dentro',h:'Machine Learning: impara dai dati',
-  p:'Nessuno scrive le regole: la macchina le <b>scopre da sola</b> guardando tantissimi esempi. Come <b>AlphaGo</b>, che ha imparato giocando contro se stesso.',ex:['AlphaGo','I consigli di Spotify','Il filtro anti-spam']},
- {d:'DL',l:'Deep learning',c:'#E8590C',k:'Ancora più dentro',h:'Deep Learning: tanti strati di neuroni',
-  p:'Machine learning fatto con <b>reti neurali profonde</b>, quelle della slide precedente. È bravissimo con immagini, suoni e parole.',ex:['Lo sblocco con il volto','TikTok che "guarda" i video','La voce di Siri']},
- {d:'Gen',l:'AI generativa',c:'#8E44AD',k:'Il cerchio più piccolo',h:'AI generativa: crea cose nuove',
-  p:'Deep learning che non si limita a riconoscere: <b>produce</b> testi, immagini, musica e video. È il cerchio più piccolo, ma è quello di cui parlano tutti.',ex:['ChatGPT','Claude','Gemini','Immagini create dall\'AI']}];
-var TX_C=[[200,200,190],[200,240,148],[200,280,106],[200,318,66]];   /* cx, cy, r: cerchi uno dentro l'altro */
-function txInit(){if(!G('txSteps'))return;
-  G('txSteps').innerHTML='<i class="tx-rail"></i><i class="tx-fill" id="txFill"></i>'+TX_S.map(function(s,i){return '<button class="tx-step" onclick="txGo('+i+')" style="--c:'+s.c+'"><b class="tx-dot">'+s.d+'</b><span>'+s.l+'</span></button>'}).join('');txGo(0)}
-function txGo(i){if(i<0||i>=TX_S.length)return;TX.i=i;var s=TX_S[i];
-  [].forEach.call(document.querySelectorAll('.tx-step'),function(b,k){b.classList.toggle('on',k===i);b.classList.toggle('done',k<i)});G('txFill').style.width=(i/3*75)+'%';
-  var kk=G('txKick');kk.textContent=s.k;kk.style.color=s.c;G('txH').textContent=s.h;G('txP').innerHTML=s.p;
-  var ex=G('txEx');ex.style.setProperty('--c',s.c);ex.innerHTML='<span>Esempi</span>'+s.ex.map(function(e){return '<b>'+e+'</b>'}).join('');
-  G('txPrev').disabled=i===0;G('txNext').disabled=i===TX_S.length-1;
-  G('txSvg').innerHTML=TX_S.map(function(t,k){var c=TX_C[k],shown=k<=i,cur=k===i;
-    return '<circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'" fill="'+(cur?t.c:'#fff')+'" fill-opacity="'+(cur?.16:.6)+'" stroke="'+t.c+'" stroke-width="'+(cur?5:3)+'" opacity="'+(shown?1:0)+'"/>'+
-      '<text x="'+c[0]+'" y="'+(k===3?c[1]+5:c[1]-c[2]+[48,44,42][k])+'" fill="'+t.c+'" opacity="'+(shown?(cur?1:.75):0)+'" style="font-size:'+(cur?13:12)+'px">'+t.l.toUpperCase()+'</text>'}).join('')}
+ {l:'Intelligenza artificiale',s:'il campo più grande',c:'#2D6CDF',k:'Il cerchio più grande',h:'Intelligenza Artificiale',
+  is:'Tutte le macchine che fanno cose che <b>sembrano intelligenti</b>: è il nome dell\'intero campo.',
+  does:'Gioca, risponde, trova strade, prende decisioni.',
+  made:'In tanti modi diversi: con <b>regole scritte a mano</b> (SE… ALLORA…), con il <b>calcolo a forza bruta</b>, oppure imparando dai dati.',
+  ex:['Deep Blue','ELIZA','Il navigatore']},
+ {l:'Machine learning',s:'impara dai dati',c:'#1E9E57',k:'Dentro l\'AI',h:'Machine Learning',
+  is:'Un modo di fare AI in cui la macchina <b>impara dagli esempi</b>, invece di seguire regole scritte da qualcuno.',
+  does:'Trova schemi nei dati e fa previsioni: "questa canzone ti piacerà?", "questa mail è spam?"',
+  made:'Un modello pieno di <b>numeri regolabili</b> (i pesi) e tantissimi esempi. Si allena correggendo i propri errori, un po\' alla volta.',
+  ex:['AlphaGo','I consigli di Spotify','Il filtro anti-spam']},
+ {l:'Deep learning',s:'tanti strati di neuroni',c:'#E8590C',k:'Dentro il machine learning',h:'Deep Learning',
+  is:'Machine learning fatto con <b>reti neurali profonde</b>, cioè con tanti strati di neuroni artificiali.',
+  does:'Capisce i dati "difficili": <b>immagini, suoni e parole</b>.',
+  made:'Milioni di neuroni artificiali in fila, strato dopo strato. Ogni strato riconosce qualcosa di più complesso: prima i bordi, poi le forme, poi gli oggetti.',
+  ex:['Lo sblocco con il volto','TikTok che "guarda" i video','La voce di Siri']},
+ {l:'AI generativa',s:'crea cose nuove',c:'#8E44AD',k:'Il cerchio più piccolo',h:'AI generativa',
+  is:'Deep learning che non si limita a riconoscere: <b>crea contenuti nuovi</b>.',
+  does:'Scrive testi, disegna immagini, compone musica, genera video.',
+  made:'Reti neurali enormi, addestrate su <b>miliardi di testi e immagini</b>. Creano un pezzo alla volta, prevedendo il pezzo successivo: una parola, poi un\'altra…',
+  ex:['ChatGPT','Claude','Gemini','Immagini create dall\'AI']}];
+var TX_C=[[250,250,236],[250,300,184],[250,350,134],[250,400,84]];   /* cx, cy, r */
+var TX_LY=[[64,86],[160,182],[264,286],[392,414]];                  /* y di nome e sottotitolo */
+function txInit(){if(!G('txSvg'))return;
+  G('txSvg').innerHTML=TX_S.map(function(t,k){var c=TX_C[k];
+    return '<g class="ring" data-k="'+k+'" onmouseenter="txOn('+k+')" onclick="txOn('+k+')"><circle cx="'+c[0]+'" cy="'+c[1]+'" r="'+c[2]+'" fill="'+t.c+'" fill-opacity=".07" stroke="'+t.c+'" stroke-width="3.5"/>'+
+      '<text x="'+c[0]+'" y="'+TX_LY[k][0]+'" fill="'+t.c+'">'+t.l.toUpperCase()+'</text><text class="sub" x="'+c[0]+'" y="'+TX_LY[k][1]+'">'+t.s+'</text></g>'}).join('');
+  txOut()}
+function txOn(k){if(TX.cur===k)return;TX.cur=k;var t=TX_S[k],svg=G('txSvg');svg.classList.add('hov');
+  [].forEach.call(svg.querySelectorAll('.ring'),function(g){var j=+g.getAttribute('data-k');g.classList.toggle('on',j===k);g.classList.toggle('in',j<k)});
+  var c=G('txCard');c.style.setProperty('--c',t.c);
+  c.innerHTML='<p class="tx-kick" style="color:'+t.c+'">'+t.k+'</p><h3 class="tx-h">'+t.h+'</h3>'+
+    [['Cos\'è',t.is],['Cosa fa',t.does],['Com\'è fatta',t.made]].map(function(r){return '<div class="tx-row"><span>'+r[0]+'</span><p>'+r[1]+'</p></div>'}).join('')+
+    '<div class="tx-row"><span>Esempi</span><div class="tx-ex">'+t.ex.map(function(e){return '<b>'+e+'</b>'}).join('')+'</div></div>'}
+function txOut(){TX.cur=-1;var svg=G('txSvg');if(!svg)return;svg.classList.remove('hov');[].forEach.call(svg.querySelectorAll('.ring'),function(g){g.classList.remove('on','in')});
+  G('txCard').innerHTML='<div class="tx-idle"><p>Sono come <b>scatole cinesi</b>: ogni cerchio sta dentro quello più grande. Tutto il deep learning è machine learning, e tutto il machine learning è intelligenza artificiale.</p>'+
+    '<div class="tx-leg">'+TX_S.map(function(t,k){return '<button onmouseenter="txOn('+k+')" onclick="txOn('+k+')"><i style="border-color:'+t.c+';background:'+t.c+'22"></i>'+t.h+'</button>'}).join('')+'</div></div>'}
 
 var tlTexts=["Nel 1739 Jacques de Vaucanson costruì un'anatra meccanica che sembrava mangiare, digerire e defecare: il primo tentativo di simulare la vita con una macchina!","Nel 1950 Alan Turing propose il suo test: se un computer può ingannare un umano facendogli credere di parlare con un altro umano, allora \"pensa\". La domanda che ha dato il via a tutto!","Nel 1997 Deep Blue di IBM batte il campione mondiale di scacchi Garry Kasparov. Per la prima volta una macchina supera l'uomo in un gioco di strategia. Shock mondiale!","Nel 2016 AlphaGo di Google DeepMind batte Lee Sedol a Go, un gioco con più combinazioni degli atomi nell'universo: impossibile con la forza bruta, l'AI ha dovuto IMPARARE.","Nel 2022 OpenAI lancia ChatGPT: 1 milione di utenti in 5 giorni. Per la prima volta chiunque può conversare con un'AI. La rivoluzione è iniziata!"];
 function tlShow(i,el){document.getElementById('tlDetail').textContent=tlTexts[i];[].forEach.call(document.querySelectorAll('.tl-card'),function(c){c.classList.remove('active')});el.classList.add('active')}
