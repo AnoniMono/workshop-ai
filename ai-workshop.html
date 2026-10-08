@@ -991,7 +991,7 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 .nn-phases span.on b{background:var(--orange)}
 .nn-phases i{width:clamp(14px,2vw,32px);height:2px;background:#DCE2EA}
 .nn-net{flex:1;min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:clamp(.6rem,1.6vw,1.4rem);align-items:center}
-.nn-svg{width:100%;height:100%;max-height:54vh;display:block}
+.nn-svg{width:100%;height:100%;max-height:60vh;display:block}
 .nn-in,.nn-out{display:flex;flex-direction:column;align-items:center;gap:.4em;width:clamp(150px,17vw,230px)}
 .nn-sent{width:100%;padding:.9em 1em;border-radius:16px;background:var(--light);border:2px solid var(--border);font-family:var(--ff-head);font-weight:600;font-size:clamp(1.05rem,1.8vw,1.45rem);line-height:1.3;color:var(--navy);text-align:center}
 .nn-sent span{color:var(--orange);letter-spacing:.05em}
@@ -1005,8 +1005,10 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 .nn-bar i{display:block;height:100%;border-radius:6px;transition:width .5s}
 .nn-bar b{text-align:right;font-variant-numeric:tabular-nums}
 .nn-verdict{font-family:var(--ff-head);font-weight:700;font-size:clamp(.95rem,1.5vw,1.15rem);min-height:1.4em;text-align:center}
-.nn-svg .e{transition:stroke .5s,stroke-width .5s}
-.nn-svg .n{stroke:#fff;stroke-width:3;transition:fill .25s}
+.nn-svg .e{transition:stroke-opacity .4s}
+.nn-svg .nw{font:700 17px 'Fredoka',sans-serif;fill:#1B2A4A}
+.nn-svg .wl{font:800 13px 'Nunito Sans',sans-serif;fill:#fff;text-anchor:middle;font-variant-numeric:tabular-nums}
+.nn-svg .n{stroke:#fff;stroke-width:3;transition:fill .35s,r .35s}
 .nn-svg .lt{font:800 12px 'Nunito Sans',sans-serif;fill:#9AA4B2;text-anchor:middle;letter-spacing:.08em}
 .nn-ep{display:flex;flex-direction:column;gap:.3em}
 .nn-eph{display:flex;justify-content:space-between;align-items:baseline;gap:1em;flex-wrap:wrap}
@@ -1411,11 +1413,11 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
     <span data-p="0"><b>1</b>Legge una frase</span><i></i>
     <span data-p="1"><b>2</b>Indovina la parola dopo</span><i></i>
     <span data-p="2"><b>3</b>Misura l'errore</span><i></i>
-    <span data-p="3"><b>4</b>Corregge i pesi</span>
+    <span data-p="3"><b>4</b>Cambia i pesi</span>
   </div>
   <div class="nn-net">
     <div class="nn-in" id="nnIn"></div>
-    <svg class="nn-svg" id="nnSvg" viewBox="0 0 760 300" preserveAspectRatio="xMidYMid meet" aria-label="Una rete neurale con quattro strati che si allena"></svg>
+    <svg class="nn-svg" id="nnSvg" viewBox="0 0 860 312" preserveAspectRatio="xMidYMid meet" aria-label="Una rete neurale con quattro strati che si allena"></svg>
     <div class="nn-out" id="nnOut"></div>
   </div>
   <div class="nn-ep">
@@ -2896,49 +2898,70 @@ function txOut(){TX.cur=-1;var svg=G('txSvg');if(!svg)return;svg.classList.remov
     '<div class="tx-leg">'+TX_S.map(function(t,k){return '<button onmouseenter="txOn('+k+')" onclick="txOn('+k+')"><i style="border-color:'+t.c+';background:'+t.c+'22"></i>'+t.h+'</button>'}).join('')+'</div></div>'}
 
 /* ===== slide "Come impara una rete neurale?": allenamento in loop ===== */
-var NN={L:[4,5,5,2],X:[90,290,490,690],W:[],ep:0,maxEp:40,err:[],run:true,phase:-1,t:0,last:0,done:false,ex:0,dur:0,hold:0};
-var NN_EX=[{s:'Il gatto beve il',w:['latte','sole','pane']},{s:'Domani ho una',w:['verifica','nuvola','banana']},{s:'La pizza è proprio',w:['buona','blu','lenta']},{s:'Vado a scuola in',w:['autobus','frigo','spiaggia']}];
-function nnY(l,i){var n=NN.L[l],gap=n>4?52:62;return 150+(i-(n-1)/2)*gap}
+var NN={L:[4,4,4,3],X:[150,330,510,690],W:[],ep:0,maxEp:40,err:[],run:true,phase:-1,t:0,last:0,done:false,ex:0,hold:0,conf:.3,seg:-1,pick:null};
+var NN_EX=[{i:['Il','gatto','beve','il'],s:'Il gatto beve il',w:['latte','sole','pane']},{i:['Oggi','piove:','prendo','l\''],s:'Oggi piove: prendo l\'',w:['ombrello','gelato','aereo']},{i:['La','pizza','è','proprio'],s:'La pizza è proprio',w:['buona','blu','lenta']},{i:['Vado','a','scuola','in'],s:'Vado a scuola in',w:['autobus','frigo','spiaggia']}];
+var NN_OFF='#D5DBE3',NN_FWD='#FFB300',NN_BWD='#F07A6A',SVGN='http://www.w3.org/2000/svg';
+function nnY(l,i){return 150+(i-(NN.L[l]-1)/2)*70}
 function nnLoss(e){return Math.max(.02,.78*Math.exp(-e/8)+(e<35?.04*Math.sin(e*1.7):0))}
+function nnFmt(v){return (v<0?'−':'')+Math.abs(v).toFixed(2).replace('.',',')}
 function nnInit(){if(!G('nnSvg'))return;nnBuild();nnLoop()}
-function nnBuild(){NN.W=[];for(var l=0;l<3;l++){var m=[];for(var a=0;a<NN.L[l];a++){var r=[];for(var b=0;b<NN.L[l+1];b++){var t=Math.random()*2-1;r.push({w:(Math.random()-.5)*.4,t:t})}m.push(r)}NN.W.push(m)}
-  NN.ep=0;NN.err=[];NN.done=false;NN.phase=-1;NN.t=0;NN.hold=0;
+function nnBuild(){NN.W=[];for(var l=0;l<3;l++){var m=[];for(var a=0;a<NN.L[l];a++){var r=[];for(var b=0;b<NN.L[l+1];b++)r.push({w:(Math.random()-.5)*.3,t:Math.random()*2-1});m.push(r)}NN.W.push(m)}
+  NN.ep=0;NN.err=[];NN.done=false;NN.phase=-1;NN.t=0;NN.hold=0;NN.seg=-1;NN.pick=null;
   var h='';for(var l=0;l<3;l++)for(var a=0;a<NN.L[l];a++)for(var b=0;b<NN.L[l+1];b++)h+='<line class="e" id="nnE'+l+'_'+a+'_'+b+'" x1="'+NN.X[l]+'" y1="'+nnY(l,a)+'" x2="'+NN.X[l+1]+'" y2="'+nnY(l+1,b)+'"/>';
+  h+='<g id="nnFx"></g>';
   var names=['PAROLE','STRATO NASCOSTO','STRATO NASCOSTO','PREVISIONE'];
-  NN.L.forEach(function(n,l){for(var i=0;i<n;i++)h+='<circle class="n" id="nnN'+l+'_'+i+'" cx="'+NN.X[l]+'" cy="'+nnY(l,i)+'" r="'+(l===3?20:16)+'" fill="#C9D1DC"/>';h+='<text class="lt" x="'+NN.X[l]+'" y="292">'+names[l]+'</text>'});
-  h+='<g id="nnFx"></g>';G('nnSvg').innerHTML=h;nnEdges();nnChart();nnPh(-1);nnExample();nnOutput(null)}
-function nnEdges(){for(var l=0;l<3;l++)for(var a=0;a<NN.L[l];a++)for(var b=0;b<NN.L[l+1];b++){var w=NN.W[l][a][b].w,e=G('nnE'+l+'_'+a+'_'+b);
-  e.setAttribute('stroke',w>=0?'#FF6B35':'#2E86DE');e.setAttribute('stroke-opacity',(.18+Math.min(1,Math.abs(w))*.7).toFixed(2));e.setAttribute('stroke-width',(1+Math.abs(w)*4).toFixed(1))}}
+  NN.L.forEach(function(n,l){for(var i=0;i<n;i++)h+='<circle class="n" id="nnN'+l+'_'+i+'" cx="'+NN.X[l]+'" cy="'+nnY(l,i)+'" r="18" fill="'+NN_OFF+'"/>';h+='<text class="lt" x="'+NN.X[l]+'" y="300">'+names[l]+'</text>'});
+  for(var i=0;i<4;i++)h+='<text class="nw" id="nnIw'+i+'" x="'+(NN.X[0]-30)+'" y="'+(nnY(0,i)+6)+'" text-anchor="end"></text>';
+  for(var j=0;j<3;j++)h+='<text class="nw" id="nnOw'+j+'" x="'+(NN.X[3]+32)+'" y="'+(nnY(3,j)+6)+'"></text>';
+  h+='<g id="nnLbl"></g>';
+  G('nnSvg').innerHTML=h;nnEdges(-1);nnChart();nnPh(-1);nnExample();nnOutput(null)}
+function nnEdges(act){for(var l=0;l<3;l++)for(var a=0;a<NN.L[l];a++)for(var b=0;b<NN.L[l+1];b++){var w=NN.W[l][a][b].w,e=G('nnE'+l+'_'+a+'_'+b),on=l===act;
+  e.setAttribute('stroke',w>=0?'#FF6B35':'#2E86DE');e.setAttribute('stroke-opacity',((on?.35:.1)+Math.min(1,Math.abs(w))*(on?.6:.35)).toFixed(2));e.setAttribute('stroke-width',(1+Math.abs(w)*5).toFixed(1))}}
 function nnPh(p){NN.phase=p;[].forEach.call(document.querySelectorAll('#nnPh span'),function(s){s.classList.toggle('on',+s.getAttribute('data-p')===p)})}
-function nnExample(){var x=NN_EX[NN.ex%4];G('nnIn').innerHTML='<div class="nn-sent pop">'+x.s+' <span>___</span></div><p class="nn-cap">Frase da completare</p>'}
+function nnExample(){var x=NN_EX[NN.ex%4];G('nnIn').innerHTML='<div class="nn-sent pop">'+x.s+' <span>___</span></div><p class="nn-cap">Frase da completare</p>';
+  if(!G('nnIw0'))return;x.i.forEach(function(w,i){G('nnIw'+i).textContent=w});x.w.forEach(function(w,j){G('nnOw'+j).textContent=w})}
+function nnProbs(conf){return [conf,(1-conf)*.68,(1-conf)*.32]}
 function nnOutput(conf){var x=NN_EX[NN.ex%4],o=G('nnOut'),order=[0,1,2];
-  if(!conf){o.innerHTML='<p class="nn-cap">Prossima parola?</p>'+x.w.map(function(w){return '<div class="nn-bar"><span>'+w+'</span><div><i style="width:0"></i></div><b>–</b></div>'}).join('')+'<p class="nn-verdict"></p>';return}
-  var p=[conf,(1-conf)*.68,(1-conf)*.32],top=p[0]>=p[1]?0:1;order.sort(function(a,b){return p[b]-p[a]});
+  if(conf===null){o.innerHTML='<p class="nn-cap">Prossima parola?</p>'+x.w.map(function(w){return '<div class="nn-bar"><span>'+w+'</span><div><i style="width:0"></i></div><b>–</b></div>'}).join('')+'<p class="nn-verdict"></p>';return}
+  var p=nnProbs(conf),top=p[0]>=p[1]?0:1;order.sort(function(a,b){return p[b]-p[a]});
   o.innerHTML='<p class="nn-cap">Prossima parola?</p>'+order.map(function(i){return '<div class="nn-bar"><span>'+x.w[i]+'</span><div><i style="width:'+Math.round(p[i]*100)+'%;background:'+(i===0?'#2ECC71':'#E74C3C')+'"></i></div><b>'+Math.round(p[i]*100)+'%</b></div>'}).join('')+
     '<p class="nn-verdict" style="color:'+(top===0?'#1E9E57':'#E74C3C')+'">'+(top===0?'Giusto: «'+x.w[0]+'»!':'Sbagliato: ha detto «'+x.w[1]+'»')+'</p>'}
 function nnChart(){var c=G('nnChart'),pts=NN.err.map(function(v,i){return ((i+.5)/NN.maxEp*1000).toFixed(1)+','+(110-v/.85*100).toFixed(1)}),last=pts[pts.length-1];
   c.innerHTML='<line x1="0" y1="'+(110-.05/.85*100)+'" x2="1000" y2="'+(110-.05/.85*100)+'" stroke="#2ECC71" stroke-width="1.5" stroke-dasharray="6 6" vector-effect="non-scaling-stroke"/>'+
     (pts.length?'<polygon points="0,110 '+pts.join(' ')+' '+last.split(',')[0]+',110" fill="#FF6B35" fill-opacity=".12"/><polyline points="'+pts.join(' ')+'" fill="none" stroke="#FF6B35" stroke-width="3" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>':'');
   G('nnEpT').textContent='Epoca '+NN.ep+' di '+NN.maxEp;G('nnErrT').textContent='Errore '+Math.round((NN.err.length?NN.err[NN.err.length-1]:.78)*100)+'%'}
-function nnDot(x,y,c,r){var d=document.createElementNS('http://www.w3.org/2000/svg','circle');d.setAttribute('cx',x);d.setAttribute('cy',y);d.setAttribute('r',r||4);d.setAttribute('fill',c);return d}
-function nnPulse(dir,k){/* k: 0..1 lungo tutta la rete; avanti (dir=1) o indietro (dir=-1) */
-  var fx=G('nnFx');fx.innerHTML='';var seg=Math.min(2.999,k*3),l=Math.floor(seg),p=seg-l;if(dir<0){l=2-l;p=1-p}
-  for(var a=0;a<NN.L[l];a++)for(var b=0;b<NN.L[l+1];b++){if((a+b)%2)continue;var x1=NN.X[l],y1=nnY(l,a),x2=NN.X[l+1],y2=nnY(l+1,b);fx.appendChild(nnDot(x1+(x2-x1)*p,y1+(y2-y1)*p,dir>0?'#FFB300':'#E74C3C',3.5))}
-  for(var ll=0;ll<4;ll++)for(var i=0;i<NN.L[ll];i++){var lit=dir>0?(ll<=l+(p>.95?1:0)):(ll>=l+(p<.05?0:1));G('nnN'+ll+'_'+i).setAttribute('fill',lit?(dir>0?'#FFB300':'#F28B82'):'#C9D1DC')}}
+function nnDot(x,y,c,r,o){var d=document.createElementNS(SVGN,'circle');d.setAttribute('cx',x);d.setAttribute('cy',y);d.setAttribute('r',r);d.setAttribute('fill',c);d.setAttribute('fill-opacity',o);return d}
+function nnNodes(fn){for(var l=0;l<4;l++)for(var i=0;i<NN.L[l];i++){var n=G('nnN'+l+'_'+i),v=fn(l,i);n.setAttribute('fill',v.f);n.setAttribute('r',v.r||18)}}
+function nnWeightLabel(){var P=NN.pick,g=G('nnLbl');g.innerHTML='';if(!P)return;var c=NN.W[P.l][P.a][P.b],x=(NN.X[P.l]+NN.X[P.l+1])/2,y=(nnY(P.l,P.a)+nnY(P.l+1,P.b))/2;
+  G('nnE'+P.l+'_'+P.a+'_'+P.b).setAttribute('stroke-opacity','1');
+  g.innerHTML='<rect x="'+(x-74)+'" y="'+(y-17)+'" width="148" height="34" rx="17" fill="#1B2A4A"/><text class="wl" x="'+x+'" y="'+(y+6)+'">peso '+nnFmt(P.w0)+' → <tspan fill="'+(c.w>=P.w0?'#FFB24A':'#7FB3E8')+'">'+nnFmt(c.w)+'</tspan></text>'}
+function nnWave(dir,k){/* il segnale passa uno strato alla volta: avanti (dir=1) o indietro (dir=-1) */
+  var seg=Math.min(2.999,k*3),s=Math.floor(seg),p=seg-s,l=dir>0?s:2-s;if(dir<0)p=1-p;
+  if(NN.seg!==l){NN.seg=l;nnEdges(l);
+    if(dir<0){var best=null;NN.W[l].forEach(function(r,a){r.forEach(function(c,b){var d=Math.abs(c.t-c.w);if(!best||d>best.d)best={l:l,a:a,b:b,d:d,w0:c.w}})});NN.pick=best}else{NN.pick=null;G('nnLbl').innerHTML=''}}
+  var fx=G('nnFx');fx.innerHTML='';var op=Math.sin(Math.PI*Math.min(1,Math.max(0,dir>0?p:1-p)));
+  for(var a=0;a<NN.L[l];a++)for(var b=0;b<NN.L[l+1];b++){var x1=NN.X[l],y1=nnY(l,a),x2=NN.X[l+1],y2=nnY(l+1,b);fx.appendChild(nnDot(x1+(x2-x1)*p,y1+(y2-y1)*p,dir>0?NN_FWD:'#E74C3C',4,(.35+.6*op).toFixed(2)))}
+  var reached=dir>0?l+(p>.92?1:0):l+(p<.08?0:1);
+  nnNodes(function(ll,i){var lit=dir>0?ll<=reached:ll>=reached;
+    if(dir>0&&ll===3&&lit){var pr=nnProbs(NN.conf)[i];return{f:NN_FWD,r:12+pr*16}}
+    return{f:lit?(dir>0?NN_FWD:NN_BWD):NN_OFF}});
+  if(dir<0){NN.W[l].forEach(function(r){r.forEach(function(c){c.w+=(c.t-c.w)*.006*(1+Math.random())})});nnEdges(l);nnWeightLabel()}}
 function nnLoop(){var now=performance.now(),dt=NN.last?Math.min(100,now-NN.last):16;NN.last=now;
   var on=G('s8')&&G('s8').classList.contains('current')&&NN.run&&!document.hidden&&!XP.open;
   if(on)nnTick(dt);requestAnimationFrame(nnLoop)}
 function nnTick(dt){
-  if(NN.done){NN.hold+=dt;if(NN.hold>3500){nnBuild()}return}
-  var sp=NN.ep<4?1:NN.ep<12?1.8:3.2;NN.t+=dt*sp;
-  var T=[700,1000,700,1000,500],acc=0,ph=0;for(;ph<T.length;ph++){if(NN.t<acc+T[ph])break;acc+=T[ph]}var k=(NN.t-acc)/T[ph];
+  if(NN.done){NN.hold+=dt;if(NN.hold>4000){nnBuild()}return}
+  var sp=NN.ep<3?1:NN.ep<10?1.6:3;NN.t+=dt*sp;
+  var T=[1500,3000,2200,3600,900],acc=0,ph=0;for(;ph<T.length;ph++){if(NN.t<acc+T[ph])break;acc+=T[ph]}var k=(NN.t-acc)/T[ph];
   if(ph>=T.length){nnEpochEnd();return}
-  if(ph===0){if(NN.phase!==0){NN.ex=(NN.ex+1)%4;nnExample();nnOutput(null);nnPh(0);G('nnFx').innerHTML=''}}
-  else if(ph===1){if(NN.phase!==1)nnPh(1);nnPulse(1,k)}
-  else if(ph===2){if(NN.phase!==2){nnPh(2);G('nnFx').innerHTML='';var l=nnLoss(NN.ep);nnOutput(1-l+(Math.random()-.5)*.08);G('nnMsg').textContent='La rete confronta la sua risposta con quella giusta: ecco quanto ha sbagliato.'}}
-  else if(ph===3){if(NN.phase!==3){nnPh(3);G('nnMsg').textContent='L\'errore torna indietro e ogni peso si sposta un po\'.'}nnPulse(-1,k);
-    var m=.04*(1-k*0)*dt/300;for(var l2=0;l2<3;l2++)NN.W[l2].forEach(function(r){r.forEach(function(c){c.w+=(c.t-c.w)*m*(1+Math.random())})});nnEdges()}
-  else if(ph===4){G('nnFx').innerHTML='';for(var ll=0;ll<4;ll++)for(var i=0;i<NN.L[ll];i++)G('nnN'+ll+'_'+i).setAttribute('fill','#C9D1DC')}}
+  if(ph===0){if(NN.phase!==0){NN.ex=(NN.ex+1)%4;nnExample();nnOutput(null);nnPh(0);G('nnFx').innerHTML='';G('nnLbl').innerHTML='';NN.seg=-1;nnEdges(-1);
+      nnNodes(function(l){return{f:l===0?NN_FWD:NN_OFF}});G('nnMsg').textContent='La rete legge le parole della frase.'}}
+  else if(ph===1){if(NN.phase!==1){nnPh(1);NN.conf=Math.min(.97,Math.max(.05,1-nnLoss(NN.ep)+(Math.random()-.5)*.08));G('nnMsg').textContent='Il segnale attraversa la rete, uno strato alla volta.'}nnWave(1,k)}
+  else if(ph===2){if(NN.phase!==2){nnPh(2);G('nnFx').innerHTML='';NN.seg=-1;nnEdges(-1);nnOutput(NN.conf);
+      nnNodes(function(l,i){if(l===3){var pr=nnProbs(NN.conf)[i];return{f:i===0?'#2ECC71':'#E74C3C',r:12+pr*16}}return{f:NN_OFF}});
+      G('nnMsg').textContent='Confronta la risposta con quella giusta: ecco quanto ha sbagliato.'}}
+  else if(ph===3){if(NN.phase!==3){nnPh(3);G('nnMsg').textContent='L\'errore torna indietro: ogni collegamento cambia il suo peso, un pochino.'}nnWave(-1,k)}
+  else if(ph===4){if(NN.seg!==-1){NN.seg=-1;NN.pick=null;G('nnFx').innerHTML='';G('nnLbl').innerHTML='';nnEdges(-1);nnNodes(function(){return{f:NN_OFF}})}}}
 function nnEpochEnd(){NN.t=0;NN.err.push(nnLoss(NN.ep));NN.ep++;nnChart();
   if(NN.ep>=NN.maxEp){NN.done=true;NN.hold=0;nnPh(-1);G('nnMsg').innerHTML='<b style="color:#1E9E57">Allenata!</b> Dopo '+NN.maxEp+' epoche indovina quasi sempre la parola giusta. ChatGPT si allena così, ma su miliardi di frasi. Ricomincia da zero…'}}
 function nnToggle(){NN.run=!NN.run;G('nnPlay').textContent=NN.run?'Pausa':'Riprendi'}
