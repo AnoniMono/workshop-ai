@@ -1154,6 +1154,10 @@ html.vote.drm,html.vote.drm body{background:#F5F7FA}
 .gn-loop em{font-style:normal;color:var(--gray);font-weight:600;font-size:.9rem}
 .gn-tip{margin:0;background:#FFF5F0;border-left:4px solid var(--orange);border-radius:0 12px 12px 0;padding:.6em .9em;font-size:.98rem;color:var(--navy);line-height:1.45;max-width:32em}
 .gn-rev{align-self:flex-start}
+.gn-acr{display:grid;grid-template-columns:repeat(3,1fr);gap:.5em;max-width:34em}
+.gn-acr div{background:#fff;border:2px solid var(--border);border-radius:12px;padding:.5em .7em;font-family:var(--ff-head);font-weight:600;font-size:1.05rem;color:var(--navy);line-height:1.2}
+.gn-acr b{color:var(--orange);font-size:1.4em}
+.gn-acr span{display:block;font-family:var(--ff-body);font-weight:700;font-size:.8rem;color:var(--gray);margin-top:.2em}
 .gn-brush{position:absolute;font-size:clamp(1.6rem,3vw,2.4rem);line-height:1;transform:translate(-15%,-85%);pointer-events:none;transition:opacity .3s;filter:drop-shadow(0 3px 4px rgba(0,0,0,.35))}
 .gn-link{font-weight:800;color:var(--orange);text-decoration:underline;white-space:nowrap}
 .gn-link:hover{color:var(--navy)}
@@ -3338,14 +3342,15 @@ function gnLoop(fn,dur){var tok=++GN.tok,t0=performance.now();(function f(now){i
 function gnHead(i){var s=GN_S[i];G('s12').style.setProperty('--c',s.c);
   [].forEach.call(document.querySelectorAll('#gnSteps .dr-step'),function(b,k){b.classList.toggle('on',k===i&&!GN.idle);b.classList.toggle('done',k<i&&!GN.idle)});G('gnFill').style.width=(GN.idle?0:i/3*75)+'%';
   G('gnKick').textContent=GN.idle?'La sfida':s.k;G('gnH').textContent=GN.idle?'Due AI, una contro l\'altra':s.h;
-  G('gnP').innerHTML=GN.idle?'Il <b>falsario</b> dipinge un gatto finto. L\'<b>esperto</b> deve capire se è vero o falso. Ogni volta che perde, il falsario impara.':s.p;
+  G('gnP').innerHTML=GN.idle?'Una <b>GAN</b> è un modo di allenare un\x27AI a creare immagini: due reti neurali giocano una contro l\x27altra. Il <b>falsario</b> dipinge un gatto finto. L\'<b>esperto</b> deve capire se è vero o falso. Ogni volta che perde, il falsario impara.':s.p;
   G('gnPrev').disabled=GN.idle||i===0;G('gnNext').disabled=!GN.idle&&i===GN_S.length-1;gnPlayBtn()}
 function gnPlayBtn(){var b=G('gnPlay');if(!b)return;b.textContent=GN.auto?'⏹ Ferma':(!GN.idle&&GN.i===3&&GN.shown===3?'↺ Ricomincia':'▶ Avvia la sfida')}
 /* tela bianca, prima di iniziare */
 function gnIdle(){gnAutoStop();GN.tok++;GN.idle=true;GN.i=0;GN.shown=-1;gnHead(0);gnCards(0);
   var g=G('gnFake').getContext('2d');g.fillStyle='#EFE6D6';g.fillRect(0,0,400,400);G('gnBrush').style.opacity=0;
   G('gnJudge').innerHTML='<i>🔍</i><p>L\'esperto aspetta il primo falso…</p><div class="gn-bar"><div><i style="width:0%"></i></div></div>';
-  G('gnBox').innerHTML='<div class="gn-roles"><div class="gn-role"><i>🎨</i><span><b>Generatore</b> = il falsario: crea immagini finte</span></div><div class="gn-role"><i>🔍</i><span><b>Discriminatore</b> = l\'esperto: dice se sono vere o false</span></div></div>'}
+  G('gnBox').innerHTML='<div class="gn-acr"><div><b>G</b>enerative<span>crea cose nuove</span></div><div><b>A</b>dversarial<span>due reti che si sfidano</span></div><div><b>N</b>etwork<span>rete neurale</span></div></div>'+
+    '<p class="gn-tip"><b>Perché falsario ed esperto?</b> Chi l\x27ha inventata, Ian Goodfellow nel 2014, la spiegava così: falsari che stampano banconote false contro la polizia che le deve scoprire. Più la polizia diventa brava, più i falsari devono migliorare.</p>'}
 function gnPlay(){if(GN.auto){gnAutoStop();return}GN.auto=true;GN.shown=-1;gnGo(0,true)}
 function gnAutoStop(){GN.auto=false;clearTimeout(GN.next);gnPlayBtn()}
 function gnNextBtn(){if(GN.idle)gnGo(0);else gnGo(GN.i+1)}
