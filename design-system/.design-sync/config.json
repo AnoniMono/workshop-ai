@@ -1,0 +1,26 @@
+{
+  "shape": "package",
+  "pkg": "workshop-ai-ds",
+  "globalName": "WorkshopDS",
+  "buildCmd": "npm run build",
+  "cssEntry": "dist/styles.css",
+  "overrides": {
+    "ExplainCard": {
+      "cardMode": "single",
+      "viewport": "700x560"
+    },
+    "PhoneFrame": {
+      "cardMode": "column"
+    },
+    "BeforeAfterBar": {
+      "cardMode": "column"
+    },
+    "Panel": {
+      "cardMode": "column"
+    },
+    "StatCompare": {
+      "cardMode": "column"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}
