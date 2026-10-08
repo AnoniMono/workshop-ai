@@ -1154,11 +1154,18 @@ html.vote.drm,html.vote.drm body{background:#F5F7FA}
 .gn-loop em{font-style:normal;color:var(--gray);font-weight:600;font-size:.9rem}
 .gn-tip{margin:0;background:#FFF5F0;border-left:4px solid var(--orange);border-radius:0 12px 12px 0;padding:.6em .9em;font-size:.98rem;color:var(--navy);line-height:1.45;max-width:32em}
 .gn-rev{align-self:flex-start}
-.gn-intro{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.3em clamp(1.2rem,3vw,2.6rem);align-items:center;background:#fff;border:2px solid var(--border);border-radius:16px;padding:.7em 1.2em}
+.gn-intro{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.6em clamp(1.2rem,3vw,2.6rem);align-items:center;background:#fff;border:2px solid var(--border);border-radius:16px;padding:.7em 1.2em}
 .gn-ik{margin:0;font-family:var(--ff-head);font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
 .gn-ih{margin:0;font-family:var(--ff-head);font-weight:700;font-size:clamp(1.25rem,2.4vw,1.9rem);line-height:1.1;color:var(--navy);white-space:nowrap}
 .gn-ip{margin:0;font-size:clamp(.92rem,1.35vw,1.08rem);line-height:1.5;color:var(--gray)}
 .gn-ip b{color:var(--navy)}
+.gn-ip i{font-style:normal;font-weight:700;color:var(--orange)}
+.gn-intro .gn-acr{max-width:none;gap:.4em}
+.gn-intro .gn-acr div{padding:.3em .55em;font-size:.92rem}
+.gn-intro .gn-acr span{font-size:.72rem}
+.gn-why{margin:0;font-size:clamp(.85rem,1.2vw,.98rem);line-height:1.45;color:var(--gray);border-left:3px solid var(--orange);padding-left:.8em}
+.gn-why b{color:var(--navy)}
+@media (max-height:800px){#s12 .gn-pair,#s12 .gn-judge{width:min(100%,48vh,560px)}#s12 .gn-judge{padding:.45em .8em}#s12 .gn-judge>i{font-size:1.5rem}#s12 .gn-intro{padding:.5em 1em;gap:.4em 1.6rem}#s12 .gn-ip{font-size:.88rem;line-height:1.4}#s12 .gn-why{font-size:.8rem}#s12 .gn-steps .dr-dot{width:40px}#s12 .gn-steps .dr-rail,#s12 .gn-steps .dr-fill{top:18px}#s12 .dr-h{font-size:clamp(1.4rem,3vw,2.2rem)}#s12 .dr-p{font-size:1rem}#s12 .gn-card figcaption{font-size:.95rem}}
 @media (max-width:820px){.gn-intro{grid-template-columns:1fr}.gn-ih{white-space:normal}}
 .gn-steps{max-width:none}
 .gn-acr{display:grid;grid-template-columns:repeat(3,1fr);gap:.5em;max-width:34em}
@@ -1630,7 +1637,7 @@ html.vote.drm,html.vote.drm body{background:#F5F7FA}
 <!-- 12 GAN: il falsario contro l'esperto -->
 <section class="slide darktext s-light" data-section="AI generativa" id="s12">
   <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">GAN: il falsario contro l'esperto</h2>
-  <div class="gn-intro"><div><p class="gn-ik">La sfida</p><h3 class="gn-ih">Due AI, una contro l'altra</h3></div><p class="gn-ip">Una <b>GAN</b> è un modo di allenare un'AI a creare immagini: due reti neurali giocano una contro l'altra. Il <b>falsario</b> dipinge un gatto finto. L'<b>esperto</b> deve capire se è vero o falso. Ogni volta che perde, il falsario impara.</p></div>
+  <div class="gn-intro"><div class="gn-it"><p class="gn-ik">La sfida</p><h3 class="gn-ih">Due AI, una contro l'altra</h3></div><p class="gn-ip">Una <b>GAN</b> è un modo di allenare un'AI a creare immagini: due reti neurali giocano una contro l'altra. Il <b>falsario</b> (il <i>generatore</i>) dipinge un gatto finto. L'<b>esperto</b> (il <i>discriminatore</i>) deve capire se è vero o falso. Ogni volta che perde, il falsario impara.</p><div class="gn-acr"><div><b>G</b>enerative<span>crea cose nuove</span></div><div><b>A</b>dversarial<span>due reti che si sfidano</span></div><div><b>N</b>etwork<span>rete neurale</span></div></div><p class="gn-why"><b>Perché falsario ed esperto?</b> Chi l'ha inventata, Ian Goodfellow nel 2014, la spiegava così: falsari che stampano banconote false contro la polizia che le deve scoprire. Più la polizia diventa brava, più i falsari devono migliorare.</p></div>
   <div class="dr-steps cv-steps gn-steps" id="gnSteps"></div>
   <div class="dr-stage">
     <div class="gn-vis">
@@ -3375,8 +3382,8 @@ function gnFrames(){var im=GN.img,f=[],c,g,s,rnd=gnRnd(7),P=['#E74C3C','#00A6C8'
 function gnLoop(fn,dur){var tok=++GN.tok,t0=performance.now();(function f(now){if(tok!==GN.tok)return;var t=Math.min(1,Math.max(0,(now-t0)/dur));fn(t);if(t<1)requestAnimationFrame(f)})(t0)}
 function gnHead(i){var s=GN_S[i];G('s12').style.setProperty('--c',s.c);
   [].forEach.call(document.querySelectorAll('#gnSteps .dr-step'),function(b,k){b.classList.toggle('on',k===i&&!GN.idle);b.classList.toggle('done',k<i&&!GN.idle)});G('gnFill').style.width=(GN.idle?0:i/3*75)+'%';
-  G('gnKick').textContent=GN.idle?'Prima di iniziare':s.k;G('gnH').textContent=GN.idle?'Cosa vuol dire GAN?':s.h;
-  G('gnP').innerHTML=GN.idle?'':s.p;
+  G('gnKick').textContent=GN.idle?'Pronti?':s.k;G('gnH').textContent=GN.idle?'Il falsario sta per dipingere':s.h;
+  G('gnP').innerHTML=GN.idle?'Premete <b>▶ Avvia la sfida</b> e guardate cosa succede, round dopo round.':s.p;
   G('gnPrev').disabled=GN.idle||i===0;G('gnNext').disabled=!GN.idle&&i===GN_S.length-1;gnPlayBtn()}
 function gnPlayBtn(){var b=G('gnPlay');if(!b)return;b.textContent=GN.auto?'⏹ Ferma':(!GN.idle&&GN.i===3&&GN.shown===3?'↺ Ricomincia':'▶ Avvia la sfida')}
 function gnPainter(on,show){var p=G('gnPainter');if(!p)return;p.classList.toggle('on',!!on);p.style.opacity=show===false?0:1}
@@ -3384,8 +3391,7 @@ function gnPainter(on,show){var p=G('gnPainter');if(!p)return;p.classList.toggle
 function gnIdle(){gnAutoStop();GN.tok++;GN.idle=true;GN.i=0;GN.shown=-1;gnHead(0);gnCards();
   var g=G('gnFake').getContext('2d');g.fillStyle='#EFE6D6';g.fillRect(0,0,400,400);gnPainter(false,true);
   G('gnJudge').innerHTML='<i>🔍</i><p>L\'esperto aspetta il primo falso…</p><div class="gn-bar"><div><i style="width:0%"></i></div></div>';
-  G('gnBox').innerHTML='<div class="gn-acr"><div><b>G</b>enerative<span>crea cose nuove</span></div><div><b>A</b>dversarial<span>due reti che si sfidano</span></div><div><b>N</b>etwork<span>rete neurale</span></div></div>'+
-    '<p class="gn-tip"><b>Perché falsario ed esperto?</b> Chi l\'ha inventata, Ian Goodfellow nel 2014, la spiegava così: falsari che stampano banconote false contro la polizia che le deve scoprire. Più la polizia diventa brava, più i falsari devono migliorare.</p>'}
+  G('gnBox').innerHTML='<p class="dr-hint">I round andranno avanti da soli: potete fermarli quando volete.</p>'}
 function gnPlay(){if(GN.auto){gnAutoStop();return}GN.auto=true;GN.shown=-1;gnGo(0,true)}
 function gnAutoStop(){GN.auto=false;clearTimeout(GN.next);gnPlayBtn()}
 function gnNextBtn(){if(GN.idle)gnGo(0);else gnGo(GN.i+1)}
@@ -3422,8 +3428,7 @@ function gnLabels(){var i=GN.i,A=G('gnLabA'),B=G('gnLabB'),fa=G('gnA'),fb=G('gnB
 function gnJudge(i){var j=GN_J[i];G('gnJudge').innerHTML='<i>🔍</i><p>L\'esperto dice:</p><b class="'+j.c+'">'+j.v+'</b><div class="gn-bar"><div><i style="width:0%;'+(j.c==='mh'?'background:#F1C40F':'')+'"></i></div><span>falso al '+j.f+'%</span></div>';
   setTimeout(function(){var b=document.querySelector('#gnJudge .gn-bar i');if(b)b.style.width=j.f+'%'},40)}
 function gnBox(){var i=GN.i,h='';
-  if(i===0)h='<div class="gn-roles"><div class="gn-role"><i>🎨</i><span><b>Generatore</b> = il falsario: crea immagini finte</span></div><div class="gn-role"><i>🔍</i><span><b>Discriminatore</b> = l\'esperto: dice se sono vere o false</span></div></div>';
-  if(i===1)h='<div class="gn-loop"><div><span>1</span>Il falsario crea un\'immagine</div><div><span>2</span>L\'esperto dice «vera» o «falsa»</div><div><span>3</span>Il falsario si corregge <em>· e si ricomincia, migliaia di volte</em></div></div>';
+    if(i===1)h='<div class="gn-loop"><div><span>1</span>Il falsario crea un\'immagine</div><div><span>2</span>L\'esperto dice «vera» o «falsa»</div><div><span>3</span>Il falsario si corregge <em>· e si ricomincia, migliaia di volte</em></div></div>';
   if(i===2)h='<p class="gn-tip">Vi ricorda qualcosa? <b>Mani con sei dita</b>, scritte senza senso, orecchini diversi: sono gli errori tipici delle immagini fatte dall\'AI.</p>';
   if(i===3)h=GN.rev?'<p class="gn-tip">Il falso era <b>'+(GN.swap?'A':'B')+'</b>. Volti di persone che <b>non esistono</b>, creati da una GAN: <a class="gn-link" href="https://thispersondoesnotexist.com" target="_blank" rel="noopener">thispersondoesnotexist.com ↗</a></p>':'<p class="dr-hint">Alzate la mano: secondo voi il falso è <b>A</b> o <b>B</b>?</p><button class="btn gn-rev" onclick="gnReveal()">🔍 Rivela il falso</button>';
   G('gnBox').innerHTML=h}
