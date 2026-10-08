@@ -1017,6 +1017,71 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 .nn-eph span{flex:1;text-align:center;font-size:clamp(.85rem,1.3vw,1rem);color:var(--gray)}
 .nn-chart{width:100%;height:clamp(70px,13vh,120px);display:block;background:var(--light);border-radius:12px}
 .nn-ax{display:flex;justify-content:space-between;font-size:.72rem;color:#9AA4B2;font-weight:700}
+/* slide 8: allena la tua AI (disegni) */
+#s9.current{height:100svh}
+.dr-top{display:flex;flex-direction:column;gap:.35em}
+.dr-badge{font-family:var(--ff-head);font-weight:700;font-size:.85rem;background:var(--orange);color:#fff;padding:.3em .8em;border-radius:8px}
+.dr-sub{margin:0;font-size:clamp(.95rem,1.5vw,1.15rem);color:var(--gray)}
+.dr-sub b{color:var(--navy)}
+.dr-main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(1rem,3vw,2.6rem)}
+@media (max-width:900px){.dr-main{grid-template-columns:1fr}#s9.current{height:auto}}
+.dr-left,.dr-right{display:flex;flex-direction:column;gap:.7em;min-height:0}
+.dr-k{margin:0;font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
+.dr-k span{color:var(--orange)}
+.dr-join{display:flex;gap:1em;align-items:center;background:#fff;border:2px solid var(--border);border-radius:16px;padding:.8em 1em}
+.dr-join .tu-qr{padding:6px;border:none}
+.dr-join p{margin:0;font-size:.9rem;line-height:1.5;color:var(--gray)}
+.dr-join b.big{display:block;font-family:var(--ff-head);font-size:1.4rem;color:var(--navy);letter-spacing:.08em}
+.dr-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:.5em}
+.dr-st{background:#fff;border:2px solid var(--border);border-radius:12px;padding:.45em .6em;display:flex;flex-direction:column;align-items:center;gap:.1em}
+.dr-st i{font-style:normal;font-size:1.4rem;line-height:1}
+.dr-st b{font-family:var(--ff-head);font-size:1.3rem;color:var(--navy);font-variant-numeric:tabular-nums}
+.dr-st span{font-size:.72rem;color:var(--gray);font-weight:700}
+.dr-gal{flex:1;min-height:0;overflow:hidden;display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:6px;align-content:start}
+.dr-gal canvas{width:100%;aspect-ratio:1;background:#fff;border:1.5px solid var(--border);border-radius:8px;display:block}
+.dr-gal .new{animation:nnPop .4s ease-out}
+.dr-test{display:grid;grid-template-columns:auto minmax(0,1fr);gap:1em;align-items:start}
+.dr-pad{width:min(34vh,300px);aspect-ratio:1;background:#fff;border:3px solid var(--navy);border-radius:16px;touch-action:none;cursor:crosshair;display:block}
+.dr-guess{display:flex;flex-direction:column;gap:.45em}
+.dr-guess .top{margin:0;font-family:var(--ff-head);font-weight:700;font-size:clamp(1.2rem,2.2vw,1.8rem);color:var(--navy);line-height:1.15}
+.dr-guess .top small{display:block;font-family:var(--ff-body);font-size:.8rem;font-weight:700;color:var(--gray)}
+.dr-b{display:grid;grid-template-columns:5.2em 1fr 2.8em;gap:.5em;align-items:center;font-size:.88rem;font-weight:700}
+.dr-b div{height:12px;background:#E6EBF2;border-radius:6px;overflow:hidden}
+.dr-b i{display:block;height:100%;border-radius:6px;background:var(--cyan);transition:width .4s}
+.dr-b.win i{background:var(--orange)}
+.dr-b b{text-align:right;font-variant-numeric:tabular-nums}
+.dr-row{display:flex;align-items:center;gap:.4em;flex-wrap:wrap}
+.dr-row .btn{font-size:.9rem;padding:.4em 1em}
+.dr-row .btn.ghost{color:var(--navy);box-shadow:inset 0 0 0 2px #C9D1DC;background:#fff}
+.dr-lab{font-size:.8rem;font-weight:800;color:var(--gray);margin-left:.6em}
+.dr-lb{font-family:var(--ff-body);font-weight:700;font-size:.85rem;border:2px solid var(--border);background:#fff;color:var(--navy);border-radius:999px;padding:.3em .7em;cursor:pointer}
+.dr-lb:hover{border-color:var(--orange)}
+.dr-acc{margin-top:auto;display:flex;flex-direction:column;gap:.45em;background:var(--navy);color:#fff;border-radius:16px;padding:.8em 1em}
+.dr-acc p{margin:0;font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.dr-ab{display:grid;grid-template-columns:minmax(9em,auto) 1fr 3em;gap:.6em;align-items:center;font-size:.92rem;font-weight:700}
+.dr-ab div{height:14px;background:rgba(255,255,255,.12);border-radius:7px;overflow:hidden}
+.dr-ab i{display:block;height:100%;border-radius:7px;transition:width .6s}
+.dr-ab b{text-align:right;font-family:var(--ff-head);font-size:1.1rem;font-variant-numeric:tabular-nums}
+/* telefono */
+html.vote.drm,html.vote.drm body{background:#F5F7FA}
+#vtApp.dr{font-family:var(--ff-body);color:var(--navy);align-items:center;text-align:center}
+.drp-hd{margin:0;font-size:.78rem;font-weight:800;letter-spacing:.1em;color:var(--orange);text-transform:uppercase}
+.drp-q{margin:0;font-family:var(--ff-head);font-weight:700;font-size:1.6rem;line-height:1.15}
+.drp-q b{color:var(--orange)}
+.drp-pad{width:min(88vw,360px);aspect-ratio:1;background:#fff;border:3px solid #1B2A4A;border-radius:18px;touch-action:none;display:block}
+.drp-row{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;width:min(88vw,360px)}
+.drp-btn{flex:1;font:700 1.05rem 'Fredoka',sans-serif;padding:14px 0;border:none;border-radius:12px;background:#FF6B35;color:#fff;cursor:pointer}
+.drp-btn.sec{background:#fff;color:#1B2A4A;box-shadow:inset 0 0 0 2px #C9D1DC}
+.drp-btn:disabled{opacity:.4}
+.drp-prog{margin:0;font-size:.9rem;color:#4A5568;font-weight:700}
+.drp-two{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:min(88vw,360px)}
+.drp-ai{background:#fff;border:2px solid #E2E8F0;border-radius:14px;padding:10px;text-align:left}
+.drp-ai p{margin:0 0 4px;font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:#4A5568}
+.drp-ai b{display:block;font-family:'Fredoka',sans-serif;font-size:1.25rem;line-height:1.15}
+.drp-ai small{font-size:.8rem;color:#4A5568;font-weight:700}
+.drp-lab{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;width:min(88vw,360px)}
+.drp-lab button{flex:1;min-width:70px;font:700 .9rem 'Nunito Sans',sans-serif;padding:10px 4px;border-radius:10px;border:2px solid #E2E8F0;background:#fff;color:#1B2A4A}
+.drp-note{margin:0;font-size:.85rem;color:#4A5568;line-height:1.45;max-width:340px}
 /* badge extra per i pop-up */
 .pl-b.mech{background:rgba(200,150,62,.2);color:#8A5A12}
 .pl-b.rule{background:rgba(0,180,216,.15);color:#0077A0}
@@ -1427,23 +1492,29 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
   </div>
 </section>
 
-<!-- 9 ACT1 Teachable Machine -->
-<section class="slide dark s-act" data-section="Come funziona">
-  <div class="row" style="align-items:center;flex-wrap:wrap"><span class="badge">ATTIVITÀ 1 · 15 min</span><h2 class="fz-h2" style="flex:1;min-width:240px">Allena la tua IA!</h2></div>
-  <div class="wrap-flex" style="flex:1">
-    <a class="vcard flex-0 min0" style="flex:1;--vg:linear-gradient(135deg,#1B2A4A,#2D4A7A)" href="https://teachablemachine.withgoogle.com/train/image" target="_blank" rel="noopener">
-      <svg class="play" viewBox="0 0 80 80"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,.22)" stroke="#fff" stroke-width="3"/><polygon points="33,25 33,55 58,40" fill="#fff"/></svg>
-      <div class="vmeta"><span class="vtag">🖐️ Apri lo strumento</span><p class="fz-h3" style="margin-top:.4em">Teachable Machine</p><p class="fz-small" style="color:var(--muted)">teachablemachine.withgoogle.com — nessuna installazione</p></div>
-    </a>
-    <div class="col min0" style="flex:1;gap:.5rem">
-      <div class="panel-t fz-body"><b>1 · Image Project</b> → scegli "Image Project" poi "Standard"</div>
-      <div class="panel-t fz-body"><b>2 · Crea le classi</b> → rinomina: "Pollice Su", "Pollice Giù", "Mano Aperta"</div>
-      <div class="panel-t fz-body"><b>3 · Scatta foto</b> → clicca "Webcam" e registra 30+ foto per classe. Muovi la mano!</div>
-      <div class="panel-t fz-body"><b>4 · Train Model</b> → clicca "Train Model" e aspetta ~30 secondi</div>
-      <div class="panel-t fz-body"><b>5 · Testa!</b> → fai i gesti davanti alla webcam e guarda i risultati dal vivo</div>
+<!-- 9 ACT1 Allena la tua AI (disegni) -->
+<section class="slide darktext s-light" data-section="Come funziona" id="s9">
+  <div class="dr-top">
+    <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">ATTIVITÀ · 15 min</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Allena la tua AI a riconoscere i disegni</h2></div>
+    <p class="dr-sub">Ogni studente insegna all'AI 4 disegni: <b>☀️ sole · 🏠 casa · 🐟 pesce · ⭐ stella</b>. Più disegni = AI più brava.</p>
+  </div>
+  <div class="dr-main">
+    <div class="dr-left">
+      <div class="dr-join" id="drJoin"></div>
+      <div class="dr-stats" id="drStats"></div>
+      <p class="dr-k">Il dataset della classe <span id="drGalN"></span></p>
+      <div class="dr-gal" id="drGal"></div>
+    </div>
+    <div class="dr-right">
+      <p class="dr-k">Mettila alla prova: disegnate qui</p>
+      <div class="dr-test">
+        <canvas class="dr-pad" id="drPad" aria-label="Spazio per disegnare"></canvas>
+        <div class="dr-guess" id="drGuess"></div>
+      </div>
+      <div class="dr-row"><button class="btn ghost" onclick="drPadClear()">Cancella</button><span class="dr-lab">Era un…</span><span id="drLabBtns"></span></div>
+      <div class="dr-acc" id="drAcc"></div>
     </div>
   </div>
-  <p class="fz-concl" style="text-align:center">Chi crea il modello più accurato? Sfida!</p>
 </section>
 
 <!-- 10 CNN -->
@@ -2701,7 +2772,7 @@ function agTrainBtn(n){var wb=AG.wr;agTrainN(n);AG.wr=agEval();AGV.ver++;AGV.his
     bars:[['Vittorie',wb,AG.wr]],toast:'+'+n+' partite: vittorie '+wb+'% → '+AG.wr+'%'})}
 
 /* apre e chiude le stanze sui telefoni quando l'insegnante entra o esce */
-function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM)return;var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
+function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM)return;var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current'));if(dOpen!==DRV.open){DRV.open=dOpen;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen},updated_at:new Date().toISOString()}).then(function(){})})}var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
   var tOpen=on3&&hsCur===1&&TU.mode==='q';if(VT.pub&&tOpen!==VT.open)vtState(Object.assign({},VT.state,{open:tOpen}));
   var aOpen=on3&&hsCur===4;if(AGV.pub&&aOpen!==AGV.open){AGV.open=aOpen;agPublish()}}
 setInterval(roomsSync,1500);
@@ -2967,6 +3038,102 @@ function nnEpochEnd(){NN.t=0;NN.err.push(nnLoss(NN.ep));NN.ep++;nnChart();
 function nnToggle(){NN.run=!NN.run;G('nnPlay').textContent=NN.run?'Pausa':'Riprendi'}
 function nnRestart(){NN.run=true;G('nnPlay').textContent='Pausa';nnBuild()}
 
+/* ===== slide "Allena la tua AI": disegni, allenati dalla classe dal telefono ===== */
+var DR_ROOM=(function(){try{return new URLSearchParams(location.search).get('disegna')}catch(e){return null}})();
+var DR_CATS=[{n:'Sole',a:'un',e:'☀️'},{n:'Casa',a:'una',e:'🏠'},{n:'Pesce',a:'un',e:'🐟'},{n:'Stella',a:'una',e:'⭐'}];
+var DRV={ex:[],local:[],phones:0,open:null,poll:null,seen:{},pad:null,acc:null};
+var DR_FC={};
+/* lavagna da disegno: tratti in coordinate CSS */
+function drPadMake(cv,onUp){var ctx=cv.getContext('2d'),st=[],cur=null;
+  function size(){var r=cv.getBoundingClientRect(),d=window.devicePixelRatio||1;if(!r.width)return;cv.width=r.width*d;cv.height=r.height*d;ctx.setTransform(d,0,0,d,0,0);ctx.lineWidth=Math.max(5,r.width/45);ctx.lineCap='round';ctx.lineJoin='round';ctx.strokeStyle='#1B2A4A';redraw()}
+  function redraw(){var r=cv.getBoundingClientRect();ctx.clearRect(0,0,r.width,r.height);st.forEach(function(s){ctx.beginPath();s.forEach(function(p,i){i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1])});if(s.length===1)ctx.lineTo(s[0][0]+.1,s[0][1]);ctx.stroke()})}
+  function pos(e){var r=cv.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]}
+  cv.addEventListener('pointerdown',function(e){e.preventDefault();cv.setPointerCapture(e.pointerId);cur=[pos(e)];st.push(cur);redraw()});
+  cv.addEventListener('pointermove',function(e){if(!cur)return;var p=pos(e),l=cur[cur.length-1];ctx.beginPath();ctx.moveTo(l[0],l[1]);ctx.lineTo(p[0],p[1]);ctx.stroke();cur.push(p)});
+  function up(){if(!cur)return;cur=null;if(onUp)onUp()}
+  cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
+  size();return{st:st,size:size,clear:function(){st.length=0;redraw()},empty:function(){return !st.length}}}
+/* disegno -> 16x16 punti (centrato e ridimensionato) -> stringa esadecimale */
+function drVec(st){var pts=[];st.forEach(function(s){pts=pts.concat(s)});if(!pts.length)return null;
+  var x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;pts.forEach(function(p){x0=Math.min(x0,p[0]);y0=Math.min(y0,p[1]);x1=Math.max(x1,p[0]);y1=Math.max(y1,p[1])});
+  var w=Math.max(x1-x0,y1-y0,1),s=52/w,ox=(64-(x1-x0)*s)/2-x0*s,oy=(64-(y1-y0)*s)/2-y0*s;
+  var c=document.createElement('canvas');c.width=c.height=64;var g=c.getContext('2d');g.lineWidth=4;g.lineCap='round';g.lineJoin='round';g.strokeStyle='#000';
+  st.forEach(function(t){g.beginPath();t.forEach(function(p,i){var x=p[0]*s+ox,y=p[1]*s+oy;i?g.lineTo(x,y):g.moveTo(x,y)});if(t.length===1)g.lineTo(t[0][0]*s+ox+.1,t[0][1]*s+oy);g.stroke()});
+  var d=g.getImageData(0,0,64,64).data,bits=[];for(var by=0;by<16;by++)for(var bx=0;bx<16;bx++){var a=0;for(var yy=0;yy<4;yy++)for(var xx=0;xx<4;xx++)a+=d[((by*4+yy)*64+bx*4+xx)*4+3];bits.push(a/(16*255)>.12?1:0)}
+  var hex='';for(var i=0;i<256;i+=4)hex+=(bits[i]*8+bits[i+1]*4+bits[i+2]*2+bits[i+3]).toString(16);return hex}
+function drFeat(hex){if(DR_FC[hex])return DR_FC[hex];var b=[];for(var i=0;i<64;i++){var v=parseInt(hex[i],16);b.push(v>>3&1,v>>2&1,v>>1&1,v&1)}
+  var f=new Float32Array(256);for(var y=0;y<16;y++)for(var x=0;x<16;x++){var s=0,n=0;for(var dy=-1;dy<=1;dy++)for(var dx=-1;dx<=1;dx++){var X=x+dx,Y=y+dy;if(X<0||Y<0||X>15||Y>15)continue;s+=b[Y*16+X]*(dx||dy?.5:1);n+=dx||dy?.5:1}f[y*16+x]=s/n}
+  return DR_FC[hex]=f}
+/* l'AI: guarda gli esempi più simili (vicini più prossimi) */
+function drGuess(hex,ex,skip){if(!ex.length)return null;var f=drFeat(hex),ds=[];
+  ex.forEach(function(e,i){if(i===skip)return;var g=drFeat(e.b),d=0;for(var k=0;k<256;k++){var t=f[k]-g[k];d+=t*t}ds.push([d,e.c])});
+  if(!ds.length)return null;ds.sort(function(a,b){return a[0]-b[0]});var K=Math.min(5,ds.length),sc=[.02,.02,.02,.02];
+  for(var i=0;i<K;i++)sc[ds[i][1]]+=1/(ds[i][0]+3);var t=sc.reduce(function(a,b){return a+b},0);return sc.map(function(v){return v/t})}
+function drTop(p){var m=0;p.forEach(function(v,i){if(v>p[m])m=i});return m}
+function drThumb(hex,cls){var c=document.createElement('canvas');c.width=c.height=32;if(cls)c.className=cls;var g=c.getContext('2d');g.fillStyle='#1B2A4A';
+  for(var i=0;i<64;i++){var v=parseInt(hex[i],16);for(var j=0;j<4;j++)if(v>>(3-j)&1){var k=i*4+j;g.fillRect((k%16)*2,Math.floor(k/16)*2,2,2)}}return c}
+function drUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?disegna='+vtRoom():''}
+
+/* ---- proiettore ---- */
+function drInit(){if(!G('drPad'))return;
+  G('drLabBtns').innerHTML=DR_CATS.map(function(c,i){return '<button class="dr-lb" onclick="drPadLabel('+i+')">'+c.e+' '+c.n+'</button>'}).join('');
+  var u=drUrl(),ok=vtOn()&&u;
+  G('drJoin').innerHTML=ok?'<div class="tu-qr" id="drQr" data-qr="'+u+'" data-size="120"></div><p>Inquadrate il codice con il telefono<b class="big">Stanza '+vtRoom()+'</b>oppure aprite '+u.replace(/^https?:\/\//,'').replace(/\?.*$/,'')+'</p>':'<p>Il gioco dal telefono funziona nella versione online. Intanto potete allenare l\'AI qui sotto: disegnate e premete «Era un…».</p>';
+  if(ok)vtQr(G('drQr'),u,120);
+  DRV.pad=drPadMake(G('drPad'),drPadGuess);drRender();drPadGuess();
+  setInterval(function(){var on=G('s9').classList.contains('current');if(on&&!DRV.sized){DRV.sized=1;DRV.pad.size()}if(on&&vtOn()&&!document.hidden)drPull()},4000)}
+function drAll(){return DRV.ex.concat(DRV.local)}
+function drPull(){vtSb(function(sb){var code=vtRoom();sb.from('vote_rooms').select('room,state').like('room',code+'D%').limit(1000).then(function(res){if(!res.data)return;var ex=[],ph=0;
+  res.data.forEach(function(r){if(r.room.length!==8||!r.state||!r.state.ex)return;ph++;r.state.ex.forEach(function(e,i){if(e&&typeof e.b==='string'&&e.b.length===64&&e.c>=0&&e.c<4)ex.push({c:e.c,b:e.b,p:r.room,k:r.room+i})})});
+  DRV.ex=ex;DRV.phones=ph;drRender()})})}
+function drRender(){var all=drAll(),n=[0,0,0,0];all.forEach(function(e){n[e.c]++});
+  G('drStats').innerHTML=DR_CATS.map(function(c,i){return '<div class="dr-st"><i>'+c.e+'</i><b>'+n[i]+'</b><span>'+c.n+'</span></div>'}).join('');
+  G('drGalN').textContent='· '+all.length+' disegni'+(DRV.phones?' da '+DRV.phones+' telefoni':'');
+  var gal=G('drGal'),last=all.slice(-60).reverse();gal.innerHTML='';last.forEach(function(e){var k=e.k||e.b;var t=drThumb(e.b,DRV.seen[k]?'':'new');DRV.seen[k]=1;gal.appendChild(t)});
+  drAccuracy(all);drPadGuess()}
+function drAccuracy(all){var el=G('drAcc');if(all.length<8){el.innerHTML='<p>Quanto è brava l\'AI?</p><div class="dr-ab"><span>Servono almeno 8 disegni…</span></div>';return}
+  var idx=all.map(function(_,i){return i}).sort(function(){return Math.random()-.5}).slice(0,200),ok=0;
+  idx.forEach(function(i){var p=drGuess(all[i].b,all,i);if(p&&drTop(p)===all[i].c)ok++});var cls=Math.round(ok/idx.length*100);
+  var byP={};DRV.ex.forEach(function(e){(byP[e.p]=byP[e.p]||[]).push(e)});var ps=Object.keys(byP).filter(function(k){return byP[k].length>=4}).slice(0,25),one=null;
+  if(ps.length>=2){var s=0,t=0;ps.forEach(function(k){var mine=byP[k],others=DRV.ex.filter(function(e){return e.p!==k}).sort(function(){return Math.random()-.5}).slice(0,30);others.forEach(function(e){var p=drGuess(e.b,mine);if(p&&drTop(p)===e.c)s++;t++})});one=t?Math.round(s/t*100):null}
+  el.innerHTML='<p>Quanto è brava l\'AI? (prova su disegni che non ha mai visto)</p><div class="dr-ab"><span>AI della classe · '+all.length+' disegni</span><div><i style="width:'+cls+'%;background:#2ECC71"></i></div><b>'+cls+'%</b></div>'+
+    (one!==null?'<div class="dr-ab"><span>AI di un solo studente · ~8 disegni</span><div><i style="width:'+one+'%;background:#FF8F66"></i></div><b>'+one+'%</b></div>':'')}
+function drPadGuess(){var g=G('drGuess');if(!g)return;var all=drAll();
+  if(!DRV.pad||DRV.pad.empty()){g.innerHTML='<p class="top">Disegnate qualcosa…<small>L\'AI della classe proverà a indovinare</small></p>';return}
+  var hex=drVec(DRV.pad.st),p=drGuess(hex,all);if(!p){g.innerHTML='<p class="top">L\'AI non sa ancora niente<small>Prima deve vedere qualche esempio</small></p>';return}
+  var t=drTop(p);g.innerHTML='<p class="top">'+(p[t]>.5?'È '+DR_CATS[t].a+' ':'Forse '+DR_CATS[t].a+' ')+DR_CATS[t].n.toLowerCase()+'! '+DR_CATS[t].e+'<small>secondo l\'AI della classe ('+all.length+' disegni)</small></p>'+
+    DR_CATS.map(function(c,i){return '<div class="dr-b'+(i===t?' win':'')+'"><span>'+c.e+' '+c.n+'</span><div><i style="width:'+Math.round(p[i]*100)+'%"></i></div><b>'+Math.round(p[i]*100)+'%</b></div>'}).join('')}
+function drPadClear(){if(DRV.pad)DRV.pad.clear();drPadGuess()}
+function drPadLabel(c){if(!DRV.pad||DRV.pad.empty())return;DRV.local.push({c:c,b:drVec(DRV.pad.st),k:'L'+DRV.local.length});DRV.pad.clear();drRender()}
+
+/* ---- telefono (?disegna=CODICE) ---- */
+function drPhone(){var root=document.documentElement;root.classList.add('vote');root.classList.add('drm');var app=document.createElement('div');app.id='vtApp';app.className='dr';document.body.appendChild(app);
+  var id;try{id=localStorage.getItem('drId')}catch(e){}if(!id){id='';for(var i=0;i<3;i++)id+='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random()*32)];try{localStorage.setItem('drId',id)}catch(e){}}
+  var key=DR_ROOM+'D'+id,S={mine:[],cls:[],step:0,open:null,mode:'teach'},ORDER=[0,1,2,3,0,1,2,3],pad=null;
+  function save(){vtSb(function(sb){sb.from('vote_rooms').upsert({room:key,state:{ex:S.mine},updated_at:new Date().toISOString()}).then(function(){})})}
+  function pullOpen(){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',DR_ROOM+'DS').maybeSingle().then(function(res){var op=!!(res.data&&res.data.state&&res.data.state.open);if(op!==S.open){S.open=op;draw()}})})}
+  function pullClass(){vtSb(function(sb){sb.from('vote_rooms').select('room,state').like('room',DR_ROOM+'D%').order('updated_at',{ascending:false}).limit(40).then(function(res){if(!res.data)return;var ex=[];
+    res.data.forEach(function(r){if(r.room.length!==8||r.room===key||!r.state||!r.state.ex)return;r.state.ex.forEach(function(e){if(e&&typeof e.b==='string'&&e.b.length===64)ex.push({c:e.c,b:e.b})})});S.cls=ex;if(S.mode==='test')guess()})})}
+  function draw(){var h='<p class="drp-hd">Allena la tua AI · stanza '+esc(DR_ROOM)+'</p>';
+    if(!vtOn()){app.innerHTML=h+'<p class="drp-note">Il gioco non è configurato su questa presentazione.</p>';return}
+    if(S.open===false){app.innerHTML=h+'<p class="drp-q">Il gioco è chiuso.</p><p class="drp-note">Guardate lo schermo: l\'insegnante sta spiegando. Quando riapre, questa pagina si riattiva da sola.</p>';return}
+    if(S.open===null){app.innerHTML=h+'<p class="drp-note">Collegamento…</p>';return}
+    if(S.mode==='teach'){var c=DR_CATS[ORDER[S.step]];
+      h+='<p class="drp-q">Disegna '+c.a+' <b>'+c.n.toUpperCase()+'</b></p><canvas class="drp-pad" id="drpPad"></canvas><p class="drp-prog">Disegno '+(S.step+1)+' di '+ORDER.length+' · stai insegnando all\'AI</p>'+
+        '<div class="drp-row"><button class="drp-btn sec" onclick="drpClear()">Cancella</button><button class="drp-btn" onclick="drpDone()">Fatto ✓</button></div>'}
+    else{h+='<p class="drp-q">Ora mettila alla prova!</p><p class="drp-note">Disegna una delle 4 cose: le due AI provano a indovinare.</p><canvas class="drp-pad" id="drpPad"></canvas>'+
+        '<div class="drp-two"><div class="drp-ai" id="drpMine"></div><div class="drp-ai" id="drpCls"></div></div>'+
+        '<p class="drp-note">Hanno sbagliato? Dì all\'AI cos\'era: impara anche così.</p><div class="drp-lab">'+DR_CATS.map(function(c,i){return '<button onclick="drpLabel('+i+')">'+c.e+' '+c.n+'</button>'}).join('')+'</div><div class="drp-row"><button class="drp-btn sec" onclick="drpClear()">Cancella</button></div>'}
+    app.innerHTML=h;pad=drPadMake(G('drpPad'),S.mode==='test'?guess:null);if(S.mode==='test')guess()}
+  function box(el,title,ex){var b=G(el);if(!b)return;if(!pad||pad.empty()){b.innerHTML='<p>'+title+'</p><small>'+ex.length+' disegni</small>';return}
+    var p=drGuess(drVec(pad.st),ex);if(!p){b.innerHTML='<p>'+title+'</p><small>non sa ancora niente</small>';return}var t=drTop(p);
+    b.innerHTML='<p>'+title+'</p><b>'+DR_CATS[t].e+' '+DR_CATS[t].n+'</b><small>'+Math.round(p[t]*100)+'% · '+ex.length+' disegni</small>'}
+  function guess(){var all=S.mine.concat(S.cls);box('drpMine','La tua AI',S.mine);box('drpCls','AI della classe',all)}
+  window.drpClear=function(){if(pad)pad.clear();if(S.mode==='test')guess()};
+  window.drpDone=function(){if(!pad||pad.empty())return;S.mine.push({c:ORDER[S.step],b:drVec(pad.st)});save();S.step++;if(S.step>=ORDER.length){S.mode='test';pullClass()}draw()};
+  window.drpLabel=function(c){if(!pad||pad.empty())return;S.mine.push({c:c,b:drVec(pad.st)});save();pad.clear();guess()};
+  draw();if(!vtOn())return;pullOpen();setInterval(function(){if(!document.hidden)pullOpen()},4000);setInterval(function(){if(!document.hidden&&S.mode==='test')pullClass()},30000)}
+
 var tlTexts=["Nel 1739 Jacques de Vaucanson costruì un'anatra meccanica che sembrava mangiare, digerire e defecare: il primo tentativo di simulare la vita con una macchina!","Nel 1950 Alan Turing propose il suo test: se un computer può ingannare un umano facendogli credere di parlare con un altro umano, allora \"pensa\". La domanda che ha dato il via a tutto!","Nel 1997 Deep Blue di IBM batte il campione mondiale di scacchi Garry Kasparov. Per la prima volta una macchina supera l'uomo in un gioco di strategia. Shock mondiale!","Nel 2016 AlphaGo di Google DeepMind batte Lee Sedol a Go, un gioco con più combinazioni degli atomi nell'universo: impossibile con la forza bruta, l'AI ha dovuto IMPARARE.","Nel 2022 OpenAI lancia ChatGPT: 1 milione di utenti in 5 giorni. Per la prima volta chiunque può conversare con un'AI. La rivoluzione è iniziata!"];
 function tlShow(i,el){document.getElementById('tlDetail').textContent=tlTexts[i];[].forEach.call(document.querySelectorAll('.tl-card'),function(c){c.classList.remove('active')});el.classList.add('active')}
 
@@ -3066,5 +3233,6 @@ n4Init();
 w6Init();
 txInit();
 nnInit();
-if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();
+if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM)drInit();
+if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();
 </script>
