@@ -833,6 +833,88 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 .agp-sc{margin:0;font-size:.9rem;color:#5F6368;text-align:center}
 .agp-bn{margin:0;background:#E8F0FE;color:#174EA6;border-radius:8px;padding:12px 14px;font-weight:500;line-height:1.4}
 .agp-closed{border-left:4px solid #F9AB00}
+/* slide 4: neuroni verticali affiancati + numeri */
+#s4.current{height:100svh}
+#s4 .n4-left{min-height:0;overflow:hidden}
+#s4 .n4-main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.65fr) minmax(250px,1fr);gap:clamp(1rem,2.5vw,2.6rem)}
+@media (max-width:900px){#s4 .n4-main{grid-template-columns:1fr}}
+.n4-left{display:flex;flex-direction:column;min-height:0;gap:.5em}
+.n4-svg{flex:1;min-height:0;width:100%;display:block}
+.n4-hd{font:700 19px 'Fredoka',sans-serif;fill:var(--navy)}
+.n4-lab text{fill:#5B6B82;font:600 10.5px 'Nunito Sans',sans-serif}
+.n4-lab path{stroke:#A3AEBD;stroke-width:.8;fill:none}
+.n4-guide{stroke:#CBD3DE;stroke-width:1;stroke-dasharray:3 4}
+.n4-row{cursor:pointer}
+.n4-row rect{fill:#fff;stroke:#DCE2EA;stroke-width:1.5;transition:fill .2s,stroke .2s}
+.n4-row:hover rect{stroke:var(--orange)}
+.n4-row.on rect{fill:#FFF8E1;stroke:#FFC94D}
+.n4-row text{text-anchor:middle;font:800 11.5px 'Nunito Sans',sans-serif}
+.n4-row text.b{fill:#B4476F}
+.n4-row text.a{fill:#0B7F99}
+#bnS0,#bnS1,#bnS2{stroke:#fff;stroke-width:1.5;transition:r .2s,fill .2s,opacity .2s}
+#bnSoma,#bnHill,#bnPost,#bnTerm circle{transition:filter .25s}
+#bnSoma.hot{filter:drop-shadow(0 0 8px #FF8FB1) brightness(1.08)}
+#bnSoma.fire,#bnHill.fire{filter:drop-shadow(0 0 12px #FFB300) brightness(1.2)}
+#bnPost.fire{filter:drop-shadow(0 0 10px #4F8CFF) brightness(1.2)}
+#bnTerm circle.fire{filter:drop-shadow(0 0 8px #FFB300) brightness(1.3)}
+#bnNodes circle{transition:r .12s,fill .12s}
+#bnNodes circle.fire{fill:#FFB300;r:7px;filter:drop-shadow(0 0 6px #FFB300)}
+.n4-main [data-map]{transition:filter .25s,opacity .25s}
+.n4-main.mapping [data-map]{opacity:.28}
+.n4-main.mapping [data-map].hl{opacity:1;filter:drop-shadow(0 0 6px #FFC107) drop-shadow(0 0 2px #FFC107)}
+/* neurone artificiale */
+#n4l0,#n4l1,#n4l2{stroke-linecap:round;transition:stroke-width .2s,stroke .2s}
+.an-wl rect{fill:#fff;stroke:var(--border);stroke-width:1.5}
+.an-wl text,#anIn text,#n4Yt,.an-sv,.an-small{font:700 12px 'Nunito Sans',sans-serif;text-anchor:middle;fill:var(--navy)}
+#anIn g{cursor:pointer}
+#anIn circle{stroke-width:3;transition:fill .2s,stroke .2s}
+#anIn circle.on{fill:#FFE8DC;stroke:var(--orange)}
+#anIn circle.off{fill:#F1F3F6;stroke:#C9CED6}
+#n4Sc{fill:#fff;stroke:var(--navy);stroke-width:3;transition:fill .3s}
+#n4Sc.hot{fill:#E3F6FB}
+.an-sig{font:700 24px 'Fredoka',sans-serif;text-anchor:middle;fill:var(--navy)}
+.an-sv{font-size:13px;fill:var(--cyan2)}
+.an-l2{stroke:var(--navy);stroke-width:3}
+#n4Th{fill:#fff;stroke:var(--navy);stroke-width:2.5}
+.an-step{fill:none;stroke:var(--orange);stroke-width:3;stroke-linejoin:round}
+.an-small{font-size:10.5px;font-weight:600;fill:var(--gray)}
+#n4Y{stroke-width:3;transition:fill .3s,stroke .3s}
+#n4Y.y1{fill:#2ECC71;stroke:#1E9E57}
+#n4Y.y0{fill:#F1F3F6;stroke:#C9CED6}
+#n4Y.y1+text{fill:#fff}
+/* comandi e tensione */
+.n4-bot{display:grid;grid-template-columns:1fr 1fr;gap:clamp(.8rem,2vw,1.6rem);align-items:end}
+@media (max-width:700px){.n4-bot{grid-template-columns:1fr}}
+.n4-ctl{display:flex;flex-direction:column;gap:.25em}
+.n4-in{display:grid;grid-template-columns:auto 1fr 5.4em;gap:.6em;align-items:center;font-size:.75rem}
+.n4-x{font-family:var(--ff-body);font-weight:800;font-size:.75rem;border:2px solid #C9CED6;background:#F1F3F6;color:var(--gray);border-radius:8px;padding:.25em .6em;cursor:pointer}
+.n4-x.on{border-color:var(--orange);background:#FFE8DC;color:var(--navy)}
+.n4-in input{width:100%;accent-color:var(--orange)}
+.n4-in b{font-variant-numeric:tabular-nums;color:var(--navy)}
+.n4-eq{margin:.2em 0 0;font-size:.75rem;color:var(--gray);font-variant-numeric:tabular-nums}
+.n4-eq b{color:var(--navy)}
+.n4-volt{display:flex;flex-direction:column}
+.n4-vh{display:flex;justify-content:space-between;align-items:center;gap:.6em;font-size:.8rem;color:var(--gray);margin-bottom:.35em;font-variant-numeric:tabular-nums}
+.n4-fire{font-family:var(--ff-head);font-weight:600;font-size:clamp(.95rem,1.4vw,1.1rem);padding:.55em 1.2em;border:none;border-radius:12px;background:var(--orange);color:#fff;cursor:pointer;box-shadow:0 6px 16px rgba(255,107,53,.3);transition:transform .15s,background .15s;white-space:nowrap}
+.n4-fire:hover{transform:translateY(-2px)}
+.n4-fire:disabled{background:#C9CED6;box-shadow:none;cursor:default;transform:none}
+.n4-trace{width:100%;height:clamp(50px,8vh,80px);display:block;background:#fff;border:1px solid var(--border);border-radius:8px}
+.n4-trace .th{stroke:#FF8A3D;stroke-width:1;stroke-dasharray:4 3;vector-effect:non-scaling-stroke}
+.n4-trace .rest{stroke:#C9D1DC;stroke-width:1;vector-effect:non-scaling-stroke}
+.n4-trace polyline{stroke:#B4476F;stroke-width:2;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.n4-trl{display:flex;justify-content:space-between;gap:1em;padding:.2em .1em 0;font-size:.66rem;color:var(--gray)}
+.n4-trl .th{color:#E8701F}
+/* i numeri */
+.n4-nums{display:flex;flex-direction:column;gap:clamp(.5rem,1.4vh,.9rem);justify-content:center;min-height:0}
+.n4-nh{margin:0;font-family:var(--ff-head);font-weight:700;font-size:var(--fs-h3);color:var(--navy)}
+.n4-n{border-top:2px solid var(--navy);padding-top:.45em;display:flex;flex-direction:column;gap:.2em}
+.n4-nt{margin:0;font-size:.68rem;font-weight:800;text-transform:uppercase;letter-spacing:.09em;color:var(--gray)}
+.n4-nr{margin:0;display:grid;grid-template-columns:minmax(7.2em,auto) 1fr;gap:.7em;align-items:baseline}
+.n4-nr b{font-family:var(--ff-head);font-weight:700;font-size:clamp(1.05rem,1.75vw,1.5rem);color:#B4476F;white-space:nowrap;line-height:1.15}
+.n4-nr.m b{color:#0B7F99}
+.n4-nr span{font-size:.76rem;color:var(--gray);line-height:1.25}
+.n4-nx{margin:.1em 0 0;font-size:.8rem;color:var(--navy);line-height:1.35}
+.n4-nx b{color:var(--orange)}
 /* badge extra per i pop-up */
 .pl-b.mech{background:rgba(200,150,62,.2);color:#8A5A12}
 .pl-b.rule{background:rgba(0,180,216,.15);color:#0077A0}
@@ -1098,31 +1180,96 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
 </section>
 
 <!-- 4 BRAIN -->
-<section class="slide darktext s-light" data-section="Storia e fondamenti">
-  <h2 class="fz-h2">Il cervello: l'ispirazione originale</h2>
-  <div class="wrap-flex" style="flex:1">
-    <div class="col min0" style="flex:1">
-      <p class="fz-h3" style="color:var(--orange)">Confronto visivo</p>
-      <div class="row" style="flex:1">
-        <div class="panel col min0" style="flex:1;text-align:center;overflow:hidden;padding:0">
-          <span class="imgbox" style="--g:linear-gradient(135deg,#FF6B35,#FF8F66);height:clamp(90px,14vh,150px);border-radius:14px 14px 0 0;display:block"><span class="emoji">🧠</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Neuron_Hand-tuned.svg/400px-Neuron_Hand-tuned.svg.png" alt="" loading="lazy" onerror="this.remove()"></span>
-          <div style="padding:.6rem .8rem"><h4 class="fz-h3" style="color:var(--orange)">Neurone biologico</h4><p class="fz-small" style="color:var(--gray)">Dendriti ricevono → soma elabora → assone trasmette</p></div>
-        </div>
-        <div class="panel col min0" style="flex:1;text-align:center;overflow:hidden;padding:0">
-          <span class="imgbox contain" style="--g:#fff;height:clamp(90px,14vh,150px);border-radius:14px 14px 0 0;display:block"><span class="emoji">💻</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Colored_neural_network.svg/400px-Colored_neural_network.svg.png" alt="" loading="lazy" onerror="this.remove()"></span>
-          <div style="padding:.6rem .8rem"><h4 class="fz-h3" style="color:var(--cyan)">Neurone artificiale</h4><p class="fz-small" style="color:var(--gray)">Input con pesi → somma → attivazione → output</p></div>
+<section class="slide darktext s-light" data-section="Storia e fondamenti" id="s4">
+  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Il cervello: l'ispirazione originale</h2>
+  <div class="n4-main">
+    <div class="n4-left">
+      <svg class="n4-svg" id="n4Svg" viewBox="0 -30 720 632" preserveAspectRatio="xMidYMid meet" aria-label="Neurone biologico e neurone artificiale a confronto">
+        <defs>
+          <radialGradient id="bnSomaG" cx="42%" cy="38%" r="70%"><stop offset="0" stop-color="#FBD9E3"/><stop offset=".55" stop-color="#E58BA7"/><stop offset="1" stop-color="#A9466C"/></radialGradient>
+          <radialGradient id="bnNucG" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#C9A6E4"/><stop offset="1" stop-color="#6B3C93"/></radialGradient>
+          <linearGradient id="bnMyG" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#B98F45"/><stop offset=".5" stop-color="#FFF3D2"/><stop offset="1" stop-color="#C79B52"/></linearGradient>
+          <radialGradient id="bnBoutG" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#FBD9E3"/><stop offset="1" stop-color="#B9527A"/></radialGradient>
+          <filter id="bnGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <text x="150" y="-6" class="n4-hd" text-anchor="middle">Neurone biologico</text>
+        <text x="590" y="-6" class="n4-hd" text-anchor="middle">Neurone artificiale</text>
+
+        <!-- ===== neurone biologico (verticale) ===== -->
+        <g data-map="den" fill="none" stroke-linecap="round">
+          <g stroke="#9E3D64">
+            <path d="M40,22 C46,70 58,108 80,146 C96,172 110,190 128,206" stroke-width="9"/><path d="M8,66 C30,82 48,96 64,112" stroke-width="4.5"/><path d="M84,32 C80,62 76,88 72,112" stroke-width="4"/><path d="M20,28 C26,40 30,50 36,56" stroke-width="3"/>
+            <path d="M150,12 C148,70 150,130 150,198" stroke-width="9"/><path d="M110,34 C124,58 136,80 146,102" stroke-width="4.5"/><path d="M192,36 C176,60 162,82 154,100" stroke-width="4.5"/><path d="M128,14 C132,24 136,32 140,40" stroke-width="3"/>
+            <path d="M262,24 C254,70 240,110 220,146 C204,172 190,190 172,206" stroke-width="9"/><path d="M294,68 C272,84 254,98 238,112" stroke-width="4.5"/><path d="M218,32 C222,62 226,88 230,112" stroke-width="4"/><path d="M282,30 C276,40 272,50 268,58" stroke-width="3"/>
+          </g>
+          <g stroke="#F2A9C0">
+            <path id="bnD0" d="M40,22 C46,70 58,108 80,146 C96,172 110,190 128,206" stroke-width="6"/><path d="M8,66 C30,82 48,96 64,112" stroke-width="2.6"/><path d="M84,32 C80,62 76,88 72,112" stroke-width="2.2"/><path d="M20,28 C26,40 30,50 36,56" stroke-width="1.5"/>
+            <path id="bnD1" d="M150,12 C148,70 150,130 150,198" stroke-width="6"/><path d="M110,34 C124,58 136,80 146,102" stroke-width="2.6"/><path d="M192,36 C176,60 162,82 154,100" stroke-width="2.6"/><path d="M128,14 C132,24 136,32 140,40" stroke-width="1.5"/>
+            <path id="bnD2" d="M262,24 C254,70 240,110 220,146 C204,172 190,190 172,206" stroke-width="6"/><path d="M294,68 C272,84 254,98 238,112" stroke-width="2.6"/><path d="M218,32 C222,62 226,88 230,112" stroke-width="2.2"/><path d="M282,30 C276,40 272,50 268,58" stroke-width="1.5"/>
+          </g>
+          <g fill="#C55C82" stroke="none"><circle cx="46" cy="60" r="2"/><circle cx="62" cy="96" r="2"/><circle cx="149" cy="56" r="2"/><circle cx="151" cy="170" r="2"/><circle cx="254" cy="62" r="2"/><circle cx="236" cy="96" r="2"/><circle cx="34" cy="76" r="1.6"/><circle cx="266" cy="80" r="1.6"/></g>
+        </g>
+        <g data-map="syn"><circle id="bnS0" cx="66" cy="120" r="7"/><circle id="bnS1" cx="150" cy="120" r="7"/><circle id="bnS2" cx="234" cy="120" r="7"/></g>
+        <path id="bnSoma" data-map="soma" d="M150,196 C178,193 198,213 197,240 C196,266 176,286 150,287 C123,288 103,266 103,240 C103,212 122,199 150,196 Z" fill="url(#bnSomaG)" stroke="#9E3D64" stroke-width="2"/>
+        <g opacity=".55" fill="#A9466C"><circle cx="122" cy="222" r="1.6"/><circle cx="178" cy="262" r="1.6"/><circle cx="124" cy="264" r="1.4"/><circle cx="180" cy="220" r="1.4"/><circle cx="166" cy="276" r="1.2"/></g>
+        <ellipse cx="150" cy="240" rx="18" ry="16" fill="url(#bnNucG)" stroke="#4A2468" stroke-width="1.2"/><circle cx="155" cy="236" r="5" fill="#3A1A55"/>
+        <path id="bnHill" data-map="thr" d="M138,284 C143,296 146,306 147,320 L153,320 C154,306 157,296 162,284 Z" fill="#E58BA7" stroke="#9E3D64" stroke-width="1.5"/>
+        <g data-map="axon">
+          <path id="bnAx" d="M150,320 C152,352 148,390 150,420 C152,448 148,466 150,482" fill="none" stroke="#E58BA7" stroke-width="4"/>
+          <g><rect x="139" y="326" width="22" height="26" rx="11" fill="url(#bnMyG)" stroke="#A8833E"/><rect x="139" y="356" width="22" height="26" rx="11" fill="url(#bnMyG)" stroke="#A8833E"/><rect x="139" y="386" width="22" height="26" rx="11" fill="url(#bnMyG)" stroke="#A8833E"/><rect x="139" y="416" width="22" height="26" rx="11" fill="url(#bnMyG)" stroke="#A8833E"/><rect x="139" y="446" width="22" height="26" rx="11" fill="url(#bnMyG)" stroke="#A8833E"/></g>
+          <g id="bnNodes" fill="#E58BA7"><circle cx="150" cy="323" r="2.5"/><circle cx="150" cy="354" r="2.5"/><circle cx="150" cy="384" r="2.5"/><circle cx="150" cy="414" r="2.5"/><circle cx="150" cy="444" r="2.5"/><circle cx="150" cy="475" r="2.5"/></g>
+          <g fill="none" stroke="#E58BA7" stroke-width="3" stroke-linecap="round"><path d="M150,478 C140,500 122,520 106,538"/><path d="M150,478 C149,504 147,526 145,544"/><path d="M150,478 C162,500 178,518 194,536"/></g>
+          <g id="bnTerm"><circle cx="104" cy="541" r="8" fill="url(#bnBoutG)"/><circle cx="145" cy="551" r="9" fill="url(#bnBoutG)"/><circle cx="197" cy="539" r="8" fill="url(#bnBoutG)"/></g>
+          <g fill="#FFE3A3"><circle cx="141" cy="553" r="1.8"/><circle cx="148" cy="556" r="1.8"/><circle cx="145" cy="548" r="1.6"/></g>
+        </g>
+        <path id="bnPost" d="M70,574 C112,567 172,567 232,574" fill="none" stroke="#7D90B3" stroke-width="10" stroke-linecap="round"/>
+        <g class="n4-lab">
+          <text x="4" y="244">Nucleo</text><path d="M44,240 L132,240"/>
+          <text x="4" y="372">Guaina</text><text x="4" y="384">mielinica</text><path d="M56,376 L138,370"/>
+          <text x="4" y="414">Nodo di</text><text x="4" y="426">Ranvier</text><path d="M52,418 L146,414"/>
+          <text x="4" y="528">Terminali</text><text x="4" y="540">sinaptici</text><path d="M56,534 L96,540"/>
+          <text x="4" y="596">verso il neurone successivo</text>
+        </g>
+        <g id="bnFx"></g>
+
+        <!-- ===== colonna centrale: cosa corrisponde a cosa ===== -->
+        <g class="n4-rows">
+          <g class="n4-row" data-k="den" onclick="n4Map('den')"><line x1="300" y1="60" x2="480" y2="60" class="n4-guide"/><rect x="316" y="38" width="128" height="44" rx="10"/><text x="380" y="56" class="b">Dendriti</text><text x="380" y="73" class="a">Ingressi x</text></g>
+          <g class="n4-row" data-k="syn" onclick="n4Map('syn')"><line x1="244" y1="120" x2="510" y2="120" class="n4-guide"/><rect x="316" y="98" width="128" height="44" rx="10"/><text x="380" y="116" class="b">Sinapsi</text><text x="380" y="133" class="a">Pesi w</text></g>
+          <g class="n4-row" data-k="soma" onclick="n4Map('soma')"><line x1="200" y1="240" x2="552" y2="240" class="n4-guide"/><rect x="316" y="218" width="128" height="44" rx="10"/><text x="380" y="236" class="b">Corpo cellulare</text><text x="380" y="253" class="a">Somma Σ</text></g>
+          <g class="n4-row" data-k="thr" onclick="n4Map('thr')"><line x1="166" y1="320" x2="558" y2="320" class="n4-guide"/><rect x="316" y="298" width="128" height="44" rx="10"/><text x="380" y="316" class="b">Monticolo assonico</text><text x="380" y="333" class="a">Soglia</text></g>
+          <g class="n4-row" data-k="axon" onclick="n4Map('axon')"><line x1="166" y1="430" x2="586" y2="430" class="n4-guide"/><rect x="316" y="408" width="128" height="44" rx="10"/><text x="380" y="426" class="b">Assone</text><text x="380" y="443" class="a">Uscita y</text></g>
+        </g>
+
+        <!-- ===== neurone artificiale (verticale) ===== -->
+        <g data-map="syn"><line id="n4l0" x1="510" y1="60" x2="590" y2="240"/><line id="n4l1" x1="590" y1="60" x2="590" y2="204"/><line id="n4l2" x1="670" y1="60" x2="590" y2="240"/></g>
+        <g class="an-wl" data-map="syn"><rect x="514" y="110" width="46" height="20" rx="10"/><text id="n4lt0" x="537" y="124"></text><rect x="567" y="110" width="46" height="20" rx="10"/><text id="n4lt1" x="590" y="124"></text><rect x="620" y="110" width="46" height="20" rx="10"/><text id="n4lt2" x="643" y="124"></text></g>
+        <g id="anIn" data-map="den"><g onclick="n4Tog(0)"><circle id="n4i0" cx="510" cy="60" r="24"/><text id="n4it0" x="510" y="65"></text></g><g onclick="n4Tog(1)"><circle id="n4i1" cx="590" cy="60" r="24"/><text id="n4it1" x="590" y="65"></text></g><g onclick="n4Tog(2)"><circle id="n4i2" cx="670" cy="60" r="24"/><text id="n4it2" x="670" y="65"></text></g></g>
+        <g data-map="soma"><circle id="n4Sc" cx="590" cy="240" r="36"/><text x="590" y="236" class="an-sig">Σ</text><text id="n4S" x="590" y="258" class="an-sv"></text></g>
+        <line x1="590" y1="276" x2="590" y2="296" class="an-l2"/>
+        <g data-map="thr"><rect id="n4Th" x="560" y="296" width="60" height="48" rx="8"/><polyline points="568,334 590,334 590,306 612,306" class="an-step"/><text x="630" y="324" class="an-small" style="text-anchor:start">soglia 0,5</text></g>
+        <g data-map="axon"><line x1="590" y1="344" x2="590" y2="496" class="an-l2"/><circle id="n4Y" cx="590" cy="520" r="24"/><text id="n4Yt" x="590" y="525"></text><text x="590" y="562" class="an-small">uscita y</text></g>
+        <g id="anFx"></g>
+      </svg>
+      <div class="n4-bot">
+        <div class="n4-ctl"><div id="n4Ctl"></div><p class="n4-eq" id="n4Eq"></p></div>
+        <div class="n4-volt">
+          <div class="n4-vh"><span id="bnSt">Tensione a riposo: −70 mV</span><button class="n4-fire" id="n4Fire" onclick="n4Fire()">Invia il segnale</button></div>
+          <svg class="n4-trace" id="bnTr" viewBox="0 0 300 74" preserveAspectRatio="none" aria-label="Tensione della cellula nel tempo"><line x1="0" y1="0" x2="300" y2="0" class="th"/><line x1="0" y1="0" x2="300" y2="0" class="rest"/><polyline id="bnTrL" points="" fill="none"/></svg>
+          <div class="n4-trl"><span>tensione della cellula nel tempo</span><span class="th">soglia −55 mV</span><span>riposo −70 mV</span></div>
         </div>
       </div>
     </div>
-    <div class="col min0" style="flex:1">
-      <p class="fz-h3" style="color:var(--cyan)">Clicca per rivelare i numeri!</p>
-      <div class="br-fact" onclick="brReveal(this)"><b class="fz-num" style="color:var(--orange);min-width:2.6em;text-align:center">86B</b><div class="min0"><b class="fz-body">Neuroni nel cervello</b><span class="br-show fz-small" style="color:var(--cyan);font-style:italic"> — clicca per scoprire</span><p class="br-hid fz-small" style="color:var(--gray)">86 miliardi di neuroni, ognuno connesso a ~7.000 altri. Più connessioni delle stelle nella Via Lattea!</p></div></div>
-      <div class="br-fact" onclick="brReveal(this)"><b class="fz-num" style="color:var(--orange);min-width:2.6em;text-align:center">175B</b><div class="min0"><b class="fz-body">Parametri di GPT-3</b><span class="br-show fz-small" style="color:var(--cyan);font-style:italic"> — clicca per scoprire</span><p class="br-hid fz-small" style="color:var(--gray)">GPT-3 ne ha 175 miliardi, GPT-4 forse 1.700 miliardi. Eppure usa solo ~1% dell'energia del cervello!</p></div></div>
-      <div class="br-fact" onclick="brReveal(this)"><b class="fz-num" style="color:var(--orange);min-width:2.6em;text-align:center">20W</b><div class="min0"><b class="fz-body">Consumo del cervello</b><span class="br-show fz-small" style="color:var(--cyan);font-style:italic"> — clicca per scoprire</span><p class="br-hid fz-small" style="color:var(--gray)">Solo 20 watt, come una lampadina! Un training di GPT-4 consuma quanto ~1.000 case in un anno.</p></div></div>
-      <div class="br-fact" onclick="brReveal(this)"><b class="fz-num" style="color:var(--orange);min-width:2.6em;text-align:center">120</b><div class="min0"><b class="fz-body">m/s velocità del segnale</b><span class="br-show fz-small" style="color:var(--cyan);font-style:italic"> — clicca per scoprire</span><p class="br-hid fz-small" style="color:var(--gray)">I segnali nervosi viaggiano a 120 m/s, quelli elettrici a 200.000.000 m/s. Ma il cervello vince con l'elaborazione parallela!</p></div></div>
+
+    <!-- i numeri -->
+    <div class="n4-nums">
+      <p class="n4-nh">Cervello contro macchina</p>
+      <div class="n4-n"><p class="n4-nt">Connessioni</p><p class="n4-nr"><b>100.000 miliardi</b><span>sinapsi nel cervello, tra 86 miliardi di neuroni</span></p><p class="n4-nr m"><b>175 miliardi</b><span>parametri di GPT-3</span></p><p class="n4-nx">Il cervello ne ha circa <b>570 volte</b> di più</p></div>
+      <div class="n4-n"><p class="n4-nt">Energia</p><p class="n4-nr"><b>20 watt</b><span>il cervello, giorno e notte: come una lampadina</span></p><p class="n4-nr m"><b>1.287 MWh</b><span>per addestrare GPT-3 (stima)</span></p><p class="n4-nx">Con quell'energia un cervello funzionerebbe per <b>oltre 7.000 anni</b></p></div>
+      <div class="n4-n"><p class="n4-nt">Velocità del segnale</p><p class="n4-nr"><b>120 m/s</b><span>al massimo, in un assone con mielina</span></p><p class="n4-nr m"><b>200.000 km/s</b><span>un segnale elettrico in un chip</span></p><p class="n4-nx">La macchina è <b>1,7 milioni di volte</b> più veloce, ma il cervello lavora in parallelo</p></div>
+      <div class="n4-n"><p class="n4-nt">Imparare</p><p class="n4-nr"><b>pochi esempi</b><span>bastano a un bambino per riconoscere un gatto</span></p><p class="n4-nr m"><b>1,2 milioni</b><span>di foto per AlexNet, l'AI che nel 2012 imparò a riconoscere le immagini</span></p><p class="n4-nx">Il cervello impara da pochissimo, l'AI ha bisogno di <b>montagne di dati</b></p></div>
     </div>
   </div>
-  <p class="fz-concl" style="color:var(--orange);text-align:center">I ricercatori hanno copiato il cervello per creare l'IA!</p>
 </section>
 
 <!-- 5 NEURON -->
@@ -2534,6 +2681,65 @@ function gpAuto(n){if(GP.done||!GP.w.length)return;if(XP.open){GP.auto=setTimeou
   var cs=gpCands(),r=Math.random()*cs.reduce(function(a,x){return a+x.p},0),acc=0,w=cs[0].w;for(var i=0;i<cs.length;i++){acc+=cs[i].p;if(r<acc){w=cs[i].w;break}}
   var quiet=n>1&&!GP.first;gpAdd(w,quiet);if(GP.done){if(quiet)gpEndXp();return}if(n>1)GP.auto=setTimeout(function(){gpAuto(n-1)},380)}
 
+/* ===== slide 4: neurone biologico e neurone artificiale ===== */
+var N4={x:[1,1,0],w:[0.6,0.3,-0.4],th:0.5,busy:false,score:0,done:{}};
+var SVGNS='http://www.w3.org/2000/svg';
+function n4f(v){return (Math.round(v*10)/10).toFixed(1).replace('.',',').replace(/^-/,'−')}
+function n4Sum(){return N4.x.reduce(function(s,x,i){return s+x*N4.w[i]},0)}
+function n4Y(v){return 70-(v+90)/140*66}  // mV -> y nel grafico della tensione
+function n4Init(){if(!G('n4Ctl'))return;
+  var th=document.querySelector('#bnTr .th'),rs=document.querySelector('#bnTr .rest');th.setAttribute('y1',n4Y(-55));th.setAttribute('y2',n4Y(-55));rs.setAttribute('y1',n4Y(-70));rs.setAttribute('y2',n4Y(-70));
+  G('bnTrL').setAttribute('points','0,'+n4Y(-70)+' 300,'+n4Y(-70));n4Ctl();n4Art()}
+function n4Ctl(){var h='';for(var i=0;i<3;i++)h+='<div class="n4-in"><button class="n4-x'+(N4.x[i]?' on':'')+'" onclick="n4Tog('+i+')">x'+(i+1)+' = '+N4.x[i]+'</button><input type="range" min="-1" max="1" step="0.1" value="'+N4.w[i]+'" oninput="n4W('+i+',this.value)" aria-label="Peso '+(i+1)+'"><b id="n4wv'+i+'">w'+(i+1)+' = '+n4f(N4.w[i])+'</b></div>';G('n4Ctl').innerHTML=h}
+function n4Tog(i){if(N4.busy)return;N4.x[i]=N4.x[i]?0:1;n4Ctl();n4Art()}
+function n4W(i,v){if(N4.busy)return;N4.w[i]=parseFloat(v);G('n4wv'+i).textContent='w'+(i+1)+' = '+n4f(N4.w[i]);n4Art()}
+function n4Art(){var s=n4Sum(),y=s>=N4.th-1e-9;
+  for(var i=0;i<3;i++){var w=N4.w[i],on=N4.x[i]===1,col=w>=0?'#FF6B35':'#00B4D8';
+    G('n4i'+i).setAttribute('class',on?'on':'off');G('n4it'+i).textContent='x'+(i+1)+'='+N4.x[i];
+    var l=G('n4l'+i);l.setAttribute('stroke',on?col:'#D5DAE1');l.setAttribute('stroke-width',(1.5+Math.abs(w)*6).toFixed(1));l.setAttribute('stroke-dasharray',on?'':'4 4');
+    G('n4lt'+i).textContent='w='+n4f(w);
+    var sy=G('bnS'+i);sy.setAttribute('r',(3+Math.abs(w)*8).toFixed(1));sy.setAttribute('fill',w>=0?'#FFB24A':'#4FC3F7');sy.setAttribute('opacity',on?1:.35)}
+  G('n4S').textContent=n4f(s);G('n4Y').setAttribute('class','y'+(y?1:0));G('n4Yt').textContent='y='+(y?1:0);
+  var terms=N4.x.map(function(x,i){return n4f(N4.w[i])+'·'+x});
+  G('n4Eq').innerHTML='Σ = '+terms.join(' + ')+' = <b>'+n4f(s)+'</b> '+(y?'≥':'<')+' 0,5 → <b>y = '+(y?1:0)+'</b>'+(y?' (il neurone si attiva)':' (resta spento)')}
+function n4Map(k){var m=document.querySelector('#s4 .n4-main'),on=N4.map!==k;N4.map=on?k:null;
+  [].forEach.call(document.querySelectorAll('#s4 .n4-row'),function(r){r.classList.toggle('on',on&&r.getAttribute('data-k')===k)});
+  [].forEach.call(m.querySelectorAll('[data-map]'),function(e){e.classList.toggle('hl',on&&e.getAttribute('data-map')===k)});m.classList.toggle('mapping',on)}
+function n4Dot(g,r,fill,glow){var c=document.createElementNS(SVGNS,'circle');c.setAttribute('r',r);c.setAttribute('fill',fill);if(glow)c.setAttribute('filter','url(#bnGlow)');g.appendChild(c);return c}
+function n4Fire(){if(N4.busy)return;N4.busy=true;G('n4Fire').disabled=true;
+  var s=n4Sum(),spike=s>=N4.th-1e-9,vPk=Math.max(-90,Math.min(-40,-70+30*s));
+  var bf=G('bnFx'),af=G('anFx');bf.innerHTML='';af.innerHTML='';
+  var den=[0,1,2].map(function(i){return G('bnD'+i)}),pulses=[],apul=[];
+  for(var i=0;i<3;i++)if(N4.x[i]){var w=N4.w[i],col=w>=0?'#FFD27A':'#7FD8FF';
+    pulses.push({p:den[i],L:den[i].getTotalLength(),c:n4Dot(bf,(3+Math.abs(w)*4).toFixed(1),col,true)});
+    var l=G('n4l'+i);apul.push({x1:+l.getAttribute('x1'),y1:+l.getAttribute('y1'),x2:+l.getAttribute('x2'),y2:+l.getAttribute('y2'),c:n4Dot(af,(3+Math.abs(w)*3).toFixed(1),w>=0?'#FF6B35':'#00B4D8',false)})}
+  var ax=G('bnAx'),axL=ax.getTotalLength(),axDot=null,tx=[],trace=[],soma=G('bnSoma'),hill=G('bnHill'),post=G('bnPost'),terms=document.querySelectorAll('#bnTerm circle'),nodes=document.querySelectorAll('#bnNodes circle'),outDot=null,t0=null;
+  function V(t){if(t<700)return -70;if(t<900)return -70+(vPk+70)*((t-700)/200);
+    if(spike){if(t<950)return -55+95*((t-900)/50);if(t<1100)return 40-120*((t-950)/150);if(t<1500)return -80+10*((t-1100)/400);return -70}
+    if(t<1600)return -70+(vPk+70)*Math.exp(-(t-900)/220);return -70}
+  function frame(ts){if(t0===null)t0=ts;var t=ts-t0;if(!G('bnFx')){N4.busy=false;return}
+    pulses.forEach(function(p){var k=Math.min(t/700,1),pt=p.p.getPointAtLength(p.L*(.5+.5*k));p.c.setAttribute('cx',pt.x);p.c.setAttribute('cy',pt.y);p.c.setAttribute('opacity',t<760?1:0)});
+    apul.forEach(function(p){var k=Math.min(t/700,1);p.c.setAttribute('cx',p.x1+(p.x2-p.x1)*k);p.c.setAttribute('cy',p.y1+(p.y2-p.y1)*k);p.c.setAttribute('opacity',t<760?1:0)});
+    var v=V(t);trace.push((Math.min(t,2000)/2000*300).toFixed(1)+','+n4Y(v).toFixed(1));G('bnTrL').setAttribute('points',trace.join(' '));
+    G('bnSt').textContent='Tensione: '+(Math.round(v)>0?'+':'')+Math.round(v).toString().replace('-','−')+' mV';
+    soma.classList.toggle('hot',v>-62&&t>=700);G('n4Sc').classList.toggle('hot',t>=700&&t<1400);if(t>=700)G('n4S').textContent=n4f(s);
+    if(spike){soma.classList.toggle('fire',t>=900&&t<1150);hill.classList.toggle('fire',t>=900&&t<1150);
+      nodes.forEach(function(n,i){var a=950+i*70;n.classList.toggle('fire',t>=a&&t<a+140)});
+      if(t>=950&&t<1400){if(!axDot)axDot=n4Dot(bf,6,'#FFE27A',true);var pt=ax.getPointAtLength(axL*Math.min((t-950)/420,1));axDot.setAttribute('cx',pt.x);axDot.setAttribute('cy',pt.y)}else if(axDot)axDot.setAttribute('opacity',0);
+      terms.forEach(function(c){c.classList.toggle('fire',t>=1380&&t<1750)});
+      if(t>=1400&&!tx.length)for(var j=0;j<10;j++){var d=n4Dot(bf,1.8,'#FFE3A3',false);d.dataset.o=Math.random();tx.push(d)}
+      tx.forEach(function(d){var k=Math.min(Math.max((t-1400-d.dataset.o*200)/400,0),1);d.setAttribute('cx',145+(d.dataset.o-.5)*24);d.setAttribute('cy',560+k*8);d.setAttribute('opacity',k>0&&k<1?1:0)});
+      post.classList.toggle('fire',t>=1750&&t<2200);
+      if(t>=1000){if(!outDot){outDot=n4Dot(af,6,'#2ECC71',false)}var k2=Math.min((t-1000)/300,1);outDot.setAttribute('cx',590);outDot.setAttribute('cy',344+k2*152);outDot.setAttribute('opacity',k2<1?1:0)}}
+    if(t<2300)return requestAnimationFrame(frame);
+    soma.classList.remove('hot','fire');hill.classList.remove('fire');post.classList.remove('fire');G('n4Sc').classList.remove('hot');
+    G('bnSt').textContent=spike?'Impulso partito! Ora la cellula torna a riposo (−70 mV)':'Sotto la soglia: nessun impulso. Torna a −70 mV';
+    N4.busy=false;G('n4Fire').disabled=false;
+    if(spike)xpShow('n4:spike',{ic:'⚡',t:'Il neurone si è attivato',rows:[R('🧬','Nel cervello','data','Ogni segnale in arrivo cambia un po\' la tensione della cellula. Se nel monticolo assonico supera la soglia (circa −55 mV) parte un impulso elettrico che corre lungo l\'assone, saltando da un nodo di Ranvier all\'altro. È «tutto o niente».'),R('🔢','Nel neurone artificiale','math','Stessa idea, fatta con i numeri: ogni ingresso viene moltiplicato per il suo peso, si fa la somma e, se supera la soglia, l\'uscita è 1.'),R('🧠','Da qui nasce l\'AI','ai','McCulloch e Pitts descrissero questo neurone artificiale nel 1943. Nel 1958 Rosenblatt costruì il Perceptron, che imparava da solo a regolare i pesi.')],toast:'Soglia superata: il neurone si attiva'});
+    else xpShow('n4:nospike',{ic:'💤',t:'Sotto la soglia: niente impulso',rows:[R('🧬','Nel cervello','data','I segnali sono arrivati, ma non bastavano a portare la cellula oltre la soglia. Alcune sinapsi addirittura frenano (quelle azzurre, con peso negativo).'),R('🔢','Nel neurone artificiale','math','La somma pesata è rimasta sotto 0,5, quindi l\'uscita è 0. Prova ad accendere un altro ingresso o ad aumentare un peso.')],toast:'Sotto la soglia: nessun impulso'})}
+  requestAnimationFrame(frame)}
+
+
 var tlTexts=["Nel 1739 Jacques de Vaucanson costruì un'anatra meccanica che sembrava mangiare, digerire e defecare: il primo tentativo di simulare la vita con una macchina!","Nel 1950 Alan Turing propose il suo test: se un computer può ingannare un umano facendogli credere di parlare con un altro umano, allora \"pensa\". La domanda che ha dato il via a tutto!","Nel 1997 Deep Blue di IBM batte il campione mondiale di scacchi Garry Kasparov. Per la prima volta una macchina supera l'uomo in un gioco di strategia. Shock mondiale!","Nel 2016 AlphaGo di Google DeepMind batte Lee Sedol a Go, un gioco con più combinazioni degli atomi nell'universo: impossibile con la forza bruta, l'AI ha dovuto IMPARARE.","Nel 2022 OpenAI lancia ChatGPT: 1 milione di utenti in 5 giorni. Per la prima volta chiunque può conversare con un'AI. La rivoluzione è iniziata!"];
 function tlShow(i,el){document.getElementById('tlDetail').textContent=tlTexts[i];[].forEach.call(document.querySelectorAll('.tl-card'),function(c){c.classList.remove('active')});el.classList.add('active')}
 
@@ -2631,5 +2837,6 @@ sfShow(0,document.getElementById('sfS0'));
 cnnInit();
 fdBoot();
 hsInit();
+n4Init();
 if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();
 </script>
