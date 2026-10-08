@@ -1,0 +1,24 @@
+# Keeps the free Supabase project awake.
+# Supabase pauses free projects after ~7 days without activity: this pings the
+# database every 3 days so phone voting always works, even between workshops.
+# The key below is the public "anon" key (the same one inside ai-workshop.html).
+name: Supabase keep-alive
+
+on:
+  schedule:
+    - cron: "17 6 */3 * *"
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        env:
+          SUPA_URL: https://ylkwwzvhqfwirxqlufai.supabase.co
+          SUPA_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlsa3d3enZocWZ3aXJ4cWx1ZmFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0ODM2NDIsImV4cCI6MjEwNzA1OTY0Mn0.xoVNs-_mo5ZV95M32emmxZMSWk1ZMI_lPecDmbuuIK0
+        run: |
+          curl --fail --silent --show-error \
+            "$SUPA_URL/rest/v1/vote_rooms?select=room&limit=1" \
+            -H "apikey: $SUPA_KEY" -H "Authorization: Bearer $SUPA_KEY"
+          echo " -> Supabase is awake"
