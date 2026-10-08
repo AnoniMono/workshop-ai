@@ -1423,7 +1423,7 @@ html.vote.agm,html.vote.agm body{background:#F1F3F4}
   <div class="nn-ep">
     <div class="nn-eph"><b id="nnEpT">Epoca 0</b><span id="nnMsg">Ogni epoca: la rete legge le frasi, prova a indovinare la parola dopo, sbaglia, si corregge.</span><b id="nnErrT">Errore 78%</b></div>
     <svg class="nn-chart" id="nnChart" viewBox="0 0 1000 120" preserveAspectRatio="none" aria-label="Errore della rete a ogni epoca"></svg>
-    <div class="nn-ax"><span>epoca 1</span><span>epoca 40</span></div>
+    <div class="nn-ax"><span>epoca 1</span><span>epoca 15</span></div>
   </div>
 </section>
 
@@ -2898,11 +2898,11 @@ function txOut(){TX.cur=-1;var svg=G('txSvg');if(!svg)return;svg.classList.remov
     '<div class="tx-leg">'+TX_S.map(function(t,k){return '<button onmouseenter="txOn('+k+')" onclick="txOn('+k+')"><i style="border-color:'+t.c+';background:'+t.c+'22"></i>'+t.h+'</button>'}).join('')+'</div></div>'}
 
 /* ===== slide "Come impara una rete neurale?": allenamento in loop ===== */
-var NN={L:[4,4,4,3],X:[150,330,510,690],W:[],ep:0,maxEp:40,err:[],run:true,phase:-1,t:0,last:0,done:false,ex:0,hold:0,conf:.3,seg:-1,pick:null};
+var NN={L:[4,4,4,3],X:[150,330,510,690],W:[],ep:0,maxEp:15,err:[],run:true,phase:-1,t:0,last:0,done:false,ex:0,hold:0,conf:.3,seg:-1,pick:null};
 var NN_EX=[{i:['Il','gatto','beve','il'],s:'Il gatto beve il',w:['latte','sole','pane']},{i:['Oggi','piove:','prendo','l\''],s:'Oggi piove: prendo l\'',w:['ombrello','gelato','aereo']},{i:['La','pizza','è','proprio'],s:'La pizza è proprio',w:['buona','blu','lenta']},{i:['Vado','a','scuola','in'],s:'Vado a scuola in',w:['autobus','frigo','spiaggia']}];
 var NN_OFF='#D5DBE3',NN_FWD='#FFB300',NN_BWD='#F07A6A',SVGN='http://www.w3.org/2000/svg';
 function nnY(l,i){return 150+(i-(NN.L[l]-1)/2)*70}
-function nnLoss(e){return Math.max(.02,.78*Math.exp(-e/8)+(e<35?.04*Math.sin(e*1.7):0))}
+function nnLoss(e){return Math.max(.03,.78*Math.exp(-e/3.4)+(e<12?.035*Math.sin(e*1.7):0))}
 function nnFmt(v){return (v<0?'−':'')+Math.abs(v).toFixed(2).replace('.',',')}
 function nnInit(){if(!G('nnSvg'))return;nnBuild();nnLoop()}
 function nnBuild(){NN.W=[];for(var l=0;l<3;l++){var m=[];for(var a=0;a<NN.L[l];a++){var r=[];for(var b=0;b<NN.L[l+1];b++)r.push({w:(Math.random()-.5)*.3,t:Math.random()*2-1});m.push(r)}NN.W.push(m)}
@@ -2951,7 +2951,7 @@ function nnLoop(){var now=performance.now(),dt=NN.last?Math.min(100,now-NN.last)
   if(on)nnTick(dt);requestAnimationFrame(nnLoop)}
 function nnTick(dt){
   if(NN.done){NN.hold+=dt;if(NN.hold>4000){nnBuild()}return}
-  var sp=NN.ep<3?1:NN.ep<10?1.6:3;NN.t+=dt*sp;
+  var sp=NN.ep<3?1:NN.ep<8?1.4:2;NN.t+=dt*sp;
   var T=[1500,3000,2200,3600,900],acc=0,ph=0;for(;ph<T.length;ph++){if(NN.t<acc+T[ph])break;acc+=T[ph]}var k=(NN.t-acc)/T[ph];
   if(ph>=T.length){nnEpochEnd();return}
   if(ph===0){if(NN.phase!==0){NN.ex=(NN.ex+1)%4;nnExample();nnOutput(null);nnPh(0);G('nnFx').innerHTML='';G('nnLbl').innerHTML='';NN.seg=-1;nnEdges(-1);
