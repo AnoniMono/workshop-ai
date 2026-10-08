@@ -744,6 +744,13 @@ img{max-width:100%}
 .vt-join{display:flex;gap:.9em;align-items:center;line-height:1.45}
 .vt-join #vtQr{flex:none;background:#fff;padding:5px;line-height:0}
 .vt-join #vtQr img,.vt-join #vtQr canvas{display:block}
+.tu-join{flex:1;display:flex;gap:clamp(1rem,3vw,2.2rem);align-items:center;justify-content:center;min-height:0}
+.tu-qr{flex:none;background:#fff;padding:10px;border:1px solid #222;line-height:0}
+.tu-qr img,.tu-qr canvas{display:block}
+.tu-jt{display:flex;flex-direction:column;gap:.55em;max-width:24em}
+.tu-jt p{margin:0;line-height:1.45}
+.tu-big{font-size:1.15rem}
+.tu-big b{font-size:1.5rem;letter-spacing:.08em}
 .ex-tu .tu-a{padding:.6em 7em .6em 0}
 /* pagina di voto sul telefono */
 html.vote #deck,html.vote #nav,html.vote #progress,html.vote #hint,html.vote #menu,html.vote #xp,html.vote #xpToast{display:none!important}
@@ -2110,7 +2117,7 @@ var SUPA_URL='https://ylkwwzvhqfwirxqlufai.supabase.co';
 var SUPA_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlsa3d3enZocWZ3aXJ4cWx1ZmFpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE0ODM2NDIsImV4cCI6MjEwNzA1OTY0Mn0.xoVNs-_mo5ZV95M32emmxZMSWk1ZMI_lPecDmbuuIK0';
 var VOTE_PAGE='https://anonimono.github.io/workshop-ai/ai-workshop.html';
 var VOTE_ROOM=(function(){try{return new URLSearchParams(location.search).get('vota')}catch(e){return null}})();
-var VT={room:null,ch:null,votes:{},qrLib:false,sb:null,sbWait:[],state:{},k:-1};
+var VT={room:null,ch:null,votes:{},joined:{},qrLib:false,sb:null,sbWait:[],state:{},k:-1};
 function vtOn(){return !!(SUPA_URL&&SUPA_KEY)}
 function vtRoom(){if(VOTE_ROOM)return VOTE_ROOM;if(!VT.room){var c='';for(var i=0;i<4;i++)c+='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[rnd(0,31)];VT.room=c}return VT.room}
 function vtUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?vota='+vtRoom():''}
@@ -2121,17 +2128,19 @@ function vtState(st){VT.state=st;vtSb(function(sb){sb.from('vote_rooms').upsert(
 function vtStop(){if(VT.ch&&VT.sb)VT.sb.removeChannel(VT.ch);VT.ch=null;VT.k=-1}
 function vtLoad(k){vtSb(function(sb){sb.from('votes').select('voter,choice').eq('room',vtRoom()).eq('q',k).then(function(res){if(VT.k!==k||!res.data)return;res.data.forEach(function(r){VT.votes[r.voter]=r.choice});vtBars()})})}
 function vtListen(k){VT.k=k;VT.votes={};vtBars();vtSb(function(sb){var room=vtRoom();
-  if(!VT.ch)VT.ch=sb.channel('voti-'+room).on('postgres_changes',{event:'*',schema:'public',table:'votes',filter:'room=eq.'+room},function(p){var r=p.new;if(r&&r.q===VT.k){VT.votes[r.voter]=r.choice;vtBars()}}).subscribe();
+  if(!VT.ch)VT.ch=sb.channel('voti-'+room).on('postgres_changes',{event:'*',schema:'public',table:'votes',filter:'room=eq.'+room},function(p){var r=p.new;if(!r)return;if(r.q===-1){VT.joined[r.voter]=1;vtJoinCount()}else if(r.q===VT.k){VT.votes[r.voter]=r.choice;vtBars()}}).subscribe();
   vtLoad(k);setTimeout(function(){if(VT.k===k)vtLoad(k)},2000)})}
+function vtJoinLoad(){vtSb(function(sb){sb.from('votes').select('voter').eq('room',vtRoom()).eq('q',-1).then(function(res){if(!res.data)return;res.data.forEach(function(r){VT.joined[r.voter]=1});vtJoinCount()})})}
+function vtJoinCount(){var n=Object.keys(VT.joined).length;[].forEach.call(document.querySelectorAll('.vt-n'),function(e){e.textContent=n})}
 function vtCount(){var n={A:0,B:0};for(var key in VT.votes){var v=VT.votes[key];if(v==='A'||v==='B')n[v]++}return n}
 function vtBars(){var el=G('vtBars');if(!el)return;var n=vtCount(),t=n.A+n.B;
   el.innerHTML=vtOn()?'<p class="vt-h">Voti dai telefoni: '+t+'</p>'+['A','B'].map(function(x){return '<div class="vt-b"><span>'+x+'</span><div><i style="width:'+(t?n[x]/t*100:0)+'%"></i></div><b>'+n[x]+'</b></div>'}).join(''):''}
-function vtQr(el,text){if(!el||!text)return;function draw(){el.innerHTML='';new QRCode(el,{text:text,width:112,height:112,colorDark:'#1C1A17',colorLight:'#FFFFFF',correctLevel:QRCode.CorrectLevel.M})}
-  if(window.QRCode)return draw();if(!VT.qrLib){VT.qrLib=true;var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';s.onload=function(){[].forEach.call(document.querySelectorAll('[data-qr]'),function(e){vtQr(e,e.getAttribute('data-qr'))})};document.head.appendChild(s)}}
+function vtQr(el,text,size){if(!el||!text)return;size=size||+el.getAttribute('data-size')||112;function draw(){el.innerHTML='';new QRCode(el,{text:text,width:size,height:size,colorDark:'#1C1A17',colorLight:'#FFFFFF',correctLevel:QRCode.CorrectLevel.M})}
+  if(window.QRCode)return draw();if(!VT.qrLib){VT.qrLib=true;var s=document.createElement('script');s.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';s.onload=function(){[].forEach.call(document.querySelectorAll('[data-qr]'),function(e){vtQr(e,e.getAttribute('data-qr'),+e.getAttribute('data-size')||112)})};document.head.appendChild(s)}}
 function vtJoinHtml(){var u=vtUrl();
   if(!vtOn())return 'Voto dal telefono non ancora attivato (istruzioni nel file VOTO-DA-TELEFONO.md). Per ora: alzata di mano.';
   if(!u)return 'Per il voto dal telefono apri la versione online della presentazione.';
-  return '<div class="vt-join"><div id="vtQr" data-qr="'+u+'"></div><div>Votate dal telefono:<br>inquadrate il codice<br>oppure aprite<br><b>'+u.replace(/^https?:\/\//,'').replace(/\?.*$/,'')+'</b><br>codice stanza <b>'+vtRoom()+'</b></div></div>'}
+  return '<div class="vt-join"><div id="vtQr" data-qr="'+u+'"></div><div>Votate dal telefono:<br>inquadrate il codice<br>oppure aprite<br><b>'+u.replace(/^https?:\/\//,'').replace(/\?.*$/,'')+'</b><br>codice stanza <b>'+vtRoom()+'</b><br>telefoni collegati: <b class="vt-n">'+Object.keys(VT.joined).length+'</b></div></div>'}
 
 /* ---- Enigma ---- */
 var AZ='ABCDEFGHIJKLMNOPQRSTUVWXYZ',EN_R=[['EKMFLGDQVZNTOWYHXUSPAIBRCJ','Q'],['AJDKSIRUXBLHWTMCQGZNPYFVOE','E'],['BDFHJLCPRTXVZNYEIWGAKMUSQO','V']],EN_REF='YRUHQSLDPXNGOKMIEBFZCWVJAT',EN_ROWS=['QWERTZUIO','ASDFGHJK','PYXCVBNML'];
@@ -2178,7 +2187,13 @@ var TU_Q=[
 {q:'Scrivi una parola che fa rima con «cuore».',a:['amore','Amore, fiore, dolore, calore, sapore, colore.'],m:1,why:'Le macchine tendono a esagerare: invece di una parola ne danno sei. Un umano risponde e basta.'},
 {q:'Hai paura di qualcosa?',a:['dei ragni. e delle interrogazioni a sorpresa','Come tutti, ho paura di perdere le persone a cui voglio bene.'],m:1,why:'Una risposta profonda e "giusta"... troppo giusta. La macchina ha imparato cosa rispondono le persone alle domande importanti, ma non ha nessuno da perdere.'}];
 var TU={mode:'en',k:0,score:0,ans:false};
-function tuQuiz(){clearInterval(EN.auto);TU.mode='q';TU.k=0;TU.score=0;tuRender()}
+function tuQuiz(){clearInterval(EN.auto);TU.mode='q';TU.k=0;TU.score=0;tuJoin()}
+function tuJoin(){var d=G('hsDev'),u=vtUrl(),ok=vtOn()&&u;d.className='mu-vit ex-tu';
+  d.innerHTML=tuTabs('q')+(ok?'<div class="tu-join"><div class="tu-qr" id="vtQrBig" data-qr="'+u+'" data-size="210"></div><div class="tu-jt"><p class="tu-q">Prendete il telefono.</p><p>Inquadrate il codice: risponderete alle domande del gioco dell\'imitazione dal vostro telefono.</p><p class="tu-n">oppure aprite<br><b>'+u.replace(/^https?:\/\//,'')+'</b></p><p class="tu-big">Stanza <b>'+vtRoom()+'</b></p><p class="tu-big">Telefoni collegati: <b class="vt-n">'+Object.keys(VT.joined).length+'</b></p></div></div>'
+    :'<div class="tu-join"><div class="tu-jt"><p class="tu-q">Il gioco dell\'imitazione</p><p>'+(vtOn()?'Per il voto dal telefono apri la versione online della presentazione.':'Voto dal telefono non attivo: votate per alzata di mano.')+'</p></div></div>')+
+    '<div class="tu-act"><span>Quando siete pronti:</span><button class="mu-btn fill" onclick="tuRender()">Inizia: domanda 1 →</button></div>';
+  vtState({k:-2,n:TU_Q.length});vtListen(-2);vtJoinLoad();vtQr(G('vtQrBig'),u,210);
+  hsLive(ok?'Stanza '+vtRoom()+'<br>Telefoni collegati: <b class="vt-n">'+Object.keys(VT.joined).length+'</b>':'')}
 function tuRender(){var q=TU_Q[TU.k],d=G('hsDev');d.className='mu-vit ex-tu';TU.ans=false;
   d.innerHTML=tuTabs('q')+'<p class="tu-n">Domanda '+(TU.k+1)+' di '+TU_Q.length+' · codice stanza '+vtRoom()+'</p><p class="tu-q">D: '+q.q+'</p>'+
     [0,1].map(function(i){return '<div class="tu-a"><b>'+'AB'[i]+':</b><p>'+q.a[i]+'</p><span class="tu-stamp" id="tuT'+i+'"></span></div>'}).join('')+
@@ -2200,7 +2215,7 @@ function vtPhone(){document.documentElement.classList.add('vote');var app=docume
   var S={},mine={};
   function draw(){var h='<p class="vp-hd">IL GIOCO DELL\'IMITAZIONE<br><span>Stanza '+esc(VOTE_ROOM)+'</span></p>';
     if(!vtOn())h+='<p class="vp-st">Il voto non è configurato su questa presentazione.</p>';
-    else if(S.k===undefined)h+='<p class="vp-st">Collegato. Aspetta che l\'insegnante mostri la prima domanda...</p>';
+    else if(S.k===undefined||S.k===-2)h+='<p class="vp-st">Collegato. Aspetta che l\'insegnante mostri la prima domanda...</p>';
     else if(S.k<0)h+='<p class="vp-q">Fine del gioco!</p><p class="vp-st">La classe ha riconosciuto '+S.score+' macchine su '+S.n+'. Guarda lo schermo.</p>';
     else{var v=mine[S.k],rev=S.rev>=0?S.rev:-1;h+='<p class="vp-st">Domanda '+(S.k+1)+' di '+S.n+'</p><p class="vp-q">'+esc(S.q)+'</p><p class="vp-st">Quale risposta è della <b>macchina</b>?</p>'+
       [0,1].map(function(i){var x='AB'[i];return '<button class="vp-o'+(v===x?' sel':'')+(rev===i?' mac':'')+'" '+(rev>=0?'disabled':'')+' onclick="vtVote(\''+x+'\')"><b>'+x+(rev===i?' · MACCHINA':rev>=0?' · UMANO':'')+'</b>'+esc(S.a[i])+'</button>'}).join('')+
@@ -2209,6 +2224,7 @@ function vtPhone(){document.documentElement.classList.add('vote');var app=docume
   window.vtVote=function(x){if(S.k===undefined||S.k<0||S.rev>=0)return;mine[S.k]=x;draw();var k=S.k;vtSb(function(sb){sb.from('votes').upsert({room:VOTE_ROOM,q:k,voter:me,choice:x},{onConflict:'room,q,voter'}).then(function(r){if(r.error)console.warn('voto:',r.error.message)})})};
   draw();if(!vtOn())return;
   vtSb(function(sb){
+    sb.from('votes').upsert({room:VOTE_ROOM,q:-1,voter:me,choice:'A'},{onConflict:'room,q,voter'}).then(function(){});
     sb.from('vote_rooms').select('state').eq('room',VOTE_ROOM).maybeSingle().then(function(res){if(res.data&&res.data.state){S=res.data.state;draw()}});
     sb.channel('stanza-'+VOTE_ROOM).on('postgres_changes',{event:'*',schema:'public',table:'vote_rooms',filter:'room=eq.'+VOTE_ROOM},function(p){if(p.new&&p.new.state){S=p.new.state;draw()}}).subscribe()})}
 
