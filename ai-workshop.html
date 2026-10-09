@@ -1099,7 +1099,7 @@ html.vote.drm,html.vote.drm body{background:#F5F7FA}
 .drp-prog{margin:0;font-size:.9rem;color:#4A5568;font-weight:700}
 .drp-big{margin:0;font-size:3.4rem;line-height:1}
 .drp-note{margin:0;font-size:.95rem;color:#4A5568;line-height:1.45;max-width:340px}
-/* slide 9: come l'AI vede una foto */
+/* slide 8: come l'AI vede una foto */
 #s10.current{height:100svh}
 .cv-steps{grid-template-columns:repeat(4,1fr);max-width:920px}
 .cv-steps .dr-rail,.cv-steps .dr-fill{left:12.5%}
@@ -1325,6 +1325,12 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
 .fk-vids a:hover{border-color:var(--orange);color:var(--orange)}
 @media (max-height:800px){#s14 .dr-h{font-size:clamp(1.4rem,2.8vw,2rem)}#s14 .dr-p{font-size:.98rem}#s14 .fk-it{padding:.3em .6em}#s14 .gn-tip{font-size:.88rem;padding:.45em .8em}#s14 .fk-it span{display:none}}
 /* badge extra per i pop-up */
+.pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
+.scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
+.scr svg{width:100%;height:100%;display:block;border-radius:12px}
+.scr-tag{position:absolute;top:14px;left:14px;z-index:1;background:rgba(13,20,36,.8);color:#fff;font-size:.72rem;font-weight:800;padding:.25em .7em;border-radius:999px}
+@media (max-height:780px){#algTip{display:none}}
+.btn.lab-gh{color:var(--navy);box-shadow:inset 0 0 0 2px #C9D1DC;background:#fff}
 .pl-b.mech{background:rgba(200,150,62,.2);color:#8A5A12}
 .pl-b.rule{background:rgba(0,180,216,.15);color:#0077A0}
 .pl-b.idea{background:rgba(46,204,113,.15);color:#1E8449}
@@ -1349,219 +1355,6 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
   </div>
   <p class="fz-body" style="color:#8AAFCF;margin-top:1.4em">Fondazione ITS Vita · Siena · 3 ore</p>
   <p class="fz-small" style="color:#6f93b5">Usa le frecce ← → (o scorri) per navigare · tasto ☰ per l'indice</p>
-</section>
-
-<!-- 2 ICEBREAKER + DENTRO L'ALGORITMO -->
-<section class="slide darktext s-light" data-section="Apertura" id="s2">
-  <div id="ibIntro" class="col" style="gap:inherit;flex:1;justify-content:center">
-  <h2 class="fz-h2" style="text-align:center">Alza la mano se oggi hai usato...</h2>
-  <p class="fz-lead" style="color:var(--gray);text-align:center">Clicca sulle carte per scoprire l'IA nascosta dietro ogni app!</p>
-  <div id="ibGrid" style="display:flex;gap:clamp(.6rem,1.4vw,1.2rem);justify-content:center;flex-wrap:wrap;margin-top:.5rem">
-    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">🎵</span><b class="fz-h3">Spotify</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">Machine Learning che consiglia canzoni dai tuoi gusti</span></div></div></div>
-    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">📱</span><b class="fz-h3">TikTok</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">Deep Learning analizza cosa guardi e per quanto</span></div></div></div>
-    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">🗺️</span><b class="fz-h3">Maps</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">Rete neurale che predice il traffico in tempo reale</span></div></div></div>
-    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">📸</span><b class="fz-h3">Instagram</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">CNN per i filtri + ML per il feed personalizzato</span></div></div></div>
-    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">🎬</span><b class="fz-h3">Netflix</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">Raccomanda film e sceglie anche le copertine per te</span></div></div></div>
-  </div>
-  <p id="ibReveal" class="fz-concl" style="color:var(--orange);text-align:center;opacity:0;transition:opacity .6s">Le usi tutte... e tutte sono IA!</p>
-  <div style="text-align:center"><button class="btn" onclick="algOpen()">🔬 Ok... ma COME fanno a conoscerti così bene? Entriamo nell'algoritmo →</button></div>
-  </div>
-
-  <div id="ibLab" class="col" style="display:none;flex:1;gap:clamp(.5rem,1.3vh,1rem)">
-    <div class="row" style="align-items:flex-end;justify-content:space-between;flex-wrap:wrap">
-      <h3 class="fz-h2 min0" style="font-size:clamp(1.3rem,2.6vw,2.1rem)"><span style="color:var(--orange)">Dentro l'algoritmo:</span> come fa a conoscerti così bene?</h3>
-      <div class="alg-tabs">
-        <button class="alg-tab on" id="algTabTT" onclick="algTab('tt')">📱 TikTok</button>
-        <button class="alg-tab" id="algTabSP" onclick="algTab('sp')">🎵 Spotify</button>
-        <button class="alg-tab" id="algTabIG" onclick="algTab('ig')">📸 Instagram</button>
-        <button class="alg-tab" id="algTabNF" onclick="algTab('nf')">🎬 Netflix</button>
-        <button class="alg-tab" id="algTabMP" onclick="algTab('mp')">🗺️ Maps</button>
-        <button class="alg-tab back" onclick="algClose()">← App</button>
-      </div>
-    </div>
-
-    <!-- TikTok simulator -->
-    <div id="algTT" class="wrap-flex" style="flex:1">
-      <div class="col flex-0" style="flex:0 0 auto;align-items:center">
-        <div class="phone">
-          <div class="ph-top"><span style="opacity:.55">Seguiti</span><b>Per te</b></div>
-          <div class="ph-vid" id="ttVid">
-            <div class="ph-pred" id="ttPred">🤖 Previsione: 50% che lo guardi tutto</div>
-            <div class="ph-emoji" id="ttEmoji">📱</div>
-            <div class="ph-rail">
-              <button class="ph-act" id="ttLikeBtn" onclick="fdAct('tt','like')"><span>❤️</span><small id="ttLikeN">Like</small></button>
-              <button class="ph-act" id="ttShareBtn" onclick="fdAct('tt','share')"><span>↗️</span><small>Condividi</small></button>
-              <button class="ph-act" onclick="fdEnd(FD.tt,'nope')"><span>🚫</span><small>Nah</small></button>
-            </div>
-            <div class="ph-cap"><b id="ttUser">@...</b><p id="ttTitle"></p><p id="ttTags" style="opacity:.75"></p></div>
-            <div class="ph-prog"><i id="ttProg"></i></div>
-          </div>
-        </div>
-        <div class="row" style="justify-content:center">
-          <button class="btn" onclick="fdEnd(FD.tt,'skip')">⏭ Scorri</button>
-          <button class="btn cyan" onclick="fdReset(FD.tt)" title="Ricomincia da zero">↺ Reset</button>
-        </div>
-      </div>
-      <div class="panel col min0" id="ttPanel" style="flex:1;gap:clamp(.45rem,1.1vh,.75rem)"></div>
-    </div>
-
-    <!-- Spotify simulator -->
-    <div id="algSP" class="wrap-flex" style="flex:1;display:none">
-      <div class="col flex-0" style="flex:0 0 auto;align-items:center">
-        <div class="phone">
-          <div class="ph-top" style="flex-direction:column;align-items:center;gap:0;font-size:.62rem;letter-spacing:.08em"><span style="opacity:.6">IN RIPRODUZIONE DA</span><span style="font-size:.8rem;letter-spacing:0">Radio per te</span></div>
-          <div class="sp-body" id="spVid">
-            <div class="ph-pred" id="spPred">🤖 Previsione: 50% che non la salti</div>
-            <div class="sp-art" id="spArt">🎵</div>
-            <div class="sp-meta">
-              <div class="min0" style="flex:1"><b id="spTitle">...</b><p id="spArtist"></p></div>
-              <button class="sp-c" id="spLikeBtn" onclick="fdAct('sp','like')" title="Mi piace"><svg class="fillon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.3-8.8A5.2 5.2 0 0 1 12 6.3a5.2 5.2 0 0 1 9.3 4.9C19 15.7 12 20 12 20z"/></svg><small>Mi piace</small></button>
-            </div>
-            <div class="sp-bar"><i id="spProg"></i></div>
-            <div class="sp-times"><span id="spT0">0:00</span><span>0:30</span></div>
-            <div class="sp-ctrl">
-              <button class="sp-c" onclick="fdEnd(FD.sp,'nope')" title="Nascondi brano"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M5.7 5.7l12.6 12.6"/></svg><small>Nascondi</small></button>
-              <button class="sp-c" id="spAddBtn" onclick="fdAct('sp','add')" title="Aggiungi a playlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><small>Playlist</small></button>
-              <button class="sp-c" onclick="fdPause('sp')" title="Play/Pausa"><span class="sp-play" id="spPlay"></span></button>
-              <button class="sp-c" onclick="fdEnd(FD.sp,'skip')" title="Salta"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 5l11 7-11 7zM17 5h2.5v14H17z"/></svg><small>Salta</small></button>
-              <button class="sp-c" id="spRepBtn" onclick="fdAct('sp','rep')" title="Riascolta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3"/></svg><small>Riascolta</small></button>
-            </div>
-          </div>
-        </div>
-        <div class="row" style="justify-content:center">
-          <button class="btn" style="background:#1DB954" onclick="fdEnd(FD.sp,'skip')">⏭ Salta</button>
-          <button class="btn cyan" onclick="fdReset(FD.sp)" title="Ricomincia da zero">↺ Reset</button>
-        </div>
-      </div>
-      <div class="panel col min0" id="spPanel" style="flex:1;gap:clamp(.45rem,1.1vh,.75rem)"></div>
-    </div>
-
-    <!-- Instagram: come viene ordinato il feed -->
-    <div id="algIG" class="wrap-flex" style="flex:1;display:none">
-      <div class="col flex-0" style="flex:0 0 auto;align-items:center">
-        <div class="phone">
-          <div class="ph-top" style="justify-content:space-between;padding:.3em 1.3em .4em;font-size:.72rem"><b style="border:none">9:41</b><span style="display:flex;gap:.35em;align-items:center">5G <svg viewBox="0 0 26 12" width="22" height="11"><rect x=".5" y=".5" width="21" height="11" rx="3" fill="none" stroke="#fff"/><rect x="2" y="2" width="15" height="8" rx="1.5" fill="#fff"/><rect x="23" y="4" width="2" height="4" rx="1" fill="#fff"/></svg></span></div>
-          <div class="ig-body">
-            <div class="ig-bar">
-              <span class="ig-logo">Instagram</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.3-8.8A5.2 5.2 0 0 1 12 6.3a5.2 5.2 0 0 1 9.3 4.9C19 15.7 12 20 12 20z"/></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M22 3L11 13M22 3l-7 18-4-8-8-4z"/></svg>
-            </div>
-            <div class="ig-stories" id="igStories"></div>
-            <div class="ig-feed" id="igFeed"></div>
-            <div class="ig-nav">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 10.5L12 3l9 7.5V21h-6.5v-6h-5v6H3z"/></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M3 8.5h18M8 3l3 5.5M14 3l3 5.5M10 12v5.5l4.5-2.75z"/></svg>
-              <span class="ig-me"></span>
-            </div>
-            <div class="ig-sv" id="igSV">
-              <div class="ig-svbars" id="igSvBars"></div>
-              <div class="ig-svhead"><span class="ig-av" id="igSvAv"></span><b id="igSvUser"></b><small id="igSvTime"></small><button class="ig-svx" onclick="igSvClose()" title="Chiudi">✕</button></div>
-              <div class="ig-svmid">
-                <div class="ig-svtap" style="left:0" onclick="igSvPrev()" title="Storia precedente"></div>
-                <div class="ig-svtap" style="right:0" onclick="igSvNext()" title="Storia successiva"></div>
-                <span class="ig-sve" id="igSvE"></span>
-                <span class="ig-svt" id="igSvT"></span>
-              </div>
-              <div class="ig-svfoot">
-                <button class="ig-svin" id="igSvIn" onclick="igSvReply()">Invia messaggio...</button>
-                <button class="ig-svic" id="igSvLike" onclick="igSvLike()" title="Mi piace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.3-8.8A5.2 5.2 0 0 1 12 6.3a5.2 5.2 0 0 1 9.3 4.9C19 15.7 12 20 12 20z"/></svg></button>
-                <button class="ig-svic" onclick="igSvReply()" title="Invia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M22 3L11 13M22 3l-7 18-4-8-8-4z"/></svg></button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row" style="justify-content:center;gap:.4em;flex-wrap:wrap">
-          <button class="mp-tg" id="igModeC" onclick="igMode('chrono')">📅 Cronologico</button>
-          <button class="mp-tg on" id="igModeA" onclick="igMode('algo')">🧠 Algoritmo</button>
-          <button class="mp-tg" onclick="igReset()" title="Ricomincia">↺</button>
-        </div>
-      </div>
-      <div class="panel col min0" style="flex:1;gap:clamp(.45rem,1.1vh,.7rem)">
-        <div><h3 class="fz-h3">🧠 Come Instagram mette in ordine il tuo feed</h3><p class="fz-small" style="color:var(--gray);margin-top:.2em">Nel feed vedi soprattutto <b>chi segui</b> (non sconosciuti come su TikTok). Quando apri l'app, Instagram raccoglie i loro post nuovi (qui 8, di solito centinaia), dà un <b>punteggio</b> a ognuno e li mette in fila.</p></div>
-        <div><p class="fz-small" style="font-weight:800">📋 Il tuo feed in ordine · ❤️‍🔥 quanto sei vicino a ciascuno</p><div class="ig-rel" id="igRel"></div></div>
-        <p class="xp-hint">👆 Clicca un post per vedere il suo punteggio · guarda le storie · scrivi in DM</p>
-        <div class="aim one" style="margin-top:0"><p><b class="aim-h">🤔 AI o matematica?</b> <span class="pl-b ai">🧠 AI</span> le % le stima una rete neurale allenata su miliardi di like · <span class="pl-b math">🧮 Matematica</span> la somma pesata e la classifica finale.</p></div>
-        <div class="tt-why fz-small" id="igNote"></div>
-      </div>
-    </div>
-
-    <!-- Netflix: una pagina diversa per ogni profilo -->
-    <div id="algNF" class="wrap-flex" style="flex:1;display:none">
-      <div class="tv min0" id="nfTV"></div>
-      <div class="panel col min0" style="flex:1;gap:clamp(.45rem,1.1vh,.7rem)">
-        <div class="row" id="nfChips" style="flex-wrap:wrap;gap:.35em"></div>
-        <h3 class="fz-h3" id="nfHead"></h3>
-        <div class="pl">
-          <div class="pl-row ai lit"><span class="pl-ic">🗂️</span><span class="pl-t">1. Ti mette in una comunità</span><span class="pl-b ai">🧠 AI · raggruppa persone</span><span class="pl-d" id="nfPD0"></span></div>
-          <div class="pl-row ai lit"><span class="pl-ic">🔮</span><span class="pl-t">2. Prevede il tuo match</span><span class="pl-b ai">🧠 AI · rete neurale</span><span class="pl-d" id="nfPD1"></span></div>
-          <div class="pl-row lit"><span class="pl-ic">🧮</span><span class="pl-t">3. Costruisce la pagina</span><span class="pl-b math">🧮 Matematica · ordina righe</span><span class="pl-d" id="nfPD2"></span></div>
-          <div class="pl-row ai lit"><span class="pl-ic">🎨</span><span class="pl-t">4. Sceglie le copertine</span><span class="pl-b ai">🧠 AI · immagini per te</span><span class="pl-d" id="nfPD3"></span></div>
-        </div>
-        <p class="xp-hint">👆 Clicca un titolo nella TV: scopri perché è lì e come lo vedono gli altri</p>
-        <div class="aim one"><p><b class="aim-h">🤔 AI o matematica?</b> <span class="pl-b math">📏 Regola a mano</span> filtro bambini · <span class="pl-b ai">🧠 AI</span> comunità, match % e copertine (imparati da milioni di persone)</p></div>
-      </div>
-    </div>
-
-    <!-- Maps simulator -->
-    <div id="algMP" class="wrap-flex" style="flex:1;display:none">
-      <div class="col flex-0" style="flex:0 0 auto;align-items:center">
-        <div class="phone">
-          <div class="ph-top"><b style="border:none">🏠 Casa → 🏫 Scuola</b></div>
-          <div class="mp-body">
-            <svg class="mp-map" viewBox="0 0 260 300" preserveAspectRatio="xMidYMid meet">
-              <rect x="-40" y="-40" width="340" height="380" fill="#E8EEF3"/>
-              <g stroke="#fff" stroke-width="5"><path d="M-40 60H300M-40 120H300M-40 180H300M-40 240H300M60-40V340M120-40V340M180-40V340M240-40V340"/></g>
-              <rect x="185" y="185" width="50" height="45" rx="8" fill="#C8E6C9"/><rect x="65" y="30" width="45" height="38" rx="8" fill="#C8E6C9"/>
-              <circle cx="128" cy="150" r="46" fill="#F3E5D0" opacity=".9"/>
-              <text x="128" y="203" text-anchor="middle" font-size="9" font-weight="800" fill="#A0805A" font-family="Nunito Sans,sans-serif">CENTRO STORICO</text>
-              <g id="mpRain" style="display:none"><rect x="-40" y="-40" width="340" height="380" fill="rgba(0,110,200,.13)"/><text x="70" y="100" font-size="12">💧</text><text x="190" y="80" font-size="12">💧</text><text x="150" y="250" font-size="12">💧</text><text x="30" y="215" font-size="12">💧</text></g>
-              <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <polyline id="mpRt0" points="40,262 85,205 125,160 165,105 220,42"/>
-                <polyline id="mpRt1" points="40,262 18,190 22,95 95,25 220,42"/>
-                <polyline id="mpRt2" points="40,262 140,285 240,215 245,120 220,42"/>
-              </g>
-              <text id="mpStad" x="152" y="128" font-size="20" text-anchor="middle" dominant-baseline="central" style="display:none">🏟️</text>
-              <text id="mpAccI" x="20" y="140" font-size="18" text-anchor="middle" dominant-baseline="central" style="display:none">🚧</text>
-              <g id="mpLabels" font-family="Nunito Sans,sans-serif" font-weight="800" font-size="10"></g>
-              <circle cx="40" cy="262" r="13" fill="#fff"/><text x="40" y="262" font-size="16" text-anchor="middle" dominant-baseline="central">🏠</text>
-              <circle cx="220" cy="42" r="13" fill="#fff"/><text x="220" y="42" font-size="16" text-anchor="middle" dominant-baseline="central">🏫</text>
-              <circle id="mpCar" r="7" fill="#1B2A4A" stroke="#fff" stroke-width="3" cx="40" cy="262" style="display:none"/>
-            </svg>
-            <div class="mp-card" id="mpCard"></div>
-          </div>
-        </div>
-        <div class="row" style="justify-content:center">
-          <button class="btn" id="mpGoBtn" onclick="mpGo()">🚗 Parti!</button>
-        </div>
-      </div>
-      <div class="panel col min0" style="flex:1;gap:clamp(.45rem,1.1vh,.75rem)">
-        <div class="row" style="align-items:center;flex-wrap:wrap;gap:.5em .9em">
-          <span class="fz-small" style="font-weight:800;white-space:nowrap">🕐 Partenza: <b id="mpH" style="font-family:var(--ff-head);font-size:1.3em;color:var(--orange)">8:00</b></span>
-          <input class="mp-rg" id="mpTime" type="range" min="6" max="22" step="0.25" value="8" oninput="mpUpd()" style="flex:1;min-width:140px">
-        </div>
-        <div class="row" style="flex-wrap:wrap;gap:.4em">
-          <button class="mp-tg" onclick="mpTog('rain',this)">☔ Pioggia</button>
-          <button class="mp-tg" onclick="mpTog('match',this)">⚽ Partita allo stadio</button>
-          <button class="mp-tg" onclick="mpTog('acc',this)">🚧 Incidente in tangenziale</button>
-        </div>
-        <div class="col" style="gap:.2em" id="mpRows"></div>
-        <div class="tt-why fz-small" id="mpNoAI" style="background:rgba(255,107,53,.1);border-left-color:var(--orange)"></div>
-        <div class="pl">
-          <p class="fz-small" style="font-weight:800;color:var(--gray)">Cosa succede dietro ogni percorso — dov'è l'AI?</p>
-          <div class="pl-row lit" id="mpPL0"><span class="pl-ic">📡</span><span class="pl-t">1. Raccoglie dati in tempo reale</span><span class="pl-b data">📡 Dati · telefoni anonimi</span><span class="pl-d" id="mpPD0"></span></div>
-          <div class="pl-row ai lit" id="mpPL1"><span class="pl-ic">🔮</span><span class="pl-t">2. Prevede il traffico futuro</span><span class="pl-b ai">🧠 AI · rete neurale</span><span class="pl-d" id="mpPD1"></span></div>
-          <div class="pl-row lit" id="mpPL2"><span class="pl-ic">🧮</span><span class="pl-t">3. Trova il percorso più veloce</span><span class="pl-b math">🧮 Matematica · Dijkstra, 1956</span><span class="pl-d" id="mpPD2"></span></div>
-          <div class="pl-row ai" id="mpPL3"><span class="pl-ic">📈</span><span class="pl-t">4. Impara dall'arrivo</span><span class="pl-b ai">🧠 AI · si corregge</span><span class="pl-d" id="mpPD3">Premi <b>🚗 Parti!</b> per vedere se la previsione era giusta.</span></div>
-        </div>
-        <div class="aim"><p class="aim-h">🤔 AI o matematica?</p><div class="aim-g"><div class="aim-c math"><b>🧮 Matematica (Dijkstra, 1956)</b>Trova il percorso più breve in una rete di strade. Funziona da 70 anni, ma non sa niente del futuro.</div><div class="aim-c ai"><b>🧠 AI (Google + DeepMind, 2020)</b>Reti neurali allenate su miliardi di viaggi passati prevedono il traffico dei prossimi minuti.</div></div></div>
-      </div>
-    </div>
-
-    <p id="algTip" class="fz-concl" style="color:var(--orange);text-align:center;font-size:clamp(.95rem,1.7vw,1.3rem)"></p>
-  </div>
 </section>
 
 <!-- 3 STORIA: IL VIAGGIO DELL'AI (mostra) -->
@@ -1840,19 +1633,229 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
   </div>
 </section>
 
-<!-- 15 DAILY -->
-<section class="slide darktext s-light" data-section="AI generativa">
-  <h2 class="fz-h2">L'AI nella vita di tutti i giorni</h2>
-  <p class="fz-lead" style="color:var(--gray);text-align:center">Clicca su ogni card per scoprire come funziona!</p>
-  <div class="grid3" id="dlGrid" style="flex:1">
-    <div class="dl-card" onclick="dlToggle(this)"><span class="imgbox" style="--g:linear-gradient(135deg,#FF6B35,#FF8F66);height:clamp(72px,10vh,110px);border-radius:14px 14px 0 0;display:block"><span class="emoji">⚽</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Bundesliga_goalline_technology.jpg/320px-Bundesliga_goalline_technology.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div style="padding:.6rem .8rem"><h4 class="fz-h3" style="color:var(--orange)">⚽ Sport e VAR</h4><p class="fz-small" style="color:var(--gray)">L'AI analizza ogni frame per le decisioni arbitrali</p><p class="dl-det fz-small" style="color:var(--gray)">Il VAR usa 33 telecamere e AI per tracciare ogni giocatore, e prevede infortuni dai dati biometrici. Nel tennis l'Hawk-Eye usa 10 telecamere a 340fps!</p></div></div>
-    <div class="dl-card" onclick="dlToggle(this)"><span class="imgbox" style="--g:linear-gradient(135deg,#00B4D8,#0090AA);height:clamp(72px,10vh,110px);border-radius:14px 14px 0 0;display:block"><span class="emoji">🏥</span></span><div style="padding:.6rem .8rem"><h4 class="fz-h3" style="color:var(--cyan)">🏥 Diagnosi mediche</h4><p class="fz-small" style="color:var(--gray)">AI che legge radiografie e trova tumori</p><p class="dl-det fz-small" style="color:var(--gray)">L'AI di Google DeepMind rileva il cancro al seno col 94,5% di accuratezza, superando i radiologi. In Italia gli ospedali la usano per la diagnostica per immagini.</p></div></div>
-    <div class="dl-card" onclick="dlToggle(this)"><span class="imgbox" style="--g:linear-gradient(135deg,#FF6B35,#FF8F66);height:clamp(72px,10vh,110px);border-radius:14px 14px 0 0;display:block"><span class="emoji">🚗</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Waymo_Chrysler_Pacifica_in_Los_Altos%2C_2017.jpg/320px-Waymo_Chrysler_Pacifica_in_Los_Altos%2C_2017.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div style="padding:.6rem .8rem"><h4 class="fz-h3" style="color:var(--orange)">🚗 Guida autonoma</h4><p class="fz-small" style="color:var(--gray)">Tesla e Waymo: l'AI guida senza conducente</p><p class="dl-det fz-small" style="color:var(--gray)">Usano LIDAR, radar e telecamere processati da reti neurali in tempo reale. Waymo ha superato i 20 milioni di km senza conducente.</p></div></div>
-    <div class="dl-card" onclick="dlToggle(this)"><span class="imgbox contain" style="--g:#fff;height:clamp(72px,10vh,110px);border-radius:14px 14px 0 0;display:block"><span class="emoji">📱</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/TikTok_logo_%282022%29.svg/200px-TikTok_logo_%282022%29.svg.png" alt="" loading="lazy" onerror="this.remove()"></span><div style="padding:.6rem .8rem"><h4 class="fz-h3" style="color:var(--cyan)">📱 TikTok e Instagram</h4><p class="fz-small" style="color:var(--gray)">L'algoritmo sa cosa ti piace prima di te</p><p class="dl-det fz-small" style="color:var(--gray)">TikTok analizza quanto guardi ogni video, se lo riguardi, se lo condividi: in 30 minuti ha già un profilo dei tuoi gusti.</p></div></div>
-    <div class="dl-card" onclick="dlToggle(this)"><span class="imgbox" style="--g:linear-gradient(135deg,#FF6B35,#FF8F66);height:clamp(72px,10vh,110px);border-radius:14px 14px 0 0;display:block"><span class="emoji">🏛️</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Da_Vinci_Vitruve_Luc_Viatour.jpg/220px-Da_Vinci_Vitruve_Luc_Viatour.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div style="padding:.6rem .8rem"><h4 class="fz-h3" style="color:var(--orange)">🏛️ Musei e arte</h4><p class="fz-small" style="color:var(--gray)">Guide AI, restauro digitale, esperienze immersive</p><p class="dl-det fz-small" style="color:var(--gray)">Gli Uffizi usano AI per il restauro digitale; a Siena l'AI analizza gli affreschi del Palazzo Pubblico per scoprire dettagli invisibili!</p></div></div>
-    <div class="dl-card" onclick="dlToggle(this)"><span class="imgbox contain" style="--g:#fff;height:clamp(72px,10vh,110px);border-radius:14px 14px 0 0;display:block"><span class="emoji">🎵</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Spotify_logo_horizontal_black.jpg/320px-Spotify_logo_horizontal_black.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div style="padding:.6rem .8rem"><h4 class="fz-h3" style="color:var(--cyan)">🎵 Spotify e Netflix</h4><p class="fz-small" style="color:var(--gray)">Raccomandazioni personalizzate per ognuno</p><p class="dl-det fz-small" style="color:var(--gray)">Spotify analizza 100+ parametri per canzone; il Discover Weekly usa "chi ascolta X ascolta anche Y". Netflix ha 2.000+ cluster di gusti.</p></div></div>
+<!-- 15 L'AI DAPPERTUTTO: carte + dentro l'AI (TikTok, Spotify, Instagram, Netflix, VAR, Medicina, Tesla) -->
+<section class="slide darktext s-light" data-section="AI generativa" id="s2">
+  <div id="ibIntro" class="col" style="gap:inherit;flex:1;justify-content:center">
+  <h2 class="fz-h2" style="text-align:center">L'AI è già dappertutto</h2>
+  <p class="fz-lead" style="color:var(--gray);text-align:center">Dalle app che usate ogni giorno allo stadio, all'ospedale, in strada: cliccate le carte!</p>
+  <div id="ibGrid" style="display:flex;gap:clamp(.6rem,1.4vw,1.2rem);justify-content:center;flex-wrap:wrap;margin-top:.5rem">
+    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">🎵</span><b class="fz-h3">Spotify</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">Machine Learning che consiglia canzoni dai tuoi gusti</span></div></div></div>
+    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">📱</span><b class="fz-h3">TikTok</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">Deep Learning analizza cosa guardi e per quanto</span></div></div></div>
+    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">📸</span><b class="fz-h3">Instagram</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">CNN per i filtri + ML per il feed personalizzato</span></div></div></div>
+    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">🎬</span><b class="fz-h3">Netflix</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">Raccomanda film e sceglie anche le copertine per te</span></div></div></div>
+    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">⚽</span><b class="fz-h3">VAR</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">Riconosce i corpi dei giocatori e misura il fuorigioco</span></div></div></div>
+    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">🏥</span><b class="fz-h3">Medicina</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">Legge le radiografie e segnala cosa controllare</span></div></div></div>
+    <div class="flip-card" onclick="ibFlip(this)"><div class="fc-in"><div class="fc-f"><span style="font-size:clamp(2.2rem,5vw,3rem)">🚗</span><b class="fz-h3">Tesla</b></div><div class="fc-b"><span style="font-size:2rem">🤖</span><span class="fz-body">Riconosce strada, auto e pedoni e decide quando frenare</span></div></div></div>
   </div>
-  <p class="fz-concl" style="color:var(--orange);text-align:center">Quante di queste AI usate ogni giorno senza saperlo?</p>
+  <p id="ibReveal" class="fz-concl" style="color:var(--orange);text-align:center;opacity:0;transition:opacity .6s">Sono ovunque... e tutte usano l'IA!</p>
+  <div style="text-align:center"><button class="btn" onclick="algOpen()">🔬 Ok... ma COME funzionano? Entriamo dentro →</button></div>
+  </div>
+
+  <div id="ibLab" class="col" style="display:none;flex:1;gap:clamp(.5rem,1.3vh,1rem)">
+    <div class="row" style="align-items:flex-end;justify-content:space-between;flex-wrap:wrap">
+      <h3 class="fz-h2 min0" style="font-size:clamp(1.3rem,2.6vw,2.1rem)"><span style="color:var(--orange)">Dentro l'AI:</span> come funziona davvero?</h3>
+      <div class="alg-tabs">
+        <button class="alg-tab on" id="algTabTT" onclick="algTab('tt')">📱 TikTok</button>
+        <button class="alg-tab" id="algTabSP" onclick="algTab('sp')">🎵 Spotify</button>
+        <button class="alg-tab" id="algTabIG" onclick="algTab('ig')">📸 Instagram</button>
+        <button class="alg-tab" id="algTabNF" onclick="algTab('nf')">🎬 Netflix</button>
+        <button class="alg-tab" id="algTabVA" onclick="algTab('va')">⚽ VAR</button>
+        <button class="alg-tab" id="algTabMD" onclick="algTab('md')">🏥 Medicina</button>
+        <button class="alg-tab" id="algTabTS" onclick="algTab('ts')">🚗 Tesla</button>
+        <button class="alg-tab back" onclick="algClose()">← App</button>
+      </div>
+    </div>
+
+    <!-- TikTok simulator -->
+    <div id="algTT" class="wrap-flex" style="flex:1">
+      <div class="col flex-0" style="flex:0 0 auto;align-items:center">
+        <div class="phone">
+          <div class="ph-top"><span style="opacity:.55">Seguiti</span><b>Per te</b></div>
+          <div class="ph-vid" id="ttVid">
+            <div class="ph-pred" id="ttPred">🤖 Previsione: 50% che lo guardi tutto</div>
+            <div class="ph-emoji" id="ttEmoji">📱</div>
+            <div class="ph-rail">
+              <button class="ph-act" id="ttLikeBtn" onclick="fdAct('tt','like')"><span>❤️</span><small id="ttLikeN">Like</small></button>
+              <button class="ph-act" id="ttShareBtn" onclick="fdAct('tt','share')"><span>↗️</span><small>Condividi</small></button>
+              <button class="ph-act" onclick="fdEnd(FD.tt,'nope')"><span>🚫</span><small>Nah</small></button>
+            </div>
+            <div class="ph-cap"><b id="ttUser">@...</b><p id="ttTitle"></p><p id="ttTags" style="opacity:.75"></p></div>
+            <div class="ph-prog"><i id="ttProg"></i></div>
+          </div>
+        </div>
+        <div class="row" style="justify-content:center">
+          <button class="btn" onclick="fdEnd(FD.tt,'skip')">⏭ Scorri</button>
+          <button class="btn cyan" onclick="fdReset(FD.tt)" title="Ricomincia da zero">↺ Reset</button>
+        </div>
+      </div>
+      <div class="panel col min0" id="ttPanel" style="flex:1;gap:clamp(.45rem,1.1vh,.75rem)"></div>
+    </div>
+
+    <!-- Spotify simulator -->
+    <div id="algSP" class="wrap-flex" style="flex:1;display:none">
+      <div class="col flex-0" style="flex:0 0 auto;align-items:center">
+        <div class="phone">
+          <div class="ph-top" style="flex-direction:column;align-items:center;gap:0;font-size:.62rem;letter-spacing:.08em"><span style="opacity:.6">IN RIPRODUZIONE DA</span><span style="font-size:.8rem;letter-spacing:0">Radio per te</span></div>
+          <div class="sp-body" id="spVid">
+            <div class="ph-pred" id="spPred">🤖 Previsione: 50% che non la salti</div>
+            <div class="sp-art" id="spArt">🎵</div>
+            <div class="sp-meta">
+              <div class="min0" style="flex:1"><b id="spTitle">...</b><p id="spArtist"></p></div>
+              <button class="sp-c" id="spLikeBtn" onclick="fdAct('sp','like')" title="Mi piace"><svg class="fillon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.3-8.8A5.2 5.2 0 0 1 12 6.3a5.2 5.2 0 0 1 9.3 4.9C19 15.7 12 20 12 20z"/></svg><small>Mi piace</small></button>
+            </div>
+            <div class="sp-bar"><i id="spProg"></i></div>
+            <div class="sp-times"><span id="spT0">0:00</span><span>0:30</span></div>
+            <div class="sp-ctrl">
+              <button class="sp-c" onclick="fdEnd(FD.sp,'nope')" title="Nascondi brano"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M5.7 5.7l12.6 12.6"/></svg><small>Nascondi</small></button>
+              <button class="sp-c" id="spAddBtn" onclick="fdAct('sp','add')" title="Aggiungi a playlist"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><small>Playlist</small></button>
+              <button class="sp-c" onclick="fdPause('sp')" title="Play/Pausa"><span class="sp-play" id="spPlay"></span></button>
+              <button class="sp-c" onclick="fdEnd(FD.sp,'skip')" title="Salta"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 5l11 7-11 7zM17 5h2.5v14H17z"/></svg><small>Salta</small></button>
+              <button class="sp-c" id="spRepBtn" onclick="fdAct('sp','rep')" title="Riascolta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3"/></svg><small>Riascolta</small></button>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="justify-content:center">
+          <button class="btn" style="background:#1DB954" onclick="fdEnd(FD.sp,'skip')">⏭ Salta</button>
+          <button class="btn cyan" onclick="fdReset(FD.sp)" title="Ricomincia da zero">↺ Reset</button>
+        </div>
+      </div>
+      <div class="panel col min0" id="spPanel" style="flex:1;gap:clamp(.45rem,1.1vh,.75rem)"></div>
+    </div>
+
+    <!-- Instagram: come viene ordinato il feed -->
+    <div id="algIG" class="wrap-flex" style="flex:1;display:none">
+      <div class="col flex-0" style="flex:0 0 auto;align-items:center">
+        <div class="phone">
+          <div class="ph-top" style="justify-content:space-between;padding:.3em 1.3em .4em;font-size:.72rem"><b style="border:none">9:41</b><span style="display:flex;gap:.35em;align-items:center">5G <svg viewBox="0 0 26 12" width="22" height="11"><rect x=".5" y=".5" width="21" height="11" rx="3" fill="none" stroke="#fff"/><rect x="2" y="2" width="15" height="8" rx="1.5" fill="#fff"/><rect x="23" y="4" width="2" height="4" rx="1" fill="#fff"/></svg></span></div>
+          <div class="ig-body">
+            <div class="ig-bar">
+              <span class="ig-logo">Instagram</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.3-8.8A5.2 5.2 0 0 1 12 6.3a5.2 5.2 0 0 1 9.3 4.9C19 15.7 12 20 12 20z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M22 3L11 13M22 3l-7 18-4-8-8-4z"/></svg>
+            </div>
+            <div class="ig-stories" id="igStories"></div>
+            <div class="ig-feed" id="igFeed"></div>
+            <div class="ig-nav">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 10.5L12 3l9 7.5V21h-6.5v-6h-5v6H3z"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M12 8v8M8 12h8"/></svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M3 8.5h18M8 3l3 5.5M14 3l3 5.5M10 12v5.5l4.5-2.75z"/></svg>
+              <span class="ig-me"></span>
+            </div>
+            <div class="ig-sv" id="igSV">
+              <div class="ig-svbars" id="igSvBars"></div>
+              <div class="ig-svhead"><span class="ig-av" id="igSvAv"></span><b id="igSvUser"></b><small id="igSvTime"></small><button class="ig-svx" onclick="igSvClose()" title="Chiudi">✕</button></div>
+              <div class="ig-svmid">
+                <div class="ig-svtap" style="left:0" onclick="igSvPrev()" title="Storia precedente"></div>
+                <div class="ig-svtap" style="right:0" onclick="igSvNext()" title="Storia successiva"></div>
+                <span class="ig-sve" id="igSvE"></span>
+                <span class="ig-svt" id="igSvT"></span>
+              </div>
+              <div class="ig-svfoot">
+                <button class="ig-svin" id="igSvIn" onclick="igSvReply()">Invia messaggio...</button>
+                <button class="ig-svic" id="igSvLike" onclick="igSvLike()" title="Mi piace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.3-9.3-8.8A5.2 5.2 0 0 1 12 6.3a5.2 5.2 0 0 1 9.3 4.9C19 15.7 12 20 12 20z"/></svg></button>
+                <button class="ig-svic" onclick="igSvReply()" title="Invia"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M22 3L11 13M22 3l-7 18-4-8-8-4z"/></svg></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="justify-content:center;gap:.4em;flex-wrap:wrap">
+          <button class="mp-tg" id="igModeC" onclick="igMode('chrono')">📅 Cronologico</button>
+          <button class="mp-tg on" id="igModeA" onclick="igMode('algo')">🧠 Algoritmo</button>
+          <button class="mp-tg" onclick="igReset()" title="Ricomincia">↺</button>
+        </div>
+      </div>
+      <div class="panel col min0" style="flex:1;gap:clamp(.45rem,1.1vh,.7rem)">
+        <div><h3 class="fz-h3">🧠 Come Instagram mette in ordine il tuo feed</h3><p class="fz-small" style="color:var(--gray);margin-top:.2em">Nel feed vedi soprattutto <b>chi segui</b> (non sconosciuti come su TikTok). Quando apri l'app, Instagram raccoglie i loro post nuovi (qui 8, di solito centinaia), dà un <b>punteggio</b> a ognuno e li mette in fila.</p></div>
+        <div><p class="fz-small" style="font-weight:800">📋 Il tuo feed in ordine · ❤️‍🔥 quanto sei vicino a ciascuno</p><div class="ig-rel" id="igRel"></div></div>
+        <p class="xp-hint">👆 Clicca un post per vedere il suo punteggio · guarda le storie · scrivi in DM</p>
+        <div class="aim one" style="margin-top:0"><p><b class="aim-h">🤔 AI o matematica?</b> <span class="pl-b ai">🧠 AI</span> le % le stima una rete neurale allenata su miliardi di like · <span class="pl-b math">🧮 Matematica</span> la somma pesata e la classifica finale.</p></div>
+        <div class="tt-why fz-small" id="igNote"></div>
+      </div>
+    </div>
+
+    <!-- Netflix: una pagina diversa per ogni profilo -->
+    <div id="algNF" class="wrap-flex" style="flex:1;display:none">
+      <div class="tv min0" id="nfTV"></div>
+      <div class="panel col min0" style="flex:1;gap:clamp(.45rem,1.1vh,.7rem)">
+        <div class="row" id="nfChips" style="flex-wrap:wrap;gap:.35em"></div>
+        <h3 class="fz-h3" id="nfHead"></h3>
+        <div class="pl">
+          <div class="pl-row ai lit"><span class="pl-ic">🗂️</span><span class="pl-t">1. Ti mette in una comunità</span><span class="pl-b ai">🧠 AI · raggruppa persone</span><span class="pl-d" id="nfPD0"></span></div>
+          <div class="pl-row ai lit"><span class="pl-ic">🔮</span><span class="pl-t">2. Prevede il tuo match</span><span class="pl-b ai">🧠 AI · rete neurale</span><span class="pl-d" id="nfPD1"></span></div>
+          <div class="pl-row lit"><span class="pl-ic">🧮</span><span class="pl-t">3. Costruisce la pagina</span><span class="pl-b math">🧮 Matematica · ordina righe</span><span class="pl-d" id="nfPD2"></span></div>
+          <div class="pl-row ai lit"><span class="pl-ic">🎨</span><span class="pl-t">4. Sceglie le copertine</span><span class="pl-b ai">🧠 AI · immagini per te</span><span class="pl-d" id="nfPD3"></span></div>
+        </div>
+        <p class="xp-hint">👆 Clicca un titolo nella TV: scopri perché è lì e come lo vedono gli altri</p>
+        <div class="aim one"><p><b class="aim-h">🤔 AI o matematica?</b> <span class="pl-b math">📏 Regola a mano</span> filtro bambini · <span class="pl-b ai">🧠 AI</span> comunità, match % e copertine (imparati da milioni di persone)</p></div>
+      </div>
+    </div>
+
+    <!-- VAR simulator -->
+    <div id="algVA" class="wrap-flex" style="flex:1;display:none">
+      <div class="col flex-0" style="flex:0 0 auto;align-items:center">
+        <div class="scr"><span class="scr-tag">📺 Replay VAR</span><svg id="vaSvg" viewBox="0 0 480 300" aria-label="Azione di gioco vista dal VAR"></svg></div>
+        <div class="row" style="justify-content:center;gap:.5em;flex-wrap:wrap"><button class="btn" id="vaBtn" onclick="vaStep()">🎥 Chiedi al VAR</button><button class="btn ghost lab-gh" onclick="vaNew()">🔁 Nuova azione</button></div>
+      </div>
+      <div class="panel col min0" style="flex:1;gap:clamp(.45rem,1.1vh,.75rem)">
+        <div class="tt-why fz-small" id="vaMsg" style="background:rgba(255,107,53,.1);border-left-color:var(--orange)"></div>
+        <div class="pl">
+          <p class="fz-small" style="font-weight:800;color:var(--gray)">Cosa succede in quei 30 secondi — dov'è l'AI?</p>
+          <div class="pl-row" id="vaPL0"><span class="pl-ic">📹</span><span class="pl-t">1. 12 telecamere riprendono</span><span class="pl-b data">📡 Dati · 50 foto al secondo</span><span class="pl-d">Sotto il tetto dello stadio, puntate su tutto il campo.</span></div>
+          <div class="pl-row ai" id="vaPL1"><span class="pl-ic">🦴</span><span class="pl-t">2. Trova i corpi dei giocatori</span><span class="pl-b ai">🧠 AI · 29 punti a testa</span><span class="pl-d">Testa, spalle, ginocchia, piedi: come i 478 punti del viso della slide prima.</span></div>
+          <div class="pl-row" id="vaPL2"><span class="pl-ic">⚽</span><span class="pl-t">3. Il momento del passaggio</span><span class="pl-b data">📡 Dati · sensore nel pallone</span><span class="pl-d">Il pallone "sente" il calcio 500 volte al secondo.</span></div>
+          <div class="pl-row" id="vaPL3"><span class="pl-ic">📏</span><span class="pl-t">4. Traccia le linee e misura</span><span class="pl-b math">🧮 Matematica · geometria</span><span class="pl-d">Poi l'arbitro guarda e decide.</span></div>
+        </div>
+        <div class="aim"><p class="aim-h">🤔 AI o matematica?</p><div class="aim-g"><div class="aim-c ai"><b>🧠 AI</b>Riconoscere un ginocchio o una spalla in mezzo a 22 giocatori che corrono.</div><div class="aim-c math"><b>🧮 Matematica</b>Tirare una linea e misurare i centimetri.</div><div class="aim-c"><b>👨‍⚖️ Persona</b>L'ultima parola è sempre dell'arbitro.</div></div></div>
+      </div>
+    </div>
+
+    <!-- Medicina simulator -->
+    <div id="algMD" class="wrap-flex" style="flex:1;display:none">
+      <div class="col flex-0" style="flex:0 0 auto;align-items:center">
+        <div class="scr md"><span class="scr-tag" id="mdTag">🩻 Radiografia del torace</span><svg id="mdSvg" viewBox="0 0 480 300" aria-label="Radiografia del torace"></svg></div>
+        <div class="row" style="justify-content:center;gap:.5em;flex-wrap:wrap"><button class="btn" id="mdBtn" onclick="mdStep()">🔍 Analizza con l'AI</button></div>
+      </div>
+      <div class="panel col min0" style="flex:1;gap:clamp(.45rem,1.1vh,.75rem)">
+        <div class="row" style="flex-wrap:wrap;gap:.4em" id="mdPats"></div>
+        <div class="tt-why fz-small" id="mdMsg" style="background:rgba(255,107,53,.1);border-left-color:var(--orange)"></div>
+        <div class="pl">
+          <p class="fz-small" style="font-weight:800;color:var(--gray)">Cosa succede dietro la diagnosi — dov'è l'AI?</p>
+          <div class="pl-row" id="mdPL0"><span class="pl-ic">🩻</span><span class="pl-t">1. La lastra diventa numeri</span><span class="pl-b data">📡 Dati · pixel</span><span class="pl-d">Come la foto del gatto nella slide 8.</span></div>
+          <div class="pl-row ai" id="mdPL1"><span class="pl-ic">🔎</span><span class="pl-t">2. Cerca forme sospette</span><span class="pl-b ai">🧠 AI · rete neurale</span><span class="pl-d">Allenata su migliaia di lastre già diagnosticate dai medici.</span></div>
+          <div class="pl-row ai" id="mdPL2"><span class="pl-ic">🔥</span><span class="pl-t">3. Mostra dove ha guardato</span><span class="pl-b ai">🧠 AI · mappa di calore</span><span class="pl-d">Così il medico capisce perché.</span></div>
+          <div class="pl-row" id="mdPL3"><span class="pl-ic">👩‍⚕️</span><span class="pl-t">4. Decide il medico</span><span class="pl-b human">👩‍⚕️ Persona</span><span class="pl-d">L'AI suggerisce, non firma la diagnosi.</span></div>
+        </div>
+        <div class="aim"><p class="aim-h">🤔 Chi decide?</p><div class="aim-g"><div class="aim-c ai"><b>🧠 AI</b>Un secondo paio d'occhi che non si stanca mai e guarda ogni pixel.</div><div class="aim-c"><b>👩‍⚕️ Medico</b>Conosce il paziente, controlla l'AI e decide. Anche l'AI sbaglia.</div></div></div>
+      </div>
+    </div>
+
+    <!-- Tesla simulator -->
+    <div id="algTS" class="wrap-flex" style="flex:1;display:none">
+      <div class="col flex-0" style="flex:0 0 auto;align-items:center">
+        <div class="scr"><span class="scr-tag">🚗 Telecamera anteriore</span><svg id="tsSvg" viewBox="0 0 480 300" aria-label="La strada vista dalla telecamera dell'auto"></svg></div>
+        <div class="row" style="justify-content:center;gap:.5em;flex-wrap:wrap"><button class="btn" id="tsCross" onclick="tsCross()">🚶 Il pedone attraversa</button></div>
+      </div>
+      <div class="panel col min0" style="flex:1;gap:clamp(.45rem,1.1vh,.75rem)">
+        <div class="row" style="flex-wrap:wrap;gap:.4em">
+          <button class="mp-tg" id="tsTgSee" onclick="tsTog('see')">👁️ Cosa vede l'auto</button>
+          <button class="mp-tg" id="tsTgNight" onclick="tsTog('night')">🌙 Notte</button>
+          <button class="mp-tg" id="tsTgRain" onclick="tsTog('rain')">🌧️ Pioggia</button>
+        </div>
+        <div class="tt-why fz-small" id="tsMsg" style="background:rgba(255,107,53,.1);border-left-color:var(--orange)"></div>
+        <div class="pl">
+          <p class="fz-small" style="font-weight:800;color:var(--gray)">Cosa succede 30 volte al secondo — dov'è l'AI?</p>
+          <div class="pl-row" id="tsPL0"><span class="pl-ic">📹</span><span class="pl-t">1. 8 telecamere riprendono</span><span class="pl-b data">📡 Dati · video</span><span class="pl-d">Tutto intorno all'auto, come tanti occhi.</span></div>
+          <div class="pl-row ai" id="tsPL1"><span class="pl-ic">🏷️</span><span class="pl-t">2. Riconosce cosa c'è</span><span class="pl-b ai">🧠 AI · rete neurale</span><span class="pl-d">Auto, pedoni, semafori, cartelli.</span></div>
+          <div class="pl-row ai" id="tsPL2"><span class="pl-ic">🔮</span><span class="pl-t">3. Prevede cosa faranno</span><span class="pl-b ai">🧠 AI · previsione</span><span class="pl-d">Quel pedone sta per attraversare?</span></div>
+          <div class="pl-row" id="tsPL3"><span class="pl-ic">🛑</span><span class="pl-t">4. Decide: frena o vai</span><span class="pl-b rule">📏 Regole + AI</span><span class="pl-d">Rosso = fermati. Pedone in strada = frena.</span></div>
+        </div>
+        <div class="aim"><p class="aim-h">🤔 AI o regole?</p><div class="aim-g"><div class="aim-c math"><b>📏 Regole</b>Scritte dagli ingegneri: con il rosso ci si ferma, il limite è 50.</div><div class="aim-c ai"><b>🧠 AI</b>Capire che quella macchia scura è un pedone, di notte, sotto la pioggia.</div></div></div>
+      </div>
+    </div>
+
+    <p id="algTip" class="fz-concl" style="color:var(--orange);text-align:center;font-size:clamp(.95rem,1.7vw,1.3rem)"></p>
+  </div>
 </section>
 
 <!-- 16 PAUSA -->
@@ -2154,7 +2157,7 @@ var algCur='tt';
 var XP={open:false,seen:{},always:false,last:null,tt:null};
 function xpFmt(v){return String(Math.round(v*10)/10).replace('.',',')}
 function xpShow(key,o,force){if(!o)return;XP.last=o;if(!force&&XP.seen[key]&&!XP.always){xpToast(o);return}XP.seen[key]=1;if(o.mu)return muShow(o);
-  var B={data:'📡 Dati',ai:'🧠 AI',math:'🧮 Matematica',mech:'⚙️ Meccanismo',rule:'📏 Regole',idea:'💡 Idea',fun:'🎩 Curiosità'},h='<div class="xp-head"><span class="xp-ic">'+o.ic+'</span><div class="min0"><h3 class="fz-h2 xp-t">'+o.t+'</h3>'+(o.sub?'<p class="fz-body xp-sub">'+o.sub+'</p>':'')+'</div></div>';
+  var B={human:'👩‍⚕️ Persona',data:'📡 Dati',ai:'🧠 AI',math:'🧮 Matematica',mech:'⚙️ Meccanismo',rule:'📏 Regole',idea:'💡 Idea',fun:'🎩 Curiosità'},h='<div class="xp-head"><span class="xp-ic">'+o.ic+'</span><div class="min0"><h3 class="fz-h2 xp-t">'+o.t+'</h3>'+(o.sub?'<p class="fz-body xp-sub">'+o.sub+'</p>':'')+'</div></div>';
   if(o.html)h+=o.html;
   (o.rows||[]).forEach(function(r){h+='<div class="xp-row '+r[2]+'"><span class="xp-ri">'+r[0]+'</span><div class="min0"><p class="xp-rl">'+r[1]+' <span class="pl-b '+r[2]+'">'+B[r[2]]+'</span></p><p class="xp-rt">'+r[3]+'</p></div></div>'});
   if(o.bars&&o.bars.length){h+='<div class="xp-bars">'+(o.barT?'<p class="xp-rl">'+o.barT+'</p>':'');o.bars.forEach(function(b){var u=b[4]||'%',mx=b[5]||100,good=b[6]?b[2]<=b[1]:b[2]>=b[1];h+='<div class="xp-bar"><span>'+b[0]+'</span><div class="tt-track"><i data-to="'+Math.min(100,b[2]/mx*100)+'" style="width:'+Math.min(100,b[1]/mx*100)+'%;background:'+(b[3]||'var(--cyan)')+'"></i></div><b>'+xpFmt(b[1])+u+' → <span style="color:'+(b[2]===b[1]?'var(--gray)':good?'var(--green)':'var(--red)')+'">'+xpFmt(b[2])+u+'</span></b></div>'});h+='</div>'}
@@ -2166,10 +2169,10 @@ function xpShow(key,o,force){if(!o)return;XP.last=o;if(!force&&XP.seen[key]&&!XP
 function xpClose(){XP.open=false;document.getElementById('xp').classList.remove('on')}
 function xpToast(o){var t=document.getElementById('xpToast');t.innerHTML=(o.toast||(o.ic?o.ic+' ':'')+o.t)+'<u>perché?</u>';t.classList.add('on');clearTimeout(XP.tt);XP.tt=setTimeout(function(){t.classList.remove('on')},3200)}
 function R(ic,l,k,html){return[ic,l,k,html]}
-var algTips={tt:"💡 Ogni secondo in cui resti è un voto: l'AI misura cosa GUARDI, non cosa dici che ti piace.",sp:"💡 Su Spotify un ascolto \"conta\" solo dopo 30 secondi: saltare prima è un segnale negativo.",ig:"💡 Dal 2016 il feed non è più cronologico: Instagram mostra prima le persone a cui sei più vicino (DM, commenti, storie), non chi ha postato per ultimo.",nf:"💡 L'80% di quello che si guarda su Netflix arriva dai consigli dell'algoritmo, non dalla ricerca.",mp:"💡 Trovare la strada è matematica (Dijkstra, 1956). Prevedere il traffico è AI: per questo Maps sa che tra 10 minuti ci sarà coda.",ai:"💡 È matematica E AI: la matematica è il linguaggio, l'AI è la parte che trova da sola i numeri giusti."};
+var algTips={tt:"💡 Ogni secondo in cui resti è un voto: l'AI misura cosa GUARDI, non cosa dici che ti piace.",sp:"💡 Su Spotify un ascolto \"conta\" solo dopo 30 secondi: saltare prima è un segnale negativo.",ig:"💡 Dal 2016 il feed non è più cronologico: Instagram mostra prima le persone a cui sei più vicino (DM, commenti, storie), non chi ha postato per ultimo.",nf:"💡 L'80% di quello che si guarda su Netflix arriva dai consigli dell'algoritmo, non dalla ricerca.",va:"💡 Ai Mondiali 2022 il fuorigioco semi-automatico usava 12 telecamere e un sensore nel pallone che trasmette 500 volte al secondo.",md:"💡 L'AI non sostituisce il medico: è un secondo paio d'occhi che non si stanca mai. Chi decide è sempre una persona.",ts:"💡 Le Tesla vedono la strada solo con 8 telecamere, come noi con gli occhi. Altre auto senza guidatore usano anche un laser (LiDAR)",ai:"💡 È matematica E AI: la matematica è il linguaggio, l'AI è la parte che trova da sola i numeri giusti."};
 function algOpen(){document.getElementById('ibIntro').style.display='none';document.getElementById('ibLab').style.display='flex';algTab(algCur);Object.keys(FD).forEach(function(k){if(!FD[k].cur)fdNext(FD[k])})}
 function algClose(){document.getElementById('ibLab').style.display='none';document.getElementById('ibIntro').style.display='flex'}
-function algTab(k){algCur=k;['tt','sp','ig','nf','mp'].forEach(function(x){var u=x.toUpperCase();document.getElementById('alg'+u).style.display=x===k?'flex':'none';document.getElementById('algTab'+u).classList.toggle('on',x===k)});document.getElementById('algTip').textContent=algTips[k]}
+function algTab(k){algCur=k;['tt','sp','ig','nf','va','md','ts'].forEach(function(x){var u=x.toUpperCase();document.getElementById('alg'+u).style.display=x===k?'flex':'none';document.getElementById('algTab'+u).classList.toggle('on',x===k)});document.getElementById('algTip').textContent=algTips[k]}
 function rnd(a,b){return Math.floor(a+Math.random()*(b-a+1))}
 
 var TT_CATS=[
@@ -2282,7 +2285,7 @@ function fdInit(E){
   v.addEventListener('touchend',function(e){var dy=e.changedTouches[0].clientY-y0,dx=e.changedTouches[0].clientX-x0;if(dy<-50&&Math.abs(dy)>Math.abs(dx))fdEnd(E,'skip')},{passive:true});
 }
 function fdBoot(){
-  Object.keys(FD).forEach(function(k){fdInit(FD[k])});mlInit();mpUpd();igRender();nfRender();
+  Object.keys(FD).forEach(function(k){fdInit(FD[k])});mlInit();igRender();nfRender();labInit();
   setInterval(function(){
     if(XP.open||document.hidden||document.getElementById('ibLab').style.display==='none'||!document.getElementById('s2').classList.contains('current'))return;
     var E=FD[algCur];if(!E||!E.cur||E.busy||E.paused)return;
@@ -2482,57 +2485,126 @@ function nfReset(){NFP.forEach(function(P){P.h=P.h0.slice();P.lk=[]});NF.p=-1;NF
 FD.tt.noun='video';FD.sp.noun='brano';
 
 /* Maps */
-var MP={rain:0,match:0,acc:0,err:4,trips:0,busy:false,last:'',
-  R:[{n:'Via del Centro',s:'Centro',km:4.1,base:9,rush:2.2,rain:.35,match:1.6,acc:0,lab:[112,178]},
-     {n:'Tangenziale',s:'Tangenziale',km:7.8,base:12,rush:.6,rain:.25,match:.1,acc:1.8,lab:[24,62]},
-     {n:'Strada di campagna',s:'Campagna',km:6.6,base:15,rush:.15,rain:.5,match:0,acc:0,lab:[218,262]}]};
-function mpRush(h){var g=function(m,s){return Math.exp(-Math.pow(h-m,2)/(2*s*s))};return g(8,.6)+g(18,.8)+.25*g(13.25,.5)}
-function mpH(){return parseFloat(document.getElementById('mpTime').value)}
-function mpFmt(h){var m=Math.round((h%1)*60);return Math.floor(h)+':'+(m<10?'0':'')+m}
-function mpTimes(){var r=mpRush(mpH());return MP.R.map(function(R){return R.base*(1+R.rush*r+MP.rain*R.rain+MP.match*R.match+MP.acc*R.acc)})}
-function mpCol(x){return x<1.35?'#2ECC71':x<2?'#FFB800':'#E74C3C'}
-function mpTog(k,el){var t0=mpTimes(),b0=mpBest(t0);MP[k]=MP[k]?0:1;el.classList.toggle('on',!!MP[k]);mpUpd();if(!MP[k])return;var t1=mpTimes(),b1=mpBest(t1),X={
-  rain:{ic:'☔',t:'Sta piovendo!',d:'Dai servizi meteo, e dai telefoni in strada che all\'improvviso vanno più piano.',a:'Ha imparato da anni di viaggi che con la pioggia tutti rallentano, e alcune strade più di altre.'},
-  match:{ic:'⚽',t:'C\'è la partita allo stadio!',d:'Lo capisce dai tanti telefoni che si muovono tutti verso la stessa zona.',a:'Riconosce lo schema "a quest\'ora, qui, succede sempre così" e prevede la coda <b>prima</b> che si formi.'},
-  acc:{ic:'🚧',t:'Incidente in tangenziale!',d:'Lo segnalano gli utenti e lo mostrano i telefoni fermi in coda, in tempo reale.',a:'Stima quanto durerà il rallentamento e quanto si allungherà la coda.'}}[k];
-  xpShow('mp:'+k,{ic:X.ic,t:X.t,rows:[R('📡','Come lo sa','data',X.d),R('🔮','Cosa prevede l\'AI','ai',X.a),R('🧮','Cosa calcola la matematica','math',b0===b1?'Dijkstra ricalcola tutti i percorsi: il migliore resta <b>'+MP.R[b1].n+'</b>.':'Dijkstra ricalcola tutti i percorsi: il migliore cambia da <b>'+MP.R[b0].n+'</b> a <b>'+MP.R[b1].n+'</b>!')],
-    barT:'⏱️ Tempo previsto per ogni percorso',bars:MP.R.map(function(R0,i){return[R0.s,Math.round(t0[i]),Math.round(t1[i]),mpCol(t1[i]/R0.base),' min',50,1]}),toast:X.ic+' '+X.t+' → '+MP.R[b1].n+', '+Math.round(t1[b1])+' min'})}
-function mpBest(t){var b=0;t.forEach(function(v,i){if(v<t[b])b=i});return b}
-function mpUpd(){
-  var h=mpH(),t=mpTimes(),b=mpBest(t),rush=mpRush(h),max=Math.max(45,Math.max.apply(null,t));
-  document.getElementById('mpH').textContent=mpFmt(h);
-  document.getElementById('mpRain').style.display=MP.rain?'':'none';
-  document.getElementById('mpStad').style.display=MP.match?'':'none';
-  document.getElementById('mpAccI').style.display=MP.acc?'':'none';
-  var lab='',rows='';
-  MP.R.forEach(function(R,i){var c=mpCol(t[i]/R.base),pl=document.getElementById('mpRt'+i);
-    pl.setAttribute('stroke',c);pl.setAttribute('stroke-width',i===b?9:5);pl.setAttribute('opacity',i===b?1:.55);
-    if(i===b)pl.parentNode.appendChild(pl);
-    lab+='<g transform="translate('+R.lab[0]+','+R.lab[1]+')"><rect x="-22" y="-9" width="44" height="18" rx="9" fill="'+(i===b?'#1B2A4A':'#fff')+'" stroke="'+c+'" stroke-width="2"/><text text-anchor="middle" dominant-baseline="central" fill="'+(i===b?'#fff':'#1B2A4A')+'">'+Math.round(t[i])+' min</text></g>';
-    rows+='<div class="mp-row'+(i===b?' best':'')+'"><span>'+(i===b?'⭐ ':'')+R.n+' <span style="color:var(--gray);font-weight:600">'+R.km+' km</span></span><div class="tt-track"><i style="width:'+(t[i]/max*100)+'%;background:'+c+'"></i></div><b>'+Math.round(t[i])+' min</b></div>'});
-  document.getElementById('mpLabels').innerHTML=lab;document.getElementById('mpRows').innerHTML=rows;
-  document.getElementById('mpCard').innerHTML='🚗 <b style="font-size:1.25em">'+Math.round(t[b])+' min</b> ('+MP.R[b].km+' km)<br>via <b>'+MP.R[b].n+'</b> · il percorso più veloce adesso';
-  document.getElementById('mpNoAI').innerHTML=b===0?'✅ Ora il centro è libero: anche senza previsioni, la strada più corta è la migliore.':'🤖❌ <b>Senza AI</b> (solo km e limiti di velocità) ti manderebbe in <b>Via del Centro</b> promettendo 9 min... ma adesso ci metteresti <b>'+Math.round(t[0])+' min</b>!';
-  var phones=Math.round(300+900*rush+500*MP.match+150*MP.rain);
-  document.getElementById('mpPD0').innerHTML='Velocità dai <b>'+phones.toLocaleString('it-IT')+'</b> telefoni in strada: '+MP.R.map(function(R,i){return R.s+' <b>'+Math.round(R.km/(t[i]/60))+' km/h</b>'}).join(' · ');
-  var why=[];if(rush>.45)why.push('🕗 ora di punta');if(MP.rain)why.push('☔ pioggia');if(MP.match)why.push('⚽ partita');if(MP.acc)why.push('🚧 incidente');
-  var w=0;t.forEach(function(v,i){if(v/MP.R[i].base>t[w]/MP.R[w].base)w=i});
-  document.getElementById('mpPD1').innerHTML=why.length?'Riconosce lo schema '+why.join(' + ')+' → '+MP.R[w].s+' <b>+'+Math.round((t[w]/MP.R[w].base-1)*100)+'%</b> di tempo nei prossimi 30 min':'Alle '+mpFmt(h)+' di solito il traffico è normale: nessun rallentamento previsto';
-  document.getElementById('mpPD2').innerHTML='Confronta i 3 percorsi e prende il più breve <i>in minuti</i> (non in km): <b>'+MP.R[b].n+', '+Math.round(t[b])+' min</b>';
-}
-function mpGo(){
-  if(MP.busy)return;MP.busy=true;var btn=document.getElementById('mpGoBtn');btn.disabled=true;
-  var t=mpTimes(),b=mpBest(t),pl=document.getElementById('mpRt'+b),L=pl.getTotalLength(),car=document.getElementById('mpCar'),t0=null;car.style.display='';
-  document.getElementById('mpPL3').classList.remove('lit');
-  function f(ts){if(t0===null)t0=ts;var k=Math.min((ts-t0)/2200,1),pt=pl.getPointAtLength(L*k);car.setAttribute('cx',pt.x);car.setAttribute('cy',pt.y);
-    if(k<1){requestAnimationFrame(f);return}
-    var pred=Math.round(t[b]),real=Math.max(3,Math.round(t[b]+(Math.random()*2-1)*MP.err)),e=Math.abs(real-pred);MP.trips++;var eo=MP.err;MP.err=Math.max(.5,MP.err*.65);
-    document.getElementById('mpPD3').innerHTML='Previsti <b>'+pred+' min</b>, arrivato in <b>'+real+' min</b> (errore '+e+' min) → il modello si corregge: ora sbaglia di <b>±'+MP.err.toFixed(1).replace('.',',')+' min</b>';
-    document.getElementById('mpPL3').classList.add('lit');MP.busy=false;btn.disabled=false;btn.textContent='🚗 Riparti!';
-    xpShow('mp:go',{ic:'🏁',t:'Arrivato a scuola!',rows:[R('🔮','Previsione dell\'AI','ai','<b>'+pred+' minuti</b> via '+MP.R[b].n+'.'),R('📡','Realtà','data','Ci hai messo <b>'+real+' minuti</b>'+(e?' (errore: '+e+' min).':': previsione perfetta!')),R('📈','Impara','ai','Il modello confronta previsione e realtà di milioni di viaggi al giorno e si corregge: a ogni viaggio sbaglia un po\' meno.')],
-      barT:'🎯 Errore medio del modello',bars:[['Errore',eo,MP.err,'#9B59B6',' min',4,1]],toast:'🏁 Previsti '+pred+' min, reali '+real+' min'})}
-  requestAnimationFrame(f);
-}
+/* ---------- VAR: fuorigioco semi-automatico, un passo alla volta ---------- */
+var VA={st:-1,sc:null,last:-1};
+/* tre azioni: di quanti cm l'attaccante è oltre il difensore (negativo = in gioco) */
+var VA_SC=[{cm:7},{cm:-12},{cm:2},{cm:-4}];
+/* corpo che corre verso destra: punti come quelli che trova l'AI */
+var VA_J={head:[6,-66],neck:[3,-54],sR:[9,-52],sL:[-4,-52],eR:[20,-40],hR:[26,-30],eL:[-14,-42],hL:[-22,-34],hipR:[5,-26],hipL:[-3,-26],kR:[18,-13],fR:[14,2],kL:[-6,-11],fL:[-19,0]};
+var VA_B=[['neck','head'],['sL','sR'],['sR','eR'],['eR','hR'],['sL','eL'],['eL','hL'],['sR','hipR'],['sL','hipL'],['hipL','hipR'],['hipR','kR'],['kR','fR'],['hipL','kL'],['kL','fL']];
+function vaFront(x){var m=-1e9;Object.keys(VA_J).forEach(function(k){if(/^[eh][RL]$/.test(k))return;m=Math.max(m,x+VA_J[k][0])});return m}
+function vaFig(x,y,shirt,shorts,dots){var P={},h='';Object.keys(VA_J).forEach(function(k){P[k]=[x+VA_J[k][0],y+VA_J[k][1]]});
+  VA_B.forEach(function(b){var leg=/hip|k|f/.test(b[0]+b[1])&&!/^s/.test(b[0]);h+='<line x1="'+P[b[0]][0]+'" y1="'+P[b[0]][1]+'" x2="'+P[b[1]][0]+'" y2="'+P[b[1]][1]+'" stroke="'+(leg?shorts:shirt)+'" stroke-width="'+(dots?2:8)+'" stroke-linecap="round" opacity="'+(dots?.9:1)+'"/>'});
+  if(!dots)h+='<circle cx="'+P.head[0]+'" cy="'+P.head[1]+'" r="9" fill="#E9B48F"/>';
+  else Object.keys(P).forEach(function(k){h+='<circle cx="'+P[k][0]+'" cy="'+P[k][1]+'" r="3.2" fill="#39FF88" stroke="#0d1424" stroke-width="1"/>'});return h}
+function vaNew(){var i;do{i=Math.floor(Math.random()*VA_SC.length)}while(i===VA.last);VA.last=i;VA.sc=VA_SC[i];VA.st=-1;vaDraw();
+  ['vaPL0','vaPL1','vaPL2','vaPL3'].forEach(function(id){G(id).classList.remove('lit')});G('vaBtn').textContent='🎥 Chiedi al VAR';G('vaBtn').disabled=false;
+  G('vaMsg').innerHTML='Passaggio filtrante, l\'attaccante segna! Ma era in <b>fuorigioco</b>? A occhio è impossibile dirlo: chiediamo al VAR.'}
+function vaDraw(){var s=VA.sc,st=VA.st,dX=300,aX=dX+(vaFront(0)-vaFront(0))+s.cm*.9,y=228,h='';
+  /* campo */
+  for(var i=0;i<8;i++)h+='<rect x="'+(i*60)+'" y="0" width="60" height="300" fill="'+(i%2?'#3E9A4B':'#46A653')+'"/>';
+  h+='<g stroke="#fff" stroke-width="3" fill="none" opacity=".85"><line x1="452" y1="0" x2="452" y2="300"/><rect x="372" y="50" width="80" height="200"/><rect x="420" y="105" width="32" height="90"/></g><rect x="452" y="118" width="18" height="64" fill="none" stroke="#fff" stroke-width="3"/>';
+  /* il pallone appena calciato da un compagno */
+  h+='<circle cx="120" cy="'+(y-2)+'" r="7" fill="#fff" stroke="#222" stroke-width="1.5"/>'+vaFig(100,y,'#E74C3C','#fff',false);
+  if(st>=2)h+='<circle cx="120" cy="'+(y-2)+'" r="16" fill="none" stroke="#FFD54F" stroke-width="3"><animate attributeName="r" values="9;22;9" dur="1s" repeatCount="indefinite"/></circle><text x="112" y="'+(y-86)+'" text-anchor="middle" font-size="11" font-weight="800" fill="#FFD54F" font-family="Nunito Sans,sans-serif">PASSAGGIO!</text>';
+  /* difensore (blu) e attaccante (rosso) */
+  h+=vaFig(dX,y-82,'#2E6FD8','#1B2A4A',false)+vaFig(aX,y+36,'#E74C3C','#fff',false);
+  if(st>=1)h+=vaFig(dX,y-82,'#39FF88','#39FF88',true)+vaFig(aX,y+36,'#39FF88','#39FF88',true);
+  if(st>=0)h+='<g font-size="16">'+[[18,24],[240,18],[460,24],[18,286],[460,286]].map(function(p){return '<text x="'+p[0]+'" y="'+p[1]+'" text-anchor="middle" dominant-baseline="central">📹</text>'}).join('')+'</g>';
+  if(st>=3){var fd=vaFront(dX),fa=vaFront(aX),off=s.cm>0;
+    h+='<line x1="'+fd+'" y1="0" x2="'+fd+'" y2="300" stroke="#4FC3F7" stroke-width="3"/><line x1="'+fa+'" y1="0" x2="'+fa+'" y2="300" stroke="'+(off?'#FF5252':'#FFD54F')+'" stroke-width="3"/>';
+    var mx=Math.max(fd,fa)+10;h+='<rect x="'+mx+'" y="10" width="70" height="28" rx="8" fill="#0d1424" opacity=".88"/><text x="'+(mx+35)+'" y="29" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" font-family="Fredoka,sans-serif">'+Math.abs(s.cm)+' cm</text>'}
+  if(st>=4){var off2=s.cm>0;h+='<rect x="120" y="118" width="240" height="64" rx="14" fill="'+(off2?'#E74C3C':'#2ECC71')+'" opacity=".95"/><text x="240" y="'+(off2?146:156)+'" text-anchor="middle" font-size="24" font-weight="700" fill="#fff" font-family="Fredoka,sans-serif">'+(off2?'FUORIGIOCO':'GIOCO REGOLARE')+'</text>'+(off2?'<text x="240" y="170" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="Nunito Sans,sans-serif">di '+s.cm+' cm · il gol è annullato</text>':'')}
+  G('vaSvg').innerHTML=h}
+var VA_STEPS=[['Avanti: trova i corpi →','📹 <b>12 telecamere</b> sotto il tetto dello stadio riprendono l\'azione da tutti i lati, 50 volte al secondo.'],
+  ['Avanti: il passaggio →','🦴 L\'AI trova <b>29 punti</b> del corpo di ogni giocatore: testa, spalle, ginocchia, piedi. Le braccia non contano per il fuorigioco.'],
+  ['Avanti: traccia le linee →','⚽ Un <b>sensore dentro il pallone</b> registra il calcio 500 volte al secondo: così si sa il fotogramma esatto del passaggio.'],
+  ['Avanti: la decisione →','📏 Ora è <b>geometria</b>: una linea sulla parte più avanzata di ciascuno, e si misura la distanza.'],
+  ['↺ Rivedi il replay','']];
+function vaStep(){if(VA.st>=4){VA.st=-1;['vaPL0','vaPL1','vaPL2','vaPL3'].forEach(function(id){G(id).classList.remove('lit')});G('vaBtn').textContent='🎥 Chiedi al VAR';vaDraw();G('vaMsg').innerHTML='Rivediamo la stessa azione, passo per passo.';return}VA.st++;var st=VA.st;G('vaPL'+Math.min(3,st)).classList.add('lit');G('vaBtn').textContent=VA_STEPS[st][0];vaDraw();
+  if(st<4){G('vaMsg').innerHTML=VA_STEPS[st][1];return}
+  var off=VA.sc.cm>0;G('vaMsg').innerHTML=off?'🚩 <b>Fuorigioco di '+VA.sc.cm+' cm</b>: a occhio nessuno poteva vederlo. L\'arbitro guarda il replay e annulla il gol.':'✅ <b>Gioco regolare</b>: l\'attaccante era '+(-VA.sc.cm)+' cm dietro. Gol valido!';
+  xpShow('va:end',{ic:off?'🚩':'✅',t:off?'Fuorigioco di '+VA.sc.cm+' cm':'Gioco regolare',sub:'Tutto in meno di 30 secondi.',
+    rows:[R('📹','12 telecamere','data','Riprendono ogni giocatore 50 volte al secondo.'),R('🦴','I corpi','ai','L\'AI riconosce <b>29 punti</b> del corpo di ogni giocatore, anche quando sono uno addosso all\'altro: è una rete neurale allenata su migliaia di partite.'),
+      R('⚽','Il pallone','data','Il sensore nel pallone dice il momento esatto del passaggio.'),R('📏','La linea','math','Il resto è geometria: chi è più avanti, e di quanto.')],
+    foot:'Il fuorigioco semi-automatico è stato usato ai Mondiali del 2022 e oggi è in Serie A. Ma a decidere è sempre l\'arbitro.',toast:off?'🚩 Fuorigioco di '+VA.sc.cm+' cm':'✅ Gioco regolare'})}
+
+/* ---------- Medicina: l'AI legge una radiografia, il medico decide ---------- */
+var MD={p:0,st:-1};
+var MD_P=[{n:'Marco, 16 anni',f:null,res:'Nessuna anomalia trovata',pc:95},{n:'Giulia, 45 anni',f:{x:168,y:205,rx:44,ry:30,k:'cloud'},res:'Possibile polmonite',pc:87},{n:'Paolo, 67 anni',f:{x:300,y:118,rx:9,ry:9,k:'dot'},res:'Possibile nodulo da controllare',pc:91}];
+function mdPats(){G('mdPats').innerHTML=MD_P.map(function(p,i){return '<button class="mp-tg'+(i===MD.p?' on':'')+'" onclick="mdPick('+i+')">🧑 '+p.n+'</button>'}).join('')}
+function mdPick(i){MD.p=i;MD.st=-1;mdPats();mdDraw();['mdPL0','mdPL1','mdPL2','mdPL3'].forEach(function(id){G(id).classList.remove('lit')});G('mdBtn').textContent='🔍 Analizza con l\'AI';
+  G('mdMsg').innerHTML='Radiografia del torace di <b>'+MD_P[i].n+'</b>. Per un occhio non allenato sono tutte uguali: vediamo cosa trova l\'AI.'}
+function mdDraw(){var P=MD_P[MD.p],st=MD.st,h='<defs><radialGradient id="mdLung" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#1a1d22"/><stop offset="1" stop-color="#3a3f47"/></radialGradient><radialGradient id="mdHeat" r="50%"><stop offset="0" stop-color="#FF3B30" stop-opacity=".85"/><stop offset=".55" stop-color="#FFCC00" stop-opacity=".45"/><stop offset="1" stop-color="#FFCC00" stop-opacity="0"/></radialGradient><filter id="mdBl"><feGaussianBlur stdDeviation="3"/></filter><filter id="mdBl2"><feGaussianBlur stdDeviation="9"/></filter></defs>';
+  h+='<rect width="480" height="300" fill="#050608"/><path d="M110 300 C100 200 120 80 190 40 L290 40 C360 80 380 200 370 300 Z" fill="#7d838c" filter="url(#mdBl)"/>';
+  h+='<ellipse cx="175" cy="160" rx="62" ry="105" fill="url(#mdLung)" filter="url(#mdBl)"/><ellipse cx="305" cy="160" rx="62" ry="105" fill="url(#mdLung)" filter="url(#mdBl)"/>';
+  h+='<ellipse cx="265" cy="205" rx="48" ry="44" fill="#9aa1aa" opacity=".75" filter="url(#mdBl)"/><rect x="232" y="30" width="16" height="270" fill="#c9ced6" opacity=".8" filter="url(#mdBl)"/>';
+  for(var i=0;i<8;i++){var yy=70+i*24;h+='<path d="M232 '+yy+' C190 '+(yy-14)+' 140 '+(yy-4)+' 118 '+(yy+22)+'" stroke="#d7dbe2" stroke-width="5" fill="none" opacity=".55" filter="url(#mdBl)"/><path d="M248 '+yy+' C290 '+(yy-14)+' 340 '+(yy-4)+' 362 '+(yy+22)+'" stroke="#d7dbe2" stroke-width="5" fill="none" opacity=".55" filter="url(#mdBl)"/>'}
+  h+='<path d="M150 52 L232 62 M330 52 L248 62" stroke="#e2e6ec" stroke-width="7" opacity=".7" filter="url(#mdBl)"/>';
+  if(P.f)h+=P.f.k==='cloud'?'<ellipse cx="'+P.f.x+'" cy="'+P.f.y+'" rx="'+P.f.rx+'" ry="'+P.f.ry+'" fill="#c5cbd3" opacity=".5" filter="url(#mdBl2)"/>':'<circle cx="'+P.f.x+'" cy="'+P.f.y+'" r="'+P.f.rx+'" fill="#d9dee5" opacity=".75" filter="url(#mdBl)"/>';
+  if(st===0)h+='<g opacity=".55">'+Array.apply(null,{length:12}).map(function(_,i){return '<line x1="0" y1="'+(i*25+12)+'" x2="480" y2="'+(i*25+12)+'" stroke="#00E5FF" stroke-width="1"/>'}).join('')+'</g><text x="14" y="288" font-size="12" font-weight="800" fill="#00E5FF" font-family="Nunito Sans,sans-serif">480 × 300 pixel = 144.000 numeri</text>';
+  if(st===1)h+='<g fill="none" stroke="#00E5FF" stroke-width="1.5" opacity=".7">'+[[120,60],[200,60],[280,60],[120,140],[200,140],[280,140],[120,220],[200,220],[280,220]].map(function(p){return '<rect x="'+p[0]+'" y="'+p[1]+'" width="76" height="76" rx="6"/>'}).join('')+'</g><text x="14" y="288" font-size="12" font-weight="800" fill="#00E5FF" font-family="Nunito Sans,sans-serif">La rete neurale guarda la lastra pezzo per pezzo…</text>';
+  if(st>=2&&P.f)h+='<ellipse cx="'+P.f.x+'" cy="'+P.f.y+'" rx="'+(P.f.rx*2.4+18)+'" ry="'+(P.f.ry*2.4+18)+'" fill="url(#mdHeat)"/>';
+  if(st>=2){var lx=P.f?Math.min(330,Math.max(14,P.f.x-80)):150,ly=P.f?(P.f.y>150?P.f.y-P.f.ry*2.4-34:P.f.y+P.f.ry*2.4+20):20;
+    h+='<rect x="'+lx+'" y="'+ly+'" width="180" height="26" rx="8" fill="'+(P.f?'#E74C3C':'#2ECC71')+'"/><text x="'+(lx+90)+'" y="'+(ly+17)+'" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Nunito Sans,sans-serif">'+P.res+' · '+P.pc+'%</text>'}
+  if(st>=3)h+='<rect x="300" y="250" width="166" height="36" rx="10" fill="#fff"/><text x="383" y="273" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2A4A" font-family="Nunito Sans,sans-serif">👩‍⚕️ Controlla il medico</text>';
+  G('mdSvg').innerHTML=h}
+var MD_STEPS=[['Avanti: cerca forme sospette →','🩻 Per l\'AI la radiografia è una griglia di <b>numeri</b>: chiaro = osso, scuro = aria nei polmoni. Come il gatto della slide 8.'],
+  ['Avanti: dove ha guardato →','🔎 La rete neurale cerca le forme che ha imparato da <b>migliaia di lastre</b> già diagnosticate dai medici.'],
+  ['Avanti: chi decide →',''],['🔁 Ricomincia','']];
+function mdStep(){if(MD.st>=3){mdPick(MD.p);return}MD.st++;var st=MD.st,P=MD_P[MD.p];G('mdPL'+st).classList.add('lit');G('mdBtn').textContent=MD_STEPS[st][0];mdDraw();
+  if(st<2){G('mdMsg').innerHTML=MD_STEPS[st][1];return}
+  if(st===2){G('mdMsg').innerHTML=P.f?'🔥 La <b>mappa di calore</b> mostra dove l\'AI ha visto qualcosa: <b>'+P.res.toLowerCase()+'</b> ('+P.pc+'%).':'✅ L\'AI non ha trovato niente di sospetto ('+P.pc+'%).';return}
+  G('mdMsg').innerHTML='👩‍⚕️ Ora il <b>medico</b> guarda la lastra, la mappa dell\'AI, la storia del paziente… e decide.';
+  xpShow('md:end',{ic:'👩‍⚕️',t:P.f?'L\'AI ha trovato qualcosa':'L\'AI non ha trovato niente',sub:'Ma la diagnosi la fa il medico.',
+    rows:[R('🩻','Cosa guarda','data','La lastra è solo una griglia di numeri: il bianco delle ossa, il nero dell\'aria nei polmoni.'),R('🧠','Come ha imparato','ai','È stata allenata su <b>migliaia di radiografie</b> già diagnosticate dai medici, come la vostra AI dei disegni ha imparato dai vostri esempi.'),
+      R('🔥','Perché la mappa','ai','La mappa di calore mostra <b>dove</b> ha guardato: così il medico può controllare se l\'AI ha ragione.'),R('👩‍⚕️','Chi decide','human','Il medico. L\'AI non si stanca e non si distrae, ma può sbagliare: è un secondo paio d\'occhi, non un sostituto.')],
+    foot:'In alcuni studi l\'AI trova i tumori al seno nelle mammografie bene quanto un radiologo esperto. Il risultato migliore arriva quando lavorano insieme.',toast:'👩‍⚕️ L\'AI suggerisce, il medico decide'})}
+
+/* ---------- Tesla: cosa vede l'auto ---------- */
+var TS={see:0,night:0,rain:0,cross:0,px:0,v:50,off:0,raf:0,t0:0};
+function tsTog(k){TS[k]=TS[k]?0:1;G('tsTg'+k.charAt(0).toUpperCase()+k.slice(1)).classList.toggle('on',!!TS[k]);
+  if(TS.see){G('tsPL0').classList.add('lit');G('tsPL1').classList.add('lit')}
+  if(k==='see'&&TS.see)xpShow('ts:see',{ic:'👁️',t:'Cosa vede l\'auto',sub:'Ogni riquadro è qualcosa che la rete neurale ha riconosciuto.',rows:[R('📹','Le telecamere','data','Una Tesla ha <b>8 telecamere</b> tutto intorno: niente radar, solo "occhi", come noi.'),R('🏷️','Riconosce','ai','Una rete neurale, come quella del gatto della slide 8, trova <b>auto, pedoni, semafori e cartelli</b> 30 volte al secondo. Il numero è quanto è sicura.')],toast:'👁️ Riquadri = oggetti riconosciuti'});
+  if((k==='night'||k==='rain')&&TS[k]&&TS.see)xpShow('ts:hard',{ic:k==='night'?'🌙':'🌧️',t:k==='night'?'Di notte vede peggio':'Con la pioggia vede peggio',rows:[R('📉','Più incerta','ai','Guardate le percentuali: scendono. L\'AI è <b>meno sicura</b>, proprio come noi quando guidiamo con poca luce o la pioggia.'),R('🛡️','Più prudente','rule','Per questo, quando è incerta, rallenta e chiede al guidatore di stare attento.')],toast:'📉 Meno luce = AI meno sicura'});
+  tsMsg()}
+function tsMsg(){G('tsMsg').innerHTML=TS.cross===2?'🛑 Pedone in strada: l\'auto <b>frena</b> da sola.':TS.see?'👁️ Ogni riquadro è un oggetto riconosciuto dall\'AI, con quanto è sicura.'+(TS.night||TS.rain?' <b>Con '+(TS.night&&TS.rain?'buio e pioggia':TS.night?'il buio':'la pioggia')+' è meno sicura.</b>':''):'Accendete <b>👁️ Cosa vede l\'auto</b> per guardare la strada con gli occhi dell\'AI.'}
+function tsCross(){if(TS.cross)return;TS.cross=1;TS.t0=performance.now();G('tsCross').disabled=true;G('tsPL2').classList.add('lit')}
+function tsBox(x,y,w,h,lab,pc,col){var t=lab+' '+pc+'%',tw=t.length*6.6+10;return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="none" stroke="'+col+'" stroke-width="2.5" rx="3"/><rect x="'+x+'" y="'+(y-17)+'" width="'+tw+'" height="16" fill="'+col+'" rx="3"/><text x="'+(x+5)+'" y="'+(y-5)+'" font-size="11" font-weight="800" fill="#0d1424" font-family="Nunito Sans,sans-serif">'+t+'</text>'}
+function tsDraw(){var n=TS.night,r=TS.rain,pen=(n?14:0)+(r?9:0),h='';
+  h+='<defs><linearGradient id="tsSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+(n?'#0b1330':'#8EC9F5')+'"/><stop offset="1" stop-color="'+(n?'#1d2547':'#D9EEFB')+'"/></linearGradient></defs>';
+  h+='<rect width="480" height="150" fill="url(#tsSky)"/><rect y="150" width="480" height="150" fill="'+(n?'#1c1f26':'#7a7f87')+'"/>';
+  h+='<g fill="'+(n?'#151a2c':'#b8c2cf')+'"><rect x="0" y="70" width="70" height="80"/><rect x="62" y="96" width="60" height="54"/><rect x="380" y="60" width="100" height="90"/><rect x="345" y="100" width="45" height="50"/></g>';
+  if(n)h+='<g fill="#FFD54F" opacity=".7"><rect x="12" y="84" width="8" height="8"/><rect x="34" y="104" width="8" height="8"/><rect x="400" y="80" width="8" height="8"/><rect x="440" y="110" width="8" height="8"/></g>';
+  h+='<polygon points="200,150 280,150 470,300 10,300" fill="'+(n?'#2a2d34':'#5d6168')+'"/><polygon points="0,170 200,150 10,300 0,300" fill="'+(n?'#22252b':'#a4a9b0')+'"/><polygon points="480,170 280,150 470,300 480,300" fill="'+(n?'#22252b':'#a4a9b0')+'"/>';
+  for(var i=0;i<6;i++){var z=((i/6+TS.off)%1),z2=z+.06,y1=150+150*z*z,y2=150+150*Math.min(1,z2*z2),w1=1+6*z,w2=1+6*z2;h+='<polygon points="'+(240-w1)+','+y1+' '+(240+w1)+','+y1+' '+(240+w2)+','+y2+' '+(240-w2)+','+y2+'" fill="#f2f2f2" opacity=".85"/>'}
+  if(n)h+='<polygon points="150,300 215,180 265,180 330,300" fill="#FFF3B0" opacity=".16"/>';
+  /* auto davanti */
+  h+='<rect x="212" y="166" width="56" height="34" rx="6" fill="#C0392B"/><rect x="218" y="170" width="44" height="12" rx="3" fill="#2c3e50"/><rect x="214" y="188" width="10" height="5" rx="2" fill="'+(n?'#ff4d4d':'#8e2a20')+'"/><rect x="256" y="188" width="10" height="5" rx="2" fill="'+(n?'#ff4d4d':'#8e2a20')+'"/>';
+  /* semaforo e cartello */
+  h+='<rect x="352" y="60" width="5" height="95" fill="#333"/><rect x="342" y="46" width="24" height="54" rx="5" fill="#222"/><circle cx="354" cy="58" r="7" fill="#FF3B30"/><circle cx="354" cy="73" r="7" fill="#553"/><circle cx="354" cy="88" r="7" fill="#353"/>';
+  h+='<rect x="110" y="110" width="4" height="62" fill="#666"/><circle cx="112" cy="104" r="15" fill="#fff" stroke="#E74C3C" stroke-width="5"/><text x="112" y="109" text-anchor="middle" font-size="14" font-weight="800" fill="#111" font-family="Nunito Sans,sans-serif">50</text>';
+  /* pedone */
+  var px=392-TS.px*170,py=232,pl=n?'#5a6070':'#1B2A4A';
+  h+='<g><circle cx="'+px+'" cy="'+(py-46)+'" r="7" fill="'+(n?'#7a6a5a':'#E9B48F')+'"/><rect x="'+(px-7)+'" y="'+(py-38)+'" width="14" height="24" rx="5" fill="'+(n?'#4a3f60':'#8E44AD')+'"/><line x1="'+(px-3)+'" y1="'+(py-15)+'" x2="'+(px-7)+'" y2="'+py+'" stroke="'+pl+'" stroke-width="5" stroke-linecap="round"/><line x1="'+(px+3)+'" y1="'+(py-15)+'" x2="'+(px+7)+'" y2="'+py+'" stroke="'+pl+'" stroke-width="5" stroke-linecap="round"/></g>';
+  if(r){h+='<g stroke="#cfe3ff" stroke-width="1.5" opacity=".55">';for(var j=0;j<70;j++){var rx=(j*53+TS.off*900)%480,ry=(j*97+TS.off*1400)%300;h+='<line x1="'+rx+'" y1="'+ry+'" x2="'+(rx-4)+'" y2="'+(ry+12)+'"/>'}h+='</g>'}
+  if(n)h+='<rect width="480" height="300" fill="#000" opacity=".25"/>';
+  if(TS.see){h+=tsBox(208,162,64,42,'Auto',98-pen,'#00E5FF')+tsBox(338,40,34,64,'Rosso',97-pen,'#FFD54F')+tsBox(94,86,36,36,'Limite 50',95-pen,'#FFD54F');
+    var inRoad=px<380;h+=tsBox(px-14,py-58,28,62,inRoad?'Pedone in strada!':'Pedone',91-pen*1.3|0,inRoad&&TS.cross?'#FF5252':'#39FF88')}
+  /* cruscotto */
+  h+='<rect x="0" y="262" width="480" height="38" fill="#0d1424" opacity=".88"/><text x="16" y="287" font-size="17" font-weight="700" fill="#fff" font-family="Fredoka,sans-serif">'+Math.round(TS.v)+' km/h</text>';
+  h+='<text x="464" y="287" text-anchor="end" font-size="14" font-weight="800" fill="'+(TS.cross===2?'#FF5252':'#2ECC71')+'" font-family="Nunito Sans,sans-serif">'+(TS.cross===2?(TS.v>0?'🛑 FRENO D\'EMERGENZA':'🛑 FERMA: il pedone passa'):'▶ Guida')+'</text>';
+  G('tsSvg').innerHTML=h}
+function tsTick(){var on=G('s2')&&G('s2').classList.contains('current')&&algCur==='ts'&&!document.hidden;
+  if(on){TS.off=(TS.off+TS.v/50*.006)%1;
+    if(TS.cross===1){TS.px=Math.min(1,(performance.now()-TS.t0)/2600);if(TS.px>.08){TS.cross=2;G('tsPL3').classList.add('lit');tsMsg();
+      xpShow('ts:brake',{ic:'🛑',t:'L\'auto ha frenato da sola',rows:[R('🏷️','Ha visto','ai','La rete neurale ha riconosciuto un <b>pedone</b>, anche se era piccolo e lontano.'),R('🔮','Ha previsto','ai','Dal modo in cui si muoveva ha capito che <b>stava per attraversare</b>, prima che arrivasse in mezzo alla strada.'),R('🛑','Ha deciso','rule','Pedone sulla strada = frena. Questa è una <b>regola</b> scritta dagli ingegneri: la parte difficile, per l\'AI, era vederlo.')],
+        foot:'Le Tesla vedono solo con le telecamere. Altre auto senza guidatore, come Waymo, usano anche un laser (LiDAR) che misura le distanze.',toast:'🛑 Pedone riconosciuto: frenata'})}}
+    if(TS.cross===2){TS.v=Math.max(0,TS.v-1.6);TS.px=Math.min(1,(performance.now()-TS.t0)/2600);
+      if(TS.px>=1&&TS.v<=0){TS.cross=3;setTimeout(function(){TS.cross=0;TS.px=0;TS.v=50;G('tsCross').disabled=false;tsMsg()},2500)}}
+    if(TS.cross===3)TS.v=0;tsDraw()}
+  setTimeout(tsTick,50)}
+function labInit(){vaNew();mdPats();mdPick(0);tsMsg();tsDraw();tsTick()}
 
 /* spiegazioni per TikTok e Spotify */
 FD.tt.xp=function(k,x){var nm='<b>'+x.cat.e+' '+x.cat.n+'</b>',REG='Cosa ha registrato',USE='Come lo usa l\'AI',
@@ -3649,7 +3721,7 @@ function paPin(k,j){if(PA.ph!=='vote')return;PA.pin[k]=PA.pin[k]===j?-1:j;paRend
 function paPull(){vtSb(function(sb){var g=PA.g;sb.from('vote_rooms').select('room,state').like('room',vtRoom()+'P%').limit(1000).then(function(res){if(!res.data||g!==PA.g||PA.ph!=='vote')return;
   var v=[[0,0,0],[0,0,0],[0,0,0],[0,0,0]],n=0;res.data.forEach(function(r){if(r.room.length!==8||!r.state||r.state.g!==g||!Array.isArray(r.state.v))return;n++;r.state.v.forEach(function(x,k){if(k<4&&x>=0&&x<3)v[k][x]++})});
   PA.v=v;PA.n=n;paRender()})})}
-/* ---- mentre l'AI lavora: spiegazione in 4 passi (dal testo all'immagine, il contrario della slide 9); avanza quando lo decide l'insegnante ---- */
+/* ---- mentre l'AI lavora: spiegazione in 4 passi (dal testo all'immagine, il contrario della slide 8); avanza quando lo decide l'insegnante ---- */
 var PA_X=[{s:'Parole → numeri',h:'Le parole diventano numeri',p:'Ogni parola diventa una lista di numeri che ne descrive il significato. Parole simili hanno numeri simili: «gatto» è vicino a «cane», lontano da «pizza».'},
   {s:'Rumore',h:'Si parte da puro rumore',p:'L\'AI non parte da un foglio bianco ma da puntini messi a caso, come una TV senza segnale. Guardate l\'immagine a destra.'},
   {s:'Togli il rumore',h:'Toglie il rumore, un passo alla volta',p:'A ogni passo l\'AI si chiede: «secondo le parole, cosa dovrebbe esserci qui?» e toglie un po\' di rumore. L\'ha imparato guardando milioni di immagini con la loro descrizione.'},
@@ -3661,7 +3733,7 @@ function paExpRender(){var e=G('paExp'),st=PA.xs,x=PA_X[st],w=PA.w,extra='',btn=
   if(st===2)extra='<div class="pa-prog"><div><i id="paProg"></i></div><span id="paStep">'+(PA.loaded?'passo 1 di 30':'l\'AI riceve le parole…')+'</span></div>';
   if(st<2)btn='<button class="btn pa-next" onclick="paExpNext()">Avanti: '+PA_X[st+1].s.toLowerCase()+' →</button>';
   if(st===2)btn='<button class="btn pa-next" disabled>L\'AI sta togliendo il rumore…</button>';
-  e.innerHTML='<p class="pa-exk">🔍 Dentro l\'AI, mentre disegna</p><h3 class="pa-exh">Dal testo all\'immagine</h3><p class="pa-exs">Nella slide 9 l\'AI andava da una foto a una parola. Qui fa il contrario.</p>'+
+  e.innerHTML='<p class="pa-exk">🔍 Dentro l\'AI, mentre disegna</p><h3 class="pa-exh">Dal testo all\'immagine</h3><p class="pa-exs">Nella slide 8 l\'AI andava da una foto a una parola. Qui fa il contrario.</p>'+
     '<div class="pa-dots">'+PA_X.map(function(y,i){return '<span class="'+(i===st?'on':i<st?'done':'')+'"><b>'+(i<st?'✓':i+1)+'</b>'+y.s+'</span>'}).join('')+'</div>'+
     '<div class="pa-card"><p class="pa-cn">Passo '+(st+1)+' di 4</p><h4>'+x.h+'</h4><p>'+x.p+'</p>'+extra+'</div>'+btn}
 function paExpNext(){if(PA.xs>=2||PA.ph!=='gen')return;PA.xs++;var tok=PA.tok;
@@ -3802,7 +3874,6 @@ function fkLoop(){cancelAnimationFrame(FK.raf);var v=G('fkVid'),cv=G('fkCv'),las
 function fkStop(keep){cancelAnimationFrame(FK.raf);if(FK.stream){FK.stream.getTracks().forEach(function(t){t.stop()});FK.stream=null}G('fkVid').srcObject=null;
   var cv=G('fkCv');cv.getContext('2d').clearRect(0,0,cv.width,cv.height);if(!keep)fkOffHtml()}
 
-function dlToggle(el){var open=el.classList.contains('open');[].forEach.call(document.querySelectorAll('#dlGrid .dl-card'),function(c){c.classList.remove('open')});if(!open)el.classList.add('open')}
 
 var pb4KW={ruolo:['sei un','agisci come','immagina di essere','come se fossi','professore','esperto','tutor','insegnante'],contesto:['sto preparando','ho bisogno','devo','il mio obiettivo','per l\'esame','per la scuola','per capire'],compito:['spiegami','riassumi','crea','genera','scrivi','elenca','confronta','analizza','traduci','descrivi'],formato:['in massimo','parole','punti','elenco','tabella','schema','mappa','bullet','formato','breve','conciso'],esempio:['esempio','come questo','tipo','simile a','ecco un']};
 function pb4Sc(text){var t=text.toLowerCase(),found={},score=0,tags=[];var col={ruolo:'#FF6B35',contesto:'#00B4D8',compito:'#2ECC71',formato:'#9B59B6',esempio:'#E67E22'},lab={ruolo:'Ruolo',contesto:'Contesto',compito:'Compito',formato:'Formato',esempio:'Esempio'};Object.keys(pb4KW).forEach(function(cat){pb4KW[cat].forEach(function(kw){if(t.indexOf(kw)!==-1&&!found[cat]){found[cat]=true;score++;tags.push('<span style="display:inline-block;padding:.15em .6em;border-radius:6px;font-weight:700;margin:2px;color:#fff;font-size:.9em;background:'+col[cat]+'">'+lab[cat]+' ✓</span>')}})});return{score:score,tags:tags}}
