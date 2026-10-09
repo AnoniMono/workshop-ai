@@ -1324,6 +1324,59 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
 .fk-vids a{font-size:.85rem;font-weight:700;color:var(--navy);background:#fff;border:2px solid var(--border);border-radius:999px;padding:.25em .75em;text-decoration:none;transition:border-color .2s}
 .fk-vids a:hover{border-color:var(--orange);color:var(--orange)}
 @media (max-height:800px){#s14 .dr-h{font-size:clamp(1.4rem,2.8vw,2rem)}#s14 .dr-p{font-size:.98rem}#s14 .fk-it{padding:.3em .6em}#s14 .gn-tip{font-size:.88rem;padding:.45em .8em}#s14 .fk-it span{display:none}}
+/* slide: prompt cattivo vs prompt buono */
+#sPV.current{height:100svh}
+.pv-tabs{display:flex;gap:.45em;flex-wrap:wrap}
+.pv-tab{font-family:var(--ff-head);font-weight:600;font-size:.95rem;padding:.45em 1em;border-radius:999px;border:2px solid var(--border);background:#fff;color:var(--navy);cursor:pointer}
+.pv-tab:hover{border-color:var(--orange)}
+.pv-tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.pv-ask{margin:0;font-size:clamp(1rem,1.6vw,1.2rem);color:var(--gray)}
+.pv-ask b{color:var(--navy)}
+.pv-grid{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;gap:clamp(.7rem,1.8vw,1.4rem)}
+@media (max-width:900px){.pv-grid{grid-template-columns:1fr}#sPV.current{height:auto}}
+.pv-card{display:flex;flex-direction:column;min-height:0;background:#fff;border:3px solid var(--border);border-radius:18px;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.pv-card.good{border-color:#2ECC71;box-shadow:0 0 0 5px rgba(46,204,113,.18)}
+.pv-card.bad{border-color:#E74C3C}
+.pv-h{display:flex;align-items:center;gap:.6em;padding:.55em .9em;background:#F5F7FA;border-bottom:2px solid var(--border)}
+.pv-h b{font-family:var(--ff-head);font-size:1.25rem;color:var(--navy)}
+.pv-h .pv-l{width:1.9em;height:1.9em;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-weight:700}
+.pv-h small{margin-left:auto;font-weight:800;font-size:.8rem;color:var(--gray)}
+.pv-h small.long{color:#C0392B}
+.pv-body{flex:1;min-height:0;overflow:auto;padding:.7em 1em;font-size:clamp(.82rem,1.15vw,.95rem);line-height:1.5;color:var(--navy)}
+.pv-body p{margin:0 0 .45em}
+.pv-body ul,.pv-body ol{margin:0 0 .45em;padding-left:1.3em}
+.pv-body li{margin:.1em 0}
+.pv-body h5{margin:.5em 0 .2em;font-size:1em;font-family:var(--ff-head)}
+.pv-body .ld{color:var(--gray);font-weight:700}
+.pv-pr{border-top:2px dashed var(--border);padding:.55em .9em;background:#FFFBF5;font-size:.88rem;line-height:1.45;color:var(--navy)}
+.pv-pr .tag{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:.15em .6em;border-radius:999px;margin-right:.4em}
+.pv-card.bad .pv-pr .tag{background:#FDECEA;color:#C0392B}
+.pv-card.good .pv-pr .tag{background:#E3F7EC;color:#1E8E4F}
+.pv-pr q{font-weight:700;font-style:italic}
+.pv-ing{display:inline;border-radius:4px;padding:0 .15em;font-style:normal}
+.pv-chips{display:flex;gap:.3em;flex-wrap:wrap;margin-top:.35em}
+.pv-chips span{font-size:.72rem;font-weight:800;padding:.15em .55em;border-radius:999px;color:#fff}
+.pv-hid{color:var(--gray);font-style:italic}
+.pv-bottom{display:flex;gap:clamp(.7rem,1.6vw,1.2rem);align-items:center;flex-wrap:wrap}
+.pv-votes{flex:1;min-width:220px;display:flex;flex-direction:column;gap:.3em}
+.pv-v{display:grid;grid-template-columns:5.5em 1fr 4.5em;gap:.5em;align-items:center;font-weight:800;color:var(--navy);font-size:.92rem}
+.pv-v div{height:14px;background:#E6EBF2;border-radius:7px;overflow:hidden}
+.pv-v i{display:block;height:100%;background:var(--cyan);border-radius:7px;transition:width .5s}
+.pv-v b{text-align:right;font-variant-numeric:tabular-nums}
+.pv-btns{display:flex;flex-direction:column;gap:.45em}
+.pv-btns .btn{font-size:.95rem;padding:.5em 1.1em}
+.pv-btns .btn.ghost{color:var(--navy);box-shadow:inset 0 0 0 2px #C9D1DC;background:#fff}
+.pv-btns .btn:disabled{opacity:.5}
+.pv-load{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5em;height:100%;color:var(--gray);font-weight:700;text-align:center}
+.pv-load span{font-size:2rem;animation:pvSpin 1.2s linear infinite}
+@keyframes pvSpin{to{transform:rotate(360deg)}}
+@media (max-height:800px){#sPV .pv-pr{max-height:5.2em;overflow:auto;font-size:.8rem}#sPV .pv-body{font-size:.8rem}#sPV .pv-h{padding:.4em .8em}#sPV .pa-join .tu-qr canvas,#sPV .pa-join .tu-qr img{width:76px!important;height:76px!important}}
+/* telefono */
+html.vote.pvm,html.vote.pvm body{background:#F5F7FA}
+#vtApp.pv{font-family:var(--ff-body);color:var(--navy);align-items:center;text-align:center}
+.pvp-btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:min(90vw,380px)}
+.pvp-btns button{font:700 2.4rem 'Fredoka',sans-serif;padding:26px 0;border-radius:18px;border:3px solid #E2E8F0;background:#fff;color:#1B2A4A}
+.pvp-btns button.sel{background:#FF6B35;border-color:#FF6B35;color:#fff}
 /* badge extra per i pop-up */
 .pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
 .scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
@@ -1874,16 +1927,21 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
   <div class="panel-t fz-lead" style="max-width:40ch">Nel frattempo: esplorate gli strumenti che avete usato, generate altre immagini o provate Teachable Machine con oggetti diversi!</div>
 </section>
 
-<!-- 17 ACT4 Prompt Battle -->
-<section class="slide dark s-act" data-section="Usare l'AI">
-  <div class="row" style="align-items:center;flex-wrap:wrap"><span class="badge">ATTIVITÀ 4 · 10 min</span><h2 class="fz-h2" style="flex:1;min-width:240px">Sfida: Prompt Battle!</h2></div>
-  <div class="wrap-flex" style="flex:1;align-items:stretch">
-    <div class="panel-t col min0" style="flex:1"><h3 class="fz-h3">Round 1 — Prompt base</h3><textarea class="in ta" id="pb4A" placeholder="Prompt semplice...&#10;es: Spiegami la fotosintesi" oninput="pb4An()"></textarea><div class="panel-t fz-small" id="pb4AnA" style="background:rgba(0,0,0,.2);min-height:3em">Scrivi un prompt per vedere l'analisi...</div><b class="fz-num" id="pb4SA" style="text-align:center;display:block"></b></div>
-    <div class="col" style="flex:none;justify-content:center"><b class="fz-num">VS</b></div>
-    <div class="panel-t col min0" style="flex:1"><h3 class="fz-h3">Round 2 — Prompt avanzato</h3><textarea class="in ta" id="pb4B" placeholder="Con tutti gli ingredienti!&#10;Ruolo + Contesto + Compito + Formato + Esempio" oninput="pb4An()"></textarea><div class="panel-t fz-small" id="pb4AnB" style="background:rgba(0,0,0,.2);min-height:3em">Scrivi un prompt per vedere l'analisi...</div><b class="fz-num" id="pb4SB" style="text-align:center;display:block"></b></div>
+<!-- 17 PROMPT CATTIVO VS BUONO: due risposte vere, la classe vota -->
+<section class="slide darktext s-light" data-section="Usare l'AI" id="sPV">
+  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">ATTIVITÀ · 10 min</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Prompt cattivo vs prompt buono</h2></div>
+  <div class="pv-tabs" id="pvTabs"></div>
+  <div class="pv-ask" id="pvAsk"></div>
+  <div class="pv-grid">
+    <div class="pv-card" id="pvA"></div>
+    <div class="pv-card" id="pvB"></div>
   </div>
-  <button class="btn ghost" style="align-self:center" onclick="pb4Cmp()">Confronta i risultati!</button>
-  <p class="fz-concl" id="pb4Res" style="text-align:center">Scrivete i prompt, poi copiateli in ChatGPT o Claude per confrontare le risposte!</p>
+  <p class="scr-cr" id="pvCr">Risposte di Claude (un'AI), registrate prima. «▶ Prova dal vivo» chiede a un modello gratuito più piccolo: può sbagliare!</p>
+  <div class="pv-bottom">
+    <div class="pa-join" id="pvJoin"></div>
+    <div class="pv-votes" id="pvVotes"></div>
+    <div class="pv-btns"><button class="btn" id="pvRev" onclick="pvReveal()">🔍 Rivela i prompt</button><button class="btn ghost" id="pvLive" onclick="pvLive()">▶ Prova dal vivo</button></div>
+  </div>
 </section>
 
 <!-- 18 PROMPTS builder -->
@@ -3072,8 +3130,9 @@ function agTrainBtn(n){var wb=AG.wr;agTrainN(n);AG.wr=agEval();AGV.ver++;AGV.his
     bars:[['Vittorie',wb,AG.wr]],toast:'+'+n+' partite: vittorie '+wb+'% → '+AG.wr+'%'})}
 
 /* apre e chiude le stanze sui telefoni quando l'insegnante entra o esce */
-function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM||PA_ROOM)return;var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
+function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM||PA_ROOM||PV_ROOM)return;var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
   var s13=G('s13'),pOpen=!!(s13&&s13.classList.contains('current'));if(PA.g){var pKey=pOpen+'|'+PA.g+'|'+PA.ph;if(pKey!==PA.key){PA.key=pKey;var pSt={open:pOpen,g:PA.g,o:PA.o,ph:PA.ph,s:PA.ph==='gen'?PA.sent:''};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'PS',state:pSt,updated_at:new Date().toISOString()}).then(function(){})})}}
+  var sPV=G('sPV'),kOpen=!!(sPV&&sPV.classList.contains('current'));if(PV.g){var kKey=kOpen+'|'+PV.g+'|'+PV.rev;if(kKey!==PV.key){PV.key=kKey;var kSt={open:kOpen,g:PV.g,t:PV_S[PV.i].ask,rev:PV.rev,gs:PV.side[PV.i]};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'KS',state:kSt,updated_at:new Date().toISOString()}).then(function(){})})}}
   var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
   var tOpen=on3&&hsCur===1&&TU.mode==='q';if(VT.pub&&tOpen!==VT.open)vtState(Object.assign({},VT.state,{open:tOpen}));
   var aOpen=on3&&hsCur===4;if(AGV.pub&&aOpen!==AGV.open){AGV.open=aOpen;agPublish()}}
@@ -3887,10 +3946,80 @@ function fkStop(keep){cancelAnimationFrame(FK.raf);if(FK.stream){FK.stream.getTr
   var cv=G('fkCv');cv.getContext('2d').clearRect(0,0,cv.width,cv.height);if(!keep)fkOffHtml()}
 
 
-var pb4KW={ruolo:['sei un','agisci come','immagina di essere','come se fossi','professore','esperto','tutor','insegnante'],contesto:['sto preparando','ho bisogno','devo','il mio obiettivo','per l\'esame','per la scuola','per capire'],compito:['spiegami','riassumi','crea','genera','scrivi','elenca','confronta','analizza','traduci','descrivi'],formato:['in massimo','parole','punti','elenco','tabella','schema','mappa','bullet','formato','breve','conciso'],esempio:['esempio','come questo','tipo','simile a','ecco un']};
-function pb4Sc(text){var t=text.toLowerCase(),found={},score=0,tags=[];var col={ruolo:'#FF6B35',contesto:'#00B4D8',compito:'#2ECC71',formato:'#9B59B6',esempio:'#E67E22'},lab={ruolo:'Ruolo',contesto:'Contesto',compito:'Compito',formato:'Formato',esempio:'Esempio'};Object.keys(pb4KW).forEach(function(cat){pb4KW[cat].forEach(function(kw){if(t.indexOf(kw)!==-1&&!found[cat]){found[cat]=true;score++;tags.push('<span style="display:inline-block;padding:.15em .6em;border-radius:6px;font-weight:700;margin:2px;color:#fff;font-size:.9em;background:'+col[cat]+'">'+lab[cat]+' ✓</span>')}})});return{score:score,tags:tags}}
-function pb4An(){var a=document.getElementById('pb4A').value,b=document.getElementById('pb4B').value;if(a.length>5){var r=pb4Sc(a);document.getElementById('pb4AnA').innerHTML=r.tags.length?r.tags.join(' '):'Nessun ingrediente — prompt troppo generico!';document.getElementById('pb4SA').textContent=r.score+'/5'}if(b.length>5){var r2=pb4Sc(b);document.getElementById('pb4AnB').innerHTML=r2.tags.length?r2.tags.join(' '):'Aggiungi ruolo, contesto, formato!';document.getElementById('pb4SB').textContent=r2.score+'/5'}}
-function pb4Cmp(){var a=pb4Sc(document.getElementById('pb4A').value).score,b=pb4Sc(document.getElementById('pb4B').value).score;var r=document.getElementById('pb4Res');if(a===0&&b===0){r.textContent='Scrivete entrambi i prompt prima di confrontare!';return}if(b>a){r.innerHTML='Il Round 2 vince con <b>'+b+'/5</b> ingredienti! Copiate entrambi in ChatGPT e vedete la differenza!'}else if(a>b){r.innerHTML='Il Round 1 ha più ingredienti?! Aggiungi ruolo e formato al Round 2!'}else{r.innerHTML='Parità a <b>'+a+'/5</b>! Copiate entrambi nell\'AI per vedere quale risposta è migliore!'}}
+
+/* ===== slide "Prompt cattivo vs buono": stessa richiesta, due risposte vere dell'AI; la classe vota quale serve di più ===== */
+var PV_ROOM=(function(){try{return new URLSearchParams(location.search).get('prompt')}catch(e){return null}})();
+/* le parti del prompt buono: R ruolo, C contesto, T compito, F formato */
+var PV_ING={R:['Ruolo','#FF6B35'],C:['Contesto','#00A6C8'],T:['Compito','#2ECC71'],F:['Formato','#8E44AD']};
+var PV_S=[{k:'storia',t:'📚 Interrogazione di storia',ask:'Domani avete l\'interrogazione sulla Seconda guerra mondiale.',bad:'seconda guerra mondiale',
+    good:'[R|Sei un professore di storia.] [C|Domani ho un\'interrogazione sulla Seconda guerra mondiale (3ª superiore).] [T|Fammi un ripasso] [F|in 5 punti elenco, massimo 80 parole in tutto, con le date più importanti in grassetto.]'},
+  {k:'email',t:'✉️ Email alla prof',ask:'Eravate malati e avete perso la verifica di matematica.',bad:'scrivi email alla prof',
+    good:'[C|Sono uno studente di 4ª superiore.] [T|Scrivi un\'email breve e gentile alla mia prof di matematica, la prof.ssa Rossi, per chiederle di recuperare la verifica che ho perso perché ero malato.] [F|Massimo 60 parole, tono rispettoso, con oggetto.]'},
+  {k:'mate',t:'➗ Equazione',ask:'Non avete capito le equazioni di secondo grado.',bad:'equazioni di secondo grado',
+    good:'[T|Spiegami come si risolve un\'equazione di secondo grado] [C|come se avessi 15 anni.] [F|Usa l\'esempio x² − 5x + 6 = 0 e fai al massimo 5 passaggi numerati, una riga ciascuno.]'},
+  {k:'present',t:'🎤 Presentazione',ask:'Dovete aprire una presentazione sull\'AI davanti alla classe.',bad:'idee presentazione',
+    good:'[C|Devo fare una presentazione di 5 minuti in classe sull\'intelligenza artificiale, davanti a ragazzi di 16 anni.] [T|Dammi 3 idee originali per iniziare,] [F|una riga ciascuna, che sorprendano o facciano ridere.]'}];
+/* risposte vere dell'AI, registrate prima (così in classe sono immediate) */
+var PV_ANS={"storia_bad":{"p":"seconda guerra mondiale","a":"# La Seconda guerra mondiale (1939–1945)\n\nLa Seconda guerra mondiale è stato il conflitto più grande e sanguinoso della storia: coinvolse la maggior parte delle nazioni del mondo e causò tra 70 e 85 milioni di morti, tra militari e civili.\n\n## Le cause\n- Il **Trattato di Versailles** (1919) aveva imposto alla Germania condizioni molto dure, che alimentarono risentimento e crisi economica.\n- La **crisi del 1929** favorì l'ascesa dei regimi totalitari: il fascismo in Italia, il nazismo in Germania, il militarismo in Giappone.\n- La politica di **appeasement** di Francia e Regno Unito lasciò spazio all'espansione tedesca (Austria, Sudeti, Cecoslovacchia).\n\n## Le fasi principali\n- **1939**: la Germania invade la Polonia (1° settembre); Francia e Regno Unito dichiarano guerra.\n- **1940**: la Germania occupa Danimarca, Norvegia, Belgio, Paesi Bassi e Francia. L'Italia entra in guerra (10 giugno). Battaglia d'Inghilterra.\n- **1941**: la Germania attacca l'URSS (Operazione Barbarossa); il Giappone attacca Pearl Harbor e gli Stati Uniti entrano in guerra.\n- **1942–1943**: le battaglie di Midway, El Alamein e Stalingrado segnano la svolta. Sbarco in Sicilia, caduta di Mussolini (25 luglio 1943) e armistizio (8 settembre 1943).\n- **1944**: sbarco in Normandia (6 giugno) e avanzata sovietica a est.\n- **1945**: liberazione dell'Italia (25 aprile), resa della Germania (8 maggio), bombe atomiche su Hiroshima e Nagasaki e resa del Giappone (2 settembre).\n\n## La Shoah\nIl regime nazista organizzò lo sterminio sistematico di circa 6 milioni di ebrei, oltre a rom, disabili, oppositori politici e altre minoranze, nei campi di concentramento e di sterminio.\n\n## Le conseguenze\n- Nascita dell'**ONU** (1945).\n- Divisione dell'Europa e inizio della **Guerra fredda** tra Stati Uniti e Unione Sovietica.\n- Processo di **Norimberga** ai criminali nazisti.\n- In Italia: referendum del 2 giugno 1946 e nascita della Repubblica.\n\n## Approfondimenti possibili\nSe vuoi, posso approfondire un aspetto in particolare: il fronte italiano, la Resistenza, la guerra nel Pacifico, la Shoah, le conferenze di pace (Teheran, Jalta, Potsdam) o le conseguenze economiche."},"storia_good":{"p":"good","a":"- **1° settembre 1939**: la Germania invade la Polonia, inizia la guerra.\n- **10 giugno 1940**: l'Italia di Mussolini entra in guerra accanto alla Germania.\n- **1941**: la Germania attacca l'URSS; dopo **Pearl Harbor** entrano in guerra gli Stati Uniti.\n- **8 settembre 1943**: armistizio dell'Italia; poi la Resistenza.\n- **1945**: liberazione (**25 aprile**), resa tedesca (**8 maggio**), atomica e resa del Giappone."},"email_bad":{"p":"scrivi email alla prof","a":"Ecco un modello di email che puoi adattare:\n\n**Oggetto:** [Inserisci l'oggetto]\n\nGentile Professoressa [Cognome],\n\nmi chiamo [Nome e Cognome] e frequento la classe [classe] del [nome della scuola].\n\nLe scrivo per [spiega il motivo dell'email: una richiesta di chiarimento, un ritardo nella consegna, un'assenza, un appuntamento…].\n\n[Aggiungi qui i dettagli: date, argomenti, compiti o verifiche di cui si parla.]\n\nResto a disposizione per qualsiasi chiarimento e la ringrazio in anticipo per l'attenzione.\n\nCordiali saluti,\n[Nome e Cognome]\n[Classe]\n\n---\n\n**Qualche consiglio:**\n- Usa sempre il **Lei** e un tono formale.\n- Scrivi un **oggetto chiaro**, così la prof capisce subito di cosa si tratta.\n- Sii **breve**: vai dritto al punto.\n- **Rileggi** prima di inviare per evitare errori.\n- Invia dalla tua mail istituzionale, se ne hai una.\n\nSe mi dici il motivo dell'email e il nome della prof, posso scriverla io per te."},"email_good":{"p":"good","a":"**Oggetto:** Richiesta di recupero della verifica di matematica\n\nGentile Prof.ssa Rossi,\n\nla scorsa settimana ero assente per malattia e non ho potuto svolgere la verifica di matematica. Le chiedo se sarebbe possibile recuperarla in una data che Le sia comoda.\n\nLa ringrazio per la disponibilità.\n\nCordiali saluti,\nMarco Bianchi, 4ªB"},"mate_bad":{"p":"equazioni di secondo grado","a":"# Equazioni di secondo grado\n\nUn'equazione di secondo grado è un'equazione che, in **forma normale**, si scrive così:\n\n**ax² + bx + c = 0**, con a ≠ 0\n\ndove a, b e c sono numeri reali chiamati **coefficienti**.\n\n## Classificazione\n- **Completa**: tutti i coefficienti sono diversi da zero.\n- **Pura** (b = 0): ax² + c = 0, si risolve con x = ±√(−c/a).\n- **Spuria** (c = 0): ax² + bx = 0, si raccoglie x: x(ax + b) = 0.\n- **Monomia** (b = 0 e c = 0): ax² = 0, soluzione x = 0.\n\n## La formula risolutiva\nPer un'equazione completa si calcola il **discriminante**:\n\n**Δ = b² − 4ac**\n\n- Se **Δ > 0**: due soluzioni reali distinte.\n- Se **Δ = 0**: due soluzioni reali coincidenti.\n- Se **Δ < 0**: nessuna soluzione reale.\n\nLe soluzioni sono:\n\n**x = (−b ± √Δ) / 2a**\n\n## Formula ridotta\nSe b è pari si può usare la formula ridotta: x = (−b/2 ± √(Δ/4)) / a, con Δ/4 = (b/2)² − ac.\n\n## Relazioni tra radici e coefficienti\n- Somma delle soluzioni: x₁ + x₂ = −b/a\n- Prodotto delle soluzioni: x₁ · x₂ = c/a\n\n## Scomposizione del trinomio\nSe Δ ≥ 0: ax² + bx + c = a(x − x₁)(x − x₂).\n\n## Interpretazione grafica\nLe soluzioni sono le ascisse dei punti in cui la **parabola** y = ax² + bx + c interseca l'asse x.\n\nVuoi che ti mostri qualche esercizio svolto?"},"mate_good":{"p":"good","a":"1. Scrivi i numeri: **a = 1, b = −5, c = 6**.\n2. Calcola il **delta**: Δ = b² − 4ac = 25 − 24 = **1**.\n3. Fai la radice: √1 = **1**.\n4. Usa la formula: x = (5 ± 1) / 2.\n5. Le soluzioni sono **x = 3** e **x = 2**. Prova: 3² − 15 + 6 = 0 ✓"},"present_bad":{"p":"idee presentazione","a":"Certo! Ecco alcune idee per una presentazione, divise per tipo:\n\n## Idee per l'argomento\n1. Una passione personale (sport, musica, videogiochi, cucina)\n2. Un viaggio che hai fatto\n3. Una persona che ti ispira\n4. Un problema ambientale e come risolverlo\n5. La storia di un'invenzione\n6. Un libro o un film che ti ha colpito\n7. Le nuove tecnologie\n\n## Idee per la struttura\n- **Introduzione**: presenta l'argomento e perché l'hai scelto\n- **Sviluppo**: 3 punti principali, uno per slide\n- **Conclusione**: riassumi e lascia una domanda al pubblico\n\n## Idee per renderla coinvolgente\n- Inizia con una domanda o una curiosità\n- Usa immagini al posto di tanto testo\n- Inserisci un breve video\n- Fai un piccolo sondaggio per alzata di mano\n- Racconta un aneddoto personale\n\n## Strumenti utili\nGoogle Slides, PowerPoint, Canva, Prezi.\n\nSe mi dici l'argomento, la durata e il pubblico, posso darti idee più precise!"},"present_good":{"p":"good","a":"1. «Alzi la mano chi oggi ha parlato con un'AI.» Poi: «Abbassatela se avete usato TikTok o Spotify. Ah, nessuno?»\n2. Leggete una frase e chiedete: «L'ha scritta una persona o un'AI?». Svelate dopo il voto.\n3. Mostrate una foto di voi da piccoli fatta «invecchiare» dall'AI: risata assicurata."}};
+var PV={i:0,side:[],rev:false,g:'',v:{A:0,B:0},n:0,key:'',live:{},busy:false};
+function pvPlain(s){return s.replace(/\[[RCTF]\|([^\]]*)\]/g,'$1')}
+function pvColor(s){return esc(s).replace(/\[([RCTF])\|([^\]]*)\]/g,function(_,k,t){return '<span class="pv-ing" style="background:'+PV_ING[k][1]+'22;box-shadow:inset 0 -2px 0 '+PV_ING[k][1]+'">'+t+'</span>'})}
+/* markdown semplice: titoli, elenchi, grassetto; le tabelle diventano righe */
+function pvMd(t){var out='',list=null;t.replace(/\r/g,'').split('\n').forEach(function(l){var s=l.trim();
+  var inl=function(x){return esc(x).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(/\*([^*]+)\*/g,'<i>$1</i>')};
+  var m=s.match(/^([-*•]|\d+[.)])\s+(.*)$/);
+  if(m){var ty=/\d/.test(m[1])?'ol':'ul';if(list!==ty){if(list)out+='</'+list+'>';out+='<'+ty+'>';list=ty}out+='<li>'+inl(m[2])+'</li>';return}
+  if(list){out+='</'+list+'>';list=null}
+  if(!s||/^\|?\s*:?-{2,}/.test(s)||/^-{3,}$/.test(s))return;
+  if(/^#{1,6}\s/.test(s)){out+='<h5>'+inl(s.replace(/^#+\s*/,''))+'</h5>';return}
+  if(s.indexOf('|')>=0){out+='<p class="ld">'+inl(s.split('|').map(function(c){return c.trim()}).filter(Boolean).join(' · '))+'</p>';return}
+  out+='<p>'+inl(s)+'</p>'});if(list)out+='</'+list+'>';return out}
+function pvWords(t){return (t.replace(/[#*|_`>-]/g,' ').match(/\S+/g)||[]).length}
+function pvUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?prompt='+vtRoom():''}
+function pvInit(){if(!G('pvTabs'))return;PV.side=PV_S.map(function(){return Math.random()<.5?'A':'B'});
+  G('pvTabs').innerHTML=PV_S.map(function(s,i){return '<button class="pv-tab" onclick="pvGo('+i+')">'+s.t+'</button>'}).join('');
+  var u=pvUrl(),ok=vtOn()&&u;G('pvJoin').innerHTML=ok?'<div class="tu-qr" id="pvQr" data-qr="'+u+'" data-size="92"></div><p>Votate dal telefono<b class="big">Stanza '+vtRoom()+'</b><span class="pa-n" id="pvN">0 voti</span></p>':'<p>Il voto dal telefono funziona nella versione online.<br>Intanto: alzata di mano!</p>';
+  if(ok)vtQr(G('pvQr'),u,92);pvGo(0);
+  setInterval(function(){if(G('sPV').classList.contains('current')&&!PV.rev&&vtOn()&&!document.hidden)pvPull()},3000)}
+function pvGo(i){PV.i=i;PV.rev=false;var g='';for(var k=0;k<4;k++)g+='abcdefghjkmnpqrstuvwxyz23456789'[Math.floor(Math.random()*31)];PV.g=g;PV.v={A:0,B:0};PV.n=0;
+  [].forEach.call(document.querySelectorAll('.pv-tab'),function(b,k){b.classList.toggle('on',k===i)});
+  G('pvAsk').innerHTML='<b>'+PV_S[i].ask+'</b> Due persone hanno chiesto aiuto all\'AI. Ecco le due risposte: <b>quale vi serve di più?</b>';G('pvRev').disabled=false;
+  pvCards();pvVotes();if(typeof roomsSync==='function')roomsSync()}
+function pvAns(i,w){var L=PV.live[PV_S[i].k+'_'+w];if(L)return L;var r=PV_ANS[PV_S[i].k+'_'+w];return r?r.a:''}
+function pvCards(){var s=PV_S[PV.i],gs=PV.side[PV.i];['A','B'].forEach(function(L){var w=L===gs?'good':'bad',a=pvAns(PV.i,w),n=pvWords(a),el=G('pv'+L);
+  el.className='pv-card'+(PV.rev?' '+w:'');
+  var pr=PV.rev?'<div class="pv-pr"><span class="tag">'+(w==='good'?'🎯 Prompt preciso':'😴 Prompt vago')+'</span>'+(w==='good'?pvColor(s.good)+'<div class="pv-chips">'+Object.keys(PV_ING).filter(function(k){return s.good.indexOf('['+k+'|')>=0}).map(function(k){return '<span style="background:'+PV_ING[k][1]+'">'+PV_ING[k][0]+'</span>'}).join('')+'</div>':'<q>'+esc(s.bad)+'</q>')+'</div>':'<div class="pv-pr pv-hid">Il prompt è nascosto: votate prima!</div>';
+  el.innerHTML='<div class="pv-h"><span class="pv-l">'+L+'</span><b>Risposta '+L+'</b><small class="'+(n>150?'long':'')+'">'+n+' parole</small></div><div class="pv-body" id="pvBody'+L+'">'+(PV.busy&&PV.busy[w]?'<div class="pv-load"><span>⏳</span>'+PV.busy[w]+'</div>':pvMd(a))+'</div>'+pr})}
+function pvVotes(){var t=Math.max(1,PV.n);G('pvVotes').innerHTML=['A','B'].map(function(L){var c=PV.v[L];return '<div class="pv-v"><span>Risposta '+L+'</span><div><i style="width:'+Math.round(c/t*100)+'%"></i></div><b>'+c+(c===1?' voto':' voti')+'</b></div>'}).join('');var n=G('pvN');if(n)n.textContent=PV.n+(PV.n===1?' voto':' voti')}
+function pvReveal(){PV.rev=true;G('pvRev').disabled=true;pvCards();if(typeof roomsSync==='function')roomsSync();var s=PV_S[PV.i],gs=PV.side[PV.i],nb=pvWords(pvAns(PV.i,'bad')),ng=pvWords(pvAns(PV.i,'good')),win=PV.v[gs]>=PV.v[gs==='A'?'B':'A'];
+  xpShow('pv:rev',{ic:'🎯',t:'Stessa AI, risposte diversissime',sub:PV.n?(win?'Avete scelto la risposta del prompt preciso!':'Interessante: avete preferito la risposta del prompt vago.'):'La differenza la fa il prompt.',
+    rows:[R('😴','Prompt vago','data','«'+esc(s.bad)+'»: '+nb+' parole. L\'AI non sa chi siete né cosa vi serve, quindi <b>tira a indovinare</b> e scrive di tutto.'),
+      R('🎯','Prompt preciso','ai','Dice <b>chi deve essere</b> l\'AI, <b>la situazione</b>, <b>cosa fare</b> e <b>in che forma</b>: '+ng+' parole, quelle che servono.'),
+      R('💡','La regola','idea','L\'AI non legge nel pensiero: più le spiegate cosa vi serve, più la risposta è utile.')],toast:'🎯 La differenza la fa il prompt'})}
+function pvPull(){vtSb(function(sb){var g=PV.g;sb.from('vote_rooms').select('room,state').like('room',vtRoom()+'K%').limit(1000).then(function(res){if(!res.data||g!==PV.g)return;var v={A:0,B:0},n=0;
+  res.data.forEach(function(r){if(r.room.length!==8||!r.state||r.state.g!==g)return;if(r.state.v==='A'||r.state.v==='B'){v[r.state.v]++;n++}});PV.v=v;PV.n=n;pvVotes()})})}
+/* dal vivo: chiede all'AI le due risposte, una dopo l'altra (il servizio gratuito accetta una richiesta ogni tanto) */
+function pvLive(){if(PV.busy)return;var s=PV_S[PV.i],i=PV.i,todo=['bad','good'];PV.busy={bad:'L\'AI sta scrivendo…',good:'In coda: aspetta la prima risposta…'};G('pvLive').disabled=true;pvCards();
+  var next=function(){if(!todo.length||PV.i!==i){PV.busy=false;G('pvLive').disabled=false;pvCards();return}var w=todo[0],tries=0;
+    var ask=function(){tries++;PV.busy[w]='L\'AI sta scrivendo…';pvCards();
+      fetch('https://text.pollinations.ai/'+encodeURIComponent(w==='good'?pvPlain(s.good):s.bad)+'?referrer=anonimono.github.io&seed='+Math.floor(Math.random()*1e6)).then(function(r){return r.ok?r.text():Promise.reject(r.status)}).then(function(t){
+        if(PV.i!==i)return;PV.live[s.k+'_'+w]=t.trim();todo.shift();if(todo.length)PV.busy[todo[0]]='Tra poco tocca a questa…';pvCards();setTimeout(next,todo.length?18000:0)}).catch(function(){
+        if(tries>=6||PV.i!==i){PV.busy=false;G('pvLive').disabled=false;pvCards();return}var c=15;(function cd(){if(PV.i!==i)return;if(c<=0){ask();return}PV.busy[w]='L\'AI è occupata: riprovo tra '+c+' s…';pvCards();c--;setTimeout(cd,1000)})()})};ask()};next()}
+
+/* ---- telefono (?prompt=CODICE) ---- */
+function pvPhone(){var root=document.documentElement;root.classList.add('vote');root.classList.add('pvm');var app=document.createElement('div');app.id='vtApp';app.className='pv';document.body.appendChild(app);
+  var id;try{id=localStorage.getItem('drId')}catch(e){}if(!id){id='';for(var i=0;i<3;i++)id+='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random()*32)];try{localStorage.setItem('drId',id)}catch(e){}}
+  var key=PV_ROOM+'K'+id,S={st:null,k:'',mine:null};
+  function pull(){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',PV_ROOM+'KS').maybeSingle().then(function(res){var st=(res.data&&res.data.state)||{open:false},k=JSON.stringify(st);if(k===S.k)return;
+    if(!S.st||st.g!==S.st.g)S.mine=null;S.k=k;S.st=st;draw()})})}
+  function draw(){var h='<p class="drp-hd">Prompt cattivo vs buono · stanza '+esc(PV_ROOM)+'</p>',st=S.st;
+    if(!vtOn()){app.innerHTML=h+'<p class="drp-note">Il voto non è configurato su questa presentazione.</p>';return}
+    if(!st){app.innerHTML=h+'<p class="drp-note">Collegamento…</p>';return}
+    if(!st.open){app.innerHTML=h+'<p class="drp-big">👀</p><p class="drp-q">Guardate lo schermo</p><p class="drp-note">Si vota quando l\'insegnante apre la sfida. Questa pagina si riattiva da sola.</p>';return}
+    if(st.rev){app.innerHTML=h+'<p class="drp-big">'+(S.mine===st.gs?'🎯':'🤔')+'</p><p class="drp-q">La risposta migliore veniva dal <b>prompt preciso</b> (risposta '+st.gs+')</p><p class="drp-note">'+(S.mine?'Tu avevi votato la '+S.mine+'.':'Non hai votato.')+' Guardate lo schermo!</p>';return}
+    app.innerHTML=h+'<p class="drp-q">'+esc(st.t||'')+'</p><p class="drp-note">Quale risposta vi serve di più? Leggetele sullo schermo.</p><div class="pvp-btns"><button class="'+(S.mine==='A'?'sel':'')+'" onclick="pvpVote(\'A\')">A</button><button class="'+(S.mine==='B'?'sel':'')+'" onclick="pvpVote(\'B\')">B</button></div>'+(S.mine?'<p class="drp-prog">Hai votato '+S.mine+' · puoi cambiare idea</p>':'')}
+  window.pvpVote=function(v){S.mine=v;vtSb(function(sb){sb.from('vote_rooms').upsert({room:key,state:{g:S.st.g,v:v},updated_at:new Date().toISOString()}).then(function(){})});draw()};
+  draw();if(!vtOn())return;pull();setInterval(function(){if(!document.hidden)pull()},4000)}
 
 function updPrompt(){var r=document.getElementById('pbRole').value.trim(),c=document.getElementById('pbCtx').value.trim(),t=document.getElementById('pbTask').value.trim(),f=document.getElementById('pbFmt').value,x=document.getElementById('pbEx').value.trim();var parts=[],n=0;if(r){parts.push('<span style="color:#FFB899">Sei un '+r+'.</span>');n++}if(c){parts.push('<span style="color:#7CC6E8">'+c+'.</span>');n++}if(t){parts.push('<span style="color:#FFD2BE">'+t+'</span>');n++}if(f){parts.push('<span style="color:#7CC6E8">Rispondi '+f+'.</span>');n++}if(x){parts.push('<span style="color:#FFD2BE">Esempio: '+x+'.</span>');n++}var res=document.getElementById('pbResult');res.innerHTML=n===0?'<span style="color:#8AAFCF;font-style:italic">Compila i campi per vedere il prompt...</span>':parts.join(' ');var pct=Math.round(n/5*100),m=document.getElementById('pbMeter');m.style.width=pct+'%';var lab=['','Debole','Debole','Sufficiente','Buono!','Perfetto!'],col=['#E2E8F0','#FF6B35','#FF6B35','#FFB800','#00B4D8','#2ECC71'];m.style.background=col[n];document.getElementById('pbScore').textContent=lab[n]||'0%';document.getElementById('pbScore').style.color=col[n]}
 function copyPrompt(btn){var t=document.getElementById('pbResult').textContent;if(t&&t.indexOf('Compila')===-1){copyTxt(t);btn.textContent='Copiato!';setTimeout(function(){btn.textContent='📋 Copia prompt'},1400)}}
@@ -3929,7 +4058,7 @@ function copyTxt(t){try{navigator.clipboard.writeText(t)}catch(e){try{var ta=doc
 function flash(el){var bg=el.style.background;el.style.background='rgba(46,204,113,.35)';setTimeout(function(){el.style.background=bg},1100)}
 
 sfShow(0,document.getElementById('sfS0'));
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM){paInit();fkInit()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!PV_ROOM){paInit();fkInit();pvInit()}
 fdBoot();
 hsInit();
 n4Init();
@@ -3937,5 +4066,5 @@ w6Init();
 txInit();
 nnInit();
 if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM)drInit();
-if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();else if(GT_ROOM)gtPhone();else if(PA_ROOM)paPhone();
+if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();else if(GT_ROOM)gtPhone();else if(PA_ROOM)paPhone();else if(PV_ROOM)pvPhone();
 </script>
