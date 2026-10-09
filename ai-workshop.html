@@ -155,11 +155,6 @@ img{max-width:100%}
 .ra-opt.dim,.tr-opt.dim{opacity:.4;pointer-events:none}
 .ra-fb,.tr-exp{opacity:0;max-height:0;overflow:hidden;transition:all .35s;margin-top:.4em}
 .ra-fb.show,.tr-exp.show{opacity:1;max-height:9em}
-.df-item{background:rgba(255,255,255,.06);padding:.5em .7em;border-radius:12px;display:flex;gap:.7em;align-items:center;cursor:pointer;border:2px solid transparent;transition:background .2s,border-color .2s}
-.df-item:hover{background:rgba(255,255,255,.12)}
-.df-item.on{border-color:var(--green);background:rgba(46,204,113,.12)}
-.df-box{width:clamp(26px,4vw,32px);height:clamp(26px,4vw,32px);border-radius:8px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;flex:none;transition:background .2s}
-.df-item.on .df-box{background:var(--green)}
 .dl-card{background:#fff;border-radius:14px;border:2px solid var(--border);overflow:hidden;cursor:pointer;transition:border-color .25s,transform .25s}
 .dl-card:hover{border-color:var(--cyan);transform:translateY(-2px)}
 .dl-det{display:none;margin-top:.5em;padding-top:.5em;border-top:1px solid var(--border)}
@@ -1291,6 +1286,40 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
 .pap-opts button{font:700 .92rem 'Nunito Sans',sans-serif;padding:12px 6px;border-radius:12px;border:2px solid #E2E8F0;background:#fff;color:#1B2A4A;line-height:1.2;min-height:56px}
 .pap-opts button.sel{color:#fff}
 .pap-sent{margin:0;font:700 1.15rem 'Fredoka',sans-serif;line-height:1.3;max-width:340px}
+/* slide 12: deepfake dal vivo */
+#s14.current{height:100svh}
+.fk-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(1rem,3vw,2.6rem);align-items:center}
+@media (max-width:900px){.fk-stage{grid-template-columns:1fr}#s14.current{height:auto}}
+.fk-left{display:flex;flex-direction:column;gap:.65em;align-items:center;min-width:0}
+.fk-cam{position:relative;width:min(100%,calc((100svh - 16rem)*4/3),720px);aspect-ratio:4/3;border-radius:20px;overflow:hidden;background:#14213A;box-shadow:0 14px 40px rgba(27,42,74,.2)}
+.fk-cam canvas{width:100%;height:100%;display:block;transform:scaleX(-1);object-fit:cover}
+.fk-cam video{display:none}
+.fk-off{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8em;color:#fff;text-align:center;padding:1.5em;background:radial-gradient(circle at 50% 40%,#22345A,#14213A)}
+.fk-off.hide{display:none}
+.fk-off span{font-size:3rem;line-height:1}
+.fk-off p{margin:0;font-size:.92rem;color:#A9B6CC;max-width:24em;line-height:1.45}
+.fk-off .btn{font-size:1.05rem;padding:.65em 1.4em}
+.fk-badge{position:absolute;top:.7em;left:.7em;background:rgba(20,33,58,.82);color:#fff;font-weight:800;font-size:.85rem;padding:.3em .85em;border-radius:999px}
+.fk-badge:empty{display:none}
+.fk-ctrl{display:flex;gap:.45em;flex-wrap:wrap;justify-content:center;min-height:2.8em}
+.fk-b{display:flex;align-items:center;gap:.45em;background:#fff;border:2px solid var(--border);border-radius:999px;padding:.25em .85em .25em .25em;font:700 .92rem var(--ff-body);color:var(--navy);cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.fk-b:hover{border-color:var(--orange)}
+.fk-b img,.fk-b i{width:2.1em;height:2.1em;border-radius:50%;object-fit:cover;flex:none}
+.fk-b i{font-style:normal;display:flex;align-items:center;justify-content:center;background:#F5F7FA;font-size:1.05em}
+.fk-b.on{border-color:var(--orange);box-shadow:0 0 0 3px rgba(255,107,53,.25)}
+.fk-b.stop{padding:.25em .9em;color:var(--gray)}
+.fk-txt{display:flex;flex-direction:column;gap:.55em;min-width:0}
+.fk-kick{margin:0;font-family:var(--ff-head);font-weight:600;font-size:clamp(.85rem,1.4vw,1.05rem);letter-spacing:.14em;text-transform:uppercase;color:var(--orange)}
+.fk-ck{margin:.3em 0 0;font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
+.fk-list{display:flex;flex-direction:column;gap:.4em}
+.fk-it{display:grid;grid-template-columns:1.9em minmax(0,1fr);gap:.65em;align-items:center;text-align:left;background:#fff;border:2px solid var(--border);border-radius:12px;padding:.45em .75em;cursor:pointer;font-family:var(--ff-body);transition:border-color .2s,background .2s}
+.fk-it>i{font-style:normal;width:1.7em;height:1.7em;border-radius:7px;border:2px solid #CBD5E0;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff}
+.fk-it b{display:block;color:var(--navy);font-size:.98rem}
+.fk-it span{font-size:.86rem;color:var(--gray)}
+.fk-it.on{border-color:#2ECC71;background:#F0FBF5}
+.fk-it.on>i{background:#2ECC71;border-color:#2ECC71}
+.fk-end{margin:.1em 0 0;font-weight:800;color:var(--orange)}
+@media (max-height:800px){#s14 .dr-h{font-size:clamp(1.4rem,2.8vw,2rem)}#s14 .dr-p{font-size:.98rem}#s14 .fk-it{padding:.3em .6em}#s14 .gn-tip{font-size:.88rem;padding:.45em .8em}#s14 .fk-it span{display:none}}
 /* badge extra per i pop-up */
 .pl-b.mech{background:rgba(200,150,62,.2);color:#8A5A12}
 .pl-b.rule{background:rgba(0,180,216,.15);color:#0077A0}
@@ -1787,28 +1816,21 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
   </div>
 </section>
 
-<!-- 14 DEEPFAKE -->
-<section class="slide dark s-navy" data-section="AI generativa">
-  <h2 class="fz-h2">Deepfake: quando l'AI inganna</h2>
-  <div class="wrap-flex" style="flex:1">
-    <div class="col min0" style="flex:0 0 40%">
-      <a class="vcard" style="--vg:linear-gradient(135deg,#2D4A7A,#1B2A4A);min-height:clamp(120px,18vh,180px)" href="https://www.youtube.com/watch?v=oxXpB9pSETo" target="_blank" rel="noopener">
-        <svg class="play" viewBox="0 0 80 80"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,.22)" stroke="#fff" stroke-width="3"/><polygon points="33,25 33,55 58,40" fill="#fff"/></svg>
-        <div class="vmeta"><span class="vtag">▶ Video</span><p class="fz-body" style="margin-top:.3em">Come funzionano i deepfake</p></div>
-      </a>
-      <div class="panel-t fz-small" style="background:rgba(255,107,53,.12)"><b style="color:var(--orange)">Cos'è?</b> Video o audio generati dall'AI che mostrano persone reali dire o fare cose mai fatte.</div>
-      <div class="panel-t fz-small" style="background:rgba(0,180,216,.12)"><b style="color:var(--cyan)">Come?</b> Le GAN analizzano migliaia di foto e imparano a ricreare qualsiasi volto.</div>
-      <a class="chip" href="https://scanner.deepware.ai" target="_blank" rel="noopener">🔎 Deepware Scanner — rileva deepfake</a>
+<!-- 14 DEEPFAKE: un volto sopra un altro, dal vivo -->
+<section class="slide darktext s-light" data-section="AI generativa" id="s14">
+  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Deepfake: quando l'AI inganna</h2>
+  <div class="fk-stage">
+    <div class="fk-left">
+      <div class="fk-cam" id="fkCam"><canvas id="fkCv" width="640" height="480" aria-label="Video dalla camera con il volto sostituito"></canvas><video id="fkVid" playsinline muted></video><div class="fk-off" id="fkOff"></div><span class="fk-badge" id="fkBadge"></span></div>
+      <div class="fk-ctrl" id="fkCtrl"></div>
     </div>
-    <div class="col min0" style="flex:1;gap:.4rem">
-      <p class="fz-h3" style="color:var(--orange)">Checklist anti-deepfake: spunta ogni controllo!</p>
-      <div class="df-item" onclick="dfCheck(this,0)"><span class="df-box" id="dfB0"></span><div class="min0"><b class="fz-body">Controlla la fonte</b><p class="fz-small" style="color:var(--muted)">Chi ha pubblicato? È un account verificato?</p></div></div>
-      <div class="df-item" onclick="dfCheck(this,1)"><span class="df-box" id="dfB1"></span><div class="min0"><b class="fz-body">Osserva gli occhi</b><p class="fz-small" style="color:var(--muted)">Il battito è naturale? Gli occhi seguono il parlato?</p></div></div>
-      <div class="df-item" onclick="dfCheck(this,2)"><span class="df-box" id="dfB2"></span><div class="min0"><b class="fz-body">Guarda i bordi del viso</b><p class="fz-small" style="color:var(--muted)">Ci sono sfocature, distorsioni o "glitch"?</p></div></div>
-      <div class="df-item" onclick="dfCheck(this,3)"><span class="df-box" id="dfB3"></span><div class="min0"><b class="fz-body">Ascolta l'audio</b><p class="fz-small" style="color:var(--muted)">La voce è robotica? Il labiale corrisponde?</p></div></div>
-      <div class="df-item" onclick="dfCheck(this,4)"><span class="df-box" id="dfB4"></span><div class="min0"><b class="fz-body">Cerca la notizia</b><p class="fz-small" style="color:var(--muted)">Appare su fonti attendibili (ANSA, Reuters)?</p></div></div>
-      <div class="df-item" onclick="dfCheck(this,5)"><span class="df-box" id="dfB5"></span><div class="min0"><b class="fz-body">Non condividere!</b><p class="fz-small" style="color:var(--muted)">Nel dubbio NON inoltrare. Ferma la catena!</p></div></div>
-      <div class="df-score fz-body" id="dfScore" style="background:rgba(255,107,53,.15);color:var(--orange);padding:.7em 1em;border-radius:12px;text-align:center;font-weight:700">Completa la checklist: 0/6</div>
+    <div class="fk-txt">
+      <p class="fk-kick">Prova dal vivo</p>
+      <h3 class="dr-h">Un volto sopra un altro</h3>
+      <p class="dr-p">L'AI trova <b>478 punti</b> sul viso e ci incolla sopra un altro volto, 30 volte al secondo. È lo stesso trucco dei filtri di Snapchat e TikTok.</p>
+      <p class="gn-tip">I <b>deepfake</b> veri sono molto più realistici: vengono allenati per ore sui video di una persona e possono copiare anche la sua voce.</p>
+      <p class="fk-ck">Come smascherare un deepfake</p>
+      <div class="fk-list" id="fkList"></div>
     </div>
   </div>
 </section>
@@ -3684,8 +3706,94 @@ function paPhone(){var root=document.documentElement;root.classList.add('vote');
     vtSb(function(sb){sb.from('vote_rooms').upsert({room:key,state:{g:S.g,v:S.mine},updated_at:new Date().toISOString()}).then(function(){})});draw()};
   draw();if(!vtOn())return;pull();setInterval(function(){if(!document.hidden)pull()},4000)}
 
-var dfS=[false,false,false,false,false,false];
-function dfCheck(el,i){dfS[i]=!dfS[i];el.classList.toggle('on',dfS[i]);document.getElementById('dfB'+i).textContent=dfS[i]?'✓':'';var c=dfS.filter(function(s){return s}).length;var sc=document.getElementById('dfScore');if(c===6){sc.innerHTML='PROTETTO AL 100%! Sai riconoscere un deepfake!';sc.style.background='rgba(46,204,113,.18)';sc.style.color='#2ECC71'}else{sc.textContent='Completa la checklist: '+c+'/6';sc.style.background='rgba(255,107,53,.15)';sc.style.color='#FF6B35'}}
+/* ===== slide Deepfake: un quadro famoso sopra il volto di chi presenta, dal vivo (MediaPipe, tutto sul computer) ===== */
+var DF_OVAL=[10,338,297,332,284,251,389,356,454,323,361,288,397,365,379,378,400,377,152,148,176,149,150,136,172,58,132,93,234,127,162,21,54,103,67,109];
+var DF_LIPS=[78,191,80,81,82,13,312,311,310,415,308,324,318,402,317,14,87,178,88,95];
+/* triangoli della maglia ufficiale del viso (dagli spigoli che dà MediaPipe) */
+function dfMeshTris(conns){var adj={},T=[];conns.forEach(function(c){var a=c.start,b=c.end;(adj[a]=adj[a]||{})[b]=1;(adj[b]=adj[b]||{})[a]=1});
+  Object.keys(adj).forEach(function(a){a=+a;Object.keys(adj[a]).forEach(function(b){b=+b;if(b<=a)return;Object.keys(adj[b]).forEach(function(c){c=+c;if(c<=b)return;if(adj[a][c])T.push([a,b,c])})})});return T}
+/* prepara un volto sorgente: ritaglio attorno al viso + punti + triangoli */
+function dfPrepSource(img,lm,meshTris){var W=img.naturalWidth||img.width,H=img.naturalHeight||img.height,x0=1,y0=1,x1=0,y1=0;
+  for(var i=0;i<468;i++){var p=lm[i];x0=Math.min(x0,p.x);y0=Math.min(y0,p.y);x1=Math.max(x1,p.x);y1=Math.max(y1,p.y)}
+  var bw=(x1-x0)*W,bh=(y1-y0)*H,m=.25,cx=x0*W-bw*m,cy=y0*H-bh*m,cw=bw*(1+2*m),ch=bh*(1+2*m),S=512/Math.max(cw,ch);
+  var c=document.createElement('canvas');c.width=Math.round(cw*S);c.height=Math.round(ch*S);c.getContext('2d').drawImage(img,cx,cy,cw,ch,0,0,c.width,c.height);
+  var pts=[];for(var i=0;i<468;i++)pts.push([(lm[i].x*W-cx)*S,(lm[i].y*H-cy)*S]);
+  /* orientamento dei triangoli come nel quadro, per riconoscere quelli girati nel video */
+  var tris=meshTris.filter(function(t){return t[0]<468&&t[1]<468&&t[2]<468}).map(function(t){var a=pts[t[0]],b=pts[t[1]],e=pts[t[2]],s=(b[0]-a[0])*(e[1]-a[1])-(b[1]-a[1])*(e[0]-a[0]);return s<0?[t[0],t[2],t[1]]:t});
+  return {img:c,pts:pts,tris:tris}}
+/* disegna il volto sorgente deformato sui punti T (in pixel del canvas) */
+function dfWarp(g,src,T){var S=src.pts,im=src.img;
+  src.tris.forEach(function(tr){var s0=S[tr[0]],s1=S[tr[1]],s2=S[tr[2]],d0=T[tr[0]],d1=T[tr[1]],d2=T[tr[2]];
+    var den=(s0[0]*(s1[1]-s2[1])+s1[0]*(s2[1]-s0[1])+s2[0]*(s0[1]-s1[1])),dd=(d0[0]*(d1[1]-d2[1])+d1[0]*(d2[1]-d0[1])+d2[0]*(d0[1]-d1[1]));
+    /* triangolo girato (lato della testa che non si vede): lo salto, altrimenti fa le strisce */
+    if(Math.abs(den)<1e-6||dd*(den>0?1:-1)<=0&&Math.abs(dd)>2)return;
+    /* allargo un poco il triangolo di destinazione per non vedere le cuciture */
+    var cx=(d0[0]+d1[0]+d2[0])/3,cy=(d0[1]+d1[1]+d2[1])/3,k=1.04;
+    g.save();g.beginPath();g.moveTo(cx+(d0[0]-cx)*k,cy+(d0[1]-cy)*k);g.lineTo(cx+(d1[0]-cx)*k,cy+(d1[1]-cy)*k);g.lineTo(cx+(d2[0]-cx)*k,cy+(d2[1]-cy)*k);g.closePath();g.clip();
+    var a=(d0[0]*(s1[1]-s2[1])+d1[0]*(s2[1]-s0[1])+d2[0]*(s0[1]-s1[1]))/den,b=(d0[1]*(s1[1]-s2[1])+d1[1]*(s2[1]-s0[1])+d2[1]*(s0[1]-s1[1]))/den,
+        c=(d0[0]*(s2[0]-s1[0])+d1[0]*(s0[0]-s2[0])+d2[0]*(s1[0]-s0[0]))/den,d=(d0[1]*(s2[0]-s1[0])+d1[1]*(s0[0]-s2[0])+d2[1]*(s1[0]-s0[0]))/den,
+        e=(d0[0]*(s1[0]*s2[1]-s2[0]*s1[1])+d1[0]*(s2[0]*s0[1]-s0[0]*s2[1])+d2[0]*(s0[0]*s1[1]-s1[0]*s0[1]))/den,
+        f=(d0[1]*(s1[0]*s2[1]-s2[0]*s1[1])+d1[1]*(s2[0]*s0[1]-s0[0]*s2[1])+d2[1]*(s0[0]*s1[1]-s1[0]*s0[1]))/den;
+    g.transform(a,b,c,d,e,f);g.drawImage(im,0,0);g.restore()})}
+/* volto finto sopra il fotogramma: bordi sfumati e bocca vera che si vede quando si apre */
+function dfCompose(out,frame,src,lm){var W=out.width,H=out.height,g=out.getContext('2d');g.drawImage(frame,0,0,W,H);if(!lm)return;
+  var T=[];for(var i=0;i<468;i++)T.push([lm[i].x*W,lm[i].y*H]);
+  var fc=dfCompose.fc||(dfCompose.fc=document.createElement('canvas')),mc=dfCompose.mc||(dfCompose.mc=document.createElement('canvas'));
+  if(fc.width!==W||fc.height!==H){fc.width=mc.width=W;fc.height=mc.height=H}
+  var fg=fc.getContext('2d'),mg=mc.getContext('2d');fg.clearRect(0,0,W,H);dfWarp(fg,src,T);
+  /* maschera: ovale del viso, sfumato */
+  var fw=Math.abs(T[454][0]-T[234][0]),blur=Math.max(3,fw*.05);mg.clearRect(0,0,W,H);mg.filter='blur('+blur+'px)';mg.fillStyle='#000';mg.beginPath();
+  DF_OVAL.forEach(function(i,k){var p=T[i],cx=T[1][0],cy=T[1][1],q=[cx+(p[0]-cx)*.94,cy+(p[1]-cy)*.94];k?mg.lineTo(q[0],q[1]):mg.moveTo(q[0],q[1])});mg.closePath();mg.fill();
+  /* buco per la bocca */
+  mg.filter='blur('+(blur*.4)+'px)';mg.globalCompositeOperation='destination-out';mg.beginPath();DF_LIPS.forEach(function(i,k){var p=T[i];k?mg.lineTo(p[0],p[1]):mg.moveTo(p[0],p[1])});mg.closePath();mg.fill();
+  mg.globalCompositeOperation='source-over';mg.filter='none';
+  fg.globalCompositeOperation='destination-in';fg.drawImage(mc,0,0);fg.globalCompositeOperation='source-over';
+  g.globalAlpha=.96;g.drawImage(fc,0,0);g.globalAlpha=1}
+/* cosa vede l'AI: i 478 punti */
+function dfDots(out,lm){if(!lm)return;var g=out.getContext('2d'),W=out.width,H=out.height,r=Math.max(1.3,W/400);g.fillStyle='#39FF88';
+  for(var i=0;i<lm.length;i++){g.beginPath();g.arc(lm[i].x*W,lm[i].y*H,r,0,6.283);g.fill()}}
+
+/* ---- la slide ---- */
+var FK_V='https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14';
+var FK_FACES=[{k:'monalisa',n:'Monna Lisa'},{k:'durer',n:'Dürer'},{k:'bacco',n:'Bacco'}];
+var FK_CK=[['👤','Chi l\'ha pubblicato?','Un account ufficiale o uno sconosciuto?'],['👀','Occhi e bocca','Sbatte le palpebre? Il labiale segue la voce?'],
+  ['🫥','I bordi del viso','Si sfocano quando la testa si gira? Provatelo qui!'],['📰','La notizia c\'è altrove?','La riportano fonti affidabili, come ANSA o Reuters?']];
+var FK={mode:'monalisa',stream:null,fl:null,src:{},raf:0,busy:false,ck:[0,0,0,0]};
+function fkInit(){if(!G('fkCv'))return;fkOffHtml();fkList();
+  /* la camera si spegne da sola quando si cambia slide */
+  setInterval(function(){if(FK.stream&&!G('s14').classList.contains('current'))fkStop()},800)}
+function fkOffHtml(msg){var o=G('fkOff');o.className='fk-off';G('fkCtrl').innerHTML='';G('fkBadge').textContent='';
+  o.innerHTML=msg||'<span>📷</span><button class="btn" onclick="fkStart()">Accendi la camera</button><p>Mettete il viso davanti alla camera del computer. Il video resta su questo computer: non viene inviato da nessuna parte.</p>'}
+function fkList(){G('fkList').innerHTML=FK_CK.map(function(c,i){return '<button class="fk-it'+(FK.ck[i]?' on':'')+'" onclick="fkTick('+i+')"><i>'+(FK.ck[i]?'✓':'')+'</i><div><b>'+c[0]+' '+c[1]+'</b><span>'+c[2]+'</span></div></button>'}).join('')+
+  '<p class="fk-end">Nel dubbio: non condividete.</p>'}
+function fkTick(i){FK.ck[i]=FK.ck[i]?0:1;fkList()}
+function fkCtrl(){var h='<button class="fk-b'+(FK.mode==='me'?' on':'')+'" onclick="fkMode(\'me\')"><i>🙂</i>Voi</button><button class="fk-b'+(FK.mode==='dots'?' on':'')+'" onclick="fkMode(\'dots\')"><i>🟢</i>Cosa vede l\'AI</button>'+
+  FK_FACES.map(function(f){return '<button class="fk-b'+(FK.mode===f.k?' on':'')+'" onclick="fkMode(\''+f.k+'\')"><img src="img/deepfake/'+f.k+'.jpg" alt="">'+f.n+'</button>'}).join('')+
+  '<button class="fk-b stop" onclick="fkStop()">⏹ Spegni</button>';G('fkCtrl').innerHTML=h}
+function fkMode(m){FK.mode=m;fkCtrl()}
+function fkStart(){if(FK.busy)return;FK.busy=true;var v=G('fkVid');
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia){FK.busy=false;fkOffHtml('<span>🚫</span><p>Questo browser non permette di usare la camera. Aprite la presentazione online con Chrome o Edge.</p>');return}
+  G('fkOff').innerHTML='<span>⏳</span><p>Accendo la camera…</p>';
+  navigator.mediaDevices.getUserMedia({video:{width:{ideal:640},height:{ideal:480},facingMode:'user'},audio:false}).then(function(s){FK.stream=s;v.srcObject=s;return v.play()}).then(function(){
+    G('fkOff').className='fk-off hide';fkCtrl();fkLoop();G('fkBadge').textContent='Carico l\'AI che riconosce i volti…';return fkLoad()}).then(function(){FK.busy=false;G('fkBadge').textContent=''}).catch(function(e){FK.busy=false;fkStop(true);
+    fkOffHtml('<span>🚫</span><p>'+(e&&e.name==='NotAllowedError'?'La camera è bloccata: consentitela dall\'icona nella barra degli indirizzi e riprovate.':e&&e.name==='NotFoundError'?'Non trovo nessuna camera collegata a questo computer.':'Non riesco a caricare l\'AI: serve la connessione a internet.')+'</p><button class="btn" onclick="fkStart()">Riprova</button>')})}
+/* l'AI dei volti si carica una volta sola, poi prepara i tre quadri */
+function fkLoad(){if(FK.fl)return Promise.resolve();var mod;
+  return import(FK_V+'/vision_bundle.mjs').then(function(m){mod=m;return m.FilesetResolver.forVisionTasks(FK_V+'/wasm')}).then(function(fs){
+    var opt=function(d){return {baseOptions:{modelAssetPath:'https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/float16/1/face_landmarker.task',delegate:d},runningMode:'IMAGE',numFaces:1}};
+    return mod.FaceLandmarker.createFromOptions(fs,opt('GPU')).catch(function(){return mod.FaceLandmarker.createFromOptions(fs,opt('CPU'))})}).then(function(fl){
+    var tris=dfMeshTris(mod.FaceLandmarker.FACE_LANDMARKS_TESSELATION);
+    return Promise.all(FK_FACES.map(function(f){return new Promise(function(ok,ko){var im=new Image();im.onload=function(){ok(im)};im.onerror=ko;im.src='img/deepfake/'+f.k+'.jpg'}).then(function(im){
+      var r=fl.detect(im);if(r.faceLandmarks[0])FK.src[f.k]=dfPrepSource(im,r.faceLandmarks[0],tris)})})).then(function(){return fl.setOptions({runningMode:'VIDEO'})}).then(function(){FK.fl=fl})})}
+function fkLoop(){cancelAnimationFrame(FK.raf);var v=G('fkVid'),cv=G('fkCv'),last=-1;
+  (function f(){if(!FK.stream)return;FK.raf=requestAnimationFrame(f);if(v.readyState<2||v.currentTime===last)return;last=v.currentTime;
+    if(cv.width!==v.videoWidth&&v.videoWidth){cv.width=v.videoWidth;cv.height=v.videoHeight}
+    var lm=null;if(FK.fl&&FK.mode!=='me'){try{lm=FK.fl.detectForVideo(v,performance.now()).faceLandmarks[0]}catch(e){}}
+    var src=FK.src[FK.mode];if(src&&lm)dfCompose(cv,v,src,lm);else cv.getContext('2d').drawImage(v,0,0,cv.width,cv.height);
+    if(FK.mode==='dots')dfDots(cv,lm);
+    if(FK.fl)G('fkBadge').textContent=FK.mode==='me'?'':lm?(FK.mode==='dots'?'478 punti trovati':''):'Nessun volto: guardate la camera'})()}
+function fkStop(keep){cancelAnimationFrame(FK.raf);if(FK.stream){FK.stream.getTracks().forEach(function(t){t.stop()});FK.stream=null}G('fkVid').srcObject=null;
+  var cv=G('fkCv');cv.getContext('2d').clearRect(0,0,cv.width,cv.height);if(!keep)fkOffHtml()}
 
 function dlToggle(el){var open=el.classList.contains('open');[].forEach.call(document.querySelectorAll('#dlGrid .dl-card'),function(c){c.classList.remove('open')});if(!open)el.classList.add('open')}
 
@@ -3731,7 +3839,7 @@ function copyTxt(t){try{navigator.clipboard.writeText(t)}catch(e){try{var ta=doc
 function flash(el){var bg=el.style.background;el.style.background='rgba(46,204,113,.35)';setTimeout(function(){el.style.background=bg},1100)}
 
 sfShow(0,document.getElementById('sfS0'));
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM)paInit();
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM){paInit();fkInit()}
 fdBoot();
 hsInit();
 n4Init();
