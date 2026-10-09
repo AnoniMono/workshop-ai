@@ -1797,7 +1797,8 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
     <!-- VAR simulator -->
     <div id="algVA" class="wrap-flex" style="flex:1;display:none">
       <div class="col flex-0" style="flex:0 0 auto;align-items:center">
-        <div class="scr"><span class="scr-tag">📺 Replay VAR</span><svg id="vaSvg" viewBox="0 0 480 300" aria-label="Azione di gioco vista dal VAR"></svg></div>
+        <div class="scr"><span class="scr-tag">📺 VAR</span><svg id="vaSvg" viewBox="0 0 480 300" aria-label="Azione di gioco vista dal VAR"></svg></div>
+        <p class="scr-cr">Foto: Antonio Fraioli, CC BY-SA 4.0, Wikimedia Commons · riquadri e punti trovati dall'AI MediaPipe</p>
         <div class="row" style="justify-content:center;gap:.5em;flex-wrap:wrap"><button class="btn" id="vaBtn" onclick="vaStep()">🎥 Chiedi al VAR</button><button class="btn ghost lab-gh" onclick="vaNew()">🔁 Nuova azione</button></div>
       </div>
       <div class="panel col min0" style="flex:1;gap:clamp(.45rem,1.1vh,.75rem)">
@@ -1805,8 +1806,8 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
         <div class="pl">
           <p class="fz-small" style="font-weight:800;color:var(--gray)">Cosa succede in quei 30 secondi — dov'è l'AI?</p>
           <div class="pl-row" id="vaPL0"><span class="pl-ic">📹</span><span class="pl-t">1. 12 telecamere riprendono</span><span class="pl-b data">📡 Dati · 50 foto al secondo</span><span class="pl-d">Sotto il tetto dello stadio, puntate su tutto il campo.</span></div>
-          <div class="pl-row ai" id="vaPL1"><span class="pl-ic">🦴</span><span class="pl-t">2. Trova i corpi dei giocatori</span><span class="pl-b ai">🧠 AI · 29 punti a testa</span><span class="pl-d">Testa, spalle, ginocchia, piedi: come i 478 punti del viso della slide prima.</span></div>
-          <div class="pl-row" id="vaPL2"><span class="pl-ic">⚽</span><span class="pl-t">3. Il momento del passaggio</span><span class="pl-b data">📡 Dati · sensore nel pallone</span><span class="pl-d">Il pallone "sente" il calcio 500 volte al secondo.</span></div>
+          <div class="pl-row ai" id="vaPL1"><span class="pl-ic">🦴</span><span class="pl-t">2. Trova giocatori e corpi</span><span class="pl-b ai">🧠 AI · rete neurale</span><span class="pl-d">Testa, spalle, ginocchia, piedi: come i 478 punti del viso della slide prima.</span></div>
+          <div class="pl-row" id="vaPL2"><span class="pl-ic">⚽</span><span class="pl-t">3. Replay 3D e momento del passaggio</span><span class="pl-b data">📡 Dati · sensore nel pallone</span><span class="pl-d">Il pallone "sente" il calcio 500 volte al secondo.</span></div>
           <div class="pl-row" id="vaPL3"><span class="pl-ic">📏</span><span class="pl-t">4. Traccia le linee e misura</span><span class="pl-b math">🧮 Matematica · geometria</span><span class="pl-d">Poi l'arbitro guarda e decide.</span></div>
         </div>
         <div class="aim"><p class="aim-h">🤔 AI o matematica?</p><div class="aim-g"><div class="aim-c ai"><b>🧠 AI</b>Riconoscere un ginocchio o una spalla in mezzo a 22 giocatori che corrono.</div><div class="aim-c math"><b>🧮 Matematica</b>Tirare una linea e misurare i centimetri.</div><div class="aim-c"><b>👨‍⚖️ Persona</b>L'ultima parola è sempre dell'arbitro.</div></div></div>
@@ -1816,7 +1817,8 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
     <!-- Medicina simulator -->
     <div id="algMD" class="wrap-flex" style="flex:1;display:none">
       <div class="col flex-0" style="flex:0 0 auto;align-items:center">
-        <div class="scr md"><span class="scr-tag" id="mdTag">🩻 Radiografia del torace</span><svg id="mdSvg" viewBox="0 0 480 300" aria-label="Radiografia del torace"></svg></div>
+        <div class="scr md"><span class="scr-tag" id="mdTag">🩻 Radiografia del torace · vera</span><svg id="mdSvg" viewBox="0 0 480 300" aria-label="Radiografia del torace"></svg></div>
+        <p class="scr-cr">Radiografie: M. Häggström (CC0) e pubblico dominio, Wikimedia Commons · la mappa dell'AI è un esempio</p>
         <div class="row" style="justify-content:center;gap:.5em;flex-wrap:wrap"><button class="btn" id="mdBtn" onclick="mdStep()">🔍 Analizza con l'AI</button></div>
       </div>
       <div class="panel col min0" style="flex:1;gap:clamp(.45rem,1.1vh,.75rem)">
@@ -2491,6 +2493,17 @@ FD.tt.noun='video';FD.sp.noun='brano';
 /* Maps */
 /* ---------- VAR: fuorigioco semi-automatico, un passo alla volta ---------- */
 var VA={st:-1,sc:null,last:-1};
+/* risultato vero dell'AI (MediaPipe: trova le persone, poi i punti del corpo di ognuna) sulla foto Frosinone-Reggina */
+var VA_AI={"d":[{"n":"person","s":0.86,"x":0.632,"y":0.2969,"w":0.1969,"h":0.6444},{"n":"sports ball","s":0.76,"x":0.3141,"y":0.1197,"w":0.0539,"h":0.0739},{"n":"person","s":0.66,"x":0.3109,"y":0.2218,"w":0.1961,"h":0.5998},{"n":"person","s":0.49,"x":0.2578,"y":0.3627,"w":0.0703,"h":0.25},{"n":"person","s":0.35,"x":0.2813,"y":0.3592,"w":0.107,"h":0.3486}],"p":[[[0.6977,0.3527],[0.7046,0.34],[0.7068,0.3398],[0.7091,0.3397],[0.7017,0.3399],[0.7019,0.3395],[0.7022,0.3392],[0.7241,0.3471],[0.7149,0.3479],[0.7039,0.3652],[0.7002,0.365],[0.7753,0.4085],[0.7102,0.439],[0.8199,0.4849],[0.7082,0.5206],[0.7687,0.4873],[0.6632,0.5531],[0.7518,0.4848],[0.6493,0.5644],[0.7478,0.4717],[0.6475,0.5625],[0.7518,0.4705],[0.6515,0.5588],[0.7803,0.5974],[0.7356,0.6086],[0.7888,0.756],[0.7494,0.7408],[0.7768,0.7907],[0.7765,0.8807],[0.7722,0.7926],[0.7805,0.895],[0.7784,0.8394],[0.79,0.9173]],[[0.3773,0.3128],[0.3748,0.3027],[0.3741,0.3032],[0.3733,0.3039],[0.3783,0.2984],[0.3802,0.2966],[0.3821,0.2945],[0.3768,0.3075],[0.3935,0.2924],[0.3799,0.3196],[0.3835,0.3173],[0.3857,0.3578],[0.4488,0.3171],[0.359,0.4157],[0.4892,0.3573],[0.332,0.3867],[0.4796,0.3733],[0.3176,0.3866],[0.4759,0.3652],[0.3213,0.3766],[0.4753,0.3685],[0.3268,0.3761],[0.4671,0.3671],[0.426,0.5103],[0.4599,0.5052],[0.3741,0.5952],[0.418,0.6078],[0.3757,0.7259],[0.4147,0.73],[0.3879,0.7457],[0.4208,0.7521],[0.3387,0.7642],[0.3953,0.7535]],[[0.2904,0.3712],[0.2922,0.368],[0.2934,0.3683],[0.2947,0.3687],[0.289,0.3681],[0.288,0.3684],[0.287,0.3687],[0.2972,0.3731],[0.2859,0.3728],[0.2933,0.3764],[0.2887,0.3761],[0.3072,0.4027],[0.2769,0.4021],[0.3163,0.4342],[0.2739,0.4278],[0.3061,0.4388],[0.2672,0.4478],[0.3023,0.4414],[0.2637,0.4526],[0.3015,0.4368],[0.2638,0.4516],[0.3022,0.436],[0.2653,0.4502],[0.2993,0.4745],[0.2808,0.4737],[0.2995,0.525],[0.2818,0.5285],[0.2997,0.5661],[0.2813,0.5846],[0.2985,0.5697],[0.2826,0.5908],[0.3017,0.5887],[0.2797,0.6046]],[[0.3802,0.3175],[0.3831,0.3155],[0.3833,0.3156],[0.3835,0.3157],[0.3789,0.2972],[0.3792,0.2972],[0.3795,0.2973],[0.3864,0.3156],[0.3855,0.3165],[0.381,0.3213],[0.3798,0.3191],[0.3948,0.3477],[0.3806,0.3585],[0.3645,0.4072],[0.3686,0.4163],[0.3324,0.384],[0.3607,0.4391],[0.3239,0.3849],[0.3581,0.448],[0.3228,0.378],[0.3574,0.4448],[0.3254,0.3781],[0.3581,0.4405],[0.4069,0.4643],[0.3982,0.4594],[0.3728,0.5489],[0.3673,0.533],[0.3628,0.6477],[0.3741,0.6197],[0.3705,0.6636],[0.3797,0.6304],[0.3391,0.6718],[0.3616,0.6457]]]};
+var VA_LIMBS=[[11,12],[11,13],[13,15],[12,14],[14,16],[11,23],[12,24],[23,24],[23,25],[25,27],[27,31],[24,26],[26,28],[28,32],[0,11],[0,12]];
+function vaPhoto(){var st=VA.st,X=function(x){return x*480},Y=function(y){return y*320-10},h='<image href="img/lab/var.jpg" x="0" y="-10" width="480" height="320" preserveAspectRatio="none"/>';
+  if(st>=0)h+='<g font-size="15">'+[[20,22],[240,22],[460,22]].map(function(p){return '<text x="'+p[0]+'" y="'+p[1]+'" text-anchor="middle" dominant-baseline="central">📹</text>'}).join('')+'</g>';
+  if(st===1)VA_AI.d.forEach(function(d){var ball=d.n!=='person',col=ball?'#FFD54F':'#39FF88',t=(ball?'Pallone ':'Giocatore ')+Math.round(d.s*100)+'%',x=X(d.x),y=Y(d.y),w=d.w*480,hh=d.h*320,ly=y>16?y-15:y;
+    h+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+hh+'" fill="none" stroke="'+col+'" stroke-width="2.5" rx="3"/><rect x="'+x+'" y="'+ly+'" width="'+(t.length*6.3+8)+'" height="15" fill="'+col+'"/><text x="'+(x+4)+'" y="'+(ly+11)+'" font-size="10.5" font-weight="800" fill="#0d1424" font-family="Nunito Sans,sans-serif">'+t+'</text>'});
+  if(st===2)VA_AI.p.forEach(function(L){VA_LIMBS.forEach(function(b){var a=L[b[0]],c=L[b[1]];h+='<line x1="'+X(a[0])+'" y1="'+Y(a[1])+'" x2="'+X(c[0])+'" y2="'+Y(c[1])+'" stroke="#00E5FF" stroke-width="2.2" stroke-linecap="round"/>'});
+    [0,11,12,13,14,15,16,23,24,25,26,27,28,31,32].forEach(function(i){h+='<circle cx="'+X(L[i][0])+'" cy="'+Y(L[i][1])+'" r="2.6" fill="#39FF88" stroke="#0d1424" stroke-width=".8"/>'})});
+  if(st>=1)h+='<rect x="0" y="278" width="480" height="22" fill="rgba(13,20,36,.8)"/><text x="240" y="293" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="Nunito Sans,sans-serif">'+(st===1?'L\'AI ha trovato '+VA_AI.d.filter(function(d){return d.n==="person"}).length+' giocatori e il pallone':'L\'AI ha trovato i punti del corpo di ogni giocatore')+'</text>';
+  G('vaSvg').innerHTML=h}
 /* tre azioni: di quanti cm l'attaccante è oltre il difensore (negativo = in gioco) */
 var VA_SC=[{cm:7},{cm:-12},{cm:2},{cm:-4}];
 /* corpo che corre verso destra: punti come quelli che trova l'AI */
@@ -2503,8 +2516,8 @@ function vaFig(x,y,shirt,shorts,dots){var P={},h='';Object.keys(VA_J).forEach(fu
   else Object.keys(P).forEach(function(k){h+='<circle cx="'+P[k][0]+'" cy="'+P[k][1]+'" r="3.2" fill="#39FF88" stroke="#0d1424" stroke-width="1"/>'});return h}
 function vaNew(){var i;do{i=Math.floor(Math.random()*VA_SC.length)}while(i===VA.last);VA.last=i;VA.sc=VA_SC[i];VA.st=-1;vaDraw();
   ['vaPL0','vaPL1','vaPL2','vaPL3'].forEach(function(id){G(id).classList.remove('lit')});G('vaBtn').textContent='🎥 Chiedi al VAR';G('vaBtn').disabled=false;
-  G('vaMsg').innerHTML='Passaggio filtrante, l\'attaccante segna! Ma era in <b>fuorigioco</b>? A occhio è impossibile dirlo: chiediamo al VAR.'}
-function vaDraw(){var s=VA.sc,st=VA.st,dX=300,aX=dX+(vaFront(0)-vaFront(0))+s.cm*.9,y=228,h='';
+  G('vaMsg').innerHTML='Gol! Ma era in <b>fuorigioco</b>? A occhio è impossibile dirlo: vediamo come lavora il VAR, passo per passo.'}
+function vaDraw(){if(VA.st<3){vaPhoto();return}var s=VA.sc,st=VA.st,dX=300,aX=dX+(vaFront(0)-vaFront(0))+s.cm*.9,y=228,h='';
   /* campo */
   for(var i=0;i<8;i++)h+='<rect x="'+(i*60)+'" y="0" width="60" height="300" fill="'+(i%2?'#3E9A4B':'#46A653')+'"/>';
   h+='<g stroke="#fff" stroke-width="3" fill="none" opacity=".85"><line x1="452" y1="0" x2="452" y2="300"/><rect x="372" y="50" width="80" height="200"/><rect x="420" y="105" width="32" height="90"/></g><rect x="452" y="118" width="18" height="64" fill="none" stroke="#fff" stroke-width="3"/>';
@@ -2519,13 +2532,15 @@ function vaDraw(){var s=VA.sc,st=VA.st,dX=300,aX=dX+(vaFront(0)-vaFront(0))+s.cm
     h+='<line x1="'+fd+'" y1="0" x2="'+fd+'" y2="300" stroke="#4FC3F7" stroke-width="3"/><line x1="'+fa+'" y1="0" x2="'+fa+'" y2="300" stroke="'+(off?'#FF5252':'#FFD54F')+'" stroke-width="3"/>';
     var mx=Math.max(fd,fa)+10;h+='<rect x="'+mx+'" y="10" width="70" height="28" rx="8" fill="#0d1424" opacity=".88"/><text x="'+(mx+35)+'" y="29" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" font-family="Fredoka,sans-serif">'+Math.abs(s.cm)+' cm</text>'}
   if(st>=4){var off2=s.cm>0;h+='<rect x="120" y="118" width="240" height="64" rx="14" fill="'+(off2?'#E74C3C':'#2ECC71')+'" opacity=".95"/><text x="240" y="'+(off2?146:156)+'" text-anchor="middle" font-size="24" font-weight="700" fill="#fff" font-family="Fredoka,sans-serif">'+(off2?'FUORIGIOCO':'GIOCO REGOLARE')+'</text>'+(off2?'<text x="240" y="170" text-anchor="middle" font-size="13" font-weight="800" fill="#fff" font-family="Nunito Sans,sans-serif">di '+s.cm+' cm · il gol è annullato</text>':'')}
+  h+='<rect x="150" y="270" width="180" height="22" rx="11" fill="rgba(13,20,36,.85)"/><text x="240" y="285" text-anchor="middle" font-size="11" font-weight="800" fill="#fff" font-family="Nunito Sans,sans-serif">🎮 REPLAY VIRTUALE 3D</text>';
   G('vaSvg').innerHTML=h}
-var VA_STEPS=[['Avanti: trova i corpi →','📹 <b>12 telecamere</b> sotto il tetto dello stadio riprendono l\'azione da tutti i lati, 50 volte al secondo.'],
-  ['Avanti: il passaggio →','🦴 L\'AI trova <b>29 punti</b> del corpo di ogni giocatore: testa, spalle, ginocchia, piedi. Le braccia non contano per il fuorigioco.'],
-  ['Avanti: traccia le linee →','⚽ Un <b>sensore dentro il pallone</b> registra il calcio 500 volte al secondo: così si sa il fotogramma esatto del passaggio.'],
-  ['Avanti: la decisione →','📏 Ora è <b>geometria</b>: una linea sulla parte più avanzata di ciascuno, e si misura la distanza.'],
+var VA_STEPS=[['Avanti: trova i giocatori →','📹 Una foto vera di una partita (Frosinone–Reggina). Allo stadio ci sono <b>12 telecamere</b> sotto il tetto che riprendono l\'azione 50 volte al secondo.'],
+  ['Avanti: trova i corpi →','🏷️ Prima l\'AI trova <b>i giocatori e il pallone</b>. Questi riquadri li ha trovati davvero un\'AI su questa foto, con quanto è sicura.'],
+  ['Avanti: replay virtuale →','🦴 Poi, per ogni giocatore, trova i <b>punti del corpo</b>: spalle, gomiti, ginocchia, piedi. Come i 478 punti del viso della slide prima.'],
+  ['Avanti: la decisione →','🎮 Dai punti di tutte le telecamere l\'AI ricostruisce l\'azione in un <b>replay virtuale 3D</b>, quello che si vede in TV. Il <b>sensore nel pallone</b> dice il momento esatto del passaggio, e si tracciano le linee.'],
   ['↺ Rivedi il replay','']];
-function vaStep(){if(VA.st>=4){VA.st=-1;['vaPL0','vaPL1','vaPL2','vaPL3'].forEach(function(id){G(id).classList.remove('lit')});G('vaBtn').textContent='🎥 Chiedi al VAR';vaDraw();G('vaMsg').innerHTML='Rivediamo la stessa azione, passo per passo.';return}VA.st++;var st=VA.st;G('vaPL'+Math.min(3,st)).classList.add('lit');G('vaBtn').textContent=VA_STEPS[st][0];vaDraw();
+function vaLit(){var st=VA.st;['vaPL0','vaPL1','vaPL2','vaPL3'].forEach(function(id,i){G(id).classList.toggle('lit',st>=0&&(i===0||(i===1&&st>=1)||(i>=2&&st>=3)))})}
+function vaStep(){if(VA.st>=4){VA.st=-1;['vaPL0','vaPL1','vaPL2','vaPL3'].forEach(function(id){G(id).classList.remove('lit')});G('vaBtn').textContent='🎥 Chiedi al VAR';vaDraw();G('vaMsg').innerHTML='Rivediamo la stessa azione, passo per passo.';return}VA.st++;var st=VA.st;vaLit();G('vaBtn').textContent=VA_STEPS[st][0];vaDraw();
   if(st<4){G('vaMsg').innerHTML=VA_STEPS[st][1];return}
   var off=VA.sc.cm>0;G('vaMsg').innerHTML=off?'🚩 <b>Fuorigioco di '+VA.sc.cm+' cm</b>: a occhio nessuno poteva vederlo. L\'arbitro guarda il replay e annulla il gol.':'✅ <b>Gioco regolare</b>: l\'attaccante era '+(-VA.sc.cm)+' cm dietro. Gol valido!';
   xpShow('va:end',{ic:off?'🚩':'✅',t:off?'Fuorigioco di '+VA.sc.cm+' cm':'Gioco regolare',sub:'Tutto in meno di 30 secondi.',
@@ -2535,23 +2550,20 @@ function vaStep(){if(VA.st>=4){VA.st=-1;['vaPL0','vaPL1','vaPL2','vaPL3'].forEac
 
 /* ---------- Medicina: l'AI legge una radiografia, il medico decide ---------- */
 var MD={p:0,st:-1};
-var MD_P=[{n:'Marco, 16 anni',f:null,res:'Nessuna anomalia trovata',pc:95},{n:'Giulia, 45 anni',f:{x:168,y:205,rx:44,ry:30,k:'cloud'},res:'Possibile polmonite',pc:87},{n:'Paolo, 67 anni',f:{x:300,y:118,rx:9,ry:9,k:'dot'},res:'Possibile nodulo da controllare',pc:91}];
+var MD_P=[{n:'Sara, 21 anni',img:'xr-normale.jpg',a:1929/2207,f:null,res:'Nessuna anomalia trovata',pc:95},{n:'Carlo, 67 anni',img:'xr-polmonite.jpg',a:960/763,f:{x:.22,y:.58,r:.15},res:'Possibile polmonite',pc:89},{n:'Paolo, 60 anni',img:'xr-massa.jpg',a:1,f:{x:.27,y:.6,r:.13},res:'Massa sospetta da controllare',pc:91}];
 function mdPats(){G('mdPats').innerHTML=MD_P.map(function(p,i){return '<button class="mp-tg'+(i===MD.p?' on':'')+'" onclick="mdPick('+i+')">🧑 '+p.n+'</button>'}).join('')}
 function mdPick(i){MD.p=i;MD.st=-1;mdPats();mdDraw();['mdPL0','mdPL1','mdPL2','mdPL3'].forEach(function(id){G(id).classList.remove('lit')});G('mdBtn').textContent='🔍 Analizza con l\'AI';
-  G('mdMsg').innerHTML='Radiografia del torace di <b>'+MD_P[i].n+'</b>. Per un occhio non allenato sono tutte uguali: vediamo cosa trova l\'AI.'}
-function mdDraw(){var P=MD_P[MD.p],st=MD.st,h='<defs><radialGradient id="mdLung" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#1a1d22"/><stop offset="1" stop-color="#3a3f47"/></radialGradient><radialGradient id="mdHeat" r="50%"><stop offset="0" stop-color="#FF3B30" stop-opacity=".85"/><stop offset=".55" stop-color="#FFCC00" stop-opacity=".45"/><stop offset="1" stop-color="#FFCC00" stop-opacity="0"/></radialGradient><filter id="mdBl"><feGaussianBlur stdDeviation="3"/></filter><filter id="mdBl2"><feGaussianBlur stdDeviation="9"/></filter></defs>';
-  h+='<rect width="480" height="300" fill="#050608"/><path d="M110 300 C100 200 120 80 190 40 L290 40 C360 80 380 200 370 300 Z" fill="#7d838c" filter="url(#mdBl)"/>';
-  h+='<ellipse cx="175" cy="160" rx="62" ry="105" fill="url(#mdLung)" filter="url(#mdBl)"/><ellipse cx="305" cy="160" rx="62" ry="105" fill="url(#mdLung)" filter="url(#mdBl)"/>';
-  h+='<ellipse cx="265" cy="205" rx="48" ry="44" fill="#9aa1aa" opacity=".75" filter="url(#mdBl)"/><rect x="232" y="30" width="16" height="270" fill="#c9ced6" opacity=".8" filter="url(#mdBl)"/>';
-  for(var i=0;i<8;i++){var yy=70+i*24;h+='<path d="M232 '+yy+' C190 '+(yy-14)+' 140 '+(yy-4)+' 118 '+(yy+22)+'" stroke="#d7dbe2" stroke-width="5" fill="none" opacity=".55" filter="url(#mdBl)"/><path d="M248 '+yy+' C290 '+(yy-14)+' 340 '+(yy-4)+' 362 '+(yy+22)+'" stroke="#d7dbe2" stroke-width="5" fill="none" opacity=".55" filter="url(#mdBl)"/>'}
-  h+='<path d="M150 52 L232 62 M330 52 L248 62" stroke="#e2e6ec" stroke-width="7" opacity=".7" filter="url(#mdBl)"/>';
-  if(P.f)h+=P.f.k==='cloud'?'<ellipse cx="'+P.f.x+'" cy="'+P.f.y+'" rx="'+P.f.rx+'" ry="'+P.f.ry+'" fill="#c5cbd3" opacity=".5" filter="url(#mdBl2)"/>':'<circle cx="'+P.f.x+'" cy="'+P.f.y+'" r="'+P.f.rx+'" fill="#d9dee5" opacity=".75" filter="url(#mdBl)"/>';
-  if(st===0)h+='<g opacity=".55">'+Array.apply(null,{length:12}).map(function(_,i){return '<line x1="0" y1="'+(i*25+12)+'" x2="480" y2="'+(i*25+12)+'" stroke="#00E5FF" stroke-width="1"/>'}).join('')+'</g><text x="14" y="288" font-size="12" font-weight="800" fill="#00E5FF" font-family="Nunito Sans,sans-serif">480 × 300 pixel = 144.000 numeri</text>';
-  if(st===1)h+='<g fill="none" stroke="#00E5FF" stroke-width="1.5" opacity=".7">'+[[120,60],[200,60],[280,60],[120,140],[200,140],[280,140],[120,220],[200,220],[280,220]].map(function(p){return '<rect x="'+p[0]+'" y="'+p[1]+'" width="76" height="76" rx="6"/>'}).join('')+'</g><text x="14" y="288" font-size="12" font-weight="800" fill="#00E5FF" font-family="Nunito Sans,sans-serif">La rete neurale guarda la lastra pezzo per pezzo…</text>';
-  if(st>=2&&P.f)h+='<ellipse cx="'+P.f.x+'" cy="'+P.f.y+'" rx="'+(P.f.rx*2.4+18)+'" ry="'+(P.f.ry*2.4+18)+'" fill="url(#mdHeat)"/>';
-  if(st>=2){var lx=P.f?Math.min(330,Math.max(14,P.f.x-80)):150,ly=P.f?(P.f.y>150?P.f.y-P.f.ry*2.4-34:P.f.y+P.f.ry*2.4+20):20;
-    h+='<rect x="'+lx+'" y="'+ly+'" width="180" height="26" rx="8" fill="'+(P.f?'#E74C3C':'#2ECC71')+'"/><text x="'+(lx+90)+'" y="'+(ly+17)+'" text-anchor="middle" font-size="12" font-weight="800" fill="#fff" font-family="Nunito Sans,sans-serif">'+P.res+' · '+P.pc+'%</text>'}
-  if(st>=3)h+='<rect x="300" y="250" width="166" height="36" rx="10" fill="#fff"/><text x="383" y="273" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2A4A" font-family="Nunito Sans,sans-serif">👩‍⚕️ Controlla il medico</text>';
+  G('mdMsg').innerHTML='Radiografia vera del torace di <b>'+MD_P[i].n+'</b>. Per un occhio non allenato sono tutte simili: vediamo cosa trova l\'AI.'}
+function mdDraw(){var P=MD_P[MD.p],st=MD.st,ih=Math.min(300,480/P.a),iw=ih*P.a,x0=(480-iw)/2,y0=(300-ih)/2,h='<defs><radialGradient id="mdHeat" r="50%"><stop offset="0" stop-color="#FF3B30" stop-opacity=".8"/><stop offset=".55" stop-color="#FFCC00" stop-opacity=".42"/><stop offset="1" stop-color="#FFCC00" stop-opacity="0"/></radialGradient></defs>';
+  h+='<rect width="480" height="300" fill="#000"/><image href="img/lab/'+P.img+'" x="'+x0+'" y="'+y0+'" width="'+iw+'" height="'+ih+'" preserveAspectRatio="none"/>';
+  if(st===0){h+='<g stroke="#00E5FF" stroke-width=".8" opacity=".55">';for(var gx=x0;gx<=x0+iw;gx+=12)h+='<line x1="'+gx+'" y1="'+y0+'" x2="'+gx+'" y2="'+(y0+ih)+'"/>';for(var gy=y0;gy<=y0+ih;gy+=12)h+='<line x1="'+x0+'" y1="'+gy+'" x2="'+(x0+iw)+'" y2="'+gy+'"/>';
+    h+='</g><rect x="8" y="272" width="250" height="20" rx="6" fill="rgba(0,0,0,.75)"/><text x="16" y="286" font-size="11.5" font-weight="800" fill="#00E5FF" font-family="Nunito Sans,sans-serif">Ogni quadratino è un numero: chiaro = osso</text>'}
+  if(st===1){h+='<g fill="none" stroke="#00E5FF" stroke-width="1.5" opacity=".8">';for(var r=0;r<3;r++)for(var c=0;c<3;c++)h+='<rect x="'+(x0+c*iw/3+3)+'" y="'+(y0+r*ih/3+3)+'" width="'+(iw/3-6)+'" height="'+(ih/3-6)+'" rx="5"/>';
+    h+='</g><rect x="8" y="272" width="272" height="20" rx="6" fill="rgba(0,0,0,.75)"/><text x="16" y="286" font-size="11.5" font-weight="800" fill="#00E5FF" font-family="Nunito Sans,sans-serif">La rete neurale guarda la lastra pezzo per pezzo…</text>'}
+  if(st>=2&&P.f){var fx=x0+P.f.x*iw,fy=y0+P.f.y*ih,fr=P.f.r*iw;h+='<ellipse cx="'+fx+'" cy="'+fy+'" rx="'+fr*1.5+'" ry="'+fr*1.3+'" fill="url(#mdHeat)"/>'}
+  if(st>=2){var lw=P.res.length*6.6+44,lx=P.f?Math.min(472-lw,Math.max(8,x0+P.f.x*iw-lw/2)):240-lw/2,ly=P.f?Math.max(8,y0+P.f.y*ih-P.f.r*iw*1.3-30):12;
+    h+='<rect x="'+lx+'" y="'+ly+'" width="'+lw+'" height="24" rx="8" fill="'+(P.f?'#E74C3C':'#2ECC71')+'"/><text x="'+(lx+lw/2)+'" y="'+(ly+16)+'" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff" font-family="Nunito Sans,sans-serif">'+P.res+' · '+P.pc+'%</text>'}
+  if(st>=3)h+='<rect x="300" y="256" width="166" height="34" rx="10" fill="#fff"/><text x="383" y="278" text-anchor="middle" font-size="13" font-weight="800" fill="#1B2A4A" font-family="Nunito Sans,sans-serif">👩‍⚕️ Decide il medico</text>';
   G('mdSvg').innerHTML=h}
 var MD_STEPS=[['Avanti: cerca forme sospette →','🩻 Per l\'AI la radiografia è una griglia di <b>numeri</b>: chiaro = osso, scuro = aria nei polmoni. Come il gatto della slide 8.'],
   ['Avanti: dove ha guardato →','🔎 La rete neurale cerca le forme che ha imparato da <b>migliaia di lastre</b> già diagnosticate dai medici.'],
@@ -2577,9 +2589,9 @@ function tsPause(){var v=G('tsVid');TS.pause=TS.pause?0:1;G('tsPlay').textConten
 /* l'AI che riconosce gli oggetti si carica una volta sola */
 function tsLoad(){if(TS.od||TS.loading)return;TS.loading=true;var V='https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14',mod;tsMsg();
   import(V+'/vision_bundle.mjs').then(function(m){mod=m;return m.FilesetResolver.forVisionTasks(V+'/wasm')}).then(function(fs){
-    var o=function(d){return {baseOptions:{modelAssetPath:'https://storage.googleapis.com/mediapipe-models/object_detector/efficientdet_lite2/float16/1/efficientdet_lite2.tflite',delegate:d},runningMode:'VIDEO',scoreThreshold:.3,maxResults:20}};
+    var o=function(d){return {baseOptions:{modelAssetPath:'https://storage.googleapis.com/mediapipe-models/object_detector/efficientdet_lite2/float16/1/efficientdet_lite2.tflite',delegate:d},runningMode:'VIDEO',scoreThreshold:.28,maxResults:25}};
     return mod.ObjectDetector.createFromOptions(fs,o('GPU')).catch(function(){return mod.ObjectDetector.createFromOptions(fs,o('CPU'))})}).then(function(od){TS.od=od;TS.loading=false;tsMsg()}).catch(function(){TS.loading=false;TS.fail=1;tsMsg()})}
-function tsCount(){var c={};TS.dets.forEach(function(d){var n=d.categories[0].categoryName;if(TS_IT[n])c[n]=(c[n]||0)+1});return c}
+function tsCount(){var c={};TS.dets.forEach(function(d){c[d.n]=(c[d.n]||0)+1});return c}
 function tsMsg(){var m=G('tsMsg');if(!m)return;
   if(!TS.see){m.innerHTML='Il video di una vera telecamera da auto, in città. Accendete <b>👁️ Cosa vede l\'auto</b> per guardarlo con gli occhi dell\'AI.';return}
   if(TS.fail){m.innerHTML='Non riesco a caricare l\'AI: serve la connessione a internet.';return}
@@ -2589,15 +2601,23 @@ function tsMsg(){var m=G('tsMsg');if(!m)return;
 function tsFrame(g,v,W,H){g.save();g.filter=TS.night?'brightness(.32) contrast(1.15) saturate(.5)':'none';g.drawImage(v,0,0,W,H);g.restore();
   if(TS.rain){g.save();g.fillStyle='rgba(180,190,205,.22)';g.fillRect(0,0,W,H);g.strokeStyle='rgba(225,235,250,.55)';g.lineWidth=1.4;var o=(performance.now()/6)%H;
     for(var j=0;j<140;j++){var x=(j*61)%W,y=(j*113+o*(1+j%3))%H;g.beginPath();g.moveTo(x,y);g.lineTo(x-5,y+16);g.stroke()}g.restore()}}
+/* l'AI guarda l'immagine intera e, ingrandito, il centro della strada (dove le persone sono piccole); poi unisce i risultati */
+function tsDetect(cv){var W=cv.width,H=cv.height,Z=[.2,.22,.6,.6],zc=TS.zc||(TS.zc=document.createElement('canvas'));zc.width=W;zc.height=H;
+  zc.getContext('2d').drawImage(cv,Z[0]*W,Z[1]*H,Z[2]*W,Z[3]*H,0,0,W,H);var t=performance.now(),all=[];
+  var add=function(r,f){r.detections.forEach(function(d){var c=d.categories[0];if(!TS_IT[c.categoryName])return;var b=d.boundingBox;
+    all.push({n:c.categoryName,s:c.score,x:f?Z[0]*W+b.originX*Z[2]:b.originX,y:f?Z[1]*H+b.originY*Z[3]:b.originY,w:f?b.width*Z[2]:b.width,h:f?b.height*Z[3]:b.height})})};
+  add(TS.od.detectForVideo(cv,t),0);add(TS.od.detectForVideo(zc,t+1),1);
+  all.sort(function(a,b){return b.s-a.s});var keep=[];
+  all.forEach(function(a){if(keep.some(function(k){var ix=Math.max(0,Math.min(a.x+a.w,k.x+k.w)-Math.max(a.x,k.x)),iy=Math.max(0,Math.min(a.y+a.h,k.y+k.h)-Math.max(a.y,k.y)),i=ix*iy;return i/Math.min(a.w*a.h,k.w*k.h)>.5}))return;keep.push(a)});return keep}
 function tsDraw(){var v=G('tsVid'),cv=G('tsCv');if(!v||!cv||v.readyState<2)return;var W=cv.width,H=cv.height,g=cv.getContext('2d');
   tsFrame(g,v,W,H);
   /* l'AI guarda proprio questa immagine (con buio e pioggia), qualche volta al secondo */
-  if(TS.see&&TS.od&&!TS.busy&&performance.now()-TS.last>180){TS.busy=true;TS.last=performance.now();try{TS.dets=TS.od.detectForVideo(cv,performance.now()).detections.filter(function(d){return TS_IT[d.categories[0].categoryName]})}catch(e){}TS.busy=false;tsSteps()}
-  if(TS.see&&TS.od){g.lineWidth=2.5;g.font='800 14px "Nunito Sans",sans-serif';TS.dets.forEach(function(d){var b=d.boundingBox,c=d.categories[0],col=tsCol(c.categoryName),t=TS_IT[c.categoryName]+' '+Math.round(c.score*100)+'%',tw=g.measureText(t).width+10;
-    g.strokeStyle=col;g.strokeRect(b.originX,b.originY,b.width,b.height);g.fillStyle=col;g.fillRect(b.originX,b.originY-18,tw,18);g.fillStyle='#0d1424';g.fillText(t,b.originX+5,b.originY-5)})}
+  if(TS.see&&TS.od&&!TS.busy&&performance.now()-TS.last>220){TS.busy=true;TS.last=performance.now();try{TS.dets=tsDetect(cv)}catch(e){}TS.busy=false;tsSteps()}
+  if(TS.see&&TS.od){g.lineWidth=2.5;g.font='800 14px "Nunito Sans",sans-serif';g.lineWidth=3;TS.dets.forEach(function(d){var col=tsCol(d.n),t=TS_IT[d.n]+' '+Math.round(d.s*100)+'%',tw=g.measureText(t).width+10,x=Math.max(2,d.x),y=Math.max(2,d.y),w=Math.min(W-2,d.x+d.w)-x,hh=Math.min(H-42,d.y+d.h)-y;if(w<4||hh<4)return;
+    g.strokeStyle=col;g.strokeRect(x,y,w,hh);var lx=Math.min(x,W-tw-2),ly=y>=20?y-18:y;g.fillStyle=col;g.fillRect(lx,ly,tw,18);g.fillStyle='#0d1424';g.fillText(t,lx+5,ly+13)})}
   /* decisione */
   var c=tsCount(),stop=TS.see&&TS.od&&(c['traffic light']||c.person),txt=!TS.see||!TS.od?'▶ Guida':(c.person?'⚠️ Attenzione: persone':c['traffic light']?'⚠️ Attenzione: semaforo':'▶ Strada libera');
-  g.fillStyle='rgba(13,20,36,.85)';g.fillRect(0,H-40,W,40);g.font='700 17px Fredoka,sans-serif';g.fillStyle=stop?'#FF5252':'#2ECC71';g.textAlign='right';g.fillText(txt,W-16,H-13);g.textAlign='left'}
+  g.fillStyle='rgba(13,20,36,.85)';g.fillRect(0,H-40,W,40);g.font='700 16px Fredoka,sans-serif';g.fillStyle=stop?'#FF5252':'#2ECC71';g.textAlign='right';g.fillText(txt,W-16,H-13);g.textAlign='left'}
 function tsSteps(){var c=tsCount();G('tsPL2').classList.toggle('lit',!!c.person);G('tsPL3').classList.toggle('lit',!!(c.person||c['traffic light']));if(!tsSteps.n||++tsSteps.n%6===0)tsMsg();tsSteps.n=tsSteps.n||1}
 function tsTick(){var on=G('s2')&&G('s2').classList.contains('current')&&algCur==='ts'&&!document.hidden&&G('ibLab').style.display!=='none',v=G('tsVid');
   if(v){if(on&&!TS.pause&&v.paused)v.play().catch(function(){});if(!on&&!v.paused)v.pause()}
