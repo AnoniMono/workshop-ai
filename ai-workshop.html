@@ -1330,6 +1330,9 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
 .scr svg{width:100%;height:100%;display:block;border-radius:12px}
 .scr-tag{position:absolute;top:14px;left:14px;z-index:1;background:rgba(13,20,36,.8);color:#fff;font-size:.72rem;font-weight:800;padding:.25em .7em;border-radius:999px}
 @media (max-height:780px){#algTip{display:none}}
+.scr canvas{width:100%;height:100%;display:block;border-radius:12px;object-fit:cover}
+.scr video{display:none}
+.scr-cr{margin:0;font-size:.7rem;color:var(--gray)}
 .btn.lab-gh{color:var(--navy);box-shadow:inset 0 0 0 2px #C9D1DC;background:#fff}
 .pl-b.mech{background:rgba(200,150,62,.2);color:#8A5A12}
 .pl-b.rule{background:rgba(0,180,216,.15);color:#0077A0}
@@ -1833,8 +1836,9 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
     <!-- Tesla simulator -->
     <div id="algTS" class="wrap-flex" style="flex:1;display:none">
       <div class="col flex-0" style="flex:0 0 auto;align-items:center">
-        <div class="scr"><span class="scr-tag">🚗 Telecamera anteriore</span><svg id="tsSvg" viewBox="0 0 480 300" aria-label="La strada vista dalla telecamera dell'auto"></svg></div>
-        <div class="row" style="justify-content:center;gap:.5em;flex-wrap:wrap"><button class="btn" id="tsCross" onclick="tsCross()">🚶 Il pedone attraversa</button></div>
+        <div class="scr"><span class="scr-tag">🚗 Telecamera di un'auto · video vero</span><canvas id="tsCv" width="854" height="480" aria-label="Video di una telecamera da auto ferma a un semaforo, con quello che riconosce l'AI"></canvas><video id="tsVid" src="img/auto/oldenburg.webm" muted loop playsinline preload="auto"></video></div>
+        <p class="scr-cr">Video: Jacek Rużyczka, CC BY-SA 4.0, Wikimedia Commons</p>
+        <div class="row" style="justify-content:center;gap:.5em;flex-wrap:wrap"><button class="btn lab-gh" id="tsPlay" onclick="tsPause()">⏸ Ferma il video</button></div>
       </div>
       <div class="panel col min0" style="flex:1;gap:clamp(.45rem,1.1vh,.75rem)">
         <div class="row" style="flex-wrap:wrap;gap:.4em">
@@ -1847,8 +1851,8 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
           <p class="fz-small" style="font-weight:800;color:var(--gray)">Cosa succede 30 volte al secondo — dov'è l'AI?</p>
           <div class="pl-row" id="tsPL0"><span class="pl-ic">📹</span><span class="pl-t">1. 8 telecamere riprendono</span><span class="pl-b data">📡 Dati · video</span><span class="pl-d">Tutto intorno all'auto, come tanti occhi.</span></div>
           <div class="pl-row ai" id="tsPL1"><span class="pl-ic">🏷️</span><span class="pl-t">2. Riconosce cosa c'è</span><span class="pl-b ai">🧠 AI · rete neurale</span><span class="pl-d">Auto, pedoni, semafori, cartelli.</span></div>
-          <div class="pl-row ai" id="tsPL2"><span class="pl-ic">🔮</span><span class="pl-t">3. Prevede cosa faranno</span><span class="pl-b ai">🧠 AI · previsione</span><span class="pl-d">Quel pedone sta per attraversare?</span></div>
-          <div class="pl-row" id="tsPL3"><span class="pl-ic">🛑</span><span class="pl-t">4. Decide: frena o vai</span><span class="pl-b rule">📏 Regole + AI</span><span class="pl-d">Rosso = fermati. Pedone in strada = frena.</span></div>
+          <div class="pl-row ai" id="tsPL2"><span class="pl-ic">🔮</span><span class="pl-t">3. Prevede cosa faranno</span><span class="pl-b ai">🧠 AI · previsione</span><span class="pl-d">Quelle persone stanno attraversando?</span></div>
+          <div class="pl-row" id="tsPL3"><span class="pl-ic">🛑</span><span class="pl-t">4. Decide: resta fermo o parte</span><span class="pl-b rule">📏 Regole + AI</span><span class="pl-d">Persone davanti o semaforo = attenzione, rallenta.</span></div>
         </div>
         <div class="aim"><p class="aim-h">🤔 AI o regole?</p><div class="aim-g"><div class="aim-c math"><b>📏 Regole</b>Scritte dagli ingegneri: con il rosso ci si ferma, il limite è 50.</div><div class="aim-c ai"><b>🧠 AI</b>Capire che quella macchia scura è un pedone, di notte, sotto la pioggia.</div></div></div>
       </div>
@@ -2561,50 +2565,45 @@ function mdStep(){if(MD.st>=3){mdPick(MD.p);return}MD.st++;var st=MD.st,P=MD_P[M
       R('🔥','Perché la mappa','ai','La mappa di calore mostra <b>dove</b> ha guardato: così il medico può controllare se l\'AI ha ragione.'),R('👩‍⚕️','Chi decide','human','Il medico. L\'AI non si stanca e non si distrae, ma può sbagliare: è un secondo paio d\'occhi, non un sostituto.')],
     foot:'In alcuni studi l\'AI trova i tumori al seno nelle mammografie bene quanto un radiologo esperto. Il risultato migliore arriva quando lavorano insieme.',toast:'👩‍⚕️ L\'AI suggerisce, il medico decide'})}
 
-/* ---------- Tesla: cosa vede l'auto ---------- */
-var TS={see:0,night:0,rain:0,cross:0,px:0,v:50,off:0,raf:0,t0:0};
+/* ---------- Auto: un'AI vera riconosce cosa c'è nel video di una dashcam (MediaPipe, sul computer) ---------- */
+var TS={see:0,night:0,rain:0,od:null,loading:false,dets:[],busy:false,last:0,pause:0,raf:0};
+var TS_IT={person:'Persona',car:'Auto',bus:'Autobus',truck:'Camion',bicycle:'Bici',motorcycle:'Moto','traffic light':'Semaforo','stop sign':'Stop'};
+function tsCol(n){return n==='person'?'#39FF88':n==='traffic light'||n==='stop sign'?'#FFD54F':'#00E5FF'}
 function tsTog(k){TS[k]=TS[k]?0:1;G('tsTg'+k.charAt(0).toUpperCase()+k.slice(1)).classList.toggle('on',!!TS[k]);
-  if(TS.see){G('tsPL0').classList.add('lit');G('tsPL1').classList.add('lit')}
-  if(k==='see'&&TS.see)xpShow('ts:see',{ic:'👁️',t:'Cosa vede l\'auto',sub:'Ogni riquadro è qualcosa che la rete neurale ha riconosciuto.',rows:[R('📹','Le telecamere','data','Una Tesla ha <b>8 telecamere</b> tutto intorno: niente radar, solo "occhi", come noi.'),R('🏷️','Riconosce','ai','Una rete neurale, come quella del gatto della slide 8, trova <b>auto, pedoni, semafori e cartelli</b> 30 volte al secondo. Il numero è quanto è sicura.')],toast:'👁️ Riquadri = oggetti riconosciuti'});
-  if((k==='night'||k==='rain')&&TS[k]&&TS.see)xpShow('ts:hard',{ic:k==='night'?'🌙':'🌧️',t:k==='night'?'Di notte vede peggio':'Con la pioggia vede peggio',rows:[R('📉','Più incerta','ai','Guardate le percentuali: scendono. L\'AI è <b>meno sicura</b>, proprio come noi quando guidiamo con poca luce o la pioggia.'),R('🛡️','Più prudente','rule','Per questo, quando è incerta, rallenta e chiede al guidatore di stare attento.')],toast:'📉 Meno luce = AI meno sicura'});
+  if(k==='see'&&TS.see){tsLoad();xpShow('ts:see',{ic:'👁️',t:'Cosa vede l\'auto',sub:'Questa è un\'AI vera, che sta guardando il video adesso, su questo computer.',rows:[R('📹','Le telecamere','data','Un\'auto come la Tesla ha <b>8 telecamere</b> tutto intorno: niente radar, solo "occhi", come noi.'),R('🏷️','Riconosce','ai','Una rete neurale, come quella del gatto della slide 8, trova <b>persone, auto, autobus e semafori</b> più volte al secondo. Il numero è quanto è sicura.')],toast:'👁️ Riquadri = oggetti riconosciuti dall\'AI'})}
+  if((k==='night'||k==='rain')&&TS[k]&&TS.see)xpShow('ts:hard',{ic:k==='night'?'🌙':'🌧️',t:k==='night'?'Di notte vede peggio':'Con la pioggia vede peggio',rows:[R('📉','Più incerta','ai','Guardate le percentuali: scendono, e alcune persone <b>spariscono</b>. L\'AI guarda la stessa scena, ma con meno luce (o con la pioggia) è meno sicura, proprio come noi.'),R('🛡️','Più prudente','rule','Per questo, quando è incerta, l\'auto rallenta e chiede al guidatore di stare attento.')],toast:'📉 Meno luce = AI meno sicura'});
   tsMsg()}
-function tsMsg(){G('tsMsg').innerHTML=TS.cross===2?'🛑 Pedone in strada: l\'auto <b>frena</b> da sola.':TS.see?'👁️ Ogni riquadro è un oggetto riconosciuto dall\'AI, con quanto è sicura.'+(TS.night||TS.rain?' <b>Con '+(TS.night&&TS.rain?'buio e pioggia':TS.night?'il buio':'la pioggia')+' è meno sicura.</b>':''):'Accendete <b>👁️ Cosa vede l\'auto</b> per guardare la strada con gli occhi dell\'AI.'}
-function tsCross(){if(TS.cross)return;TS.cross=1;TS.t0=performance.now();G('tsCross').disabled=true;G('tsPL2').classList.add('lit')}
-function tsBox(x,y,w,h,lab,pc,col){var t=lab+' '+pc+'%',tw=t.length*6.6+10;return '<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="none" stroke="'+col+'" stroke-width="2.5" rx="3"/><rect x="'+x+'" y="'+(y-17)+'" width="'+tw+'" height="16" fill="'+col+'" rx="3"/><text x="'+(x+5)+'" y="'+(y-5)+'" font-size="11" font-weight="800" fill="#0d1424" font-family="Nunito Sans,sans-serif">'+t+'</text>'}
-function tsDraw(){var n=TS.night,r=TS.rain,pen=(n?14:0)+(r?9:0),h='';
-  h+='<defs><linearGradient id="tsSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="'+(n?'#0b1330':'#8EC9F5')+'"/><stop offset="1" stop-color="'+(n?'#1d2547':'#D9EEFB')+'"/></linearGradient></defs>';
-  h+='<rect width="480" height="150" fill="url(#tsSky)"/><rect y="150" width="480" height="150" fill="'+(n?'#1c1f26':'#7a7f87')+'"/>';
-  h+='<g fill="'+(n?'#151a2c':'#b8c2cf')+'"><rect x="0" y="70" width="70" height="80"/><rect x="62" y="96" width="60" height="54"/><rect x="380" y="60" width="100" height="90"/><rect x="345" y="100" width="45" height="50"/></g>';
-  if(n)h+='<g fill="#FFD54F" opacity=".7"><rect x="12" y="84" width="8" height="8"/><rect x="34" y="104" width="8" height="8"/><rect x="400" y="80" width="8" height="8"/><rect x="440" y="110" width="8" height="8"/></g>';
-  h+='<polygon points="200,150 280,150 470,300 10,300" fill="'+(n?'#2a2d34':'#5d6168')+'"/><polygon points="0,170 200,150 10,300 0,300" fill="'+(n?'#22252b':'#a4a9b0')+'"/><polygon points="480,170 280,150 470,300 480,300" fill="'+(n?'#22252b':'#a4a9b0')+'"/>';
-  for(var i=0;i<6;i++){var z=((i/6+TS.off)%1),z2=z+.06,y1=150+150*z*z,y2=150+150*Math.min(1,z2*z2),w1=1+6*z,w2=1+6*z2;h+='<polygon points="'+(240-w1)+','+y1+' '+(240+w1)+','+y1+' '+(240+w2)+','+y2+' '+(240-w2)+','+y2+'" fill="#f2f2f2" opacity=".85"/>'}
-  if(n)h+='<polygon points="150,300 215,180 265,180 330,300" fill="#FFF3B0" opacity=".16"/>';
-  /* auto davanti */
-  h+='<rect x="212" y="166" width="56" height="34" rx="6" fill="#C0392B"/><rect x="218" y="170" width="44" height="12" rx="3" fill="#2c3e50"/><rect x="214" y="188" width="10" height="5" rx="2" fill="'+(n?'#ff4d4d':'#8e2a20')+'"/><rect x="256" y="188" width="10" height="5" rx="2" fill="'+(n?'#ff4d4d':'#8e2a20')+'"/>';
-  /* semaforo e cartello */
-  h+='<rect x="352" y="60" width="5" height="95" fill="#333"/><rect x="342" y="46" width="24" height="54" rx="5" fill="#222"/><circle cx="354" cy="58" r="7" fill="#FF3B30"/><circle cx="354" cy="73" r="7" fill="#553"/><circle cx="354" cy="88" r="7" fill="#353"/>';
-  h+='<rect x="110" y="110" width="4" height="62" fill="#666"/><circle cx="112" cy="104" r="15" fill="#fff" stroke="#E74C3C" stroke-width="5"/><text x="112" y="109" text-anchor="middle" font-size="14" font-weight="800" fill="#111" font-family="Nunito Sans,sans-serif">50</text>';
-  /* pedone */
-  var px=392-TS.px*170,py=232,pl=n?'#5a6070':'#1B2A4A';
-  h+='<g><circle cx="'+px+'" cy="'+(py-46)+'" r="7" fill="'+(n?'#7a6a5a':'#E9B48F')+'"/><rect x="'+(px-7)+'" y="'+(py-38)+'" width="14" height="24" rx="5" fill="'+(n?'#4a3f60':'#8E44AD')+'"/><line x1="'+(px-3)+'" y1="'+(py-15)+'" x2="'+(px-7)+'" y2="'+py+'" stroke="'+pl+'" stroke-width="5" stroke-linecap="round"/><line x1="'+(px+3)+'" y1="'+(py-15)+'" x2="'+(px+7)+'" y2="'+py+'" stroke="'+pl+'" stroke-width="5" stroke-linecap="round"/></g>';
-  if(r){h+='<g stroke="#cfe3ff" stroke-width="1.5" opacity=".55">';for(var j=0;j<70;j++){var rx=(j*53+TS.off*900)%480,ry=(j*97+TS.off*1400)%300;h+='<line x1="'+rx+'" y1="'+ry+'" x2="'+(rx-4)+'" y2="'+(ry+12)+'"/>'}h+='</g>'}
-  if(n)h+='<rect width="480" height="300" fill="#000" opacity=".25"/>';
-  if(TS.see){h+=tsBox(208,162,64,42,'Auto',98-pen,'#00E5FF')+tsBox(338,40,34,64,'Rosso',97-pen,'#FFD54F')+tsBox(94,86,36,36,'Limite 50',95-pen,'#FFD54F');
-    var inRoad=px<380;h+=tsBox(px-14,py-58,28,62,inRoad?'Pedone in strada!':'Pedone',91-pen*1.3|0,inRoad&&TS.cross?'#FF5252':'#39FF88')}
-  /* cruscotto */
-  h+='<rect x="0" y="262" width="480" height="38" fill="#0d1424" opacity=".88"/><text x="16" y="287" font-size="17" font-weight="700" fill="#fff" font-family="Fredoka,sans-serif">'+Math.round(TS.v)+' km/h</text>';
-  h+='<text x="464" y="287" text-anchor="end" font-size="14" font-weight="800" fill="'+(TS.cross===2?'#FF5252':'#2ECC71')+'" font-family="Nunito Sans,sans-serif">'+(TS.cross===2?(TS.v>0?'🛑 FRENO D\'EMERGENZA':'🛑 FERMA: il pedone passa'):'▶ Guida')+'</text>';
-  G('tsSvg').innerHTML=h}
-function tsTick(){var on=G('s2')&&G('s2').classList.contains('current')&&algCur==='ts'&&!document.hidden;
-  if(on){TS.off=(TS.off+TS.v/50*.006)%1;
-    if(TS.cross===1){TS.px=Math.min(1,(performance.now()-TS.t0)/2600);if(TS.px>.08){TS.cross=2;G('tsPL3').classList.add('lit');tsMsg();
-      xpShow('ts:brake',{ic:'🛑',t:'L\'auto ha frenato da sola',rows:[R('🏷️','Ha visto','ai','La rete neurale ha riconosciuto un <b>pedone</b>, anche se era piccolo e lontano.'),R('🔮','Ha previsto','ai','Dal modo in cui si muoveva ha capito che <b>stava per attraversare</b>, prima che arrivasse in mezzo alla strada.'),R('🛑','Ha deciso','rule','Pedone sulla strada = frena. Questa è una <b>regola</b> scritta dagli ingegneri: la parte difficile, per l\'AI, era vederlo.')],
-        foot:'Le Tesla vedono solo con le telecamere. Altre auto senza guidatore, come Waymo, usano anche un laser (LiDAR) che misura le distanze.',toast:'🛑 Pedone riconosciuto: frenata'})}}
-    if(TS.cross===2){TS.v=Math.max(0,TS.v-1.6);TS.px=Math.min(1,(performance.now()-TS.t0)/2600);
-      if(TS.px>=1&&TS.v<=0){TS.cross=3;setTimeout(function(){TS.cross=0;TS.px=0;TS.v=50;G('tsCross').disabled=false;tsMsg()},2500)}}
-    if(TS.cross===3)TS.v=0;tsDraw()}
-  setTimeout(tsTick,50)}
-function labInit(){vaNew();mdPats();mdPick(0);tsMsg();tsDraw();tsTick()}
+function tsPause(){var v=G('tsVid');TS.pause=TS.pause?0:1;G('tsPlay').textContent=TS.pause?'▶ Riprendi il video':'⏸ Ferma il video';if(TS.pause)v.pause();else v.play().catch(function(){})}
+/* l'AI che riconosce gli oggetti si carica una volta sola */
+function tsLoad(){if(TS.od||TS.loading)return;TS.loading=true;var V='https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14',mod;tsMsg();
+  import(V+'/vision_bundle.mjs').then(function(m){mod=m;return m.FilesetResolver.forVisionTasks(V+'/wasm')}).then(function(fs){
+    var o=function(d){return {baseOptions:{modelAssetPath:'https://storage.googleapis.com/mediapipe-models/object_detector/efficientdet_lite2/float16/1/efficientdet_lite2.tflite',delegate:d},runningMode:'VIDEO',scoreThreshold:.3,maxResults:20}};
+    return mod.ObjectDetector.createFromOptions(fs,o('GPU')).catch(function(){return mod.ObjectDetector.createFromOptions(fs,o('CPU'))})}).then(function(od){TS.od=od;TS.loading=false;tsMsg()}).catch(function(){TS.loading=false;TS.fail=1;tsMsg()})}
+function tsCount(){var c={};TS.dets.forEach(function(d){var n=d.categories[0].categoryName;if(TS_IT[n])c[n]=(c[n]||0)+1});return c}
+function tsMsg(){var m=G('tsMsg');if(!m)return;
+  if(!TS.see){m.innerHTML='Il video di una vera telecamera da auto, in città. Accendete <b>👁️ Cosa vede l\'auto</b> per guardarlo con gli occhi dell\'AI.';return}
+  if(TS.fail){m.innerHTML='Non riesco a caricare l\'AI: serve la connessione a internet.';return}
+  if(!TS.od){m.innerHTML='⏳ Carico l\'AI che riconosce gli oggetti…';return}
+  var c=tsCount(),p=c.person||0,parts=[];Object.keys(c).forEach(function(k){parts.push(c[k]+' '+(c[k]>1?{person:'persone',car:'auto',bus:'autobus',truck:'camion',bicycle:'bici',motorcycle:'moto','traffic light':'semafori','stop sign':'stop'}[k]:TS_IT[k].toLowerCase()))});
+  m.innerHTML='👁️ L\'AI vede: <b>'+(parts.join(', ')||'niente')+'</b>.'+(TS.night||TS.rain?' Con '+(TS.night&&TS.rain?'buio e pioggia':TS.night?'il buio':'la pioggia')+' ne vede meno, e meno sicura.':'')}
+function tsFrame(g,v,W,H){g.save();g.filter=TS.night?'brightness(.32) contrast(1.15) saturate(.5)':'none';g.drawImage(v,0,0,W,H);g.restore();
+  if(TS.rain){g.save();g.fillStyle='rgba(180,190,205,.22)';g.fillRect(0,0,W,H);g.strokeStyle='rgba(225,235,250,.55)';g.lineWidth=1.4;var o=(performance.now()/6)%H;
+    for(var j=0;j<140;j++){var x=(j*61)%W,y=(j*113+o*(1+j%3))%H;g.beginPath();g.moveTo(x,y);g.lineTo(x-5,y+16);g.stroke()}g.restore()}}
+function tsDraw(){var v=G('tsVid'),cv=G('tsCv');if(!v||!cv||v.readyState<2)return;var W=cv.width,H=cv.height,g=cv.getContext('2d');
+  tsFrame(g,v,W,H);
+  /* l'AI guarda proprio questa immagine (con buio e pioggia), qualche volta al secondo */
+  if(TS.see&&TS.od&&!TS.busy&&performance.now()-TS.last>180){TS.busy=true;TS.last=performance.now();try{TS.dets=TS.od.detectForVideo(cv,performance.now()).detections.filter(function(d){return TS_IT[d.categories[0].categoryName]})}catch(e){}TS.busy=false;tsSteps()}
+  if(TS.see&&TS.od){g.lineWidth=2.5;g.font='800 14px "Nunito Sans",sans-serif';TS.dets.forEach(function(d){var b=d.boundingBox,c=d.categories[0],col=tsCol(c.categoryName),t=TS_IT[c.categoryName]+' '+Math.round(c.score*100)+'%',tw=g.measureText(t).width+10;
+    g.strokeStyle=col;g.strokeRect(b.originX,b.originY,b.width,b.height);g.fillStyle=col;g.fillRect(b.originX,b.originY-18,tw,18);g.fillStyle='#0d1424';g.fillText(t,b.originX+5,b.originY-5)})}
+  /* decisione */
+  var c=tsCount(),stop=TS.see&&TS.od&&(c['traffic light']||c.person),txt=!TS.see||!TS.od?'▶ Guida':(c.person?'⚠️ Attenzione: persone':c['traffic light']?'⚠️ Attenzione: semaforo':'▶ Strada libera');
+  g.fillStyle='rgba(13,20,36,.85)';g.fillRect(0,H-40,W,40);g.font='700 17px Fredoka,sans-serif';g.fillStyle=stop?'#FF5252':'#2ECC71';g.textAlign='right';g.fillText(txt,W-16,H-13);g.textAlign='left'}
+function tsSteps(){var c=tsCount();G('tsPL2').classList.toggle('lit',!!c.person);G('tsPL3').classList.toggle('lit',!!(c.person||c['traffic light']));if(!tsSteps.n||++tsSteps.n%6===0)tsMsg();tsSteps.n=tsSteps.n||1}
+function tsTick(){var on=G('s2')&&G('s2').classList.contains('current')&&algCur==='ts'&&!document.hidden&&G('ibLab').style.display!=='none',v=G('tsVid');
+  if(v){if(on&&!TS.pause&&v.paused)v.play().catch(function(){});if(!on&&!v.paused)v.pause()}
+  if(on){G('tsPL0').classList.add('lit');G('tsPL1').classList.toggle('lit',!!TS.see);tsDraw()}
+  TS.raf=requestAnimationFrame(tsTick)}
+function labInit(){vaNew();mdPats();mdPick(0);tsMsg();tsTick()}
 
 /* spiegazioni per TikTok e Spotify */
 FD.tt.xp=function(k,x){var nm='<b>'+x.cat.e+' '+x.cat.n+'</b>',REG='Cosa ha registrato',USE='Come lo usa l\'AI',
