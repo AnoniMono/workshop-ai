@@ -1361,10 +1361,6 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
 .pv-tip{margin:0;font-size:.9rem;color:var(--gray)}
 .pv-tip b{color:var(--navy)}
 @media (max-height:800px){#sPV .pa-join .tu-qr canvas,#sPV .pa-join .tu-qr img{width:76px!important;height:76px!important}#sPV .pv-feed{max-height:5em}#sPV .pv-out{min-height:9em}}
-/* telefono */
-html.vote.pvm,html.vote.pvm body{background:#F5F7FA}
-#vtApp.pv{font-family:var(--ff-body);color:var(--navy);align-items:center;text-align:center}
-.pvp-in{width:min(90vw,380px);min-height:5em;font:700 1.15rem 'Nunito Sans',sans-serif;border:3px solid #F5B7B1;border-radius:16px;padding:12px;box-sizing:border-box;resize:none}
 /* badge extra per i pop-up */
 .pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
 .scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
@@ -1917,15 +1913,14 @@ html.vote.pvm,html.vote.pvm body{background:#F5F7FA}
 
 <!-- 17 MIGLIORA IL PROMPT: un prompt pigro diventa un prompt ottimo -->
 <section class="slide darktext s-light" data-section="Usare l'AI" id="sPV">
-  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">ATTIVITÀ · 10 min</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Dal prompt pigro al prompt perfetto</h2></div>
+  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">DAL VIVO</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Dal prompt pigro al prompt perfetto</h2></div>
   <div class="pv-stage">
     <div class="pv-col">
       <p class="pv-lab bad">😴 Prompt pigro</p>
       <textarea class="pv-in" id="pvIn" maxlength="140" placeholder="Scrivete un prompt come lo scrivereste voi… es. «riassunto promessi sposi»" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();pvGo()}"></textarea>
       <div class="pv-row"><button class="btn" id="pvBtn" onclick="pvGo()">✨ Miglioralo</button><a class="btn ghost pv-gpt" id="pvGptBad" target="_blank" rel="noopener">Prova su ChatGPT ↗</a></div>
-      <p class="pv-k2">Dai vostri telefoni <span id="pvN"></span></p>
+      <p class="pv-k2">Esempi da provare</p>
       <div class="pv-feed" id="pvFeed"></div>
-      <div class="pa-join" id="pvJoin"></div>
     </div>
     <div class="pv-arrow">→</div>
     <div class="pv-col">
@@ -3123,10 +3118,9 @@ function agTrainBtn(n){var wb=AG.wr;agTrainN(n);AG.wr=agEval();AGV.ver++;AGV.his
     bars:[['Vittorie',wb,AG.wr]],toast:'+'+n+' partite: vittorie '+wb+'% → '+AG.wr+'%'})}
 
 /* apre e chiude le stanze sui telefoni quando l'insegnante entra o esce */
-function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM||PA_ROOM||PV_ROOM)return;var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
+function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM||PA_ROOM)return;var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
   var s13=G('s13'),pOpen=!!(s13&&s13.classList.contains('current'));if(PA.g){var pKey=pOpen+'|'+PA.g+'|'+PA.ph;if(pKey!==PA.key){PA.key=pKey;var pSt={open:pOpen,g:PA.g,o:PA.o,ph:PA.ph,s:PA.ph==='gen'?PA.sent:''};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'PS',state:pSt,updated_at:new Date().toISOString()}).then(function(){})})}}
-  var sPV=G('sPV'),kOpen=!!(sPV&&sPV.classList.contains('current'));if(PV.g){var kKey=kOpen+'|'+PV.g;if(kKey!==PV.key){PV.key=kKey;var kSt={open:kOpen,g:PV.g};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'KS',state:kSt,updated_at:new Date().toISOString()}).then(function(){})})}}
-  var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
+    var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
   var tOpen=on3&&hsCur===1&&TU.mode==='q';if(VT.pub&&tOpen!==VT.open)vtState(Object.assign({},VT.state,{open:tOpen}));
   var aOpen=on3&&hsCur===4;if(AGV.pub&&aOpen!==AGV.open){AGV.open=aOpen;agPublish()}}
 setInterval(roomsSync,1500);
@@ -3941,26 +3935,15 @@ function fkStop(keep){cancelAnimationFrame(FK.raf);if(FK.stream){FK.stream.getTr
 
 
 /* ===== slide "Dal prompt pigro al prompt perfetto": si scrive un prompt pigro (o arriva dai telefoni), l'AI lo riscrive con la ricetta ===== */
-var PV_ROOM=(function(){try{return new URLSearchParams(location.search).get('prompt')}catch(e){return null}})();
 var PV_ING=[['ruolo','Ruolo','#FF6B35'],['contesto','Contesto','#00A6C8'],['compito','Compito','#2ECC71'],['formato','Formato','#8E44AD']];
 var PV_EX=['riassunto promessi sposi','aiuto compiti mate','spiegami la guerra fredda','scrivi tema ambiente'];
-var PV_BAD=/\b(cazz|merd|stronz|vaffan|coglion|puttan|troia|fottut|minchi|porc[oa] ?d|negr|frocio|ricchion|bastard)/i;
-var PV={g:'',key:'',seen:{},feed:[],busy:false,last:null,tok:0};
-function pvUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?prompt='+vtRoom():''}
+var PV={busy:false,last:null,tok:0};
 function pvGpt(t){return 'https://chatgpt.com/?q='+encodeURIComponent(t)}
-function pvInit(){if(!G('pvIn'))return;var g='';for(var k=0;k<4;k++)g+='abcdefghjkmnpqrstuvwxyz23456789'[Math.floor(Math.random()*31)];PV.g=g;
-  var u=pvUrl(),ok=vtOn()&&u;G('pvJoin').innerHTML=ok?'<div class="tu-qr" id="pvQr" data-qr="'+u+'" data-size="92"></div><p>Mandate il vostro prompt pigro<b class="big">Stanza '+vtRoom()+'</b>dal telefono</p>':'<p>Dalla versione online gli studenti possono mandare i loro prompt dal telefono.</p>';
-  if(ok)vtQr(G('pvQr'),u,92);pvFeed();pvShow(null);G('pvIn').addEventListener('input',pvLinks);pvLinks();
-  setInterval(function(){if(G('sPV').classList.contains('current')&&vtOn()&&!document.hidden)pvPull()},4000)}
+function pvInit(){if(!G('pvIn'))return;pvFeed();pvShow(null);G('pvIn').addEventListener('input',pvLinks);pvLinks()}
 function pvLinks(){var b=G('pvIn').value.trim(),a=G('pvGptBad');a.href=b?pvGpt(b):'#';a.classList.toggle('off',!b)}
-/* i prompt in arrivo dai telefoni (più gli esempi): si clicca per usarli */
-function pvFeed(){var all=PV.feed.concat(PV_EX.filter(function(e){return PV.feed.indexOf(e)<0}));
-  G('pvFeed').innerHTML=all.slice(0,14).map(function(t,i){return '<button class="pv-chip'+(i<PV.feed.length&&PV.seen[t]===1?' new':'')+'" onclick="pvUse('+i+')" title="'+esc(t)+'">'+esc(t)+'</button>'}).join('');PV.all=all;
-  Object.keys(PV.seen).forEach(function(k){PV.seen[k]=2});var n=G('pvN');if(n)n.textContent=PV.feed.length?'· '+PV.feed.length+' arrivati':''}
-function pvUse(i){G('pvIn').value=PV.all[i];pvLinks();pvGo()}
-function pvPull(){vtSb(function(sb){var g=PV.g;sb.from('vote_rooms').select('room,state').like('room',vtRoom()+'K%').order('updated_at',{ascending:false}).limit(60).then(function(res){if(!res.data||g!==PV.g)return;var f=[];
-  res.data.forEach(function(r){var t=r.state&&r.state.g===g&&typeof r.state.t==='string'?r.state.t.trim().slice(0,140):'';if(!t||r.room.length!==8||PV_BAD.test(t)||f.indexOf(t)>=0)return;f.push(t);if(!PV.seen[t])PV.seen[t]=1});
-  var ch=f.join('|')!==PV.feed.join('|');PV.feed=f;if(ch)pvFeed()})})}
+/* esempi pronti da cliccare */
+function pvFeed(){G('pvFeed').innerHTML=PV_EX.map(function(t,i){return '<button class="pv-chip" onclick="pvUse('+i+')">'+esc(t)+'</button>'}).join('')}
+function pvUse(i){G('pvIn').value=PV_EX[i];pvLinks();pvGo()}
 /* la ricetta senza AI: riconosce materia e richiesta, il resto lo lascia tra [parentesi] */
 var PV_SUBJ=[[/mate|equaz|frazion|geometr|algebr|derivat|integral|funzion|percentual/,'matematica'],[/fisic|forz|velocit|energi|elettric/,'fisica'],[/chimic|atom|molecol|reazion/,'chimica'],[/scienz|biolog|cellul|fotosintes|dna|corpo umano/,'scienze'],
   [/stori|guerra|impero|rivoluz|medioevo|romani|fascism|resistenz/,'storia'],[/filosof|platone|aristotele|kant|socrate/,'filosofia'],[/ingles|english|inglese/,'inglese'],[/latin/,'latino'],
@@ -3991,21 +3974,6 @@ function pvGo(){var bad=G('pvIn').value.trim();if(!bad||PV.busy)return;PV.busy=t
   fetch('https://text.pollinations.ai/'+encodeURIComponent(ask)+'?json=true&referrer=anonimono.github.io&seed='+Math.floor(Math.random()*1e6)).then(function(r){return r.ok?r.text():Promise.reject(r.status)}).then(function(t){
     var m=t.match(/\{[\s\S]*\}/),o=m&&JSON.parse(m[0]);if(!o||PV_ING.some(function(k){return typeof o[k[0]]!=='string'||!o[k[0]].trim()}))throw 0;clearTimeout(timer);done(o,'ai')}).catch(function(){clearTimeout(timer);done(pvRecipe(bad),'rec')})}
 
-/* ---- telefono (?prompt=CODICE): si manda un prompt pigro ---- */
-function pvPhone(){var root=document.documentElement;root.classList.add('vote');root.classList.add('pvm');var app=document.createElement('div');app.id='vtApp';app.className='pv';document.body.appendChild(app);
-  var id;try{id=localStorage.getItem('drId')}catch(e){}if(!id){id='';for(var i=0;i<3;i++)id+='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random()*32)];try{localStorage.setItem('drId',id)}catch(e){}}
-  var key=PV_ROOM+'K'+id,S={st:null,k:'',sent:''};
-  function pull(){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',PV_ROOM+'KS').maybeSingle().then(function(res){var st=(res.data&&res.data.state)||{open:false},k=JSON.stringify(st);if(k===S.k)return;
-    if(!S.st||st.g!==S.st.g)S.sent='';S.k=k;S.st=st;draw()})})}
-  function draw(){var h='<p class="drp-hd">Prompt pigro · stanza '+esc(PV_ROOM)+'</p>',st=S.st;
-    if(!vtOn()){app.innerHTML=h+'<p class="drp-note">Non configurato su questa presentazione.</p>';return}
-    if(!st){app.innerHTML=h+'<p class="drp-note">Collegamento…</p>';return}
-    if(!st.open){app.innerHTML=h+'<p class="drp-big">👀</p><p class="drp-q">Guardate lo schermo</p><p class="drp-note">Si scrive quando l\'insegnante apre l\'attività. Questa pagina si riattiva da sola.</p>';return}
-    app.innerHTML=h+'<p class="drp-q">Scrivete un prompt <b>pigro</b></p><p class="drp-note">Come lo scrivereste di fretta a ChatGPT. Es. «riassunto promessi sposi», «aiuto compiti mate».</p>'+
-      '<textarea class="pvp-in" id="pvpIn" maxlength="140" placeholder="Il vostro prompt…"></textarea><div class="drp-row"><button class="drp-btn" onclick="pvpSend()">Manda allo schermo</button></div>'+
-      (S.sent?'<p class="drp-prog">✓ Mandato: «'+esc(S.sent)+'». Potete mandarne un altro.</p>':'')}
-  window.pvpSend=function(){var t=(G('pvpIn').value||'').trim().slice(0,140);if(!t)return;S.sent=t;vtSb(function(sb){sb.from('vote_rooms').upsert({room:key,state:{g:S.st.g,t:t},updated_at:new Date().toISOString()}).then(function(){})});draw()};
-  draw();if(!vtOn())return;pull();setInterval(function(){if(!document.hidden&&!(document.activeElement&&document.activeElement.id==='pvpIn'))pull()},4000)}
 
 function updPrompt(){var r=document.getElementById('pbRole').value.trim(),c=document.getElementById('pbCtx').value.trim(),t=document.getElementById('pbTask').value.trim(),f=document.getElementById('pbFmt').value,x=document.getElementById('pbEx').value.trim();var parts=[],n=0;if(r){parts.push('<span style="color:#FFB899">Sei un '+r+'.</span>');n++}if(c){parts.push('<span style="color:#7CC6E8">'+c+'.</span>');n++}if(t){parts.push('<span style="color:#FFD2BE">'+t+'</span>');n++}if(f){parts.push('<span style="color:#7CC6E8">Rispondi '+f+'.</span>');n++}if(x){parts.push('<span style="color:#FFD2BE">Esempio: '+x+'.</span>');n++}var res=document.getElementById('pbResult');res.innerHTML=n===0?'<span style="color:#8AAFCF;font-style:italic">Compila i campi per vedere il prompt...</span>':parts.join(' ');var pct=Math.round(n/5*100),m=document.getElementById('pbMeter');m.style.width=pct+'%';var lab=['','Debole','Debole','Sufficiente','Buono!','Perfetto!'],col=['#E2E8F0','#FF6B35','#FF6B35','#FFB800','#00B4D8','#2ECC71'];m.style.background=col[n];document.getElementById('pbScore').textContent=lab[n]||'0%';document.getElementById('pbScore').style.color=col[n]}
 function copyPrompt(btn){var t=document.getElementById('pbResult').textContent;if(t&&t.indexOf('Compila')===-1){copyTxt(t);btn.textContent='Copiato!';setTimeout(function(){btn.textContent='📋 Copia prompt'},1400)}}
@@ -4044,7 +4012,7 @@ function copyTxt(t){try{navigator.clipboard.writeText(t)}catch(e){try{var ta=doc
 function flash(el){var bg=el.style.background;el.style.background='rgba(46,204,113,.35)';setTimeout(function(){el.style.background=bg},1100)}
 
 sfShow(0,document.getElementById('sfS0'));
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!PV_ROOM){paInit();fkInit();pvInit()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM){paInit();fkInit();pvInit()}
 fdBoot();
 hsInit();
 n4Init();
@@ -4052,5 +4020,5 @@ w6Init();
 txInit();
 nnInit();
 if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM)drInit();
-if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();else if(GT_ROOM)gtPhone();else if(PA_ROOM)paPhone();else if(PV_ROOM)pvPhone();
+if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();else if(GT_ROOM)gtPhone();else if(PA_ROOM)paPhone();
 </script>
