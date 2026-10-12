@@ -160,11 +160,6 @@ img{max-width:100%}
 .dl-det{display:none;margin-top:.5em;padding-top:.5em;border-top:1px solid var(--border)}
 .dl-card.open{grid-column:span 2;grid-row:span 2}
 .dl-card.open .dl-det{display:block}
-.sf-step{color:#fff;padding:.6em .8em;border-radius:14px;text-align:center;min-width:clamp(100px,14vw,150px);cursor:pointer;opacity:.7;transition:opacity .25s,transform .25s}
-.sf-step.active{opacity:1;transform:scale(1.04);box-shadow:0 6px 18px rgba(0,0,0,.15)}
-.sf-step.done{opacity:.5}
-.sf-prompt{background:var(--navy);color:var(--light);padding:.7em .9em;border-radius:10px;cursor:pointer;transition:background .2s}
-.sf-prompt:hover{background:var(--navy2)}
 .sk-card{background:rgba(255,255,255,.14);padding:.6em .8em;border-radius:12px;cursor:pointer;display:flex;gap:.6em;align-items:flex-start;transition:background .2s}
 .sk-card:hover{background:rgba(255,255,255,.24)}
 .sk-card.copied{background:rgba(46,204,113,.3)}
@@ -1366,6 +1361,45 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
 .pv-tip{margin:0;font-size:.9rem;color:var(--gray)}
 .pv-tip b{color:var(--navy)}
 @media (max-height:800px){#sPV .pa-join .tu-qr canvas,#sPV .pa-join .tu-qr img{width:76px!important;height:76px!important}#sPV .pv-feed{max-height:5em}#sPV .pv-out{min-height:9em}}
+/* slide: studiare con l'AI */
+#sST.current{height:100svh}
+.st-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(1rem,3vw,2.6rem);align-items:center}
+@media (max-width:900px){.st-stage{grid-template-columns:1fr}#sST.current{height:auto}}
+.st-left,.st-right{display:flex;flex-direction:column;gap:.6em;min-width:0}
+.st-moves{display:flex;flex-direction:column;gap:.55em}
+.st-mv{display:grid;grid-template-columns:2.4em minmax(0,1fr);gap:.8em;align-items:center;background:#fff;border:2px solid var(--border);border-left:6px solid var(--c);border-radius:14px;padding:.6em .8em}
+.st-mv>b{width:2.2em;height:2.2em;border-radius:50%;background:var(--c);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-size:1.1rem}
+.st-mv h4{margin:0;font-family:var(--ff-head);font-size:clamp(1.1rem,1.8vw,1.4rem);color:var(--navy)}
+.st-mv p{margin:.1em 0 0;font-size:clamp(.88rem,1.25vw,1rem);color:var(--gray);line-height:1.4}
+.st-note{margin:.2em 0 0;font-size:.92rem;color:var(--gray);line-height:1.45;background:#FFF8E6;border-radius:10px;padding:.5em .8em}
+.st-note b{color:#B7791F}
+.st-form{display:grid;grid-template-columns:1fr 1.4fr .6fr .6fr;gap:.5em}
+.st-form label{display:flex;flex-direction:column;gap:.2em;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
+.st-form .in{font-size:.95rem;padding:.45em .6em;text-transform:none;letter-spacing:0}
+.st-prompt{background:var(--navy);color:#E8EEF7;border-radius:16px;padding:.9em 1.1em;font-size:clamp(.9rem,1.3vw,1.08rem);line-height:1.55}
+.st-prompt span{border-radius:4px;padding:0 .2em;box-shadow:inset 0 -2px 0 var(--c);background:color-mix(in srgb,var(--c) 22%,transparent)}
+.st-prompt i{font-style:normal;font-weight:800;color:#fff}
+.st-claude{background:#D97757;text-decoration:none}
+.st-claude:hover{background:#C2613F}
+.st-demo{position:fixed;inset:0;z-index:60;background:rgba(13,20,36,.6);backdrop-filter:blur(4px);display:none;align-items:center;justify-content:center;padding:16px}
+.st-demo.on{display:flex}
+.st-dcard{width:min(560px,100%);background:#fff;border-radius:22px;padding:1.2em 1.4em;box-shadow:0 20px 60px rgba(0,0,0,.35);display:flex;flex-direction:column;gap:.8em;font-family:var(--ff-body)}
+.st-dh{display:flex;align-items:center;gap:.6em}
+.st-dh b{font-family:var(--ff-head);font-size:1.2rem;color:var(--navy)}
+.st-dh small{margin-left:auto;font-weight:800;color:var(--gray)}
+.st-fc{perspective:1000px;height:220px;cursor:pointer}
+.st-fc>div{position:relative;width:100%;height:100%;transition:transform .5s;transform-style:preserve-3d}
+.st-fc.flip>div{transform:rotateY(180deg)}
+.st-fc .f,.st-fc .b{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.4em;padding:1em;text-align:center;font-size:1.3rem;font-weight:700}
+.st-fc .f{background:linear-gradient(135deg,#FF8A5C,#FF6B35);color:#fff}
+.st-fc .b{background:linear-gradient(135deg,#43D18A,#2ECC71);color:#0d1424;transform:rotateY(180deg)}
+.st-fc small{font-size:.75rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.st-dbtn{display:grid;grid-template-columns:1fr 1fr;gap:.5em}
+.st-dbtn button{font:700 1rem var(--ff-head);padding:.7em;border-radius:12px;border:none;cursor:pointer}
+.st-ok{background:#E3F7EC;color:#1E8E4F}.st-ko{background:#FDECEA;color:#C0392B}
+.st-dfoot{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--gray)}
+.st-dfoot button{background:none;border:none;font:700 .9rem var(--ff-body);color:var(--navy);cursor:pointer;text-decoration:underline}
+@media (max-height:800px){#sST .st-mv p{display:none}#sST .st-prompt{font-size:.88rem;padding:.7em .9em}}
 /* badge extra per i pop-up */
 .pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
 .scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
@@ -1937,23 +1971,33 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
   </div>
 </section>
 
-<!-- 19 STUDYFLOW -->
-<section class="slide darktext s-light" data-section="Usare l'AI">
-  <h2 class="fz-h2">Automatizza il tuo studio con l'AI</h2>
-  <p class="fz-lead" style="color:var(--gray)">Clicca su ogni step per vedere il prompt da usare!</p>
-  <div style="display:flex;gap:.4rem;align-items:center;justify-content:center;flex-wrap:wrap">
-    <div class="sf-step active" id="sfS0" onclick="sfShow(0,this)" style="background:var(--orange)"><h4 class="fz-body" style="font-weight:800">STEP 1</h4><p class="fz-small">Fotografa le pagine</p></div>
-    <span class="fz-h3" style="color:var(--navy)">→</span>
-    <div class="sf-step" id="sfS1" onclick="sfShow(1,this)" style="background:var(--cyan)"><h4 class="fz-body" style="font-weight:800">STEP 2</h4><p class="fz-small">Riassumi con AI</p></div>
-    <span class="fz-h3" style="color:var(--navy)">→</span>
-    <div class="sf-step" id="sfS2" onclick="sfShow(2,this)" style="background:var(--orange)"><h4 class="fz-body" style="font-weight:800">STEP 3</h4><p class="fz-small">Genera flashcard</p></div>
-    <span class="fz-h3" style="color:var(--navy)">→</span>
-    <div class="sf-step" id="sfS3" onclick="sfShow(3,this)" style="background:var(--cyan)"><h4 class="fz-body" style="font-weight:800">STEP 4</h4><p class="fz-small">Mappa concettuale</p></div>
-    <span class="fz-h3" style="color:var(--navy)">→</span>
-    <div class="sf-step" id="sfS4" onclick="sfShow(4,this)" style="background:var(--navy)"><h4 class="fz-body" style="font-weight:800">STEP 5</h4><p class="fz-small">Simula l'esame!</p></div>
+<!-- 19 STUDIARE CON L'AI: tre mosse e il prompt per farsi fare le flashcard da Claude -->
+<section class="slide darktext s-light" data-section="Usare l'AI" id="sST">
+  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">DAL VIVO</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Studiare con l'AI (senza farla studiare al posto vostro)</h2></div>
+  <div class="st-stage">
+    <div class="st-left">
+      <p class="pv-k2">Studiare bene = 3 mosse</p>
+      <div class="st-moves">
+        <div class="st-mv" style="--c:#00A6C8"><b>1</b><div><h4>Capire</h4><p>«Spiegamelo come se avessi 16 anni, con un esempio.»</p></div></div>
+        <div class="st-mv" style="--c:#FF6B35"><b>2</b><div><h4>Ripetere</h4><p>Flashcard: domanda davanti, risposta dietro. Ve le fa l'AI.</p></div></div>
+        <div class="st-mv" style="--c:#2ECC71"><b>3</b><div><h4>Mettersi alla prova</h4><p>«Fammi 5 domande come all'interrogazione e correggimi.»</p></div></div>
+      </div>
+      <p class="st-note">⚠️ L'AI <b>sbaglia</b>: controllate sempre con il libro. Lo studio lo fate voi, l'AI vi fa da allenatore.</p>
+    </div>
+    <div class="st-right">
+      <p class="pv-k2">🃏 Facciamoci le flashcard da Claude</p>
+      <div class="st-form">
+        <label>Materia<input class="in" id="stSubj" value="Scienze" oninput="stUpd()"></label>
+        <label>Argomento<input class="in" id="stTopic" value="La fotosintesi" oninput="stUpd()"></label>
+        <label>Classe<select class="in" id="stCls" onchange="stUpd()"><option>1ª</option><option>2ª</option><option selected>3ª</option><option>4ª</option><option>5ª</option></select></label>
+        <label>Carte<select class="in" id="stN" onchange="stUpd()"><option>10</option><option selected>15</option><option>20</option></select></label>
+      </div>
+      <div class="st-prompt" id="stPrompt"></div>
+      <div class="pv-row"><a class="btn st-claude" id="stClaude" target="_blank" rel="noopener">✨ Apri in Claude ↗</a><button class="btn ghost" id="stCopy" onclick="stCopy()">📋 Copia</button><button class="btn ghost" onclick="stDemo()">👀 Cosa uscirà</button></div>
+      <p class="pv-tip">💡 È la ricetta della slide prima: <b style="color:#FF6B35">ruolo</b>, <b style="color:#00A6C8">contesto</b>, <b style="color:#2ECC71">compito</b>, <b style="color:#8E44AD">formato</b>, <b style="color:#E67E22">esempio</b>. Claude risponde con una vera app da usare.</p>
+    </div>
   </div>
-  <div class="panel col" id="sfDetail" style="flex:1;min-height:6em;gap:.5rem"></div>
-  <p class="fz-concl" style="color:var(--orange);text-align:center">Non per saltare lo studio — per studiare MEGLIO: da 3 ore a 45 minuti!</p>
+  <div class="st-demo" id="stDemo" onclick="if(event.target===this)stDemoClose()"><div class="st-dcard" id="stDCard"></div></div>
 </section>
 
 <!-- 20 ACT5 Study kit -->
@@ -3966,14 +4010,31 @@ function pvGo(){var bad=G('pvIn').value.trim();if(!bad||PV.busy)return;PV.busy=t
 
 
 
-var sfData=[
-{t:"Step 1: Fotografa le pagine del libro",c:"#FF6B35",d:"Scatta foto chiare delle pagine e caricale nell'AI",p:'"Ti allego le foto delle pagine 45-52 del mio libro di storia sulla Rivoluzione Francese. Identifica i concetti chiave."',tool:"Strumento: <b>ChatGPT</b> o <b>Claude</b> (accettano foto!)"},
-{t:"Step 2: Chiedi all'AI di riassumere",c:"#00B4D8",d:"L'AI analizza il testo e crea un riassunto strutturato",p:'"Riassumimi questi concetti in massimo 300 parole, organizzati per data, con linguaggio semplice come per un compagno."',tool:"Strumento: <b>Claude</b> o <b>Google NotebookLM</b> (carica il PDF!)"},
-{t:"Step 3: Genera flashcard e quiz",c:"#FF6B35",d:"Trasforma il riassunto in domande per il ripasso attivo",p:'"Dal riassunto, crea 15 flashcard domanda/risposta in ordine di difficoltà crescente. Aggiungi 5 domande trabocchetto."',tool:"Strumento: <b>Quizlet</b> (con AI) o <b>ChatGPT</b>"},
-{t:"Step 4: Crea mappa concettuale",c:"#00B4D8",d:"Visualizza i collegamenti tra i concetti",p:'"Crea una mappa concettuale testuale della Rivoluzione Francese. Usa frecce (→) per cause ed effetti, max 3 livelli."',tool:"Strumento: <b>Claude</b> per la mappa, poi <b>Canva</b> per renderla visiva"},
-{t:"Step 5: Simula l'interrogazione!",c:"#1B2A4A",d:"L'AI fa il professore e ti interroga",p:'"Sei il mio professore di storia. Interrogami sulla Rivoluzione Francese: 5 domande, aspetta le risposte, poi dimmi cosa ho sbagliato."',tool:"Strumento: <b>ChatGPT</b> o <b>Claude</b> in conversazione"}];
-function sfShow(i,el){['sfS0','sfS1','sfS2','sfS3','sfS4'].forEach(function(id,j){document.getElementById(id).className='sf-step'+(j===i?' active':j<i?' done':'')});var d=sfData[i];document.getElementById('sfDetail').innerHTML='<h3 class="fz-h3" style="color:'+d.c+'">'+d.t+'</h3><p class="fz-body" style="color:#4A5568">'+d.d+'</p><div class="sf-prompt fz-body" onclick="sfCopy(this)">📋 '+d.p+' <small style="opacity:.6">(clicca per copiare)</small></div><p class="fz-small" style="color:#4A5568">'+d.tool+'</p>'}
-function sfCopy(el){var t=el.textContent.replace('📋','').replace('(clicca per copiare)','').trim();copyTxt(t);el.style.background='#2ECC71';setTimeout(function(){el.style.background='#1B2A4A'},1100)}
+/* ===== slide "Studiare con l'AI": il prompt per farsi fare da Claude un'app di flashcard ===== */
+var ST={demo:null};
+function stParts(){var v=function(id,d){var e=G(id);return (e&&e.value.trim())||d},s=v('stSubj','[materia]'),t=v('stTopic','[argomento]'),c=v('stCls','3ª'),n=v('stN','15');
+  return [['#FF6B35','Sei un tutor di '+s+' che crea strumenti di studio chiari e divertenti.'],
+    ['#00A6C8','Sono uno studente di '+c+' superiore e tra pochi giorni ho la verifica su «'+t+'».'],
+    ['#2ECC71','Crea un\'app di flashcard interattiva in HTML (un solo file, come artifact) con '+n+' carte su questo argomento: davanti la domanda, dietro la risposta.'],
+    ['#8E44AD','La carta si gira con un clic; aggiungi i pulsanti «La so» e «Da ripassare», un punteggio, e alla fine ripresenta solo le carte da ripassare. Grafica colorata, leggibile anche sul telefono.'],
+    ['#E67E22','Risposte brevi, massimo due righe. Esempio di carta: davanti «Che cos\'è…?», dietro una definizione in una frase.']]}
+function stText(){return stParts().map(function(p){return p[1]}).join(' ')}
+function stUpd(){if(!G('stPrompt'))return;G('stPrompt').innerHTML=stParts().map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ');
+  G('stClaude').href='https://claude.ai/new?q='+encodeURIComponent(stText())}
+function stCopy(){copyTxt(stText());G('stCopy').textContent='✓ Copiato';setTimeout(function(){G('stCopy').textContent='📋 Copia'},1500)}
+/* anteprima: come sarà l'app che Claude crea (esempio sulla fotosintesi) */
+var ST_CARDS=[['Che cos\'è la fotosintesi?','Il processo con cui le piante usano la luce per produrre zucchero.'],['Dove avviene?','Nei cloroplasti delle foglie.'],['Quali sono gli "ingredienti"?','Acqua, anidride carbonica e luce del sole.'],
+  ['Cosa produce?','Zucchero (glucosio) e ossigeno.'],['Perché le foglie sono verdi?','Per la clorofilla, che cattura la luce.'],['Qual è la formula?','6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂']];
+function stDemo(){ST.demo={q:ST_CARDS.map(function(_,i){return i}),i:0,ok:0,miss:[],round:1};G('stDemo').classList.add('on');stDraw()}
+function stDemoClose(){G('stDemo').classList.remove('on')}
+function stDraw(){var D=ST.demo,c=G('stDCard'),h='<div class="st-dh"><span>🃏</span><b>Flashcard · La fotosintesi</b><small>'+(D.i<D.q.length?(D.i+1)+' / '+D.q.length:'')+' · ⭐ '+D.ok+'</small></div>';
+  if(D.i>=D.q.length){var m=D.miss.length;h+='<div class="st-fc"><div><div class="f" style="background:linear-gradient(135deg,#5B6BD6,#8E44AD)">'+(m?'Da ripassare: '+m+' carte<small>Ripassiamo solo quelle</small>':'🎉 Tutte giuste!<small>Pronti per la verifica</small>')+'</div></div></div>'+
+    '<div class="st-dbtn">'+(m?'<button class="st-ok" onclick="stAgain()">Ripassa le sbagliate</button>':'<button class="st-ok" onclick="stDemo()">Ricomincia</button>')+'<button class="st-ko" onclick="stDemoClose()">Chiudi</button></div>'}
+  else{var k=ST_CARDS[D.q[D.i]];h+='<div class="st-fc" id="stFc" onclick="this.classList.toggle(\'flip\')"><div><div class="f"><small>Domanda</small>'+esc(k[0])+'<small>clic per girare</small></div><div class="b"><small>Risposta</small>'+esc(k[1])+'</div></div></div>'+
+    '<div class="st-dbtn"><button class="st-ok" onclick="stAns(1)">✓ La so</button><button class="st-ko" onclick="stAns(0)">↻ Da ripassare</button></div>'}
+  h+='<div class="st-dfoot"><span>Esempio di quello che crea Claude con questo prompt</span><button onclick="stDemoClose()">Chiudi</button></div>';c.innerHTML=h}
+function stAns(ok){var D=ST.demo;if(ok)D.ok++;else D.miss.push(D.q[D.i]);D.i++;stDraw()}
+function stAgain(){var D=ST.demo;D.q=D.miss;D.miss=[];D.i=0;stDraw()}
 
 function skGen(){var s=document.getElementById('skSubj').value,t=document.getElementById('skTopic').value.trim(),e=document.getElementById('skExam').value,l=document.getElementById('skLevel').value;if(!s||!t){return}var P=[
 {n:1,t:'Riassunto strutturato',p:'Sei un professore di '+s+' per studenti di '+l+'. Riassumimi "'+t+'" in massimo 400 parole per concetti chiave. Evidenzia date, nomi e definizioni.'},
@@ -3999,8 +4060,8 @@ function ethVote(i,el){ethV[i]++;var tot=ethV[0]+ethV[1]+ethV[2];for(var j=0;j<3
 function copyTxt(t){try{navigator.clipboard.writeText(t)}catch(e){try{var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta)}catch(e2){}}}
 function flash(el){var bg=el.style.background;el.style.background='rgba(46,204,113,.35)';setTimeout(function(){el.style.background=bg},1100)}
 
-sfShow(0,document.getElementById('sfS0'));
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM){paInit();fkInit();pvInit()}
+
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM){paInit();fkInit();pvInit();stUpd()}
 fdBoot();
 hsInit();
 n4Init();
