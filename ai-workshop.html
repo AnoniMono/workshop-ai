@@ -1596,6 +1596,46 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 .cl-pr div{display:flex;gap:.5em;margin-top:auto}.cl-pr button,.cl-pr a{font:700 .78rem var(--ff-body);border:none;background:#EDF2F7;color:var(--navy);border-radius:6px;padding:.2em .55em;cursor:pointer;text-decoration:none}.cl-pr a{background:#FBEAE4;color:#C2613F}
 .cl-rule{display:flex;flex-direction:column;gap:.3em}.cl-rule div{font-size:.95em}
 @media (max-height:800px){#sCL .cl-pr span{font-size:.78em}#sCL .su-body{min-height:9em}}
+/* slide: AlphaFold e retrosintesi */
+#sAF.current,#sRS.current{height:100svh}
+.af-svg{width:min(100%,56vh,480px);aspect-ratio:1;display:block;background:#0F1B33;border-radius:22px;box-shadow:0 14px 40px rgba(27,42,74,.2)}
+.af-seq{font:700 clamp(.85rem,1.2vw,1rem) ui-monospace,Consolas,monospace;letter-spacing:.12em;color:var(--navy);background:#fff;border:2px solid var(--border);border-radius:12px;padding:.5em .8em;word-break:break-all}
+.af-seq span{color:#FF6B35}
+.af-big{display:flex;gap:.6em;flex-wrap:wrap}
+.af-big div{background:#fff;border:2px solid var(--border);border-radius:14px;padding:.45em .8em;display:flex;flex-direction:column}
+.af-big b{font-family:var(--ff-head);font-size:clamp(1.3rem,2.4vw,1.9rem);color:var(--navy);line-height:1.1}
+.af-big span{font-size:.78rem;font-weight:800;color:var(--gray)}
+.af-leg{display:flex;flex-direction:column;gap:.3em;font-size:.95rem;color:var(--navy);font-weight:700}
+.af-leg i{display:inline-block;width:1em;height:1em;border-radius:50%;margin-right:.5em;vertical-align:-.15em}
+.af-links{display:flex;gap:.4em;flex-wrap:wrap}
+.af-links a{font-size:.88rem;font-weight:800;color:var(--navy);background:#fff;border:2px solid var(--border);border-radius:999px;padding:.3em .8em;text-decoration:none}
+.af-links a:hover{border-color:var(--orange);color:var(--orange)}
+.rs-scheme{display:flex;align-items:stretch;justify-content:center;gap:0;min-height:0}
+.rs-col{flex:1;min-width:0;max-width:280px;display:flex;flex-direction:column;align-items:center;gap:.25em;background:#fff;border:2px solid var(--border);border-radius:16px;padding:.4em .5em .6em;transition:opacity .4s,border-color .3s,box-shadow .3s}
+.rs-col.hid{opacity:0;pointer-events:none}
+.rs-col.tgt{border-color:#8E44AD;box-shadow:0 0 0 4px rgba(142,68,173,.15)}
+.rs-col.buy{border-color:#2ECC71;box-shadow:0 0 0 4px rgba(46,204,113,.15)}
+.rs-col svg{width:100%;height:clamp(90px,17vh,150px)}
+.rs-col b{font-family:var(--ff-head);font-size:clamp(.85rem,1.2vw,1.02rem);color:var(--navy);text-align:center;line-height:1.2}
+.rs-col small{font-size:.75rem;font-weight:800;color:var(--gray);text-align:center}
+.rs-tag{font-size:.72rem;font-weight:800;padding:.15em .6em;border-radius:999px;color:#fff}
+.rs-arr{flex:none;width:clamp(70px,9vw,120px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2em;text-align:center;transition:opacity .4s}
+.rs-arr.hid{opacity:0}
+.rs-arr .a{font-size:2rem;line-height:1;color:#8E44AD;font-weight:800}
+.rs-arr.fw .a{color:#2ECC71}
+.rs-arr span{font-size:.72rem;font-weight:800;color:var(--gray);line-height:1.25}
+.rs-arr em{font-style:normal;font-size:.75rem;font-weight:800;color:var(--navy);background:#F5F7FA;border-radius:8px;padding:.1em .4em}
+.rs-low{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(1rem,3vw,2.4rem);align-items:start}
+@media (max-width:900px){.rs-scheme{flex-direction:column}.rs-arr{width:auto}.rs-low{grid-template-columns:1fr}#sRS.current,#sAF.current{height:auto}}
+.rs-h{font-size:clamp(1.4rem,3vw,2.2rem)}
+.rs-side{display:flex;flex-direction:column;gap:.55em}
+.rs-pat{background:#FFF8E6;border-left:5px solid #F39C12;border-radius:0 14px 14px 0;padding:.6em .9em;font-size:clamp(.88rem,1.25vw,1rem);line-height:1.45;color:var(--navy)}
+.rs-cmp{display:grid;grid-template-columns:auto 1fr;gap:.35em .7em;align-items:center;font-size:.92rem;font-weight:700;color:var(--navy)}
+.rs-cmp .bar{height:14px;background:#E6EBF2;border-radius:7px;overflow:hidden}.rs-cmp .bar i{display:block;height:100%;border-radius:7px;transition:width .8s}
+.rs-tools{display:flex;gap:.35em;flex-wrap:wrap;align-items:center;font-size:.85rem;color:var(--gray);font-weight:700}
+.rs-tools a{color:var(--navy);background:#fff;border:2px solid var(--border);border-radius:999px;padding:.2em .7em;text-decoration:none;font-weight:800}
+.rs-tools a:hover{border-color:var(--orange);color:var(--orange)}
+@media (max-height:800px){#sRS .rs-col svg{height:80px}#sRS .rs-pat{font-size:.82rem;padding:.4em .7em}#sAF .af-big b{font-size:1.2rem}}
 /* badge extra per i pop-up */
 .pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
 .scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
@@ -2268,22 +2308,36 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
   </div>
 </section>
 
-<!-- 22 DEMO -->
-<section class="slide dark s-cyan" data-section="Automazione e demo">
-  <div class="col center" style="align-items:center;gap:.4rem"><span class="badge">DEMO LIVE</span><h2 class="fz-h2" style="text-align:center">Da un testo qualsiasi a kit di studio completo</h2></div>
-  <div class="wrap-flex" style="flex:1">
-    <div class="col min0" style="flex:1">
-      <p class="fz-h3">1. Incolla un testo da studiare:</p>
-      <textarea class="in ta" id="dmInput" style="flex:1;min-height:6em" placeholder="Incolla un paragrafo dal libro o dagli appunti...&#10;es: 'La Rivoluzione Francese iniziò nel 1789 con la presa della Bastiglia...'"></textarea>
-      <button class="btn ghost" onclick="dmGen()">⚡ Genera il mega-prompt!</button>
-    </div>
-    <div class="col min0" style="flex:1">
-      <p class="fz-h3">2. Copia questo prompt in Claude o ChatGPT:</p>
-      <div id="dmOut" onclick="dmCopy(this)" class="fz-small" style="background:rgba(0,0,0,.3);border-radius:12px;padding:.9em 1.1em;flex:1;min-height:6em;max-height:34vh;overflow-y:auto;white-space:pre-wrap;cursor:pointer"><span style="opacity:.55;font-style:italic">Incolla un testo e clicca "Genera"...</span></div>
-      <div class="chips" style="justify-content:center"><span class="chip" style="pointer-events:none">Riassunto</span><span class="chip" style="pointer-events:none">Flashcard</span><span class="chip" style="pointer-events:none">Quiz</span><span class="chip" style="pointer-events:none">Mappa</span><span class="chip" style="pointer-events:none">Esame</span></div>
+<!-- 22 ALPHAFOLD: dalla sequenza alla forma -->
+<section class="slide darktext s-light" data-section="AI e scienza" id="sAF">
+  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">AlphaFold: l'AI che ha risolto un problema di 50 anni</h2>
+  <div class="dr-steps cv-steps gn-steps" id="afSteps"></div>
+  <div class="dr-stage">
+    <div class="dr-vis"><svg class="af-svg" id="afSvg" viewBox="0 0 400 400" aria-label="Una proteina che si ripiega"></svg></div>
+    <div class="dr-txt">
+      <p class="dr-kick" id="afKick"></p>
+      <h3 class="dr-h" id="afH"></h3>
+      <p class="dr-p" id="afP"></p>
+      <div class="dr-box" id="afBox"></div>
+      <div class="dr-nav"><button class="btn ghost" id="afPrev" onclick="afGo(AF.i-1)">← Indietro</button><button class="btn" id="afNext" onclick="afGo(AF.i+1)">Avanti →</button></div>
     </div>
   </div>
-  <p class="fz-concl" style="text-align:center">Aprite Claude o ChatGPT, incollate e... guardate la magia!</p>
+</section>
+
+<!-- 22b RETROSINTESI: dalla molecola agli ingredienti -->
+<section class="slide darktext s-light" data-section="AI e scienza" id="sRS">
+  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Retrosintesi: l'AI che cucina al contrario</h2>
+  <div class="dr-steps cv-steps gn-steps" id="rsSteps"></div>
+  <div class="rs-scheme" id="rsScheme"></div>
+  <div class="rs-low">
+    <div class="dr-txt">
+      <p class="dr-kick" id="rsKick"></p>
+      <h3 class="dr-h rs-h" id="rsH"></h3>
+      <p class="dr-p" id="rsP"></p>
+      <div class="dr-nav"><button class="btn ghost" id="rsPrev" onclick="rsGo(RS.i-1)">← Indietro</button><button class="btn" id="rsNext" onclick="rsGo(RS.i+1)">Avanti →</button></div>
+    </div>
+    <div class="rs-side" id="rsSide"></div>
+  </div>
 </section>
 
 <!-- 23 TRUST -->
@@ -4428,8 +4482,60 @@ function mcAllow(){MC.wait=false;mcDraw();MC.timer=setTimeout(mcNext,900)}
 function mcDeny(){MC.wait=false;clearTimeout(MC.timer);var S=MC_S[MC.s];G('mcChat').insertAdjacentHTML('beforeend','<div class="mc-a"><i>✳</i><p>Va bene, mi fermo qui: non ho mandato niente. Volete che cambi qualcosa prima?</p></div>');G('mcGo').textContent='Fermato da voi';mcHub(null)}
 
 
-function dmGen(){var t=document.getElementById('dmInput').value.trim();if(t.length<20){document.getElementById('dmOut').innerHTML='<span style="color:#FFE0D0">Scrivi o incolla un testo più lungo (almeno qualche riga)!</span>';return}var mp='Sei un tutor esperto. Ti do un testo da studiare: crea un KIT DI STUDIO COMPLETO.\n\nTesto:\n"""\n'+t+'\n"""\n\nCrea nell\'ordine:\n\n1. RIASSUNTO — max 300 parole, per concetti chiave, con date e nomi in grassetto\n2. 12 FLASHCARD — DOMANDA: ... / RISPOSTA: ... dalla più facile, con 2 trabocchetto\n3. QUIZ — 6 domande a risposta multipla (A/B/C/D) con soluzioni e spiegazioni\n4. MAPPA CONCETTUALE testuale — frecce (→) e trattini, max 3 livelli\n5. SIMULAZIONE INTERROGAZIONE — 4 domande da professore con la risposta ideale\n\nUsa un linguaggio chiaro per uno studente di scuola superiore.';document.getElementById('dmOut').textContent=mp}
-function dmCopy(el){var t=el.textContent;if(t&&t.indexOf('Incolla un testo')===-1&&t.indexOf('Scrivi o incolla')===-1){copyTxt(t);flash(el)}}
+/* ===== slide AlphaFold: una catena di amminoacidi che si ripiega ===== */
+var AF_GRID=[[0,0],[1,0],[2,0],[3,0],[3,1],[2,1],[1,1],[0,1],[0,2],[0,3],[1,3],[1,2],[2,2],[3,2],[4,2],[4,1],[4,0],[5,0],[5,1],[5,2],[5,3],[4,3],[3,3],[2,3],[2,4],[3,4],[4,4],[5,4],[5,5],[4,5]];
+var AF_PL=[45,48,62,64,93,93,91,94,92,88,86,84,82,83,95,96,94,92,90,93,95,94,91,89,85,78,72,66,58,50];
+var AF_S=[{c:'#8A94A6',s:'Le proteine',k:'Passo 1 · Le proteine',h:'Le macchine della vita',p:'Ogni proteina è una <b>catena</b> di mattoncini (gli amminoacidi, 20 tipi). La catena si ripiega da sola in una forma precisa, e <b>la forma decide cosa fa</b>: trasporta ossigeno, digerisce, difende.'},
+ {c:'#E74C3C',s:'Il problema',k:'Passo 2 · Il problema',h:'Troppe forme possibili',p:'Dalla sola sequenza di lettere era quasi impossibile indovinare la forma. In laboratorio servivano <b>anni di lavoro</b> per una sola proteina.'},
+ {c:'#FF6B35',s:'AlphaFold',k:'Passo 3 · AlphaFold (2020)',h:'Dalla sequenza alla forma, in minuti',p:'AlphaFold ha studiato le circa <b>170.000 forme</b> già scoperte dagli scienziati. Così ha imparato quali pezzi della catena si toccano (le linee tratteggiate) e da lì ricostruisce la forma.'},
+ {c:'#00A6C8',s:'Quanto è sicura',k:'Passo 4 · Quanto è sicura',h:'Dice anche quanto si fida',p:'Ogni pezzo è colorato in base a quanto AlphaFold è sicura. Le estremità, che nella realtà si muovono, sono le parti più incerte. <b>Un\'AI onesta dice cosa non sa.</b>'},
+ {c:'#2ECC71',s:'Cosa ha cambiato',k:'Passo 5 · Cosa ha cambiato',h:'Un Premio Nobel',p:'Oggi le forme previste sono più di <b>200 milioni</b>, gratis per tutti i ricercatori del mondo. Nel <b>2024</b> Demis Hassabis e John Jumper (Google DeepMind) hanno vinto il <b>Nobel per la Chimica</b>.'}];
+var AF={i:0,tok:0,on:false,shake:0};
+function afSteps(id,S,go){G(id).innerHTML='<i class="dr-rail"></i><i class="dr-fill" id="'+id+'F"></i>'+S.map(function(s,i){return '<button class="dr-step" onclick="'+go+'('+i+')" style="--c:'+s.c+'"><b class="dr-dot">'+(i+1)+'</b><span>'+s.s+'</span></button>'}).join('')}
+function afHead(id,S,i,sec){var s=S[i];G(sec).style.setProperty('--c',s.c);[].forEach.call(document.querySelectorAll('#'+id+' .dr-step'),function(b,k){b.classList.toggle('on',k===i);b.classList.toggle('done',k<i)});G(id+'F').style.width=(i/(S.length-1)*(100-100/S.length))+'%'}
+function afInit(){if(!G('afSvg'))return;afSteps('afSteps',AF_S,'afGo');afGo(0);setInterval(function(){var on=G('sAF').classList.contains('current');if(on&&!AF.on)afGo(AF.i);AF.on=on},400)}
+function afPos(k,f,t){var g=AF_GRID[k],fx=70+g[0]*52,fy=70+g[1]*52,ux=24+k*12.4,uy=200+70*Math.sin(k*.45),j=AF.shake*(1-f);
+  return [ux+(fx-ux)*f+Math.sin(t*7+k*1.7)*j,uy+(fy-uy)*f+Math.cos(t*6+k*2.3)*j]}
+function afCol(k,mode){if(mode==='conf'){var p=AF_PL[k];return p>90?'#0053D6':p>70?'#65CBF3':p>50?'#FFDB13':'#FF7D45'}var g=AF_GRID[k];return (g[0]>0&&g[0]<5&&g[1]>0&&g[1]<5)?'#FF8A3D':'#4FC3F7'}
+function afDraw(f,t,mode,contacts){var P=AF_GRID.map(function(_,k){return afPos(k,f,t)}),h='',d='M'+P[0][0]+' '+P[0][1];
+  for(var k=1;k<P.length;k++){var a=P[k-1],b=P[k];d+=' Q'+a[0]+' '+a[1]+' '+((a[0]+b[0])/2)+' '+((a[1]+b[1])/2)}d+=' L'+P[P.length-1][0]+' '+P[P.length-1][1];
+  if(contacts>0){h+='<g stroke="#FFD54F" stroke-width="2" stroke-dasharray="4 5" opacity="'+contacts+'">';for(var a2=0;a2<P.length;a2++)for(var b2=a2+3;b2<P.length;b2++){var A=AF_GRID[a2],B=AF_GRID[b2];if(Math.abs(A[0]-B[0])+Math.abs(A[1]-B[1])===1)h+='<line x1="'+P[a2][0]+'" y1="'+P[a2][1]+'" x2="'+P[b2][0]+'" y2="'+P[b2][1]+'"/>'}h+='</g>'}
+  h+='<path d="'+d+'" fill="none" stroke="#C9D4E5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>';
+  P.forEach(function(p,k){h+='<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+(7+3*f)+'" fill="'+afCol(k,mode)+'" stroke="#0F1B33" stroke-width="1.5"/>'});G('afSvg').innerHTML=h}
+function afLoop(fn){var tok=++AF.tok,t0=performance.now();(function s(now){if(tok!==AF.tok)return;if(fn((now-t0)/1000)!==false)requestAnimationFrame(s)})(t0)}
+function afGo(i){if(i<0||i>=AF_S.length)return;AF.i=i;var s=AF_S[i];afHead('afSteps',AF_S,i,'sAF');G('afKick').textContent=s.k;G('afH').textContent=s.h;G('afP').innerHTML=s.p;G('afPrev').disabled=i===0;G('afNext').disabled=i===AF_S.length-1;
+  var box='';
+  if(i===0){box='<div class="af-seq">M<span>A</span>LW<span>M</span>RLLPLL<span>A</span>LLALWGPD…</div><p class="cv-note">La sequenza è scritta nel DNA. <b style="color:#FF8A3D">Arancione</b>: pezzi che «odiano» l\'acqua e vanno all\'interno · <b style="color:#4FC3F7">azzurro</b>: pezzi che la amano e stanno fuori.</p>';AF.shake=0;afLoop(function(){afDraw(0,0,'type',0);return false})}
+  if(i===1){box='<div class="af-big"><div><b>10<sup>300</sup></b><span>forme possibili per una proteina</span></div><div><b>anni</b><span>per scoprirne una in laboratorio</span></div><div><b>50 anni</b><span>di tentativi, dal 1972</span></div></div>';AF.shake=22;afLoop(function(t){afDraw(.12+.08*Math.sin(t*.8),t,'type',0)})}
+  if(i===2){box='<div class="af-big"><div><b>minuti</b><span>invece di anni</span></div><div><b>CASP 2020</b><span>la gara mondiale: precisione da laboratorio</span></div></div>';AF.shake=18;
+    afLoop(function(t){var f=Math.min(1,t/3.5),e=f<.5?2*f*f:1-Math.pow(-2*f+2,2)/2;afDraw(e,t,'type',Math.max(0,(f-.7)/.3));return f<1})}
+  if(i===3){box='<div class="af-leg"><span><i style="background:#0053D6"></i>Molto sicura</span><span><i style="background:#65CBF3"></i>Sicura</span><span><i style="background:#FFDB13"></i>Poco sicura</span><span><i style="background:#FF7D45"></i>Non lo sa</span></div>';AF.shake=0;afLoop(function(){afDraw(1,0,'conf',.35);return false})}
+  if(i===4){box='<div class="af-big"><div><b>200 mln</b><span>forme previste, gratis</span></div><div><b>Nobel 2024</b><span>per la Chimica</span></div></div><p class="cv-note">Usata per un vaccino contro la malaria, per enzimi che digeriscono la plastica e per nuovi farmaci. <b>AlphaFold 3</b> prevede anche come una proteina si lega a un farmaco. E i farmaci… bisogna saperli produrre: slide dopo.</p>'+
+    '<div class="af-links"><a href="https://alphafold.ebi.ac.uk/entry/P69905" target="_blank" rel="noopener">🩸 L\'emoglobina in AlphaFold ↗</a><a href="https://alphafold.ebi.ac.uk" target="_blank" rel="noopener">🔍 La banca dati ↗</a></div>';AF.shake=0;afLoop(function(){afDraw(1,0,'conf',.35);return false})}
+  G('afBox').innerHTML=box}
+
+/* ===== slide Retrosintesi: dall'ibuprofene agli ingredienti, all'indietro ===== */
+var RS_M=[{n:'Isobutilbenzene + anidride acetica',sm:'CC(C)CC1=CC=CC=C1.CC(=O)OC(C)=O'},{n:'Isobutilacetofenone',sm:'CC(C)CC1=CC=C(C=C1)C(C)=O'},{n:'Un alcol',sm:'CC(C)CC1=CC=C(C=C1)C(C)O'},{n:'Ibuprofene',sm:'CC(C)CC1=CC=C(C=C1)C(C)C(=O)O'}];
+var RS_A=[{r:'Acilazione',e:'+ anidride acetica'},{r:'Idrogenazione',e:'+ idrogeno (H₂)'},{r:'Carbonilazione',e:'+ CO · catalizzatore'}];
+var RS_S=[{c:'#8E44AD',s:'Il bersaglio',k:'Passo 1 · Il bersaglio',h:'Una molecola brevettata: l\'ibuprofene',p:'Brevettato da Boots nel 1961: il brevetto rende pubblica la molecola, ma solo l\'inventore può produrla per 20 anni. Quando scade, chiunque può farla. <b>Ma come, partendo da cose che si comprano?</b>'},
+ {c:'#E74C3C',s:'Primo taglio',k:'Passo 2 · Si lavora all\'indietro',h:'Dove «tagliare»?',p:'Come un cuoco che assaggia un piatto e indovina la ricetta. L\'AI conosce <b>milioni di reazioni</b> pubblicate e cerca quella che può aver creato l\'ultimo pezzo: qui il gruppo acido nasce dal monossido di carbonio.'},
+ {c:'#FF6B35',s:'Secondo taglio',k:'Passo 3 · E ancora',h:'Ogni pezzo diventa un nuovo bersaglio',p:'L\'AI ripete il taglio su ogni precursore ed esplora <b>migliaia di strade</b>, come un navigatore che prova tutti i percorsi.'},
+ {c:'#00A6C8',s:'Gli ingredienti',k:'Passo 4 · Si ferma',h:'Fino a ingredienti in vendita',p:'Si ferma quando arriva a molecole <b>economiche e in commercio</b>. Ora la ricetta si legge in avanti: <b>3 reazioni</b> e il farmaco è pronto.'},
+ {c:'#2ECC71',s:'La strada migliore',k:'Passo 5 · Due strade',h:'Più corta e più pulita',p:'La strada originale aveva <b>6 passaggi</b>. Negli anni \'90 BHC ne trovò una da <b>3</b>, con molti meno scarti: è diventata un esempio di chimica verde. Oggi l\'AI propone e confronta strade così <b>in minuti</b>.'}];
+var RS={i:0,lib:0};
+function rsInit(){if(!G('rsScheme'))return;afSteps('rsSteps',RS_S,'rsGo');var h='';
+  RS_M.forEach(function(m,k){if(k)h+='<div class="rs-arr" id="rsA'+(k-1)+'"><span class="a">⇐</span><span>'+RS_A[k-1].r+'</span><em>'+RS_A[k-1].e+'</em></div>';h+='<div class="rs-col" id="rsC'+k+'"><svg id="rsM'+k+'"></svg><b>'+m.n+'</b><small id="rsT'+k+'"></small></div>'});G('rsScheme').innerHTML=h;rsGo(0);
+  var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/smiles-drawer@2.1.7/dist/smiles-drawer.min.js';s.onload=rsDraw;document.head.appendChild(s)}
+function rsDraw(){if(!window.SmilesDrawer)return;RS_M.forEach(function(m,k){var el=G('rsM'+k),r=el.getBoundingClientRect(),w=Math.max(200,r.width||240),hh=Math.max(110,r.height||130);el.setAttribute('viewBox','0 0 '+w+' '+hh);
+  SmilesDrawer.parse(m.sm,function(tree){new SmilesDrawer.SvgDrawer({width:w,height:hh,bondThickness:1.4,fontSizeLarge:10,fontSizeSmall:7,padding:10,compactDrawing:false}).draw(tree,el,'light')},function(){})})}
+function rsGo(i){if(i<0||i>=RS_S.length)return;RS.i=i;var s=RS_S[i];afHead('rsSteps',RS_S,i,'sRS');G('rsKick').textContent=s.k;G('rsH').textContent=s.h;G('rsP').innerHTML=s.p;G('rsPrev').disabled=i===0;G('rsNext').disabled=i===RS_S.length-1;
+  var vis=[i>=3,i>=2,i>=1,true];vis.forEach(function(v,k){var c=G('rsC'+k);c.classList.toggle('hid',!v);c.classList.toggle('tgt',k===3);c.classList.toggle('buy',k===0&&i>=3)});
+  [0,1,2].forEach(function(k){var a=G('rsA'+k);a.classList.toggle('hid',!vis[k]);a.classList.toggle('fw',i>=4);a.querySelector('.a').textContent=i>=4?'→':'⇐'});
+  G('rsT3').innerHTML='<span class="rs-tag" style="background:#8E44AD">🔒 brevetto Boots, 1961</span>';G('rsT0').innerHTML=i>=3?'<span class="rs-tag" style="background:#2ECC71">🛒 in commercio</span>':'';
+  var side;if(i<4)side='<div class="rs-pat">⚖️ <b>Brevetto e legge.</b> Per 20 anni solo chi ha il brevetto può produrre e vendere. Studiare la molecola e cercare strade nuove è permesso; venderla prima della scadenza no. Quando scade nascono i <b>farmaci generici</b>, che costano molto meno.</div>';
+  else side='<div class="rs-cmp"><span>Strada originale · 6 passaggi</span><div class="bar"><i style="width:40%;background:#E74C3C"></i></div><span>Strada BHC · 3 passaggi</span><div class="bar"><i style="width:77%;background:#2ECC71"></i></div></div><p class="cv-note">La barra è la parte degli atomi di partenza che finisce davvero nel farmaco: circa <b>40%</b> contro <b>77%</b> (quasi il 99% riusando l\'acido acetico). Il resto sono scarti.</p>';
+  side+='<div class="rs-tools">🧪 Strumenti: <span>Synthia (Merck)</span>·<span>IBM RXN</span>·<a href="https://github.com/MolecularAI/aizynthfinder" target="_blank" rel="noopener">AiZynthFinder, gratis ↗</a></div>';G('rsSide').innerHTML=side;
+  if(window.SmilesDrawer)setTimeout(rsDraw,50)}
 
 var trScore=0;
 function trAns(i,correct,el){var card=document.getElementById('trC'+i);if(card.classList.contains('done'))return;card.classList.add('done');var opts=card.querySelectorAll('.tr-opt');if(correct){el.classList.add('right');trScore++;opts.forEach(function(o){if(o!==el)o.classList.add('dim')})}else{el.classList.add('nope');opts.forEach(function(o){if(o!==el){o.classList.add('right');o.classList.add('dim')}})}document.getElementById('trE'+i).classList.add('show');document.getElementById('trScore').textContent=trScore}
@@ -4441,7 +4547,7 @@ function copyTxt(t){try{navigator.clipboard.writeText(t)}catch(e){try{var ta=doc
 function flash(el){var bg=el.style.background;el.style.background='rgba(46,204,113,.35)';setTimeout(function(){el.style.background=bg},1100)}
 
 
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit();afInit();rsInit()}
 fdBoot();
 hsInit();
 n4Init();
