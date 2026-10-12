@@ -1324,59 +1324,47 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
 .fk-vids a{font-size:.85rem;font-weight:700;color:var(--navy);background:#fff;border:2px solid var(--border);border-radius:999px;padding:.25em .75em;text-decoration:none;transition:border-color .2s}
 .fk-vids a:hover{border-color:var(--orange);color:var(--orange)}
 @media (max-height:800px){#s14 .dr-h{font-size:clamp(1.4rem,2.8vw,2rem)}#s14 .dr-p{font-size:.98rem}#s14 .fk-it{padding:.3em .6em}#s14 .gn-tip{font-size:.88rem;padding:.45em .8em}#s14 .fk-it span{display:none}}
-/* slide: la ricetta del prompt */
+/* slide: dal prompt pigro al prompt perfetto */
 #sPV.current{height:100svh}
-.pv-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(1rem,3vw,2.4rem)}
-@media (max-width:900px){.pv-stage{grid-template-columns:1fr}#sPV.current{height:auto}}
-.pv-chat{display:flex;flex-direction:column;min-height:0;background:#fff;border:2px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 14px 36px rgba(27,42,74,.12)}
-.pv-ch{display:flex;align-items:center;gap:.5em;padding:.6em 1em;border-bottom:2px solid var(--border);background:#F8FAFC}
-.pv-ch b{font-family:var(--ff-head);color:var(--navy);font-size:1.05rem}
-.pv-ch small{margin-left:auto;font-weight:800;font-size:.8rem;color:var(--gray)}
-.pv-msgs{flex:1;min-height:0;overflow:auto;padding:1em;display:flex;flex-direction:column;gap:.8em;scroll-behavior:smooth}
-.pv-u{align-self:flex-end;max-width:88%;background:var(--navy);color:#fff;border-radius:18px 18px 4px 18px;padding:.6em .9em;font-size:clamp(.92rem,1.3vw,1.05rem);line-height:1.45}
-.pv-u .pv-ing{border-radius:5px;padding:.05em .25em;color:#fff;animation:nnPop .4s ease-out}
-.pv-a{display:grid;grid-template-columns:2em minmax(0,1fr);gap:.6em;align-items:start}
-.pv-a>i{font-style:normal;width:2em;height:2em;border-radius:50%;background:linear-gradient(135deg,#FF6B35,#8E44AD);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.95rem}
-.pv-txt{font-size:clamp(.85rem,1.15vw,.97rem);line-height:1.55;color:var(--navy);animation:pvIn .5s ease-out}
-.pv-txt p{margin:0 0 .5em}.pv-txt ul{margin:0 0 .5em;padding-left:1.2em}.pv-txt li{margin:.15em 0}
-@keyframes pvIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.pv-dots{display:flex;gap:.3em;padding:.5em 0}.pv-dots span{width:.55em;height:.55em;border-radius:50%;background:#A0AEC0;animation:pvB 1s infinite}
-.pv-dots span:nth-child(2){animation-delay:.15s}.pv-dots span:nth-child(3){animation-delay:.3s}
-@keyframes pvB{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-5px);opacity:1}}
-.pv-side{display:flex;flex-direction:column;gap:.6em;min-width:0;min-height:0}
-.pv-k{margin:0;font-size:clamp(.95rem,1.4vw,1.1rem);color:var(--gray);line-height:1.45}
-.pv-k b{color:var(--navy)}
-.pv-meters{display:grid;grid-template-columns:repeat(3,1fr);gap:.5em}
-.pv-m{background:#fff;border:2px solid var(--border);border-radius:14px;padding:.45em .7em;text-align:center}
-.pv-m b{display:block;font-family:var(--ff-head);font-size:clamp(1.3rem,2.4vw,1.9rem);color:var(--navy);line-height:1.1;font-variant-numeric:tabular-nums;transition:color .3s}
-.pv-m span{font-size:.72rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--gray)}
-.pv-m b.down{color:#1E8E4F}
-.pv-k2{margin:.2em 0 0;font-size:.8rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
+.pv-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1.25fr);gap:clamp(.7rem,2vw,1.6rem);align-items:center}
+@media (max-width:900px){.pv-stage{grid-template-columns:1fr}.pv-arrow{display:none}#sPV.current{height:auto}}
+.pv-col{display:flex;flex-direction:column;gap:.6em;min-width:0}
+.pv-arrow{align-self:center;font-family:var(--ff-head);font-size:2.6rem;color:var(--orange)}
+.pv-lab{margin:0;font-family:var(--ff-head);font-weight:700;font-size:clamp(1.1rem,1.8vw,1.4rem)}
+.pv-lab.bad{color:#C0392B}.pv-lab.good{color:#1E8E4F}
+.pv-lab small{font-family:var(--ff-body);font-size:.75rem;font-weight:800;color:var(--gray);margin-left:.4em}
+.pv-in{width:100%;min-height:4.2em;resize:none;font:700 clamp(1.1rem,1.8vw,1.45rem) var(--ff-body);color:var(--navy);background:#fff;border:3px solid #F5B7B1;border-radius:16px;padding:.6em .8em;box-sizing:border-box}
+.pv-in:focus{outline:none;border-color:#E74C3C}
+.pv-row{display:flex;gap:.5em;flex-wrap:wrap;align-items:center}
+.pv-row .btn{font-size:.95rem;padding:.5em 1.1em}
+.pv-row .btn.ghost{color:var(--navy);box-shadow:inset 0 0 0 2px #C9D1DC;background:#fff}
+.pv-row .btn:disabled{opacity:.5}
+.pv-gpt{text-decoration:none}
+.pv-gpt.off{opacity:.4;pointer-events:none}
+.pv-k2{margin:.2em 0 0;font-size:.78rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gray)}
 .pv-k2 span{color:var(--orange)}
-.pv-ings{display:grid;grid-template-columns:1fr 1fr;gap:.5em}
-.pv-ig{position:relative;overflow:hidden;text-align:left;background:#fff;border:2px solid var(--border);border-left:6px solid var(--c);border-radius:12px;padding:.5em .7em .6em;cursor:pointer;font-family:var(--ff-body);transition:border-color .2s,opacity .3s}
-.pv-ig:hover{border-color:var(--c)}
-.pv-ig b{display:block;font-family:var(--ff-head);font-size:1.05rem;color:var(--c)}
-.pv-ig span{display:block;font-size:.82rem;color:var(--gray);line-height:1.35}
-.pv-ig em{position:absolute;top:.4em;right:.5em;font-style:normal;font-size:.75rem;font-weight:800;color:var(--navy)}
-.pv-ig i{position:absolute;left:0;bottom:0;height:4px;background:var(--c);transition:width .5s}
-.pv-ig.best{box-shadow:0 0 0 3px color-mix(in srgb,var(--c) 30%,transparent)}
-.pv-ig.done{opacity:.45;cursor:default;background:#F5F7FA}
-.pv-ig.done b::after{content:' ✓'}
-.pv-bottom{display:flex;gap:.8em;align-items:center;flex-wrap:wrap;margin-top:auto}
-.pv-btns{display:flex;flex-direction:column;gap:.45em}
-.pv-btns .btn{font-size:.95rem;padding:.5em 1.1em}
-.pv-btns .btn.ghost{color:var(--navy);box-shadow:inset 0 0 0 2px #C9D1DC;background:#fff}
-.pv-btns .btn:disabled{opacity:.5}
-@media (max-height:800px){#sPV .pv-ig span{display:none}#sPV .pa-join .tu-qr canvas,#sPV .pa-join .tu-qr img{width:76px!important;height:76px!important}#sPV .pv-k{font-size:.92rem}}
+.pv-feed{display:flex;flex-wrap:wrap;gap:.35em;max-height:7.5em;overflow:auto}
+.pv-chip{font:700 .85rem var(--ff-body);color:var(--navy);background:#fff;border:2px solid var(--border);border-radius:999px;padding:.3em .8em;cursor:pointer;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pv-chip:hover{border-color:var(--orange)}
+.pv-chip.new{animation:nnPop .4s ease-out;border-color:var(--orange)}
+.pv-out{background:#fff;border:3px solid #ABEBC6;border-radius:18px;padding:1em 1.2em;display:flex;flex-direction:column;gap:.8em;min-height:16em}
+.pv-ing{display:grid;grid-template-columns:6.2em minmax(0,1fr);gap:.6em;align-items:baseline;animation:pvIn .45s ease-out both}
+.pv-ing:nth-child(2){animation-delay:.25s}.pv-ing:nth-child(3){animation-delay:.5s}.pv-ing:nth-child(4){animation-delay:.75s}
+.pv-ing b{font-family:var(--ff-head);font-size:.95rem;padding:.15em .6em;border-radius:8px;color:#fff;text-align:center}
+.pv-ing span{font-size:clamp(1.05rem,1.75vw,1.4rem);line-height:1.4;color:var(--navy)}
+.pv-ing span em{font-style:normal;background:#FFF3CD;border-radius:4px;padding:0 .2em;font-weight:700}
+@keyframes pvIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pv-empty{margin:auto;color:var(--gray);font-weight:700;text-align:center}
+.pv-load{margin:auto;display:flex;flex-direction:column;align-items:center;gap:.5em;color:var(--gray);font-weight:700}
+.pv-load span{font-size:2rem;animation:pvSpin 1.4s linear infinite}
+@keyframes pvSpin{to{transform:rotate(360deg)}}
+.pv-tip{margin:0;font-size:.9rem;color:var(--gray)}
+.pv-tip b{color:var(--navy)}
+@media (max-height:800px){#sPV .pa-join .tu-qr canvas,#sPV .pa-join .tu-qr img{width:76px!important;height:76px!important}#sPV .pv-feed{max-height:5em}#sPV .pv-out{min-height:9em}}
 /* telefono */
 html.vote.pvm,html.vote.pvm body{background:#F5F7FA}
 #vtApp.pv{font-family:var(--ff-body);color:var(--navy);align-items:center;text-align:center}
-.pvp-btns{display:flex;flex-direction:column;gap:10px;width:min(90vw,380px)}
-.pvp-btns button{font:700 1.3rem 'Fredoka',sans-serif;padding:16px;border-radius:16px;border:3px solid #E2E8F0;background:#fff;color:#1B2A4A;text-align:left}
-.pvp-btns button small{display:block;font:600 .85rem 'Nunito Sans',sans-serif;color:#4A5568;margin-top:2px}
-.pvp-btns button.sel{color:#fff}
-.pvp-btns button.sel small{color:#fff}
+.pvp-in{width:min(90vw,380px);min-height:5em;font:700 1.15rem 'Nunito Sans',sans-serif;border:3px solid #F5B7B1;border-radius:16px;padding:12px;box-sizing:border-box;resize:none}
 /* badge extra per i pop-up */
 .pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
 .scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
@@ -1927,23 +1915,24 @@ html.vote.pvm,html.vote.pvm body{background:#F5F7FA}
   <div class="panel-t fz-lead" style="max-width:40ch">Nel frattempo: esplorate gli strumenti che avete usato, generate altre immagini o provate Teachable Machine con oggetti diversi!</div>
 </section>
 
-<!-- 17 LA RICETTA DEL PROMPT: un prompt pigro che migliora un ingrediente alla volta, la classe sceglie -->
+<!-- 17 MIGLIORA IL PROMPT: un prompt pigro diventa un prompt ottimo -->
 <section class="slide darktext s-light" data-section="Usare l'AI" id="sPV">
-  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">ATTIVITÀ · 10 min</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">La ricetta del prompt perfetto</h2></div>
+  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">ATTIVITÀ · 10 min</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Dal prompt pigro al prompt perfetto</h2></div>
   <div class="pv-stage">
-    <div class="pv-chat">
-      <div class="pv-ch"><span>✨</span><b>Chat con l'AI</b><small id="pvVer">versione 1</small></div>
-      <div class="pv-msgs" id="pvMsgs"></div>
+    <div class="pv-col">
+      <p class="pv-lab bad">😴 Prompt pigro</p>
+      <textarea class="pv-in" id="pvIn" maxlength="140" placeholder="Scrivete un prompt come lo scrivereste voi… es. «riassunto promessi sposi»" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();pvGo()}"></textarea>
+      <div class="pv-row"><button class="btn" id="pvBtn" onclick="pvGo()">✨ Miglioralo</button><a class="btn ghost pv-gpt" id="pvGptBad" target="_blank" rel="noopener">Prova su ChatGPT ↗</a></div>
+      <p class="pv-k2">Dai vostri telefoni <span id="pvN"></span></p>
+      <div class="pv-feed" id="pvFeed"></div>
+      <div class="pa-join" id="pvJoin"></div>
     </div>
-    <div class="pv-side">
-      <p class="pv-k" id="pvK"></p>
-      <div class="pv-meters" id="pvMeters"></div>
-      <p class="pv-k2">Che ingrediente aggiungiamo? <span>Votate dal telefono</span></p>
-      <div class="pv-ings" id="pvIngs"></div>
-      <div class="pv-bottom">
-        <div class="pa-join" id="pvJoin"></div>
-        <div class="pv-btns"><button class="btn" id="pvAdd" onclick="pvAddBest()">➕ Aggiungi il più votato</button><button class="btn ghost" onclick="pvReset()">↺ Ricomincia</button></div>
-      </div>
+    <div class="pv-arrow">→</div>
+    <div class="pv-col">
+      <p class="pv-lab good">🎯 Prompt migliorato <small id="pvSrc"></small></p>
+      <div class="pv-out" id="pvOut"></div>
+      <div class="pv-row"><button class="btn ghost" id="pvCopy" onclick="pvCopy()">📋 Copia</button><a class="btn pv-gpt" id="pvGptGood" target="_blank" rel="noopener">Prova su ChatGPT ↗</a></div>
+      <p class="pv-tip">💡 Le parti tra <b>[parentesi]</b> le completate voi: l'AI non può sapere cosa state studiando.</p>
     </div>
   </div>
 </section>
@@ -3136,7 +3125,7 @@ function agTrainBtn(n){var wb=AG.wr;agTrainN(n);AG.wr=agEval();AGV.ver++;AGV.his
 /* apre e chiude le stanze sui telefoni quando l'insegnante entra o esce */
 function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM||PA_ROOM||PV_ROOM)return;var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
   var s13=G('s13'),pOpen=!!(s13&&s13.classList.contains('current'));if(PA.g){var pKey=pOpen+'|'+PA.g+'|'+PA.ph;if(pKey!==PA.key){PA.key=pKey;var pSt={open:pOpen,g:PA.g,o:PA.o,ph:PA.ph,s:PA.ph==='gen'?PA.sent:''};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'PS',state:pSt,updated_at:new Date().toISOString()}).then(function(){})})}}
-  var sPV=G('sPV'),kOpen=!!(sPV&&sPV.classList.contains('current'));if(PV.g){var kKey=kOpen+'|'+PV.g;if(kKey!==PV.key){PV.key=kKey;var kSt={open:kOpen,g:PV.g,have:PV.have.slice()};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'KS',state:kSt,updated_at:new Date().toISOString()}).then(function(){})})}}
+  var sPV=G('sPV'),kOpen=!!(sPV&&sPV.classList.contains('current'));if(PV.g){var kKey=kOpen+'|'+PV.g;if(kKey!==PV.key){PV.key=kKey;var kSt={open:kOpen,g:PV.g};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'KS',state:kSt,updated_at:new Date().toISOString()}).then(function(){})})}}
   var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
   var tOpen=on3&&hsCur===1&&TU.mode==='q';if(VT.pub&&tOpen!==VT.open)vtState(Object.assign({},VT.state,{open:tOpen}));
   var aOpen=on3&&hsCur===4;if(AGV.pub&&aOpen!==AGV.open){AGV.open=aOpen;agPublish()}}
@@ -3951,72 +3940,72 @@ function fkStop(keep){cancelAnimationFrame(FK.raf);if(FK.stream){FK.stream.getTr
 
 
 
-/* ===== slide "La ricetta del prompt": un prompt pigro migliora un ingrediente alla volta; la classe vota cosa aggiungere ===== */
+/* ===== slide "Dal prompt pigro al prompt perfetto": si scrive un prompt pigro (o arriva dai telefoni), l'AI lo riscrive con la ricetta ===== */
 var PV_ROOM=(function(){try{return new URLSearchParams(location.search).get('prompt')}catch(e){return null}})();
-var PV_ING={R:{n:'Ruolo',c:'#FF6B35',d:'Chi deve essere l\'AI',t:'Sei un prof di scienze.'},C:{n:'Contesto',c:'#00A6C8',d:'Chi sei e cosa ti serve',t:'Domani ho la verifica, ho 16 anni e non l\'ho capita bene.'},
-  F:{n:'Formato',c:'#8E44AD',d:'Che forma deve avere',t:'Fammi un ripasso in 5 punti brevi.'},E:{n:'Esempio',c:'#2ECC71',d:'Qualcosa di concreto',t:'Aggiungi un esempio della vita di tutti i giorni.'}};
-var PV_K=['R','C','F','E'];
-/* le risposte (scritte con un'AI): il contenuto cambia con Contesto (semplice/tecnico) e Formato (elenco/muro di testo) */
-var PV_TXT={
- tp:"La **fotosintesi clorofilliana** è il processo biochimico mediante il quale gli organismi fotoautotrofi convertono l'energia elettromagnetica in energia chimica, fissando il carbonio inorganico in composti organici.\n\nSi articola in due fasi. Nella **fase luminosa**, che avviene sulle membrane dei tilacoidi, i fotosistemi I e II assorbono fotoni; la fotolisi dell'acqua libera O₂ e la catena di trasporto degli elettroni genera ATP e NADPH tramite fotofosforilazione.\n\nNella **fase oscura** (ciclo di Calvin-Benson), nello stroma del cloroplasto, l'enzima RuBisCO catalizza la carbossilazione del ribulosio-1,5-bisfosfato; ATP e NADPH vengono usati per ridurre il 3-fosfoglicerato a gliceraldeide-3-fosfato.\n\nEsistono inoltre adattamenti metabolici come le piante **C4** (mais, canna da zucchero) e **CAM** (cactus, ananas), che limitano la fotorespirazione in ambienti caldi e aridi.\n\nI primi studi risalgono a Jan Ingenhousz (1779), che dimostrò il ruolo della luce. L'equazione complessiva è: 6CO₂ + 6H₂O + luce → C₆H₁₂O₆ + 6O₂.\n\nVuoi che approfondisca la fotorespirazione, i pigmenti accessori o il bilancio energetico del processo?",
- sp:"Vediamo la fotosintesi in modo semplice, così domani sei pronto.\n\nLa fotosintesi è il modo in cui le piante si fanno il cibo da sole. Prendono l'**acqua** dalle radici e l'**anidride carbonica** dall'aria e, usando l'energia della **luce del sole**, le trasformano in **zucchero**, che usano per crescere. Come \"scarto\" liberano **ossigeno**, quello che respiriamo noi.\n\nTutto succede nelle foglie, dentro piccole parti delle cellule chiamate **cloroplasti**. Contengono la **clorofilla**: è lei che cattura la luce ed è il motivo per cui le foglie sono verdi.\n\nLa formula da sapere è: anidride carbonica + acqua + luce → zucchero + ossigeno (6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂).\n\nÈ un processo importantissimo: produce l'ossigeno del pianeta ed è alla base di tutte le catene alimentari.",
- tl:"- **Definizione**: conversione di energia luminosa in energia chimica negli organismi fotoautotrofi.\n- **Fase luminosa**: nei tilacoidi; fotolisi dell'acqua, sintesi di ATP e NADPH.\n- **Ciclo di Calvin**: nello stroma; la RuBisCO fissa la CO₂.\n- **Equazione**: 6CO₂ + 6H₂O + luce → C₆H₁₂O₆ + 6O₂.\n- **Varianti**: piante C4 e CAM.",
- sl:"- **Cos'è**: il modo in cui le piante si fanno il cibo con la luce.\n- **Ingredienti**: acqua + anidride carbonica + luce.\n- **Risultato**: zucchero per la pianta, ossigeno per noi.\n- **Dove**: nelle foglie, nei cloroplasti verdi.\n- **Formula**: 6CO₂ + 6H₂O → C₆H₁₂O₆ + 6O₂.",
- r1:"Ripassiamola come farei io in classe 👩‍🏫",r2:"**Consiglio da prof:** alla verifica chiedono quasi sempre la formula e *dove* avviene. Partite da lì!",
- e:"**Esempio:** è come una **cucina a energia solare**: gli ingredienti sono acqua e CO₂, il fornello è la luce, il piatto pronto è lo zucchero. E il profumo che esce? L'ossigeno! 🍳"};
-var PV={have:[],g:'',v:{},n:0,key:'',busy:false,prev:null};
-function pvAnswer(h){var C=h.indexOf('C')>=0,F=h.indexOf('F')>=0,out=[];if(h.indexOf('R')>=0)out.push(PV_TXT.r1);out.push(PV_TXT[(C?'s':'t')+(F?'l':'p')]);if(h.indexOf('E')>=0)out.push(PV_TXT.e);if(h.indexOf('R')>=0)out.push(PV_TXT.r2);return out.join('\n\n')}
-function pvPrompt(h,html){var sp=function(k,t){return html?'<span class="pv-ing" style="background:'+PV_ING[k].c+'">'+esc(t)+'</span>':t},p=[];
-  if(h.indexOf('R')>=0)p.push(sp('R',PV_ING.R.t));if(h.indexOf('C')>=0)p.push(sp('C',PV_ING.C.t));p.push(h.length?'Spiegami la fotosintesi.':'fotosintesi');
-  if(h.indexOf('F')>=0)p.push(sp('F',PV_ING.F.t));if(h.indexOf('E')>=0)p.push(sp('E',PV_ING.E.t));return p.join(' ')}
-function pvMd(t){var out='',list=false;t.split('\n').forEach(function(l){var s=l.trim(),inl=function(x){return esc(x).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>').replace(/\*([^*]+)\*/g,'<i>$1</i>')},m=s.match(/^-\s+(.*)$/);
-  if(m){if(!list){out+='<ul>';list=true}out+='<li>'+inl(m[1])+'</li>';return}if(list){out+='</ul>';list=false}if(s)out+='<p>'+inl(s)+'</p>'});if(list)out+='</ul>';return out}
-function pvWords(t){return (t.replace(/[*#-]/g,' ').match(/\S+/g)||[]).length}
+var PV_ING=[['ruolo','Ruolo','#FF6B35'],['contesto','Contesto','#00A6C8'],['compito','Compito','#2ECC71'],['formato','Formato','#8E44AD']];
+var PV_EX=['riassunto promessi sposi','aiuto compiti mate','spiegami la guerra fredda','scrivi tema ambiente'];
+var PV_BAD=/\b(cazz|merd|stronz|vaffan|coglion|puttan|troia|fottut|minchi|porc[oa] ?d|negr|frocio|ricchion|bastard)/i;
+var PV={g:'',key:'',seen:{},feed:[],busy:false,last:null,tok:0};
 function pvUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?prompt='+vtRoom():''}
-function pvInit(){if(!G('pvIngs'))return;var u=pvUrl(),ok=vtOn()&&u;
-  G('pvJoin').innerHTML=ok?'<div class="tu-qr" id="pvQr" data-qr="'+u+'" data-size="92"></div><p>Votate dal telefono<b class="big">Stanza '+vtRoom()+'</b><span class="pa-n" id="pvN">0 voti</span></p>':'<p>Il voto dal telefono funziona nella versione online.<br>Intanto: alzata di mano!</p>';
-  if(ok)vtQr(G('pvQr'),u,92);pvReset();
-  setInterval(function(){if(G('sPV').classList.contains('current')&&vtOn()&&!document.hidden&&PV.have.length<4)pvPull()},3000)}
-function pvRound(){var g='';for(var k=0;k<4;k++)g+='abcdefghjkmnpqrstuvwxyz23456789'[Math.floor(Math.random()*31)];PV.g=g;PV.v={};PV.n=0;if(typeof roomsSync==='function')roomsSync()}
-function pvReset(){PV.have=[];PV.prev=null;pvRound();pvShow(true)}
-function pvStats(h){var a=pvAnswer(h),w=pvWords(a),s=Math.round(w/3.3);return {w:w,t:s<60?s+' s':Math.floor(s/60)+' min '+(s%60?s%60+' s':''),l:h.indexOf('C')>=0?'semplice':'tecnico'}}
-function pvShow(instant){var h=PV.have,st=pvStats(h),p=PV.prev;
-  G('pvVer').textContent='versione '+(h.length+1);
-  G('pvK').innerHTML=h.length===0?'Un prompt <b>pigro</b>: una parola sola. L\'AI non sa chi siete né cosa vi serve, quindi <b>tira a indovinare</b>.':h.length<4?'<b>'+h.length+' ingrediente'+(h.length>1?'i':'')+'</b> su 4. Guardate cosa cambia nella risposta.':'<b>Prompt perfetto!</b> Stessa domanda, risposta completamente diversa.';
-  var cls=function(a,b){return p==null?'':a<b?'down':a>b?'up':''};
-  G('pvMeters').innerHTML='<div class="pv-m"><b class="'+cls(st.w,p&&p.w)+'">'+st.w+'</b><span>parole</span></div><div class="pv-m"><b>'+st.t+'</b><span>da leggere</span></div><div class="pv-m"><b class="'+(p&&p.l!==st.l?'down':'')+'">'+st.l+'</b><span>linguaggio</span></div>';PV.prev=st;
-  var m=G('pvMsgs');m.innerHTML='<div class="pv-u">'+pvPrompt(h,true)+'</div><div class="pv-a"><i>✨</i><div class="pv-txt" id="pvTxt">'+(instant?pvMd(pvAnswer(h)):'<div class="pv-dots"><span></span><span></span><span></span></div>')+'</div></div>';m.scrollTop=0;
-  if(!instant){PV.busy=true;setTimeout(function(){G('pvTxt').innerHTML=pvMd(pvAnswer(h));PV.busy=false;
-    if(h.length===4)xpShow('pv:end',{ic:'🧑‍🍳',t:'La ricetta del prompt',sub:'Stessa AI, stessa domanda: cambia tutto il modo in cui la chiedete.',
-      rows:PV_K.map(function(k){return R(k==='R'?'🎭':k==='C'?'🧭':k==='F'?'📐':'🍳',PV_ING[k].n+': '+PV_ING[k].d.toLowerCase(),k==='R'?'fun':k==='C'?'data':k==='F'?'math':'idea','«'+esc(PV_ING[k].t)+'»')}),
-      foot:'L\'AI non legge nel pensiero: più le spiegate cosa vi serve, più la risposta vi aiuta. Provate questo prompt su ChatGPT o Gemini!',toast:'🧑‍🍳 Ruolo + Contesto + Formato + Esempio'})},1100)}
-  pvIngs()}
-function pvBest(){var b=null;PV_K.forEach(function(k){if(PV.have.indexOf(k)>=0)return;if(!b||(PV.v[k]||0)>(PV.v[b]||0))b=k});return b}
-function pvIngs(){var t=Math.max(1,PV.n),best=PV.n?pvBest():null;
-  G('pvIngs').innerHTML=PV_K.map(function(k){var I=PV_ING[k],d=PV.have.indexOf(k)>=0,c=PV.v[k]||0;
-    return '<button class="pv-ig'+(d?' done':'')+(k===best&&!d?' best':'')+'" style="--c:'+I.c+'" onclick="pvAdd(\''+k+'\')"'+(d?' disabled':'')+'><b>'+I.n+'</b><span>'+I.d+'</span>'+(d?'':'<em>'+c+(c===1?' voto':' voti')+'</em><i style="width:'+Math.round(c/t*100)+'%"></i>')+'</button>'}).join('');
-  G('pvAdd').disabled=PV.have.length>=4;var n=G('pvN');if(n)n.textContent=PV.n+(PV.n===1?' voto':' voti')}
-function pvAdd(k){if(PV.busy||PV.have.indexOf(k)>=0)return;PV.have.push(k);pvRound();pvShow(false)}
-function pvAddBest(){var k=pvBest();if(k)pvAdd(k)}
-function pvPull(){vtSb(function(sb){var g=PV.g;sb.from('vote_rooms').select('room,state').like('room',vtRoom()+'K%').limit(1000).then(function(res){if(!res.data||g!==PV.g)return;var v={},n=0;
-  res.data.forEach(function(r){if(r.room.length!==8||!r.state||r.state.g!==g||!PV_ING[r.state.v]||PV.have.indexOf(r.state.v)>=0)return;v[r.state.v]=(v[r.state.v]||0)+1;n++});PV.v=v;PV.n=n;pvIngs()})})}
+function pvGpt(t){return 'https://chatgpt.com/?q='+encodeURIComponent(t)}
+function pvInit(){if(!G('pvIn'))return;var g='';for(var k=0;k<4;k++)g+='abcdefghjkmnpqrstuvwxyz23456789'[Math.floor(Math.random()*31)];PV.g=g;
+  var u=pvUrl(),ok=vtOn()&&u;G('pvJoin').innerHTML=ok?'<div class="tu-qr" id="pvQr" data-qr="'+u+'" data-size="92"></div><p>Mandate il vostro prompt pigro<b class="big">Stanza '+vtRoom()+'</b>dal telefono</p>':'<p>Dalla versione online gli studenti possono mandare i loro prompt dal telefono.</p>';
+  if(ok)vtQr(G('pvQr'),u,92);pvFeed();pvShow(null);G('pvIn').addEventListener('input',pvLinks);pvLinks();
+  setInterval(function(){if(G('sPV').classList.contains('current')&&vtOn()&&!document.hidden)pvPull()},4000)}
+function pvLinks(){var b=G('pvIn').value.trim(),a=G('pvGptBad');a.href=b?pvGpt(b):'#';a.classList.toggle('off',!b)}
+/* i prompt in arrivo dai telefoni (più gli esempi): si clicca per usarli */
+function pvFeed(){var all=PV.feed.concat(PV_EX.filter(function(e){return PV.feed.indexOf(e)<0}));
+  G('pvFeed').innerHTML=all.slice(0,14).map(function(t,i){return '<button class="pv-chip'+(i<PV.feed.length&&PV.seen[t]===1?' new':'')+'" onclick="pvUse('+i+')" title="'+esc(t)+'">'+esc(t)+'</button>'}).join('');PV.all=all;
+  Object.keys(PV.seen).forEach(function(k){PV.seen[k]=2});var n=G('pvN');if(n)n.textContent=PV.feed.length?'· '+PV.feed.length+' arrivati':''}
+function pvUse(i){G('pvIn').value=PV.all[i];pvLinks();pvGo()}
+function pvPull(){vtSb(function(sb){var g=PV.g;sb.from('vote_rooms').select('room,state').like('room',vtRoom()+'K%').order('updated_at',{ascending:false}).limit(60).then(function(res){if(!res.data||g!==PV.g)return;var f=[];
+  res.data.forEach(function(r){var t=r.state&&r.state.g===g&&typeof r.state.t==='string'?r.state.t.trim().slice(0,140):'';if(!t||r.room.length!==8||PV_BAD.test(t)||f.indexOf(t)>=0)return;f.push(t);if(!PV.seen[t])PV.seen[t]=1});
+  var ch=f.join('|')!==PV.feed.join('|');PV.feed=f;if(ch)pvFeed()})})}
+/* la ricetta senza AI: riconosce materia e richiesta, il resto lo lascia tra [parentesi] */
+var PV_SUBJ=[[/mate|equaz|frazion|geometr|algebr|derivat|integral|funzion|percentual/,'matematica'],[/fisic|forz|velocit|energi|elettric/,'fisica'],[/chimic|atom|molecol|reazion/,'chimica'],[/scienz|biolog|cellul|fotosintes|dna|corpo umano/,'scienze'],
+  [/stori|guerra|impero|rivoluz|medioevo|romani|fascism|resistenz/,'storia'],[/filosof|platone|aristotele|kant|socrate/,'filosofia'],[/ingles|english|inglese/,'inglese'],[/latin/,'latino'],
+  [/promessi|manzoni|dante|leopardi|pascoli|verga|ungaretti|letterat|poesi|tema|riassunt|italian|libro|romanzo/,'italiano'],[/arte|pittor|quadr|michelangelo|leonardo/,'storia dell\'arte'],[/geograf|capital|continent/,'geografia'],[/informatic|python|codice|programm/,'informatica']];
+function pvRecipe(bad){var b=bad.toLowerCase(),subj='',task,form;PV_SUBJ.some(function(s){if(s[0].test(b)){subj=s[1];return true}});
+  var topic=bad.replace(/\b(aiuto|aiutami|help|per favore|pls|grazie|fammi|fai|scrivi|spiegami|spiega|dimmi|voglio|devo|un|una|il|lo|la|i|gli|le|di|del|della|sui|sul|su|compiti|esercizi|riassunto|tema|email|mail|traduci|traduzione|domande|quiz|verifica|interrogazione)\b/gi,' ').replace(/\s+/g,' ').trim()||'[argomento]';
+  if(/riassunt|riassum/.test(b)){task='Fammi un riassunto di '+topic+', con i fatti e i personaggi più importanti.';form='10 punti elenco, massimo 150 parole, in ordine cronologico.'}
+  else if(/compit|eserciz|problem|risolv/.test(b)){task='Aiutami a capire come si risolve questo esercizio: [incolla qui il testo]. Non darmi solo il risultato.';form='Spiegazione passo per passo, massimo 6 passaggi numerati, poi un esercizio simile da fare da solo.'}
+  else if(/tema|scriv|testo|saggio/.test(b)){task='Aiutami a preparare un tema su '+topic+': dammi idee e una scaletta, non il tema già scritto.';form='Una scaletta con introduzione, 3 paragrafi e conclusione, ognuno in una riga.'}
+  else if(/mail|email|lettera/.test(b)){task='Scrivi un\'email per '+topic+'.';form='Massimo 80 parole, tono gentile e formale, con oggetto.'}
+  else if(/tradu|translat/.test(b)){task='Traduci in [lingua] questo testo: [incolla qui il testo], e spiegami le parole difficili.';form='Prima la traduzione, poi un elenco di massimo 5 parole difficili.'}
+  else if(/verific|interrog|ripass|quiz|domand|esame/.test(b)){task='Fammi 5 domande per ripassare '+topic+', una alla volta, e correggimi quando rispondo.';form='Una domanda alla volta, come in un\'interrogazione vera.'}
+  else{task='Spiegami '+topic+' in modo semplice.';form='5 punti elenco, massimo 100 parole, con un esempio della vita di tutti i giorni.'}
+  return {ruolo:'Sei un professore di '+(subj||'[materia]')+' paziente e chiaro.',contesto:'Sono uno studente di [classe] superiore e '+(/verific|interrog/.test(b)?'ho la verifica [quando].':'non ho capito bene questo argomento.'),compito:task,formato:form}}
+function pvText(o){return PV_ING.map(function(k){return o[k[0]]}).join(' ')}
+function pvShow(o,src){var out=G('pvOut');
+  if(o==='load'){out.innerHTML='<div class="pv-load"><span>✨</span>L\'AI sta riscrivendo il prompt…</div>';G('pvSrc').textContent='';return}
+  if(!o){out.innerHTML='<p class="pv-empty">Scrivete un prompt pigro a sinistra<br>e premete <b>✨ Miglioralo</b></p>';G('pvSrc').textContent='';['pvGptGood','pvCopy'].forEach(function(id){G(id).classList.add('off')});G('pvCopy').disabled=true;return}
+  out.innerHTML=PV_ING.map(function(k){return '<div class="pv-ing"><b style="background:'+k[2]+'">'+k[1]+'</b><span>'+esc(o[k[0]]).replace(/\[([^\]]+)\]/g,'<em>[$1]</em>')+'</span></div>'}).join('');
+  G('pvSrc').textContent=src==='ai'?'· riscritto dall\'AI':'· riscritto con la ricetta';PV.last=o;var a=G('pvGptGood');a.href=pvGpt(pvText(o));a.classList.remove('off');G('pvCopy').disabled=false;G('pvCopy').classList.remove('off')}
+function pvCopy(){if(PV.last){copyTxt(pvText(PV.last));G('pvCopy').textContent='✓ Copiato';setTimeout(function(){G('pvCopy').textContent='📋 Copia'},1500)}}
+function pvGo(){var bad=G('pvIn').value.trim();if(!bad||PV.busy)return;PV.busy=true;var tok=++PV.tok;G('pvBtn').disabled=true;pvShow('load');
+  var done=function(o,src){if(tok!==PV.tok)return;PV.busy=false;G('pvBtn').disabled=false;pvShow(o,src);if(!pvGo.once){pvGo.once=1;xpShow('pv:how',{ic:'🧑‍🍳',t:'La ricetta di un buon prompt',sub:'Quattro ingredienti, sempre gli stessi.',
+      rows:[R('🎭','Ruolo','fun','Chi deve essere l\'AI: un prof, un allenatore, un amico che spiega.'),R('🧭','Contesto','data','Chi siete e cosa vi serve: classe, verifica domani, cosa non avete capito.'),R('🎯','Compito','ai','Cosa deve fare, con un verbo preciso: spiega, riassumi, fammi domande.'),R('📐','Formato','math','Che forma deve avere: elenco, quante parole, esempi.')],
+      foot:'Provate a premere «Prova su ChatGPT» su tutti e due: stessa AI, risposte diversissime.',toast:'🧑‍🍳 Ruolo + Contesto + Compito + Formato'})}};
+  var ask='Riscrivi questo prompt scritto male da uno studente italiano delle superiori, trasformandolo in un prompt ottimo. Rispondi SOLO con JSON valido, senza altro testo, con le chiavi "ruolo" (inizia con "Sei", chi deve essere l\'AI, adatto a uno studente delle superiori), "contesto" (in prima persona: chi è lo studente e la sua situazione), "compito" (cosa deve fare l\'AI, preciso, con un verbo all\'imperativo), "formato" (forma e lunghezza della risposta). Ogni valore è una sola frase breve in italiano. Le informazioni che non conosci mettile tra parentesi quadre, ad esempio [classe] o [argomento]. Prompt scritto male: "'+bad+'"';
+  var timer=setTimeout(function(){done(pvRecipe(bad),'rec')},25000);
+  fetch('https://text.pollinations.ai/'+encodeURIComponent(ask)+'?json=true&referrer=anonimono.github.io&seed='+Math.floor(Math.random()*1e6)).then(function(r){return r.ok?r.text():Promise.reject(r.status)}).then(function(t){
+    var m=t.match(/\{[\s\S]*\}/),o=m&&JSON.parse(m[0]);if(!o||PV_ING.some(function(k){return typeof o[k[0]]!=='string'||!o[k[0]].trim()}))throw 0;clearTimeout(timer);done(o,'ai')}).catch(function(){clearTimeout(timer);done(pvRecipe(bad),'rec')})}
 
-/* ---- telefono (?prompt=CODICE) ---- */
+/* ---- telefono (?prompt=CODICE): si manda un prompt pigro ---- */
 function pvPhone(){var root=document.documentElement;root.classList.add('vote');root.classList.add('pvm');var app=document.createElement('div');app.id='vtApp';app.className='pv';document.body.appendChild(app);
   var id;try{id=localStorage.getItem('drId')}catch(e){}if(!id){id='';for(var i=0;i<3;i++)id+='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random()*32)];try{localStorage.setItem('drId',id)}catch(e){}}
-  var key=PV_ROOM+'K'+id,S={st:null,k:'',mine:null};
+  var key=PV_ROOM+'K'+id,S={st:null,k:'',sent:''};
   function pull(){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',PV_ROOM+'KS').maybeSingle().then(function(res){var st=(res.data&&res.data.state)||{open:false},k=JSON.stringify(st);if(k===S.k)return;
-    if(!S.st||st.g!==S.st.g)S.mine=null;S.k=k;S.st=st;draw()})})}
-  function draw(){var h='<p class="drp-hd">La ricetta del prompt · stanza '+esc(PV_ROOM)+'</p>',st=S.st;
-    if(!vtOn()){app.innerHTML=h+'<p class="drp-note">Il voto non è configurato su questa presentazione.</p>';return}
+    if(!S.st||st.g!==S.st.g)S.sent='';S.k=k;S.st=st;draw()})})}
+  function draw(){var h='<p class="drp-hd">Prompt pigro · stanza '+esc(PV_ROOM)+'</p>',st=S.st;
+    if(!vtOn()){app.innerHTML=h+'<p class="drp-note">Non configurato su questa presentazione.</p>';return}
     if(!st){app.innerHTML=h+'<p class="drp-note">Collegamento…</p>';return}
-    if(!st.open){app.innerHTML=h+'<p class="drp-big">👀</p><p class="drp-q">Guardate lo schermo</p><p class="drp-note">Si vota quando l\'insegnante apre la sfida. Questa pagina si riattiva da sola.</p>';return}
-    var left=PV_K.filter(function(k){return (st.have||[]).indexOf(k)<0});
-    if(!left.length){app.innerHTML=h+'<p class="drp-big">🧑‍🍳</p><p class="drp-q">Prompt perfetto!</p><p class="drp-note">Guardate la risposta sullo schermo.</p>';return}
-    app.innerHTML=h+'<p class="drp-q">Cosa aggiungiamo al prompt?</p><p class="drp-note">Vince l\'ingrediente più votato.</p><div class="pvp-btns">'+left.map(function(k){var I=PV_ING[k],sel=S.mine===k;
-      return '<button class="'+(sel?'sel':'')+'" style="border-color:'+I.c+';'+(sel?'background:'+I.c:'color:'+I.c)+'" onclick="pvpVote(\''+k+'\')">'+I.n+'<small>'+I.d+'</small></button>'}).join('')+'</div>'}
-  window.pvpVote=function(v){S.mine=v;vtSb(function(sb){sb.from('vote_rooms').upsert({room:key,state:{g:S.st.g,v:v},updated_at:new Date().toISOString()}).then(function(){})});draw()};
-  draw();if(!vtOn())return;pull();setInterval(function(){if(!document.hidden)pull()},4000)}
+    if(!st.open){app.innerHTML=h+'<p class="drp-big">👀</p><p class="drp-q">Guardate lo schermo</p><p class="drp-note">Si scrive quando l\'insegnante apre l\'attività. Questa pagina si riattiva da sola.</p>';return}
+    app.innerHTML=h+'<p class="drp-q">Scrivete un prompt <b>pigro</b></p><p class="drp-note">Come lo scrivereste di fretta a ChatGPT. Es. «riassunto promessi sposi», «aiuto compiti mate».</p>'+
+      '<textarea class="pvp-in" id="pvpIn" maxlength="140" placeholder="Il vostro prompt…"></textarea><div class="drp-row"><button class="drp-btn" onclick="pvpSend()">Manda allo schermo</button></div>'+
+      (S.sent?'<p class="drp-prog">✓ Mandato: «'+esc(S.sent)+'». Potete mandarne un altro.</p>':'')}
+  window.pvpSend=function(){var t=(G('pvpIn').value||'').trim().slice(0,140);if(!t)return;S.sent=t;vtSb(function(sb){sb.from('vote_rooms').upsert({room:key,state:{g:S.st.g,t:t},updated_at:new Date().toISOString()}).then(function(){})});draw()};
+  draw();if(!vtOn())return;pull();setInterval(function(){if(!document.hidden&&!(document.activeElement&&document.activeElement.id==='pvpIn'))pull()},4000)}
 
 function updPrompt(){var r=document.getElementById('pbRole').value.trim(),c=document.getElementById('pbCtx').value.trim(),t=document.getElementById('pbTask').value.trim(),f=document.getElementById('pbFmt').value,x=document.getElementById('pbEx').value.trim();var parts=[],n=0;if(r){parts.push('<span style="color:#FFB899">Sei un '+r+'.</span>');n++}if(c){parts.push('<span style="color:#7CC6E8">'+c+'.</span>');n++}if(t){parts.push('<span style="color:#FFD2BE">'+t+'</span>');n++}if(f){parts.push('<span style="color:#7CC6E8">Rispondi '+f+'.</span>');n++}if(x){parts.push('<span style="color:#FFD2BE">Esempio: '+x+'.</span>');n++}var res=document.getElementById('pbResult');res.innerHTML=n===0?'<span style="color:#8AAFCF;font-style:italic">Compila i campi per vedere il prompt...</span>':parts.join(' ');var pct=Math.round(n/5*100),m=document.getElementById('pbMeter');m.style.width=pct+'%';var lab=['','Debole','Debole','Sufficiente','Buono!','Perfetto!'],col=['#E2E8F0','#FF6B35','#FF6B35','#FFB800','#00B4D8','#2ECC71'];m.style.background=col[n];document.getElementById('pbScore').textContent=lab[n]||'0%';document.getElementById('pbScore').style.color=col[n]}
 function copyPrompt(btn){var t=document.getElementById('pbResult').textContent;if(t&&t.indexOf('Compila')===-1){copyTxt(t);btn.textContent='Copiato!';setTimeout(function(){btn.textContent='📋 Copia prompt'},1400)}}
