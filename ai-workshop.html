@@ -2165,7 +2165,7 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
   <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">MCP: diamo le mani all'AI</h2><span class="au-rule">come una presa <b>USB-C</b>: un attacco, tanti strumenti</span><span class="au-rule">stessa automazione, ora <b>a parole</b></span></div>
   <div class="mc-stage">
     <div class="mc-left">
-      <svg class="mc-hub" id="mcHub" viewBox="0 0 400 384" aria-label="Claude collegato con MCP a Zapier, Gmail, Fogli, Slack, Calendario e Drive"></svg>
+      <svg class="mc-hub" id="mcHub" viewBox="0 0 400 384" aria-label="Claude collegato con MCP a Zapier, Gmail, Fogli, Documenti, Calendario e Drive"></svg>
       <div class="mc-vs">
         <div><b>⚙️ Automazione</b><span>«Quando X → fai Y». Il percorso lo decidete voi prima, ed è sempre uguale.</span></div>
         <div class="on"><b>🤖 Agente con MCP</b><span>Glielo chiedete a parole. L'AI sceglie da sola quali strumenti usare, e vi chiede il permesso.</span></div>
@@ -2177,7 +2177,7 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
       <div class="pv-row"><button class="btn" id="mcGo" onclick="mcGo()">▶ Invia la richiesta</button><button class="btn ghost" onclick="mcReset()">↺ Ricomincia</button></div>
     </div>
   </div>
-  <p class="mc-foot">🔌 <b>MCP</b> (Model Context Protocol) è uno standard aperto presentato da Anthropic nel 2024. <b>Zapier</b> ha un server MCP che collega Claude a migliaia di app; anche <b>Make</b> e <b>n8n</b> lo supportano. In Claude si attiva da <b>Impostazioni → Connettori</b>.</p>
+  <p class="mc-foot">🔌 <b>MCP</b> (Model Context Protocol) è uno standard aperto presentato da Anthropic nel 2024. Nella demo usiamo i connettori di Claude per <b>Gmail, Drive e Calendario</b>, da <b>Impostazioni → Connettori</b>. Per migliaia di altre app c'è <b>Zapier MCP</b> (gratis fino a 100 attività al mese); lo supportano anche <b>Make</b> e <b>n8n</b>.</p>
 </section>
 
 <!-- 22 DEMO -->
@@ -4207,7 +4207,7 @@ function stAgain(){var D=ST.demo;D.q=D.miss;D.miss=[];D.i=0;stDraw()}
 /* quando l'automazione vera sarà pronta, mettere qui il link (video, pagina, flusso) */
 var AU_DEMO={url:'',title:''};
 var AU_T={trig:['⚡ Inizio','#F39C12'],rule:['📏 Regola fissa','#5B6B8C'],ai:['🧠 AI','#8E44AD'],act:['⚙️ Azione','#00A6C8'],hum:['👤 Persona','#2ECC71']};
-var AU_ST=[{t:'trig',b:'Arriva un\'email',s:'nella casella assistenza@',tool:'Gmail'},{t:'rule',b:'È spam?',s:'via pubblicità e newsletter',tool:'Filtro'},{t:'ai',b:'Classifica e scrive',s:'argomento, urgenza, bozza',tool:'Claude'},
+var AU_ST=[{t:'trig',b:'Arriva un\'email',s:'nella casella assistenza@',tool:'Gmail'},{t:'rule',b:'È spam?',s:'via pubblicità e newsletter',tool:'Filtro'},{t:'ai',b:'Classifica e scrive',s:'argomento, urgenza, bozza',tool:'Gemini (gratis)'},
   {t:'act',b:'Registro',s:'una riga per ogni richiesta',tool:'Google Fogli'},{t:'act',b:'Bozza',s:'la risposta, pronta da controllare',tool:'Gmail'},{t:'hum',b:'L\'operatore',s:'controlla e invia',tool:'Tu'}];
 var AU_E=[{k:'📦 Pacco in ritardo',from:'giulia.verdi@email.it',sub:'ordine 48213',txt:'Buongiorno, ho ordinato le scarpe il 2 ottobre ma non sono ancora arrivate. Mi servono per sabato. Potete aiutarmi?',
    ai:{argomento:'spedizione',ordine:'48213',urgenza:'alta',riassunto:'Pacco non arrivato, le serve entro sabato'},row:['12/10','Giulia Verdi','48213','spedizione','🔴 alta'],
@@ -4219,7 +4219,7 @@ var AU_E=[{k:'📦 Pacco in ritardo',from:'giulia.verdi@email.it',sub:'ordine 48
 var AU={e:0,i:-1,timer:null,ok:false};
 function auInit(){if(!G('auTabs'))return;G('auTabs').innerHTML=AU_E.map(function(e,i){return '<button class="au-tab" onclick="auGo('+i+')">'+e.k+'</button>'}).join('');
   G('auPrompt').innerHTML=[['#FF6B35','Sei l\'assistente del servizio clienti di un negozio online di scarpe.'],['#00A6C8','Ricevi le email dei clienti scritte ad assistenza@.'],['#2ECC71','Capisci di cosa si tratta, quale ordine riguarda e quanto è urgente, poi scrivi una bozza di risposta.'],['#8E44AD','Rispondi SOLO con JSON: argomento (spedizione / reso / prodotto / altro), ordine, urgenza (bassa / media / alta), riassunto (max 10 parole), bozza (max 50 parole, dai del Lei).'],['#E67E22','Non promettere date che non conosci: se non sei sicuro, dillo.']].map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ');
-  var d=G('auDemo');d.innerHTML='<span style="font-size:1.6rem">🎬</span><div><b>'+(AU_DEMO.title||'Ora la vediamo funzionare davvero')+'</b><p>'+(AU_DEMO.url?'Mandiamo un\'email vera e guardiamo cosa succede.':'Gmail + Google Fogli + Claude, collegati con Zapier.')+'</p></div>'+(AU_DEMO.url?'<a class="btn" href="'+AU_DEMO.url+'" target="_blank" rel="noopener">Apri la demo ↗</a>':'<span class="btn" style="opacity:.55;cursor:default">In arrivo</span>');auGo(0)}
+  var d=G('auDemo');d.innerHTML='<span style="font-size:1.6rem">🎬</span><div><b>'+(AU_DEMO.title||'Ora la vediamo funzionare davvero')+'</b><p>'+(AU_DEMO.url?'Mandiamo un\'email vera e guardiamo cosa succede.':'Gmail + Fogli Google + l\'AI gratuita di Google, collegati da un piccolo script. Costo: zero.')+'</p></div>'+(AU_DEMO.url?'<a class="btn" href="'+AU_DEMO.url+'" target="_blank" rel="noopener">Apri la demo ↗</a>':'<span class="btn" style="opacity:.55;cursor:default">In arrivo</span>');auGo(0)}
 function auGo(e){AU.e=e;AU.i=-1;AU.ok=false;clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent='▶ Fai arrivare l\'email';[].forEach.call(document.querySelectorAll('#auTabs .au-tab'),function(b,k){b.classList.toggle('on',k===e)});auDraw()}
 function auLast(){return AU_E[AU.e].spam?1:AU_ST.length-1}
 function auDraw(){var E=AU_E[AU.e],i=AU.i,last=auLast(),h='';AU_ST.forEach(function(p,k){var T=AU_T[p.t],off=E.spam&&k>1;if(k)h+='<div class="au-arr'+(k<=i&&!off?' on':'')+'">'+(E.spam&&k===2&&i>=1?'✕':'→')+'</div>';
@@ -4236,21 +4236,21 @@ function auOk(){AU.ok=true;auDraw();G('auPlay').textContent='↺ Un\'altra email
 function auStep(){var last=auLast();if(AU.i>=last){AU.i=-1;AU.ok=false;auDraw();return}AU.i++;auDraw();if(AU.i>=last){clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent=AU_E[AU.e].spam?'↺ Riprova':'Aspetta l\'operatore…'}}
 function auPlay(){if(AU.timer){clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent='▶ Riprendi';return}if(AU.i>=auLast())AU.i=-1,AU.ok=false;G('auPlay').textContent='⏸ Pausa';auStep();if(AU.i<auLast())AU.timer=setInterval(auStep,2400)}
 /* ===== slide MCP: Claude usa gli strumenti dell'azienda, chiedendo il permesso ===== */
-var MC_N=[['zap','⚡','Zapier',200,48],['gmail','✉️','Gmail',340,120],['sheets','📊','Fogli',340,250],['slack','💬','Slack',200,318],['cal','📅','Calendario',60,250],['drive','📁','Drive',60,120]];
+var MC_N=[['zap','⚡','Zapier',200,48],['gmail','✉️','Gmail',340,120],['sheets','📊','Fogli',340,250],['docs','📄','Documenti',200,318],['cal','📅','Calendario',60,250],['drive','📁','Drive',60,120]];
 /* le stesse richieste dei clienti della slide prima: ora Claude ci lavora sopra, su richiesta */
 var MC_S=[{k:'🔴 Le urgenze di oggi',q:'Quali richieste urgenti sono arrivate oggi? Prepara le risposte.',st:[
-   {n:'sheets',f:'fogli.cerca_righe (via Zapier)',s:'registro «Richieste clienti» · oggi · urgenza = alta → 2 righe'},
+   {n:'sheets',f:'drive.leggi_foglio',s:'«Richieste clienti» · oggi · urgenza = alta → 2 righe'},
    {n:'gmail',f:'gmail.leggi_email',s:'Giulia Verdi (ordine 48213) · Luca Bassi (ordine 48190)'},
    {n:null,f:'scrive le risposte',s:'2 bozze, con il numero d\'ordine e senza promettere date'},
    {n:'gmail',f:'gmail.crea_bozza',s:'2 bozze nella casella assistenza@',perm:'Posso salvare queste 2 bozze in Gmail? Non le invio.'}],
    a:'Oggi ci sono 2 richieste urgenti, entrambe per spedizioni in ritardo. Ho preparato le risposte nelle bozze di Gmail: controllatele e inviatele voi.'},
- {k:'📊 Il riepilogo della settimana',q:'Fammi il riepilogo delle richieste di questa settimana e mandalo al team su Slack.',st:[
-   {n:'sheets',f:'fogli.leggi_righe (via Zapier)',s:'settimana 41 → 64 richieste'},
+ {k:'📊 Il riepilogo della settimana',q:'Fammi il riepilogo delle richieste di questa settimana e mandalo al responsabile.',st:[
+   {n:'sheets',f:'drive.leggi_foglio',s:'settimana 41 → 64 richieste'},
    {n:null,f:'conta e riassume',s:'spedizioni 31 · resi 19 · prodotto 11 · altro 3 · urgenti 9'},
-   {n:'slack',f:'slack.invia_messaggio (via Zapier)',s:'#servizio-clienti · «Settimana 41: 64 richieste, metà sono spedizioni…»',perm:'Posso mandare il riepilogo nel canale #servizio-clienti?'}],
-   a:'Fatto: 64 richieste questa settimana, quasi la metà sulle spedizioni (31). Ho mandato il riepilogo al team su Slack e suggerisco di parlarne con il corriere.'},
+   {n:'gmail',f:'gmail.invia_email',s:'a: responsabile · «Settimana 41: 64 richieste, metà sono spedizioni…»',perm:'Posso mandare il riepilogo via email al responsabile?'}],
+   a:'Fatto: 64 richieste questa settimana, quasi la metà sulle spedizioni (31). Ho mandato il riepilogo al responsabile e suggerisco di parlarne con il corriere.'},
  {k:'📅 Richiama il cliente',q:'Giulia Verdi ha scritto di nuovo: fissa una chiamata con lei domani mattina.',st:[
-   {n:'sheets',f:'fogli.cerca_righe (via Zapier)',s:'cliente = Giulia Verdi → ordine 48213, spedizione, urgenza alta'},
+   {n:'sheets',f:'drive.leggi_foglio',s:'cliente = Giulia Verdi → ordine 48213, spedizione, urgenza alta'},
    {n:'cal',f:'calendario.cerca_orari_liberi',s:'domani 9–12 → libero alle 10:00'},
    {n:'cal',f:'calendario.crea_evento',s:'domani 10:00 · «Chiamata Giulia Verdi – ordine 48213»',perm:'Posso creare l\'evento e mandare l\'invito a Giulia?'}],
    a:'Ho fissato la chiamata con Giulia Verdi domani alle 10:00 e le ho mandato l\'invito. Nell\'evento ho messo il riassunto del suo ordine.'}];
