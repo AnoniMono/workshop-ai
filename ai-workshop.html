@@ -1547,6 +1547,40 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 .au-data .row2.five{grid-template-columns:repeat(5,auto)}
 #sAU1 .au-data{min-height:8em}#sAU1 .one-low{min-height:0;overflow:hidden}
 @media (max-height:800px){#sAU1 .bd-sent{font-size:.9rem;padding:.35em .8em}#sAU1 .au-pr{font-size:.8rem;padding:.55em .8em}#sAU1 .au-data{min-height:6.5em;font-size:.88rem}#sAU1 .au-demo{padding:.4em .9em}}
+/* slide: costruiamolo insieme */
+#sSU.current{height:100svh}
+.su-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);gap:clamp(1rem,3vw,2.4rem);align-items:center}
+@media (max-width:900px){.su-stage{grid-template-columns:1fr}#sSU.current{height:auto}}
+.su-left,.su-right{display:flex;flex-direction:column;gap:.6em;min-width:0}
+.su-steps{display:flex;flex-direction:column;gap:.35em}
+.su-s{display:grid;grid-template-columns:2em minmax(0,1fr) auto;gap:.6em;align-items:center;text-align:left;background:#fff;border:2px solid var(--border);border-radius:12px;padding:.45em .7em;cursor:pointer;font-family:var(--ff-body);opacity:.65;transition:opacity .2s,box-shadow .2s,transform .2s}
+.su-s:hover{opacity:1}.su-s.on{opacity:1;border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,107,53,.18);transform:translateX(6px)}
+.su-s.done{opacity:.9}
+.su-s b{width:1.9em;height:1.9em;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-size:.95rem}
+.su-s.on b{background:var(--orange)}.su-s.done b{background:#2ECC71}
+.su-s span{font-family:var(--ff-head);font-weight:700;font-size:clamp(.92rem,1.3vw,1.1rem);color:var(--navy)}
+.su-s small{font-size:.72rem;font-weight:800;color:var(--gray)}
+.su-s.mcp{border-left:5px solid #D97757}
+.su-win{background:#fff;border:2px solid #CBD5E0;border-radius:14px;overflow:hidden;box-shadow:0 14px 36px rgba(27,42,74,.14);animation:pvIn .35s ease-out}
+.su-bar{display:flex;align-items:center;gap:.5em;background:#EDF2F7;padding:.45em .7em;border-bottom:1px solid #CBD5E0}
+.su-bar i{width:.7em;height:.7em;border-radius:50%;background:#CBD5E0;display:inline-block}
+.su-url{flex:1;background:#fff;border-radius:999px;padding:.2em .8em;font:600 .85rem ui-monospace,Consolas,monospace;color:#4A5568}
+.su-body{padding:1em 1.2em;min-height:12em;display:flex;flex-direction:column;gap:.6em;font-size:clamp(.88rem,1.25vw,1rem);color:#1B2A4A}
+.su-hl{display:inline-flex;align-items:center;gap:.4em;align-self:flex-start;background:#1A73E8;color:#fff;font-weight:800;border-radius:8px;padding:.45em 1em;box-shadow:0 0 0 4px rgba(255,107,53,.55),0 0 0 9px rgba(255,107,53,.18);animation:suPulse 1.6s ease-in-out infinite}
+@keyframes suPulse{50%{box-shadow:0 0 0 4px rgba(255,107,53,.55),0 0 0 14px rgba(255,107,53,.06)}}
+.su-box{background:#F7FAFC;border:1px solid #E2E8F0;border-radius:8px;padding:.5em .7em;font:600 .85rem ui-monospace,Consolas,monospace;color:#2D3748;white-space:pre;overflow:hidden}
+.su-row{display:flex;gap:.6em;align-items:center;flex-wrap:wrap}
+.su-tag{background:#EDF2F7;border-radius:6px;padding:.25em .6em;font-weight:700;font-size:.85rem}
+.su-dlg{border:2px solid #E2E8F0;border-radius:10px;padding:.7em .9em;max-width:22em;display:flex;flex-direction:column;gap:.4em;box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.su-tg{display:flex;align-items:center;justify-content:space-between;gap:1em;border-bottom:1px solid #EDF2F7;padding:.35em 0;font-weight:700}
+.su-tg em{font-style:normal;width:2.4em;height:1.3em;border-radius:999px;background:#2ECC71;position:relative}
+.su-tg em::after{content:'';position:absolute;right:.15em;top:.15em;width:1em;height:1em;border-radius:50%;background:#fff}
+.su-txt{font-size:clamp(.95rem,1.4vw,1.15rem);color:var(--gray);line-height:1.5}
+.su-txt b{color:var(--navy)}
+.su-txt p{margin:0}
+.su-mail{border:1px solid #E2E8F0;border-radius:10px;padding:.6em .8em;display:flex;flex-direction:column;gap:.2em}
+.su-mail b{font-size:1.05em}
+@media (max-height:800px){#sSU .su-body{min-height:9em;padding:.7em .9em}#sSU .su-s{padding:.3em .6em}#sSU .su-txt{font-size:.92rem}#sSU .pa-join .tu-qr canvas,#sSU .pa-join .tu-qr img{width:76px!important;height:76px!important}}
 /* badge extra per i pop-up */
 .pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
 .scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
@@ -2185,6 +2219,22 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
     </div>
   </div>
   <p class="mc-foot">🔌 <b>MCP</b> (Model Context Protocol) è uno standard aperto presentato da Anthropic nel 2024. Nella demo usiamo i connettori di Claude per <b>Gmail, Drive e Calendario</b>, da <b>Impostazioni → Connettori</b>. Per migliaia di altre app c'è <b>Zapier MCP</b> (gratis fino a 100 attività al mese); lo supportano anche <b>Make</b> e <b>n8n</b>.</p>
+</section>
+
+<!-- 21d COME SI COSTRUISCE: il briefing del mattino, passo per passo -->
+<section class="slide darktext s-light" data-section="Automatizzare" id="sSU">
+  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">DAL VIVO</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Costruiamolo insieme: 15 minuti, zero euro</h2></div>
+  <div class="su-stage">
+    <div class="su-left">
+      <div class="su-steps" id="suSteps"></div>
+      <div class="pa-join" id="suJoin"></div>
+    </div>
+    <div class="su-right">
+      <div class="su-win" id="suWin"></div>
+      <div class="su-txt" id="suTxt"></div>
+      <div class="pv-row"><button class="btn ghost" id="suPrev" onclick="suGo(SU.i-1)">←</button><button class="btn" id="suNext" onclick="suGo(SU.i+1)">Passo dopo →</button><button class="btn ghost" id="suCopy" onclick="suCopy()">📋 Copia lo script</button></div>
+    </div>
+  </div>
 </section>
 
 <!-- 22 DEMO -->
@@ -4235,6 +4285,42 @@ function auDraw(){var i=AU.i,h='';AU_ST.forEach(function(p,k){var T=AU_T[p.t];if
   d.innerHTML='<div class="h">Passo '+(i+1)+' · '+AU_ST[i].b+' <i style="background:'+T[1]+'">'+T[0]+'</i></div>'+AU_D[i]}
 function auStep(){var last=AU_ST.length-1;if(AU.i>=last){AU.i=-1;auDraw();return}AU.i++;auDraw();if(AU.i>=last){clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent='↺ Ricomincia'}}
 function auPlay(){if(AU.timer){clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent='▶ Riprendi';return}if(AU.i>=AU_ST.length-1)AU.i=-1;G('auPlay').textContent='⏸ Pausa';auStep();AU.timer=setInterval(auStep,2600)}
+/* ===== slide "Costruiamolo insieme": il briefing del mattino, passo per passo (finte schermate) ===== */
+var SU_REPO='https://github.com/AnoniMono/workshop-ai/blob/main/demo-automazione/GUIDA.md';
+var SU_S=[{t:'La chiave dell\'AI',m:'2 min',url:'aistudio.google.com',
+   w:'<p><b>Google AI Studio</b></p><span class="su-hl">🔑 Get API key</span><div class="su-box">AIzaSy••••••••••••••••••••••••</div>',
+   x:'Su <b>aistudio.google.com</b> premete <b>Get API key</b> e copiate la chiave. È gratis: è il «permesso» per usare l\'AI di Google.'},
+ {t:'Un nuovo progetto',m:'1 min',url:'script.google.com',
+   w:'<p><b>Apps Script</b>: il posto dove Google fa girare i vostri piccoli programmi</p><span class="su-hl">＋ Nuovo progetto</span>',
+   x:'Su <b>script.google.com</b> premete <b>Nuovo progetto</b> e chiamatelo «Briefing del mattino». Niente da installare.'},
+ {t:'Incollate lo script',m:'1 min',url:'script.google.com/…/edit',
+   w:'<div class="su-box">// il prompt: la ricetta della slide 14\nvar PROMPT = \'Sei l\\\'assistente personale di…\';\n\nfunction briefing() {\n  var eventi = CalendarApp…getEventsForDay(oggi);\n  var email  = GmailApp.search(CERCA, 0, 25);\n  var b = chiediAGemini(dati);\n  GmailApp.sendEmail(io, \'☀️ Il tuo briefing\', …);\n}</div><div class="su-row"><span class="su-hl">💾 Salva</span></div>',
+   x:'Cancellate quello che c\'è e incollate lo script (bottone <b>📋 Copia lo script</b> qui sotto). Non serve capirlo tutto: in cima c\'è <b>il prompt</b>, che potete cambiare.'},
+ {t:'Mettete la chiave',m:'1 min',url:'script.google.com/…/settings',
+   w:'<p><b>⚙️ Impostazioni progetto → Proprietà script</b></p><div class="su-row"><span class="su-tag">Proprietà</span><div class="su-box">GEMINI_API_KEY</div></div><div class="su-row"><span class="su-tag">Valore</span><div class="su-box">AIzaSy••••••••••••</div></div><span class="su-hl">Salva proprietà dello script</span>',
+   x:'La chiave va qui, <b>non dentro lo script</b>: così se condividete il codice la chiave resta vostra.'},
+ {t:'Il primo briefing',m:'1 min',url:'script.google.com/…/edit',
+   w:'<div class="su-row"><span class="su-tag">briefing ▾</span><span class="su-hl">▶ Esegui</span></div><div class="su-dlg"><b>Autorizzazione necessaria</b><span>Lo script vuole leggere Gmail e Calendario.</span><span class="su-hl" style="animation:none">Consenti</span></div>',
+   x:'Scegliete <b>briefing</b> e premete <b>▶ Esegui</b>. Google chiede il permesso di leggere posta e calendario: <b>Consenti</b>. È il vostro script, sul vostro account.'},
+ {t:'Ecco il briefing',m:'10 s',url:'mail.google.com',
+   w:'<div class="su-mail"><b>☀️ Il tuo briefing di oggi</b><span>🔴 Le priorità · 📅 Le riunioni · ✉️ A chi rispondere · 🟢 Può aspettare</span><small style="color:#718096">Scritto da un\'AI: può sbagliare. Le decisioni restano tue.</small></div>',
+   x:'Dopo pochi secondi arriva l\'email. Non vi piace com\'è scritto? Cambiate <b>il prompt</b> in cima allo script e rilanciate.'},
+ {t:'Ogni mattina, da solo',m:'1 min',url:'script.google.com/…/edit',
+   w:'<div class="su-row"><span class="su-tag">accendi ▾</span><span class="su-hl">▶ Esegui</span></div><div class="su-box">Fatto: il briefing arriverà ogni mattina tra le 7 e le 8.</div>',
+   x:'Scegliete <b>accendi</b> e premete <b>▶ Esegui</b>: da domani arriva da solo. <b>Questa</b> è l\'automazione.'},
+ {t:'E per Claude (MCP)',m:'2 min',url:'claude.ai › Impostazioni › Connettori',mcp:1,
+   w:'<p><b>Connettori</b></p><div class="su-tg">✉️ Gmail<em></em></div><div class="su-tg">📅 Google Calendar<em></em></div><div class="su-tg">📁 Google Drive<em></em></div>',
+   x:'In <b>Claude → Impostazioni → Connettori</b> collegate Gmail, Calendario e Drive. Poi chiedete a parole: <b>«Preparami il briefing di oggi»</b>.'}];
+var SU={i:0,code:null};
+function suInit(){if(!G('suSteps'))return;G('suSteps').innerHTML=SU_S.map(function(s,i){return '<button class="su-s'+(s.mcp?' mcp':'')+'" onclick="suGo('+i+')"><b>'+(i+1)+'</b><span>'+s.t+'</span><small>'+s.m+'</small></button>'}).join('');
+  G('suJoin').innerHTML='<div class="tu-qr" id="suQr" data-qr="'+SU_REPO+'" data-size="92"></div><p>📱 Guida e script<b class="big">Rifatelo a casa</b>inquadrate il codice</p>';vtQr(G('suQr'),SU_REPO,92);suGo(0)}
+function suGo(i){if(i<0||i>=SU_S.length)return;SU.i=i;var s=SU_S[i];[].forEach.call(document.querySelectorAll('.su-s'),function(b,k){b.classList.toggle('on',k===i);b.classList.toggle('done',k<i)});
+  var w=G('suWin');w.innerHTML='<div class="su-bar"><i></i><i></i><i></i><span class="su-url">'+s.url+'</span></div><div class="su-body">'+s.w+'</div>';w.style.animation='none';w.offsetHeight;w.style.animation='';
+  G('suTxt').innerHTML='<p>'+s.x+'</p>';G('suPrev').disabled=i===0;G('suNext').disabled=i===SU_S.length-1}
+/* copia lo script dal sito (stessa cartella della presentazione) */
+function suCopy(){var b=G('suCopy'),done=function(t){copyTxt(t);b.textContent='✓ Copiato';setTimeout(function(){b.textContent='📋 Copia lo script'},1600)};
+  if(SU.code)return done(SU.code);fetch('demo-automazione/briefing-mattino.gs').then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){SU.code=t;done(t)}).catch(function(){window.open(SU_REPO,'_blank','noopener')})}
+
 /* ===== slide MCP: Claude usa gli strumenti dell'azienda, chiedendo il permesso ===== */
 var MC_N=[['zap','⚡','Zapier',200,48],['gmail','✉️','Gmail',340,120],['cal','📅','Calendario',340,250],['docs','📄','Documenti',200,318],['sheets','📊','Fogli',60,250],['drive','📁','Drive',60,120]];
 /* la stessa mattina di Laura: ora lo chiede a Claude, a parole */
@@ -4289,7 +4375,7 @@ function copyTxt(t){try{navigator.clipboard.writeText(t)}catch(e){try{var ta=doc
 function flash(el){var bg=el.style.background;el.style.background='rgba(46,204,113,.35)';setTimeout(function(){el.style.background=bg},1100)}
 
 
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();suInit()}
 fdBoot();
 hsInit();
 n4Init();
