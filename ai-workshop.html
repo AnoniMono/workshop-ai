@@ -1581,6 +1581,16 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 .su-mail{border:1px solid #E2E8F0;border-radius:10px;padding:.6em .8em;display:flex;flex-direction:column;gap:.2em}
 .su-mail b{font-size:1.05em}
 @media (max-height:800px){#sSU .su-body{min-height:9em;padding:.7em .9em}#sSU .su-s{padding:.3em .6em}#sSU .su-txt{font-size:.92rem}#sSU .pa-join .tu-qr canvas,#sSU .pa-join .tu-qr img{width:76px!important;height:76px!important}}
+/* slide: il briefing con Claude */
+#sCL.current{height:100svh}
+.cl-istr{font-size:clamp(.85rem,1.2vw,1rem)}
+.cl-cp{font-size:.88rem;padding:.4em 1em;color:var(--navy);box-shadow:inset 0 0 0 2px #C9D1DC;background:#fff}
+.cl-prs{display:grid;grid-template-columns:1fr 1fr;gap:.45em}
+.cl-pr{border:1.5px solid #E2E8F0;border-radius:10px;padding:.45em .6em;display:flex;flex-direction:column;gap:.2em}
+.cl-pr b{font-size:.92em}.cl-pr span{font-size:.85em;color:#4A5568;line-height:1.35}
+.cl-pr div{display:flex;gap:.5em;margin-top:auto}.cl-pr button,.cl-pr a{font:700 .78rem var(--ff-body);border:none;background:#EDF2F7;color:var(--navy);border-radius:6px;padding:.2em .55em;cursor:pointer;text-decoration:none}.cl-pr a{background:#FBEAE4;color:#C2613F}
+.cl-rule{display:flex;flex-direction:column;gap:.3em}.cl-rule div{font-size:.95em}
+@media (max-height:800px){#sCL .cl-pr span{font-size:.78em}#sCL .su-body{min-height:9em}}
 /* badge extra per i pop-up */
 .pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
 .scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
@@ -2219,6 +2229,22 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
     </div>
   </div>
   <p class="mc-foot">🔌 <b>MCP</b> (Model Context Protocol) è uno standard aperto presentato da Anthropic nel 2024. Nella demo usiamo i connettori di Claude per <b>Gmail, Drive e Calendario</b>, da <b>Impostazioni → Connettori</b>. Per migliaia di altre app c'è <b>Zapier MCP</b> (gratis fino a 100 attività al mese); lo supportano anche <b>Make</b> e <b>n8n</b>.</p>
+</section>
+
+<!-- 21c2 IL BRIEFING CON CLAUDE: connettori, progetto, prompt, permessi -->
+<section class="slide darktext s-light" data-section="Automatizzare" id="sCL">
+  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge" style="background:#D97757">CON CLAUDE</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Il briefing con Claude: come si prepara</h2></div>
+  <div class="su-stage">
+    <div class="su-left">
+      <div class="su-steps" id="clSteps"></div>
+      <div class="pa-join" id="clJoin"></div>
+    </div>
+    <div class="su-right">
+      <div class="su-win" id="clWin"></div>
+      <div class="su-txt" id="clTxt"></div>
+      <div class="pv-row"><button class="btn ghost" id="clPrev" onclick="clGo(CL.i-1)">←</button><button class="btn" id="clNext" onclick="clGo(CL.i+1)">Passo dopo →</button></div>
+    </div>
+  </div>
 </section>
 
 <!-- 21d COME SI COSTRUISCE: il briefing del mattino, passo per passo -->
@@ -4285,6 +4311,37 @@ function auDraw(){var i=AU.i,h='';AU_ST.forEach(function(p,k){var T=AU_T[p.t];if
   d.innerHTML='<div class="h">Passo '+(i+1)+' · '+AU_ST[i].b+' <i style="background:'+T[1]+'">'+T[0]+'</i></div>'+AU_D[i]}
 function auStep(){var last=AU_ST.length-1;if(AU.i>=last){AU.i=-1;auDraw();return}AU.i++;auDraw();if(AU.i>=last){clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent='↺ Ricomincia'}}
 function auPlay(){if(AU.timer){clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent='▶ Riprendi';return}if(AU.i>=AU_ST.length-1)AU.i=-1;G('auPlay').textContent='⏸ Pausa';auStep();AU.timer=setInterval(auStep,2600)}
+/* ===== slide "Il briefing con Claude": connettori, progetto con istruzioni, prompt pronti, permessi ===== */
+var CL_GUIDA='https://github.com/AnoniMono/workshop-ai/blob/main/demo-automazione/GUIDA.md#il-briefing-con-claude';
+var CL_ISTR=[['#FF6B35','Sei il mio assistente personale per organizzare il lavoro.'],['#00A6C8','Sono [il vostro ruolo, es. CEO di un\'azienda di 40 persone]. Quando ti chiedo il briefing, usa il mio calendario di oggi e le email arrivate da ieri sera.'],
+  ['#2ECC71','Dimmi cosa conta: le 3 priorità, cosa preparare per ogni riunione, a chi rispondere e perché, cosa può aspettare.'],['#8E44AD','Massimo 150 parole, elenchi puntati, prima le cose urgenti.'],
+  ['#E67E22','Ignora newsletter e notifiche. Non inventare: se un\'informazione manca, dimmelo. Prima di creare bozze, inviare email o creare eventi, chiedimi sempre il permesso.']];
+var CL_PR=[['☀️','Il briefing','Preparami il briefing di oggi.'],['🤝','Prima di una riunione','Tra 10 minuti vedo [nome]: cosa ci siamo detti nelle ultime email e cosa devo sapere?'],
+  ['✉️','Chi aspetta','Chi aspetta una mia risposta da più di 2 giorni? Prepara le bozze, ma non inviarle.'],['📊','La settimana','Fammi il riepilogo della settimana: riunioni fatte, decisioni prese, cose rimaste aperte.'],
+  ['📅','Un appuntamento','Trova 30 minuti liberi giovedì per me e [nome] e proponimi due orari.']];
+var CL_S=[{t:'Collegate i connettori',m:'2 min',url:'claude.ai › Impostazioni › Connettori',
+   w:function(){return '<p><b>Connettori</b></p><div class="su-tg">✉️ Gmail<em></em></div><div class="su-tg">📅 Google Calendar<em></em></div><div class="su-tg">📁 Google Drive<em></em></div><span class="su-hl">Collega</span>'},
+   x:'In <b>Impostazioni → Connettori</b> premete <b>Collega</b> su Gmail, Calendar e Drive ed entrate con Google. Sono connettori <b>MCP</b>: le «prese» della slide prima.'},
+ {t:'Un Progetto con le istruzioni',m:'3 min',url:'claude.ai › Progetti › Il mio briefing',
+   w:function(){return '<div class="su-row"><span class="su-hl" style="animation:none">＋ Nuovo progetto</span><span class="su-tag">«Il mio briefing»</span></div><p style="margin:0"><b>Istruzioni del progetto</b></p><div class="au-pr cl-istr">'+CL_ISTR.map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ')+'</div><div class="su-row"><button class="btn ghost cl-cp" onclick="clCopy(this,-1)">📋 Copia le istruzioni</button></div>'},
+   x:'Le istruzioni si scrivono <b>una volta sola</b>: valgono per ogni chat del progetto. È la ricetta della slide 14, con una regola in più: <b>chiedimi sempre il permesso</b>.'},
+ {t:'I prompt pronti',m:'',url:'claude.ai › Il mio briefing › Nuova chat',
+   w:function(){return '<div class="cl-prs">'+CL_PR.map(function(p,i){return '<div class="cl-pr"><b>'+p[0]+' '+p[1]+'</b><span>«'+esc(p[2])+'»</span><div><button onclick="clCopy(this,'+i+')">📋 Copia</button><a href="https://claude.ai/new?q='+encodeURIComponent(p[2])+'" target="_blank" rel="noopener">Apri in Claude ↗</a></div></div>'}).join('')+'</div>'},
+   x:'Grazie alle istruzioni, basta una frase. Le parti tra <b>[parentesi]</b> le cambiate voi. Scriveteli <b>dentro il progetto</b>, così Claude usa le vostre regole.'},
+ {t:'I permessi',m:'',url:'claude.ai › Il mio briefing',
+   w:function(){return '<div class="su-dlg" style="max-width:none"><b>Claude vuole usare Gmail · crea_bozza</b><span>«3 bozze: Elena, studio legale, fornitore Beta»</span><div class="su-row"><span class="su-hl" style="animation:none">Consenti una volta</span><span class="su-tag">Consenti sempre</span><span class="su-tag">Rifiuta</span></div></div><div class="cl-rule"><div>👀 <b>Leggere</b> (calendario, email, file): «Consenti sempre» va bene.</div><div>✍️ <b>Scrivere, inviare, creare</b>: «Consenti una volta», e leggete prima.</div></div>'},
+   x:'Claude chiede il permesso <b>ogni volta che usa uno strumento</b>. La regola d\'oro: <b>leggere sì, agire solo dopo aver guardato</b>.'},
+ {t:'Altre app con Zapier',m:'facoltativo',url:'mcp.zapier.com',mcp:1,
+   w:function(){return '<p><b>Zapier MCP</b>: un connettore, migliaia di app</p><div class="su-row"><span class="su-tag">Slack · manda messaggio</span><span class="su-tag">Trello · crea scheda</span><span class="su-tag">HubSpot · cerca contatto</span></div><div class="su-box">https://mcp.zapier.com/api/mcp/s/••••••/mcp</div><span class="su-hl">Claude › Connettori › Aggiungi connettore personalizzato</span>'},
+   x:'Su <b>mcp.zapier.com</b> scegliete le azioni che Claude può usare, copiate l\'indirizzo e incollatelo in Claude come <b>connettore personalizzato</b>. Piano gratuito: 100 attività al mese.'}];
+var CL={i:0};
+function clInit(){if(!G('clSteps'))return;G('clSteps').innerHTML=CL_S.map(function(s,i){return '<button class="su-s'+(s.mcp?' mcp':'')+'" onclick="clGo('+i+')"><b>'+(i+1)+'</b><span>'+s.t+'</span><small>'+s.m+'</small></button>'}).join('');
+  G('clJoin').innerHTML='<div class="tu-qr" id="clQr" data-qr="'+CL_GUIDA+'" data-size="92"></div><p>📱 Istruzioni e prompt<b class="big">Sul vostro telefono</b>da copiare in Claude</p>';vtQr(G('clQr'),CL_GUIDA,92);clGo(0)}
+function clGo(i){if(i<0||i>=CL_S.length)return;CL.i=i;var s=CL_S[i];[].forEach.call(document.querySelectorAll('#clSteps .su-s'),function(b,k){b.classList.toggle('on',k===i);b.classList.toggle('done',k<i)});
+  var w=G('clWin');w.innerHTML='<div class="su-bar"><i></i><i></i><i></i><span class="su-url">'+s.url+'</span></div><div class="su-body">'+s.w()+'</div>';w.style.animation='none';w.offsetHeight;w.style.animation='';
+  G('clTxt').innerHTML='<p>'+s.x+'</p>';G('clPrev').disabled=i===0;G('clNext').disabled=i===CL_S.length-1}
+function clCopy(b,i){var t=i<0?CL_ISTR.map(function(p){return p[1]}).join(' '):CL_PR[i][2],o=b.textContent;copyTxt(t);b.textContent='✓ Copiato';setTimeout(function(){b.textContent=o},1500)}
+
 /* ===== slide "Costruiamolo insieme": il briefing del mattino, passo per passo (finte schermate) ===== */
 var SU_REPO='https://github.com/AnoniMono/workshop-ai/blob/main/demo-automazione/GUIDA.md';
 var SU_S=[{t:'La chiave dell\'AI',m:'2 min',url:'aistudio.google.com',
@@ -4375,7 +4432,7 @@ function copyTxt(t){try{navigator.clipboard.writeText(t)}catch(e){try{var ta=doc
 function flash(el){var bg=el.style.background;el.style.background='rgba(46,204,113,.35)';setTimeout(function(){el.style.background=bg},1100)}
 
 
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();suInit()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit()}
 fdBoot();
 hsInit();
 n4Init();

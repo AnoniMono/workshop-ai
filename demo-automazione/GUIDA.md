@@ -81,3 +81,39 @@ Poi lanciate **briefing** e guardate il risultato. Se volete cambiare il tono o 
 | Il briefing è vuoto o dice «nessuna email» | Le email devono essere in **Posta in arrivo** (non Promozioni) e arrivate nelle ultime 24 ore. Quelle mandate da voi stessi vengono saltate. |
 | Errore 429 | Troppe richieste all'AI gratuita: lo script aspetta e riprova. Riprovate tra un minuto. |
 | Il modello non esiste più | In cima allo script cambiate `MODELLO` con un modello Flash elencato in AI Studio. |
+
+---
+
+## Il briefing con Claude
+
+La versione «a parole», con i connettori MCP di Claude (inclusi in Claude Pro).
+
+### 1. Collegate i connettori
+
+**Claude → Impostazioni → Connettori**: premete **Collega** su **Gmail**, **Google Calendar** e **Google Drive** ed entrate con l'account Google.
+
+### 2. Create un Progetto con queste istruzioni
+
+**Progetti → Nuovo progetto** → chiamatelo «Il mio briefing» → incollate nelle **istruzioni del progetto**:
+
+```
+Sei il mio assistente personale per organizzare il lavoro. Sono [il vostro ruolo, es. CEO di un'azienda di 40 persone]. Quando ti chiedo il briefing, usa il mio calendario di oggi e le email arrivate da ieri sera. Dimmi cosa conta: le 3 priorità, cosa preparare per ogni riunione, a chi rispondere e perché, cosa può aspettare. Massimo 150 parole, elenchi puntati, prima le cose urgenti. Ignora newsletter e notifiche. Non inventare: se un'informazione manca, dimmelo. Prima di creare bozze, inviare email o creare eventi, chiedimi sempre il permesso.
+```
+
+### 3. I prompt pronti (da scrivere dentro il progetto)
+
+- ☀️ `Preparami il briefing di oggi.`
+- 🤝 `Tra 10 minuti vedo [nome]: cosa ci siamo detti nelle ultime email e cosa devo sapere?`
+- ✉️ `Chi aspetta una mia risposta da più di 2 giorni? Prepara le bozze, ma non inviarle.`
+- 📊 `Fammi il riepilogo della settimana: riunioni fatte, decisioni prese, cose rimaste aperte.`
+- 📅 `Trova 30 minuti liberi giovedì per me e [nome] e proponimi due orari.`
+
+### 4. I permessi
+
+Claude chiede il permesso ogni volta che usa uno strumento.
+- **Leggere** (calendario, email, file): «Consenti sempre» va bene.
+- **Scrivere, inviare, creare**: «Consenti una volta», e leggete prima.
+
+### 5. Facoltativo: altre app con Zapier MCP
+
+Su **mcp.zapier.com** scegliete le azioni che Claude può usare (es. Slack, Trello, HubSpot), copiate l'indirizzo del server e incollatelo in **Claude → Connettori → Aggiungi connettore personalizzato**. Piano gratuito: 100 attività al mese.
