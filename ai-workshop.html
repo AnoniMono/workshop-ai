@@ -1359,6 +1359,15 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
 .pv-tip b{color:var(--navy)}
 @media (max-height:800px){#sPV .pa-join .tu-qr canvas,#sPV .pa-join .tu-qr img{width:76px!important;height:76px!important}#sPV .pv-feed{max-height:5em}#sPV .pv-out{min-height:9em}}
 /* slide: studiare con l'AI */
+.st-gpt{background:#10A37F;text-decoration:none}.st-gpt:hover{background:#0B8A6A}
+.st-join{margin-top:.2em}
+html.vote.stm,html.vote.stm body{background:#F5F7FA}
+#vtApp.st{font-family:var(--ff-body);color:var(--navy);align-items:center;text-align:center}
+.stp-box{width:min(92vw,420px);text-align:left;background:#1B2A4A;color:#E8EEF7;border-radius:14px;padding:14px;font-size:.95rem;line-height:1.5;max-height:40vh;overflow:auto;user-select:text;-webkit-user-select:text}
+.stp-btns{display:flex;flex-direction:column;gap:8px;width:min(92vw,420px)}
+.stp-btns .drp-btn{display:block;text-decoration:none;text-align:center}
+.stp-c{background:#D97757!important}.stp-g{background:#10A37F!important}
+@media (max-height:800px){#sST .st-join .tu-qr canvas,#sST .st-join .tu-qr img{width:76px!important;height:76px!important}#sST .st-note{font-size:.82rem}}
 .st-att{display:flex;gap:.4em;flex-wrap:wrap;align-items:center}
 .st-att>span{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-right:.2em}
 .st-a{font:700 .88rem var(--ff-body);padding:.35em .85em;border-radius:999px;border:2px solid var(--border);background:#fff;color:var(--navy);cursor:pointer}
@@ -1987,6 +1996,7 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
         <div class="st-mv on" style="--c:#FF6B35" data-m="rip" onclick="stMode(this)"><b>2</b><div><h4>Ripetere</h4><p>Flashcard: domanda davanti, risposta dietro. Ve le fa l'AI.</p></div></div>
         <div class="st-mv" style="--c:#2ECC71" data-m="prova" onclick="stMode(this)"><b>3</b><div><h4>Mettersi alla prova</h4><p>«Fammi 5 domande come all'interrogazione e correggimi.»</p></div></div>
       </div>
+      <div class="pa-join st-join" id="stJoin"></div>
       <p class="st-note">⚠️ L'AI <b>sbaglia</b>, e a volte inventa. Per questo <b>allegate il vostro materiale</b> (foto del libro, appunti, slide del prof): così lavora sulle vostre fonti. E controllate sempre.</p>
     </div>
     <div class="st-right">
@@ -1999,8 +2009,8 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
       </div>
       <div class="st-att"><span>📎 Allego</span><button class="st-a on" data-k="libro" onclick="stAtt(this)">📷 Foto del libro</button><button class="st-a" data-k="appunti" onclick="stAtt(this)">📝 Appunti</button><button class="st-a" data-k="slide" onclick="stAtt(this)">📊 Slide del prof</button><button class="st-a" data-k="" onclick="stAtt(this)">Niente</button></div>
       <div class="st-prompt" id="stPrompt"></div>
-      <div class="pv-row"><a class="btn st-claude" id="stClaude" target="_blank" rel="noopener">✨ Apri in Claude ↗</a><button class="btn ghost" id="stCopy" onclick="stCopy()">📋 Copia</button><button class="btn ghost" id="stDemoBtn" onclick="stDemo()">👀 Cosa uscirà</button></div>
-      <p class="pv-tip">💡 È sempre la stessa ricetta: <b style="color:#FF6B35">ruolo</b>, <b style="color:#00A6C8">contesto</b>, <b style="color:#2ECC71">compito</b>, <b style="color:#8E44AD">formato</b>, <b style="color:#E67E22">esempio</b>, più il <b style="color:#0E7C86">materiale</b> allegato. In Claude: trascinate il file nella chat, poi incollate il prompt.</p>
+      <div class="pv-row"><a class="btn st-claude" id="stClaude" target="_blank" rel="noopener">✨ Apri in Claude ↗</a><a class="btn st-gpt" id="stGpt" target="_blank" rel="noopener">Apri in ChatGPT ↗</a><button class="btn ghost" id="stCopy" onclick="stCopy()">📋 Copia</button><button class="btn ghost" id="stDemoBtn" onclick="stDemo()">👀 Cosa uscirà</button></div>
+      <p class="pv-tip">💡 Funziona con Claude e con ChatGPT. È sempre la stessa ricetta: <b style="color:#FF6B35">ruolo</b>, <b style="color:#00A6C8">contesto</b>, <b style="color:#2ECC71">compito</b>, <b style="color:#8E44AD">formato</b>, <b style="color:#E67E22">esempio</b>, più il <b style="color:#0E7C86">materiale</b> allegato. In Claude: trascinate il file nella chat, poi incollate il prompt.</p>
     </div>
   </div>
   <div class="st-demo" id="stDemo" onclick="if(event.target===this)stDemoClose()"><div class="st-dcard" id="stDCard"></div></div>
@@ -3132,7 +3142,7 @@ function agTrainBtn(n){var wb=AG.wr;agTrainN(n);AG.wr=agEval();AGV.ver++;AGV.his
     bars:[['Vittorie',wb,AG.wr]],toast:'+'+n+' partite: vittorie '+wb+'% → '+AG.wr+'%'})}
 
 /* apre e chiude le stanze sui telefoni quando l'insegnante entra o esce */
-function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM||PA_ROOM)return;var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
+function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM||PA_ROOM||ST_ROOM)return;var sST=G('sST');if(sST&&sST.classList.contains('current')){var tT=stText(),tKey=tT+'|'+ST.m+'|'+ST.att;if(tKey!==ST.pub){ST.pub=tKey;var tSt={t:tT,m:ST.m,att:ST.att?ST_ATT[ST.att][0]:'',topic:(G('stTopic').value||'').trim()};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'TS',state:tSt,updated_at:new Date().toISOString()}).then(function(){})})}}var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
   var s13=G('s13'),pOpen=!!(s13&&s13.classList.contains('current'));if(PA.g){var pKey=pOpen+'|'+PA.g+'|'+PA.ph;if(pKey!==PA.key){PA.key=pKey;var pSt={open:pOpen,g:PA.g,o:PA.o,ph:PA.ph,s:PA.ph==='gen'?PA.sent:''};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'PS',state:pSt,updated_at:new Date().toISOString()}).then(function(){})})}}
     var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
   var tOpen=on3&&hsCur===1&&TU.mode==='q';if(VT.pub&&tOpen!==VT.open)vtState(Object.assign({},VT.state,{open:tOpen}));
@@ -3997,7 +4007,10 @@ function pvGo(){var bad=G('pvIn').value.trim();if(!bad||PV.busy)return;PV.busy=t
 
 
 /* ===== slide "Studiare con l'AI": il prompt per farsi fare da Claude un'app di flashcard ===== */
-var ST={demo:null,att:'libro',m:'rip'};
+var ST_ROOM=(function(){try{return new URLSearchParams(location.search).get('studio')}catch(e){return null}})();
+var ST={demo:null,att:'libro',m:'rip',pub:''};
+function stUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?studio='+vtRoom():''}
+function stInit(){if(!G('stPrompt'))return;var u=stUrl(),ok=vtOn()&&u;G('stJoin').innerHTML=ok?'<div class="tu-qr" id="stQr" data-qr="'+u+'" data-size="92"></div><p>📱 Il prompt sul vostro telefono<b class="big">Stanza '+vtRoom()+'</b>da copiare e provare a casa</p>':'<p>📱 Dalla versione online gli studenti possono prendere il prompt con un QR.</p>';if(ok)vtQr(G('stQr'),u,92);stUpd()}
 var ST_HEAD={cap:'💡 Capire: fatevelo spiegare da Claude',rip:'🃏 Ripetere: facciamoci le flashcard da Claude',prova:'🎤 Mettersi alla prova: un\'interrogazione con Claude'};
 function stMode(el){ST.m=el.getAttribute('data-m');[].forEach.call(document.querySelectorAll('.st-mv'),function(x){x.classList.toggle('on',x===el)});G('stHead').textContent=ST_HEAD[ST.m];
   G('stNL').hidden=ST.m!=='rip';G('stEL').hidden=ST.m!=='prova';G('stDemoBtn').hidden=ST.m!=='rip';stUpd()}
@@ -4012,11 +4025,25 @@ function stParts(){var v=function(id,d){var e=G(id);return (e&&e.value.trim())||
   else if(m==='prova'){task='Simula '+EX[x]+': fammi 5 domande una alla volta, aspetta la mia risposta e correggimi prima di passare alla successiva.';
     form=x==='scritta'?'Domande a scelta multipla con 4 risposte (A, B, C, D) e alla fine il punteggio.':x==='maturita'?'Domande che collegano l\'argomento ad altre materie, e alla fine un voto con i miei punti deboli.':x==='present'?'Fammi le domande difficili che potrebbe farmi la classe, poi dimmi come migliorare.':'Domande aperte come all\'interrogazione, e alla fine un voto da 1 a 10 con un consiglio.';
     ex='Se sbaglio, non darmi subito la risposta: dammi un indizio e fammi riprovare.'}
-  else{task='Crea un\'app di flashcard interattiva in HTML (un solo file, come artifact) con '+n+' carte su questo argomento: davanti la domanda, dietro la risposta.';form='La carta si gira con un clic; aggiungi i pulsanti «La so» e «Da ripassare», un punteggio, e alla fine ripresenta solo le carte da ripassare. Grafica colorata, leggibile anche sul telefono.';ex='Risposte brevi, massimo due righe. Esempio di carta: davanti «Che cos\'è…?», dietro una definizione in una frase.'}
+  else{task='Crea un\'app di flashcard interattiva in HTML (un solo file che si apre e funziona subito) con '+n+' carte su questo argomento: davanti la domanda, dietro la risposta.';form='La carta si gira con un clic; aggiungi i pulsanti «La so» e «Da ripassare», un punteggio, e alla fine ripresenta solo le carte da ripassare. Grafica colorata, leggibile anche sul telefono.';ex='Risposte brevi, massimo due righe. Esempio di carta: davanti «Che cos\'è…?», dietro una definizione in una frase.'}
   return [['#FF6B35',ruolo],['#00A6C8',ctx]].concat(ST.att?[['#0E7C86','Ti allego '+ST_ATT[ST.att][0]+': usa solo quel materiale e, se qualcosa non c\'è, dimmelo invece di inventare.']]:[]).concat([['#2ECC71',task],['#8E44AD',form],['#E67E22',ex]])}
+/* ---- telefono (?studio=CODICE): il prompt da copiare ---- */
+function stPhone(){var root=document.documentElement;root.classList.add('vote');root.classList.add('stm');var app=document.createElement('div');app.id='vtApp';app.className='st';document.body.appendChild(app);var S={k:'',st:null};
+  var M={cap:'💡 Capire',rip:'🃏 Flashcard',prova:'🎤 Interrogazione'};
+  function pull(){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',ST_ROOM+'TS').maybeSingle().then(function(res){var st=res.data&&res.data.state,k=JSON.stringify(st||null);if(k===S.k)return;S.k=k;S.st=st;draw()})})}
+  function draw(){var h='<p class="drp-hd">Studiare con l\'AI · stanza '+esc(ST_ROOM)+'</p>',st=S.st;
+    if(!vtOn()){app.innerHTML=h+'<p class="drp-note">Non configurato su questa presentazione.</p>';return}
+    if(!st||!st.t){app.innerHTML=h+'<p class="drp-big">👀</p><p class="drp-q">Guardate lo schermo</p><p class="drp-note">Il prompt arriva qui appena l\'insegnante lo prepara.</p>';return}
+    var q=encodeURIComponent(st.t);app.innerHTML=h+'<p class="drp-q">'+(M[st.m]||'Il prompt')+'</p><p class="drp-note">Si aggiorna da solo se cambia sullo schermo.</p><div class="stp-box">'+esc(st.t)+'</div>'+
+      '<div class="stp-btns"><button class="drp-btn" onclick="stpCopy(this)">📋 Copia il prompt</button><a class="drp-btn stp-c" href="https://claude.ai/new?q='+q+'" target="_blank" rel="noopener">✨ Apri in Claude</a><a class="drp-btn stp-g" href="https://chatgpt.com/?q='+q+'" target="_blank" rel="noopener">Apri in ChatGPT</a><button class="drp-btn sec" onclick="stpSave()">⬇️ Scarica (.txt)</button></div>'+
+      (st.att?'<p class="drp-note">📎 Ricordate di allegare <b>'+esc(st.att)+'</b>: trascinateli o caricateli nella chat prima di mandare il prompt.</p>':'')+'<p class="drp-note">⚠️ L\'AI può sbagliare: controllate sempre con il libro.</p>'}
+  window.stpCopy=function(b){var t=S.st&&S.st.t;if(!t)return;var ok=function(){b.textContent='✓ Copiato!';setTimeout(function(){b.textContent='📋 Copia il prompt'},1500)};
+    if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,function(){copyTxt(t);ok()});else{copyTxt(t);ok()}};
+  window.stpSave=function(){var t=S.st&&S.st.t;if(!t)return;var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/plain;charset=utf-8'}));a.download='prompt-'+((S.st.topic||'studio').toLowerCase().replace(/[^a-z0-9]+/g,'-'))+'.txt';document.body.appendChild(a);a.click();a.remove()};
+  draw();if(!vtOn())return;pull();setInterval(function(){if(!document.hidden)pull()},5000)}
 function stText(){return stParts().map(function(p){return p[1]}).join(' ')}
 function stUpd(){if(!G('stPrompt'))return;G('stPrompt').innerHTML=(ST.att?'<div class="st-file">📎 '+ST_ATT[ST.att][1]+'</div>':'')+stParts().map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ');
-  G('stClaude').href='https://claude.ai/new?q='+encodeURIComponent(stText())}
+  G('stClaude').href='https://claude.ai/new?q='+encodeURIComponent(stText());G('stGpt').href='https://chatgpt.com/?q='+encodeURIComponent(stText())}
 function stCopy(){copyTxt(stText());G('stCopy').textContent='✓ Copiato';setTimeout(function(){G('stCopy').textContent='📋 Copia'},1500)}
 /* anteprima: come sarà l'app che Claude crea (esempio sulla fotosintesi) */
 var ST_CARDS=[['Che cos\'è la fotosintesi?','Il processo con cui le piante usano la luce per produrre zucchero.'],['Dove avviene?','Nei cloroplasti delle foglie.'],['Quali sono gli "ingredienti"?','Acqua, anidride carbonica e luce del sole.'],
@@ -4049,7 +4076,7 @@ function copyTxt(t){try{navigator.clipboard.writeText(t)}catch(e){try{var ta=doc
 function flash(el){var bg=el.style.background;el.style.background='rgba(46,204,113,.35)';setTimeout(function(){el.style.background=bg},1100)}
 
 
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM){paInit();fkInit();pvInit();stUpd()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit()}
 fdBoot();
 hsInit();
 n4Init();
@@ -4057,5 +4084,5 @@ w6Init();
 txInit();
 nnInit();
 if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM)drInit();
-if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();else if(GT_ROOM)gtPhone();else if(PA_ROOM)paPhone();
+if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();else if(GT_ROOM)gtPhone();else if(PA_ROOM)paPhone();else if(ST_ROOM)stPhone();
 </script>
