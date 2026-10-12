@@ -160,7 +160,6 @@ img{max-width:100%}
 .dl-det{display:none;margin-top:.5em;padding-top:.5em;border-top:1px solid var(--border)}
 .dl-card.open{grid-column:span 2;grid-row:span 2}
 .dl-card.open .dl-det{display:block}
-.pb-field{display:flex;gap:.6em;align-items:center;padding:.5em .7em;border-radius:12px}
 .sf-step{color:#fff;padding:.6em .8em;border-radius:14px;text-align:center;min-width:clamp(100px,14vw,150px);cursor:pointer;opacity:.7;transition:opacity .25s,transform .25s}
 .sf-step.active{opacity:1;transform:scale(1.04);box-shadow:0 6px 18px rgba(0,0,0,.15)}
 .sf-step.done{opacity:.5}
@@ -1348,12 +1347,18 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
 .pv-chip:hover{border-color:var(--orange)}
 .pv-chip.new{animation:nnPop .4s ease-out;border-color:var(--orange)}
 .pv-out{background:#fff;border:3px solid #ABEBC6;border-radius:18px;padding:1em 1.2em;display:flex;flex-direction:column;gap:.8em;min-height:16em}
-.pv-ing{display:grid;grid-template-columns:6.2em minmax(0,1fr);gap:.6em;align-items:baseline;animation:pvIn .45s ease-out both}
+.pv-ing{display:grid;grid-template-columns:6.2em minmax(0,1fr);gap:.6em;align-items:start;animation:pvIn .45s ease-out both}
 .pv-ing:nth-child(2){animation-delay:.25s}.pv-ing:nth-child(3){animation-delay:.5s}.pv-ing:nth-child(4){animation-delay:.75s}
-.pv-ing b{font-family:var(--ff-head);font-size:.95rem;padding:.15em .6em;border-radius:8px;color:#fff;text-align:center}
-.pv-ing span{font-size:clamp(1.05rem,1.75vw,1.4rem);line-height:1.4;color:var(--navy)}
+.pv-ing b{margin-top:.2em;font-family:var(--ff-head);font-size:.95rem;padding:.15em .6em;border-radius:8px;color:#fff;text-align:center}
+.pv-ing span{font-size:clamp(1rem,1.55vw,1.25rem);line-height:1.4;color:var(--navy)}
 .pv-ing span em{font-style:normal;background:#FFF3CD;border-radius:4px;padding:0 .2em;font-weight:700}
 @keyframes pvIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pv-ed{display:block;min-height:1.4em;border-radius:6px;padding:.05em .3em;outline:none;cursor:text;transition:background .2s}
+.pv-ed:hover{background:#F5F7FA}.pv-ed:focus{background:#FFFBEA;box-shadow:inset 0 0 0 2px #FFE08A}
+.pv-ed:empty::before{content:attr(data-ph);color:#A0AEC0;font-style:italic;font-size:.9em}
+.pv-q{display:grid;grid-template-columns:auto 1fr auto;gap:.7em;align-items:center;margin-top:.2em;padding-top:.6em;border-top:2px dashed var(--border);font-size:.9rem;font-weight:700;color:var(--gray)}
+.pv-q div{height:10px;background:#E6EBF2;border-radius:5px;overflow:hidden}.pv-q i{display:block;height:100%;border-radius:5px;transition:width .4s,background .4s}
+.pv-q b{color:var(--navy)}.pv-br{color:#B7791F}.pv-ok{color:#1E8E4F}
 .pv-empty{margin:auto;color:var(--gray);font-weight:700;text-align:center}
 .pv-load{margin:auto;display:flex;flex-direction:column;align-items:center;gap:.5em;color:var(--gray);font-weight:700}
 .pv-load span{font-size:2rem;animation:pvSpin 1.4s linear infinite}
@@ -1927,28 +1932,7 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
       <p class="pv-lab good">🎯 Prompt migliorato <small id="pvSrc"></small></p>
       <div class="pv-out" id="pvOut"></div>
       <div class="pv-row"><button class="btn ghost" id="pvCopy" onclick="pvCopy()">📋 Copia</button><a class="btn pv-gpt" id="pvGptGood" target="_blank" rel="noopener">Prova su ChatGPT ↗</a></div>
-      <p class="pv-tip">💡 Le parti tra <b>[parentesi]</b> le completate voi: l'AI non può sapere cosa state studiando.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 18 PROMPTS builder -->
-<section class="slide darktext s-white" data-section="Usare l'AI">
-  <h2 class="fz-h2">Costruisci il prompt perfetto</h2>
-  <p class="fz-lead" style="color:var(--gray)">Compila i campi e guarda il prompt assemblarsi in tempo reale!</p>
-  <div class="wrap-flex" style="flex:1">
-    <div class="col min0" style="flex:1;gap:.5rem">
-      <div class="pb-field" style="background:#FFF5F0"><b class="fz-num" style="color:var(--orange);min-width:1.4em;text-align:center">1</b><label class="fz-body" style="font-weight:700;color:var(--orange);min-width:4.5em">Ruolo</label><input class="in" id="pbRole" placeholder="es: professore di storia" oninput="updPrompt()"></div>
-      <div class="pb-field" style="background:#F0F9FF"><b class="fz-num" style="color:var(--cyan);min-width:1.4em;text-align:center">2</b><label class="fz-body" style="font-weight:700;color:var(--cyan);min-width:4.5em">Contesto</label><input class="in" id="pbCtx" placeholder="es: preparo l'esame di maturità" oninput="updPrompt()"></div>
-      <div class="pb-field" style="background:#FFF5F0"><b class="fz-num" style="color:var(--orange);min-width:1.4em;text-align:center">3</b><label class="fz-body" style="font-weight:700;color:var(--orange);min-width:4.5em">Compito</label><input class="in" id="pbTask" placeholder="es: riassumimi il Rinascimento" oninput="updPrompt()"></div>
-      <div class="pb-field" style="background:#F0F9FF"><b class="fz-num" style="color:var(--cyan);min-width:1.4em;text-align:center">4</b><label class="fz-body" style="font-weight:700;color:var(--cyan);min-width:4.5em">Formato</label><select class="in" id="pbFmt" onchange="updPrompt()"><option value="">Scegli...</option><option value="in massimo 200 parole">Max 200 parole</option><option value="come elenco puntato">Elenco puntato</option><option value="come tabella">Tabella</option><option value="con 5 punti chiave">5 punti chiave</option><option value="come mappa concettuale testuale">Mappa concettuale</option></select></div>
-      <div class="pb-field" style="background:#FFF5F0"><b class="fz-num" style="color:var(--orange);min-width:1.4em;text-align:center">5</b><label class="fz-body" style="font-weight:700;color:var(--orange);min-width:4.5em">Esempi</label><input class="in" id="pbEx" placeholder="es: come hai fatto per la WWI" oninput="updPrompt()"></div>
-    </div>
-    <div class="col min0" style="flex:1">
-      <p class="fz-h3">Anteprima prompt:</p>
-      <div id="pbResult" class="fz-lead" style="background:var(--navy);color:var(--light);padding:1em 1.2em;border-radius:16px;flex:1;min-height:6em;white-space:pre-wrap;word-wrap:break-word"><span style="color:#8AAFCF;font-style:italic">Compila i campi per vedere il prompt...</span></div>
-      <div style="display:flex;align-items:center;gap:.6em"><span class="fz-small" style="color:var(--gray)">Qualità:</span><div style="flex:1;height:12px;background:var(--border);border-radius:6px;overflow:hidden"><div id="pbMeter" style="height:100%;width:0;background:var(--border);transition:all .4s"></div></div><b class="fz-body" id="pbScore" style="color:var(--gray);min-width:5em">0%</b></div>
-      <button class="btn" style="align-self:flex-end" onclick="copyPrompt(this)">📋 Copia prompt</button>
+      <p class="pv-tip">💡 Cliccate su ogni pezzo per cambiarlo. Le parti tra <b>[parentesi]</b> le completate voi: l'AI non può sapere cosa state studiando.</p>
     </div>
   </div>
 </section>
@@ -3935,7 +3919,7 @@ function fkStop(keep){cancelAnimationFrame(FK.raf);if(FK.stream){FK.stream.getTr
 
 
 /* ===== slide "Dal prompt pigro al prompt perfetto": si scrive un prompt pigro (o arriva dai telefoni), l'AI lo riscrive con la ricetta ===== */
-var PV_ING=[['ruolo','Ruolo','#FF6B35'],['contesto','Contesto','#00A6C8'],['compito','Compito','#2ECC71'],['formato','Formato','#8E44AD']];
+var PV_ING=[['ruolo','Ruolo','#FF6B35','Chi deve essere l\'AI? es. Sei un prof di storia'],['contesto','Contesto','#00A6C8','Chi siete e cosa vi serve? es. Ho la verifica domani'],['compito','Compito','#2ECC71','Cosa deve fare? es. Spiegami… / Fammi 5 domande…'],['formato','Formato','#8E44AD','In che forma? es. 5 punti, massimo 100 parole'],['esempio','Esempio','#E67E22','(facoltativo) es. Usa un esempio della vita di tutti i giorni']];
 var PV_EX=['riassunto promessi sposi','aiuto compiti mate','spiegami la guerra fredda','scrivi tema ambiente'];
 var PV={busy:false,last:null,tok:0};
 function pvGpt(t){return 'https://chatgpt.com/?q='+encodeURIComponent(t)}
@@ -3958,13 +3942,19 @@ function pvRecipe(bad){var b=bad.toLowerCase(),subj='',task,form;PV_SUBJ.some(fu
   else if(/verific|interrog|ripass|quiz|domand|esame/.test(b)){task='Fammi 5 domande per ripassare '+topic+', una alla volta, e correggimi quando rispondo.';form='Una domanda alla volta, come in un\'interrogazione vera.'}
   else{task='Spiegami '+topic+' in modo semplice.';form='5 punti elenco, massimo 100 parole, con un esempio della vita di tutti i giorni.'}
   return {ruolo:'Sei un professore di '+(subj||'[materia]')+' paziente e chiaro.',contesto:'Sono uno studente di [classe] superiore e '+(/verific|interrog/.test(b)?'ho la verifica [quando].':'non ho capito bene questo argomento.'),compito:task,formato:form}}
-function pvText(o){return PV_ING.map(function(k){return o[k[0]]}).join(' ')}
+function pvText(o){return PV_ING.map(function(k){return (o[k[0]]||'').trim()}).filter(Boolean).join(' ')}
+function pvRead(){var o={};PV_ING.forEach(function(k){var e=G('pvF_'+k[0]);o[k[0]]=e?e.textContent.replace(/\s+/g,' ').trim():''});return o}
 function pvShow(o,src){var out=G('pvOut');
   if(o==='load'){out.innerHTML='<div class="pv-load"><span>✨</span>L\'AI sta riscrivendo il prompt…</div>';G('pvSrc').textContent='';return}
-  if(!o){out.innerHTML='<p class="pv-empty">Scrivete un prompt pigro a sinistra<br>e premete <b>✨ Miglioralo</b></p>';G('pvSrc').textContent='';['pvGptGood','pvCopy'].forEach(function(id){G(id).classList.add('off')});G('pvCopy').disabled=true;return}
-  out.innerHTML=PV_ING.map(function(k){return '<div class="pv-ing"><b style="background:'+k[2]+'">'+k[1]+'</b><span>'+esc(o[k[0]]).replace(/\[([^\]]+)\]/g,'<em>[$1]</em>')+'</span></div>'}).join('');
-  G('pvSrc').textContent=src==='ai'?'· riscritto dall\'AI':'· riscritto con la ricetta';PV.last=o;var a=G('pvGptGood');a.href=pvGpt(pvText(o));a.classList.remove('off');G('pvCopy').disabled=false;G('pvCopy').classList.remove('off')}
-function pvCopy(){if(PV.last){copyTxt(pvText(PV.last));G('pvCopy').textContent='✓ Copiato';setTimeout(function(){G('pvCopy').textContent='📋 Copia'},1500)}}
+  o=o||{};out.innerHTML=PV_ING.map(function(k){return '<div class="pv-ing"><b style="background:'+k[2]+'">'+k[1]+'</b><span class="pv-ed" id="pvF_'+k[0]+'" contenteditable="true" spellcheck="false" data-ph="'+esc(k[3])+'">'+esc(o[k[0]]||'').replace(/\[([^\]]+)\]/g,'<em>[$1]</em>')+'</span></div>'}).join('')+'<div class="pv-q" id="pvQ"></div>';
+  [].forEach.call(out.querySelectorAll('.pv-ed'),function(e){e.addEventListener('input',pvSync);e.addEventListener('keydown',function(ev){if(ev.key==='Enter'){ev.preventDefault();e.blur()}})});
+  G('pvSrc').textContent=src==='ai'?'· riscritto dall\'AI, potete modificarlo':src==='rec'?'· riscritto con la ricetta, potete modificarlo':'· oppure scrivetelo voi, pezzo per pezzo';pvSync()}
+/* aggiorna qualità, copia e link a ChatGPT mentre si scrive */
+function pvSync(){var o=pvRead(),n=PV_ING.filter(function(k){return o[k[0]]}).length,br=(pvText(o).match(/\[[^\]]+\]/g)||[]).length,t=pvText(o),q=G('pvQ');PV.last=o;
+  var pct=Math.round(n/5*100),col=n<2?'#E74C3C':n<4?'#F39C12':'#2ECC71';
+  if(q)q.innerHTML='<span>Ingredienti <b>'+n+'/5</b></span><div><i style="width:'+pct+'%;background:'+col+'"></i></div>'+(br?'<span class="pv-br">✏️ '+br+' [parentesi] da completare</span>':n>=4?'<span class="pv-ok">✓ Pronto!</span>':'');
+  var g=G('pvGptGood');g.href=t?pvGpt(t.replace(/[\[\]]/g,'')):'#';g.classList.toggle('off',!t);G('pvCopy').disabled=!t}
+function pvCopy(){var t=pvText(pvRead());if(t){copyTxt(t);G('pvCopy').textContent='✓ Copiato';setTimeout(function(){G('pvCopy').textContent='📋 Copia'},1500)}}
 function pvGo(){var bad=G('pvIn').value.trim();if(!bad||PV.busy)return;PV.busy=true;var tok=++PV.tok;G('pvBtn').disabled=true;pvShow('load');
   var done=function(o,src){if(tok!==PV.tok)return;PV.busy=false;G('pvBtn').disabled=false;pvShow(o,src);if(!pvGo.once){pvGo.once=1;xpShow('pv:how',{ic:'🧑‍🍳',t:'La ricetta di un buon prompt',sub:'Quattro ingredienti, sempre gli stessi.',
       rows:[R('🎭','Ruolo','fun','Chi deve essere l\'AI: un prof, un allenatore, un amico che spiega.'),R('🧭','Contesto','data','Chi siete e cosa vi serve: classe, verifica domani, cosa non avete capito.'),R('🎯','Compito','ai','Cosa deve fare, con un verbo preciso: spiega, riassumi, fammi domande.'),R('📐','Formato','math','Che forma deve avere: elenco, quante parole, esempi.')],
@@ -3975,8 +3965,6 @@ function pvGo(){var bad=G('pvIn').value.trim();if(!bad||PV.busy)return;PV.busy=t
     var m=t.match(/\{[\s\S]*\}/),o=m&&JSON.parse(m[0]);if(!o||PV_ING.some(function(k){return typeof o[k[0]]!=='string'||!o[k[0]].trim()}))throw 0;clearTimeout(timer);done(o,'ai')}).catch(function(){clearTimeout(timer);done(pvRecipe(bad),'rec')})}
 
 
-function updPrompt(){var r=document.getElementById('pbRole').value.trim(),c=document.getElementById('pbCtx').value.trim(),t=document.getElementById('pbTask').value.trim(),f=document.getElementById('pbFmt').value,x=document.getElementById('pbEx').value.trim();var parts=[],n=0;if(r){parts.push('<span style="color:#FFB899">Sei un '+r+'.</span>');n++}if(c){parts.push('<span style="color:#7CC6E8">'+c+'.</span>');n++}if(t){parts.push('<span style="color:#FFD2BE">'+t+'</span>');n++}if(f){parts.push('<span style="color:#7CC6E8">Rispondi '+f+'.</span>');n++}if(x){parts.push('<span style="color:#FFD2BE">Esempio: '+x+'.</span>');n++}var res=document.getElementById('pbResult');res.innerHTML=n===0?'<span style="color:#8AAFCF;font-style:italic">Compila i campi per vedere il prompt...</span>':parts.join(' ');var pct=Math.round(n/5*100),m=document.getElementById('pbMeter');m.style.width=pct+'%';var lab=['','Debole','Debole','Sufficiente','Buono!','Perfetto!'],col=['#E2E8F0','#FF6B35','#FF6B35','#FFB800','#00B4D8','#2ECC71'];m.style.background=col[n];document.getElementById('pbScore').textContent=lab[n]||'0%';document.getElementById('pbScore').style.color=col[n]}
-function copyPrompt(btn){var t=document.getElementById('pbResult').textContent;if(t&&t.indexOf('Compila')===-1){copyTxt(t);btn.textContent='Copiato!';setTimeout(function(){btn.textContent='📋 Copia prompt'},1400)}}
 
 var sfData=[
 {t:"Step 1: Fotografa le pagine del libro",c:"#FF6B35",d:"Scatta foto chiare delle pagine e caricale nell'AI",p:'"Ti allego le foto delle pagine 45-52 del mio libro di storia sulla Rivoluzione Francese. Identifica i concetti chiave."',tool:"Strumento: <b>ChatGPT</b> o <b>Claude</b> (accettano foto!)"},
