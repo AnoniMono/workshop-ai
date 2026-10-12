@@ -160,9 +160,6 @@ img{max-width:100%}
 .dl-det{display:none;margin-top:.5em;padding-top:.5em;border-top:1px solid var(--border)}
 .dl-card.open{grid-column:span 2;grid-row:span 2}
 .dl-card.open .dl-det{display:block}
-.ag-node{background:rgba(255,255,255,.08);padding:.55em .7em;border-radius:10px;display:flex;gap:.6em;align-items:center;cursor:pointer;border:2px solid transparent;transition:background .2s,border-color .2s}
-.ag-node:hover{background:rgba(255,255,255,.16)}
-.ag-node.on{border-color:var(--orange);background:rgba(255,107,53,.12)}
 .eth-case{display:flex;gap:.7em;background:#fff;padding:.6em .8em;border-radius:14px;border:2px solid var(--border);align-items:center}
 .eth-opt{display:flex;align-items:center;gap:.5em;background:rgba(255,255,255,.08);padding:.5em .7em;border-radius:10px;cursor:pointer;margin-top:.4em;transition:background .2s}
 .eth-opt:hover{background:rgba(255,255,255,.16)}
@@ -1426,6 +1423,80 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 .st-dfoot{display:flex;justify-content:space-between;align-items:center;font-size:.85rem;color:var(--gray)}
 .st-dfoot button{background:none;border:none;font:700 .9rem var(--ff-body);color:var(--navy);cursor:pointer;text-decoration:underline}
 @media (max-height:800px){#sST .st-mv p{display:none}#sST .st-prompt{font-size:.88rem;padding:.7em .9em}}
+/* slide: automazione */
+#sAU1.current,#sAU2.current{height:100svh}
+.au-rule{font-family:var(--ff-head);font-size:clamp(.95rem,1.5vw,1.2rem);color:var(--gray);background:#fff;border:2px solid var(--border);border-radius:999px;padding:.25em .9em}
+.au-rule b{color:var(--orange)}
+.au-tabs{display:flex;gap:.45em;flex-wrap:wrap}
+.au-tab{font:600 .95rem var(--ff-head);padding:.45em 1em;border-radius:999px;border:2px solid var(--border);background:#fff;color:var(--navy);cursor:pointer}
+.au-tab:hover{border-color:var(--orange)}.au-tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.au-sit{margin:0;font-size:clamp(1rem,1.5vw,1.2rem);color:var(--gray)}.au-sit b{color:var(--navy)}
+.au-flow{display:flex;align-items:stretch;gap:0;min-height:0}
+.au-n{flex:1;min-width:0;display:flex;flex-direction:column;gap:.3em;background:#fff;border:3px solid var(--border);border-radius:16px;padding:.6em .7em;transition:border-color .3s,box-shadow .3s,transform .3s,opacity .3s;opacity:.55}
+.au-n.done{opacity:1}
+.au-n.on{opacity:1;border-color:var(--tc);box-shadow:0 0 0 5px color-mix(in srgb,var(--tc) 22%,transparent);transform:translateY(-4px)}
+.au-n .k{align-self:flex-start;font-size:.7rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--tc);border-radius:999px;padding:.15em .6em}
+.au-n b{font-family:var(--ff-head);font-size:clamp(.95rem,1.4vw,1.15rem);color:var(--navy);line-height:1.2}
+.au-n span{font-size:clamp(.78rem,1.05vw,.9rem);color:var(--gray);line-height:1.35}
+.au-n small{margin-top:auto;font-size:.72rem;font-weight:800;color:var(--tc)}
+.au-arr{flex:none;width:clamp(1.2rem,2.4vw,2rem);display:flex;align-items:center;justify-content:center;color:#CBD5E0;font-size:1.4rem;font-weight:800}
+.au-arr.on{color:var(--orange)}
+.au-low{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(.8rem,2vw,1.6rem);align-items:start}
+@media (max-width:900px){.au-flow{flex-direction:column}.au-arr{transform:rotate(90deg);width:auto}.au-low{grid-template-columns:1fr}#sAU1.current,#sAU2.current{height:auto}}
+.au-data{background:var(--navy);color:#E8EEF7;border-radius:16px;padding:.8em 1em;min-height:8em;font-size:clamp(.85rem,1.2vw,1rem);line-height:1.5}
+.au-data .h{display:flex;align-items:center;gap:.5em;font-size:.75rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#A9B6CC;margin-bottom:.4em}
+.au-data .h i{font-style:normal;color:#fff;background:var(--tc);border-radius:999px;padding:.1em .6em}
+.au-data pre{margin:0;white-space:pre-wrap;font:inherit;animation:pvIn .45s ease-out}
+.au-data .row2{display:grid;grid-template-columns:repeat(4,auto);gap:0;border-radius:8px;overflow:hidden;font-size:.9em}
+.au-data .row2 div{padding:.3em .6em;background:rgba(255,255,255,.08);border-right:1px solid rgba(255,255,255,.12)}
+.au-data .row2 .hd{background:rgba(255,255,255,.18);font-weight:800}
+.au-side{display:flex;flex-direction:column;gap:.6em}
+.au-leg{display:flex;flex-wrap:wrap;gap:.35em}
+.au-leg span{font-size:.78rem;font-weight:800;padding:.2em .65em;border-radius:999px;color:#fff}
+.t-trig{background:#F39C12}.t-rule{background:#5B6B8C}.t-ai{background:#8E44AD}.t-act{background:#00A6C8}.t-hum{background:#2ECC71}
+/* 5 passi */
+.au2{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.5fr);gap:clamp(.8rem,2.4vw,2rem);align-items:start}
+@media (max-width:900px){.au2{grid-template-columns:1fr}}
+.au2-steps{display:flex;flex-direction:column;gap:.45em}
+.au2-s{display:grid;grid-template-columns:2.2em minmax(0,1fr);gap:.7em;align-items:center;text-align:left;background:#fff;border:2px solid var(--border);border-radius:14px;padding:.5em .7em;cursor:pointer;font-family:var(--ff-body);opacity:.7;transition:opacity .2s,box-shadow .2s,transform .2s}
+.au2-s:hover{opacity:1}.au2-s.on{opacity:1;border-color:var(--orange);box-shadow:0 0 0 4px rgba(255,107,53,.18);transform:translateX(6px)}
+.au2-s b{width:2.1em;height:2.1em;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--ff-head)}
+.au2-s.on b{background:var(--orange)}
+.au2-s span{font-family:var(--ff-head);font-weight:700;font-size:clamp(.95rem,1.4vw,1.15rem);color:var(--navy)}
+.au2-panel{background:#fff;border:2px solid var(--border);border-radius:18px;padding:1em 1.2em;display:flex;flex-direction:column;gap:.6em;min-height:0;animation:pvIn .35s ease-out}
+.au2-panel h3{margin:0;font-family:var(--ff-head);font-size:clamp(1.3rem,2.4vw,1.8rem);color:var(--navy)}
+.au2-panel>p{margin:0;font-size:clamp(.95rem,1.35vw,1.1rem);color:var(--gray);line-height:1.5}
+.au2-panel>p b{color:var(--navy)}
+.au-ck{display:flex;flex-direction:column;gap:.35em}
+.au-ck button{display:flex;align-items:center;gap:.6em;text-align:left;background:#F8FAFC;border:2px solid var(--border);border-radius:10px;padding:.45em .7em;font:700 .98rem var(--ff-body);color:var(--navy);cursor:pointer}
+.au-ck button i{font-style:normal;width:1.5em;height:1.5em;border-radius:6px;border:2px solid #CBD5E0;display:flex;align-items:center;justify-content:center;color:#fff;flex:none}
+.au-ck button.on{border-color:#2ECC71;background:#F0FBF5}.au-ck button.on i{background:#2ECC71;border-color:#2ECC71}
+.au-res{margin:0;font-weight:800;font-size:1.05rem}
+.au-qa{display:grid;grid-template-columns:auto minmax(0,1fr);gap:.4em .7em;align-items:center}
+.au-qa label{font-family:var(--ff-head);font-weight:700;color:var(--orange);font-size:1.05rem}
+.au-qa .in{font-size:.95rem;padding:.4em .6em}
+.au-sent{margin:0;font-family:var(--ff-head);font-size:clamp(1.05rem,1.7vw,1.35rem);line-height:1.35;color:var(--navy);background:#FFF5F0;border-radius:12px;padding:.6em .9em}
+.au-sent em{font-style:normal;color:var(--orange)}
+.au-tools{display:grid;grid-template-columns:1fr 1fr;gap:.5em}
+.au-tool{border:2px solid var(--border);border-radius:12px;padding:.55em .75em}
+.au-tool b{font-family:var(--ff-head);font-size:1.1rem;color:var(--navy)}
+.au-tool p{margin:.15em 0 0;font-size:.88rem;color:var(--gray);line-height:1.4}
+.au-tool a{font-size:.8rem;font-weight:800;color:var(--orange)}
+.au-pr{background:var(--navy);color:#E8EEF7;border-radius:14px;padding:.8em 1em;font-size:clamp(.85rem,1.2vw,1rem);line-height:1.55}
+.au-pr span{border-radius:4px;padding:0 .2em;box-shadow:inset 0 -2px 0 var(--c);background:color-mix(in srgb,var(--c) 22%,transparent)}
+.au-warn{display:flex;flex-direction:column;gap:.4em}
+.au-warn div{display:grid;grid-template-columns:1.8em minmax(0,1fr);gap:.5em;align-items:start;font-size:clamp(.9rem,1.25vw,1.02rem);color:var(--gray);line-height:1.45}
+.au-warn b{color:var(--navy)}
+.au-demo{display:flex;align-items:center;gap:1em;background:linear-gradient(90deg,#1B2A4A,#2D4A7A);color:#fff;border-radius:16px;padding:.6em 1em}
+.au-demo b{font-family:var(--ff-head);font-size:1.1rem}
+.au-demo p{margin:0;font-size:.9rem;color:#C9D4E5;flex:1}
+.au-demo .btn{text-decoration:none}
+#sAU1 .au-tabs{margin-top:auto}#sAU1 .au-low{flex:none;margin-bottom:auto}
+#sAU1 .au-n{padding:.8em .9em;gap:.4em}#sAU1 .au-n b{font-size:clamp(1.05rem,1.7vw,1.4rem)}#sAU1 .au-n span{font-size:clamp(.85rem,1.2vw,1.02rem)}#sAU1 .au-n small{font-size:.8rem}
+#sAU1 .au-data{font-size:clamp(.95rem,1.45vw,1.2rem);min-height:9.5em;padding:1em 1.2em}#sAU1 .au-sit{font-size:clamp(1.05rem,1.7vw,1.35rem)}#sAU1 .pv-tip{font-size:clamp(.95rem,1.35vw,1.12rem)}
+#sAU2 .au2{align-items:center}#sAU2 .au2-s{padding:.75em .9em}#sAU2 .au2-s span{font-size:clamp(1.05rem,1.6vw,1.3rem)}#sAU2 .au2-panel{padding:1.3em 1.5em;gap:.8em}
+#sAU2 .au-warn div,#sAU2 .au-ck button{font-size:clamp(1rem,1.45vw,1.18rem)}#sAU2 .au-pr{font-size:clamp(.95rem,1.35vw,1.12rem)}#sAU2 .au-tool p{font-size:.95rem}#sAU2 .au-qa .in{font-size:1.05rem}
+@media (max-height:800px){#sAU1 .au-n span{display:none}#sAU1 .au-data{min-height:7em}#sAU2 .au2-s{padding:.45em .7em}#sAU2 .au2-s{padding:.35em .6em}#sAU2 .au-tool p{font-size:.8rem}}
 /* badge extra per i pop-up */
 .pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
 .scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
@@ -2029,32 +2100,30 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
   <div class="st-demo" id="stDemo" onclick="if(event.target===this)stDemoClose()"><div class="st-dcard" id="stDCard"></div></div>
 </section>
 
-<!-- 21 AGENTS -->
-<section class="slide dark s-navygrad" data-section="Automazione e demo">
-  <h2 class="fz-h2">Agenti AI: automazione intelligente</h2>
-  <div class="wrap-flex" style="flex:1">
-    <div class="col min0" style="flex:0 0 40%">
-      <a class="vcard" style="--vg:linear-gradient(135deg,#00B4D8,#2D4A7A);min-height:clamp(120px,18vh,180px)" href="https://www.youtube.com/watch?v=JSA2oezQWOU" target="_blank" rel="noopener">
-        <svg class="play" viewBox="0 0 80 80"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,.22)" stroke="#fff" stroke-width="3"/><polygon points="33,25 33,55 58,40" fill="#fff"/></svg>
-        <div class="vmeta"><span class="vtag">▶ Video</span><p class="fz-body" style="margin-top:.3em">Automazione no-code con Make</p></div>
-      </a>
-      <p class="fz-small" style="font-weight:700">Strumenti:</p>
-      <div class="chips"><a class="chip" href="https://www.make.com" target="_blank" rel="noopener">Make.com</a><a class="chip" href="https://n8n.io" target="_blank" rel="noopener">n8n.io</a><a class="chip" href="https://zapier.com" target="_blank" rel="noopener">Zapier</a></div>
-    </div>
-    <div class="panel-t col min0" style="flex:1">
-      <h3 class="fz-h3" style="color:var(--orange)">Costruisci la tua automazione!</h3>
-      <p class="fz-small" style="color:var(--muted)">Clicca i nodi per attivare ogni step del flusso:</p>
-      <div class="ag-node" onclick="agToggle(this,0)" id="agN0"><span style="font-size:1.4rem">📧</span><div class="min0"><b class="fz-body">Trigger: Email</b><p class="fz-small" style="color:var(--muted)">Arriva un'email con allegato PDF</p></div></div>
-      <p style="text-align:center;color:var(--cyan);margin:0">↓</p>
-      <div class="ag-node" onclick="agToggle(this,1)" id="agN1"><span style="font-size:1.4rem">🔍</span><div class="min0"><b class="fz-body">Estrai: testo dal PDF</b><p class="fz-small" style="color:var(--muted)">L'agente legge e estrae il contenuto</p></div></div>
-      <p style="text-align:center;color:var(--cyan);margin:0">↓</p>
-      <div class="ag-node" onclick="agToggle(this,2)" id="agN2"><span style="font-size:1.4rem">🤖</span><div class="min0"><b class="fz-body">AI: genera riassunto</b><p class="fz-small" style="color:var(--muted)">ChatGPT/Claude riassume in punti chiave</p></div></div>
-      <p style="text-align:center;color:var(--cyan);margin:0">↓</p>
-      <div class="ag-node" onclick="agToggle(this,3)" id="agN3"><span style="font-size:1.4rem">📱</span><div class="min0"><b class="fz-body">Invia: notifica Telegram</b><p class="fz-small" style="color:var(--muted)">Il riassunto ti arriva sul telefono</p></div></div>
-      <div class="panel-t fz-body" id="agResult" style="background:rgba(0,180,216,.15);color:var(--muted)">Clicca sui nodi per attivare ogni step dell'automazione!</div>
+<!-- 21 AUTOMAZIONE 1: come funziona (quando succede X, fai Y) -->
+<section class="slide darktext s-light" data-section="Automatizzare" id="sAU1">
+  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Come funziona un'automazione</h2><span class="au-rule">«<b>Quando</b> succede questo → <b>fai</b> quello»</span></div>
+  <div class="au-tabs" id="auTabs"></div>
+  <p class="au-sit" id="auSit"></p>
+  <div class="au-flow" id="auFlow"></div>
+  <div class="au-low">
+    <div class="au-data" id="auData"></div>
+    <div class="au-side">
+      <div class="au-leg"><span class="t-trig">⚡ Inizio</span><span class="t-rule">📏 Regola fissa</span><span class="t-ai">🧠 AI</span><span class="t-act">⚙️ Azione</span><span class="t-hum">👤 Persona</span></div>
+      <div class="pv-row"><button class="btn" id="auPlay" onclick="auPlay()">▶ Avvia l'automazione</button><button class="btn ghost" onclick="auStep()">Passo dopo →</button></div>
+      <p class="pv-tip" id="auNote"></p>
     </div>
   </div>
-  <p class="fz-concl" style="color:var(--orange);text-align:center">Tutto questo senza scrivere una sola riga di codice!</p>
+</section>
+
+<!-- 21b AUTOMAZIONE 2: costruiamone una in 5 passi -->
+<section class="slide darktext s-light" data-section="Automatizzare" id="sAU2">
+  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Costruiamone una: 5 passi</h2>
+  <div class="au2">
+    <div class="au2-steps" id="au2Steps"></div>
+    <div class="au2-panel" id="au2Panel"></div>
+  </div>
+  <div class="au-demo" id="auDemo"></div>
 </section>
 
 <!-- 22 DEMO -->
@@ -4080,8 +4149,63 @@ function stAns(ok){var D=ST.demo;if(ok)D.ok++;else D.miss.push(D.q[D.i]);D.i++;s
 function stAgain(){var D=ST.demo;D.q=D.miss;D.miss=[];D.i=0;stDraw()}
 
 
-var agS=[false,false,false,false];var agMsg=["Email con PDF ricevuta!","Testo estratto: 3 pagine, 1.200 parole","AI ha generato il riassunto: 10 punti chiave in 150 parole","Notifica inviata su Telegram! Il riassunto è sul tuo telefono."];
-function agToggle(el,i){agS[i]=!agS[i];el.classList.toggle('on',agS[i]);var r=document.getElementById('agResult');var last=-1;agS.forEach(function(s,j){if(s)last=j});if(agS.every(function(s){return s})){r.innerHTML='<b style="color:#2ECC71">AUTOMAZIONE COMPLETA!</b> Da email a riassunto sul telefono — tutto automatico, zero codice!'}else if(last>=0){r.innerHTML='<b>Step '+(last+1)+':</b> '+agMsg[last]}else{r.textContent='Clicca sui nodi per attivare ogni step!'}}
+/* ===== slide "Come funziona un'automazione": quattro esempi di lavoro, i dati passano da un passo all'altro ===== */
+var AU_T={trig:['⚡ Inizio','#F39C12'],rule:['📏 Regola fissa','#5B6B8C'],ai:['🧠 AI','#8E44AD'],act:['⚙️ Azione','#00A6C8'],hum:['👤 Persona','#2ECC71']};
+var AU_S=[
+ {k:'👩‍🏫 Email dei genitori',sit:'Una prof riceve ogni giorno <b>decine di email</b> da genitori: assenze, compiti, colloqui.',note:'L\'AI fa la parte noiosa: leggere, riassumere, preparare una bozza. <b>La risposta la manda la prof.</b>',st:[
+  {t:'trig',b:'Arriva un\'email',s:'nella casella della scuola',tool:'Gmail / Outlook',d:'<pre>Da: maria.rossi@email.it\nOggetto: Luca\n\nBuongiorno prof, Luca sarà assente da lunedì a mercoledì per una visita medica. Può dirmi cosa recuperare per la verifica di giovedì? Grazie, Maria Rossi</pre>'},
+  {t:'rule',b:'Filtra',s:'solo i genitori della classe, non le newsletter',tool:'Filtro',d:'<pre>✓ Il mittente è nell\'elenco dei genitori della 3ªB\n→ l\'email continua</pre>'},
+  {t:'ai',b:'Capisce e riassume',s:'chi, cosa, quanto è urgente',tool:'Claude / ChatGPT',d:'<pre>Studente: Luca Rossi\nTipo: assenza + compiti da recuperare\nUrgenza: media (verifica giovedì)\nRiassunto: assente lun–mer, chiede cosa studiare</pre>'},
+  {t:'act',b:'Organizza',s:'riga nel foglio «Comunicazioni» e bozza di risposta',tool:'Google Fogli + Gmail',d:'<div class="row2"><div class="hd">Data</div><div class="hd">Studente</div><div class="hd">Tipo</div><div class="hd">Urgenza</div><div>12/10</div><div>Luca Rossi</div><div>Assenza</div><div>Media</div></div><pre>\nBozza: «Gentile signora Rossi, grazie per l\'avviso. Per giovedì Luca può ripassare il capitolo 4…»</pre>'},
+  {t:'hum',b:'Controlli e invii',s:'la bozza non parte da sola',tool:'Tu',d:'<pre>📝 Bozza pronta in Gmail.\nLa leggi, la correggi se serve, premi Invia.</pre>'}]},
+ {k:'👩‍🏫 Compiti consegnati',sit:'Trenta compiti da correggere, con <b>la stessa griglia di valutazione</b> ogni volta.',note:'L\'AI fa una prima lettura e propone un feedback. <b>Il voto lo decide sempre la prof.</b>',st:[
+  {t:'trig',b:'Uno studente consegna',s:'il compito su Google Moduli o Classroom',tool:'Moduli / Classroom',d:'<pre>Giulia B. · domanda 3:\n«La fotosintesi avviene nei mitocondri e produce anidride carbonica…»</pre>'},
+  {t:'ai',b:'Confronta con la griglia',s:'la tua griglia, criterio per criterio',tool:'Claude / ChatGPT',d:'<pre>Contenuto: 2/4 · confonde cloroplasti e mitocondri\nChiarezza: 3/3\nFeedback proposto: «Rileggi dove avviene la fotosintesi e cosa produce: l\'hai scambiata con la respirazione.»</pre>'},
+  {t:'act',b:'Prepara il feedback',s:'un documento per ogni studente',tool:'Google Documenti',d:'<pre>📄 Feedback_GiuliaB creato nella cartella\n«3ªB – Verifica di scienze»</pre>'},
+  {t:'hum',b:'Tu decidi il voto',s:'l\'AI suggerisce, non valuta',tool:'Tu',d:'<pre>⚠️ Il voto lo metti tu.\nL\'AI ti risparmia la prima lettura e ti dà un feedback da personalizzare.</pre>'}]},
+ {k:'💼 Fatture',sit:'In ufficio arrivano <b>fatture in PDF</b> da copiare a mano in un foglio Excel.',note:'Il lavoro di copia lo fa l\'automazione, la regola dei 1.000 € avvisa chi deve sapere. <b>Nessun pagamento parte da solo.</b>',st:[
+  {t:'trig',b:'Arriva una fattura',s:'PDF allegato a un\'email',tool:'Outlook',d:'<pre>📎 Fattura_2026_118.pdf\nda: Cartoleria Bianchi srl</pre>'},
+  {t:'ai',b:'Legge il PDF',s:'fornitore, data, importo, scadenza',tool:'Claude / ChatGPT',d:'<pre>Fornitore: Cartoleria Bianchi srl\nData: 08/10/2026\nImporto: 1.240,00 €\nScadenza: 07/11/2026</pre>'},
+  {t:'act',b:'Registra',s:'riga in Excel e PDF nella cartella giusta',tool:'Excel + SharePoint',d:'<div class="row2"><div class="hd">Fornitore</div><div class="hd">Data</div><div class="hd">Importo</div><div class="hd">Scadenza</div><div>Cartoleria Bianchi</div><div>08/10</div><div>1.240 €</div><div>07/11</div></div>'},
+  {t:'rule',b:'Se supera 1.000 €',s:'avvisa il responsabile',tool:'Teams',d:'<pre>1.240 € &gt; 1.000 €\n→ messaggio su Teams a Laura (amministrazione)</pre>'},
+  {t:'hum',b:'Approva il pagamento',s:'una persona controlla e decide',tool:'Tu',d:'<pre>✅ Laura controlla la fattura e approva il pagamento.</pre>'}]},
+ {k:'💼 Riunioni',sit:'Dopo ogni riunione qualcuno deve scrivere <b>il verbale e le cose da fare</b>.',note:'L\'AI ascolta e scrive, l\'automazione distribuisce. <b>Il verbale parte solo dopo il tuo ok.</b>',st:[
+  {t:'trig',b:'Finisce la riunione',s:'registrata su Teams o Meet',tool:'Teams / Meet',d:'<pre>🎙️ «Lancio progetto» · 42 minuti · 5 partecipanti</pre>'},
+  {t:'ai',b:'Trascrive e riassume',s:'decisioni e cose da fare',tool:'Claude / ChatGPT',d:'<pre>Decisioni: lancio il 3 novembre, budget confermato.\nDa fare:\n• Anna: preparare le slide entro venerdì\n• Marco: contattare il fornitore entro lunedì</pre>'},
+  {t:'act',b:'Crea le attività',s:'una per persona, con scadenza',tool:'Planner / Trello',d:'<pre>☑ «Preparare le slide» → Anna · venerdì\n☑ «Contattare il fornitore» → Marco · lunedì</pre>'},
+  {t:'hum',b:'Approvi e invii',s:'controlli il verbale prima di mandarlo',tool:'Tu',d:'<pre>📨 Verbale pronto. Lo rileggi e lo mandi ai 5 partecipanti.</pre>'}]}];
+var AU={s:0,i:-1,timer:null};
+function auInit(){if(!G('auTabs'))return;G('auTabs').innerHTML=AU_S.map(function(s,i){return '<button class="au-tab" onclick="auGo('+i+')">'+s.k+'</button>'}).join('');auGo(0);au2Init()}
+function auGo(s){AU.s=s;AU.i=-1;clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent='▶ Avvia l\'automazione';
+  [].forEach.call(document.querySelectorAll('.au-tab'),function(b,k){b.classList.toggle('on',k===s)});G('auSit').innerHTML=AU_S[s].sit;G('auNote').innerHTML='';auDraw()}
+function auDraw(){var S=AU_S[AU.s],i=AU.i,h='';S.st.forEach(function(p,k){var T=AU_T[p.t];if(k)h+='<div class="au-arr'+(k<=i?' on':'')+'">→</div>';
+    h+='<div class="au-n'+(k===i?' on':k<i?' done':'')+'" style="--tc:'+T[1]+'"><span class="k">'+T[0]+'</span><b>'+p.b+'</b><span>'+p.s+'</span><small>'+p.tool+'</small></div>'});G('auFlow').innerHTML=h;
+  var d=G('auData');if(i<0){d.innerHTML='<div class="h">I dati</div><pre>Premete ▶ e seguite i dati: a ogni passo cambiano forma.</pre>';return}var p=S.st[i],T=AU_T[p.t];
+  d.innerHTML='<div class="h">Passo '+(i+1)+' di '+S.st.length+' <i style="--tc:'+T[1]+';background:'+T[1]+'">'+T[0]+'</i></div>'+p.d;if(i===S.st.length-1)G('auNote').innerHTML='💡 '+S.note}
+function auStep(){var n=AU_S[AU.s].st.length;if(AU.i>=n-1){AU.i=-1;auDraw();return}AU.i++;auDraw();if(AU.i>=n-1&&AU.timer){clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent='↺ Ricomincia'}}
+function auPlay(){if(AU.timer){clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent='▶ Riprendi';return}if(AU.i>=AU_S[AU.s].st.length-1)AU.i=-1;G('auPlay').textContent='⏸ Pausa';auStep();AU.timer=setInterval(auStep,2600)}
+
+/* ===== slide "Costruiamone una: 5 passi" ===== */
+/* quando avremo l'automazione vera da mostrare, mettere qui il link (video, pagina, flusso) */
+var AU_DEMO={url:'',title:''};
+var AU2={i:0,ck:[0,0,0,0]};
+var AU2_S=['Trova il compito giusto','Scrivi «Quando… allora…»','Scegli lo strumento','Scrivi il prompt del passo AI','Prova, controlla, accendi'];
+var AU2_CK=['Lo faccio almeno ogni settimana','I passaggi sono sempre gli stessi','Le informazioni arrivano già in digitale (email, moduli, file)','Se sbaglia, me ne accorgo facilmente'];
+var AU2_Q=[['Quando','arriva un\'email con un allegato','qualcuno compila un modulo','ogni lunedì alle 8','viene caricato un file in una cartella'],['allora l\'AI','riassume il testo','estrae i dati importanti','scrive una bozza di risposta','classifica per argomento e urgenza'],['e poi','salva tutto in un foglio di calcolo','mi manda un messaggio','crea un\'attività in calendario','prepara un documento da controllare']];
+function au2Init(){G('au2Steps').innerHTML=AU2_S.map(function(s,i){return '<button class="au2-s" onclick="au2Go('+i+')"><b>'+(i+1)+'</b><span>'+s+'</span></button>'}).join('');au2Go(0);
+  var d=G('auDemo');d.innerHTML='<span style="font-size:1.6rem">🎬</span><div><b>'+(AU_DEMO.title||'La nostra automazione dal vivo')+'</b><p>'+(AU_DEMO.url?'Guardiamola funzionare.':'La costruiamo insieme e la mostriamo qui.')+'</p></div>'+(AU_DEMO.url?'<a class="btn" href="'+AU_DEMO.url+'" target="_blank" rel="noopener">Apri la demo ↗</a>':'<span class="btn" style="opacity:.55;cursor:default">In arrivo</span>')}
+function au2Go(i){AU2.i=i;[].forEach.call(document.querySelectorAll('.au2-s'),function(b,k){b.classList.toggle('on',k===i)});var P=G('au2Panel'),h='<h3>'+(i+1)+'. '+AU2_S[i]+'</h3>';
+  if(i===0){h+='<p>Non tutto va automatizzato. È un buon candidato se:</p><div class="au-ck">'+AU2_CK.map(function(c,k){return '<button class="'+(AU2.ck[k]?'on':'')+'" onclick="au2Ck('+k+')"><i>'+(AU2.ck[k]?'✓':'')+'</i>'+c+'</button>'}).join('')+'</div>';
+    var n=AU2.ck.reduce(function(a,b){return a+b},0);h+='<p class="au-res" style="color:'+(n>=3?'#1E8E4F':n===2?'#B7791F':'#8A94A6')+'">'+(n>=3?'✅ Ottimo candidato!':n===2?'🤔 Forse: provate prima a mano':n?'❌ Meglio farlo a mano':'Pensate a un vostro compito e spuntate…')+'</p>'}
+  if(i===1){h+='<p>Prima di aprire qualsiasi programma, si scrive una frase. Se non riuscite a scriverla, l\'automazione non è pronta.</p><div class="au-qa">'+AU2_Q.map(function(q,k){return '<label>'+q[0]+'</label><select class="in" id="au2Q'+k+'" onchange="au2Sent()">'+q.slice(1).map(function(o){return '<option>'+o+'</option>'}).join('')+'</select>'}).join('')+'</div><p class="au-sent" id="au2Sent"></p>'}
+  if(i===2){h+='<p>Sono tutti «a blocchi»: niente codice. E tutti hanno un blocco <b>AI</b> che chiama ChatGPT, Claude o Gemini.</p><div class="au-tools">'+
+    [['Zapier','Il più semplice: si costruisce scegliendo dai menu. Piano gratuito per provare.','zapier.com'],['Make','Visivo: blocchi collegati come un diagramma. Piano gratuito per iniziare.','make.com'],['Power Automate','Se a scuola o in ufficio usate Microsoft 365, spesso è già incluso.','make.powerautomate.com'],['n8n','Open source: si può installare sul proprio server, così i dati restano vostri.','n8n.io']].map(function(t){return '<div class="au-tool"><b>'+t[0]+'</b><p>'+t[1]+'</p><a href="https://'+t[2]+'" target="_blank" rel="noopener">'+t[2]+' ↗</a></div>'}).join('')+'</div>'}
+  if(i===3){h+='<p>È la ricetta della slide 14, con una differenza: <b>la risposta la legge un programma, non una persona</b>. Il formato deve essere rigido, sempre uguale.</p><div class="au-pr">'+
+    [['#FF6B35','Sei l\'assistente di segreteria di una scuola.'],['#00A6C8','Ricevi email dei genitori degli studenti della 3ªB.'],['#2ECC71','Leggi l\'email e capisci chi scrive, di cosa si tratta e quanto è urgente.'],['#8E44AD','Rispondi SOLO con JSON con i campi: studente, tipo (assenza / compiti / colloquio / altro), urgenza (bassa / media / alta), riassunto (massimo 20 parole).'],['#E67E22','Se l\'email non riguarda uno studente, metti tipo = altro.']].map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ')+'</div><p>💡 Così il passo dopo sa sempre dove trovare <b>studente</b> e <b>urgenza</b>, e può scriverli nel foglio.</p>'}
+  if(i===4){h+='<div class="au-warn">'+[['🧪','<b>Prova con dati finti</b>, poi con pochi casi veri, poi accendila per tutti.'],['👤','<b>Una persona controlla</b> prima che qualcosa esca: email, voti, pagamenti.'],['🔒','<b>Privacy (GDPR):</b> dati di studenti, famiglie e clienti solo in strumenti approvati dalla scuola o dall\'azienda.'],['🧠','<b>L\'AI sbaglia</b>: date regole chiare per i casi strani («se non sei sicuro, segnalalo»).'],['📈','<b>Controllatela ogni tanto</b>: le automazioni si rompono in silenzio.']].map(function(w){return '<div><span>'+w[0]+'</span><span>'+w[1]+'</span></div>'}).join('')+'</div>'}
+  P.innerHTML=h;P.style.animation='none';P.offsetHeight;P.style.animation='';if(i===1)au2Sent()}
+function au2Ck(k){AU2.ck[k]=AU2.ck[k]?0:1;au2Go(0)}
+function au2Sent(){var v=function(k){return G('au2Q'+k).value};G('au2Sent').innerHTML='<em>Quando</em> '+v(0)+', <em>allora l\'AI</em> '+v(1)+' <em>e poi</em> '+v(2)+'.'}
 
 function dmGen(){var t=document.getElementById('dmInput').value.trim();if(t.length<20){document.getElementById('dmOut').innerHTML='<span style="color:#FFE0D0">Scrivi o incolla un testo più lungo (almeno qualche riga)!</span>';return}var mp='Sei un tutor esperto. Ti do un testo da studiare: crea un KIT DI STUDIO COMPLETO.\n\nTesto:\n"""\n'+t+'\n"""\n\nCrea nell\'ordine:\n\n1. RIASSUNTO — max 300 parole, per concetti chiave, con date e nomi in grassetto\n2. 12 FLASHCARD — DOMANDA: ... / RISPOSTA: ... dalla più facile, con 2 trabocchetto\n3. QUIZ — 6 domande a risposta multipla (A/B/C/D) con soluzioni e spiegazioni\n4. MAPPA CONCETTUALE testuale — frecce (→) e trattini, max 3 livelli\n5. SIMULAZIONE INTERROGAZIONE — 4 domande da professore con la risposta ideale\n\nUsa un linguaggio chiaro per uno studente di scuola superiore.';document.getElementById('dmOut').textContent=mp}
 function dmCopy(el){var t=el.textContent;if(t&&t.indexOf('Incolla un testo')===-1&&t.indexOf('Scrivi o incolla')===-1){copyTxt(t);flash(el)}}
@@ -4096,7 +4220,7 @@ function copyTxt(t){try{navigator.clipboard.writeText(t)}catch(e){try{var ta=doc
 function flash(el){var bg=el.style.background;el.style.background='rgba(46,204,113,.35)';setTimeout(function(){el.style.background=bg},1100)}
 
 
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit();auInit()}
 fdBoot();
 hsInit();
 n4Init();
