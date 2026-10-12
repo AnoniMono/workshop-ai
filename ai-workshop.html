@@ -160,9 +160,6 @@ img{max-width:100%}
 .dl-det{display:none;margin-top:.5em;padding-top:.5em;border-top:1px solid var(--border)}
 .dl-card.open{grid-column:span 2;grid-row:span 2}
 .dl-card.open .dl-det{display:block}
-.sk-card{background:rgba(255,255,255,.14);padding:.6em .8em;border-radius:12px;cursor:pointer;display:flex;gap:.6em;align-items:flex-start;transition:background .2s}
-.sk-card:hover{background:rgba(255,255,255,.24)}
-.sk-card.copied{background:rgba(46,204,113,.3)}
 .ag-node{background:rgba(255,255,255,.08);padding:.55em .7em;border-radius:10px;display:flex;gap:.6em;align-items:center;cursor:pointer;border:2px solid transparent;transition:background .2s,border-color .2s}
 .ag-node:hover{background:rgba(255,255,255,.16)}
 .ag-node.on{border-color:var(--orange);background:rgba(255,107,53,.12)}
@@ -1372,13 +1369,16 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
 @media (max-width:900px){.st-stage{grid-template-columns:1fr}#sST.current{height:auto}}
 .st-left,.st-right{display:flex;flex-direction:column;gap:.6em;min-width:0}
 .st-moves{display:flex;flex-direction:column;gap:.55em}
-.st-mv{display:grid;grid-template-columns:2.4em minmax(0,1fr);gap:.8em;align-items:center;background:#fff;border:2px solid var(--border);border-left:6px solid var(--c);border-radius:14px;padding:.6em .8em}
+.st-mv{display:grid;grid-template-columns:2.4em minmax(0,1fr);gap:.8em;align-items:center;background:#fff;border:2px solid var(--border);border-left:6px solid var(--c);border-radius:14px;padding:.6em .8em;cursor:pointer;transition:box-shadow .2s,transform .2s,opacity .2s;opacity:.7}
+.st-mv:hover{opacity:1}.st-mv.on{opacity:1;border-color:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent);transform:translateX(6px)}
+.pv-k2 span{color:var(--orange)}
 .st-mv>b{width:2.2em;height:2.2em;border-radius:50%;background:var(--c);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--ff-head);font-size:1.1rem}
 .st-mv h4{margin:0;font-family:var(--ff-head);font-size:clamp(1.1rem,1.8vw,1.4rem);color:var(--navy)}
 .st-mv p{margin:.1em 0 0;font-size:clamp(.88rem,1.25vw,1rem);color:var(--gray);line-height:1.4}
 .st-note{margin:.2em 0 0;font-size:.92rem;color:var(--gray);line-height:1.45;background:#FFF8E6;border-radius:10px;padding:.5em .8em}
 .st-note b{color:#B7791F}
-.st-form{display:grid;grid-template-columns:1fr 1.4fr .6fr .6fr;gap:.5em}
+.st-form{display:grid;grid-template-columns:1fr 1.4fr .6fr .8fr;gap:.5em}
+.st-form label[hidden]{display:none}
 .st-form label{display:flex;flex-direction:column;gap:.2em;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gray)}
 .st-form .in{font-size:.95rem;padding:.45em .6em;text-transform:none;letter-spacing:0}
 .st-prompt{background:var(--navy);color:#E8EEF7;border-radius:16px;padding:.9em 1.1em;font-size:clamp(.9rem,1.3vw,1.08rem);line-height:1.55}
@@ -1981,49 +1981,29 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
   <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">DAL VIVO</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Studiare con l'AI (senza farla studiare al posto vostro)</h2></div>
   <div class="st-stage">
     <div class="st-left">
-      <p class="pv-k2">Studiare bene = 3 mosse</p>
+      <p class="pv-k2">Studiare bene = 3 mosse <span>· cliccatene una</span></p>
       <div class="st-moves">
-        <div class="st-mv" style="--c:#00A6C8"><b>1</b><div><h4>Capire</h4><p>«Spiegamelo come se avessi 16 anni, con un esempio.»</p></div></div>
-        <div class="st-mv" style="--c:#FF6B35"><b>2</b><div><h4>Ripetere</h4><p>Flashcard: domanda davanti, risposta dietro. Ve le fa l'AI.</p></div></div>
-        <div class="st-mv" style="--c:#2ECC71"><b>3</b><div><h4>Mettersi alla prova</h4><p>«Fammi 5 domande come all'interrogazione e correggimi.»</p></div></div>
+        <div class="st-mv" style="--c:#00A6C8" data-m="cap" onclick="stMode(this)"><b>1</b><div><h4>Capire</h4><p>«Spiegamelo come se avessi 16 anni, con un esempio.»</p></div></div>
+        <div class="st-mv on" style="--c:#FF6B35" data-m="rip" onclick="stMode(this)"><b>2</b><div><h4>Ripetere</h4><p>Flashcard: domanda davanti, risposta dietro. Ve le fa l'AI.</p></div></div>
+        <div class="st-mv" style="--c:#2ECC71" data-m="prova" onclick="stMode(this)"><b>3</b><div><h4>Mettersi alla prova</h4><p>«Fammi 5 domande come all'interrogazione e correggimi.»</p></div></div>
       </div>
       <p class="st-note">⚠️ L'AI <b>sbaglia</b>, e a volte inventa. Per questo <b>allegate il vostro materiale</b> (foto del libro, appunti, slide del prof): così lavora sulle vostre fonti. E controllate sempre.</p>
     </div>
     <div class="st-right">
-      <p class="pv-k2">🃏 Facciamoci le flashcard da Claude</p>
+      <p class="pv-k2" id="stHead">🃏 Facciamoci le flashcard da Claude</p>
       <div class="st-form">
         <label>Materia<input class="in" id="stSubj" value="Scienze" oninput="stUpd()"></label>
         <label>Argomento<input class="in" id="stTopic" value="La fotosintesi" oninput="stUpd()"></label>
         <label>Classe<select class="in" id="stCls" onchange="stUpd()"><option>1ª</option><option>2ª</option><option selected>3ª</option><option>4ª</option><option>5ª</option></select></label>
-        <label>Carte<select class="in" id="stN" onchange="stUpd()"><option>10</option><option selected>15</option><option>20</option></select></label>
+        <label id="stNL">Carte<select class="in" id="stN" onchange="stUpd()"><option>10</option><option selected>15</option><option>20</option></select></label><label id="stEL" hidden>Verifica<select class="in" id="stEx" onchange="stUpd()"><option value="orale">Orale</option><option value="scritta">Scritta</option><option value="maturita">Maturità</option><option value="present">Presentazione</option></select></label>
       </div>
       <div class="st-att"><span>📎 Allego</span><button class="st-a on" data-k="libro" onclick="stAtt(this)">📷 Foto del libro</button><button class="st-a" data-k="appunti" onclick="stAtt(this)">📝 Appunti</button><button class="st-a" data-k="slide" onclick="stAtt(this)">📊 Slide del prof</button><button class="st-a" data-k="" onclick="stAtt(this)">Niente</button></div>
       <div class="st-prompt" id="stPrompt"></div>
-      <div class="pv-row"><a class="btn st-claude" id="stClaude" target="_blank" rel="noopener">✨ Apri in Claude ↗</a><button class="btn ghost" id="stCopy" onclick="stCopy()">📋 Copia</button><button class="btn ghost" onclick="stDemo()">👀 Cosa uscirà</button></div>
-      <p class="pv-tip">💡 È la ricetta della slide prima: <b style="color:#FF6B35">ruolo</b>, <b style="color:#00A6C8">contesto</b>, <b style="color:#2ECC71">compito</b>, <b style="color:#8E44AD">formato</b>, <b style="color:#E67E22">esempio</b>, più il <b style="color:#0E7C86">materiale</b> allegato. In Claude: trascinate il file nella chat, poi incollate il prompt.</p>
+      <div class="pv-row"><a class="btn st-claude" id="stClaude" target="_blank" rel="noopener">✨ Apri in Claude ↗</a><button class="btn ghost" id="stCopy" onclick="stCopy()">📋 Copia</button><button class="btn ghost" id="stDemoBtn" onclick="stDemo()">👀 Cosa uscirà</button></div>
+      <p class="pv-tip">💡 È sempre la stessa ricetta: <b style="color:#FF6B35">ruolo</b>, <b style="color:#00A6C8">contesto</b>, <b style="color:#2ECC71">compito</b>, <b style="color:#8E44AD">formato</b>, <b style="color:#E67E22">esempio</b>, più il <b style="color:#0E7C86">materiale</b> allegato. In Claude: trascinate il file nella chat, poi incollate il prompt.</p>
     </div>
   </div>
   <div class="st-demo" id="stDemo" onclick="if(event.target===this)stDemoClose()"><div class="st-dcard" id="stDCard"></div></div>
-</section>
-
-<!-- 20 ACT5 Study kit -->
-<section class="slide dark s-act" data-section="Usare l'AI">
-  <div class="row" style="align-items:center;flex-wrap:wrap"><span class="badge">ATTIVITÀ 5 · 20 min</span><h2 class="fz-h2" style="flex:1;min-width:240px">Costruisci il tuo kit di studio!</h2></div>
-  <div class="wrap-flex" style="flex:1">
-    <div class="panel-t col min0" style="flex:0 0 38%">
-      <label class="fz-small" style="font-weight:700">Materia</label>
-      <select class="in" id="skSubj" onchange="skGen()"><option value="">Scegli...</option><option>Storia</option><option>Filosofia</option><option>Scienze</option><option>Matematica</option><option>Italiano / Letteratura</option><option>Inglese</option><option>Fisica</option><option>Chimica</option><option>Arte</option><option>Diritto</option></select>
-      <label class="fz-small" style="font-weight:700">Argomento specifico</label>
-      <input class="in" id="skTopic" placeholder="es: La Rivoluzione Francese" oninput="skGen()">
-      <label class="fz-small" style="font-weight:700">Che tipo di esame?</label>
-      <select class="in" id="skExam" onchange="skGen()"><option value="interrogazione orale">Interrogazione orale</option><option value="verifica scritta a risposta multipla">Verifica scritta (multipla)</option><option value="verifica scritta a risposta aperta">Verifica scritta (aperta)</option><option value="esame di maturità">Esame di maturità</option><option value="presentazione alla classe">Presentazione</option></select>
-      <label class="fz-small" style="font-weight:700">Livello</label>
-      <select class="in" id="skLevel" onchange="skGen()"><option value="terza superiore">3ª superiore</option><option value="quarta superiore">4ª superiore</option><option value="quinta superiore / maturità">5ª / Maturità</option></select>
-      <button class="btn ghost" onclick="skGen()">Genera i prompt!</button>
-    </div>
-    <div class="col min0" id="skResults" style="flex:1;gap:.5rem"><p class="fz-lead" style="opacity:.75;text-align:center;margin-top:2rem">Compila il form e clicca "Genera" per creare 5 prompt personalizzati pronti da copiare in ChatGPT o Claude!</p></div>
-  </div>
-  <p class="fz-concl" style="text-align:center">Costruite un kit di studio VERO per la vostra prossima verifica!</p>
 </section>
 
 <!-- 21 AGENTS -->
@@ -4017,16 +3997,23 @@ function pvGo(){var bad=G('pvIn').value.trim();if(!bad||PV.busy)return;PV.busy=t
 
 
 /* ===== slide "Studiare con l'AI": il prompt per farsi fare da Claude un'app di flashcard ===== */
-var ST={demo:null,att:'libro'};
+var ST={demo:null,att:'libro',m:'rip'};
+var ST_HEAD={cap:'💡 Capire: fatevelo spiegare da Claude',rip:'🃏 Ripetere: facciamoci le flashcard da Claude',prova:'🎤 Mettersi alla prova: un\'interrogazione con Claude'};
+function stMode(el){ST.m=el.getAttribute('data-m');[].forEach.call(document.querySelectorAll('.st-mv'),function(x){x.classList.toggle('on',x===el)});G('stHead').textContent=ST_HEAD[ST.m];
+  G('stNL').hidden=ST.m!=='rip';G('stEL').hidden=ST.m!=='prova';G('stDemoBtn').hidden=ST.m!=='rip';stUpd()}
 var ST_ATT={libro:['le foto delle pagine del libro','pagine_45-52.jpg'],appunti:['i miei appunti','appunti_fotosintesi.pdf'],slide:['le slide del prof','lezione_prof.pptx']};
 function stAtt(b){ST.att=b.getAttribute('data-k');[].forEach.call(document.querySelectorAll('.st-a'),function(x){x.classList.toggle('on',x===b)});stUpd()}
-function stParts(){var v=function(id,d){var e=G(id);return (e&&e.value.trim())||d},s=v('stSubj','[materia]'),t=v('stTopic','[argomento]'),c=v('stCls','3ª'),n=v('stN','15');
-  return [['#FF6B35','Sei un tutor di '+s+' che crea strumenti di studio chiari e divertenti.'],
-    ['#00A6C8','Sono uno studente di '+c+' superiore e tra pochi giorni ho la verifica su «'+t+'».'],
-    ].concat(ST.att?[['#0E7C86','Ti allego '+ST_ATT[ST.att][0]+': usa solo quel materiale e, se qualcosa non c\'è, dimmelo invece di inventare.']]:[]).concat([
-    ['#2ECC71','Crea un\'app di flashcard interattiva in HTML (un solo file, come artifact) con '+n+' carte su questo argomento: davanti la domanda, dietro la risposta.'],
-    ['#8E44AD','La carta si gira con un clic; aggiungi i pulsanti «La so» e «Da ripassare», un punteggio, e alla fine ripresenta solo le carte da ripassare. Grafica colorata, leggibile anche sul telefono.'],
-    ['#E67E22','Risposte brevi, massimo due righe. Esempio di carta: davanti «Che cos\'è…?», dietro una definizione in una frase.']])}
+function stParts(){var v=function(id,d){var e=G(id);return (e&&e.value.trim())||d},s=v('stSubj','[materia]'),t=v('stTopic','[argomento]'),c=v('stCls','3ª'),n=v('stN','15'),x=v('stEx','orale'),m=ST.m;
+  var EX={orale:'un\'interrogazione orale',scritta:'una verifica scritta',maturita:'il colloquio di maturità',present:'una presentazione davanti alla classe'};
+  var ruolo=m==='prova'?'Sei un professore di '+s+' severo ma giusto.':m==='cap'?'Sei un professore di '+s+' paziente, che spiega in modo semplice.':'Sei un tutor di '+s+' che crea strumenti di studio chiari e divertenti.';
+  var ctx='Sono uno studente di '+c+' superiore e tra pochi giorni ho '+(m==='prova'?EX[x]:'la verifica')+' su «'+t+'».';
+  var task,form,ex;
+  if(m==='cap'){task='Spiegami questo argomento come se avessi 16 anni, partendo da ciò che è più importante.';form='Dividilo in 5 idee chiave, una frase ciascuna, poi una mappa concettuale fatta di frecce (→).';ex='Per ogni idea aggiungi un esempio della vita di tutti i giorni.'}
+  else if(m==='prova'){task='Simula '+EX[x]+': fammi 5 domande una alla volta, aspetta la mia risposta e correggimi prima di passare alla successiva.';
+    form=x==='scritta'?'Domande a scelta multipla con 4 risposte (A, B, C, D) e alla fine il punteggio.':x==='maturita'?'Domande che collegano l\'argomento ad altre materie, e alla fine un voto con i miei punti deboli.':x==='present'?'Fammi le domande difficili che potrebbe farmi la classe, poi dimmi come migliorare.':'Domande aperte come all\'interrogazione, e alla fine un voto da 1 a 10 con un consiglio.';
+    ex='Se sbaglio, non darmi subito la risposta: dammi un indizio e fammi riprovare.'}
+  else{task='Crea un\'app di flashcard interattiva in HTML (un solo file, come artifact) con '+n+' carte su questo argomento: davanti la domanda, dietro la risposta.';form='La carta si gira con un clic; aggiungi i pulsanti «La so» e «Da ripassare», un punteggio, e alla fine ripresenta solo le carte da ripassare. Grafica colorata, leggibile anche sul telefono.';ex='Risposte brevi, massimo due righe. Esempio di carta: davanti «Che cos\'è…?», dietro una definizione in una frase.'}
+  return [['#FF6B35',ruolo],['#00A6C8',ctx]].concat(ST.att?[['#0E7C86','Ti allego '+ST_ATT[ST.att][0]+': usa solo quel materiale e, se qualcosa non c\'è, dimmelo invece di inventare.']]:[]).concat([['#2ECC71',task],['#8E44AD',form],['#E67E22',ex]])}
 function stText(){return stParts().map(function(p){return p[1]}).join(' ')}
 function stUpd(){if(!G('stPrompt'))return;G('stPrompt').innerHTML=(ST.att?'<div class="st-file">📎 '+ST_ATT[ST.att][1]+'</div>':'')+stParts().map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ');
   G('stClaude').href='https://claude.ai/new?q='+encodeURIComponent(stText())}
@@ -4045,14 +4032,6 @@ function stDraw(){var D=ST.demo,c=G('stDCard'),h='<div class="st-dh"><span>🃏<
 function stAns(ok){var D=ST.demo;if(ok)D.ok++;else D.miss.push(D.q[D.i]);D.i++;stDraw()}
 function stAgain(){var D=ST.demo;D.q=D.miss;D.miss=[];D.i=0;stDraw()}
 
-function skGen(){var s=document.getElementById('skSubj').value,t=document.getElementById('skTopic').value.trim(),e=document.getElementById('skExam').value,l=document.getElementById('skLevel').value;if(!s||!t){return}var P=[
-{n:1,t:'Riassunto strutturato',p:'Sei un professore di '+s+' per studenti di '+l+'. Riassumimi "'+t+'" in massimo 400 parole per concetti chiave. Evidenzia date, nomi e definizioni.'},
-{n:2,t:'Flashcard per ripasso',p:'Crea 15 flashcard DOMANDA/RISPOSTA su "'+t+'" ('+s+', '+l+'), dalla più facile alla più difficile. Aggiungi 3 domande trabocchetto.'},
-{n:3,t:'Quiz di autovalutazione',p:'Crea 8 domande a risposta multipla (4 opzioni) su "'+t+'" ('+s+', '+l+'). Alla fine le risposte corrette con breve spiegazione.'},
-{n:4,t:'Mappa concettuale',p:'Crea una mappa concettuale testuale di "'+t+'" ('+s+'). Usa frecce (→) per cause/effetti e trattini per i sotto-concetti, max 3 livelli. Livello '+l+'.'},
-{n:5,t:'Simulazione '+e,p:'Sei il mio professore di '+s+'. Simula un\''+e+' su "'+t+'" per '+l+'. Domande una alla volta; dopo ogni risposta dimmi cosa va bene, cosa manca e che voto. Inizia!'}];
-var h='';P.forEach(function(p){h+='<div class="sk-card" onclick="skCopy(this)"><b class="fz-num" style="min-width:1.2em">'+p.n+'</b><div class="min0"><h4 class="fz-body" style="font-weight:800">'+p.t+'</h4><p class="fz-small" style="opacity:.92">'+p.p+'</p></div></div>'});document.getElementById('skResults').innerHTML=h}
-function skCopy(el){var t=el.querySelector('p').textContent;copyTxt(t);el.classList.add('copied');setTimeout(function(){el.classList.remove('copied')},1400)}
 
 var agS=[false,false,false,false];var agMsg=["Email con PDF ricevuta!","Testo estratto: 3 pagine, 1.200 parole","AI ha generato il riassunto: 10 punti chiave in 150 parole","Notifica inviata su Telegram! Il riassunto è sul tuo telefono."];
 function agToggle(el,i){agS[i]=!agS[i];el.classList.toggle('on',agS[i]);var r=document.getElementById('agResult');var last=-1;agS.forEach(function(s,j){if(s)last=j});if(agS.every(function(s){return s})){r.innerHTML='<b style="color:#2ECC71">AUTOMAZIONE COMPLETA!</b> Da email a riassunto sul telefono — tutto automatico, zero codice!'}else if(last>=0){r.innerHTML='<b>Step '+(last+1)+':</b> '+agMsg[last]}else{r.textContent='Clicca sui nodi per attivare ogni step!'}}
