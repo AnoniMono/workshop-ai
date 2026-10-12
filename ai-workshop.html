@@ -1497,6 +1497,41 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 #sAU2 .au2{align-items:center}#sAU2 .au2-s{padding:.75em .9em}#sAU2 .au2-s span{font-size:clamp(1.05rem,1.6vw,1.3rem)}#sAU2 .au2-panel{padding:1.3em 1.5em;gap:.8em}
 #sAU2 .au-warn div,#sAU2 .au-ck button{font-size:clamp(1rem,1.45vw,1.18rem)}#sAU2 .au-pr{font-size:clamp(.95rem,1.35vw,1.12rem)}#sAU2 .au-tool p{font-size:.95rem}#sAU2 .au-qa .in{font-size:1.05rem}
 @media (max-height:800px){#sAU1 .au-n span{display:none}#sAU1 .au-data{min-height:7em}#sAU2 .au2-s{padding:.45em .7em}#sAU2 .au2-s{padding:.35em .6em}#sAU2 .au-tool p{font-size:.8rem}}
+/* slide: MCP */
+#sMCP.current{height:100svh}
+.mc-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.2fr);gap:clamp(1rem,3vw,2.4rem);align-items:center}
+@media (max-width:900px){.mc-stage{grid-template-columns:1fr}#sMCP.current{height:auto}}
+.mc-left,.mc-right{display:flex;flex-direction:column;gap:.7em;min-width:0}
+.mc-hub{width:100%;max-height:44vh;display:block}
+.mc-hub .ln{stroke:#CBD5E0;stroke-width:3;stroke-dasharray:6 6;transition:stroke .3s}
+.mc-hub .ln.on{stroke:var(--orange);stroke-dasharray:none;stroke-width:4}
+.mc-hub .nd circle{fill:#fff;stroke:#E2E8F0;stroke-width:3;transition:stroke .3s,fill .3s}
+.mc-hub .nd.on circle{stroke:var(--orange);fill:#FFF5F0}
+.mc-hub .nd text{font-family:'Nunito Sans',sans-serif;font-weight:800;text-anchor:middle}
+.mc-hub .core circle{fill:#D97757}
+.mc-vs{display:grid;grid-template-columns:1fr 1fr;gap:.5em}
+.mc-vs div{background:#fff;border:2px solid var(--border);border-radius:14px;padding:.6em .8em;display:flex;flex-direction:column;gap:.2em}
+.mc-vs div.on{border-color:#D97757;box-shadow:0 0 0 4px rgba(217,119,87,.15)}
+.mc-vs b{font-family:var(--ff-head);font-size:clamp(1rem,1.5vw,1.2rem);color:var(--navy)}
+.mc-vs span{font-size:clamp(.85rem,1.2vw,1rem);color:var(--gray);line-height:1.4}
+.mc-chat{background:#fff;border:2px solid var(--border);border-radius:18px;padding:.9em 1em;display:flex;flex-direction:column;gap:.55em;min-height:16em;font-size:clamp(.9rem,1.3vw,1.05rem)}
+.mc-u{align-self:flex-end;max-width:90%;background:var(--navy);color:#fff;border-radius:16px 16px 4px 16px;padding:.55em .85em;line-height:1.45}
+.mc-tool{display:flex;flex-direction:column;gap:.15em;border-left:4px solid var(--orange);background:#FFF8F3;border-radius:0 10px 10px 0;padding:.4em .7em;animation:pvIn .4s ease-out}
+.mc-tool b{font-family:var(--ff-body);font-weight:800;color:var(--navy);font-size:.92em}
+.mc-tool b code{font-family:ui-monospace,Consolas,monospace;font-size:.95em;color:#C2613F}
+.mc-tool span{color:var(--gray);font-size:.9em}
+.mc-perm{display:flex;flex-direction:column;gap:.4em;border:2px solid #F5B041;background:#FFFAEB;border-radius:12px;padding:.55em .8em;animation:pvIn .4s ease-out}
+.mc-perm p{margin:0;font-weight:700;color:var(--navy)}
+.mc-perm div{display:flex;gap:.4em}
+.mc-perm button{font:700 .9rem var(--ff-head);border:none;border-radius:10px;padding:.45em .9em;cursor:pointer}
+.mc-ok{background:#2ECC71;color:#fff}.mc-no{background:#EDF2F7;color:var(--navy)}
+.mc-a{display:grid;grid-template-columns:1.9em minmax(0,1fr);gap:.5em;align-items:start;animation:pvIn .4s ease-out}
+.mc-a i{font-style:normal;width:1.9em;height:1.9em;border-radius:50%;background:#D97757;color:#fff;display:flex;align-items:center;justify-content:center;font-size:.9rem}
+.mc-a p{margin:0;color:var(--navy);line-height:1.45}
+.mc-hint{margin:auto;color:var(--gray);font-weight:700;text-align:center}
+.mc-foot{margin:0;font-size:clamp(.82rem,1.15vw,.95rem);color:var(--gray);line-height:1.45;background:#fff;border:2px solid var(--border);border-radius:12px;padding:.5em .9em}
+.mc-foot b{color:var(--navy)}
+@media (max-height:800px){#sMCP .mc-vs span{display:none}#sMCP .mc-chat{min-height:12em;font-size:.88rem}#sMCP .mc-hub{max-height:36vh}}
 /* badge extra per i pop-up */
 .pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
 .scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
@@ -2124,6 +2159,26 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
     <div class="au2-panel" id="au2Panel"></div>
   </div>
   <div class="au-demo" id="auDemo"></div>
+</section>
+
+<!-- 21c MCP: l'AI che usa i vostri strumenti -->
+<section class="slide darktext s-light" data-section="Automatizzare" id="sMCP">
+  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">MCP: diamo le mani all'AI</h2><span class="au-rule">come una presa <b>USB-C</b>: un attacco, tanti strumenti</span></div>
+  <div class="mc-stage">
+    <div class="mc-left">
+      <svg class="mc-hub" id="mcHub" viewBox="0 0 400 384" aria-label="Claude collegato con MCP a Zapier, Gmail, Drive, Slack, Calendario e Notion"></svg>
+      <div class="mc-vs">
+        <div><b>⚙️ Automazione</b><span>«Quando X → fai Y». Il percorso lo decidete voi prima, ed è sempre uguale.</span></div>
+        <div class="on"><b>🤖 Agente con MCP</b><span>Glielo chiedete a parole. L'AI sceglie da sola quali strumenti usare, e vi chiede il permesso.</span></div>
+      </div>
+    </div>
+    <div class="mc-right">
+      <div class="au-tabs" id="mcTabs"></div>
+      <div class="mc-chat" id="mcChat"></div>
+      <div class="pv-row"><button class="btn" id="mcGo" onclick="mcGo()">▶ Invia la richiesta</button><button class="btn ghost" onclick="mcReset()">↺ Ricomincia</button></div>
+    </div>
+  </div>
+  <p class="mc-foot">🔌 <b>MCP</b> (Model Context Protocol) è uno standard aperto presentato da Anthropic nel 2024. <b>Zapier</b> ha un server MCP che collega Claude a migliaia di app; anche <b>Make</b> e <b>n8n</b> lo supportano. In Claude si attiva da <b>Impostazioni → Connettori</b>.</p>
 </section>
 
 <!-- 22 DEMO -->
@@ -4152,17 +4207,17 @@ function stAgain(){var D=ST.demo;D.q=D.miss;D.miss=[];D.i=0;stDraw()}
 /* ===== slide "Come funziona un'automazione": quattro esempi di lavoro, i dati passano da un passo all'altro ===== */
 var AU_T={trig:['⚡ Inizio','#F39C12'],rule:['📏 Regola fissa','#5B6B8C'],ai:['🧠 AI','#8E44AD'],act:['⚙️ Azione','#00A6C8'],hum:['👤 Persona','#2ECC71']};
 var AU_S=[
- {k:'👩‍🏫 Email dei genitori',sit:'Una prof riceve ogni giorno <b>decine di email</b> da genitori: assenze, compiti, colloqui.',note:'L\'AI fa la parte noiosa: leggere, riassumere, preparare una bozza. <b>La risposta la manda la prof.</b>',st:[
-  {t:'trig',b:'Arriva un\'email',s:'nella casella della scuola',tool:'Gmail / Outlook',d:'<pre>Da: maria.rossi@email.it\nOggetto: Luca\n\nBuongiorno prof, Luca sarà assente da lunedì a mercoledì per una visita medica. Può dirmi cosa recuperare per la verifica di giovedì? Grazie, Maria Rossi</pre>'},
-  {t:'rule',b:'Filtra',s:'solo i genitori della classe, non le newsletter',tool:'Filtro',d:'<pre>✓ Il mittente è nell\'elenco dei genitori della 3ªB\n→ l\'email continua</pre>'},
-  {t:'ai',b:'Capisce e riassume',s:'chi, cosa, quanto è urgente',tool:'Claude / ChatGPT',d:'<pre>Studente: Luca Rossi\nTipo: assenza + compiti da recuperare\nUrgenza: media (verifica giovedì)\nRiassunto: assente lun–mer, chiede cosa studiare</pre>'},
-  {t:'act',b:'Organizza',s:'riga nel foglio «Comunicazioni» e bozza di risposta',tool:'Google Fogli + Gmail',d:'<div class="row2"><div class="hd">Data</div><div class="hd">Studente</div><div class="hd">Tipo</div><div class="hd">Urgenza</div><div>12/10</div><div>Luca Rossi</div><div>Assenza</div><div>Media</div></div><pre>\nBozza: «Gentile signora Rossi, grazie per l\'avviso. Per giovedì Luca può ripassare il capitolo 4…»</pre>'},
-  {t:'hum',b:'Controlli e invii',s:'la bozza non parte da sola',tool:'Tu',d:'<pre>📝 Bozza pronta in Gmail.\nLa leggi, la correggi se serve, premi Invia.</pre>'}]},
- {k:'👩‍🏫 Compiti consegnati',sit:'Trenta compiti da correggere, con <b>la stessa griglia di valutazione</b> ogni volta.',note:'L\'AI fa una prima lettura e propone un feedback. <b>Il voto lo decide sempre la prof.</b>',st:[
-  {t:'trig',b:'Uno studente consegna',s:'il compito su Google Moduli o Classroom',tool:'Moduli / Classroom',d:'<pre>Giulia B. · domanda 3:\n«La fotosintesi avviene nei mitocondri e produce anidride carbonica…»</pre>'},
-  {t:'ai',b:'Confronta con la griglia',s:'la tua griglia, criterio per criterio',tool:'Claude / ChatGPT',d:'<pre>Contenuto: 2/4 · confonde cloroplasti e mitocondri\nChiarezza: 3/3\nFeedback proposto: «Rileggi dove avviene la fotosintesi e cosa produce: l\'hai scambiata con la respirazione.»</pre>'},
-  {t:'act',b:'Prepara il feedback',s:'un documento per ogni studente',tool:'Google Documenti',d:'<pre>📄 Feedback_GiuliaB creato nella cartella\n«3ªB – Verifica di scienze»</pre>'},
-  {t:'hum',b:'Tu decidi il voto',s:'l\'AI suggerisce, non valuta',tool:'Tu',d:'<pre>⚠️ Il voto lo metti tu.\nL\'AI ti risparmia la prima lettura e ti dà un feedback da personalizzare.</pre>'}]},
+ {k:'📨 Richieste dei clienti',sit:'Il servizio clienti riceve <b>centinaia di email al giorno</b>: resi, ordini in ritardo, domande sui prodotti.',note:'L\'AI legge, smista e prepara la bozza. <b>La risposta la manda una persona.</b>',st:[
+  {t:'trig',b:'Arriva un\'email',s:'nella casella assistenza@',tool:'Gmail / Outlook',d:'<pre>Da: giulia.verdi@email.it\nOggetto: ordine 48213\n\nBuongiorno, ho ordinato le scarpe il 2 ottobre ma non sono ancora arrivate. Mi servono per sabato. Potete aiutarmi?</pre>'},
+  {t:'rule',b:'Filtra',s:'via spam e newsletter',tool:'Filtro',d:'<pre>✓ Non è spam, contiene un numero d\'ordine\n→ l\'email continua</pre>'},
+  {t:'ai',b:'Capisce e classifica',s:'argomento, ordine, urgenza, tono',tool:'Claude / ChatGPT',d:'<pre>Argomento: spedizione in ritardo\nOrdine: 48213\nUrgenza: alta (le servono entro sabato)\nTono: preoccupato, non arrabbiato</pre>'},
+  {t:'act',b:'Apre il ticket',s:'nel gestionale, con la bozza di risposta',tool:'Zendesk / HubSpot',d:'<div class="row2"><div class="hd">Ticket</div><div class="hd">Ordine</div><div class="hd">Tipo</div><div class="hd">Urgenza</div><div>#9921</div><div>48213</div><div>Spedizione</div><div>Alta</div></div><pre>\nBozza: «Gentile Giulia, ci scusiamo per il ritardo. Il suo pacco è partito ieri e arriverà venerdì…»</pre>'},
+  {t:'hum',b:'L\'operatore controlla',s:'e invia la risposta',tool:'Tu',d:'<pre>📝 Ticket pronto con la bozza.\nL\'operatore verifica la spedizione, corregge e invia.</pre>'}]},
+ {k:'🧑‍💼 Candidature',sit:'Per una posizione aperta arrivano <b>200 curriculum</b> da leggere uno per uno.',note:'L\'AI fa una prima scheda di ogni CV. <b>Chi chiamare al colloquio lo decide una persona</b>: l\'AI può avere pregiudizi.',st:[
+  {t:'trig',b:'Arriva una candidatura',s:'dal modulo «Lavora con noi»',tool:'Modulo web',d:'<pre>📎 CV_Marco_Neri.pdf\nPosizione: Addetto marketing</pre>'},
+  {t:'ai',b:'Legge il CV',s:'esperienza e competenze rispetto ai requisiti',tool:'Claude / ChatGPT',d:'<pre>Esperienza: 3 anni social media\nRequisiti: Instagram ✓ · Google Ads ✓ · Inglese B2 ✓ · Analytics ✗\nNote: ha gestito campagne per 2 negozi</pre>'},
+  {t:'act',b:'Compila la scheda',s:'riga nel foglio dei candidati',tool:'Excel / Google Fogli',d:'<div class="row2"><div class="hd">Candidato</div><div class="hd">Esperienza</div><div class="hd">Requisiti</div><div class="hd">Stato</div><div>Marco Neri</div><div>3 anni</div><div>3 su 4</div><div>Da valutare</div></div>'},
+  {t:'hum',b:'HR decide',s:'chi chiamare al colloquio',tool:'Tu',d:'<pre>👤 La responsabile HR legge le schede e i CV,\ne sceglie chi incontrare.</pre>'}]},
  {k:'💼 Fatture',sit:'In ufficio arrivano <b>fatture in PDF</b> da copiare a mano in un foglio Excel.',note:'Il lavoro di copia lo fa l\'automazione, la regola dei 1.000 € avvisa chi deve sapere. <b>Nessun pagamento parte da solo.</b>',st:[
   {t:'trig',b:'Arriva una fattura',s:'PDF allegato a un\'email',tool:'Outlook',d:'<pre>📎 Fattura_2026_118.pdf\nda: Cartoleria Bianchi srl</pre>'},
   {t:'ai',b:'Legge il PDF',s:'fornitore, data, importo, scadenza',tool:'Claude / ChatGPT',d:'<pre>Fornitore: Cartoleria Bianchi srl\nData: 08/10/2026\nImporto: 1.240,00 €\nScadenza: 07/11/2026</pre>'},
@@ -4185,13 +4240,53 @@ function auDraw(){var S=AU_S[AU.s],i=AU.i,h='';S.st.forEach(function(p,k){var T=
 function auStep(){var n=AU_S[AU.s].st.length;if(AU.i>=n-1){AU.i=-1;auDraw();return}AU.i++;auDraw();if(AU.i>=n-1&&AU.timer){clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent='↺ Ricomincia'}}
 function auPlay(){if(AU.timer){clearInterval(AU.timer);AU.timer=null;G('auPlay').textContent='▶ Riprendi';return}if(AU.i>=AU_S[AU.s].st.length-1)AU.i=-1;G('auPlay').textContent='⏸ Pausa';auStep();AU.timer=setInterval(auStep,2600)}
 
+/* ===== slide MCP: Claude usa gli strumenti dell'azienda, chiedendo il permesso ===== */
+var MC_N=[['zap','⚡','Zapier',200,48],['gmail','✉️','Gmail',340,120],['drive','📁','Drive',340,250],['slack','💬','Slack',200,318],['cal','📅','Calendario',60,250],['notion','📝','Notion',60,120]];
+var MC_S=[{k:'💶 Fatture → Slack',q:'Trova le fatture arrivate a ottobre sopra i 1.000 € e manda un riepilogo a Laura su Slack.',st:[
+   {n:'gmail',f:'gmail.cerca_email',s:'«fattura» · ottobre 2026 → 7 email con PDF'},
+   {n:null,f:'legge i 7 PDF',s:'2 fatture sopra 1.000 €: Cartoleria Bianchi 1.240 €, Rossi Arredi 3.180 €'},
+   {n:'slack',f:'slack.invia_messaggio (via Zapier)',s:'a: Laura · «Fatture di ottobre sopra 1.000 €: …»',perm:'Posso mandare questo messaggio a Laura su Slack?'}],
+   a:'Fatto! Ho trovato 7 fatture di ottobre: 2 superano i 1.000 € (totale 4.420 €). Ho mandato il riepilogo a Laura su Slack.'},
+ {k:'📅 Riunione',q:'Fissa una riunione di mezz\'ora con il team marketing giovedì pomeriggio e manda l\'ordine del giorno.',st:[
+   {n:'cal',f:'calendario.cerca_orari_liberi',s:'giovedì 14–18 · 4 persone → libero alle 15:00'},
+   {n:'drive',f:'drive.leggi_documento',s:'«Piano marketing Q4» → 3 punti aperti'},
+   {n:'cal',f:'calendario.crea_evento',s:'giovedì 15:00–15:30 · team marketing',perm:'Posso creare l\'evento e invitare 4 persone?'},
+   {n:'gmail',f:'gmail.invia_email',s:'ordine del giorno con i 3 punti aperti'}],
+   a:'Ho fissato la riunione giovedì alle 15:00 (libero per tutti) e mandato l\'ordine del giorno con i 3 punti aperti del piano Q4.'},
+ {k:'📁 Progetto → Notion',q:'Leggi i documenti del progetto Alfa su Drive, riassumili e crea le attività su Notion.',st:[
+   {n:'drive',f:'drive.cerca_file',s:'cartella «Progetto Alfa» → 4 documenti'},
+   {n:null,f:'legge e riassume',s:'scadenza 15 dicembre · 5 attività aperte · 2 rischi'},
+   {n:'notion',f:'notion.crea_pagine (via Zapier)',s:'5 attività con responsabile e scadenza',perm:'Posso creare 5 pagine nel database «Attività» di Notion?'}],
+   a:'Ecco il riassunto del progetto Alfa (scadenza 15 dicembre, 2 rischi da seguire) e le 5 attività create su Notion, ognuna con responsabile e scadenza.'}];
+var MC={s:0,i:-1,wait:false,timer:null};
+function mcInit(){if(!G('mcTabs'))return;G('mcTabs').innerHTML=MC_S.map(function(s,i){return '<button class="au-tab" onclick="mcPick('+i+')">'+s.k+'</button>'}).join('');mcPick(0)}
+function mcHub(on){var h='';MC_N.forEach(function(n){h+='<line class="ln'+(on===n[0]?' on':'')+'" x1="200" y1="184" x2="'+n[3]+'" y2="'+n[4]+'"/>'});
+  MC_N.forEach(function(n){h+='<g class="nd'+(on===n[0]?' on':'')+'"><circle cx="'+n[3]+'" cy="'+n[4]+'" r="34"/><text x="'+n[3]+'" y="'+(n[4]+2)+'" font-size="22" dominant-baseline="central">'+n[1]+'</text><text x="'+n[3]+'" y="'+(n[4]+50)+'" font-size="13" fill="#4A5568">'+n[2]+'</text></g>'});
+  h+='<g class="core"><circle cx="200" cy="184" r="46"/><text x="200" y="178" text-anchor="middle" font-size="26" fill="#fff">✳</text><text x="200" y="204" text-anchor="middle" font-size="14" font-weight="800" fill="#fff" font-family="Nunito Sans,sans-serif">Claude</text></g>';
+  h+='<text x="200" y="148" text-anchor="middle" font-size="11" font-weight="800" fill="#D97757" font-family="Nunito Sans,sans-serif" letter-spacing="1">MCP</text>';G('mcHub').innerHTML=h}
+function mcPick(s){MC.s=s;[].forEach.call(document.querySelectorAll('#mcTabs .au-tab'),function(b,k){b.classList.toggle('on',k===s)});mcReset()}
+function mcReset(){clearTimeout(MC.timer);MC.i=-1;MC.wait=false;G('mcGo').disabled=false;G('mcGo').textContent='▶ Invia la richiesta';mcDraw()}
+function mcDraw(){var S=MC_S[MC.s],h='<div class="mc-u">'+esc(S.q)+'</div>',on=null;
+  if(MC.i<0)h+='<p class="mc-hint">Premete ▶: Claude deciderà da solo quali strumenti usare.</p>';
+  for(var k=0;k<=Math.min(MC.i,S.st.length-1);k++){var p=S.st[k];if(k===MC.i)on=p.n;
+    h+='<div class="mc-tool"><b>'+(p.n?'🔌 Usa <code>'+p.f+'</code>':'🧠 '+p.f)+'</b><span>'+p.s+'</span></div>';
+    if(p.perm&&k===MC.i&&MC.wait)h+='<div class="mc-perm"><p>✋ '+p.perm+'</p><div><button class="mc-ok" onclick="mcAllow()">Consenti</button><button class="mc-no" onclick="mcDeny()">Non ora</button></div></div>';
+    if(p.perm&&(k<MC.i||!MC.wait))h+='<div class="mc-tool" style="border-left-color:#2ECC71;background:#F0FBF5"><b>✓ Permesso concesso da voi</b></div>'}
+  if(MC.i>=S.st.length)h+='<div class="mc-a"><i>✳</i><p>'+S.a+'</p></div>';
+  G('mcChat').innerHTML=h;mcHub(MC.i<S.st.length?on:null)}
+function mcNext(){var S=MC_S[MC.s];if(MC.wait)return;MC.i++;if(MC.i<S.st.length&&S.st[MC.i].perm){MC.wait=true;mcDraw();return}mcDraw();
+  if(MC.i<S.st.length)MC.timer=setTimeout(mcNext,1700);else{G('mcGo').textContent='✓ Completato';G('mcGo').disabled=true}}
+function mcGo(){if(MC.i>=0)return;G('mcGo').disabled=true;G('mcGo').textContent='Claude sta lavorando…';mcNext()}
+function mcAllow(){MC.wait=false;mcDraw();MC.timer=setTimeout(mcNext,900)}
+function mcDeny(){MC.wait=false;clearTimeout(MC.timer);var S=MC_S[MC.s];G('mcChat').insertAdjacentHTML('beforeend','<div class="mc-a"><i>✳</i><p>Va bene, mi fermo qui: non ho mandato niente. Volete che cambi qualcosa prima?</p></div>');G('mcGo').textContent='Fermato da voi';mcHub(null)}
+
 /* ===== slide "Costruiamone una: 5 passi" ===== */
 /* quando avremo l'automazione vera da mostrare, mettere qui il link (video, pagina, flusso) */
 var AU_DEMO={url:'',title:''};
 var AU2={i:0,ck:[0,0,0,0]};
 var AU2_S=['Trova il compito giusto','Scrivi «Quando… allora…»','Scegli lo strumento','Scrivi il prompt del passo AI','Prova, controlla, accendi'];
 var AU2_CK=['Lo faccio almeno ogni settimana','I passaggi sono sempre gli stessi','Le informazioni arrivano già in digitale (email, moduli, file)','Se sbaglia, me ne accorgo facilmente'];
-var AU2_Q=[['Quando','arriva un\'email con un allegato','qualcuno compila un modulo','ogni lunedì alle 8','viene caricato un file in una cartella'],['allora l\'AI','riassume il testo','estrae i dati importanti','scrive una bozza di risposta','classifica per argomento e urgenza'],['e poi','salva tutto in un foglio di calcolo','mi manda un messaggio','crea un\'attività in calendario','prepara un documento da controllare']];
+var AU2_Q=[['Quando','arriva un\'email da un cliente','qualcuno compila un modulo sul sito','ogni lunedì alle 8','viene caricato un file in una cartella'],['allora l\'AI','riassume il testo','estrae i dati importanti','scrive una bozza di risposta','classifica per argomento e urgenza'],['e poi','salva tutto in un foglio di calcolo','mi manda un messaggio','crea un\'attività in calendario','prepara un documento da controllare']];
 function au2Init(){G('au2Steps').innerHTML=AU2_S.map(function(s,i){return '<button class="au2-s" onclick="au2Go('+i+')"><b>'+(i+1)+'</b><span>'+s+'</span></button>'}).join('');au2Go(0);
   var d=G('auDemo');d.innerHTML='<span style="font-size:1.6rem">🎬</span><div><b>'+(AU_DEMO.title||'La nostra automazione dal vivo')+'</b><p>'+(AU_DEMO.url?'Guardiamola funzionare.':'La costruiamo insieme e la mostriamo qui.')+'</p></div>'+(AU_DEMO.url?'<a class="btn" href="'+AU_DEMO.url+'" target="_blank" rel="noopener">Apri la demo ↗</a>':'<span class="btn" style="opacity:.55;cursor:default">In arrivo</span>')}
 function au2Go(i){AU2.i=i;[].forEach.call(document.querySelectorAll('.au2-s'),function(b,k){b.classList.toggle('on',k===i)});var P=G('au2Panel'),h='<h3>'+(i+1)+'. '+AU2_S[i]+'</h3>';
@@ -4199,10 +4294,10 @@ function au2Go(i){AU2.i=i;[].forEach.call(document.querySelectorAll('.au2-s'),fu
     var n=AU2.ck.reduce(function(a,b){return a+b},0);h+='<p class="au-res" style="color:'+(n>=3?'#1E8E4F':n===2?'#B7791F':'#8A94A6')+'">'+(n>=3?'✅ Ottimo candidato!':n===2?'🤔 Forse: provate prima a mano':n?'❌ Meglio farlo a mano':'Pensate a un vostro compito e spuntate…')+'</p>'}
   if(i===1){h+='<p>Prima di aprire qualsiasi programma, si scrive una frase. Se non riuscite a scriverla, l\'automazione non è pronta.</p><div class="au-qa">'+AU2_Q.map(function(q,k){return '<label>'+q[0]+'</label><select class="in" id="au2Q'+k+'" onchange="au2Sent()">'+q.slice(1).map(function(o){return '<option>'+o+'</option>'}).join('')+'</select>'}).join('')+'</div><p class="au-sent" id="au2Sent"></p>'}
   if(i===2){h+='<p>Sono tutti «a blocchi»: niente codice. E tutti hanno un blocco <b>AI</b> che chiama ChatGPT, Claude o Gemini.</p><div class="au-tools">'+
-    [['Zapier','Il più semplice: si costruisce scegliendo dai menu. Piano gratuito per provare.','zapier.com'],['Make','Visivo: blocchi collegati come un diagramma. Piano gratuito per iniziare.','make.com'],['Power Automate','Se a scuola o in ufficio usate Microsoft 365, spesso è già incluso.','make.powerautomate.com'],['n8n','Open source: si può installare sul proprio server, così i dati restano vostri.','n8n.io']].map(function(t){return '<div class="au-tool"><b>'+t[0]+'</b><p>'+t[1]+'</p><a href="https://'+t[2]+'" target="_blank" rel="noopener">'+t[2]+' ↗</a></div>'}).join('')+'</div>'}
+    [['Zapier','Il più semplice: si costruisce scegliendo dai menu. Piano gratuito per provare.','zapier.com'],['Make','Visivo: blocchi collegati come un diagramma. Piano gratuito per iniziare.','make.com'],['Power Automate','Se in azienda usate Microsoft 365, spesso è già incluso.','make.powerautomate.com'],['n8n','Open source: si può installare sul proprio server, così i dati restano vostri.','n8n.io']].map(function(t){return '<div class="au-tool"><b>'+t[0]+'</b><p>'+t[1]+'</p><a href="https://'+t[2]+'" target="_blank" rel="noopener">'+t[2]+' ↗</a></div>'}).join('')+'</div>'}
   if(i===3){h+='<p>È la ricetta della slide 14, con una differenza: <b>la risposta la legge un programma, non una persona</b>. Il formato deve essere rigido, sempre uguale.</p><div class="au-pr">'+
-    [['#FF6B35','Sei l\'assistente di segreteria di una scuola.'],['#00A6C8','Ricevi email dei genitori degli studenti della 3ªB.'],['#2ECC71','Leggi l\'email e capisci chi scrive, di cosa si tratta e quanto è urgente.'],['#8E44AD','Rispondi SOLO con JSON con i campi: studente, tipo (assenza / compiti / colloquio / altro), urgenza (bassa / media / alta), riassunto (massimo 20 parole).'],['#E67E22','Se l\'email non riguarda uno studente, metti tipo = altro.']].map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ')+'</div><p>💡 Così il passo dopo sa sempre dove trovare <b>studente</b> e <b>urgenza</b>, e può scriverli nel foglio.</p>'}
-  if(i===4){h+='<div class="au-warn">'+[['🧪','<b>Prova con dati finti</b>, poi con pochi casi veri, poi accendila per tutti.'],['👤','<b>Una persona controlla</b> prima che qualcosa esca: email, voti, pagamenti.'],['🔒','<b>Privacy (GDPR):</b> dati di studenti, famiglie e clienti solo in strumenti approvati dalla scuola o dall\'azienda.'],['🧠','<b>L\'AI sbaglia</b>: date regole chiare per i casi strani («se non sei sicuro, segnalalo»).'],['📈','<b>Controllatela ogni tanto</b>: le automazioni si rompono in silenzio.']].map(function(w){return '<div><span>'+w[0]+'</span><span>'+w[1]+'</span></div>'}).join('')+'</div>'}
+    [['#FF6B35','Sei l\'assistente del servizio clienti di un negozio online.'],['#00A6C8','Ricevi le email dei clienti scritte alla casella assistenza@.'],['#2ECC71','Leggi l\'email e capisci di cosa si tratta, quale ordine riguarda e quanto è urgente.'],['#8E44AD','Rispondi SOLO con JSON con i campi: argomento (spedizione / reso / prodotto / altro), ordine, urgenza (bassa / media / alta), riassunto (massimo 20 parole).'],['#E67E22','Se nell\'email non c\'è un numero d\'ordine, metti ordine = null.']].map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ')+'</div><p>💡 Così il passo dopo sa sempre dove trovare <b>ordine</b> e <b>urgenza</b>, e può aprire il ticket giusto.</p>'}
+  if(i===4){h+='<div class="au-warn">'+[['🧪','<b>Prova con dati finti</b>, poi con pochi casi veri, poi accendila per tutti.'],['👤','<b>Una persona controlla</b> prima che qualcosa esca: email ai clienti, pagamenti, decisioni sulle persone.'],['🔒','<b>Privacy (GDPR):</b> dati di clienti e dipendenti solo in strumenti approvati dall\'azienda.'],['🧠','<b>L\'AI sbaglia</b>: date regole chiare per i casi strani («se non sei sicuro, segnalalo»).'],['📈','<b>Controllatela ogni tanto</b>: le automazioni si rompono in silenzio.']].map(function(w){return '<div><span>'+w[0]+'</span><span>'+w[1]+'</span></div>'}).join('')+'</div>'}
   P.innerHTML=h;P.style.animation='none';P.offsetHeight;P.style.animation='';if(i===1)au2Sent()}
 function au2Ck(k){AU2.ck[k]=AU2.ck[k]?0:1;au2Go(0)}
 function au2Sent(){var v=function(k){return G('au2Q'+k).value};G('au2Sent').innerHTML='<em>Quando</em> '+v(0)+', <em>allora l\'AI</em> '+v(1)+' <em>e poi</em> '+v(2)+'.'}
@@ -4220,7 +4315,7 @@ function copyTxt(t){try{navigator.clipboard.writeText(t)}catch(e){try{var ta=doc
 function flash(el){var bg=el.style.background;el.style.background='rgba(46,204,113,.35)';setTimeout(function(){el.style.background=bg},1100)}
 
 
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit();auInit()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit()}
 fdBoot();
 hsInit();
 n4Init();
