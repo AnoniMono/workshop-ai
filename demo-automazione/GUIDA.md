@@ -1,16 +1,15 @@
-# Demo dal vivo: l'automazione «Richieste dei clienti»
+# Demo dal vivo: «Il briefing del mattino»
 
 È l'automazione delle slide 16 e 17, costruita davvero. **Costa zero**.
 
-- **L'automazione** (slide 16) gira sul vostro account Google: Gmail + Fogli Google + uno script (Apps Script) + l'AI gratuita di Google (Gemini).
-- **La parte MCP** (slide 17) usa Claude con i connettori di Gmail, Google Drive e Calendario, inclusi in Claude Pro.
+- **L'automazione** (slide 16): ogni mattina un piccolo script legge la vostra agenda e le email della notte, l'AI gratuita di Google (Gemini) le mette in ordine, e vi arriva **una pagina** con le priorità, le riunioni e a chi rispondere.
+- **La parte MCP** (slide 17): le stesse cose, ma chieste **a parole a Claude**, con i connettori di Gmail, Calendario e Drive inclusi in Claude Pro.
 
 ```
-Email ad assistenza  →  è pubblicità?  →  Gemini classifica e scrive la bozza
-                     →  riga nel foglio «Registro»  →  bozza in Gmail  →  la mandate voi
+⏰ 7:30 → 📅 agenda + ✉️ email → 📏 via newsletter e notifiche → 🧠 Gemini mette in ordine → 📨 il briefing nella vostra posta
 ```
 
-Tempo per prepararla la prima volta: circa 20 minuti.
+Tempo per prepararla la prima volta: circa 15 minuti.
 
 ---
 
@@ -19,73 +18,66 @@ Tempo per prepararla la prima volta: circa 20 minuti.
 1. Andate su **aistudio.google.com** con l'account Google della demo.
 2. Cliccate **Get API key** → **Create API key** e copiatela.
 
-Il piano gratuito basta per la demo. I limiti precisi li vedete in AI Studio.
+> ⚠️ La chiave non va mai nella presentazione o su GitHub: solo nelle impostazioni dello script (passo 2).
 
-> ⚠️ Non mettete la chiave nella presentazione o su GitHub: va solo nello script (passo 2).
+## 2. Lo script
 
-## 2. Il foglio e lo script
-
-1. Create un nuovo **Foglio Google** e chiamatelo «Richieste clienti».
-2. Menu **Estensioni → Apps Script**.
-3. Cancellate quello che c'è e incollate tutto il file `richieste-clienti.gs`. Salvate (💾).
-4. A sinistra: **⚙️ Impostazioni progetto → Proprietà script → Aggiungi proprietà**:
+1. Andate su **script.google.com** → **Nuovo progetto**. Chiamatelo «Briefing del mattino».
+2. Cancellate quello che c'è e incollate tutto il file `briefing-mattino.gs`. Salvate (💾).
+3. A sinistra: **⚙️ Impostazioni progetto → Proprietà script → Aggiungi proprietà**:
    - Proprietà: `GEMINI_API_KEY`
    - Valore: la chiave del passo 1
-5. Tornate al Foglio e ricaricate la pagina. Compare il menu **🤖 Automazione**.
-6. **🤖 Automazione → ⚙️ Prima configurazione**. Google chiede le autorizzazioni (Gmail e Fogli): **Consenti**.
-   - Se compare «Google non ha verificato questa app», cliccate **Avanzate → Vai a … (non sicuro)**. È normale: lo script è vostro.
-   - Si crea il foglio **Registro** e l'etichetta Gmail **AI-gestita**.
+4. In alto scegliete la funzione **briefing** e premete **▶ Esegui**.
+5. Google chiede le autorizzazioni (Gmail e Calendario): **Consenti**.
+   - Se compare «Google non ha verificato questa app»: **Avanzate → Vai a … (non sicuro)**. È normale: lo script è vostro.
+6. Dopo qualche secondo vi arriva l'email **«☀️ Il tuo briefing di oggi»**.
 
-## 3. Proviamola
+Per riceverlo ogni mattina: scegliete la funzione **accendi** e premete **▶ Esegui**. Arriverà tra le 7 e le 8 (è Google a decidere il minuto esatto). Per spegnerlo: funzione **spegni**.
 
-Da un **altro** indirizzo email (il vostro personale va benissimo) mandate all'account della demo le email qui sotto, poi **🤖 Automazione → ▶ Controlla le email adesso**.
+## 3. Prepariamo una mattina realistica
 
-**Pacco in ritardo** (urgenza alta)
-> Oggetto: ordine 48213
-> Buongiorno, ho ordinato le scarpe il 2 ottobre ma non sono ancora arrivate. Mi servono per sabato. Potete aiutarmi? Giulia
+L'account della demo deve sembrare quello di una persona occupata.
 
-**Cambio taglia** (urgenza media)
-> Oggetto: cambio scarpe
-> Salve, le scarpe dell'ordine 47950 sono un po' piccole. Posso cambiarle con il numero 42? Marco
+**Nel Calendario**, per il giorno della lezione, create 3–4 eventi con degli invitati (va bene anche un vostro secondo indirizzo):
 
-**Pubblicità** (si ferma alla regola, senza AI)
-> Oggetto: Primi su Google in 7 giorni!!!
-> Offerta imperdibile: porta il tuo sito primo su Google. Solo oggi 99 €!
+- 9:00 «Riunione vendite»
+- 11:30 «Call fornitore Alfa»
+- 14:00 «Colloquio candidato marketing»
+- 17:00 «Consiglio di amministrazione»
 
-Cosa deve succedere:
+**Da un altro indirizzo**, il giorno prima, mandate 5–6 email all'account della demo, per esempio:
 
-- nel **Registro** compaiono 2 righe, con l'urgenza colorata;
-- in **Gmail → Bozze** ci sono 2 risposte pronte;
-- la pubblicità ha l'etichetta *AI-gestita* ma nessuna riga e nessuna bozza.
+> **Budget Q4**: «Ciao, mi serve il tuo ok sul budget Q4 entro stasera, lo presento al CdA. Elena»
+> **Ritardo consegna**: «Buongiorno, purtroppo la consegna dei componenti slitterà di 5 giorni. Possiamo parlarne alla call? Fornitore Alfa»
+> **CV candidato**: «Ti allego il CV del candidato di domani alle 14. HR»
+> **Numeri settembre**: «Domani porto i numeri di settembre: siamo a −4%, soprattutto al Nord. Marco»
+> più un paio di email poco importanti (un invito a un webinar, una conferma d'ordine).
 
-Se volete che giri da sola: **🤖 Automazione → ⏱ Accendi il controllo ogni 5 minuti**. Per la demo in aula è meglio il pulsante «Controlla adesso», così non si aspetta.
+Poi lanciate **briefing** e guardate il risultato. Se volete cambiare il tono o il contenuto, modificate il `PROMPT` in cima allo script: è la ricetta della slide 14.
 
-## 4. La parte MCP: Claude lavora sul registro
+## 4. In aula
 
-In **Claude** (Pro): **Impostazioni → Connettori**, attivate **Gmail**, **Google Drive** e **Google Calendar** con lo stesso account Google della demo.
+1. **Slide 16:** fate vedere la simulazione, poi aprite la posta della demo e mostrate il briefing vero. Ancora meglio: aprite lo script e premete **▶ Esegui** davanti a tutti. In 10 secondi arriva l'email.
+2. **Slide 17 (MCP):** in **Claude → Impostazioni → Connettori** attivate **Gmail**, **Google Calendar** e **Google Drive** con lo stesso account. Poi, in una chat nuova:
+   - «Preparami il briefing di oggi: cosa conta, chi incontro, a chi devo rispondere.»
+   - «Tra 10 minuti vedo Marco: cosa ci siamo detti l'ultima volta e cosa devo sapere?»
+   - «Chi aspetta una mia risposta da più di 2 giorni? Prepara le bozze.»
 
-Poi, in una chat nuova, provate le tre richieste della slide 17:
+   Claude chiede il permesso prima di creare bozze o inviare: fatelo notare al pubblico.
 
-1. «Leggi il foglio *Richieste clienti* su Drive: quali richieste urgenti sono arrivate oggi? Prepara le risposte come bozze in Gmail.»
-2. «Fammi il riepilogo delle richieste di questa settimana e preparalo come email per il responsabile.»
-3. «Giulia Verdi ha scritto di nuovo: fissa una chiamata con lei domani mattina nel mio calendario.»
+> **La differenza da spiegare:** lo script lavora **da solo, ogni mattina, sempre uguale** (automazione). Claude con MCP lavora **quando glielo chiedete, su quello che chiedete** (agente). Servono tutti e due.
+> Per collegare Claude a migliaia di altre app (Slack, Trello, HubSpot…) c'è **Zapier MCP**: il piano gratuito ha 100 attività al mese.
 
-Claude chiede il permesso prima di creare bozze, inviare email o creare eventi. Mostratelo al pubblico: è il punto della slide.
+## ⚠️ Privacy: da dire sempre
 
-> Il connettore di Google Drive **legge** i fogli ma non li modifica: per scrivere nel registro c'è l'automazione.
-> Per collegare Claude a migliaia di altre app (Slack, Trello, HubSpot…) c'è **Zapier MCP**: il piano gratuito ha 100 attività al mese condivise con gli altri Zap.
-
-## 5. Prima della lezione
-
-- Mandate le email di prova **qualche minuto prima** e lasciatele *non lavorate*, così in aula premete «Controlla adesso» e il pubblico vede comparire righe e bozze.
-- Per ricominciare da zero: cancellate le righe del Registro (non l'intestazione), le bozze e l'etichetta *AI-gestita* dalle email.
-- **Privacy:** è un account di prova con dati finti. Con email vere di clienti servono strumenti approvati dall'azienda.
+- Con il **piano gratuito** di Gemini, Google può usare i dati inviati per migliorare i suoi servizi. Per la demo usate un **account di prova con dati finti**.
+- Per le email vere di un'azienda servono strumenti approvati dall'azienda (per esempio il piano a pagamento di Gemini o di Claude, o Copilot / Gemini già inclusi in Microsoft 365 / Google Workspace aziendale).
 
 ## Se qualcosa non va
 
 | Problema | Cosa fare |
 |---|---|
-| «Manca GEMINI_API_KEY» | Passo 2.4: il nome della proprietà deve essere esattamente `GEMINI_API_KEY`. |
-| Nessuna riga nuova | L'email deve essere nella **Posta in arrivo**, non in Promozioni o Social, e arrivata negli ultimi 2 giorni. Le email mandate da voi stessi vengono saltate. |
-| Errore 429 | Troppe richieste all'AI gratuita: lo script aspetta e riprova. Se succede spesso, mandate meno email insieme. |
+| «Manca GEMINI_API_KEY» | Passo 2.3: il nome della proprietà deve essere esattamente `GEMINI_API_KEY`. |
+| Il briefing è vuoto o dice «nessuna email» | Le email devono essere in **Posta in arrivo** (non Promozioni) e arrivate nelle ultime 24 ore. Quelle mandate da voi stessi vengono saltate. |
+| Errore 429 | Troppe richieste all'AI gratuita: lo script aspetta e riprova. Riprovate tra un minuto. |
 | Il modello non esiste più | In cima allo script cambiate `MODELLO` con un modello Flash elencato in AI Studio. |
