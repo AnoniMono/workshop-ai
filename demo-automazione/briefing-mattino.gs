@@ -5,7 +5,7 @@
  *   1. legge l'agenda di oggi (Google Calendar) e le email arrivate da ieri sera (Gmail)
  *   2. scarta newsletter, promozioni e notifiche (regola fissa, senza AI)
  *   3. l'AI (Gemini, piano gratuito) mette in ordine: priorità, riunioni, a chi rispondere
- *   4. vi manda il briefing via email: una pagina sola
+ *   4. vi manda il briefing su Telegram: un messaggio solo, sul telefono
  *
  * Non manda niente a nessun altro e non risponde a nessuno: le decisioni restano vostre.
  * Istruzioni complete in GUIDA.md (stessa cartella).
@@ -26,7 +26,7 @@ var PROMPT =
   'a chi rispondere e perché, e cosa può aspettare. ' +
   'Rispondi SOLO con JSON con i campi: saluto (una frase), priorita (massimo 3 frasi), ' +
   'riunioni (lista di {ora, titolo, preparare}), rispondere (lista di {chi, oggetto, perche}), aspettare (una frase). ' +
-  'Massimo 150 parole in tutto, frasi brevi. Ignora newsletter e notifiche. Non inventare: se un\'informazione manca, dillo.';
+  'Massimo 150 parole in tutto, frasi brevi: si legge sul telefono. Ignora newsletter e notifiche. Non inventare: se un\'informazione manca, dillo.';
 
 /** ▶ Il cuore dell'automazione. Si può lanciare a mano per la demo (Esegui) o dal timer. */
 function briefing() {
@@ -60,8 +60,8 @@ function briefing() {
   var b = chiediAGemini(dati);
   if (!b) { console.warn('L\'AI non ha risposto: riprova tra qualche minuto.'); return; }
 
-  // 4. ⚙️ vi manda il briefing
-  GmailApp.sendEmail(io, '☀️ Il tuo briefing di oggi', testoSemplice(b), { htmlBody: html(b, eventi.length, email.length), name: 'Il tuo briefing' });
+  // 4. ⚙️ vi manda il briefing su Telegram
+  inviaTelegram(messaggio(b, eventi.length, email.length));
 }
 
 function chiediAGemini(dati) {
@@ -85,26 +85,39 @@ function chiediAGemini(dati) {
   return null;
 }
 
-function lista(arr, fn) { return (arr || []).map(fn).join(''); }
-function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;'); }
+/* ---- Telegram ---- */
+function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
 
-function html(b, nEventi, nEmail) {
-  var t = function (x) { return '<p style="margin:16px 0 4px;font-weight:bold;color:#4A5568">' + x + '</p>'; };
-  return '<div style="font-family:Arial,sans-serif;max-width:560px;color:#1B2A4A;line-height:1.5">' +
-    '<h2 style="margin:0 0 4px">☀️ ' + esc(b.saluto || 'Buongiorno!') + '</h2>' +
-    '<p style="margin:0;color:#718096;font-size:13px">' + nEventi + ' riunioni · ' + nEmail + ' email lette per te</p>' +
-    t('🔴 Le priorità') + '<ul>' + lista(b.priorita, function (p) { return '<li>' + esc(p) + '</li>'; }) + '</ul>' +
-    t('📅 Le riunioni') + '<ul>' + lista(b.riunioni, function (r) { return '<li><b>' + esc(r.ora) + ' ' + esc(r.titolo) + '</b>: ' + esc(r.preparare) + '</li>'; }) + '</ul>' +
-    t('✉️ A chi rispondere') + '<ul>' + lista(b.rispondere, function (r) { return '<li><b>' + esc(r.chi) + '</b> · ' + esc(r.oggetto) + ': ' + esc(r.perche) + '</li>'; }) + '</ul>' +
-    t('🟢 Può aspettare') + '<p style="margin:0">' + esc(b.aspettare) + '</p>' +
-    '<p style="margin-top:20px;color:#A0AEC0;font-size:12px">Scritto da un\'AI: può sbagliare. Le decisioni restano tue.</p></div>';
+/** Il messaggio, in HTML semplice (Telegram accetta solo <b>, <i> e pochi altri). */
+function messaggio(b, nEventi, nEmail) {
+  var righe = function (arr, fn) { return (arr || []).map(fn).join('\n'); };
+  return '☀️ <b>' + esc(b.saluto || 'Buongiorno!') + '</b>\n<i>' + nEventi + ' riunioni · ' + nEmail + ' email lette per te</i>\n\n' +
+    '🔴 <b>Le priorità</b>\n' + righe(b.priorita, function (p) { return '• ' + esc(p); }) + '\n\n' +
+    '📅 <b>Le riunioni</b>\n' + righe(b.riunioni, function (r) { return '• <b>' + esc(r.ora) + ' ' + esc(r.titolo) + '</b>: ' + esc(r.preparare); }) + '\n\n' +
+    '✉️ <b>A chi rispondere</b>\n' + righe(b.rispondere, function (r) { return '• <b>' + esc(r.chi) + '</b> · ' + esc(r.oggetto) + ': ' + esc(r.perche); }) + '\n\n' +
+    '🟢 <b>Può aspettare</b>\n' + esc(b.aspettare) + '\n\n<i>Scritto da un\'AI: può sbagliare. Le decisioni restano tue.</i>';
 }
 
-function testoSemplice(b) {
-  return (b.saluto || 'Buongiorno!') + '\n\nPRIORITÀ\n- ' + (b.priorita || []).join('\n- ') +
-    '\n\nRIUNIONI\n' + lista(b.riunioni, function (r) { return '- ' + r.ora + ' ' + r.titolo + ': ' + r.preparare + '\n'; }) +
-    '\nA CHI RISPONDERE\n' + lista(b.rispondere, function (r) { return '- ' + r.chi + ' (' + r.oggetto + '): ' + r.perche + '\n'; }) +
-    '\nPUÒ ASPETTARE\n' + (b.aspettare || '');
+function inviaTelegram(testo) {
+  var p = PropertiesService.getScriptProperties(), token = p.getProperty('TELEGRAM_TOKEN'), chat = p.getProperty('TELEGRAM_CHAT_ID');
+  if (!token) throw new Error('Manca TELEGRAM_TOKEN: Impostazioni progetto → Proprietà script.');
+  if (!chat) throw new Error('Manca TELEGRAM_CHAT_ID: scrivete /start al vostro bot e lanciate collegaTelegram.');
+  var res = UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/sendMessage', {
+    method: 'post', contentType: 'application/json', muteHttpExceptions: true,
+    payload: JSON.stringify({ chat_id: chat, text: testo, parse_mode: 'HTML', disable_web_page_preview: true }) });
+  if (res.getResponseCode() !== 200) console.warn('Errore Telegram ' + res.getResponseCode() + ': ' + res.getContentText());
+}
+
+/** 🔗 Da lanciare una volta sola, DOPO aver scritto /start al vostro bot su Telegram: trova la vostra chat e la salva. */
+function collegaTelegram() {
+  var p = PropertiesService.getScriptProperties(), token = p.getProperty('TELEGRAM_TOKEN');
+  if (!token) throw new Error('Prima mettete TELEGRAM_TOKEN nelle Proprietà script.');
+  var r = JSON.parse(UrlFetchApp.fetch('https://api.telegram.org/bot' + token + '/getUpdates', { muteHttpExceptions: true }).getContentText());
+  var msg = (r.result || []).map(function (u) { return u.message; }).filter(Boolean).pop();
+  if (!msg) throw new Error('Nessun messaggio trovato: aprite il bot su Telegram, scrivete /start e rilanciate.');
+  p.setProperty('TELEGRAM_CHAT_ID', String(msg.chat.id));
+  inviaTelegram('✅ Collegato! Da domani il briefing arriva qui.');
+  console.log('Fatto: chat ' + msg.chat.id + ' collegata.');
 }
 
 /** ⏱ Accende il briefing automatico ogni mattina (tra le ORA e le ORA+1). */

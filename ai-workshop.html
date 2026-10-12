@@ -1548,6 +1548,11 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 #sAU1 .au-data{min-height:8em}#sAU1 .one-low{min-height:0;overflow:hidden}
 @media (max-height:800px){#sAU1 .bd-sent{font-size:.9rem;padding:.35em .8em}#sAU1 .au-pr{font-size:.8rem;padding:.55em .8em}#sAU1 .au-data{min-height:6.5em;font-size:.88rem}#sAU1 .au-demo{padding:.4em .9em}}
 /* slide: costruiamolo insieme */
+.su-tgc{background:#E6EBEF;border-radius:12px;padding:.7em;display:flex;flex-direction:column;gap:.4em}
+.su-tgc div{max-width:85%;border-radius:12px;padding:.4em .7em;line-height:1.4;font-size:.95em}
+.su-tgc .u{align-self:flex-end;background:#EFFDDE}.su-tgc .b{align-self:flex-start;background:#fff}
+.su-tgc code{font-family:ui-monospace,Consolas,monospace;font-size:.9em}
+.br-tg{background:#fff;border-left:4px solid #2AABEE}.br-bot{display:block;font-size:.8em;font-weight:800;color:#2AABEE;margin-bottom:.2em}
 #sSU.current{height:100svh}
 .su-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.5fr);gap:clamp(1rem,3vw,2.4rem);align-items:center}
 @media (max-width:900px){.su-stage{grid-template-columns:1fr}#sSU.current{height:auto}}
@@ -2197,7 +2202,7 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 <!-- 21 AUTOMAZIONE: il briefing del mattino -->
 <section class="slide darktext s-light" data-section="Automatizzare" id="sAU1">
   <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Un'automazione vera: il briefing del mattino</h2><span class="au-rule">«<b>Quando</b> succede questo → <b>fai</b> quello»</span></div>
-  <p class="bd-sent"><em>Ogni mattina alle 7:30</em> l'AI legge la tua agenda e le email arrivate nella notte, <em>scarta</em> il rumore e <em>ti manda una pagina</em>: cosa conta oggi.</p>
+  <p class="bd-sent"><em>Ogni mattina alle 7:30</em> l'AI legge la tua agenda e le email arrivate nella notte, <em>scarta</em> il rumore e <em>ti scrive su Telegram</em>: cosa conta oggi.</p>
   <div class="br-who"><span>👩‍💼 <b>Laura</b>, CEO di un'azienda di 40 persone</span><span>📅 4 riunioni oggi</span><span>✉️ 23 email non lette</span><span>⏱ 20 minuti per leggerle tutte</span></div>
   <div class="au-flow" id="auFlow"></div>
   <div class="one-low">
@@ -2216,7 +2221,7 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
   <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">MCP: diamo le mani all'AI</h2><span class="au-rule">come una presa <b>USB-C</b>: un attacco, tanti strumenti</span><span class="au-rule">lo stesso briefing, ora <b>a parole</b></span></div>
   <div class="mc-stage">
     <div class="mc-left">
-      <svg class="mc-hub" id="mcHub" viewBox="0 0 400 384" aria-label="Claude collegato con MCP a Zapier, Gmail, Calendario, Documenti, Fogli e Drive"></svg>
+      <svg class="mc-hub" id="mcHub" viewBox="0 0 400 384" aria-label="Claude collegato con MCP a Zapier, Gmail, Calendario, Telegram, Fogli e Drive"></svg>
       <div class="mc-vs">
         <div><b>⚙️ Automazione</b><span>«Quando X → fai Y». Il percorso lo decidete voi prima, ed è sempre uguale.</span></div>
         <div class="on"><b>🤖 Agente con MCP</b><span>Glielo chiedete a parole. L'AI sceglie da sola quali strumenti usare, e vi chiede il permesso.</span></div>
@@ -2228,7 +2233,7 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
       <div class="pv-row"><button class="btn" id="mcGo" onclick="mcGo()">▶ Invia la richiesta</button><button class="btn ghost" onclick="mcReset()">↺ Ricomincia</button></div>
     </div>
   </div>
-  <p class="mc-foot">🔌 <b>MCP</b> (Model Context Protocol) è uno standard aperto presentato da Anthropic nel 2024. Nella demo usiamo i connettori di Claude per <b>Gmail, Drive e Calendario</b>, da <b>Impostazioni → Connettori</b>. Per migliaia di altre app c'è <b>Zapier MCP</b> (gratis fino a 100 attività al mese); lo supportano anche <b>Make</b> e <b>n8n</b>.</p>
+  <p class="mc-foot">🔌 <b>MCP</b> (Model Context Protocol) è uno standard aperto presentato da Anthropic nel 2024. Nella demo usiamo i connettori di Claude per <b>Gmail, Drive e Calendario</b>, da <b>Impostazioni → Connettori</b>. Per <b>Telegram</b> e migliaia di altre app c'è <b>Zapier MCP</b> (gratis fino a 100 attività al mese); lo supportano anche <b>Make</b> e <b>n8n</b>.</p>
 </section>
 
 <!-- 21c2 IL BRIEFING CON CLAUDE: connettori, progetto, prompt, permessi -->
@@ -2249,7 +2254,7 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 
 <!-- 21d COME SI COSTRUISCE: il briefing del mattino, passo per passo -->
 <section class="slide darktext s-light" data-section="Automatizzare" id="sSU">
-  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">DAL VIVO</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Costruiamolo insieme: 15 minuti, zero euro</h2></div>
+  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">DAL VIVO</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Costruiamolo insieme: 20 minuti, zero euro</h2></div>
   <div class="su-stage">
     <div class="su-left">
       <div class="su-steps" id="suSteps"></div>
@@ -4291,20 +4296,20 @@ function stAgain(){var D=ST.demo;D.q=D.miss;D.miss=[];D.i=0;stDraw()}
 var AU_DEMO={url:'',title:''};
 var AU_T={trig:['⚡ Inizio','#F39C12'],rule:['📏 Regola fissa','#5B6B8C'],ai:['🧠 AI','#8E44AD'],act:['⚙️ Azione','#00A6C8'],hum:['👤 Persona','#2ECC71']};
 var AU_ST=[{t:'trig',b:'Ogni mattina',s:'alle 7:30, da sola',tool:'Timer'},{t:'act',b:'Raccoglie',s:'l\'agenda di oggi e le email della notte',tool:'Calendario + Gmail'},{t:'rule',b:'Via il rumore',s:'newsletter, promozioni, notifiche',tool:'Filtro'},
-  {t:'ai',b:'Mette in ordine',s:'priorità, riunioni, risposte',tool:'Gemini (gratis)'},{t:'act',b:'Ti scrive',s:'una pagina sola, nella posta',tool:'Gmail'},{t:'hum',b:'Tu decidi',s:'in 2 minuti, invece di 20',tool:'Tu'}];
+  {t:'ai',b:'Mette in ordine',s:'priorità, riunioni, risposte',tool:'Gemini (gratis)'},{t:'act',b:'Ti scrive',s:'un messaggio solo, sul telefono',tool:'Telegram'},{t:'hum',b:'Tu decidi',s:'in 2 minuti, invece di 20',tool:'Tu'}];
 var AU_D=['<pre>⏰ Martedì 14 ottobre, ore 7:30.\nNessuno preme niente: l\'automazione si sveglia da sola.</pre>',
   '<pre>📅 Oggi\n  9:00  Riunione vendite · Marco, Elena\n 11:30  Call con il fornitore Alfa\n 14:00  Colloquio · candidato Responsabile marketing\n 17:00  Consiglio di amministrazione\n\n✉️ 23 email non lette dalla sera prima</pre>',
   '<pre>✕ 14 scartate: newsletter, promozioni, notifiche automatiche\n✓ 9 email vere passano all\'AI</pre>',
   '<pre>{\n  "priorità": ["approvare il budget Q4 prima del CdA", "rispondere ad Alfa sul ritardo", "leggere il CV prima delle 14"],\n  "da_rispondere": 3,\n  "possono_aspettare": 6\n}</pre>',
-  '<div class="br-mail"><b>☀️ Buongiorno Laura: la tua giornata in 1 minuto</b>'+
+  '<div class="br-mail br-tg"><span class="br-bot">🤖 Il mio briefing · 7:31</span><b>☀️ Buongiorno Laura: la tua giornata in 1 minuto</b>'+
    '<p class="t">🔴 Prima delle 10</p><ul><li>Rispondi a <b>Elena</b>: aspetta l\'ok sul budget Q4, serve per il CdA di stasera.</li><li>Il fornitore <b>Alfa</b> segnala 5 giorni di ritardo: decidi prima della call delle 11:30.</li></ul>'+
    '<p class="t">📅 Le riunioni</p><ul><li><b>9:00 Vendite</b>: Marco porterà i numeri di settembre (−4%); l\'ultima volta avevate parlato di sconti.</li><li><b>14:00 Colloquio</b>: il CV è in allegato all\'email di HR di ieri.</li></ul>'+
    '<p class="t">🟢 Può aspettare</p><p>6 email informative, nessuna urgente.</p></div>',
   '<pre>👤 Laura legge il briefing col caffè, risponde a Elena e ad Alfa,\n   ed entra alla riunione delle 9 già preparata.\n\nL\'AI ha messo in ordine. Le decisioni restano sue.</pre>'];
 var AU={i:-1,timer:null};
 function auInit(){if(!G('auFlow'))return;
-  G('auPrompt').innerHTML=[['#FF6B35','Sei l\'assistente personale di una CEO molto impegnata.'],['#00A6C8','Ogni mattina ricevi la sua agenda di oggi e le email arrivate dalla sera prima.'],['#2ECC71','Dimmi cosa conta oggi: le 3 priorità, cosa preparare per ogni riunione, a chi rispondere e perché.'],['#8E44AD','Una pagina sola: massimo 150 parole, elenchi puntati, prima le cose urgenti.'],['#E67E22','Ignora newsletter e notifiche. Non inventare: se un\'informazione manca, dillo.']].map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ');
-  var d=G('auDemo');d.innerHTML='<span style="font-size:1.6rem">🎬</span><div><b>'+(AU_DEMO.title||'Ora la vediamo funzionare davvero')+'</b><p>'+(AU_DEMO.url?'Il briefing vero di stamattina.':'Gmail + Calendario + l\'AI gratuita di Google, collegati da un piccolo script. Costo: zero.')+'</p></div>'+(AU_DEMO.url?'<a class="btn" href="'+AU_DEMO.url+'" target="_blank" rel="noopener">Apri la demo ↗</a>':'<span class="btn" style="opacity:.55;cursor:default">In arrivo</span>');auDraw()}
+  G('auPrompt').innerHTML=[['#FF6B35','Sei l\'assistente personale di una CEO molto impegnata.'],['#00A6C8','Ogni mattina ricevi la sua agenda di oggi e le email arrivate dalla sera prima.'],['#2ECC71','Dimmi cosa conta oggi: le 3 priorità, cosa preparare per ogni riunione, a chi rispondere e perché.'],['#8E44AD','Un messaggio solo da leggere sul telefono: massimo 150 parole, elenchi puntati, prima le cose urgenti.'],['#E67E22','Ignora newsletter e notifiche. Non inventare: se un\'informazione manca, dillo.']].map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ');
+  var d=G('auDemo');d.innerHTML='<span style="font-size:1.6rem">🎬</span><div><b>'+(AU_DEMO.title||'Ora la vediamo funzionare davvero')+'</b><p>'+(AU_DEMO.url?'Il briefing vero di stamattina.':'Calendario + Gmail + l\'AI gratuita di Google, e il briefing arriva su Telegram. Costo: zero.')+'</p></div>'+(AU_DEMO.url?'<a class="btn" href="'+AU_DEMO.url+'" target="_blank" rel="noopener">Apri la demo ↗</a>':'<span class="btn" style="opacity:.55;cursor:default">In arrivo</span>');auDraw()}
 function auDraw(){var i=AU.i,h='';AU_ST.forEach(function(p,k){var T=AU_T[p.t];if(k)h+='<div class="au-arr'+(k<=i?' on':'')+'">→</div>';
     h+='<div class="au-n'+(k===i?' on':k<i?' done':'')+'" style="--tc:'+T[1]+'"><span class="k">'+T[0]+'</span><b>'+p.b+'</b><span>'+p.s+'</span><small>'+p.tool+'</small></div>'});G('auFlow').innerHTML=h;
   var d=G('auData');if(i<0){d.innerHTML='<div class="h">I dati</div><pre>Premete ▶: seguite i dati della mattina di Laura, passo per passo.</pre>';return}var T=AU_T[AU_ST[i].t];
@@ -4318,7 +4323,7 @@ var CL_ISTR=[['#FF6B35','Sei il mio assistente personale per organizzare il lavo
   ['#E67E22','Ignora newsletter e notifiche. Non inventare: se un\'informazione manca, dimmelo. Prima di creare bozze, inviare email o creare eventi, chiedimi sempre il permesso.']];
 var CL_PR=[['☀️','Il briefing','Preparami il briefing di oggi.'],['🤝','Prima di una riunione','Tra 10 minuti vedo [nome]: cosa ci siamo detti nelle ultime email e cosa devo sapere?'],
   ['✉️','Chi aspetta','Chi aspetta una mia risposta da più di 2 giorni? Prepara le bozze, ma non inviarle.'],['📊','La settimana','Fammi il riepilogo della settimana: riunioni fatte, decisioni prese, cose rimaste aperte.'],
-  ['📅','Un appuntamento','Trova 30 minuti liberi giovedì per me e [nome] e proponimi due orari.']];
+  ['📅','Un appuntamento','Trova 30 minuti liberi giovedì per me e [nome] e proponimi due orari.'],['📲','Su Telegram','Preparami il briefing di oggi e mandamelo su Telegram.']];
 var CL_S=[{t:'Collegate i connettori',m:'2 min',url:'claude.ai › Impostazioni › Connettori',
    w:function(){return '<p><b>Connettori</b></p><div class="su-tg">✉️ Gmail<em></em></div><div class="su-tg">📅 Google Calendar<em></em></div><div class="su-tg">📁 Google Drive<em></em></div><span class="su-hl">Collega</span>'},
    x:'In <b>Impostazioni → Connettori</b> premete <b>Collega</b> su Gmail, Calendar e Drive ed entrate con Google. Sono connettori <b>MCP</b>: le «prese» della slide prima.'},
@@ -4332,8 +4337,8 @@ var CL_S=[{t:'Collegate i connettori',m:'2 min',url:'claude.ai › Impostazioni 
    w:function(){return '<div class="su-dlg" style="max-width:none"><b>Claude vuole usare Gmail · crea_bozza</b><span>«3 bozze: Elena, studio legale, fornitore Beta»</span><div class="su-row"><span class="su-hl" style="animation:none">Consenti una volta</span><span class="su-tag">Consenti sempre</span><span class="su-tag">Rifiuta</span></div></div><div class="cl-rule"><div>👀 <b>Leggere</b> (calendario, email, file): «Consenti sempre» va bene.</div><div>✍️ <b>Scrivere, inviare, creare</b>: «Consenti una volta», e leggete prima.</div></div>'},
    x:'Claude chiede il permesso <b>ogni volta che usa uno strumento</b>. La regola d\'oro: <b>leggere sì, agire solo dopo aver guardato</b>.'},
  {t:'Altre app con Zapier',m:'facoltativo',url:'mcp.zapier.com',mcp:1,
-   w:function(){return '<p><b>Zapier MCP</b>: un connettore, migliaia di app</p><div class="su-row"><span class="su-tag">Slack · manda messaggio</span><span class="su-tag">Trello · crea scheda</span><span class="su-tag">HubSpot · cerca contatto</span></div><div class="su-box">https://mcp.zapier.com/api/mcp/s/••••••/mcp</div><span class="su-hl">Claude › Connettori › Aggiungi connettore personalizzato</span>'},
-   x:'Su <b>mcp.zapier.com</b> scegliete le azioni che Claude può usare, copiate l\'indirizzo e incollatelo in Claude come <b>connettore personalizzato</b>. Piano gratuito: 100 attività al mese.'}];
+   w:function(){return '<p><b>Zapier MCP</b>: un connettore, migliaia di app</p><div class="su-row"><span class="su-tag">Telegram · invia messaggio</span><span class="su-tag">Trello · crea scheda</span><span class="su-tag">HubSpot · cerca contatto</span></div><div class="su-box">https://mcp.zapier.com/api/mcp/s/••••••/mcp</div><span class="su-hl">Claude › Connettori › Aggiungi connettore personalizzato</span>'},
+   x:'Su <b>mcp.zapier.com</b> scegliete le azioni che Claude può usare (per esempio <b>Telegram · invia messaggio</b>), copiate l\'indirizzo e incollatelo in Claude come <b>connettore personalizzato</b>. Piano gratuito: 100 attività al mese.'}];
 var CL={i:0};
 function clInit(){if(!G('clSteps'))return;G('clSteps').innerHTML=CL_S.map(function(s,i){return '<button class="su-s'+(s.mcp?' mcp':'')+'" onclick="clGo('+i+')"><b>'+(i+1)+'</b><span>'+s.t+'</span><small>'+s.m+'</small></button>'}).join('');
   G('clJoin').innerHTML='<div class="tu-qr" id="clQr" data-qr="'+CL_GUIDA+'" data-size="92"></div><p>📱 Istruzioni e prompt<b class="big">Sul vostro telefono</b>da copiare in Claude</p>';vtQr(G('clQr'),CL_GUIDA,92);clGo(0)}
@@ -4344,7 +4349,10 @@ function clCopy(b,i){var t=i<0?CL_ISTR.map(function(p){return p[1]}).join(' '):C
 
 /* ===== slide "Costruiamolo insieme": il briefing del mattino, passo per passo (finte schermate) ===== */
 var SU_REPO='https://github.com/AnoniMono/workshop-ai/blob/main/demo-automazione/GUIDA.md';
-var SU_S=[{t:'La chiave dell\'AI',m:'2 min',url:'aistudio.google.com',
+var SU_S=[{t:'Il vostro bot Telegram',m:'2 min',url:'Telegram › @BotFather',
+   w:'<div class="su-tgc"><div class="u">/newbot</div><div class="b">Come si chiama il tuo bot?</div><div class="u">Il mio briefing · briefing_laura_bot</div><div class="b">Fatto! Ecco il tuo token:<br><code>7412••••:AAH••••••••••</code></div></div>',
+   x:'Su Telegram scrivete a <b>@BotFather</b> «/newbot», scegliete un nome e copiate il <b>token</b>. Poi aprite il vostro bot e scrivetegli <b>/start</b>.'},
+ {t:'La chiave dell\'AI',m:'2 min',url:'aistudio.google.com',
    w:'<p><b>Google AI Studio</b></p><span class="su-hl">🔑 Get API key</span><div class="su-box">AIzaSy••••••••••••••••••••••••</div>',
    x:'Su <b>aistudio.google.com</b> premete <b>Get API key</b> e copiate la chiave. È gratis: è il «permesso» per usare l\'AI di Google.'},
  {t:'Un nuovo progetto',m:'1 min',url:'script.google.com',
@@ -4354,14 +4362,14 @@ var SU_S=[{t:'La chiave dell\'AI',m:'2 min',url:'aistudio.google.com',
    w:'<div class="su-box">// il prompt: la ricetta della slide 14\nvar PROMPT = \'Sei l\\\'assistente personale di…\';\n\nfunction briefing() {\n  var eventi = CalendarApp…getEventsForDay(oggi);\n  var email  = GmailApp.search(CERCA, 0, 25);\n  var b = chiediAGemini(dati);\n  GmailApp.sendEmail(io, \'☀️ Il tuo briefing\', …);\n}</div><div class="su-row"><span class="su-hl">💾 Salva</span></div>',
    x:'Cancellate quello che c\'è e incollate lo script (bottone <b>📋 Copia lo script</b> qui sotto). Non serve capirlo tutto: in cima c\'è <b>il prompt</b>, che potete cambiare.'},
  {t:'Mettete la chiave',m:'1 min',url:'script.google.com/…/settings',
-   w:'<p><b>⚙️ Impostazioni progetto → Proprietà script</b></p><div class="su-row"><span class="su-tag">Proprietà</span><div class="su-box">GEMINI_API_KEY</div></div><div class="su-row"><span class="su-tag">Valore</span><div class="su-box">AIzaSy••••••••••••</div></div><span class="su-hl">Salva proprietà dello script</span>',
-   x:'La chiave va qui, <b>non dentro lo script</b>: così se condividete il codice la chiave resta vostra.'},
+   w:'<p><b>⚙️ Impostazioni progetto → Proprietà script</b></p><div class="su-row"><span class="su-tag">Proprietà</span><div class="su-box">GEMINI_API_KEY</div></div><div class="su-row"><span class="su-tag">Valore</span><div class="su-box">AIzaSy••••••••••••</div></div><div class="su-row"><span class="su-tag">Proprietà</span><div class="su-box">TELEGRAM_TOKEN</div><span class="su-tag">Valore</span><div class="su-box">7412••••:AAH••••</div></div><span class="su-hl">Salva proprietà dello script</span>',
+   x:'Chiave e token vanno qui, <b>non dentro lo script</b>: così se condividete il codice restano vostri.'},
  {t:'Il primo briefing',m:'1 min',url:'script.google.com/…/edit',
-   w:'<div class="su-row"><span class="su-tag">briefing ▾</span><span class="su-hl">▶ Esegui</span></div><div class="su-dlg"><b>Autorizzazione necessaria</b><span>Lo script vuole leggere Gmail e Calendario.</span><span class="su-hl" style="animation:none">Consenti</span></div>',
-   x:'Scegliete <b>briefing</b> e premete <b>▶ Esegui</b>. Google chiede il permesso di leggere posta e calendario: <b>Consenti</b>. È il vostro script, sul vostro account.'},
- {t:'Ecco il briefing',m:'10 s',url:'mail.google.com',
-   w:'<div class="su-mail"><b>☀️ Il tuo briefing di oggi</b><span>🔴 Le priorità · 📅 Le riunioni · ✉️ A chi rispondere · 🟢 Può aspettare</span><small style="color:#718096">Scritto da un\'AI: può sbagliare. Le decisioni restano tue.</small></div>',
-   x:'Dopo pochi secondi arriva l\'email. Non vi piace com\'è scritto? Cambiate <b>il prompt</b> in cima allo script e rilanciate.'},
+   w:'<div class="su-row"><span class="su-tag">collegaTelegram ▾</span><span class="su-hl">▶ Esegui</span></div><div class="su-dlg"><b>Autorizzazione necessaria</b><span>Lo script vuole leggere Gmail e Calendario.</span><span class="su-hl" style="animation:none">Consenti</span></div>',
+   x:'Scegliete <b>collegaTelegram</b> e premete <b>▶ Esegui</b>: sul telefono arriva «✅ Collegato!». Google chiede il permesso di leggere posta e calendario: <b>Consenti</b>. È il vostro script, sul vostro account.'},
+ {t:'Ecco il briefing',m:'10 s',url:'Telegram › Il mio briefing',
+   w:'<div class="su-tgc"><div class="b"><b>☀️ Buongiorno! La tua giornata in 1 minuto</b><br>🔴 Le priorità · 📅 Le riunioni · ✉️ A chi rispondere · 🟢 Può aspettare<br><i style="color:#718096">Scritto da un\'AI: può sbagliare.</i></div></div>',
+   x:'Lanciate <b>briefing</b>: dopo pochi secondi il telefono vibra. Non vi piace com\'è scritto? Cambiate <b>il prompt</b> in cima allo script e rilanciate.'},
  {t:'Ogni mattina, da solo',m:'1 min',url:'script.google.com/…/edit',
    w:'<div class="su-row"><span class="su-tag">accendi ▾</span><span class="su-hl">▶ Esegui</span></div><div class="su-box">Fatto: il briefing arriverà ogni mattina tra le 7 e le 8.</div>',
    x:'Scegliete <b>accendi</b> e premete <b>▶ Esegui</b>: da domani arriva da solo. <b>Questa</b> è l\'automazione.'},
@@ -4379,13 +4387,14 @@ function suCopy(){var b=G('suCopy'),done=function(t){copyTxt(t);b.textContent='�
   if(SU.code)return done(SU.code);fetch('demo-automazione/briefing-mattino.gs').then(function(r){if(!r.ok)throw 0;return r.text()}).then(function(t){SU.code=t;done(t)}).catch(function(){window.open(SU_REPO,'_blank','noopener')})}
 
 /* ===== slide MCP: Claude usa gli strumenti dell'azienda, chiedendo il permesso ===== */
-var MC_N=[['zap','⚡','Zapier',200,48],['gmail','✉️','Gmail',340,120],['cal','📅','Calendario',340,250],['docs','📄','Documenti',200,318],['sheets','📊','Fogli',60,250],['drive','📁','Drive',60,120]];
+var MC_N=[['zap','⚡','Zapier',200,48],['gmail','✉️','Gmail',340,120],['cal','📅','Calendario',340,250],['tg','📲','Telegram',200,318],['sheets','📊','Fogli',60,250],['drive','📁','Drive',60,120]];
 /* la stessa mattina di Laura: ora lo chiede a Claude, a parole */
-var MC_S=[{k:'☀️ Il briefing di oggi',q:'Preparami il briefing di oggi: cosa conta, chi incontro, a chi devo rispondere.',st:[
+var MC_S=[{k:'☀️ Il briefing di oggi',q:'Preparami il briefing di oggi e mandamelo su Telegram.',st:[
    {n:'cal',f:'calendario.eventi_di_oggi',s:'4 riunioni: vendite 9:00, fornitore Alfa 11:30, colloquio 14:00, CdA 17:00'},
    {n:'gmail',f:'gmail.cerca_email',s:'non lette da ieri sera → 23 email, 9 importanti'},
-   {n:null,f:'mette in ordine',s:'3 priorità, cosa preparare per ogni riunione, 3 risposte da dare'}],
-   a:'Buongiorno! Oggi le priorità sono il budget Q4 per il CdA (Elena aspetta il tuo ok), il ritardo di Alfa da decidere prima delle 11:30 e il CV da leggere prima delle 14. Le altre 6 email possono aspettare.'},
+   {n:null,f:'mette in ordine',s:'3 priorità, cosa preparare per ogni riunione, 3 risposte da dare'},
+   {n:'tg',f:'telegram.invia_messaggio (via Zapier)',s:'il briefing sul tuo telefono',perm:'Posso mandarti il briefing su Telegram?'}],
+   a:'Buongiorno! Oggi le priorità sono il budget Q4 per il CdA (Elena aspetta il tuo ok), il ritardo di Alfa da decidere prima delle 11:30 e il CV da leggere prima delle 14. Le altre 6 email possono aspettare. Te l\'ho mandato su Telegram.'},
  {k:'🤝 Prima della riunione',q:'Tra 10 minuti vedo Marco: cosa ci siamo detti l\'ultima volta e cosa devo sapere?',st:[
    {n:'gmail',f:'gmail.cerca_email',s:'da/a Marco · ultimi 30 giorni → 6 email'},
    {n:'drive',f:'drive.cerca_file',s:'«Vendite settembre» → aggiornato ieri da Marco'},

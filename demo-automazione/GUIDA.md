@@ -2,11 +2,11 @@
 
 È l'automazione delle slide 16 e 17, costruita davvero. **Costa zero**.
 
-- **L'automazione** (slide 16): ogni mattina un piccolo script legge la vostra agenda e le email della notte, l'AI gratuita di Google (Gemini) le mette in ordine, e vi arriva **una pagina** con le priorità, le riunioni e a chi rispondere.
+- **L'automazione** (slide 16): ogni mattina un piccolo script legge la vostra agenda e le email della notte, l'AI gratuita di Google (Gemini) le mette in ordine, e vi arriva **un messaggio su Telegram** con le priorità, le riunioni e a chi rispondere.
 - **La parte MCP** (slide 17): le stesse cose, ma chieste **a parole a Claude**, con i connettori di Gmail, Calendario e Drive inclusi in Claude Pro.
 
 ```
-⏰ 7:30 → 📅 agenda + ✉️ email → 📏 via newsletter e notifiche → 🧠 Gemini mette in ordine → 📨 il briefing nella vostra posta
+⏰ 7:30 → 📅 agenda + ✉️ email → 📏 via newsletter e notifiche → 🧠 Gemini mette in ordine → 📲 il briefing su Telegram
 ```
 
 Tempo per prepararla la prima volta: circa 15 minuti.
@@ -20,21 +20,36 @@ Tempo per prepararla la prima volta: circa 15 minuti.
 
 > ⚠️ La chiave non va mai nella presentazione o su GitHub: solo nelle impostazioni dello script (passo 2).
 
-## 2. Lo script
+## 2. Il vostro bot Telegram (gratis)
+
+1. Su Telegram cercate **@BotFather** e scrivetegli `/newbot`.
+2. Dategli un nome (es. «Il mio briefing») e un nome utente che finisca con `bot` (es. `briefing_laura_bot`).
+3. BotFather vi risponde con un **token**, tipo `7412…:AAH…`. Copiatelo.
+4. Aprite il vostro nuovo bot e scrivetegli **/start** (serve per collegarlo, passo 3.6).
+
+> ⚠️ Anche il token è segreto: va solo nelle impostazioni dello script.
+
+## 3. Lo script
 
 1. Andate su **script.google.com** → **Nuovo progetto**. Chiamatelo «Briefing del mattino».
 2. Cancellate quello che c'è e incollate tutto il file `briefing-mattino.gs`. Salvate (💾).
 3. A sinistra: **⚙️ Impostazioni progetto → Proprietà script → Aggiungi proprietà**:
    - Proprietà: `GEMINI_API_KEY`
    - Valore: la chiave del passo 1
+
+   e aggiungete anche:
+   - Proprietà: `TELEGRAM_TOKEN`
+   - Valore: il token del passo 2
 4. In alto scegliete la funzione **briefing** e premete **▶ Esegui**.
 5. Google chiede le autorizzazioni (Gmail e Calendario): **Consenti**.
    - Se compare «Google non ha verificato questa app»: **Avanzate → Vai a … (non sicuro)**. È normale: lo script è vostro.
-6. Dopo qualche secondo vi arriva l'email **«☀️ Il tuo briefing di oggi»**.
+   - Il primo giro si ferma con «Manca TELEGRAM_CHAT_ID»: è normale, si sistema al punto 6.
+6. Scegliete la funzione **collegaTelegram** e premete **▶ Esegui**: sul telefono arriva «✅ Collegato!».
+7. Rilanciate **briefing**: dopo qualche secondo il briefing arriva su Telegram.
 
 Per riceverlo ogni mattina: scegliete la funzione **accendi** e premete **▶ Esegui**. Arriverà tra le 7 e le 8 (è Google a decidere il minuto esatto). Per spegnerlo: funzione **spegni**.
 
-## 3. Prepariamo una mattina realistica
+## 4. Prepariamo una mattina realistica
 
 L'account della demo deve sembrare quello di una persona occupata.
 
@@ -55,9 +70,9 @@ L'account della demo deve sembrare quello di una persona occupata.
 
 Poi lanciate **briefing** e guardate il risultato. Se volete cambiare il tono o il contenuto, modificate il `PROMPT` in cima allo script: è la ricetta della slide 14.
 
-## 4. In aula
+## 5. In aula
 
-1. **Slide 16:** fate vedere la simulazione, poi aprite la posta della demo e mostrate il briefing vero. Ancora meglio: aprite lo script e premete **▶ Esegui** davanti a tutti. In 10 secondi arriva l'email.
+1. **Slide 16:** fate vedere la simulazione, poi mostrate il briefing vero su Telegram (dal telefono collegato al proiettore, o da Telegram Web). Ancora meglio: aprite lo script e premete **▶ Esegui** davanti a tutti. In 10 secondi il telefono vibra.
 2. **Slide 17 (MCP):** in **Claude → Impostazioni → Connettori** attivate **Gmail**, **Google Calendar** e **Google Drive** con lo stesso account. Poi, in una chat nuova:
    - «Preparami il briefing di oggi: cosa conta, chi incontro, a chi devo rispondere.»
    - «Tra 10 minuti vedo Marco: cosa ci siamo detti l'ultima volta e cosa devo sapere?»
@@ -77,6 +92,7 @@ Poi lanciate **briefing** e guardate il risultato. Se volete cambiare il tono o 
 
 | Problema | Cosa fare |
 |---|---|
+| «Manca TELEGRAM_CHAT_ID» | Scrivete /start al vostro bot su Telegram, poi lanciate **collegaTelegram**. |
 | «Manca GEMINI_API_KEY» | Passo 2.3: il nome della proprietà deve essere esattamente `GEMINI_API_KEY`. |
 | Il briefing è vuoto o dice «nessuna email» | Le email devono essere in **Posta in arrivo** (non Promozioni) e arrivate nelle ultime 24 ore. Quelle mandate da voi stessi vengono saltate. |
 | Errore 429 | Troppe richieste all'AI gratuita: lo script aspetta e riprova. Riprovate tra un minuto. |
@@ -107,6 +123,7 @@ Sei il mio assistente personale per organizzare il lavoro. Sono [il vostro ruolo
 - ✉️ `Chi aspetta una mia risposta da più di 2 giorni? Prepara le bozze, ma non inviarle.`
 - 📊 `Fammi il riepilogo della settimana: riunioni fatte, decisioni prese, cose rimaste aperte.`
 - 📅 `Trova 30 minuti liberi giovedì per me e [nome] e proponimi due orari.`
+- 📲 `Preparami il briefing di oggi e mandamelo su Telegram.` (serve Zapier MCP, punto 5)
 
 ### 4. I permessi
 
@@ -116,4 +133,4 @@ Claude chiede il permesso ogni volta che usa uno strumento.
 
 ### 5. Facoltativo: altre app con Zapier MCP
 
-Su **mcp.zapier.com** scegliete le azioni che Claude può usare (es. Slack, Trello, HubSpot), copiate l'indirizzo del server e incollatelo in **Claude → Connettori → Aggiungi connettore personalizzato**. Piano gratuito: 100 attività al mese.
+Su **mcp.zapier.com** scegliete le azioni che Claude può usare (es. **Telegram · invia messaggio**, Trello, HubSpot), copiate l'indirizzo del server e incollatelo in **Claude → Connettori → Aggiungi connettore personalizzato**. Piano gratuito: 100 attività al mese.
