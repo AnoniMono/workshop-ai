@@ -1362,6 +1362,11 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
 .pv-tip b{color:var(--navy)}
 @media (max-height:800px){#sPV .pa-join .tu-qr canvas,#sPV .pa-join .tu-qr img{width:76px!important;height:76px!important}#sPV .pv-feed{max-height:5em}#sPV .pv-out{min-height:9em}}
 /* slide: studiare con l'AI */
+.st-att{display:flex;gap:.4em;flex-wrap:wrap;align-items:center}
+.st-att>span{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-right:.2em}
+.st-a{font:700 .88rem var(--ff-body);padding:.35em .85em;border-radius:999px;border:2px solid var(--border);background:#fff;color:var(--navy);cursor:pointer}
+.st-a:hover{border-color:#0E7C86}.st-a.on{background:#0E7C86;border-color:#0E7C86;color:#fff}
+.st-file{display:flex;width:max-content;align-items:center;gap:.4em;background:rgba(255,255,255,.12);border:1px dashed rgba(255,255,255,.4);border-radius:8px;padding:.25em .7em;font-size:.85em;font-weight:700;margin-bottom:.5em}
 #sST.current{height:100svh}
 .st-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(1rem,3vw,2.6rem);align-items:center}
 @media (max-width:900px){.st-stage{grid-template-columns:1fr}#sST.current{height:auto}}
@@ -1982,7 +1987,7 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
         <div class="st-mv" style="--c:#FF6B35"><b>2</b><div><h4>Ripetere</h4><p>Flashcard: domanda davanti, risposta dietro. Ve le fa l'AI.</p></div></div>
         <div class="st-mv" style="--c:#2ECC71"><b>3</b><div><h4>Mettersi alla prova</h4><p>«Fammi 5 domande come all'interrogazione e correggimi.»</p></div></div>
       </div>
-      <p class="st-note">⚠️ L'AI <b>sbaglia</b>: controllate sempre con il libro. Lo studio lo fate voi, l'AI vi fa da allenatore.</p>
+      <p class="st-note">⚠️ L'AI <b>sbaglia</b>, e a volte inventa. Per questo <b>allegate il vostro materiale</b> (foto del libro, appunti, slide del prof): così lavora sulle vostre fonti. E controllate sempre.</p>
     </div>
     <div class="st-right">
       <p class="pv-k2">🃏 Facciamoci le flashcard da Claude</p>
@@ -1992,9 +1997,10 @@ html.vote.pam,html.vote.pam body{background:#F5F7FA}
         <label>Classe<select class="in" id="stCls" onchange="stUpd()"><option>1ª</option><option>2ª</option><option selected>3ª</option><option>4ª</option><option>5ª</option></select></label>
         <label>Carte<select class="in" id="stN" onchange="stUpd()"><option>10</option><option selected>15</option><option>20</option></select></label>
       </div>
+      <div class="st-att"><span>📎 Allego</span><button class="st-a on" data-k="libro" onclick="stAtt(this)">📷 Foto del libro</button><button class="st-a" data-k="appunti" onclick="stAtt(this)">📝 Appunti</button><button class="st-a" data-k="slide" onclick="stAtt(this)">📊 Slide del prof</button><button class="st-a" data-k="" onclick="stAtt(this)">Niente</button></div>
       <div class="st-prompt" id="stPrompt"></div>
       <div class="pv-row"><a class="btn st-claude" id="stClaude" target="_blank" rel="noopener">✨ Apri in Claude ↗</a><button class="btn ghost" id="stCopy" onclick="stCopy()">📋 Copia</button><button class="btn ghost" onclick="stDemo()">👀 Cosa uscirà</button></div>
-      <p class="pv-tip">💡 È la ricetta della slide prima: <b style="color:#FF6B35">ruolo</b>, <b style="color:#00A6C8">contesto</b>, <b style="color:#2ECC71">compito</b>, <b style="color:#8E44AD">formato</b>, <b style="color:#E67E22">esempio</b>. Claude risponde con una vera app da usare.</p>
+      <p class="pv-tip">💡 È la ricetta della slide prima: <b style="color:#FF6B35">ruolo</b>, <b style="color:#00A6C8">contesto</b>, <b style="color:#2ECC71">compito</b>, <b style="color:#8E44AD">formato</b>, <b style="color:#E67E22">esempio</b>, più il <b style="color:#0E7C86">materiale</b> allegato. In Claude: trascinate il file nella chat, poi incollate il prompt.</p>
     </div>
   </div>
   <div class="st-demo" id="stDemo" onclick="if(event.target===this)stDemoClose()"><div class="st-dcard" id="stDCard"></div></div>
@@ -4011,15 +4017,18 @@ function pvGo(){var bad=G('pvIn').value.trim();if(!bad||PV.busy)return;PV.busy=t
 
 
 /* ===== slide "Studiare con l'AI": il prompt per farsi fare da Claude un'app di flashcard ===== */
-var ST={demo:null};
+var ST={demo:null,att:'libro'};
+var ST_ATT={libro:['le foto delle pagine del libro','pagine_45-52.jpg'],appunti:['i miei appunti','appunti_fotosintesi.pdf'],slide:['le slide del prof','lezione_prof.pptx']};
+function stAtt(b){ST.att=b.getAttribute('data-k');[].forEach.call(document.querySelectorAll('.st-a'),function(x){x.classList.toggle('on',x===b)});stUpd()}
 function stParts(){var v=function(id,d){var e=G(id);return (e&&e.value.trim())||d},s=v('stSubj','[materia]'),t=v('stTopic','[argomento]'),c=v('stCls','3ª'),n=v('stN','15');
   return [['#FF6B35','Sei un tutor di '+s+' che crea strumenti di studio chiari e divertenti.'],
     ['#00A6C8','Sono uno studente di '+c+' superiore e tra pochi giorni ho la verifica su «'+t+'».'],
+    ].concat(ST.att?[['#0E7C86','Ti allego '+ST_ATT[ST.att][0]+': usa solo quel materiale e, se qualcosa non c\'è, dimmelo invece di inventare.']]:[]).concat([
     ['#2ECC71','Crea un\'app di flashcard interattiva in HTML (un solo file, come artifact) con '+n+' carte su questo argomento: davanti la domanda, dietro la risposta.'],
     ['#8E44AD','La carta si gira con un clic; aggiungi i pulsanti «La so» e «Da ripassare», un punteggio, e alla fine ripresenta solo le carte da ripassare. Grafica colorata, leggibile anche sul telefono.'],
-    ['#E67E22','Risposte brevi, massimo due righe. Esempio di carta: davanti «Che cos\'è…?», dietro una definizione in una frase.']]}
+    ['#E67E22','Risposte brevi, massimo due righe. Esempio di carta: davanti «Che cos\'è…?», dietro una definizione in una frase.']])}
 function stText(){return stParts().map(function(p){return p[1]}).join(' ')}
-function stUpd(){if(!G('stPrompt'))return;G('stPrompt').innerHTML=stParts().map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ');
+function stUpd(){if(!G('stPrompt'))return;G('stPrompt').innerHTML=(ST.att?'<div class="st-file">📎 '+ST_ATT[ST.att][1]+'</div>':'')+stParts().map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ');
   G('stClaude').href='https://claude.ai/new?q='+encodeURIComponent(stText())}
 function stCopy(){copyTxt(stText());G('stCopy').textContent='✓ Copiato';setTimeout(function(){G('stCopy').textContent='📋 Copia'},1500)}
 /* anteprima: come sarà l'app che Claude crea (esempio sulla fotosintesi) */
