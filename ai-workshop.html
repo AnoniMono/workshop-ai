@@ -1636,6 +1636,55 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 .rs-tools a{color:var(--navy);background:#fff;border:2px solid var(--border);border-radius:999px;padding:.2em .7em;text-decoration:none;font-weight:800}
 .rs-tools a:hover{border-color:var(--orange);color:var(--orange)}
 @media (max-height:800px){#sRS .rs-col svg{height:80px}#sRS .rs-pat{font-size:.82rem;padding:.4em .7em}#sAF .af-big b{font-size:1.2rem}}
+/* slide: AlphaFold (strutture vere) */
+#sAF.current{height:100svh}
+.af-steps{grid-template-columns:repeat(6,1fr);max-width:none}
+.af-steps .dr-rail,.af-steps .dr-fill{left:8.333%}.af-steps .dr-rail{right:8.333%}
+.af-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(1rem,3vw,2.6rem);align-items:center}
+@media (max-width:900px){.af-stage{grid-template-columns:1fr}#sAF.current{height:auto}}
+.af-left{display:flex;flex-direction:column;align-items:center;gap:.4em;min-width:0}
+.af-view{position:relative;width:min(100%,58vh,540px);aspect-ratio:1;border-radius:22px;overflow:hidden;background:radial-gradient(circle at 50% 42%,#1A2B4D,#0B1426 72%);box-shadow:0 14px 40px rgba(27,42,74,.25)}
+.af-view canvas,.af-3d{position:absolute;inset:0;width:100%;height:100%;transition:opacity .8s}
+.af-3d{opacity:0;pointer-events:none}.af-3d.on{opacity:1;pointer-events:auto}
+.af-lab{position:absolute;top:.8em;left:.8em;z-index:3;background:rgba(11,20,38,.82);color:#fff;font-weight:800;font-size:.92rem;padding:.3em .85em;border-radius:999px;max-width:80%}
+.af-lab:empty{display:none}
+.af-leg{position:absolute;left:.7em;bottom:.7em;z-index:3;display:none;flex-direction:column;gap:.15em;background:rgba(11,20,38,.82);color:#E8EEF7;border-radius:10px;padding:.45em .7em;font-size:.72rem;font-weight:700}
+.af-leg.on{display:flex}.af-leg b{font-size:.75rem;color:#fff}
+.af-leg i{display:inline-block;width:.85em;height:.85em;border-radius:3px;margin-right:.45em;vertical-align:-.1em}
+.af-cr{margin:0;font-size:.7rem;color:var(--gray);text-align:center}
+.af-h{font-size:clamp(1.5rem,3vw,2.3rem)}
+.af-p{font-size:clamp(.95rem,1.45vw,1.15rem)}
+.af-box{display:flex;flex-direction:column;gap:.5em;min-height:0}
+.af-seq{font:700 clamp(.72rem,1vw,.85rem)/1.55 ui-monospace,Consolas,monospace;letter-spacing:.06em;color:#4A5568;background:#fff;border:2px solid var(--border);border-radius:12px;padding:.5em .7em;word-break:break-all}
+.af-seq b{color:#E8701A}
+.af-note{margin:0;font-size:.85rem;color:var(--gray);line-height:1.45}.af-note b{color:var(--navy)}
+.af-big{display:flex;gap:.5em;flex-wrap:wrap}
+.af-big div{background:#fff;border:2px solid var(--border);border-radius:14px;padding:.4em .75em;display:flex;flex-direction:column}
+.af-big b{font-family:var(--ff-head);font-size:clamp(1.2rem,2.2vw,1.7rem);color:var(--navy);line-height:1.1}
+.af-big span{font-size:.75rem;font-weight:800;color:var(--gray)}
+.af-evo{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.8em;align-items:start}
+.af-msa{border-collapse:collapse;font:700 clamp(.68rem,.95vw,.82rem) ui-monospace,Consolas,monospace;background:#fff;border:2px solid var(--border);border-radius:12px;overflow:hidden}
+.af-msa td,.af-msa th{padding:.12em .22em;text-align:center}
+.af-msa th{font-size:.62rem;color:var(--gray);font-weight:800}
+.af-msa td.n{text-align:left;font-family:var(--ff-body);font-size:.75rem;color:var(--navy);padding-right:.5em}
+.af-msa td.d{color:#A0AEC0}.af-msa td.s{color:#CBD5E0}
+.af-msa td.h1{background:#FFE58A}.af-msa td.h2{background:#FBCFE8}
+.af-msa td.h1.x,.af-msa td.h2.x{color:#C0392B;font-weight:900}
+.af-dm{display:flex;flex-direction:column;align-items:center;gap:.2em;font-size:.68rem;font-weight:800;color:var(--gray);text-align:center;max-width:9.5em}
+.af-dm canvas{width:clamp(110px,13vw,150px);height:clamp(110px,13vw,150px);border-radius:8px;border:2px solid var(--border)}
+.af-dm2{max-width:11em}
+.af-plots{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.8em;align-items:start}
+.af-plots canvas.pl{width:100%;height:clamp(80px,12vh,110px);background:#fff;border:2px solid var(--border);border-radius:10px}
+.af-cap{font-size:.75rem;font-weight:800;color:var(--gray);margin-top:.15em}
+.af-cap b{color:var(--navy)}
+.af-prot{display:flex;gap:.4em;flex-wrap:wrap}
+.af-pb{font:700 .9rem var(--ff-body);padding:.4em .85em;border-radius:999px;border:2px solid var(--border);background:#fff;color:var(--navy);cursor:pointer}
+.af-pb.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.af-links{display:flex;gap:.4em;flex-wrap:wrap}
+.af-links a{font-size:.85rem;font-weight:800;color:var(--navy);background:#fff;border:2px solid var(--border);border-radius:999px;padding:.3em .8em;text-decoration:none}
+.af-links a:hover{border-color:var(--orange);color:var(--orange)}
+.af-again{align-self:flex-start;font-size:.9rem;padding:.4em 1em}
+@media (max-height:800px){#sAF .af-view{width:min(100%,52vh,540px)}#sAF .af-p{font-size:.92rem}#sAF .af-note{font-size:.78rem}#sAF .af-seq{font-size:.66rem}}
 /* badge extra per i pop-up */
 .pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
 .scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
@@ -2308,17 +2357,25 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
   </div>
 </section>
 
-<!-- 22 ALPHAFOLD: dalla sequenza alla forma -->
+<!-- 22 ALPHAFOLD: dalla sequenza alla forma (strutture vere dell'AlphaFold DB) -->
 <section class="slide darktext s-light" data-section="AI e scienza" id="sAF">
   <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">AlphaFold: l'AI che ha risolto un problema di 50 anni</h2>
-  <div class="dr-steps cv-steps gn-steps" id="afSteps"></div>
-  <div class="dr-stage">
-    <div class="dr-vis"><svg class="af-svg" id="afSvg" viewBox="0 0 400 400" aria-label="Una proteina che si ripiega"></svg></div>
+  <div class="dr-steps af-steps" id="afSteps"></div>
+  <div class="af-stage">
+    <div class="af-left">
+      <div class="af-view" id="afView">
+        <canvas id="afCv"></canvas>
+        <div class="af-3d" id="af3d"></div>
+        <span class="af-lab" id="afLab"></span>
+        <div class="af-leg" id="afLeg"><b>Sicurezza (pLDDT)</b><span><i style="background:#0053D6"></i>Molto alta &gt;90</span><span><i style="background:#65CBF3"></i>Alta 70–90</span><span><i style="background:#FFDB13"></i>Bassa 50–70</span><span><i style="background:#FF7D45"></i>Molto bassa &lt;50</span></div>
+      </div>
+      <p class="af-cr" id="afCr">Strutture vere: AlphaFold DB (EMBL-EBI e Google DeepMind), CC BY 4.0 · sequenze: UniProt</p>
+    </div>
     <div class="dr-txt">
       <p class="dr-kick" id="afKick"></p>
-      <h3 class="dr-h" id="afH"></h3>
-      <p class="dr-p" id="afP"></p>
-      <div class="dr-box" id="afBox"></div>
+      <h3 class="dr-h af-h" id="afH"></h3>
+      <p class="dr-p af-p" id="afP"></p>
+      <div class="af-box" id="afBox"></div>
       <div class="dr-nav"><button class="btn ghost" id="afPrev" onclick="afGo(AF.i-1)">← Indietro</button><button class="btn" id="afNext" onclick="afGo(AF.i+1)">Avanti →</button></div>
     </div>
   </div>
@@ -4482,37 +4539,105 @@ function mcAllow(){MC.wait=false;mcDraw();MC.timer=setTimeout(mcNext,900)}
 function mcDeny(){MC.wait=false;clearTimeout(MC.timer);var S=MC_S[MC.s];G('mcChat').insertAdjacentHTML('beforeend','<div class="mc-a"><i>✳</i><p>Va bene, mi fermo qui: non ho mandato niente. Volete che cambi qualcosa prima?</p></div>');G('mcGo').textContent='Fermato da voi';mcHub(null)}
 
 
-/* ===== slide AlphaFold: una catena di amminoacidi che si ripiega ===== */
-var AF_GRID=[[0,0],[1,0],[2,0],[3,0],[3,1],[2,1],[1,1],[0,1],[0,2],[0,3],[1,3],[1,2],[2,2],[3,2],[4,2],[4,1],[4,0],[5,0],[5,1],[5,2],[5,3],[4,3],[3,3],[2,3],[2,4],[3,4],[4,4],[5,4],[5,5],[4,5]];
-var AF_PL=[45,48,62,64,93,93,91,94,92,88,86,84,82,83,95,96,94,92,90,93,95,94,91,89,85,78,72,66,58,50];
-var AF_S=[{c:'#8A94A6',s:'Le proteine',k:'Passo 1 · Le proteine',h:'Le macchine della vita',p:'Ogni proteina è una <b>catena</b> di mattoncini (gli amminoacidi, 20 tipi). La catena si ripiega da sola in una forma precisa, e <b>la forma decide cosa fa</b>: trasporta ossigeno, digerisce, difende.'},
- {c:'#E74C3C',s:'Il problema',k:'Passo 2 · Il problema',h:'Troppe forme possibili',p:'Dalla sola sequenza di lettere era quasi impossibile indovinare la forma. In laboratorio servivano <b>anni di lavoro</b> per una sola proteina.'},
- {c:'#FF6B35',s:'AlphaFold',k:'Passo 3 · AlphaFold (2020)',h:'Dalla sequenza alla forma, in minuti',p:'AlphaFold ha studiato le circa <b>170.000 forme</b> già scoperte dagli scienziati. Così ha imparato quali pezzi della catena si toccano (le linee tratteggiate) e da lì ricostruisce la forma.'},
- {c:'#00A6C8',s:'Quanto è sicura',k:'Passo 4 · Quanto è sicura',h:'Dice anche quanto si fida',p:'Ogni pezzo è colorato in base a quanto AlphaFold è sicura. Le estremità, che nella realtà si muovono, sono le parti più incerte. <b>Un\'AI onesta dice cosa non sa.</b>'},
- {c:'#2ECC71',s:'Cosa ha cambiato',k:'Passo 5 · Cosa ha cambiato',h:'Un Premio Nobel',p:'Oggi le forme previste sono più di <b>200 milioni</b>, gratis per tutti i ricercatori del mondo. Nel <b>2024</b> Demis Hassabis e John Jumper (Google DeepMind) hanno vinto il <b>Nobel per la Chimica</b>.'}];
-var AF={i:0,tok:0,on:false,shake:0};
+/* timeline a cerchi, usata da AlphaFold e retrosintesi */
 function afSteps(id,S,go){G(id).innerHTML='<i class="dr-rail"></i><i class="dr-fill" id="'+id+'F"></i>'+S.map(function(s,i){return '<button class="dr-step" onclick="'+go+'('+i+')" style="--c:'+s.c+'"><b class="dr-dot">'+(i+1)+'</b><span>'+s.s+'</span></button>'}).join('')}
 function afHead(id,S,i,sec){var s=S[i];G(sec).style.setProperty('--c',s.c);[].forEach.call(document.querySelectorAll('#'+id+' .dr-step'),function(b,k){b.classList.toggle('on',k===i);b.classList.toggle('done',k<i)});G(id+'F').style.width=(i/(S.length-1)*(100-100/S.length))+'%'}
-function afInit(){if(!G('afSvg'))return;afSteps('afSteps',AF_S,'afGo');afGo(0);setInterval(function(){var on=G('sAF').classList.contains('current');if(on&&!AF.on)afGo(AF.i);AF.on=on},400)}
-function afPos(k,f,t){var g=AF_GRID[k],fx=70+g[0]*52,fy=70+g[1]*52,ux=24+k*12.4,uy=200+70*Math.sin(k*.45),j=AF.shake*(1-f);
-  return [ux+(fx-ux)*f+Math.sin(t*7+k*1.7)*j,uy+(fy-uy)*f+Math.cos(t*6+k*2.3)*j]}
-function afCol(k,mode){if(mode==='conf'){var p=AF_PL[k];return p>90?'#0053D6':p>70?'#65CBF3':p>50?'#FFDB13':'#FF7D45'}var g=AF_GRID[k];return (g[0]>0&&g[0]<5&&g[1]>0&&g[1]<5)?'#FF8A3D':'#4FC3F7'}
-function afDraw(f,t,mode,contacts){var P=AF_GRID.map(function(_,k){return afPos(k,f,t)}),h='',d='M'+P[0][0]+' '+P[0][1];
-  for(var k=1;k<P.length;k++){var a=P[k-1],b=P[k];d+=' Q'+a[0]+' '+a[1]+' '+((a[0]+b[0])/2)+' '+((a[1]+b[1])/2)}d+=' L'+P[P.length-1][0]+' '+P[P.length-1][1];
-  if(contacts>0){h+='<g stroke="#FFD54F" stroke-width="2" stroke-dasharray="4 5" opacity="'+contacts+'">';for(var a2=0;a2<P.length;a2++)for(var b2=a2+3;b2<P.length;b2++){var A=AF_GRID[a2],B=AF_GRID[b2];if(Math.abs(A[0]-B[0])+Math.abs(A[1]-B[1])===1)h+='<line x1="'+P[a2][0]+'" y1="'+P[a2][1]+'" x2="'+P[b2][0]+'" y2="'+P[b2][1]+'"/>'}h+='</g>'}
-  h+='<path d="'+d+'" fill="none" stroke="#C9D4E5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/>';
-  P.forEach(function(p,k){h+='<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+(7+3*f)+'" fill="'+afCol(k,mode)+'" stroke="#0F1B33" stroke-width="1.5"/>'});G('afSvg').innerHTML=h}
-function afLoop(fn){var tok=++AF.tok,t0=performance.now();(function s(now){if(tok!==AF.tok)return;if(fn((now-t0)/1000)!==false)requestAnimationFrame(s)})(t0)}
+/* ===== slide AlphaFold: strutture vere (AlphaFold DB) ===== */
+var AF_S=[{c:'#8A94A6',s:'La catena',k:'Passo 1 · Le proteine',h:'Una catena di lettere',p:'Ogni proteina è una catena di <b>amminoacidi</b>: 20 tipi, ognuno ha una lettera. Questa è l\'<b>emoglobina</b>, che porta l\'ossigeno nel sangue: 142 lettere. Ma stesa così non fa niente: per funzionare deve <b>ripiegarsi</b> in una forma precisa.'},
+ {c:'#E74C3C',s:'Il problema',k:'Passo 2 · Il problema',h:'Quale forma, tra miliardi di miliardi?',p:'La catena può piegarsi in un numero astronomico di modi. Gli scienziati scoprivano la forma vera in laboratorio, con i raggi X: <b>mesi o anni</b> e centinaia di migliaia di euro per una sola proteina. Indovinarla dalle lettere era un problema aperto <b>da 50 anni</b>.'},
+ {c:'#F39C12',s:'L\'indizio',k:'Passo 3 · L\'indizio dell\'evoluzione',h:'Chi cambia insieme, sta vicino',p:'AlphaFold confronta la stessa proteina in <b>migliaia di specie</b>. Se due posizioni cambiano sempre insieme, nella forma probabilmente si toccano: quando una cambia, l\'altra si adatta per restare incastrata. Qui ne vediamo 6 (dati veri).'},
+ {c:'#FF6B35',s:'Costruisce',k:'Passo 4 · AlphaFold costruisce la forma',h:'Da un punto alla proteina, in 3 giri',p:'Il modulo che costruisce la forma parte con <b>tutti i pezzi nello stesso punto</b> e li sposta passo dopo passo. Poi il risultato rientra nel modello e viene rifinito ancora (<b>recycling</b>, 3 volte). A ogni giro è più sicura: i colori vanno dall\'arancione al blu.'},
+ {c:'#00A6C8',s:'Quanto è sicura',k:'Passo 5 · Quanto è sicura',h:'Ti dice anche cosa non sa',p:'Questa è <b>p53</b>, la proteina che protegge le cellule dal cancro. Il centro è blu: AlphaFold è sicurissima. Le code arancioni sono «spaghetti» che <b>anche nella realtà</b> non hanno una forma fissa. Un\'AI seria ti dice quanto fidarti.'},
+ {c:'#2ECC71',s:'Cosa ha cambiato',k:'Passo 6 · Cosa ha cambiato',h:'214 milioni di forme e un Nobel',p:'Nel 2022 AlphaFold ha previsto la forma di <b>quasi tutte le proteine conosciute</b>: più di 214 milioni, gratis per tutti. Nel 2024 <b>Demis Hassabis e John Jumper</b> hanno vinto il Nobel per la Chimica (con David Baker). <b>AlphaFold 3</b> prevede anche come una proteina si lega a DNA e farmaci.'}];
+var AF_P={P69905:{n:'Emoglobina',d:'porta l\'ossigeno nel sangue'},P42212:{n:'GFP',d:'la proteina che fa brillare le meduse'},P04637:{n:'p53',d:'il «guardiano» contro il cancro'}};
+var AF_PAIRS=[[31,51,'h1'],[107,126,'h2']];
+var AF={i:0,on:false,ready:false,lib3d:false,v3:null,prot:'P69905',tok:0,R:null,seg:[[28,34],[48,54],[104,110],[123,129]]};
+function afCol(b){return b>90?'#0053D6':b>70?'#65CBF3':b>50?'#FFDB13':'#FF7D45'}
+function afHex(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)]}
+function afLoadScript(src,ok,ko){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=ko||function(){};document.head.appendChild(s)}
+function afInit(){if(!G('afSteps'))return;afSteps('afSteps',AF_S,'afGo');afHead('afSteps',AF_S,0,'sAF');G('afBox').innerHTML='<p class="af-note">Carico le strutture…</p>';
+  afLoadScript('img/af/af-data.js',function(){afPrep();AF.ready=true;afGo(AF.i)},function(){G('afBox').innerHTML='<p class="af-note">Non trovo i dati di AlphaFold (img/af/af-data.js).</p>'});
+  afLoadScript('https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.5.5/3Dmol-min.js',function(){AF.lib3d=true});
+  setInterval(function(){var on=G('sAF').classList.contains('current');if(on&&!AF.on&&AF.ready)afGo(AF.i);AF.on=on},400);afLoop()}
+/* posizioni vere degli atomi CA (uno per amminoacido), centrate */
+function afCA(id){var P=AF_DATA.pdb[id].split('\n').filter(function(l){return l.slice(12,16)===' CA '}).map(function(l){return [+l.slice(30,38),+l.slice(38,46),+l.slice(46,54)]}),c=[0,0,0];
+  P.forEach(function(p){c[0]+=p[0];c[1]+=p[1];c[2]+=p[2]});c=c.map(function(v){return v/P.length});return P.map(function(p){return [p[0]-c[0],p[1]-c[1],p[2]-c[2]]})}
+function afPrep(){var ca=afCA('P69905'),n=ca.length,ph=[];for(var i=0;i<n;i++)ph.push(Math.random()*6.28);
+  AF.R={n:n,fin:ca,cur:ca.map(function(p){return p.slice()}),col:ca.map(function(){return '#8A94A6'}),hl:[],rot:0,scale:0,ph:[Math.random()*6,Math.random()*6,Math.random()*6],coil:null,coilT:0};
+  var seq=AF_DATA.seq.P69905;AF.R.type=seq.split('').map(function(a){return 'AVLIMFWC'.indexOf(a)>=0?'#E8701A':'#5BA7D9'})}
+/* forme non vere: catena stesa e gomitoli a caso (per i passi 1 e 2) */
+function afStretched(n){var o=[],row=30,L=row*3.6,gap=24;for(var i=0;i<n;i++){var r=Math.floor(i/row),k=i%row,x=(r%2?L-k*3.6:k*3.6)-L/2,y=r*gap-(Math.ceil(n/row)-1)*gap/2,z=Math.sin(i*.6)*2.2;o.push([x,y,z])}return o}
+function afCoil(n){var o=[[0,0,0]],d=[1,0,0];for(var i=1;i<n;i++){var r=[Math.random()-.5,Math.random()-.5,Math.random()-.5];d=[d[0]*.45+r[0]*1.1,d[1]*.45+r[1]*1.1,d[2]*.45+r[2]*1.1];var L=Math.hypot(d[0],d[1],d[2]);d=d.map(function(v){return v/L});var p=o[i-1];o.push([p[0]+d[0]*3.8,p[1]+d[1]*3.8,p[2]+d[2]*3.8])}
+  var c=[0,0,0];o.forEach(function(p){c[0]+=p[0];c[1]+=p[1];c[2]+=p[2]});return o.map(function(p){return [p[0]-c[0]/n,p[1]-c[1]/n,p[2]-c[2]/n]})}
+function afLerp(a,b,t){return a.map(function(p,i){return [p[0]+(b[i][0]-p[0])*t,p[1]+(b[i][1]-p[1])*t,p[2]+(b[i][2]-p[2])*t]})}
+/* il «black hole»: tutti i pezzi partono dal centro, poi vanno al loro posto con un errore che cala a ogni giro */
+function afFoldAt(t){var R=AF.R,s=t<.3?1-Math.pow(1-t/.3,3):1,amp=17*Math.pow(1-t,1.7),f=R.ph;
+  return R.fin.map(function(p,i){return [p[0]*s+amp*(Math.sin(i*.11+f[0])+.5*Math.sin(i*.07+f[1]*2)),p[1]*s+amp*(Math.sin(i*.09+f[1])+.5*Math.sin(i*.13+f[2]*2)),p[2]*s+amp*(Math.sin(i*.12+f[2])+.5*Math.sin(i*.08+f[0]*2))]})}
+/* disegno: un tubo 3D che gira, con profondità */
+function afDraw(){var R=AF.R,cv=G('afCv');if(!R||!cv)return;var dpr=window.devicePixelRatio||1,W=cv.clientWidth*dpr,H=cv.clientHeight*dpr;if(!W)return;if(cv.width!==W){cv.width=W;cv.height=H}
+  var g=cv.getContext('2d');g.clearRect(0,0,W,H);var P=R.cur,n=P.length,a=R.rot,ca=Math.cos(a),sa=Math.sin(a),tb=.35,ct=Math.cos(tb),st=Math.sin(tb);
+  var Q=P.map(function(p){var x=p[0]*ca-p[2]*sa,z=p[0]*sa+p[2]*ca,y=p[1]*ct-z*st;z=p[1]*st+z*ct;return [x,y,z]}),rad=1;Q.forEach(function(q){rad=Math.max(rad,Math.hypot(q[0],q[1]))});
+  var target=.4*Math.min(W,H)/rad;R.scale=R.scale?R.scale+(target-R.scale)*.08:target;var S=R.scale,dz=rad*3.2,zs=Q.map(function(q){return q[2]}),zmin=Math.min.apply(null,zs),zmax=Math.max.apply(null,zs);
+  var pr=function(q){var k=dz/(dz+q[2]);return [W/2+q[0]*S*k,H/2+q[1]*S*k,k]};
+  /* Catmull-Rom: 3 pezzetti per legame */
+  var segs=[];for(var i=0;i<n-1;i++){var p0=Q[Math.max(0,i-1)],p1=Q[i],p2=Q[i+1],p3=Q[Math.min(n-1,i+2)],prev=null;
+    for(var k=0;k<=3;k++){var t=k/3,t2=t*t,t3=t2*t,pt=[0,1,2].map(function(d){return .5*((2*p1[d])+(-p0[d]+p2[d])*t+(2*p0[d]-5*p1[d]+4*p2[d]-p3[d])*t2+(-p0[d]+3*p1[d]-3*p2[d]+p3[d])*t3)});
+      if(prev)segs.push([prev,pt,i]);prev=pt}}
+  segs.sort(function(x,y){return (y[0][2]+y[1][2])-(x[0][2]+x[1][2])});g.lineCap='round';var bg=[11,20,38];
+  var tw=Math.min(Math.max(1.5*S,4*dpr),10*dpr),dr=segs.map(function(sg){var A=pr(sg[0]),B=pr(sg[1]),z=(sg[0][2]+sg[1][2])/2,f=zmax>zmin?(z-zmin)/(zmax-zmin):0,c=afHex(R.col[sg[2]]),m=.62*f;
+    return [A,B,tw*(A[2]+B[2])/2,'rgb('+Math.round(c[0]*(1-m)+bg[0]*m)+','+Math.round(c[1]*(1-m)+bg[1]*m)+','+Math.round(c[2]*(1-m)+bg[2]*m)+')']});
+  for(var q=0;q<dr.length;q+=24){var ch=dr.slice(q,q+24);g.strokeStyle='rgba(5,10,20,.8)';ch.forEach(function(d){g.lineWidth=d[2]+2.2*dpr;g.beginPath();g.moveTo(d[0][0],d[0][1]);g.lineTo(d[1][0],d[1][1]);g.stroke()});
+    ch.forEach(function(d){g.strokeStyle=d[3];g.lineWidth=d[2];g.beginPath();g.moveTo(d[0][0],d[0][1]);g.lineTo(d[1][0],d[1][1]);g.stroke()})}
+  /* le coppie che cambiano insieme */
+  R.hl.forEach(function(h){var A=pr(Q[h[0]-1]),B=pr(Q[h[1]-1]),c=h[2]==='h1'?'#FFD54F':'#F472B6';g.setLineDash([6*dpr,5*dpr]);g.strokeStyle=c;g.lineWidth=2.5*dpr;g.beginPath();g.moveTo(A[0],A[1]);g.lineTo(B[0],B[1]);g.stroke();g.setLineDash([]);
+    [[A,h[0],B],[B,h[1],A]].forEach(function(e){var r=Math.min(Math.max(7*dpr,2*S*e[0][2]),15*dpr),gr=g.createRadialGradient(e[0][0]-r/3,e[0][1]-r/3,r/5,e[0][0],e[0][1],r);gr.addColorStop(0,'#fff');gr.addColorStop(1,c);g.fillStyle=gr;g.beginPath();g.arc(e[0][0],e[0][1],r,0,7);g.fill();
+      var dx=e[0][0]-e[2][0],dy=e[0][1]-e[2][1],dl=Math.hypot(dx,dy);if(dl<1){dx=e[1]===h[0]?-1:1;dy=-.4;dl=Math.hypot(dx,dy)}var lx=e[0][0]+dx/dl*(r+16*dpr),ly=e[0][1]+dy/dl*(r+12*dpr);
+      g.font='800 '+(12*dpr)+'px "Nunito Sans",sans-serif';g.textAlign='center';g.textBaseline='middle';var tw2=g.measureText(e[1]).width+10*dpr;g.fillStyle='rgba(11,20,38,.85)';g.beginPath();g.roundRect?g.roundRect(lx-tw2/2,ly-9*dpr,tw2,18*dpr,9*dpr):g.rect(lx-tw2/2,ly-9*dpr,tw2,18*dpr);g.fill();g.fillStyle=c;g.fillText(e[1],lx,ly);g.textBaseline='alphabetic'})})}
+function afLoop(){var R=AF.R;if(R&&G('sAF').classList.contains('current')&&!document.hidden){R.rot+=.006;
+  if(AF.mode==='coil'){var now=performance.now();if(!R.coil||now-R.coilT>1700){R.coilFrom=R.cur.map(function(p){return p.slice()});R.coil=afCoil(R.n);R.coilT=now;AF.coilN=(AF.coilN||0)+1;G('afLab').textContent='Tentativo n° '+(AF.coilN*137911).toLocaleString('it-IT')+'… no'}
+    var t=Math.min(1,(now-R.coilT)/1100);R.cur=afLerp(R.coilFrom,R.coil,t*t*(3-2*t))}
+  afDraw()}requestAnimationFrame(afLoop)}
+/* 3D vero (3Dmol): la struttura di AlphaFold, a nastri, colorata per sicurezza */
+function af3D(id,cb){var el=G('af3d');if(!AF.lib3d||!window.$3Dmol){el.classList.remove('on');return false}
+  if(!AF.v3){AF.v3=$3Dmol.createViewer(el,{backgroundColor:'#0B1426',antialias:true})}var v=AF.v3;v.removeAllModels();v.addModel(AF_DATA.pdb[id],'pdb');
+  v.setStyle({},{cartoon:{colorfunc:function(a){return afCol(a.b)},thickness:.55}});v.zoomTo();v.zoom(1.1);v.render();v.spin('y',.45);el.classList.add('on');AF.prot=id;return true}
+function af3Doff(){var el=G('af3d');el.classList.remove('on');if(AF.v3)AF.v3.spin(false)}
 function afGo(i){if(i<0||i>=AF_S.length)return;AF.i=i;var s=AF_S[i];afHead('afSteps',AF_S,i,'sAF');G('afKick').textContent=s.k;G('afH').textContent=s.h;G('afP').innerHTML=s.p;G('afPrev').disabled=i===0;G('afNext').disabled=i===AF_S.length-1;
-  var box='';
-  if(i===0){box='<div class="af-seq">M<span>A</span>LW<span>M</span>RLLPLL<span>A</span>LLALWGPD…</div><p class="cv-note">La sequenza è scritta nel DNA. <b style="color:#FF8A3D">Arancione</b>: pezzi che «odiano» l\'acqua e vanno all\'interno · <b style="color:#4FC3F7">azzurro</b>: pezzi che la amano e stanno fuori.</p>';AF.shake=0;afLoop(function(){afDraw(0,0,'type',0);return false})}
-  if(i===1){box='<div class="af-big"><div><b>10<sup>300</sup></b><span>forme possibili per una proteina</span></div><div><b>anni</b><span>per scoprirne una in laboratorio</span></div><div><b>50 anni</b><span>di tentativi, dal 1972</span></div></div>';AF.shake=22;afLoop(function(t){afDraw(.12+.08*Math.sin(t*.8),t,'type',0)})}
-  if(i===2){box='<div class="af-big"><div><b>minuti</b><span>invece di anni</span></div><div><b>CASP 2020</b><span>la gara mondiale: precisione da laboratorio</span></div></div>';AF.shake=18;
-    afLoop(function(t){var f=Math.min(1,t/3.5),e=f<.5?2*f*f:1-Math.pow(-2*f+2,2)/2;afDraw(e,t,'type',Math.max(0,(f-.7)/.3));return f<1})}
-  if(i===3){box='<div class="af-leg"><span><i style="background:#0053D6"></i>Molto sicura</span><span><i style="background:#65CBF3"></i>Sicura</span><span><i style="background:#FFDB13"></i>Poco sicura</span><span><i style="background:#FF7D45"></i>Non lo sa</span></div>';AF.shake=0;afLoop(function(){afDraw(1,0,'conf',.35);return false})}
-  if(i===4){box='<div class="af-big"><div><b>200 mln</b><span>forme previste, gratis</span></div><div><b>Nobel 2024</b><span>per la Chimica</span></div></div><p class="cv-note">Usata per un vaccino contro la malaria, per enzimi che digeriscono la plastica e per nuovi farmaci. <b>AlphaFold 3</b> prevede anche come una proteina si lega a un farmaco. E i farmaci… bisogna saperli produrre: slide dopo.</p>'+
-    '<div class="af-links"><a href="https://alphafold.ebi.ac.uk/entry/P69905" target="_blank" rel="noopener">🩸 L\'emoglobina in AlphaFold ↗</a><a href="https://alphafold.ebi.ac.uk" target="_blank" rel="noopener">🔍 La banca dati ↗</a></div>';AF.shake=0;afLoop(function(){afDraw(1,0,'conf',.35);return false})}
-  G('afBox').innerHTML=box}
+  if(!AF.ready)return;var R=AF.R,box='',tok=++AF.tok;AF.mode='';R.hl=[];G('afLab').textContent='';G('afLeg').classList.toggle('on',i>=3);af3Doff();
+  if(i===0){R.cur=afStretched(R.n);R.col=R.type.slice();G('afLab').textContent='Emoglobina · 142 amminoacidi';
+    var seq=AF_DATA.seq.P69905;box='<div class="af-seq">'+seq.split('').map(function(a){return 'AVLIMFWC'.indexOf(a)>=0?'<b>'+a+'</b>':a}).join('')+'</div><p class="af-note">La sequenza vera, scritta nel DNA. In <b style="color:#E8701A">arancione</b> i pezzi che «odiano» l\'acqua: nella forma finale finiranno all\'interno.</p>'}
+  if(i===1){R.col=R.type.slice();AF.mode='coil';AF.coilN=0;R.coil=null;box='<div class="af-big"><div><b>10<sup>300</sup></b><span>forme possibili (una stima)</span></div><div><b>mesi o anni</b><span>per scoprirne una in laboratorio</span></div><div><b>~200.000</b><span>forme scoperte in 60 anni</span></div></div><p class="af-note">Provarle tutte, anche a un miliardo al secondo, richiederebbe più dell\'età dell\'universo.</p>'}
+  if(i===2){R.cur=R.fin.map(function(p){return p.slice()});R.col=R.fin.map(function(){return '#7B8DB0'});R.hl=AF_PAIRS;G('afLab').textContent='La forma vera: le coppie si toccano';box=afEvoBox();setTimeout(afDM,30)}
+  if(i===3){box='<p class="af-note">⚠️ L\'animazione ricostruisce il procedimento; la forma finale è quella <b>vera</b> calcolata da AlphaFold (sicurezza media <b>98 su 100</b>).</p><button class="btn ghost af-again" onclick="afGo(3)">↺ Rivedi</button>';afFold(tok)}
+  if(i===4){R.cur=afCA('P04637');R.col=AF_DATA.plddt.P04637.map(afCol);af3D('P04637');G('afLab').textContent='p53 · 393 amminoacidi';box=afPlotBox();setTimeout(function(){afPlots('P04637')},30)}
+  if(i===5){var id=AF.prot==='P04637'?'P42212':AF.prot;R.cur=afCA(id);R.col=AF_DATA.plddt[id].map(afCol);af3D(id);G('afLab').textContent=AF_P[id].n+' · '+AF_P[id].d;
+    box='<div class="af-prot">'+Object.keys(AF_P).map(function(k){return '<button class="af-pb'+(k===id?' on':'')+'" onclick="afPick(\''+k+'\')">'+AF_P[k].n+'</button>'}).join('')+'</div><div class="af-big"><div><b>214 mln</b><span>forme previste, gratis</span></div><div><b>Nobel 2024</b><span>per la Chimica</span></div><div><b>2 mln+</b><span>ricercatori le usano</span></div></div>'+
+      '<p class="af-note">Usata per un <b>vaccino contro la malaria</b>, per <b>enzimi che digeriscono la plastica</b>, per cercare nuovi farmaci. Ma un farmaco poi bisogna saperlo <b>produrre</b>: lo vediamo nella prossima slide.</p><div class="af-links" id="afLinks"></div>';setTimeout(afLinks,0)}
+  G('afBox').innerHTML=box;R.scale=0}
+function afPick(id){var R=AF.R;R.cur=afCA(id);R.col=AF_DATA.plddt[id].map(afCol);af3D(id);G('afLab').textContent=AF_P[id].n+' · '+AF_P[id].d;[].forEach.call(document.querySelectorAll('.af-pb'),function(b){b.classList.toggle('on',b.textContent===AF_P[id].n)});afLinks();R.scale=0}
+function afLinks(){var id=AF.prot,l=G('afLinks');if(l)l.innerHTML='<a href="https://alphafold.ebi.ac.uk/entry/'+id+'" target="_blank" rel="noopener">🔍 '+AF_P[id].n+' nell\'AlphaFold DB ↗</a><a href="https://alphafold.ebi.ac.uk" target="_blank" rel="noopener">La banca dati ↗</a>'}
+/* passo 4: il ripiegamento */
+function afFold(tok){var R=AF.R,t0=performance.now(),D=9000,pl=AF_DATA.plddt.P69905;
+  (function f(now){if(tok!==AF.tok)return;var t=Math.min(1,(now-t0)/D);R.cur=afFoldAt(t);var e=t*t*(3-2*t);R.col=pl.map(function(b){return afCol(Math.min(b,22+b*e*1.05))});
+    var m=0;pl.forEach(function(b){m+=Math.min(b,22+b*e*1.05)});m=Math.round(m/pl.length);
+    G('afLab').textContent=t<.1?'Inizio: tutti i pezzi in un punto':t<.42?'Giro 1 di 3 · sicurezza '+m:t<.74?'Giro 2 di 3 · sicurezza '+m:t<1?'Giro 3 di 3 · sicurezza '+m:'Fatto: sicurezza 98 su 100';
+    if(t<1){requestAnimationFrame(f);return}setTimeout(function(){if(tok===AF.tok)af3D('P69905')},600)})(t0)}
+/* passo 3: allineamento vero e mappa delle distanze */
+function afEvoBox(){var M=AF_DATA.msa,hl={};AF_PAIRS.forEach(function(p){hl[p[0]]=p[2];hl[p[1]]=p[2]});var h='<table class="af-msa"><tr><th></th>';
+  AF.seg.forEach(function(sg,k){if(k)h+='<th></th>';for(var c=sg[0];c<=sg[1];c++)h+='<th>'+(hl[c]?c:'')+'</th>'});h+='</tr>';
+  M.forEach(function(r){h+='<tr><td class="n">'+r[0]+'</td>';AF.seg.forEach(function(sg,k){if(k)h+='<td class="d">…</td>';for(var c=sg[0];c<=sg[1];c++){var a=r[1][c-1],x=a!==M[0][1][c-1];h+='<td class="'+(hl[c]||'')+(x?' x':(r[0]==='Uomo'?'':' s'))+'">'+(r[0]!=='Uomo'&&!x&&!hl[c]?'·':a)+'</td>'}});h+='</tr>'});
+  return '<div class="af-evo">'+h+'</table><div class="af-dm"><canvas id="afDM" width="142" height="142"></canvas>Mappa delle distanze: scuro = vicini</div></div><p class="af-note">«·» = uguale all\'uomo. Nella <b>carpa</b> la 31 e la 51 cambiano insieme, e anche la 107 e la 126: nella forma vera stanno a circa <b>7 Å</b> (meno di un milionesimo di millimetro). Nel modello questa parte si chiama <b>Evoformer</b>.</p>'}
+function afDM(){var c=G('afDM');if(!c)return;var g=c.getContext('2d'),P=AF.R.fin,n=P.length,im=g.createImageData(n,n);
+  for(var i=0;i<n;i++)for(var j=0;j<n;j++){var d=Math.hypot(P[i][0]-P[j][0],P[i][1]-P[j][1],P[i][2]-P[j][2]),v=Math.min(1,d/22),k=(i*n+j)*4;im.data[k]=Math.round(20+235*v);im.data[k+1]=Math.round(40+215*v);im.data[k+2]=Math.round(90+165*v);im.data[k+3]=255}
+  g.putImageData(im,0,0);AF_PAIRS.forEach(function(p){g.strokeStyle=p[2]==='h1'?'#E6A800':'#E0458F';g.lineWidth=2;g.beginPath();g.arc(p[1]-1,p[0]-1,6,0,7);g.stroke();g.beginPath();g.arc(p[0]-1,p[1]-1,6,0,7);g.stroke()})}
+/* passo 5: i due grafici veri di AlphaFold */
+function afPlotBox(){return '<div class="af-plots"><div><canvas class="pl" id="afPL"></canvas><div class="af-cap"><b>pLDDT</b>: sicurezza per ogni amminoacido, da 0 a 100</div></div><div class="af-dm af-dm2"><canvas id="afPAE" width="160" height="160"></canvas><span><b style="color:#1B2A4A">PAE</b> · verde scuro = sa dove sta un pezzo rispetto all\'altro</span></div></div>'+
+  '<p class="af-note">Sono i due grafici che AlphaFold mette accanto a ogni forma. Il quadrato verde al centro è la parte ben piegata; il resto è bianco: lì AlphaFold non sa, e lo dice.</p>'}
+function afPlots(id){var c=G('afPL'),pl=AF_DATA.plddt[id];if(c){var dpr=window.devicePixelRatio||1,W=c.clientWidth*dpr,H=c.clientHeight*dpr;c.width=W;c.height=H;var g=c.getContext('2d'),n=pl.length,x=function(i){return 6*dpr+i*(W-12*dpr)/(n-1)},y=function(v){return H-6*dpr-v/100*(H-12*dpr)};
+  [[90,'#0053D6'],[70,'#65CBF3'],[50,'#FFDB13'],[0,'#FF7D45']].forEach(function(b,k,arr){var top=k?arr[k-1][0]:100;g.fillStyle=b[1];g.globalAlpha=.12;g.fillRect(0,y(top),W,y(b[0])-y(top));g.globalAlpha=1});
+  g.lineWidth=2.2*dpr;for(var i=1;i<n;i++){g.strokeStyle=afCol((pl[i]+pl[i-1])/2);g.beginPath();g.moveTo(x(i-1),y(pl[i-1]));g.lineTo(x(i),y(pl[i]));g.stroke()}}
+  var p=G('afPAE'),P=AF_DATA.pae[id];if(p&&P){var m=P.n,g2=p.getContext('2d'),im=g2.createImageData(m,m);for(var k=0;k<m*m;k++){var v=Math.min(1,(P.d.charCodeAt(k)-48)/30);im.data[k*4]=Math.round(15+240*v);im.data[k*4+1]=Math.round(95+160*v);im.data[k*4+2]=Math.round(45+210*v);im.data[k*4+3]=255}
+    var t=document.createElement('canvas');t.width=m;t.height=m;t.getContext('2d').putImageData(im,0,0);g2.imageSmoothingEnabled=false;g2.drawImage(t,0,0,160,160)}}
 
 /* ===== slide Retrosintesi: dall'ibuprofene agli ingredienti, all'indietro ===== */
 var RS_M=[{n:'Isobutilbenzene + anidride acetica',sm:'CC(C)CC1=CC=CC=C1.CC(=O)OC(C)=O'},{n:'Isobutilacetofenone',sm:'CC(C)CC1=CC=C(C=C1)C(C)=O'},{n:'Un alcol',sm:'CC(C)CC1=CC=C(C=C1)C(C)O'},{n:'Ibuprofene',sm:'CC(C)CC1=CC=C(C=C1)C(C)C(=O)O'}];
