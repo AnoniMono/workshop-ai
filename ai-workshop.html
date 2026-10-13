@@ -1771,6 +1771,134 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 .af-links a:hover{border-color:var(--orange);color:var(--orange)}
 .af-again{align-self:flex-start;font-size:.9rem;padding:.4em 1em}
 @media (max-height:800px){#sAF .af-view{width:min(100%,52vh,540px)}#sAF .af-p{font-size:.92rem}#sAF .af-note{font-size:.78rem}#sAF .af-seq{font-size:.66rem}}
+/* slide etica: dilemmi, colpa, privacy, dibattito, nuvola */
+#sDL.current,#sCO.current,#sPR.current,#sDB.current,#sWC.current{height:100svh}
+.et-head{display:flex;justify-content:space-between;align-items:center;gap:1rem}
+.et-kick{margin:0;font-family:var(--ff-head);font-weight:600;font-size:clamp(.8rem,1.2vw,.95rem);letter-spacing:.14em;text-transform:uppercase;color:var(--c)}
+.et-h2{margin:.05em 0 0}
+.et-join{flex:none;display:flex;gap:.7em;align-items:center;background:#fff;border:2px solid var(--border);border-radius:14px;padding:.4em .7em}
+.et-join .tu-qr{padding:3px;border:none}.et-join .tu-qr img,.et-join .tu-qr canvas{width:84px!important;height:84px!important}
+.et-join p{margin:0;font-size:.82rem;color:var(--gray);line-height:1.35;font-weight:700}
+.et-join b.big{display:block;font-family:var(--ff-head);font-size:1.25rem;color:var(--navy);letter-spacing:.06em}
+.et-off{font-size:.8rem!important;max-width:16em}
+.et-tabs{display:flex;gap:.4em;flex-wrap:wrap;align-items:center}
+.et-tab{font:700 .85rem var(--ff-body);padding:.35em .9em;border-radius:999px;border:2px solid var(--border);background:#fff;color:var(--navy);cursor:pointer}
+.et-tab.seen{border-color:#B8C2D1}.et-tab.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.et-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(1rem,2.6vw,2.2rem);align-items:start}
+.dl-l{display:flex;flex-direction:column;gap:.8em;min-width:0}
+.dl-r{display:flex;flex-direction:column;gap:.8em;min-width:0}
+.et-case{background:#fff;border:2px solid var(--border);border-left:6px solid var(--navy);border-radius:0 16px 16px 0;padding:.6em 1em}
+.et-case span{font-size:.75rem;font-weight:800;color:var(--gray);letter-spacing:.06em;text-transform:uppercase}
+.et-case h3{margin:.15em 0 0;font-family:var(--ff-head);font-size:clamp(1.25rem,2.4vw,1.9rem);line-height:1.2;color:var(--navy)}
+.et-case h3.co-q{font-family:var(--ff-body);font-weight:600;font-size:clamp(.98rem,1.5vw,1.2rem);line-height:1.45}
+.dl-hist{display:grid;grid-template-columns:repeat(5,1fr);gap:.6em;height:clamp(150px,32vh,320px)}
+.dl-col{display:flex;flex-direction:column;align-items:center;gap:.15em;min-height:0}
+.dl-col .v{font-family:var(--ff-head);font-size:1.1rem;color:var(--navy);min-height:1.3em}
+.dl-bw{flex:1;width:100%;display:flex;align-items:flex-end;background:#EEF2F7;border-radius:10px;overflow:hidden}
+.dl-bw i{display:block;width:100%;border-radius:10px 10px 0 0;transition:height .6s}
+.dl-col .e{font-size:1.4rem;line-height:1.1}.dl-col small{font-size:.75rem;font-weight:800;color:var(--gray);text-align:center}
+.dl-temp p{margin:.35em 0 0;font-size:.95rem;color:var(--gray);text-align:center}.dl-temp b{color:var(--navy)}
+.dl-grad{position:relative;height:12px;border-radius:6px;background:linear-gradient(90deg,#1E9E58,#7BC67E,#E2B23A,#F08A4B,#D64545)}
+.dl-grad i{position:absolute;top:50%;width:22px;height:22px;border-radius:50%;background:#fff;border:4px solid var(--navy);transform:translate(-50%,-50%);transition:left .6s}
+.et-fact{background:#FFF8E6;border-left:6px solid #F39C12;border-radius:0 16px 16px 0;padding:.7em 1em;animation:etIn .5s ease}
+.et-fact span{font-size:.75rem;font-weight:800;color:#B9770E;letter-spacing:.08em;text-transform:uppercase}
+.et-fact p{margin:.3em 0 0;font-size:clamp(.9rem,1.3vw,1.05rem);line-height:1.5;color:var(--navy)}
+@keyframes etIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.et-wait{background:#fff;border:2px dashed #C9D1DC;border-radius:16px;padding:.8em 1em;display:flex;flex-direction:column;gap:.6em;align-items:flex-start}
+.et-wait p{margin:0;font-size:clamp(.92rem,1.3vw,1.05rem);color:var(--gray);line-height:1.5}.et-wait b{color:var(--navy)}
+.co-stack{display:flex;height:clamp(44px,7vh,64px);border-radius:12px;overflow:hidden;background:#EEF2F7}
+.co-stack i{display:flex;align-items:center;justify-content:center;font-style:normal;font-family:var(--ff-head);font-weight:700;color:#fff;font-size:1.1rem;transition:flex .6s;min-width:0}
+.co-stack em{margin:auto;font-style:normal;font-weight:700;color:var(--gray)}
+.co-rows{display:flex;flex-direction:column;gap:.4em}
+.co-row{display:grid;grid-template-columns:13.5em 1fr 3em;gap:.7em;align-items:center;font-weight:700;color:var(--navy);font-size:.95rem}
+.co-row span i{display:inline-block;width:.8em;height:.8em;border-radius:3px;margin-right:.45em}
+.co-b{height:12px;background:#EEF2F7;border-radius:6px;overflow:hidden}.co-b i{display:block;height:100%;border-radius:6px;transition:width .6s}
+.co-row b{font-family:var(--ff-head);text-align:right}
+#sPR .et-body{grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:stretch}
+.pr-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,minmax(0,1fr));gap:.7em;max-height:62vh}
+.pr-c{background:#fff;border:2.5px solid var(--border);border-radius:14px;padding:.7em .85em;display:flex;flex-direction:column;gap:.35em;transition:border-color .4s,background .4s}
+.pr-c p{margin:0;font-size:clamp(.9rem,1.45vw,1.2rem);font-weight:700;color:var(--navy);line-height:1.3;flex:1}
+.pr-b{height:9px;background:#EEF2F7;border-radius:5px;overflow:hidden}.pr-b i{display:block;height:100%;background:#00A6C8;border-radius:5px;transition:width .6s}
+.pr-c small{font-size:.74rem;color:var(--gray);font-weight:700}.pr-c small b{color:var(--navy)}
+.pr-c em{font-style:normal;font-size:.75rem;line-height:1.35;color:var(--navy);animation:etIn .5s ease}
+.pr-c.ok{border-color:#1E9E58;background:#F2FBF6}.pr-c.ko{border-color:#D64545;background:#FFF6F6}
+.pr-side{display:flex;flex-direction:column;gap:.7em;align-items:flex-start}
+.pr-rule{background:var(--navy);color:#fff;border-radius:14px;padding:.6em .9em;font-size:clamp(.88rem,1.25vw,1rem);line-height:1.45}
+/* dibattito */
+.db-motion{font-size:clamp(1.2rem,2.4vw,1.9rem)!important;line-height:1.2}
+.db-bar{display:flex;justify-content:space-between;align-items:flex-start;gap:1em;position:relative;z-index:5}
+.db-pick{position:relative}
+.db-pb{font:700 .85rem var(--ff-body);padding:.4em .9em;border-radius:999px;border:2px solid var(--border);background:#fff;color:var(--navy);cursor:pointer}
+.db-pb.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.db-ph{display:flex;gap:.4em}
+.db-menu{position:absolute;top:calc(100% + .4em);left:0;width:min(560px,80vw);background:#fff;border:2px solid var(--border);border-radius:14px;box-shadow:0 14px 40px rgba(27,42,74,.2);padding:.4em;display:flex;flex-direction:column;gap:.2em}
+.db-menu>button{text-align:left;font:600 .92rem var(--ff-body);padding:.45em .7em;border:none;border-radius:10px;background:none;color:var(--navy);cursor:pointer}
+.db-menu>button:hover{background:#F2F5F9}.db-menu>button.on{background:#FFF1EA;color:#C2491D}
+.db-cust{display:flex;gap:.4em;padding:.3em}.db-cust input{flex:1;font:600 .9rem var(--ff-body);padding:.45em .7em;border:2px solid var(--border);border-radius:10px}
+.db-cust button{font:700 .85rem var(--ff-body);border:none;border-radius:10px;background:var(--orange);color:#fff;padding:0 1em;cursor:pointer}
+.db-body{grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr) auto auto;align-items:stretch}
+.db-col{display:flex;flex-direction:column;min-height:0;background:#fff;border:2px solid var(--border);border-top:6px solid var(--c);border-radius:16px;overflow:hidden}
+.db-th{display:flex;justify-content:space-between;align-items:baseline;gap:.5em;padding:.45em .8em;border-bottom:2px solid #EEF2F7}
+.db-th b{font-family:var(--ff-head);font-size:1.15rem;color:var(--c)}.db-th span{font-size:.78rem;font-weight:800;color:var(--gray)}
+.db-cards{flex:1;min-height:0;overflow-y:auto;padding:.5em;display:flex;flex-direction:column;gap:.45em}
+.db-card{position:relative;background:color-mix(in srgb,var(--c) 8%,#fff);border-left:4px solid var(--c);border-radius:0 10px 10px 0;padding:.45em 2em .45em .7em;cursor:pointer;animation:etIn .4s ease}
+.db-card p{margin:0;font-size:clamp(.88rem,1.2vw,1rem);line-height:1.4;color:var(--navy);font-weight:600;overflow-wrap:anywhere}
+.db-card button{position:absolute;top:.25em;right:.3em;border:none;background:none;color:#A0AEC0;font-size:.85rem;cursor:pointer;padding:.2em .35em}
+.db-card button:hover{color:#D64545}
+.db-empty{margin:auto;color:#A0AEC0;font-weight:700;font-size:.9rem;text-align:center}
+.db-vote{grid-column:1/-1;display:flex;align-items:center;gap:.8em;background:#fff;border:2px solid var(--border);border-radius:14px;padding:.45em .8em;animation:etIn .4s ease}
+.db-vote p{margin:0;font-size:.95rem;color:var(--navy);flex:none}.db-vote small{font-weight:800;color:var(--gray);flex:none}
+.db-vb{flex:1;display:flex;height:30px;border-radius:8px;overflow:hidden}.db-vb i{display:flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-weight:800;transition:width .6s}
+.db-help{grid-column:1/-1;margin:0;font-size:.8rem;color:var(--gray);display:flex;align-items:center;gap:.8em;flex-wrap:wrap}
+.db-ov{position:absolute;inset:0;z-index:20;background:rgba(11,20,38,.82);display:none;align-items:center;justify-content:center;padding:6vw;cursor:pointer}
+.db-ov.on{display:flex}
+.db-ov div{background:#fff;border-top:10px solid var(--c);border-radius:22px;padding:1.4em 1.8em;max-width:900px;animation:etIn .35s ease}
+.db-ov span{font-family:var(--ff-head);font-weight:700;color:var(--c);letter-spacing:.06em}
+.db-ov p{margin:.3em 0;font-family:var(--ff-head);font-size:clamp(1.6rem,3.6vw,2.8rem);line-height:1.25;color:var(--navy);overflow-wrap:anywhere}
+.db-ov small{color:var(--gray);font-weight:700}
+/* nuvola */
+.wc-box{flex:1;min-height:0;background:#fff;border:2px solid var(--border);border-radius:20px;position:relative;overflow:hidden}
+.wc-cloud{position:absolute;inset:0}
+.wc-cloud span{position:absolute;font-family:var(--ff-head);font-weight:700;line-height:1;white-space:nowrap;cursor:pointer;animation:wcIn .6s ease both}
+.wc-cloud span:hover{text-decoration:line-through;opacity:.6}
+@keyframes wcIn{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:none}}
+.wc-empty{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;margin:0;padding:2em;text-align:center;color:#A0AEC0;font-weight:700;font-size:1.1rem}
+.wc-foot{display:flex;align-items:center;gap:1em;font-size:.85rem;color:var(--gray);font-weight:700}
+.wc-thx{margin-left:auto}.wc-thx b{color:var(--navy)}
+@media (max-width:900px){.et-head{flex-direction:column;align-items:flex-start}.et-body,.db-body{grid-template-columns:1fr}.pr-grid{grid-template-columns:1fr 1fr}#sDL.current,#sCO.current,#sPR.current,#sDB.current{height:auto}}
+@media (max-height:800px){.et-join .tu-qr img,.et-join .tu-qr canvas{width:70px!important;height:70px!important}.et-case h3{font-size:1.3rem}.dl-hist{height:22vh}.pr-c em{font-size:.68rem}.et-fact p{font-size:.88rem}}
+/* telefono */
+#vtApp.et .etp-q{font-size:1.3rem}
+#vtApp.et .etp-q2{font-size:1.2rem}
+.etp-case{text-align:left;background:#fff;border-radius:14px;padding:.7em .9em;border:2px solid #E2E8F0}
+.etp-sc{display:flex;flex-direction:column;gap:8px;width:min(92vw,380px)}
+.etp-sc button{display:flex;align-items:center;gap:.6em;font:700 1.05rem var(--ff-body);padding:12px 16px;border-radius:14px;border:2.5px solid #E2E8F0;background:#fff;color:#1B2A4A;cursor:pointer;text-align:left}
+.etp-sc button span{font-size:1.4rem}
+.etp-sc button.sel{border-color:var(--c);background:color-mix(in srgb,var(--c) 14%,#fff)}
+.etp-fact{text-align:left;background:#FFF8E6;border-left:5px solid #F39C12;border-radius:0 12px 12px 0;padding:.6em .8em;font-size:.92rem;line-height:1.5;width:min(92vw,380px);box-sizing:border-box}
+.etp-tok{display:flex;flex-direction:column;gap:8px;width:min(92vw,380px)}
+.etp-tr{display:grid;grid-template-columns:1fr 44px 2em 44px;gap:6px;align-items:center;background:#fff;border:2px solid #E2E8F0;border-radius:12px;padding:6px 8px;text-align:left;font-weight:700}
+.etp-tr span i{display:inline-block;width:.75em;height:.75em;border-radius:3px;margin-right:.4em}
+.etp-tr button{height:40px;border:none;border-radius:10px;background:#1B2A4A;color:#fff;font:700 1.3rem var(--ff-body);cursor:pointer}
+.etp-tr button:disabled{background:#CBD5E0}
+.etp-tr b{text-align:center;font-family:'Fredoka',sans-serif;font-size:1.2rem}
+.etp-pr{display:flex;flex-direction:column;gap:8px;width:min(92vw,380px)}
+.etp-pc{background:#fff;border:2.5px solid #E2E8F0;border-radius:12px;padding:8px 10px;text-align:left}
+.etp-pc p{margin:0 0 6px;font-weight:700;font-size:.95rem;line-height:1.3}
+.etp-pc div{display:flex;gap:6px}
+.etp-pc button{flex:1;padding:9px 0;border-radius:10px;border:2px solid #CBD5E0;background:#fff;font:700 .95rem var(--ff-body);color:#1B2A4A;cursor:pointer}
+.etp-pc button.sel{background:#1B2A4A;border-color:#1B2A4A;color:#fff}
+.etp-pc small{display:block;margin-top:6px;font-size:.82rem;line-height:1.35;color:#4A5568}
+.etp-pc.ok{border-color:#1E9E58;background:#F2FBF6}.etp-pc.ko{border-color:#D64545;background:#FFF6F6}
+.etp-team{width:min(92vw,380px);box-sizing:border-box;background:var(--c);color:#fff;border-radius:16px;padding:12px;display:flex;flex-direction:column;gap:2px}
+.etp-team span{font-size:.85rem;font-weight:700;opacity:.9}.etp-team b{font-family:'Fredoka',sans-serif;font-size:1.8rem;letter-spacing:.04em}
+.etp-in{width:min(92vw,380px);box-sizing:border-box;background:#fff;color:#1B2A4A;font:600 1.05rem var(--ff-body);padding:12px;border:2.5px solid #C9D1DC;border-radius:14px;resize:none}
+.etp-in:focus{outline:none;border-color:#FF6B35}
+#vtApp.et .drp-btn{width:min(92vw,380px);flex:none}
+.etp-sent{display:flex;flex-direction:column;gap:6px;width:min(92vw,380px)}
+.etp-sent p{margin:0;text-align:left;background:#fff;border-left:4px solid #1E9E58;border-radius:0 10px 10px 0;padding:6px 10px;font-size:.9rem;overflow-wrap:anywhere}
+.etp-words{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.etp-words span{background:#1B2A4A;color:#fff;border-radius:999px;padding:6px 14px;font-weight:800}
 /* badge extra per i pop-up */
 .pl-b.human{background:rgba(46,204,113,.15);color:#1E8449}
 .scr{position:relative;width:clamp(300px,min(40vw,62vh),560px);aspect-ratio:16/10;background:#0d1424;border-radius:18px;padding:8px;box-shadow:0 18px 40px rgba(27,42,74,.35)}
@@ -2493,85 +2621,42 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
   </div>
 </section>
 
-<!-- 23 TRUST -->
-<section class="slide darktext s-white" data-section="Etica e futuro">
-  <h2 class="fz-h2">Possiamo fidarci dell'AI?</h2>
-  <p class="fz-lead" style="color:var(--gray)">L'AI ha ragione o ha sbagliato? Rispondi ai casi.</p>
-  <div class="wrap-flex" style="flex:1">
-    <div class="col min0" style="flex:1;gap:.55rem">
-      <div class="tr-card" id="trC0"><p class="fz-body" style="font-weight:700">L'AI dice: "La Gioconda fu dipinta da Michelangelo nel 1503"</p><div class="ra-opts"><button class="tr-opt" onclick="trAns(0,false,this)">Giusto</button><button class="tr-opt" onclick="trAns(0,true,this)">Sbagliato</button></div><p class="tr-exp fz-small" id="trE0" style="color:var(--gray)">Ha ALLUCINATO! La Gioconda è di Leonardo. Mescolava un dato vero (la data) con uno falso (l'autore).</p></div>
-      <div class="tr-card" id="trC1"><p class="fz-body" style="font-weight:700">L'AI consiglia: "Per il mal di testa prendi 2 aspirine" — ti fidi?</p><div class="ra-opts"><button class="tr-opt" onclick="trAns(1,false,this)">Sì, mi fido</button><button class="tr-opt" onclick="trAns(1,true,this)">No, chiedo al medico</button></div><p class="tr-exp fz-small" id="trE1" style="color:var(--gray)">MAI fidarsi dell'AI per consigli medici: non conosce allergie, altri farmaci o condizioni. Sempre il medico.</p></div>
-      <div class="tr-card" id="trC2"><p class="fz-body" style="font-weight:700">L'AI scrive un riassunto di storia — lo usi così com'è?</p><div class="ra-opts"><button class="tr-opt" onclick="trAns(2,false,this)">Sì, perfetto</button><button class="tr-opt" onclick="trAns(2,true,this)">Verifico date e fatti</button></div><p class="tr-exp fz-small" id="trE2" style="color:var(--gray)">Bravo! Ottima per un primo riassunto, ma date, nomi e fatti vanno SEMPRE verificati sul libro.</p></div>
-      <div class="tr-card" id="trC3"><p class="fz-body" style="font-weight:700">IBM Watson suggeriva cure oncologiche: alcune pericolose. Cosa insegna?</p><div class="ra-opts"><button class="tr-opt" onclick="trAns(3,false,this)">L'AI non serve in medicina</button><button class="tr-opt" onclick="trAns(3,true,this)">Serve supervisione umana</button></div><p class="tr-exp fz-small" id="trE3" style="color:var(--gray)">L'AI PUÒ aiutare (diagnosi precoce, immagini), ma serve sempre un medico che verifichi. Il costo di un errore è troppo alto.</p></div>
-    </div>
-    <div class="col min0" style="flex:0 0 32%">
-      <div class="panel" style="background:var(--navy);color:#fff;border:none;text-align:center"><p class="fz-body">Il tuo punteggio</p><b class="fz-num" id="trScore" style="color:var(--orange);font-size:clamp(2.4rem,5vw,3.4rem)">0</b><p class="fz-body">su 4</p></div>
-      <div class="panel" style="background:var(--light)"><p class="fz-h3" style="margin-bottom:.4em">Quando fidarsi?</p><p class="fz-small" style="line-height:1.9">✅ Brainstorming e idee<br>✅ Riassunti e primi draft<br>✅ Capire concetti difficili<br>⚠️ Verificare SEMPRE i fatti<br>❌ Mai per dati medici<br>❌ Mai per citazioni esatte</p></div>
-      <p class="fz-concl" style="color:var(--orange);text-align:center">L'AI è uno strumento, non un oracolo!</p>
-    </div>
-  </div>
+<!-- 23 DILEMMI: si vota dal telefono su una scala (stanza ?etica=, righe E) -->
+<section class="slide darktext s-light" data-section="Etica" id="sDL">
+  <div class="et-head"><div><p class="et-kick" style="--c:#8E44AD">Etica · 1 di 4</p><h2 class="fz-h2 et-h2">Dilemmi: voi cosa fareste?</h2></div><div class="et-join" id="etJdil"></div></div>
+  <div class="et-tabs" id="dlTabs"></div>
+  <div class="et-body" id="dlMain"></div>
 </section>
 
-<!-- 24 ETHICS -->
-<section class="slide darktext s-light" data-section="Etica e futuro">
-  <h2 class="fz-h2">AI e diritto d'autore: di chi è l'arte?</h2>
-  <div class="wrap-flex" style="flex:1">
-    <div class="col min0" style="flex:1;gap:.5rem">
-      <div class="eth-case"><span class="imgbox" style="--g:linear-gradient(135deg,#FF6B35,#FF8F66);width:clamp(70px,10vw,100px);height:clamp(56px,8vw,80px);flex:none"><span class="emoji">🎨</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Edmond_de_Belamy.png/220px-Edmond_de_Belamy.png" alt="" loading="lazy" onerror="this.remove()"></span><div class="min0"><p class="fz-small" style="color:var(--orange);font-weight:700">CASO 1</p><h4 class="fz-h3">Edmond de Belamy</h4><p class="fz-small" style="color:var(--gray)">Ritratto da GAN venduto da Christie's per <b>432.500 $</b>. Chi è l'artista: l'AI, il programmatore o il dataset?</p></div></div>
-      <div class="eth-case"><span class="imgbox" style="--g:linear-gradient(135deg,#00B4D8,#0090AA);width:clamp(70px,10vw,100px);height:clamp(56px,8vw,80px);flex:none"><span class="emoji">📷</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Boris_Eldagsen_2008.jpg/220px-Boris_Eldagsen_2008.jpg" alt="" loading="lazy" onerror="this.remove()"></span><div class="min0"><p class="fz-small" style="color:var(--cyan);font-weight:700">CASO 2</p><h4 class="fz-h3">Boris Eldagsen</h4><p class="fz-small" style="color:var(--gray)">Ha vinto il Sony Photography Award 2023 con una foto AI e ha <b>rifiutato il premio</b> per aprire il dibattito!</p></div></div>
-      <div class="eth-case"><span class="imgbox contain" style="--g:#1DB954;width:clamp(70px,10vw,100px);height:clamp(56px,8vw,80px);flex:none"><span class="emoji">🎵</span></span><div class="min0"><p class="fz-small" style="color:var(--orange);font-weight:700">CASO 3</p><h4 class="fz-h3">Spotify e i brani falsi</h4><p class="fz-small" style="color:var(--gray)">Migliaia di brani AI caricati per <b>rubare royalty</b> agli artisti veri. Spotify ne ha rimossi decine di migliaia.</p></div></div>
-      <div class="panel" style="background:rgba(0,180,216,.12);border-color:var(--cyan)"><p class="fz-small"><b style="color:var(--cyan)">Veleni digitali:</b> strumenti come <b>Glaze</b> e <b>Nightshade</b> alterano le immagini per "avvelenare" i modelli che le copiano. Resistenza creativa!</p></div>
-    </div>
-    <div class="col min0" style="flex:0 0 36%">
-      <div class="panel" style="background:var(--navy);color:#fff;border:none">
-        <p class="fz-h3" style="color:var(--orange)">Sondaggio in classe!</p>
-        <p class="fz-small" style="color:var(--muted)">Un'AI crea un'opera nello stile di un artista. È furto?</p>
-        <div class="eth-opt" onclick="ethVote(0,this)"><span class="fz-body">Sì, è furto</span><span class="eth-bar"><i id="ethBar0" style="background:var(--orange)"></i></span><b class="fz-small" id="ethP0"></b></div>
-        <div class="eth-opt" onclick="ethVote(1,this)"><span class="fz-body">No, è ispirazione</span><span class="eth-bar"><i id="ethBar1" style="background:var(--cyan)"></i></span><b class="fz-small" id="ethP1"></b></div>
-        <div class="eth-opt" onclick="ethVote(2,this)"><span class="fz-body">Dipende dal caso</span><span class="eth-bar"><i id="ethBar2" style="background:var(--green)"></i></span><b class="fz-small" id="ethP2"></b></div>
-        <p class="fz-small" id="ethTot" style="color:var(--muted);text-align:center">Cliccate per votare! Alzata di mano digitale</p>
-      </div>
-    </div>
-  </div>
-  <p class="fz-concl" style="color:var(--gray);text-align:center">La vostra generazione deciderà le regole — cosa pensate?</p>
+<!-- 24 DI CHI È LA COLPA: 10 gettoni di colpa da distribuire (righe B) -->
+<section class="slide darktext s-light" data-section="Etica" id="sCO">
+  <div class="et-head"><div><p class="et-kick" style="--c:#E74C3C">Etica · 2 di 4</p><h2 class="fz-h2 et-h2">Di chi è la colpa?</h2></div><div class="et-join" id="etJcol"></div></div>
+  <div class="et-tabs" id="coTabs"></div>
+  <div class="et-body" id="coMain"></div>
 </section>
 
-<!-- 25 ACT6 Dibattito -->
-<section class="slide dark s-act" data-section="Etica e futuro">
-  <span class="badge" style="align-self:flex-start">ATTIVITÀ 6 · 15 min</span>
-  <h2 class="fz-h2">Dibattito: opportunità o minaccia?</h2>
-  <div class="wrap-flex" style="flex:1;align-items:stretch">
-    <div class="panel-t col" style="flex:1;align-items:center;text-align:center"><p style="font-size:clamp(2.4rem,6vw,4rem)">👍</p><h3 class="fz-h3">Squadra PRO</h3><p class="fz-lead">"L'AI è la migliore invenzione della storia umana"</p><p class="fz-body" style="opacity:.9">Difendete: medicina, studio, lavoro, creatività, accessibilità</p></div>
-    <div class="col" style="flex:none;justify-content:center"><b class="fz-num">VS</b></div>
-    <div class="panel-t col" style="flex:1;align-items:center;text-align:center"><p style="font-size:clamp(2.4rem,6vw,4rem)">👎</p><h3 class="fz-h3">Squadra CONTRO</h3><p class="fz-lead">"L'AI è un pericolo per l'umanità"</p><p class="fz-body" style="opacity:.9">Difendete: lavoro, privacy, deepfake, dipendenza, disuguaglianze</p></div>
-  </div>
-  <div class="panel-t" style="text-align:center"><p class="fz-body" style="font-weight:700">3 minuti per squadra per preparare, poi 5 minuti di dibattito libero.</p><p class="fz-body">Twist: alla fine potete usare ChatGPT per trovare controargomenti contro l'altra squadra!</p></div>
+<!-- 25 COSA SA DI TE: lo incolleresti in un chatbot? (righe K) -->
+<section class="slide darktext s-light" data-section="Etica" id="sPR">
+  <div class="et-head"><div><p class="et-kick" style="--c:#00A6C8">Etica · 3 di 4</p><h2 class="fz-h2 et-h2">Cosa sa di te: lo incolleresti in un chatbot?</h2></div><div class="et-join" id="etJprv"></div></div>
+  <div class="et-body" id="prMain"></div>
 </section>
 
-<!-- 26 FUTURE -->
-<section class="slide center dark s-future" data-section="Etica e futuro">
-  <h2 class="fz-h1" style="font-size:clamp(1.9rem,5.5vw,4rem)">Il futuro è vostro</h2>
-  <p class="fz-lead" style="color:var(--muted);max-width:34ch">L'AI non vi sostituirà. Ma chi sa usare l'AI sostituirà chi non la sa usare.</p>
-  <div class="grid3" style="width:min(900px,100%)">
-    <div class="panel-t center"><b class="fz-h3" style="color:var(--orange)">Curiosità</b><p class="fz-small" style="color:var(--muted)">Provate strumenti nuovi ogni settimana</p></div>
-    <div class="panel-t center"><b class="fz-h3" style="color:var(--cyan)">Pensiero critico</b><p class="fz-small" style="color:var(--muted)">Non credete a tutto, verificate sempre</p></div>
-    <div class="panel-t center"><b class="fz-h3" style="color:var(--orange)">Creatività</b><p class="fz-small" style="color:var(--muted)">L'AI amplifica le vostre idee, non le crea</p></div>
+<!-- 26 DIBATTITO: squadre a caso, argomenti dal telefono (righe X) -->
+<section class="slide darktext s-light" data-section="Etica" id="sDB">
+  <div class="et-head"><div><p class="et-kick" style="--c:#FF6B35">Etica · 4 di 4 · il dibattito</p><h2 class="fz-h2 et-h2 db-motion" id="dbMotion"></h2></div><div class="et-join" id="etJdeb"></div></div>
+  <div class="db-bar">
+    <div class="db-pick" id="dbPick"></div>
+    <div class="db-ph"><button class="db-pb" id="dbPh0" onclick="dbPhase('arg')">✍️ Argomenti</button><button class="db-pb" id="dbPh1" onclick="dbPhase('vote')">🗳️ Voto finale</button></div>
   </div>
-  <p class="fz-concl">Siete la prima generazione che cresce con l'AI. Usatela bene!</p>
+  <div class="et-body db-body" id="dbMain"></div>
+  <div class="db-ov" id="dbOv" onclick="this.classList.remove('on')"></div>
 </section>
 
-<!-- 27 RESOURCES -->
-<section class="slide darktext s-light" data-section="Etica e futuro">
-  <h2 class="fz-h2">Risorse gratuite per continuare</h2>
-  <p class="fz-lead" style="color:var(--gray)">Tutto quello che vi serve per esplorare l'AI da soli</p>
-  <div class="grid2" style="flex:1">
-    <div class="panel" style="border-left:4px solid var(--orange)"><h3 class="fz-h3" style="color:var(--orange)">Chatbot AI</h3><p class="fz-body" style="color:var(--gray);line-height:1.7">ChatGPT · openai.com<br>Claude · claude.ai<br>Google Gemini · gemini.google.com<br>Microsoft Copilot · in Edge</p></div>
-    <div class="panel" style="border-left:4px solid var(--cyan)"><h3 class="fz-h3" style="color:var(--cyan)">Generazione immagini</h3><p class="fz-body" style="color:var(--gray);line-height:1.7">Bing Image Creator<br>Canva AI (Magic Media)<br>Leonardo AI<br>Ideogram</p></div>
-    <div class="panel" style="border-left:4px solid var(--orange)"><h3 class="fz-h3" style="color:var(--orange)">Studio con AI</h3><p class="fz-body" style="color:var(--gray);line-height:1.7">Google NotebookLM · da PDF<br>Quizlet · flashcard AI<br>Goblin.tools · scomporre compiti<br>Perplexity · ricerca con fonti</p></div>
-    <div class="panel" style="border-left:4px solid var(--cyan)"><h3 class="fz-h3" style="color:var(--cyan)">Automazione no-code</h3><p class="fz-body" style="color:var(--gray);line-height:1.7">Make.com · automazioni visive<br>n8n.io · open source<br>Zapier · 100 task/mese gratis<br>Teachable Machine · ML visivo</p></div>
-  </div>
-  <div class="panel" style="background:var(--navy);color:#fff;border:none;text-align:center"><p class="fz-h3">📸 Fotografate questa slide! Avrete tutto a portata di mano</p></div>
-  <p class="fz-body" style="color:var(--gray);text-align:center">Workshop a cura di <b>Fondazione ITS Vita</b> — Siena</p>
+<!-- 27 NUVOLA DI PAROLE: la chiusura (righe W) -->
+<section class="slide darktext s-light" data-section="Fine" id="sWC">
+  <div class="et-head"><div><p class="et-kick" style="--c:#2ECC71">Per chiudere</p><h2 class="fz-h2 et-h2">Una parola per l'AI, dopo oggi</h2></div><div class="et-join" id="etJwc"></div></div>
+  <div class="wc-box" id="wcBox"><div class="wc-cloud" id="wcCloud"></div></div>
+  <div class="wc-foot"><span id="wcN"></span><button class="dr-reset" onclick="etReset('wc')">↺ Nuova nuvola</button><span class="wc-thx">Grazie! · Workshop a cura di <b>Fondazione ITS Vita</b> — Siena</span></div>
 </section>
 
 </div><!-- /deck -->
@@ -3573,7 +3658,7 @@ function agTrainBtn(n){var wb=AG.wr;agTrainN(n);AG.wr=agEval();AGV.ver++;AGV.his
     bars:[['Vittorie',wb,AG.wr]],toast:'+'+n+' partite: vittorie '+wb+'% → '+AG.wr+'%'})}
 
 /* apre e chiude le stanze sui telefoni quando l'insegnante entra o esce */
-function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM||PA_ROOM||ST_ROOM)return;var sST=G('sST');if(sST&&sST.classList.contains('current')){var tT=stText(),tKey=tT+'|'+ST.m+'|'+ST.att;if(tKey!==ST.pub){ST.pub=tKey;var tSt={t:tT,m:ST.m,att:ST.att?ST_ATT[ST.att][0]:'',topic:(G('stTopic').value||'').trim()};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'TS',state:tSt,updated_at:new Date().toISOString()}).then(function(){})})}}var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
+function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM||PA_ROOM||ST_ROOM||ET_ROOM)return;var sST=G('sST');if(sST&&sST.classList.contains('current')){var tT=stText(),tKey=tT+'|'+ST.m+'|'+ST.att;if(tKey!==ST.pub){ST.pub=tKey;var tSt={t:tT,m:ST.m,att:ST.att?ST_ATT[ST.att][0]:'',topic:(G('stTopic').value||'').trim()};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'TS',state:tSt,updated_at:new Date().toISOString()}).then(function(){})})}}var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
   var s13=G('s13'),pOpen=!!(s13&&s13.classList.contains('current'));if(PA.g){var pKey=pOpen+'|'+PA.g+'|'+PA.ph;if(pKey!==PA.key){PA.key=pKey;var pSt={open:pOpen,g:PA.g,o:PA.o,ph:PA.ph,s:PA.ph==='gen'?PA.sent:''};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'PS',state:pSt,updated_at:new Date().toISOString()}).then(function(){})})}}
     var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
   var tOpen=on3&&hsCur===1&&TU.mode==='q';if(VT.pub&&tOpen!==VT.open)vtState(Object.assign({},VT.state,{open:tOpen}));
@@ -4844,17 +4929,158 @@ function rsGo(i){if(i<0||i>=RS_S.length)return;RS.i=i;var s=RS_S[i];afHead('rsSt
       '<div class="rs-tools">🧪 Strumenti veri: <span>Synthia (Merck)</span>·<span>IBM RXN</span>·<a href="https://github.com/MolecularAI/aizynthfinder" target="_blank" rel="noopener">AiZynthFinder, gratis ↗</a></div>'}
   G('rsSide').innerHTML=side;if(i===3)rsRoute(RS.route||0);if(focus)rsApply({})}
 
-var trScore=0;
-function trAns(i,correct,el){var card=document.getElementById('trC'+i);if(card.classList.contains('done'))return;card.classList.add('done');var opts=card.querySelectorAll('.tr-opt');if(correct){el.classList.add('right');trScore++;opts.forEach(function(o){if(o!==el)o.classList.add('dim')})}else{el.classList.add('nope');opts.forEach(function(o){if(o!==el){o.classList.add('right');o.classList.add('dim')}})}document.getElementById('trE'+i).classList.add('show');document.getElementById('trScore').textContent=trScore}
+/* ===== Etica: dilemmi, colpa, privacy, dibattito, nuvola di parole =====
+   Un solo QR (?etica=CODICE): il telefono segue l'insegnante da una slide all'altra.
+   Stato pubblicato in vote_rooms[CODICE+'ES']; ogni telefono scrive la sua riga CODICE+lettera+id (8 caratteri). */
+var ET_ROOM=(function(){try{return new URLSearchParams(location.search).get('etica')}catch(e){return null}})();
+var ET_L={dil:'E',col:'B',prv:'K',deb:'X',wc:'W'},ET_SL={dil:'sDL',col:'sCO',prv:'sPR',deb:'sDB',wc:'sWC'};
+var ET_SC=[['👍','Va benissimo','#1E9E58'],['🙂','Va bene','#7BC67E'],['🤔','Dipende','#E2B23A'],['🙁','Meglio di no','#F08A4B'],['⛔','Mai','#D64545']];
+var ET_D=[
+ {t:'Il riconoscimento facciale a scuola',q:'La scuola installa telecamere che riconoscono i volti, così l’appello si fa da solo.',f:'<b>Svezia, 2019.</b> Un liceo l’ha provato per tre settimane su 22 studenti. Il Garante della privacy l’ha multato: 200.000 corone. I volti sono dati sensibili, e per fare l’appello c’erano modi molto meno invasivi.'},
+ {t:'L’AI che legge i curriculum',q:'Un’azienda usa l’AI per scartare i CV prima che li legga una persona.',f:'<b>Amazon, 2018.</b> Il suo sistema penalizzava i CV con la parola «women’s»: aveva imparato da 10 anni di assunzioni quasi tutte maschili. Amazon l’ha abbandonato. Oggi per la legge europea sull’AI (AI Act) l’AI nelle assunzioni è <b>ad alto rischio</b>.'},
+ {t:'Il deepfake per ridere',q:'Un canale pubblica un video deepfake di un politico che canta, con scritto «parodia».',f:'Per l’<b>AI Act</b> i deepfake vanno sempre dichiarati. La satira è permessa, ma uno spezzone ritagliato gira senza la scritta in pochi minuti: chi lo vede dopo non sa che è finto.'},
+ {t:'L’amico che non esiste',q:'Un’app di compagnia per anziani soli usa un’AI che finge di essere una persona vera.',f:'L’<b>AI Act</b> obbliga a dire alle persone quando parlano con un’AI. Queste app aiutano contro la solitudine, ma possono creare dipendenza: nel 2023 il Garante italiano ha bloccato <b>Replika</b> per i rischi per minori e persone fragili.'}];
+var ET_C=[
+ {t:'L’auto a guida autonoma',q:'<b>Arizona, marzo 2018.</b> Un’auto a guida autonoma di Uber, in prova, investe e uccide una donna che attraversa di notte spingendo la bici. Al volante c’è una guidatrice di sicurezza, che in quel momento guarda un video sul telefono.',a:['Uber, l’azienda','La guidatrice','Chi ha programmato l’AI','L’AI stessa'],
+  f:'Le indagini: il software aveva «visto» la donna quasi <b>6 secondi</b> prima, ma non l’aveva riconosciuta come pedone (non era sulle strisce), e la frenata d’emergenza era disattivata. Uber non è stata accusata penalmente. La guidatrice sì: nel 2023 ha patteggiato, 3 anni di libertà vigilata. <b>L’AI non può essere processata: la responsabilità resta alle persone.</b>'},
+ {t:'Le sentenze inventate',q:'<b>New York, 2023.</b> Un avvocato usa ChatGPT per preparare una causa. Il documento che consegna al giudice cita 6 sentenze… che non esistono: le ha inventate l’AI. Nessuno le ha controllate.',a:['L’avvocato','Lo studio legale','OpenAI, che ha fatto ChatGPT','L’AI stessa'],
+  f:'Il giudice ha multato gli avvocati e il loro studio: <b>5.000 dollari</b>. OpenAI no: ChatGPT avverte che può sbagliare. Da allora diversi tribunali chiedono di dichiarare l’uso dell’AI e di controllare ogni citazione. <b>Chi firma, risponde.</b>'}];
+var ET_CC=['#8E44AD','#FF6B35','#2E86DE','#95A5A6'];
+var ET_P=[['Il testo del tuo tema, per farti correggere gli errori',1,'Nessun dato personale: va bene.'],
+ ['Una foto della tua carta d’identità',0,'Bastano questi dati per rubarti l’identità.'],
+ ['La password della mail, «così mi aiuta a sistemarla»',0,'Mai. Nessun servizio serio ti chiede la password in chat.'],
+ ['Le analisi del sangue di tua nonna, con nome e cognome',0,'Dati sanitari di un’altra persona: togli nome e cognome, o lascia stare.'],
+ ['Un’email di lavoro con nomi e numeri dei clienti',0,'Non sono dati tuoi: in azienda serve il permesso, e un account aziendale.'],
+ ['La lista della spesa per una cena con 6 amici',1,'Nessun problema.'],
+ ['Una foto di classe con le facce dei compagni',0,'Sono i volti di altre persone: serve il loro permesso.'],
+ ['Il tuo CV, dopo aver tolto indirizzo e telefono',1,'Bene così: hai tolto quello che non serviva.']];
+var ET_M=['A scuola l’AI dovrebbe essere permessa per fare i compiti','Le aziende possono addestrare l’AI sulle opere degli artisti senza chiedere il permesso','L’AI dovrebbe poter decidere chi assumere','Tutto quello che crea un’AI deve avere l’etichetta «fatto con l’AI»','Tra 10 anni l’AI avrà creato più lavoro di quanto ne abbia tolto'];
+var ET_T=[['FAVOREVOLI','#2E86DE','👍'],['CONTRARI','#FF6B35','👎']];
+var ET={g:{},i:{dil:0,col:0},rv:{dil:{},col:{},prv:0},m:0,mc:'',ph:'arg',rows:{},hid:{},key:'',cur:null,pk:false};
+function etUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?etica='+vtRoom():''}
+function etGenLoad(){try{var sv=JSON.parse(localStorage.getItem('etGen')||'null');if(sv&&sv.r===vtRoom()&&sv.g)ET.g=sv.g}catch(e){}
+  for(var a in ET_L)if(!ET.g[a])ET.g[a]=etNewCode();etGenSave()}
+function etNewCode(){var g='';for(var i=0;i<4;i++)g+='abcdefghjkmnpqrstuvwxyz23456789'[Math.floor(Math.random()*31)];return g}
+function etGenSave(){try{localStorage.setItem('etGen',JSON.stringify({r:vtRoom(),g:ET.g}))}catch(e){}}
+function etReset(a){if(!confirm('Cancellare le risposte di questa attività e ricominciare (nuova classe)?'))return;ET.g[a]=etNewCode();etGenSave();ET.rows[a]=[];
+  if(a==='dil')ET.rv.dil={};if(a==='col')ET.rv.col={};if(a==='prv')ET.rv.prv=0;if(a==='deb'){ET.hid={};ET.ph='arg'}etRender(a);etSync()}
+function etJoin(a){var e=G('etJ'+a);if(!e)return;var u=etUrl();
+  e.innerHTML=vtOn()&&u?'<div class="tu-qr" id="etQ'+a+'"></div><p>Inquadrate il codice<b class="big">Stanza '+vtRoom()+'</b><span id="etN'+a+'">0 telefoni</span></p>':'<p class="et-off">Il voto dal telefono funziona nella versione online.<br>Senza internet: alzata di mano.</p>';
+  if(vtOn()&&u){var q=G('etQ'+a);q.setAttribute('data-qr',u);q.setAttribute('data-size','96');vtQr(q,u,96)}}
+function etCount(a,n,w){var e=G('etN'+a);if(e)e.textContent=n+' '+(n===1?'telefono':'telefoni')+(w?' · '+w:'')}
+function etInit(){if(!G('sDL'))return;etGenLoad();for(var a in ET_L)etJoin(a);
+  G('dlTabs').innerHTML=ET_D.map(function(d,k){return '<button class="et-tab" onclick="ET.i.dil='+k+';etRender(\'dil\');etSync()">'+(k+1)+' · '+d.t+'</button>'}).join('')+'<button class="dr-reset" onclick="etReset(\'dil\')">↺ Nuova classe</button>';
+  G('coTabs').innerHTML=ET_C.map(function(d,k){return '<button class="et-tab" onclick="ET.i.col='+k+';etRender(\'col\');etSync()">'+(k+1)+' · '+d.t+'</button>'}).join('')+'<button class="dr-reset" onclick="etReset(\'col\')">↺ Nuova classe</button>';
+  dbPickDraw();for(var b in ET_L)etRender(b);
+  setInterval(etSync,1500);setInterval(function(){var a=etCur();if(a&&!document.hidden)etPull(a)},3000)}
+function etCur(){for(var a in ET_SL){var s=G(ET_SL[a]);if(s&&s.classList.contains('current'))return a}return null}
+/* stato per i telefoni: quale attività, quale caso, se la risposta è rivelata */
+function etSync(){if(!vtOn()||ET_ROOM)return;var a=etCur();if(a!==ET.cur){ET.cur=a;if(a){etRender(a);etPull(a)}}
+  var st={act:a,g:a?ET.g[a]:''};if(a==='dil'){st.i=ET.i.dil;st.rv=!!ET.rv.dil[ET.i.dil]}else if(a==='col'){st.i=ET.i.col;st.rv=!!ET.rv.col[ET.i.col]}else if(a==='prv')st.rv=!!ET.rv.prv;
+  else if(a==='deb'){st.m=dbMotion();st.ph=ET.ph;st.n=dbTeams()}
+  var k=JSON.stringify(st);if(k===ET.key)return;ET.key=k;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'ES',state:st,updated_at:new Date().toISOString()}).then(function(){})})}
+function etPull(a){if(!vtOn())return;var g=ET.g[a];vtSb(function(sb){sb.from('vote_rooms').select('room,state').like('room',vtRoom()+ET_L[a]+'%').limit(1000).then(function(res){if(!res.data||g!==ET.g[a])return;
+  ET.rows[a]=res.data.filter(function(r){return r.room.length===8&&r.state&&r.state.g===g}).map(function(r){var s=r.state;s.id=r.room.slice(5);return s});etRender(a)})})}
+function etRender(a){if(a==='dil')dlDraw();else if(a==='col')coDraw();else if(a==='prv')prDraw();else if(a==='deb')dbDraw();else if(a==='wc')wcDraw()}
+function etTabs(id,i,rv){[].forEach.call(document.querySelectorAll('#'+id+' .et-tab'),function(b,k){b.classList.toggle('on',k===i);b.classList.toggle('seen',!!rv[k])})}
+/* 1 · dilemmi */
+function dlDraw(){var i=ET.i.dil,d=ET_D[i],rows=ET.rows.dil||[],c=[0,0,0,0,0],n=0,sum=0;
+  rows.forEach(function(r){var v=r.v&&r.v[i];if(v>=0&&v<5){c[v]++;n++;sum+=v}});etTabs('dlTabs',i,ET.rv.dil);etCount('dil',rows.length,n+' risposte qui');
+  var mx=Math.max.apply(null,c)||1,mean=n?sum/n:2,sd=0;rows.forEach(function(r){var v=r.v&&r.v[i];if(v>=0&&v<5)sd+=(v-mean)*(v-mean)});sd=n?Math.sqrt(sd/n):0;
+  var mood=!n?'In attesa delle risposte…':sd<.8?'Siete quasi tutti d’accordo':sd<1.25?'Opinioni diverse':'La classe è divisa!';
+  var rv=!!ET.rv.dil[i];
+  G('dlMain').innerHTML='<div class="dl-l"><div class="et-case"><span>Dilemma '+(i+1)+' di '+ET_D.length+'</span><h3>'+d.q+'</h3></div>'+
+    '<div class="dl-hist">'+ET_SC.map(function(s,k){var p=n?Math.round(c[k]/n*100):0;return '<div class="dl-col"><b class="v">'+(n?p+'%':'')+'</b><div class="dl-bw"><i style="height:'+(c[k]/mx*100)+'%;background:'+s[2]+'"></i></div><span class="e">'+s[0]+'</span><small>'+s[1]+'</small></div>'}).join('')+'</div>'+
+    '<div class="dl-temp"><div class="dl-grad"><i style="left:'+(mean/4*100)+'%;opacity:'+(n?1:0)+'"></i></div><p><b>'+mood+'</b>'+(n?' · '+n+(n===1?' risposta':' risposte'):'')+'</p></div></div>'+
+    '<div class="dl-r">'+(rv?'<div class="et-fact"><span>Cosa è successo davvero</span><p>'+d.f+'</p></div>':'<div class="et-wait"><p>Votate dal telefono: <b>va bene</b> o <b>mai</b>? Poi parlatene: chi ha votato agli estremi spiega perché.</p><button class="btn" onclick="ET.rv.dil['+i+']=1;dlDraw();etSync()">🔍 Cosa è successo davvero</button></div>')+
+    '<div class="dr-nav"><button class="btn ghost" '+(i?'':'disabled')+' onclick="ET.i.dil--;dlDraw();etSync()">← Dilemma prima</button><button class="btn ghost" '+(i<ET_D.length-1?'':'disabled')+' onclick="ET.i.dil++;dlDraw();etSync()">Dilemma dopo →</button></div></div>'}
+/* 2 · colpa */
+function coDraw(){var i=ET.i.col,d=ET_C[i],rows=ET.rows.col||[],t=[0,0,0,0],n=0;
+  rows.forEach(function(r){var v=r.c&&r.c[i];if(v&&v.length===4){var s=v[0]+v[1]+v[2]+v[3];if(s>0){n++;for(var k=0;k<4;k++)t[k]+=v[k]/s}}});
+  var p=t.map(function(x){return n?Math.round(x/n*100):0});etTabs('coTabs',i,ET.rv.col);etCount('col',rows.length,n+' risposte qui');var rv=!!ET.rv.col[i];
+  G('coMain').innerHTML='<div class="dl-l"><div class="et-case"><span>Caso '+(i+1)+' di '+ET_C.length+' · ognuno ha 10 gettoni di colpa da distribuire</span><h3 class="co-q">'+d.q+'</h3></div>'+
+    '<div class="co-stack">'+(n?d.a.map(function(a,k){return p[k]?'<i style="flex:'+p[k]+';background:'+ET_CC[k]+'">'+(p[k]>=7?p[k]+'%':'')+'</i>':''}).join(''):'<em>In attesa dei gettoni…</em>')+'</div>'+
+    '<div class="co-rows">'+d.a.map(function(a,k){return '<div class="co-row"><span><i style="background:'+ET_CC[k]+'"></i>'+a+'</span><div class="co-b"><i style="width:'+p[k]+'%;background:'+ET_CC[k]+'"></i></div><b>'+(n?p[k]+'%':'–')+'</b></div>'}).join('')+'</div></div>'+
+    '<div class="dl-r">'+(rv?'<div class="et-fact"><span>Com’è finita davvero</span><p>'+d.f+'</p></div>':'<div class="et-wait"><p>Sul telefono ognuno distribuisce <b>10 gettoni</b> di colpa. Tutti a uno, o divisi: decidete voi.</p><button class="btn" onclick="ET.rv.col['+i+']=1;coDraw();etSync()">⚖️ Com’è finita davvero</button></div>')+
+    '<div class="dr-nav"><button class="btn ghost" '+(i?'':'disabled')+' onclick="ET.i.col--;coDraw();etSync()">← Caso prima</button><button class="btn ghost" '+(i<ET_C.length-1?'':'disabled')+' onclick="ET.i.col++;coDraw();etSync()">Caso dopo →</button></div></div>'}
+/* 3 · privacy */
+function prDraw(){var rows=ET.rows.prv||[],y=ET_P.map(function(){return 0}),t=ET_P.map(function(){return 0}),rv=!!ET.rv.prv;
+  rows.forEach(function(r){(r.a||[]).forEach(function(v,k){if(k<ET_P.length&&(v===0||v===1)){t[k]++;if(v===1)y[k]++}})});etCount('prv',rows.length);
+  G('prMain').innerHTML='<div class="pr-grid">'+ET_P.map(function(p,k){var pc=t[k]?Math.round(y[k]/t[k]*100):0;return '<div class="pr-c'+(rv?(p[1]?' ok':' ko'):'')+'"><p>'+p[0]+'</p><div class="pr-b"><i style="width:'+pc+'%"></i></div><small>'+(t[k]?'<b>'+pc+'%</b> lo incollerebbe':'nessuna risposta')+'</small>'+(rv?'<em>'+(p[1]?'✅ Sì':'❌ No')+' · '+p[2]+'</em>':'')+'</div>'}).join('')+'</div>'+
+    '<div class="pr-side">'+(rv?'<div class="et-fact"><span>Cosa succede a quello che scrivi</span><p>🗄️ Resta sui server dell’azienda, a volte per anni.<br>🧠 Spesso può servire ad <b>addestrare</b> i modelli futuri: di solito si può disattivare nelle impostazioni.<br>👀 Alcune conversazioni vengono lette da persone, per controllare la qualità.<br>🏢 Al lavoro: solo account aziendali, con contratti che proteggono i dati.</p></div>':'<div class="et-wait"><p>Per ognuna: la incollereste in ChatGPT, Claude o Gemini? Rispondete dal telefono.</p><button class="btn" onclick="ET.rv.prv=1;prDraw();etSync()">🔍 Le risposte giuste</button></div>')+
+    '<div class="pr-rule">✉️ <b>La regola della cartolina:</b> non scrivete a un chatbot niente che non scrivereste su una cartolina.</div><button class="dr-reset" onclick="etReset(\'prv\')">↺ Nuova classe</button></div>'}
+/* 4 · dibattito */
+function dbMotion(){return ET.m<0?(ET.mc||'Scrivete la mozione'):ET_M[ET.m]}
+function dbTeams(){var n=[0,0];(ET.rows.deb||[]).forEach(function(r){if(r.t===0||r.t===1)n[r.t]++});return n}
+function dbPickDraw(){G('dbPick').innerHTML='<button class="db-pb" onclick="ET.pk=!ET.pk;dbPickDraw()">🎲 Cambia mozione '+(ET.pk?'▴':'▾')+'</button>'+(ET.pk?'<div class="db-menu">'+ET_M.map(function(m,k){return '<button class="'+(ET.m===k?'on':'')+'" onclick="dbSet('+k+')">'+m+'</button>'}).join('')+'<div class="db-cust"><input id="dbIn" maxlength="140" placeholder="…oppure scrivetene una voi" value="'+esc(ET.mc).replace(/"/g,'&quot;')+'"><button onclick="ET.mc=G(\'dbIn\').value.trim();if(ET.mc)dbSet(-1)">Usa</button></div></div>':'')}
+function dbSet(k){var ch=k!==ET.m||k<0;ET.m=k;ET.pk=false;if(ch){ET.g.deb=etNewCode();etGenSave();ET.rows.deb=[];ET.hid={};ET.ph='arg'}dbPickDraw();dbDraw();etSync()}
+function dbPhase(p){ET.ph=p;dbDraw();etSync()}
+function dbDraw(){G('dbMotion').textContent='«'+dbMotion()+'»';var rows=ET.rows.deb||[],n=dbTeams(),cards=[[],[]],fv=[0,0];
+  rows.forEach(function(r){if(r.t!==0&&r.t!==1)return;(r.a||[]).forEach(function(x,k){var id=r.id+':'+k;if(x&&!ET.hid[id])cards[r.t].push({x:String(x).slice(0,200),id:id})});if(r.f===0||r.f===1)fv[r.f]++});
+  G('dbPh0').classList.toggle('on',ET.ph==='arg');G('dbPh1').classList.toggle('on',ET.ph==='vote');etCount('deb',rows.length);
+  var col=function(k){var T=ET_T[k];return '<div class="db-col" style="--c:'+T[1]+'"><div class="db-th"><b>'+T[2]+' '+T[0]+'</b><span>'+n[k]+' in squadra · '+cards[k].length+' argomenti</span></div><div class="db-cards">'+
+    (cards[k].length?cards[k].slice().reverse().map(function(c){return '<div class="db-card" onclick="dbBig(\''+c.id+'\','+k+')"><p>'+esc(c.x)+'</p><button title="Nascondi" onclick="event.stopPropagation();ET.hid[\''+c.id+'\']=1;dbDraw()">✕</button></div>'}).join(''):'<p class="db-empty">Gli argomenti arrivano qui dai telefoni…</p>')+'</div></div>'};
+  var fn=fv[0]+fv[1],fp=fn?Math.round(fv[0]/fn*100):50;
+  G('dbMain').innerHTML=col(0)+col(1)+(ET.ph==='vote'?'<div class="db-vote"><p>🗳️ <b>Voto finale.</b> Dimenticate la squadra: chi vi ha convinto di più?</p><div class="db-vb"><i style="width:'+fp+'%;background:'+ET_T[0][1]+'">'+(fn?fp+'%':'')+'</i><i style="width:'+(100-fp)+'%;background:'+ET_T[1][1]+'">'+(fn?(100-fp)+'%':'')+'</i></div><small>'+fn+(fn===1?' voto':' voti')+'</small></div>':'')+
+    '<p class="db-help">La squadra la sceglie il caso: si difende una posizione anche se non è la propria. Tocca un argomento per leggerlo in grande · ✕ per nasconderlo. <button class="dr-reset" onclick="etReset(\'deb\')">↺ Nuovo dibattito</button></p>'}
+function dbBig(id,k){var c=null;(ET.rows.deb||[]).forEach(function(r){(r.a||[]).forEach(function(x,j){if(r.id+':'+j===id)c=x})});if(!c)return;var o=G('dbOv');o.innerHTML='<div style="--c:'+ET_T[k][1]+'"><span>'+ET_T[k][2]+' '+ET_T[k][0]+'</span><p>'+esc(String(c).slice(0,200))+'</p><small>tocca per chiudere</small></div>';o.classList.add('on')}
+/* 5 · nuvola di parole */
+function wcNorm(w){return String(w||'').toLowerCase().replace(/[^\p{L}\p{N}' ]/gu,'').replace(/\s+/g,' ').trim().slice(0,24)}
+function wcDraw(){var rows=ET.rows.wc||[],cnt={},box=G('wcCloud');rows.forEach(function(r){var seen={};(r.w||[]).forEach(function(w){w=wcNorm(w);if(w&&!seen[w]&&!(ET.hid['w:'+w])){seen[w]=1;cnt[w]=(cnt[w]||0)+1}})});
+  var ws=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]||a.localeCompare(b)}).slice(0,70);etCount('wc',rows.length);G('wcN').textContent=ws.length?ws.length+' parole diverse da '+rows.length+(rows.length===1?' persona':' persone'):'';
+  var W=box.clientWidth,H=box.clientHeight;if(!W||!H)return;if(!ws.length){box.innerHTML='<p class="wc-empty">Scrivete una parola dal telefono: più persone la scelgono, più diventa grande.</p>';return}
+  var mx=cnt[ws[0]],mn=cnt[ws[ws.length-1]],cv=wcDraw.cv||(wcDraw.cv=document.createElement('canvas')),g=cv.getContext('2d'),placed=[],h='',pal=['#1B2A4A','#FF6B35','#2E86DE','#8E44AD','#1E9E58','#E74C3C','#00A6C8'];
+  var base=Math.min(W/9,H/4.2);
+  ws.forEach(function(w,k){var f=mx===mn?.7:(cnt[w]-mn)/(mx-mn),fs=Math.max(14,base*(.32+.68*Math.sqrt(f)));if(ws.length>35)fs*=.85;g.font='700 '+fs+'px Fredoka, sans-serif';var tw=g.measureText(w).width+fs*.3,th=fs*1.05;
+    for(var s=0;s<2400;s++){var a=s*.21,r=1.6*Math.sqrt(s)*fs*.22+s*.25,x=W/2+r*Math.cos(a)*1.25-tw/2,y=H/2+r*Math.sin(a)*.8-th/2;if(x<4||y<4||x+tw>W-4||y+th>H-4)continue;
+      if(placed.every(function(p){return x+tw<p[0]||p[0]+p[2]<x||y+th<p[1]||p[1]+p[3]<y})){placed.push([x,y,tw,th]);h+='<span title="'+cnt[w]+' · tocca per togliere" onclick="wcHide('+k+')" style="left:'+x+'px;top:'+y+'px;font-size:'+fs+'px;color:'+pal[k%pal.length]+';animation-delay:'+(k*30)+'ms">'+esc(w)+'</span>';break}}});
+  box.innerHTML=h;wcDraw.ws=ws}
+function wcHide(k){var w=(wcDraw.ws||[])[k];if(w){ET.hid['w:'+w]=1;wcDraw()}}
+window.addEventListener('resize',function(){if(etCur()==='wc')wcDraw()});
 
-var ethV=[0,0,0];
-function ethVote(i,el){ethV[i]++;var tot=ethV[0]+ethV[1]+ethV[2];for(var j=0;j<3;j++){var p=Math.round(ethV[j]/tot*100);document.getElementById('ethBar'+j).style.width=p+'%';document.getElementById('ethP'+j).textContent=p+'%'}document.getElementById('ethTot').textContent=tot+' voti totali'}
+/* ---- telefono (?etica=CODICE) ---- */
+function etPhone(){var root=document.documentElement;root.classList.add('vote');root.classList.add('drm');var app=document.createElement('div');app.id='vtApp';app.className='dr et';document.body.appendChild(app);
+  var id;try{id=localStorage.getItem('drId')}catch(e){}if(!id){id='';for(var i=0;i<3;i++)id+='ABCDEFGHJKLMNPQRSTUVWXYZ23456789'[Math.floor(Math.random()*32)];try{localStorage.setItem('drId',id)}catch(e){}}
+  var S={st:null,k:'',rk:'',my:{},draft:'',tm:null};
+  function mine(a){var st=S.st;if(!S.my[a]||S.my[a].g!==st.g){var m=null;try{m=JSON.parse(localStorage.getItem('et_'+a)||'null')}catch(e){}S.my[a]=m&&m.g===st.g?m:{g:st.g}}return S.my[a]}
+  function save(a,now){var m=S.my[a];try{localStorage.setItem('et_'+a,JSON.stringify(m))}catch(e){}clearTimeout(S.tm);var go=function(){vtSb(function(sb){sb.from('vote_rooms').upsert({room:ET_ROOM+ET_L[a]+id,state:m,updated_at:new Date().toISOString()}).then(function(){})})};if(now)go();else S.tm=setTimeout(go,500)}
+  function pull(){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',ET_ROOM+'ES').maybeSingle().then(function(res){var st=(res.data&&res.data.state)||{act:null},k=JSON.stringify(st);if(k===S.k)return;S.k=k;S.st=st;
+    var rk=JSON.stringify([st.act,st.g,st.i,st.rv,st.m,st.ph]);if(rk!==S.rk){S.rk=rk;draw()}else if(st.act==='deb')team()})})}
+  function team(){var st=S.st,m=mine('deb');if(m.t===0||m.t===1)return m;var n=st.n||[0,0];m.t=n[0]<n[1]?0:n[1]<n[0]?1:Math.floor(Math.random()*2);m.a=m.a||[];m.f=-1;save('deb',true);return m}
+  function hd(t){return '<p class="drp-hd">'+t+' · stanza '+esc(ET_ROOM)+'</p>'}
+  function draw(){var st=S.st,h='';
+    if(!vtOn()){app.innerHTML=hd('Etica')+'<p class="drp-note">Non configurato su questa presentazione.</p>';return}
+    if(!st){app.innerHTML=hd('Etica')+'<p class="drp-note">Collegamento…</p>';return}
+    var a=st.act;
+    if(!a){app.innerHTML=hd('Etica')+'<p class="drp-big">👀</p><p class="drp-q">Guardate lo schermo</p><p class="drp-note">Questa pagina si aggiorna da sola quando arriva la prossima attività. Tenetela aperta.</p>';return}
+    var m=mine(a);
+    if(a==='dil'){var i=st.i||0,d=ET_D[i],v=m.v&&m.v[i];h=hd('Dilemma '+(i+1)+' di '+ET_D.length)+'<p class="drp-q etp-q">'+d.q+'</p><p class="drp-note">Per te è…</p><div class="etp-sc">'+
+      ET_SC.map(function(s,k){return '<button class="'+(v===k?'sel':'')+'" style="--c:'+s[2]+'" onclick="etpDil('+i+','+k+')"><span>'+s[0]+'</span>'+s[1]+'</button>'}).join('')+'</div>'+(v>=0?'<p class="drp-prog">Risposta inviata · puoi cambiarla</p>':'')+(st.rv?'<div class="etp-fact">'+d.f+'</div>':'')}
+    else if(a==='col'){var i2=st.i||0,c=ET_C[i2];m.c=m.c||{};var g=m.c[i2]||[0,0,0,0],left=10-g[0]-g[1]-g[2]-g[3];h=hd('Di chi è la colpa? · caso '+(i2+1))+'<p class="drp-note etp-case">'+c.q+'</p><p class="drp-q etp-q2">Hai <b>'+left+'</b> gettoni di colpa su 10</p><div class="etp-tok">'+
+      c.a.map(function(x,k){return '<div class="etp-tr"><span><i style="background:'+ET_CC[k]+'"></i>'+x+'</span><button onclick="etpCol('+i2+','+k+',-1)" '+(g[k]?'':'disabled')+'>−</button><b>'+g[k]+'</b><button onclick="etpCol('+i2+','+k+',1)" '+(left?'':'disabled')+'>+</button></div>'}).join('')+'</div>'+(st.rv?'<div class="etp-fact">'+c.f+'</div>':'')}
+    else if(a==='prv'){m.a=m.a||[];var done=m.a.filter(function(x){return x===0||x===1}).length,sc=0;h=hd('Cosa sa di te')+'<p class="drp-q etp-q2">Lo incolleresti in un chatbot?</p><p class="drp-prog">'+done+' su '+ET_P.length+'</p><div class="etp-pr">'+
+      ET_P.map(function(p,k){var v=m.a[k];if(st.rv&&v===p[1])sc++;return '<div class="etp-pc'+(st.rv?(v===p[1]?' ok':v===0||v===1?' ko':''):'')+'"><p>'+p[0]+'</p><div><button class="'+(v===1?'sel':'')+'" onclick="etpPrv('+k+',1)">Sì</button><button class="'+(v===0?'sel':'')+'" onclick="etpPrv('+k+',0)">No</button></div>'+(st.rv?'<small>'+(p[1]?'✅ ':'❌ ')+p[2]+'</small>':'')+'</div>'}).join('')+'</div>'+(st.rv?'<p class="drp-q etp-q2">Hai risposto giusto a <b>'+sc+' su '+ET_P.length+'</b></p>':'')}
+    else if(a==='deb'){var mm=team(),T=ET_T[mm.t];h=hd('Il dibattito')+'<div class="etp-team" style="--c:'+T[1]+'"><span>Il caso ti ha messo tra i</span><b>'+T[2]+' '+T[0]+'</b></div><p class="drp-q etp-q2">«'+esc(st.m||'')+'»</p>';
+      if(st.ph==='vote')h+='<p class="drp-note"><b>Voto finale.</b> Dimentica la tua squadra: chi ti ha convinto di più?</p><div class="drp-row"><button class="drp-btn'+(mm.f===0?'':' sec')+'" onclick="etpVote(0)">👍 Favorevoli</button><button class="drp-btn'+(mm.f===1?'':' sec')+'" onclick="etpVote(1)">👎 Contrari</button></div>'+(mm.f>=0?'<p class="drp-prog">Voto inviato · puoi cambiarlo</p>':'');
+      else h+=(mm.a.length<3?'<p class="drp-note">Scrivi un argomento '+(mm.t?'<b>contro</b>':'<b>a favore</b>')+': anche se non la pensi così. Una frase, chiara.</p><textarea class="etp-in" id="etpIn" maxlength="200" rows="3" placeholder="Secondo noi… perché…" oninput="etpDraft(this.value)">'+esc(S.draft)+'</textarea><button class="drp-btn" onclick="etpArg()">Invia allo schermo</button><p class="drp-prog">Puoi mandarne fino a 3 · ne hai mandati '+mm.a.length+'</p>':'<p class="drp-prog">Hai mandato 3 argomenti: guarda lo schermo!</p>')+
+        (mm.a.length?'<div class="etp-sent">'+mm.a.map(function(x){return '<p>'+esc(x)+'</p>'}).join('')+'</div>':'')}
+    else if(a==='wc'){m.w=m.w||[];h=hd('Per chiudere')+'<p class="drp-q etp-q2">Una parola per l’AI, dopo oggi</p>'+(m.w.length<3?'<input class="etp-in" id="etpW" maxlength="24" placeholder="una parola" onkeydown="if(event.key===\'Enter\')etpWord()"><button class="drp-btn" onclick="etpWord()">Invia</button><p class="drp-prog">Fino a 3 parole</p>':'<p class="drp-prog">Grazie! Guarda la nuvola sullo schermo.</p>')+
+      (m.w.length?'<div class="etp-words">'+m.w.map(function(x){return '<span>'+esc(x)+'</span>'}).join('')+'</div>':'')}
+    app.innerHTML=h}
+  window.etpDil=function(i,k){var m=mine('dil');m.v=m.v||{};m.v[i]=k;save('dil');draw()};
+  window.etpCol=function(i,k,d){var m=mine('col');m.c=m.c||{};var g=m.c[i]||[0,0,0,0],s=g[0]+g[1]+g[2]+g[3];if(d>0&&s>=10||d<0&&!g[k])return;g=g.slice();g[k]+=d;m.c[i]=g;save('col');draw()};
+  window.etpPrv=function(k,v){var m=mine('prv');m.a=m.a||[];while(m.a.length<ET_P.length)m.a.push(-1);m.a[k]=v;save('prv');draw()};
+  window.etpDraft=function(v){S.draft=v};
+  window.etpArg=function(){var t=(S.draft||'').replace(/\s+/g,' ').trim().slice(0,200);if(t.length<3)return;var m=team();if(m.a.length>=3)return;m.a.push(t);S.draft='';save('deb',true);draw()};
+  window.etpVote=function(f){var m=team();m.f=f;save('deb',true);draw()};
+  window.etpWord=function(){var e=G('etpW'),w=e?e.value.replace(/\s+/g,' ').trim().slice(0,24):'';if(!w)return;var m=mine('wc');m.w=m.w||[];if(m.w.length>=3)return;m.w.push(w);save('wc',true);draw();var n=G('etpW');if(n)n.focus()};
+  draw();if(!vtOn())return;pull();setInterval(function(){if(!document.hidden)pull()},3000)}
 
 function copyTxt(t){try{navigator.clipboard.writeText(t)}catch(e){try{var ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta)}catch(e2){}}}
 function flash(el){var bg=el.style.background;el.style.background='rgba(46,204,113,.35)';setTimeout(function(){el.style.background=bg},1100)}
 
 
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit();afInit();rsInit()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM&&!ET_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit();afInit();rsInit();etInit()}
 fdBoot();
 hsInit();
 n4Init();
@@ -4862,5 +5088,5 @@ w6Init();
 txInit();
 nnInit();
 if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM)drInit();
-if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();else if(GT_ROOM)gtPhone();else if(PA_ROOM)paPhone();else if(ST_ROOM)stPhone();
+if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();else if(GT_ROOM)gtPhone();else if(PA_ROOM)paPhone();else if(ST_ROOM)stPhone();else if(ET_ROOM)etPhone();
 </script>
