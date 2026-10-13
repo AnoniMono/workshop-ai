@@ -1610,32 +1610,118 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 .af-links{display:flex;gap:.4em;flex-wrap:wrap}
 .af-links a{font-size:.88rem;font-weight:800;color:var(--navy);background:#fff;border:2px solid var(--border);border-radius:999px;padding:.3em .8em;text-decoration:none}
 .af-links a:hover{border-color:var(--orange);color:var(--orange)}
-.rs-scheme{display:flex;align-items:stretch;justify-content:center;gap:0;min-height:0}
-.rs-col{flex:1;min-width:0;max-width:280px;display:flex;flex-direction:column;align-items:center;gap:.25em;background:#fff;border:2px solid var(--border);border-radius:16px;padding:.4em .5em .6em;transition:opacity .4s,border-color .3s,box-shadow .3s}
-.rs-col.hid{opacity:0;pointer-events:none}
-.rs-col.tgt{border-color:#8E44AD;box-shadow:0 0 0 4px rgba(142,68,173,.15)}
-.rs-col.buy{border-color:#2ECC71;box-shadow:0 0 0 4px rgba(46,204,113,.15)}
-.rs-col svg{width:100%;height:clamp(90px,17vh,150px)}
-.rs-col b{font-family:var(--ff-head);font-size:clamp(.85rem,1.2vw,1.02rem);color:var(--navy);text-align:center;line-height:1.2}
-.rs-col small{font-size:.75rem;font-weight:800;color:var(--gray);text-align:center}
-.rs-tag{font-size:.72rem;font-weight:800;padding:.15em .6em;border-radius:999px;color:#fff}
-.rs-arr{flex:none;width:clamp(70px,9vw,120px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.2em;text-align:center;transition:opacity .4s}
-.rs-arr.hid{opacity:0}
-.rs-arr .a{font-size:2rem;line-height:1;color:#8E44AD;font-weight:800}
-.rs-arr.fw .a{color:#2ECC71}
-.rs-arr span{font-size:.72rem;font-weight:800;color:var(--gray);line-height:1.25}
-.rs-arr em{font-style:normal;font-size:.75rem;font-weight:800;color:var(--navy);background:#F5F7FA;border-radius:8px;padding:.1em .4em}
-.rs-low{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(1rem,3vw,2.4rem);align-items:start}
-@media (max-width:900px){.rs-scheme{flex-direction:column}.rs-arr{width:auto}.rs-low{grid-template-columns:1fr}#sRS.current,#sAF.current{height:auto}}
-.rs-h{font-size:clamp(1.4rem,3vw,2.2rem)}
-.rs-side{display:flex;flex-direction:column;gap:.55em}
-.rs-pat{background:#FFF8E6;border-left:5px solid #F39C12;border-radius:0 14px 14px 0;padding:.6em .9em;font-size:clamp(.88rem,1.25vw,1rem);line-height:1.45;color:var(--navy)}
+/* slide: retrosintesi (albero di ricerca) */
+.rs-steps{grid-template-columns:repeat(6,1fr);max-width:none}
+.rs-steps .dr-rail,.rs-steps .dr-fill{left:8.333%}.rs-steps .dr-rail{right:8.333%}
+.rs-win{flex:none;display:flex;flex-direction:column;background:#fff;border:2px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 12px 34px rgba(27,42,74,.12)}
+.rs-bar{display:flex;align-items:center;gap:.45em;padding:.4em .8em;background:#1B2A4A;color:#E8EEF7;font-size:.78rem;white-space:nowrap;overflow:hidden}
+.rs-bar>i{width:.7em;height:.7em;border-radius:50%;background:#FF6B6B;flex:none}.rs-bar>i+i{background:#FFC048}.rs-bar>i+i+i{background:#2ECC71;margin-right:.4em}
+.rs-bar>b{font-weight:800}
+.rs-log{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;color:#FFC048;font-weight:700;margin-left:.6em}
+.rs-stat{color:#A9B6CC}.rs-stat b{color:#fff}
+.rs-body{position:relative;height:clamp(210px,37vh,390px);background:linear-gradient(#EEF2F7 1px,transparent 1px) 0 0/22px 22px,linear-gradient(90deg,#EEF2F7 1px,#FBFCFE 1px) 0 0/22px 22px}
+.rs-ghost,.rs-links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.rs-ghost .gh{opacity:0;animation:rsGh 1.6s ease-out forwards}
+.rs-ghost line{stroke:#B8C2D1;stroke-width:1.5;stroke-dasharray:3 3}.rs-ghost circle{fill:#fff;stroke:#B8C2D1;stroke-width:1.5}
+.rs-ghost .gh.x circle{stroke:#E89A9A}.rs-ghost .gh.x line{stroke:#F0B9B9}
+@keyframes rsGh{0%{opacity:0}25%{opacity:1}100%{opacity:.28}}
+.rs-e{fill:none;stroke:#8A97AB;stroke-width:2.2;transition:opacity .5s,stroke .4s}
+.rs-d{fill:#8A97AB;transition:opacity .5s,fill .4s}
+.rs-e.sel{stroke:#FF6B35;stroke-width:3.5}.rs-d.sel{fill:#FF6B35}
+.rs-e.dead{stroke:#E89A9A;stroke-dasharray:5 4}.rs-d.dead{fill:#E89A9A}
+.rs-e.hid,.rs-d.hid,.rs-ag.hid{opacity:0}.rs-e.dim,.rs-d.dim,.rs-ag.dim{opacity:.15}
+.rs-tree{position:absolute;inset:0;transition:opacity .5s}
+.rs-n{position:absolute;display:flex;flex-direction:column;align-items:center;background:#fff;border:2.5px solid #A0AEC0;border-radius:12px;padding:2px 4px 3px;transition:opacity .5s,transform .5s,border-color .4s,box-shadow .4s;z-index:2}
+.rs-n .m{flex:1;min-height:0;width:100%}.rs-n .m svg{width:100%;height:100%;display:block}
+.rs-n b{font-size:.66rem;font-weight:800;color:var(--navy);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;line-height:1.2}
+.rs-n .st{position:absolute;top:-.85em;right:-.4em;font-style:normal;font-size:.62rem;font-weight:800;color:#fff;border-radius:999px;padding:.05em .5em;white-space:nowrap}
+.rs-n .st:empty{display:none}
+.rs-n.hid{opacity:0;transform:scale(.7)}
+.rs-n.root{border-color:#8E44AD;box-shadow:0 0 0 4px rgba(142,68,173,.15)}
+.rs-n.stock{border-color:#1E9E58;box-shadow:0 0 0 4px rgba(30,158,88,.15)}.rs-n.stock .st{background:#1E9E58}
+.rs-n.todo{border-color:#E07B12}
+.rs-n.dead{border-color:#D64545;background:#FFF5F5}.rs-n.dead .st{background:#D64545;font-size:.8rem}
+.rs-n.sel{box-shadow:0 0 0 4px rgba(255,107,53,.35)}
+.rs-n.dim{opacity:.18}
+.rs-n.onr{border-color:var(--rc,#1E9E58);box-shadow:0 0 0 4px color-mix(in srgb,var(--rc,#1E9E58) 14%,transparent)}.rs-n.r2{border-color:#E07B12;box-shadow:0 0 0 4px rgba(224,123,18,.12)}
+.rs-e.onr{stroke:var(--rc,#1E9E58);stroke-width:3.2}.rs-d.onr{fill:var(--rc,#1E9E58)}.rs-e.r2{stroke:#E07B12;stroke-width:3.2}.rs-d.r2{fill:#E07B12}
+.rs-ag{position:absolute;transform:translateX(-50%);font-size:.6rem;font-weight:800;color:#1E7A48;background:#E6F7EE;border:1.5px solid #A8DFC0;border-radius:999px;padding:0 .45em;white-space:nowrap;z-index:3;transition:opacity .5s}
+.rs-ag.dead{color:#B03A3A;background:#FDECEC;border-color:#F0B9B9}
+.rs-badge{position:absolute;transform:translate(-50%,-50%) scale(.8);opacity:0;font-size:.78rem;font-weight:800;padding:.35em .9em;border-radius:999px;white-space:nowrap;transition:opacity .5s,transform .5s;z-index:3}
+.rs-badge.on{opacity:1;transform:translate(-50%,-50%)}
+.rs-badge.ok{background:#E6F7EE;color:#146B3C;border:2px solid #1E9E58}.rs-badge.ko{background:#FDECEC;color:#A33;border:2px solid #D64545}
+.rs-toast{position:absolute;left:50%;bottom:.7em;transform:translate(-50%,20px);opacity:0;background:#1B2A4A;color:#fff;font-weight:800;font-size:.85rem;padding:.45em 1.1em;border-radius:999px;pointer-events:none;z-index:5}
+.rs-toast.on{animation:rsTo 3.2s ease forwards}
+@keyframes rsTo{0%{opacity:0;transform:translate(-50%,20px)}12%,80%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,0)}}
+.rs-focus{position:absolute;inset:0;background:#FBFCFE;opacity:0;pointer-events:none;transition:opacity .5s;z-index:4;display:flex;align-items:center;justify-content:center;padding:.6em 1em}
+.rs-body.fo .rs-focus{opacity:1;pointer-events:auto}.rs-body.fo .rs-tree,.rs-body.fo .rs-links,.rs-body.fo .rs-ghost{opacity:0}
+/* passo 1 */
+.rs-t1{display:flex;align-items:center;gap:clamp(1rem,3vw,3rem);height:100%}
+.rs-q{display:grid;grid-template-columns:repeat(3,auto);gap:.5em;align-items:center;justify-items:center}
+.rs-q span{width:clamp(56px,6vw,80px);height:clamp(56px,6vw,80px);border:2.5px dashed #B8C2D1;border-radius:12px;display:flex;align-items:center;justify-content:center;font:700 2rem var(--ff-head);color:#B8C2D1;animation:rsQ 2.4s ease-in-out infinite}
+.rs-q span:nth-child(2){animation-delay:.3s}.rs-q span:nth-child(3){animation-delay:.6s}
+@keyframes rsQ{50%{border-color:#8E44AD;color:#8E44AD}}
+.rs-q em{grid-column:1/-1;font-style:normal;font-weight:800;color:var(--gray);font-size:.85rem}
+.rs-arrow{font-size:3rem;color:#8E44AD;font-weight:800;animation:rsAr 1.6s ease-in-out infinite}
+@keyframes rsAr{50%{transform:translateX(-10px)}}
+.rs-tm{position:relative;display:flex;flex-direction:column;align-items:center;background:#fff;border:3px solid #8E44AD;border-radius:16px;padding:.3em .8em .6em;box-shadow:0 0 0 6px rgba(142,68,173,.12)}
+.rs-tm .m{height:clamp(100px,calc(37vh - 90px),260px);aspect-ratio:400/250}.rs-tm .m svg{width:100%;height:100%}
+.rs-tm b{font:700 1.2rem var(--ff-head);color:var(--navy)}.rs-tm small{font-weight:800;color:var(--gray)}
+.rs-stamp{position:absolute;bottom:2.6em;left:-1.6em;transform:rotate(-10deg);border:3px solid #C0392B;color:#C0392B;font-weight:900;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:.15em .6em;border-radius:6px;background:rgba(255,255,255,.9)}
+/* passo 2 */
+.rs-t2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:1.2em;align-items:center;width:100%;height:100%}
+.rs-big{height:100%;max-height:100%;display:flex;align-items:center;justify-content:center}.rs-big svg{width:100%;height:100%;max-height:340px}
+.rs-prs{display:flex;flex-direction:column;gap:.4em;min-width:0}
+.rs-pr{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto auto auto;column-gap:.7em;text-align:left;font:inherit;background:#fff;border:2px solid var(--border);border-radius:12px;padding:.35em .7em;cursor:pointer;transition:border-color .3s,box-shadow .3s,opacity .3s;opacity:.6}
+.rs-pr.on{border-color:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 18%,transparent);opacity:1}
+.rs-pr .t{display:flex;justify-content:space-between;gap:.6em}.rs-pr .t b{color:var(--navy);font-size:.92rem}.rs-pr .t span{font-weight:900;color:var(--c)}
+.rs-pr small{grid-column:1;font-size:.74rem;color:var(--gray);line-height:1.3}
+.rs-pr .bar{grid-column:1;height:8px;background:#EEF2F7;border-radius:4px;overflow:hidden;margin-top:.25em}.rs-pr .bar i{display:block;height:100%;background:var(--bg);border-right:3px solid var(--c)}
+.rs-pr .m{grid-column:2;grid-row:1/4;width:clamp(80px,8vw,110px);aspect-ratio:200/125;align-self:center}.rs-pr .m svg{width:100%;height:100%}
+.rs-ex{margin:0;font-size:.68rem;color:var(--gray);font-weight:700}
+/* passo 5 */
+.rs-fw{display:flex;align-items:center;justify-content:center;width:100%;gap:.2em}
+.rs-fm{display:flex;flex-direction:column;align-items:center;flex:1;min-width:0;background:#fff;border:2.5px solid #A0AEC0;border-radius:14px;padding:.2em .3em .4em;opacity:.12;transform:scale(.92);transition:opacity .6s,transform .6s,border-color .4s}
+.rs-fm.on{opacity:1;transform:none}.rs-fm#rsFM0{border-color:#1E9E58}.rs-fm#rsFM3{border-color:#8E44AD;box-shadow:0 0 0 5px rgba(142,68,173,.12)}
+.rs-fm .m{width:100%;aspect-ratio:400/250}.rs-fm .m svg{width:100%;height:100%}
+.rs-fm b{font-size:.85rem;font-weight:800;color:var(--navy)}.rs-fm small{font-size:.7rem;font-weight:800;color:#1E9E58}
+.rs-fa{flex:none;width:clamp(96px,10vw,140px);display:flex;flex-direction:column;align-items:center;text-align:center;gap:.1em;opacity:.12;transition:opacity .6s}
+.rs-fa.on{opacity:1}
+.rs-fa b{font-size:.78rem;color:var(--navy)}.rs-fa span{font-size:.8rem;font-weight:900;color:#2E86DE}
+.rs-fa em{font-style:normal;font-size:.66rem;font-weight:800;color:var(--gray)}.rs-fa small{font-size:.64rem;font-weight:800;color:#1E9E58}
+.rs-fa i{display:block;width:100%;height:4px;background:#D5DCE6;border-radius:2px;position:relative;margin:.3em 0;overflow:visible}
+.rs-fa i::before{content:'';position:absolute;left:0;top:0;height:100%;width:0;background:#2E86DE;border-radius:2px;transition:width .8s}
+.rs-fa.on i::before{width:100%}
+.rs-fa i::after{content:'';position:absolute;right:-2px;top:50%;transform:translateY(-50%);border:7px solid transparent;border-left:10px solid #D5DCE6;border-right:0;transition:border-left-color .4s .6s}
+.rs-fa.on i::after{border-left-color:#2E86DE}
+.rs-focus .rs-again{position:absolute;right:.8em;top:.6em;font-size:.82rem;padding:.3em .9em}
+.rs-cr{position:absolute;right:.7em;bottom:.3em;margin:0;font-size:.62rem;color:#8A97AB;z-index:6;pointer-events:none;background:rgba(251,252,254,.85);padding:0 .3em;border-radius:4px}
+.rs-low{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(1rem,2.6vw,2.2rem);align-items:start;margin-top:.5em}
+#sRS .dr-dot{width:clamp(38px,4.4vw,46px)}#sRS .dr-txt{gap:.35rem}#sRS .dr-nav .btn{padding:.45em 1.2em}
+.rs-h{font-size:clamp(1.3rem,2.6vw,2rem)}
+.rs-p{font-size:clamp(.92rem,1.3vw,1.08rem)}
+.rs-side{display:flex;flex-direction:column;gap:.5em}
+.rs-pat,.rs-info{border-radius:0 14px 14px 0;padding:.5em .85em;font-size:clamp(.82rem,1.15vw,.95rem);line-height:1.42;color:var(--navy)}
+.rs-pat{background:#FFF8E6;border-left:5px solid #F39C12}.rs-info{background:#EEF4FB;border-left:5px solid #2E86DE}
+.rs-leg{display:grid;grid-template-columns:1fr 1fr;gap:.35em .8em;font-size:.82rem;font-weight:700;color:var(--navy)}
+.rs-leg i{display:inline-block;width:1.1em;height:.8em;border-radius:4px;border:2.5px solid;margin-right:.45em;vertical-align:-.05em}
+.rs-leg i.g{border-color:#1E9E58}.rs-leg i.o{border-color:#E07B12}.rs-leg i.r{border-color:#D64545;background:#FFF5F5}.rs-leg i.x{border:1.5px dashed #B8C2D1;border-radius:50%;width:.8em}
+.rs-side .rs-again{align-self:flex-start;font-size:.88rem;padding:.35em 1em}
+.rs-rts{display:flex;flex-direction:column;gap:.4em}
+.rs-rt{display:flex;gap:.7em;align-items:center;text-align:left;font:inherit;background:#fff;border:2px solid var(--border);border-radius:12px;padding:.4em .8em;cursor:pointer;transition:border-color .3s,box-shadow .3s}
+.rs-rt.on{border-color:var(--c);box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 15%,transparent)}
+.rs-rt em{font-style:normal;font:700 1.3rem var(--ff-head);color:var(--c);min-width:1.6em;text-align:center}
+.rs-rt div>b{display:block;color:var(--navy);font-size:.95rem}.rs-rt small{display:block;font-size:.78rem;color:var(--gray);line-height:1.35}
 .rs-cmp{display:grid;grid-template-columns:auto 1fr;gap:.35em .7em;align-items:center;font-size:.92rem;font-weight:700;color:var(--navy)}
-.rs-cmp .bar{height:14px;background:#E6EBF2;border-radius:7px;overflow:hidden}.rs-cmp .bar i{display:block;height:100%;border-radius:7px;transition:width .8s}
+.rs-cmp .bar{height:14px;background:#E6EBF2;border-radius:7px;overflow:hidden}.rs-cmp .bar i{display:block;height:100%;border-radius:7px}
 .rs-tools{display:flex;gap:.35em;flex-wrap:wrap;align-items:center;font-size:.85rem;color:var(--gray);font-weight:700}
 .rs-tools a{color:var(--navy);background:#fff;border:2px solid var(--border);border-radius:999px;padding:.2em .7em;text-decoration:none;font-weight:800}
 .rs-tools a:hover{border-color:var(--orange);color:var(--orange)}
-@media (max-height:800px){#sRS .rs-col svg{height:80px}#sRS .rs-pat{font-size:.82rem;padding:.4em .7em}#sAF .af-big b{font-size:1.2rem}}
+@media (max-width:900px){.rs-low{grid-template-columns:1fr}.rs-bar .rs-stat{display:none}.rs-t2{grid-template-columns:1fr}}
+@media (max-height:800px){#sRS .rs-body{height:clamp(200px,34vh,300px)}#sRS .dr-step span{font-size:.65rem}#sRS .rs-p{font-size:.9rem}#sRS .rs-info,#sRS .rs-pat{font-size:.8rem;padding:.35em .7em}#sRS .rs-h{font-size:1.4rem}}
+@media (max-width:900px){#sRS.current,#sAF.current{height:auto}}
+@media (max-height:800px){#sAF .af-big b{font-size:1.2rem}}
+@media (max-height:700px){#sAF .af-view{width:min(100%,46vh,540px)}#sAF .af-h{font-size:1.35rem}#sAF .af-p{font-size:.85rem}#sAF .af-note{font-size:.72rem}#sAF .af-dm canvas{width:96px;height:96px}#sAF .af-plots canvas.pl{height:70px}#sAF .dr-step span,#sRS .dr-step span{display:none}#sRS .rs-body{height:31vh}#sRS .rs-h{font-size:1.2rem}#sRS .rs-p{font-size:.85rem}#sRS .rs-rt small{font-size:.7rem}#sRS .rs-rt{padding:.25em .7em}#sRS .rs-tm .m{height:calc(31vh - 78px)}#sRS .rs-tm{padding:.2em .6em .3em}#sRS .rs-tm b{font-size:1rem}}
 /* slide: AlphaFold (strutture vere) */
 #sAF.current{height:100svh}
 .af-steps{grid-template-columns:repeat(6,1fr);max-width:none}
@@ -2381,16 +2467,26 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
   </div>
 </section>
 
-<!-- 22b RETROSINTESI: dalla molecola agli ingredienti -->
+<!-- 22b RETROSINTESI: dalla molecola agli ingredienti (disegni RDKit, strade vere Boots e BHC) -->
 <section class="slide darktext s-light" data-section="AI e scienza" id="sRS">
   <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Retrosintesi: l'AI che cucina al contrario</h2>
-  <div class="dr-steps cv-steps gn-steps" id="rsSteps"></div>
-  <div class="rs-scheme" id="rsScheme"></div>
+  <div class="dr-steps rs-steps" id="rsSteps"></div>
+  <div class="rs-win">
+    <div class="rs-bar"><i></i><i></i><i></i><b>Ricerca retrosintetica · bersaglio: ibuprofene</b><span class="rs-log" id="rsLog"></span><span class="rs-stat" id="rsStat"></span></div>
+    <div class="rs-body" id="rsBody">
+      <svg class="rs-ghost" id="rsGhost"></svg>
+      <svg class="rs-links" id="rsLinks"></svg>
+      <div class="rs-tree" id="rsTree"></div>
+      <div class="rs-focus" id="rsFocus"></div>
+      <div class="rs-toast" id="rsToast"></div>
+      <p class="rs-cr">Molecole: RDKit · strade e condizioni vere (Boots anni '60, BHC 1992) · animazione ispirata ad AiZynthFinder, numeri indicativi</p>
+    </div>
+  </div>
   <div class="rs-low">
     <div class="dr-txt">
       <p class="dr-kick" id="rsKick"></p>
       <h3 class="dr-h rs-h" id="rsH"></h3>
-      <p class="dr-p" id="rsP"></p>
+      <p class="dr-p rs-p" id="rsP"></p>
       <div class="dr-nav"><button class="btn ghost" id="rsPrev" onclick="rsGo(RS.i-1)">← Indietro</button><button class="btn" id="rsNext" onclick="rsGo(RS.i+1)">Avanti →</button></div>
     </div>
     <div class="rs-side" id="rsSide"></div>
@@ -4639,28 +4735,114 @@ function afPlots(id){var c=G('afPL'),pl=AF_DATA.plddt[id];if(c){var dpr=window.d
   var p=G('afPAE'),P=AF_DATA.pae[id];if(p&&P){var m=P.n,g2=p.getContext('2d'),im=g2.createImageData(m,m);for(var k=0;k<m*m;k++){var v=Math.min(1,(P.d.charCodeAt(k)-48)/30);im.data[k*4]=Math.round(15+240*v);im.data[k*4+1]=Math.round(95+160*v);im.data[k*4+2]=Math.round(45+210*v);im.data[k*4+3]=255}
     var t=document.createElement('canvas');t.width=m;t.height=m;t.getContext('2d').putImageData(im,0,0);g2.imageSmoothingEnabled=false;g2.drawImage(t,0,0,160,160)}}
 
-/* ===== slide Retrosintesi: dall'ibuprofene agli ingredienti, all'indietro ===== */
-var RS_M=[{n:'Isobutilbenzene + anidride acetica',sm:'CC(C)CC1=CC=CC=C1.CC(=O)OC(C)=O'},{n:'Isobutilacetofenone',sm:'CC(C)CC1=CC=C(C=C1)C(C)=O'},{n:'Un alcol',sm:'CC(C)CC1=CC=C(C=C1)C(C)O'},{n:'Ibuprofene',sm:'CC(C)CC1=CC=C(C=C1)C(C)C(=O)O'}];
-var RS_A=[{r:'Acilazione',e:'+ anidride acetica'},{r:'Idrogenazione',e:'+ idrogeno (H₂)'},{r:'Carbonilazione',e:'+ CO · catalizzatore'}];
-var RS_S=[{c:'#8E44AD',s:'Il bersaglio',k:'Passo 1 · Il bersaglio',h:'Una molecola brevettata: l\'ibuprofene',p:'Brevettato da Boots nel 1961: il brevetto rende pubblica la molecola, ma solo l\'inventore può produrla per 20 anni. Quando scade, chiunque può farla. <b>Ma come, partendo da cose che si comprano?</b>'},
- {c:'#E74C3C',s:'Primo taglio',k:'Passo 2 · Si lavora all\'indietro',h:'Dove «tagliare»?',p:'Come un cuoco che assaggia un piatto e indovina la ricetta. L\'AI conosce <b>milioni di reazioni</b> pubblicate e cerca quella che può aver creato l\'ultimo pezzo: qui il gruppo acido nasce dal monossido di carbonio.'},
- {c:'#FF6B35',s:'Secondo taglio',k:'Passo 3 · E ancora',h:'Ogni pezzo diventa un nuovo bersaglio',p:'L\'AI ripete il taglio su ogni precursore ed esplora <b>migliaia di strade</b>, come un navigatore che prova tutti i percorsi.'},
- {c:'#00A6C8',s:'Gli ingredienti',k:'Passo 4 · Si ferma',h:'Fino a ingredienti in vendita',p:'Si ferma quando arriva a molecole <b>economiche e in commercio</b>. Ora la ricetta si legge in avanti: <b>3 reazioni</b> e il farmaco è pronto.'},
- {c:'#2ECC71',s:'La strada migliore',k:'Passo 5 · Due strade',h:'Più corta e più pulita',p:'La strada originale aveva <b>6 passaggi</b>. Negli anni \'90 BHC ne trovò una da <b>3</b>, con molti meno scarti: è diventata un esempio di chimica verde. Oggi l\'AI propone e confronta strade così <b>in minuti</b>.'}];
-var RS={i:0,lib:0};
-function rsInit(){if(!G('rsScheme'))return;afSteps('rsSteps',RS_S,'rsGo');var h='';
-  RS_M.forEach(function(m,k){if(k)h+='<div class="rs-arr" id="rsA'+(k-1)+'"><span class="a">⇐</span><span>'+RS_A[k-1].r+'</span><em>'+RS_A[k-1].e+'</em></div>';h+='<div class="rs-col" id="rsC'+k+'"><svg id="rsM'+k+'"></svg><b>'+m.n+'</b><small id="rsT'+k+'"></small></div>'});G('rsScheme').innerHTML=h;rsGo(0);
-  var s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/smiles-drawer@2.1.7/dist/smiles-drawer.min.js';s.onload=rsDraw;document.head.appendChild(s)}
-function rsDraw(){if(!window.SmilesDrawer)return;RS_M.forEach(function(m,k){var el=G('rsM'+k),r=el.getBoundingClientRect(),w=Math.max(200,r.width||240),hh=Math.max(110,r.height||130);el.setAttribute('viewBox','0 0 '+w+' '+hh);
-  SmilesDrawer.parse(m.sm,function(tree){new SmilesDrawer.SvgDrawer({width:w,height:hh,bondThickness:1.4,fontSizeLarge:10,fontSizeSmall:7,padding:10,compactDrawing:false}).draw(tree,el,'light')},function(){})})}
+/* ===== slide Retrosintesi: dall'ibuprofene agli ingredienti, all'indietro (disegni RDKit) ===== */
+var RS_S=[
+ {c:'#8E44AD',s:'Il bersaglio',k:'Passo 1 · Il bersaglio',h:'Una molecola brevettata: l’ibuprofene',p:'L’antidolorifico che quasi tutti hanno in casa, brevettato da <b>Boots</b> nel 1961. Il brevetto dice <b>qual è</b> la molecola, ma per produrla serve la <b>ricetta</b>: da quali ingredienti partire. La retrosintesi parte dal farmaco finito e torna indietro.'},
+ {c:'#E74C3C',s:'Le mosse',k:'Passo 2 · Dove tagliare?',h:'L’AI propone dei «tagli»',p:'Guardando la molecola, l’AI riconosce i legami che una reazione nota sa creare e li propone come «tagli», ognuno con una <b>probabilità</b>: come la tastiera del telefono che suggerisce la parola dopo. <b>Tocca una proposta.</b>'},
+ {c:'#FF6B35',s:'La ricerca',k:'Passo 3 · Si esplora',h:'Come una partita a scacchi, all’indietro',p:'Ogni pezzo diventa un nuovo bersaglio. L’AI prova una strada, guarda dove porta, torna indietro se non funziona. E a ogni molecola controlla il <b>magazzino</b>: si può comprare?'},
+ {c:'#00A6C8',s:'Le strade',k:'Passo 4 · La classifica',h:'Più strade, una classifica',p:'L’AI mette in fila le strade <b>complete</b>, quelle che arrivano solo a ingredienti in commercio: vince chi ha meno reazioni, ingredienti economici, reazioni affidabili. <b>Tocca una strada</b> per vederla.'},
+ {c:'#2E86DE',s:'In laboratorio',k:'Passo 5 · Ora in avanti',h:'La ricetta si legge al contrario',p:'La strada <b>BHC</b>, in fabbrica dal 1992: <b>tre reazioni</b>. In <b style="background:#FFE08A;padding:0 .2em;border-radius:4px">giallo</b> gli atomi appena arrivati; sopra le frecce gli ingredienti e i <b>catalizzatori</b>, aiutanti che accelerano la reazione senza consumarsi.'},
+ {c:'#2ECC71',s:'Cosa cambia',k:'Passo 6 · Perché conta',h:'Più corta, più pulita, trovata prima',p:'Boots, anni ’60: <b>6 reazioni</b>, più di metà degli atomi buttata. BHC: <b>3</b>, un esempio di <b>chimica verde</b>. Oggi l’AI propone strade così in <b>minuti</b> invece che in mesi. Ma l’AI propone: è il chimico che le prova in laboratorio.'}];
+/* l'albero: colonna, riga, genitore e la reazione che dal nodo porta al genitore (in avanti) */
+var RS_N=[
+ {k:'T',m:'T',c:0,r:1,n:'Ibuprofene',root:1},
+ {k:'A1',m:'A1',c:1,r:0,p:'T',rx:'Carbonilazione',ag:'+ CO',n:'Alcol'},
+ {k:'K',m:'K',c:2,r:0,p:'A1',rx:'Idrogenazione',ag:'+ H₂',n:'Chetone'},
+ {k:'I',m:'IBB',c:3,r:0,p:'K',rx:'Acilazione',ag:'+ Ac₂O',n:'Isobutilbenzene',st:1},
+ {k:'B1',m:'B1',c:1,r:1,p:'T',rx:'Idrolisi',ag:'+ H₂O',n:'Nitrile'},
+ {k:'OX',m:'OX',c:2,r:1,p:'B1',rx:'Disidratazione',ag:'− H₂O',n:'Ossima'},
+ {k:'AL',m:'AL',c:3,r:1,p:'OX',rx:'Ossima',ag:'+ NH₂OH',n:'Aldeide'},
+ {k:'EP',m:'EP',c:4,r:1,p:'AL',rx:'Idrolisi e decarbossilazione',ag:'+ H₂O',n:'Estere epossidico'},
+ {k:'K2',m:'K',c:5,r:1,p:'EP',rx:'Darzens',ag:'+ ClCH₂CO₂Et',n:'Chetone'},
+ {k:'I2',m:'IBB',c:6,r:1,p:'K2',rx:'Acilazione',ag:'+ Ac₂O',n:'Isobutilbenzene',st:1},
+ {k:'C1',m:'C1',c:1,r:2,p:'T',rx:'Metilazione',ag:'+ CH₃I',n:'Acido fenilacetico',dead:1}];
+var RS_R=[{k:['T','A1','K','I'],n:'Strada A',s:'3 reazioni',d:'Carbonilazione ← idrogenazione ← acilazione. Tutti gli ingredienti in commercio.',c:'#1E9E58',rank:'1°'},
+ {k:['T','B1','OX','AL','EP','K2','I2'],n:'Strada B',s:'6 reazioni',d:'Funziona, ma è lunga: più passaggi = più scarti, più tempo, più costi.',c:'#E07B12',rank:'2°'},
+ {k:['T','C1'],n:'Strada C',s:'scartata',d:'Reazione poco affidabile su questa molecola. Curiosità: quel pezzo è l’<b>ibufenac</b>, il farmaco Boots prima dell’ibuprofene, ritirato nel 1968.',c:'#D64545',rank:'✗'}];
+var RS_P=[{h:'T_a',m:'A1',c:'#1E9E58',bg:'#9BE3B6',n:'Carbonilazione',w:'il gruppo acido nasce da <b>CO</b> attaccato a un alcol',p:.58},
+ {h:'T_b',m:'B1',c:'#2E6FBF',bg:'#A9CCF5',n:'Idrolisi di un nitrile',w:'il gruppo acido nasce da un <b>C≡N</b> con l’acqua',p:.31},
+ {h:'T_c',m:'C1',c:'#E07B12',bg:'#FFC9A3',n:'Metilazione',w:'il CH₃ viene aggiunto a una molecola già quasi pronta',p:.06}];
+var RS={i:0,tm:[],ready:0,pk:0,route:0,cyc:null,anim:null,cnt:[0,0,0]};
+function rsInit(){if(!G('rsBody'))return;afSteps('rsSteps',RS_S,'rsGo');rsGo(0);
+  afLoadScript('img/rs/rs-data.js',function(){RS.ready=1;rsBuild();rsGo(RS.i)},function(){G('rsFocus').innerHTML='<p class="af-note" style="padding:2em">Non trovo i disegni delle molecole (img/rs/rs-data.js).</p>'});
+  window.addEventListener('resize',function(){if(RS.ready)rsLayout()})}
+function rsSvg(set,id){return (window.RS_SVG&&RS_SVG[set][id])||''}
+function rsBuild(){var h='';RS_N.forEach(function(n){h+='<div class="rs-n" id="rsN'+n.k+'"><div class="m">'+rsSvg('sm',n.m)+'</div><b>'+n.n+'</b><i class="st"></i></div>';
+  if(n.p)h+='<div class="rs-ag" id="rsG'+n.k+'" title="'+n.rx+'">'+n.ag+'</div>'});
+  h+='<div class="rs-badge ok" id="rsBA">✓ Strada trovata · 3 reazioni</div><div class="rs-badge ok" id="rsBB">✓ Seconda strada · 6 reazioni</div><div class="rs-badge ko" id="rsBC">✗ Scartata</div>';
+  G('rsTree').innerHTML=h;rsLayout()}
+function rsNode(k){for(var i=0;i<RS_N.length;i++)if(RS_N[i].k===k)return RS_N[i]}
+function rsLayout(){var b=G('rsBody'),W=b.clientWidth,H=b.clientHeight;if(!W||!H)return;var pc=W/7,nw=Math.min(150,pc*.68),nh=Math.min(nw*.625+20,H/3-14),rows=[H*.18,H*.5,H*.82];
+  RS.geo={W:W,H:H,pc:pc,nw:nw,nh:nh,rows:rows};
+  RS_N.forEach(function(n){var e=G('rsN'+n.k),x=pc*(n.c+.5),y=rows[n.r];n.x=x;n.y=y;e.style.cssText='left:'+(x-nw/2)+'px;top:'+(y-nh/2)+'px;width:'+nw+'px;height:'+nh+'px'});
+  var s='';RS_N.forEach(function(n){if(!n.p)return;var P=rsNode(n.p),x1=P.x+nw/2,x2=n.x-nw/2,xm=(x1+x2)/2;n.dx=xm;
+    var d=P.r===n.r?'M'+x1+' '+n.y+'H'+x2:'M'+x1+' '+P.y+'H'+(xm-10)+'Q'+xm+' '+P.y+' '+xm+' '+(P.y+(n.y>P.y?10:-10))+'V'+(n.y+(n.y>P.y?-10:10))+'Q'+xm+' '+n.y+' '+(xm+10)+' '+n.y+'H'+x2;
+    s+='<path class="rs-e" id="rsE'+n.k+'" d="'+d+'"/><rect class="rs-d" id="rsD'+n.k+'" x="'+(xm-5)+'" y="'+(n.y-5)+'" width="10" height="10" rx="2"/>';
+    var g=G('rsG'+n.k);g.style.left=xm+'px';g.style.top=(n.y+9)+'px'});
+  var L=G('rsLinks');L.setAttribute('viewBox','0 0 '+W+' '+H);L.innerHTML=s;G('rsGhost').setAttribute('viewBox','0 0 '+W+' '+H);
+  var bd=function(id,x,y){var e=G(id);e.style.left=x+'px';e.style.top=y+'px'};bd('rsBA',pc*5,rows[0]);bd('rsBB',pc*6,rows[1]+nh/2+16);bd('rsBC',pc*2.5,rows[2]);
+  rsApply(RS.state||{})}
+/* stato dell'albero: quali nodi si vedono e di che colore */
+function rsApply(st){RS.state=st;RS_N.forEach(function(n){var e=G('rsN'+n.k);if(!e)return;var on=!!(st.show&&st.show[n.k]);
+  e.className='rs-n'+(on?'':' hid')+(n.root?' root':'')+(on&&!n.root&&st.chk&&st.chk[n.k]?(n.st?' stock':n.dead?' dead':' todo'):'')+(st.route&&st.route.indexOf(n.k)<0?' dim':'')+(st.route&&!n.root&&st.route.indexOf(n.k)>=0?(st.route2&&st.route2.indexOf(n.k)>=0?' r2':' onr'):'')+(st.sel&&st.sel.indexOf(n.k)>=0?' sel':'');
+  e.querySelector('.st').textContent=on&&st.chk&&st.chk[n.k]?(n.st?'🛒 in commercio':n.dead?'✗':''):'';
+  if(n.p){var E=G('rsE'+n.k),D=G('rsD'+n.k),g=G('rsG'+n.k),dm=st.route&&st.route.indexOf(n.k)<0;if(!E)return;
+    var cl=(on?'':' hid')+(dm?' dim':'')+(st.route&&!dm?(st.route2&&st.route2.indexOf(n.k)>=0?' r2':' onr'):'')+(st.sel&&st.sel.indexOf(n.k)>=0?' sel':'')+(n.dead&&st.chk&&st.chk[n.k]?' dead':'');E.setAttribute('class','rs-e'+cl);D.setAttribute('class','rs-d'+cl);g.className='rs-ag'+cl}});
+  ['rsBA','rsBB','rsBC'].forEach(function(id,k){var e=G(id);if(e)e.classList.toggle('on',!!(st.badge&&st.badge[k])&&!(st.route&&k!==RS.route&&st.badge.length===3&&st.only))})}
+function rsAll(o){var s={},c={};RS_N.forEach(function(n){s[n.k]=1;c[n.k]=1});return Object.assign({show:s,chk:c,badge:[1,1,1]},o||{})}
+function rsClear(){RS.tm.forEach(clearTimeout);RS.tm=[];if(RS.cyc){clearInterval(RS.cyc);RS.cyc=null}if(RS.anim){cancelAnimationFrame(RS.anim);RS.anim=null}var g=G('rsGhost');if(g)g.innerHTML='';G('rsToast').classList.remove('on');G('rsLog').textContent=''}
+function rsStat(it,mol,t){G('rsStat').innerHTML='<b>'+it+'</b> iterazioni · <b>'+(mol>=1000?(mol/1000).toFixed(1).replace('.',',')+'k':mol)+'</b> molecole valutate · <b>'+t+' s</b>'}
+function rsToast(t){var e=G('rsToast');e.innerHTML=t;e.classList.remove('on');void e.offsetWidth;e.classList.add('on')}
+/* «fantasmi»: le altre mosse provate e scartate attorno a un nodo */
+function rsGhosts(k,n,dead){var N=rsNode(k),gm=RS.geo,g=G('rsGhost'),s='';for(var i=0;i<n;i++){var a=(-70+140*Math.random())*Math.PI/180,L=gm.nw*.45+Math.random()*gm.pc*.45,x=N.x+gm.nw/2,y=N.y+(Math.random()-.5)*gm.nh*.6,x2=x+Math.cos(a)*L,y2=y+Math.sin(a)*L*.8;
+  s+='<g class="gh'+(dead?' x':'')+'" style="animation-delay:'+(i*45)+'ms"><line x1="'+x+'" y1="'+y+'" x2="'+x2+'" y2="'+y2+'"/><circle cx="'+x2+'" cy="'+y2+'" r="'+(3+Math.random()*3)+'"/></g>'}
+  g.insertAdjacentHTML('beforeend',s)}
+function rsPath(k){var o=[];while(k){o.unshift(k);var n=rsNode(k);k=n.p}return o}
+/* la ricerca animata (passo 3) */
+function rsSearch(){rsClear();var show={},chk={},badge=[0,0,0],sel=[],T0=performance.now(),tot=19500,FIN=[418,2630];
+  var st=function(){rsApply({show:show,chk:chk,badge:badge,sel:sel})},at=function(t,f){RS.tm.push(setTimeout(f,t))},log=function(t){G('rsLog').textContent=t};
+  show.T=1;st();rsStat(0,0,0);
+  (function tick(){var e=Math.min(1,(performance.now()-T0)/tot);rsStat(Math.round(FIN[0]*e),Math.round(FIN[1]*Math.pow(e,1.15)),Math.round(e*41));if(e<1)RS.anim=requestAnimationFrame(tick)})();
+  var expand=function(t,par,kids,txt,nG,dead){at(t,function(){sel=rsPath(par);log(txt);st();rsGhosts(par,nG,dead)});
+    kids.forEach(function(k,j){at(t+900+j*350,function(){show[k]=1;st()})});
+    at(t+900+kids.length*350+700,function(){kids.forEach(function(k){chk[k]=1});sel=[];st()})};
+  expand(500,'T',['A1','B1','C1'],'Propongo i tagli per l’ibuprofene…',16);
+  expand(3800,'A1',['K'],'Esploro: carbonilazione → alcol',9);
+  expand(6200,'K',['I'],'Esploro: idrogenazione → chetone',8);
+  at(8000,function(){badge[0]=1;st();rsToast('✓ Prima strada completa: 3 reazioni, tutto in commercio');log('Strada trovata! Continuo a cercare…')});
+  at(9300,function(){sel=['T','C1'];log('Esploro: metilazione → acido fenilacetico');st();rsGhosts('C1',10,1)});
+  at(10700,function(){badge[2]=1;sel=[];st();log('Vicolo cieco: torno indietro')});
+  expand(11800,'B1',['OX'],'Esploro: idrolisi → nitrile',7);
+  expand(13600,'OX',['AL'],'… ossima',5);
+  expand(15000,'AL',['EP'],'… aldeide',5);
+  expand(16400,'EP',['K2'],'… estere epossidico',5);
+  expand(17800,'K2',['I2'],'… chetone',4);
+  at(19800,function(){badge[1]=1;st();rsToast('✓ Seconda strada: 6 reazioni');log('Ricerca finita: 2 strade complete')})}
+function rsRoute(k){RS.route=k;var R=RS_R[k];G('rsBody').style.setProperty('--rc',R.c);rsApply(rsAll({route:R.k,only:1}));[].forEach.call(document.querySelectorAll('#rsSide .rs-rt'),function(b,j){b.classList.toggle('on',j===k)})}
+function rsPick(k){RS.pk=k;var P=RS_P[k],f=G('rsFocus');if(!f.querySelector('.rs-big'))return;f.querySelector('.rs-big').innerHTML=rsSvg('lg',P.h);
+  [].forEach.call(f.querySelectorAll('.rs-pr'),function(b,j){b.classList.toggle('on',j===k)})}
+function rsFwd(){var f=G('rsFocus');f.innerHTML='<div class="rs-fw">'+[['IBB_f','Isobutilbenzene','🛒 si compra'],['K_f','Chetone',''],['A1_f','Alcol',''],['T_f','Ibuprofene','']].map(function(m,j){
+    return (j?'<div class="rs-fa" id="rsFA'+j+'">'+['','<b>Acilazione</b><span>+ Ac₂O</span><em>catalizzatore: HF</em><small>esce: acido acetico, riusato</small>','<b>Idrogenazione</b><span>+ H₂</span><em>catalizzatore: nichel Raney</em><small>nessuno scarto</small>','<b>Carbonilazione</b><span>+ CO</span><em>catalizzatore: palladio</em><small>nessuno scarto</small>'][j]+'<i></i></div>':'')+
+    '<div class="rs-fm" id="rsFM'+j+'"><div class="m">'+rsSvg('lg',m[0])+'</div><b>'+m[1]+'</b>'+(m[2]?'<small>'+m[2]+'</small>':'')+'</div>'}).join('')+'</div><button class="btn ghost rs-again" onclick="rsFwdRun()">↺ Rivedi</button>';rsFwdRun()}
+function rsFwdRun(){rsClear();[0,1,2,3].forEach(function(j){var m=G('rsFM'+j),a=G('rsFA'+j);m.classList.remove('on');if(a)a.classList.remove('on')});
+  [0,1,2,3].forEach(function(j){RS.tm.push(setTimeout(function(){if(j){G('rsFA'+j).classList.add('on')}RS.tm.push(setTimeout(function(){G('rsFM'+j).classList.add('on')},j?900:0))},300+j*2200))})}
 function rsGo(i){if(i<0||i>=RS_S.length)return;RS.i=i;var s=RS_S[i];afHead('rsSteps',RS_S,i,'sRS');G('rsKick').textContent=s.k;G('rsH').textContent=s.h;G('rsP').innerHTML=s.p;G('rsPrev').disabled=i===0;G('rsNext').disabled=i===RS_S.length-1;
-  var vis=[i>=3,i>=2,i>=1,true];vis.forEach(function(v,k){var c=G('rsC'+k);c.classList.toggle('hid',!v);c.classList.toggle('tgt',k===3);c.classList.toggle('buy',k===0&&i>=3)});
-  [0,1,2].forEach(function(k){var a=G('rsA'+k);a.classList.toggle('hid',!vis[k]);a.classList.toggle('fw',i>=4);a.querySelector('.a').textContent=i>=4?'→':'⇐'});
-  G('rsT3').innerHTML='<span class="rs-tag" style="background:#8E44AD">🔒 brevetto Boots, 1961</span>';G('rsT0').innerHTML=i>=3?'<span class="rs-tag" style="background:#2ECC71">🛒 in commercio</span>':'';
-  var side;if(i<4)side='<div class="rs-pat">⚖️ <b>Brevetto e legge.</b> Per 20 anni solo chi ha il brevetto può produrre e vendere. Studiare la molecola e cercare strade nuove è permesso; venderla prima della scadenza no. Quando scade nascono i <b>farmaci generici</b>, che costano molto meno.</div>';
-  else side='<div class="rs-cmp"><span>Strada originale · 6 passaggi</span><div class="bar"><i style="width:40%;background:#E74C3C"></i></div><span>Strada BHC · 3 passaggi</span><div class="bar"><i style="width:77%;background:#2ECC71"></i></div></div><p class="cv-note">La barra è la parte degli atomi di partenza che finisce davvero nel farmaco: circa <b>40%</b> contro <b>77%</b> (quasi il 99% riusando l\'acido acetico). Il resto sono scarti.</p>';
-  side+='<div class="rs-tools">🧪 Strumenti: <span>Synthia (Merck)</span>·<span>IBM RXN</span>·<a href="https://github.com/MolecularAI/aizynthfinder" target="_blank" rel="noopener">AiZynthFinder, gratis ↗</a></div>';G('rsSide').innerHTML=side;
-  if(window.SmilesDrawer)setTimeout(rsDraw,50)}
+  rsClear();var f=G('rsFocus'),side='',body=G('rsBody'),focus=i===0||i===1||i===4;body.classList.toggle('fo',focus);
+  if(!RS.ready){G('rsSide').innerHTML='';return}
+  if(i===0){f.innerHTML='<div class="rs-t1"><div class="rs-q"><span>?</span><span>?</span><span>?</span><em>da cosa si parte?</em></div><div class="rs-arrow">⇐</div><div class="rs-tm"><div class="m">'+rsSvg('lg','T')+'</div><b>Ibuprofene</b><small>C₁₃H₁₈O₂ · 206 g/mol</small><span class="rs-stamp">Brevetto · Boots · 1961</span></div></div>';
+    G('rsStat').textContent='';
+    side='<div class="rs-pat">⚖️ <b>Brevetto e legge.</b> Per 20 anni solo chi ha il brevetto può produrre e vendere la molecola. Studiarla e cercare strade nuove è permesso; venderla prima della scadenza no. Quando scade nascono i <b>farmaci generici</b>, che costano molto meno.</div><div class="rs-info">🛒 <b>Il magazzino.</b> L’AI conosce un elenco di molecole che si possono comprare: per gli strumenti gratuiti sono milioni. Qui usiamo solo materie prime economiche, vendute a tonnellate.</div>'}
+  else if(i===1){f.innerHTML='<div class="rs-t2"><div class="rs-big"></div><div class="rs-prs">'+RS_P.map(function(P,k){return '<button class="rs-pr" onclick="rsPick('+k+');if(RS.cyc){clearInterval(RS.cyc);RS.cyc=null}" style="--c:'+P.c+';--bg:'+P.bg+'"><div class="t"><b>'+P.n+'</b><span>'+Math.round(P.p*100)+'%</span></div><small>'+P.w+'</small><div class="bar"><i style="width:'+(P.p*100)+'%"></i></div><div class="m">'+rsSvg('sm',P.m)+'</div></button>'}).join('')+'<p class="rs-ex">Probabilità di esempio · il modello ne valuta centinaia per ogni molecola</p></div></div>';
+    rsPick(0);RS.cyc=setInterval(function(){rsPick((RS.pk+1)%3)},3200);G('rsStat').textContent='';
+    side='<div class="rs-info">🧠 <b>Come ha imparato?</b> Da milioni di reazioni scritte nei brevetti: «da queste molecole, con questa reazione, si ottiene questa». Ne ha ricavato delle <b>regole</b>: se vedi questo pezzo, probabilmente è nato così.</div><div class="rs-info">🎨 Il <b>colore</b> sulla molecola mostra dove cade il taglio. Sotto ogni proposta, il pezzo che resta: il nuovo bersaglio.</div>'}
+  else if(i===2){rsSearch();side='<div class="rs-leg"><span><i class="g"></i>si compra: la strada finisce qui</span><span><i class="o"></i>non si compra: va scomposta ancora</span><span><i class="r"></i>scartata: si torna indietro</span><span><i class="x"></i>mosse provate e scartate</span></div><div class="rs-info">♟️ Questo modo di cercare si chiama <b>Monte Carlo Tree Search</b>: è la stessa famiglia di ricerca usata da <b>AlphaGo</b> per giocare a Go.</div><button class="btn ghost rs-again" onclick="rsSearch()">↺ Rivedi la ricerca</button>'}
+  else if(i===3){rsStat(418,2630,41);side='<div class="rs-rts">'+RS_R.map(function(R,k){return '<button class="rs-rt" onclick="rsRoute('+k+')" style="--c:'+R.c+'"><em>'+R.rank+'</em><div><b>'+R.n+' · '+R.s+'</b><small>'+R.d+'</small></div></button>'}).join('')+'</div>'}
+  else if(i===4){rsFwd();G('rsStat').textContent='';
+    side='<div class="rs-info">🏭 <b>BHC</b> (Boots + Hoechst Celanese), Texas, 1992: migliaia di tonnellate l’anno. Il fluoruro di idrogeno (HF) fa da catalizzatore e da solvente, e viene recuperato e riusato.</div><div class="rs-info">🧪 Le condizioni (temperatura, catalizzatore, solvente) le sceglie il chimico; i modelli più nuovi provano a suggerire anche quelle.</div>'}
+  else{rsStat(418,2630,41);G('rsBody').style.setProperty('--rc','#1E9E58');rsApply(rsAll({badge:[1,1,0],route:RS_R[0].k.concat(RS_R[1].k),route2:RS_R[1].k}));
+    side='<div class="rs-cmp"><span>Boots · 6 reazioni</span><div class="bar"><i style="width:40%;background:#E07B12"></i></div><span>BHC · 3 reazioni</span><div class="bar"><i style="width:77%;background:#1E9E58"></i></div></div><p class="af-note">La barra è la parte degli atomi di partenza che finisce davvero nel farmaco (<b>economia atomica</b>): circa <b>40%</b> contro <b>77%</b>, quasi il <b>99%</b> riusando l’acido acetico. Il resto sono scarti.</p>'+
+      '<div class="rs-tools">🧪 Strumenti veri: <span>Synthia (Merck)</span>·<span>IBM RXN</span>·<a href="https://github.com/MolecularAI/aizynthfinder" target="_blank" rel="noopener">AiZynthFinder, gratis ↗</a></div>'}
+  G('rsSide').innerHTML=side;if(i===3)rsRoute(RS.route||0);if(focus)rsApply({})}
 
 var trScore=0;
 function trAns(i,correct,el){var card=document.getElementById('trC'+i);if(card.classList.contains('done'))return;card.classList.add('done');var opts=card.querySelectorAll('.tr-opt');if(correct){el.classList.add('right');trScore++;opts.forEach(function(o){if(o!==el)o.classList.add('dim')})}else{el.classList.add('nope');opts.forEach(function(o){if(o!==el){o.classList.add('right');o.classList.add('dim')}})}document.getElementById('trE'+i).classList.add('show');document.getElementById('trScore').textContent=trScore}
