@@ -2540,6 +2540,74 @@ html.vote .brand-nav{display:none}
 #sPV.ux .pv-arrow::before,#sPV.ux .pv-arrow::after{background:var(--rule)}
 .ux .pa-slot>b{text-transform:none;letter-spacing:0;font-family:var(--ff-disp);font-style:italic;font-weight:600;font-size:max(1.05rem,calc(var(--u,12px)*1.55))}
 .ux .mc-hint,.ux .pv-empty{font-weight:600;color:var(--ink-2)}
+
+/* slide «Studiare con l'AI»: un solo protagonista, il prompt.
+   Via la tabella di confronto, la legenda e i riquadri colorati: si evidenzia solo ciò che cambia con la mossa scelta */
+#sST.ux{--st-hl:color-mix(in srgb,var(--sc) 16%,transparent)}
+#sST.ux .st-cmp,#sST.ux .st-right>.pv-tip{display:none!important}
+#sST.ux .st-mv{--c:var(--sc)!important;background:transparent!important;border:0!important;border-top:1px solid var(--rule)!important;border-radius:0!important;opacity:1;padding:0 0 0 .2em}
+#sST.ux .st-mv:last-child{border-bottom:1px solid var(--rule)!important}
+#sST.ux .st-mv>b{background:transparent;color:var(--ink-2);box-shadow:inset 0 0 0 1px var(--rule);font-family:var(--ff-disp)}
+#sST.ux .st-mv.on>b{background:var(--sc);color:#fff;box-shadow:none}
+#sST.ux .st-mv h4{color:var(--ink-2);font-weight:500}
+#sST.ux .st-mv.on h4{color:var(--ink);font-weight:600}
+#sST.ux .st-mv p{color:var(--ink-2)}
+#sST.ux .st-mv:not(.on) p{opacity:.75}
+#sST.ux .st-note{background:none!important;padding:0!important;color:var(--ink-2)}
+#sST.ux .st-note b{color:var(--ink)}
+#sST.ux .st-a{background:none!important;border:0!important;border-bottom:2px solid transparent!important;border-radius:0!important;padding:.2em .05em!important;margin-right:1em;color:var(--ink-2)}
+#sST.ux .st-a.on{color:var(--ink)!important;border-bottom-color:var(--sc)!important}
+#sST.ux .st-att{gap:0}
+#sST.ux .st-prompt{background:#fff!important;color:var(--ink)!important;border:1px solid var(--border)!important;font-family:var(--ff-body);line-height:1.62!important}
+#sST.ux .st-prompt span{background:none!important;box-shadow:none!important;border-radius:2px;padding:0;color:var(--ink);font-weight:400!important;animation:none!important}
+#sST.ux .st-prompt span.same{color:var(--ink-2)}
+/* cambiando mossa, le parti che cambiano si accendono un attimo e poi tornano testo normale */
+@media (prefers-reduced-motion:no-preference){#sST.ux .st-prompt span.chg.pulse{animation:stHl 2.2s ease-out!important}}
+@keyframes stHl{0%,35%{background:color-mix(in srgb,var(--sc) 22%,transparent)}100%{background:transparent}}
+#sST.ux .st-prompt span.same{opacity:1}
+#sST.ux .st-file{background:#F4F2EC;border:1px solid var(--border);color:var(--ink-2)}
+#sST.ux .st-prompt i{color:var(--ink)}
+#sST.ux .btn.st-gpt,#sST.ux #stCopy,#sST.ux #stDemoBtn{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px #B3AC9E}
+#sST.ux .btn.st-gpt:hover{background:transparent}
+@media (min-width:901px){
+  #sST.ux .st-stage{grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:calc(var(--u)*4)}
+  #sST.ux .st-moves{gap:0}
+  #sST.ux .st-mv{max-height:none;padding-block:calc(var(--u)*.6)}
+  #sST.ux .st-prompt{font-size:calc(var(--u)*1.4);padding:calc(var(--u)*1.4) calc(var(--u)*1.8)}
+  #sST.ux .st-right{gap:calc(var(--u)*1)}
+}
+
+/* stessa pulizia sulle altre slide affollate */
+/* prompt dell'automazione e istruzioni del progetto Claude: un foglio bianco, testo normale, niente bollini colorati */
+.ux .au-pr{background:#fff!important;color:var(--ink)!important;border:1px solid var(--border)!important}
+.ux .au-pr span{background:none!important;box-shadow:none!important;padding:0!important}
+/* il banner «Ora la vediamo funzionare davvero» compare solo quando c'è il link della demo */
+#sAU1 .au-demo:has(> span.btn){display:none}
+/* i sei passi dell'automazione: una linea del tempo, non sei schede */
+#sAU1.ux .au-n{background:transparent!important;border:0!important;border-top:3px solid var(--rule)!important;border-radius:0!important;opacity:1;padding:calc(var(--u,12px)*.7) .1em 0!important}
+#sAU1.ux .au-n.done{border-top-color:color-mix(in srgb,var(--tc) 45%,var(--rule))!important}
+#sAU1.ux .au-n.on{border-top-color:var(--tc)!important}
+#sAU1.ux .au-n:not(.on):not(.done) b{color:var(--ink-2)}
+#sAU1.ux .au-n .k{background:none!important;color:var(--tc)!important;padding:0!important;font-weight:700}
+#sAU1.ux .au-n small{color:var(--ink-2)!important;font-weight:600}
+#sAU1.ux .au-arr{opacity:0;width:calc(var(--u,12px)*1.4)}
+/* MCP: la nota in fondo è una nota, non un riquadro */
+.ux .mc-foot{background:none!important;border:0!important;padding:0!important;color:var(--ink-2)}
+/* GAN: l'introduzione è testo, non una scheda; l'acronimo è una riga */
+#s12.ux .gn-intro{background:none!important;border:0!important;border-bottom:1px solid var(--rule)!important;border-radius:0!important;padding:0 0 calc(var(--u,12px)*1.1)!important}
+#s12.ux .gn-intro .gn-acr{display:flex;gap:calc(var(--u,12px)*1.4)}
+#s12.ux .gn-intro .gn-acr div{background:none!important;border:0!important;padding:0!important}
+
+/* passi di «Il briefing con Claude» e «Costruiamolo insieme»: un elenco numerato, come le tre mosse dello studio */
+.ux .su-steps{gap:0!important}
+.ux .su-s{background:transparent!important;border:0!important;border-top:1px solid var(--rule)!important;border-radius:0!important;opacity:1}
+.ux .su-s:last-child{border-bottom:1px solid var(--rule)!important}
+.ux .su-s.mcp{border-left:0!important}
+.ux .su-s b{background:transparent!important;color:var(--ink-2)!important;box-shadow:inset 0 0 0 1px var(--rule);font-family:var(--ff-disp)}
+.ux .su-s.done b{color:var(--ink)!important;box-shadow:inset 0 0 0 1px var(--ink-2)}
+.ux .su-s.on b{background:var(--sc)!important;color:#fff!important;box-shadow:none}
+.ux .su-s span{color:var(--ink-2);font-weight:500}
+.ux .su-s.on span{color:var(--ink);font-weight:700}
 </style>
 
 <!-- icone: Lucide (lucide.dev), licenza ISC -->
@@ -5181,7 +5249,7 @@ function stCmp(){var c=G('stCmp');if(!c)return;var ms=['cap','rip','prova'];c.in
   ST_CMP.map(function(r){return '<div class="st-rh">'+r[0]+'</div>'+ms.map(function(m,i){return '<div class="st-c'+(m===ST.m?' on':'')+'" style="--mc:'+ST_MC[m][1]+'">'+r[i+1]+'</div>'}).join('')}).join('')}
 var ST_MC={cap:['Capire','#00A6C8'],rip:['Ripetere','#FF6B35'],prova:['Mettersi alla prova','#2ECC71']};
 function stUpd(){if(!G('stPrompt'))return;var cur=ST.m,all={};['cap','rip','prova'].forEach(function(m){ST.m=m;all[m]=stParts()});ST.m=cur;var P=all[cur],mc=ST_MC[cur],pulse=ST.lastM&&ST.lastM!==cur;ST.lastM=cur;stCmp();
-  G('stPrompt').innerHTML='<div class="st-lg"><span class="st-box" style="border-color:'+mc[1]+'">bordo '+(cur==='cap'?'azzurro':cur==='rip'?'arancione':'verde')+'</span> = cambia con la mossa · <span class="st-same">testo chiaro</span> = uguale per tutte e tre</div>'+(ST.att?'<div class="st-file">📎 '+ST_ATT[ST.att][1]+'</div>':'')+
+  G('stPrompt').innerHTML=(ST.att?'<div class="st-file">📎 '+ST_ATT[ST.att][1]+'</div>':'')+
     P.map(function(p,i){var chg=['cap','rip','prova'].some(function(m){return !all[m][i]||all[m][i][1]!==p[1]});
       return chg?'<span class="chg'+(pulse?' pulse':'')+'" style="--c:'+p[0]+';--mc:'+mc[1]+'">'+esc(p[1])+'</span>':'<span class="same" style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ');
   G('stClaude').href='https://claude.ai/new?q='+encodeURIComponent(stText());G('stGpt').href='https://chatgpt.com/?q='+encodeURIComponent(stText())}
