@@ -1921,12 +1921,442 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 .xp-row.rule{border-left-color:var(--cyan);background:rgba(0,180,216,.06)}
 .xp-row.idea{border-left-color:var(--green);background:rgba(46,204,113,.06)}
 .xp-row.fun{border-left-color:var(--orange);background:rgba(255,107,53,.06)}
+
+/* =====================================================================
+   UX v2 · slide di contenuto a tutto schermo (classe .ux)
+   1. la slide è alta quanto lo schermo e il corpo riempie lo spazio che resta:
+      in ogni colonna c'è un pannello «elastico» che si allarga
+   2. tutto scala con --u = 1% della tela 16:9 più grande che entra nello schermo
+      (13,7px a 1366×768, 19,2px a 1920×1080): sul proiettore la slide cresce, non resta vuota
+   3. «Avanti / Indietro» stanno in fondo alla colonna e non si spostano quando il testo cambia
+   4. entrata animata, cambio di passo animato, stati vuoti animati
+   Copertina, pausa, museo (#s3) e social (#s2) non usano .ux
+   ===================================================================== */
+.ux{--u:min(1vw,1.7778vh);--sc:var(--orange);
+  --t-title:max(1.35rem,calc(var(--u)*2.35));--t-kick:max(.72rem,calc(var(--u)*.82));
+  --t-h:max(1.35rem,calc(var(--u)*2.7));--t-lead:max(1rem,calc(var(--u)*1.4));
+  --t-body:max(.9rem,calc(var(--u)*1.15));--t-small:max(.78rem,calc(var(--u)*.95));--t-tiny:max(.7rem,calc(var(--u)*.8));
+  --g:calc(var(--u)*1.5)}
+.ux[data-section="Storia e fondamenti"]{--sc:#0090AA}
+.ux[data-section="AI generativa"]{--sc:#8E44AD}
+.ux[data-section="Automatizzare"]{--sc:#0E7C86}
+.ux[data-section="AI e scienza"]{--sc:#2E86DE}
+.ux.dark{--sc:#FFB24A}
+.ux.s-light{background:radial-gradient(70% 60% at 100% 0%,color-mix(in srgb,var(--sc) 9%,transparent),transparent 70%),radial-gradient(55% 50% at 0% 100%,rgba(0,180,216,.07),transparent 70%),var(--light)}
+.ux.s-white{background:radial-gradient(70% 60% at 100% 0%,color-mix(in srgb,var(--sc) 7%,transparent),transparent 70%),#fff}
+
+/* testata: occhiello della sezione + titolo, a destra QR o comandi */
+.ux-hd{display:flex;justify-content:space-between;align-items:flex-end;gap:.6em 2em;flex-wrap:wrap}
+.ux-hd>div:first-child{min-width:0;flex:1 1 24em}
+.ux-kick{margin:0 0 .4em;display:flex;align-items:center;flex-wrap:wrap;gap:.75em;font:600 var(--t-kick)/1.2 var(--ff-head);letter-spacing:.16em;text-transform:uppercase;color:var(--sc)}
+.ux-chip{letter-spacing:.08em;background:var(--sc);color:#fff;padding:.32em .8em;border-radius:999px;font-weight:700}
+.ux-meta{flex:none;display:flex;gap:.6em;align-items:center;flex-wrap:wrap;margin:0}
+.ux .ux-hd .fz-h2,.ux .et-h2{font-size:var(--t-title)!important;line-height:1.06}
+.ux .tx-hint{font-size:var(--t-small);background:#fff;border:2px solid var(--border);border-radius:999px;padding:.4em 1em}
+.ux .au-rule{font-size:var(--t-small)}
+.ux .tu-qr img{image-rendering:pixelated}
+
+/* ---------------- layout a tutto schermo (da tablet orizzontale in su) ---------------- */
+@media (min-width:901px){
+  /* testate delle slide di etica, QR e misure: solo da tablet orizzontale in su (sul telefono resta il layout di prima) */
+  .ux .et-head{gap:calc(var(--u)*2);align-items:flex-end}
+  .ux .et-kick{font-size:var(--t-kick);letter-spacing:.16em;margin-bottom:.4em}
+  .ux .et-join{gap:calc(var(--u)*.9);padding:calc(var(--u)*.5) calc(var(--u)*1) calc(var(--u)*.5) calc(var(--u)*.5);border-radius:calc(var(--u)*1.1);box-shadow:0 6px 20px rgba(27,42,74,.08)}
+  .ux .et-join .tu-qr img,.ux .et-join .tu-qr canvas{width:max(70px,calc(var(--u)*6.6))!important;height:max(70px,calc(var(--u)*6.6))!important}
+  .ux .et-join p{font-size:var(--t-tiny)}.ux .et-join b.big{font-size:calc(var(--u)*1.5)}
+  /* QR delle attività: crescono con lo schermo */
+  .ux .pa-join,.ux .dr-join,.ux .gn-join{border-radius:calc(var(--u)*1.1)}
+  .ux .pa-join{gap:calc(var(--u)*1);padding:calc(var(--u)*.6) calc(var(--u)*1)}
+  .ux .pa-join .tu-qr img,.ux .pa-join .tu-qr canvas,.ux .gn-join .tu-qr img,.ux .gn-join .tu-qr canvas{width:max(76px,calc(var(--u)*6.6))!important;height:max(76px,calc(var(--u)*6.6))!important}
+  .ux .pa-join p,.ux .gn-join p{font-size:var(--t-small)}
+  .ux .pa-join b.big,.ux .gn-join b.big{font-size:calc(var(--u)*1.5)}
+  .ux .dr-join .tu-qr img,.ux .dr-join .tu-qr canvas{width:min(calc(var(--u)*15),40cqh)!important;height:min(calc(var(--u)*15),40cqh)!important}
+  .ux .dr-join p{font-size:var(--t-body)}.ux .dr-join b.big{font-size:calc(var(--u)*2.2)}
+
+  /* bottoni e passi */
+  .ux .btn{font-size:max(.92rem,calc(var(--u)*1.2))}
+  .ux .dr-nav .btn,.ux .w6-nav .btn{padding:.6em 1.5em}
+  .ux .dr-dot{width:max(40px,calc(var(--u)*3.4));font-size:max(1rem,calc(var(--u)*1.4))}
+  .ux .dr-rail,.ux .dr-fill{top:calc(max(40px,calc(var(--u)*3.4))/2 - 2px)}
+  .ux .dr-step span{font-size:var(--t-tiny)}
+  .ux .dr-steps{max-width:calc(var(--u)*58)}
+  .ux .cv-steps{max-width:calc(var(--u)*70)}
+  .ux .af-steps,.ux .rs-steps,.ux .gn-steps{max-width:none}
+  #s6.ux .w6-dot{width:max(56px,calc(var(--u)*5.2));font-size:calc(var(--u)*1.55)}
+  #s6.ux .w6-rail,#s6.ux .w6-fill{top:calc(.2em + max(56px,calc(var(--u)*5.2))/2 - 2px)}
+  #s6.ux .w6-step span{font-size:var(--t-tiny)}
+
+  /* testi delle slide «racconto» (visual a sinistra, spiegazione a destra) */
+  .ux .dr-kick,.ux .w6-kick,.ux .tx-kick,.ux .fk-kick{font-size:var(--t-kick)}
+  .ux .dr-h,.ux .tx-h{font-size:var(--t-h)}
+  #s6.ux .w6-h{font-size:calc(var(--t-h)*1.2)}
+  .ux .dr-p,.ux .w6-p{font-size:var(--t-lead);max-width:34em}
+  .ux .tx-row p,.ux .tx-idle p{font-size:var(--t-lead)}
+  .ux .tx-row span{font-size:var(--t-tiny)}
+  .ux .tx-ex b{font-size:var(--t-small)}
+  .ux .tx-leg button{font-size:calc(var(--u)*1.5)}
+  .ux .tx-leg i{width:calc(var(--u)*1.2);height:calc(var(--u)*1.2)}
+  .ux .w6-cap{font-size:var(--t-body)}
+  .ux .dr-box{min-height:0}
+  .ux .dr-hint,.ux .cv-note,.ux .cv-ker p{font-size:var(--t-body)}
+  .ux .dr-b,.ux .dr-acc{font-size:var(--t-small);max-width:34em}
+  .ux .dr-b div,.ux .dr-acc div{height:calc(var(--u)*.85)}
+  .ux .dr-ans{font-size:calc(var(--u)*2.1)}
+  .ux .dr-res{font-size:var(--t-body)}
+  .ux .dr-cmp b,.ux .dr-st b{font-size:calc(var(--u)*1.5)}
+  .ux .dr-cmp span{font-size:var(--t-tiny)}
+  .ux .dr-tot{font-size:var(--t-body)}
+  .ux .cv-chip{font-size:var(--t-body)}
+  .ux .cv-num span{font-size:var(--t-small)}
+  .ux .cv-ker .g span{font-size:var(--t-body)}
+  .ux .cv-cap{font-size:var(--t-tiny)}
+  .ux .gn-tip,.ux .gn-role,.ux .gn-loop div{font-size:var(--t-body)}
+  .ux.current{height:100svh}
+  .ux{padding:calc(var(--u)*2) calc(var(--u)*4) calc(3.4rem + var(--u)*1.4);gap:var(--g)}
+  .ux .ux-hd{flex-wrap:nowrap}
+
+  /* slide «racconto»: il visual riempie la sua metà, il testo è centrato e i bottoni stanno in fondo */
+  .ux .w6-stage,.ux .tx-stage,.ux .dr-stage,.ux .af-stage,.ux .fk-stage,.ux .pa-stage{flex:1;min-height:0;align-items:stretch;gap:calc(var(--u)*4)}
+  .ux .w6-vis,.ux .tx-vis,.ux .dr-vis,.ux .gn-vis,.ux .af-left,.ux .fk-left,.ux .pa-right{container-type:size;min-height:0;height:auto;justify-content:center}
+  .ux .w6-txt,.ux .dr-txt,.ux .tx-card,.ux .fk-txt{min-height:0;justify-content:center;gap:calc(var(--u)*1.1)}
+  .ux .w6-txt>:first-child,.ux .dr-stage .dr-txt>:first-child,.ux .af-stage .dr-txt>:first-child{margin-top:auto}
+  .ux .w6-nav,.ux .dr-stage .dr-nav,.ux .af-stage .dr-nav{margin-top:auto;padding-top:calc(var(--u)*.8)}
+  /* se il testo è lungo la colonna cresce, non finisce sotto i bottoni */
+  .ux .w6-txt>*,.ux .dr-txt>*,.ux .fk-txt>*{flex-shrink:0}
+  .ux .w6-svg,.ux .tx-svg,.ux .cv-cv{width:min(100cqw,100cqh)}
+  .ux .tx-card{min-height:0}
+
+  /* 3 · cervello */
+  #s4.ux .n4-nums{justify-content:space-evenly}
+  #s4.ux .n4-nh{font-size:calc(var(--u)*1.8)}
+  #s4.ux .n4-nt{font-size:var(--t-tiny)}
+  #s4.ux .n4-nr b{font-size:calc(var(--u)*1.85)}
+  #s4.ux .n4-nr span,#s4.ux .n4-nx{font-size:var(--t-small)}
+  #s4.ux .n4-in,#s4.ux .n4-x,#s4.ux .n4-eq,#s4.ux .n4-vh{font-size:var(--t-small)}
+  #s4.ux .n4-trl{font-size:var(--t-tiny)}
+  #s4.ux .n4-trace{height:calc(var(--u)*6)}
+  #s4.ux .n4-fire{font-size:var(--t-body)}
+
+  /* 6 · rete neurale */
+  #s8.ux .nn-phases span{font-size:var(--t-small)}
+  #s8.ux .nn-phases i{width:calc(var(--u)*2.4)}
+  #s8.ux .nn-net{gap:calc(var(--u)*2)}
+  #s8.ux .nn-svg{max-height:none;height:100%}
+  #s8.ux .nn-in,#s8.ux .nn-out{width:calc(var(--u)*15)}
+  #s8.ux .nn-sent{font-size:calc(var(--u)*1.75)}
+  #s8.ux .nn-cap{font-size:var(--t-tiny)}
+  #s8.ux .nn-bar{font-size:var(--t-small)}
+  #s8.ux .nn-bar div{height:calc(var(--u)*.9)}
+  #s8.ux .nn-verdict{font-size:var(--t-lead)}
+  #s8.ux .nn-eph b{font-size:calc(var(--u)*1.7)}
+  #s8.ux .nn-eph span{font-size:var(--t-body)}
+  #s8.ux .nn-chart{height:calc(var(--u)*11)}
+  #s8.ux .nn-ax{font-size:var(--t-tiny)}
+
+  /* 7 · disegni: la lavagna è grande quanto la colonna */
+  #s9.ux .dr-padw{width:min(100cqw,calc(100cqh - var(--u)*9.5));gap:calc(var(--u)*.8)}
+  #s9.ux .dr-word p{font-size:calc(var(--u)*2)}
+  #s9.ux .dr-time{height:calc(var(--u)*.6)}
+  #s9.ux .dr-row .btn{font-size:var(--t-body)}
+  #s9.ux .dr-join{gap:calc(var(--u)*1.2);padding:calc(var(--u)*2) calc(var(--u)*2.4);max-height:100%}
+
+  /* 9 · GAN */
+  #s12.ux .gn-intro{padding:calc(var(--u)*.9) calc(var(--u)*1.6);border-radius:calc(var(--u)*1.2)}
+  #s12.ux .gn-ik{font-size:var(--t-tiny)}
+  #s12.ux .gn-ih{font-size:calc(var(--u)*2.1)}
+  #s12.ux .gn-ip{font-size:var(--t-body)}
+  #s12.ux .gn-why{font-size:var(--t-small)}
+  #s12.ux .gn-intro .gn-acr div{font-size:var(--t-small)}
+  #s12.ux .gn-intro .gn-acr span{font-size:var(--t-tiny)}
+  #s12.ux .gn-vis{gap:calc(var(--u)*1.2)}
+  #s12.ux .dr-h{font-size:calc(var(--u)*2.3)}
+  #s12.ux .dr-p{font-size:var(--t-body)}
+  #s12.ux .gn-pair,#s12.ux .gn-judge{width:min(100cqw,calc((100cqh - var(--u)*11.5)*2))}
+  #s12.ux .gn-grid{width:min(100cqw,100cqh)}
+  #s12.ux .gn-card figcaption{font-size:calc(var(--u)*1.45)}
+  #s12.ux .gn-judge p{font-size:var(--t-small)}
+  #s12.ux .gn-judge b{font-size:calc(var(--u)*1.7)}
+  #s12.ux .gn-judge>i{font-size:calc(var(--u)*2.6)}
+
+  /* 10 · create un'immagine: le caselle occupano tutta l'altezza */
+  #s13.ux .pa-stage{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr)}
+  #s13.ux .pa-left{min-height:0;gap:calc(var(--u)*1)}
+  #s13.ux .pa-k{font-size:var(--t-tiny)}
+  #s13.ux .pa-slots{flex:1;min-height:0;gap:calc(var(--u)*.8)}
+  #s13.ux .pa-slot{flex:1;min-height:0;grid-template-columns:calc(var(--u)*7) minmax(0,1fr)}
+  #s13.ux .pa-slot>b{font-size:var(--t-body)}
+  #s13.ux .pa-opts{height:100%;gap:calc(var(--u)*.7)}
+  #s13.ux .pa-o{min-height:0;display:flex;flex-direction:column;justify-content:center;font-size:calc(var(--u)*1.3);padding:.4em .8em .55em;border-radius:calc(var(--u)*1)}
+  #s13.ux .pa-o small{font-size:var(--t-tiny)}
+  #s13.ux .pa-o i{height:calc(var(--u)*.45)}
+  #s13.ux .pa-exp{flex:1;min-height:0;overflow:auto}
+  #s13.ux .pa-bottom{margin-top:0;gap:calc(var(--u)*1.2)}
+  #s13.ux .pa-btns .btn{font-size:var(--t-body)}
+  #s13.ux .pa-right{gap:calc(var(--u)*.8)}
+  #s13.ux .pa-frame{width:min(100cqw,calc(100cqh - var(--u)*7.5))}
+  #s13.ux .pa-sent{font-size:calc(var(--u)*1.65)}
+  #s13.ux .pa-en{font-size:var(--t-tiny)}
+
+  /* 11 · deepfake */
+  #s14.ux .fk-stage{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+  #s14.ux .fk-left{gap:calc(var(--u)*.8)}
+  #s14.ux .fk-cam{width:min(100cqw,calc((100cqh - var(--u)*4.6)*4/3))}
+  #s14.ux .fk-b{font-size:var(--t-small)}
+  #s14.ux .fk-off p{font-size:var(--t-small)}
+  #s14.ux .fk-txt .dr-h{font-size:calc(var(--u)*2.4)}
+  #s14.ux .fk-txt .dr-p{font-size:var(--t-body)}
+  #s14.ux .fk-txt .gn-tip{font-size:var(--t-small)}
+  #s14.ux .fk-vids span,#s14.ux .fk-vids a{font-size:var(--t-tiny)}
+  #s14.ux .fk-ck{font-size:var(--t-tiny)}
+  #s14.ux .fk-it{padding:calc(var(--u)*.55) calc(var(--u)*.9)}
+  #s14.ux .fk-it b{font-size:var(--t-body)}
+  #s14.ux .fk-it span{font-size:var(--t-small)}
+  #s14.ux .fk-end{font-size:var(--t-body)}
+
+  /* 14 · prompt: barra del prompt pigro in alto, il prompt migliorato riempie il resto */
+  #sPV.ux .pv-stage{display:flex;flex-direction:column;align-items:stretch;gap:calc(var(--u)*.7)}
+  #sPV.ux .pv-lazy{flex:none;gap:calc(var(--u)*.6)}
+  #sPV.ux .pv-lab{font-size:calc(var(--u)*1.45)}
+  #sPV.ux .pv-bar{display:flex;gap:calc(var(--u)*1);align-items:stretch}
+  #sPV.ux .pv-in{flex:1;min-height:0;field-sizing:content;max-height:calc(var(--u)*9);font-size:calc(var(--u)*1.65);padding:.5em .8em;border-radius:calc(var(--u)*1.1);box-shadow:0 6px 18px rgba(231,76,60,.08)}
+  #sPV.ux .pv-bar .pv-row{flex:none;flex-wrap:nowrap}
+  #sPV.ux .pv-row .btn{font-size:var(--t-body);padding:.6em 1.2em}
+  #sPV.ux .pv-ex{display:flex;align-items:center;gap:calc(var(--u)*1);flex-wrap:wrap}
+  #sPV.ux .pv-ex .pv-k2{margin:0;font-size:var(--t-tiny)}
+  #sPV.ux .pv-feed{max-height:none;overflow:visible}
+  #sPV.ux .pv-chip{font-size:var(--t-small);padding:.35em 1em}
+  #sPV.ux .pv-arrow{display:flex;align-items:center;justify-content:center;gap:.9em;font-size:var(--t-tiny);color:var(--orange)}
+  #sPV.ux .pv-arrow::before,#sPV.ux .pv-arrow::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,transparent,#FFD3C2)}
+  #sPV.ux .pv-arrow::after{background:linear-gradient(90deg,#FFD3C2,transparent)}
+  #sPV.ux .pv-arrow span{display:flex;align-items:center;justify-content:center;width:calc(var(--u)*2.4);height:calc(var(--u)*2.4);border-radius:50%;background:var(--orange);color:#fff;font:700 calc(var(--u)*1.3)/1 var(--ff-head)}
+  #sPV.ux .pv-arrow em{font-style:normal;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--gray)}
+  #sPV.ux .pv-good{flex:1;min-height:0;gap:calc(var(--u)*.6)}
+  #sPV.ux .pv-gh{display:flex;justify-content:space-between;align-items:center;gap:1em}
+  #sPV.ux .pv-out{flex:1;min-height:0;overflow:auto;gap:0;padding:calc(var(--u)*.5) calc(var(--u)*1.6);border-radius:calc(var(--u)*1.3);box-shadow:0 10px 30px rgba(30,142,79,.08)}
+  #sPV.ux .pv-ing{flex:1;align-items:center;grid-template-columns:calc(var(--u)*8.5) minmax(0,1fr);gap:calc(var(--u)*1.4);padding:calc(var(--u)*.35) 0;border-bottom:1px solid #EEF2F7}
+  #sPV.ux .pv-ing b{margin:0;font-size:var(--t-body);padding:.35em .6em}
+  #sPV.ux .pv-ing span{font-size:calc(var(--u)*1.45)}
+  #sPV.ux .pv-q{font-size:var(--t-small);margin-top:0;padding-top:calc(var(--u)*.7);border-top:none}
+  #sPV.ux .pv-q div{height:calc(var(--u)*.7)}
+  #sPV.ux .pv-tip{font-size:var(--t-small)}
+
+  /* 15 · studiare */
+  #sST.ux .st-stage{align-items:stretch;gap:calc(var(--u)*3)}
+  #sST.ux .st-left,#sST.ux .st-right{min-height:0;gap:calc(var(--u)*.75)}
+  #sST.ux .pv-k2{font-size:var(--t-tiny)}
+  #sST.ux .st-moves{flex:1;min-height:0;gap:calc(var(--u)*.7)}
+  #sST.ux .st-mv{flex:1;min-height:0;max-height:calc(var(--u)*8);padding:0 calc(var(--u)*1.1);grid-template-columns:calc(var(--u)*3) minmax(0,1fr);gap:calc(var(--u)*1.1)}
+  #sST.ux .st-mv>b{width:calc(var(--u)*3);height:calc(var(--u)*3);font-size:calc(var(--u)*1.35)}
+  #sST.ux .st-mv h4{font-size:calc(var(--u)*1.65)}
+  #sST.ux .st-mv p{font-size:var(--t-body)}
+  #sST.ux .st-note{font-size:var(--t-small)}
+  #sST.ux .st-form label{font-size:var(--t-tiny)}
+  #sST.ux .st-form .in{font-size:var(--t-body)}
+  #sST.ux .st-att>span{font-size:var(--t-tiny)}
+  #sST.ux .st-a{font-size:var(--t-small)}
+  #sST.ux .st-prompt{flex:1 1 auto;min-height:0;overflow:auto;font-size:calc(var(--u)*1.02);line-height:1.46;padding:calc(var(--u)*.9) calc(var(--u)*1.2);border-radius:calc(var(--u)*1.2)}
+  #sST.ux .st-cmp{font-size:var(--t-tiny)}
+  #sST.ux .st-c,#sST.ux .st-ch{padding:.25em .4em}
+  #sST.ux .pv-row .btn{font-size:var(--t-body)}
+  #sST.ux .pv-tip{font-size:var(--t-small)}
+
+  /* 16 · automazione: il pannello dei dati e il prompt occupano tutta l'altezza */
+  #sAU1.ux .bd-sent{font-size:calc(var(--u)*1.4)}
+  #sAU1.ux .br-who span{font-size:var(--t-small)}
+  #sAU1.ux .au-n{padding:calc(var(--u)*.9) calc(var(--u)*1);border-radius:calc(var(--u)*1.1)}
+  #sAU1.ux .au-n b{font-size:calc(var(--u)*1.55)}
+  #sAU1.ux .au-n>span:not(.k){font-size:var(--t-small)}
+  #sAU1.ux .au-n .k{font-size:var(--t-tiny)}
+  #sAU1.ux .au-n small{font-size:var(--t-tiny)}
+  #sAU1.ux .one-low{flex:1;min-height:0;align-items:stretch;gap:calc(var(--u)*2)}
+  #sAU1.ux .au-data{min-height:0;height:100%;overflow:auto;font-size:calc(var(--u)*1.3);padding:calc(var(--u)*1.3) calc(var(--u)*1.6);border-radius:calc(var(--u)*1.2)}
+  #sAU1.ux .au-data .h{font-size:var(--t-tiny)}
+  #sAU1.ux .one-side{min-height:0;gap:calc(var(--u)*.7)}
+  #sAU1.ux .one-side .pv-k2{font-size:var(--t-tiny)}
+  #sAU1.ux .au-pr{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;justify-content:safe center;font-size:calc(var(--u)*1.1);line-height:1.6;padding:calc(var(--u)*1.2) calc(var(--u)*1.5);border-radius:calc(var(--u)*1.2)}
+  #sAU1.ux .pv-row .btn{font-size:var(--t-body)}
+  #sAU1.ux .au-demo{padding:calc(var(--u)*.6) calc(var(--u)*1.2);border-radius:calc(var(--u)*1.2)}
+  #sAU1.ux .au-demo b{font-size:var(--t-body)}
+  #sAU1.ux .au-demo p{font-size:var(--t-small)}
+
+  /* 17 · MCP */
+  #sMCP.ux .mc-stage{align-items:stretch;gap:calc(var(--u)*3)}
+  #sMCP.ux .mc-left,#sMCP.ux .mc-right{min-height:0;gap:calc(var(--u)*.9)}
+  #sMCP.ux .mc-hub{flex:1;min-height:0;max-height:none;height:100%}
+  #sMCP.ux .mc-vs div{padding:calc(var(--u)*.8) calc(var(--u)*1);border-radius:calc(var(--u)*1.1)}
+  #sMCP.ux .mc-vs b{font-size:calc(var(--u)*1.35)}
+  #sMCP.ux .mc-vs span{font-size:var(--t-small)}
+  #sMCP.ux .au-tab{font-size:var(--t-small)}
+  #sMCP.ux .mc-chat{flex:1;min-height:0;overflow:auto;font-size:calc(var(--u)*1.25);padding:calc(var(--u)*1.2) calc(var(--u)*1.4);border-radius:calc(var(--u)*1.3)}
+  #sMCP.ux .mc-perm button{font-size:var(--t-small)}
+  #sMCP.ux .pv-row .btn{font-size:var(--t-body)}
+  #sMCP.ux .mc-foot{font-size:var(--t-small);padding:.6em 1em}
+
+  /* 18-19 · Claude e «costruiamolo»: i passi si dividono l'altezza, la finestra riempie il resto */
+  .ux .su-stage{align-items:stretch;gap:calc(var(--u)*3)}
+  .ux .su-left,.ux .su-right{min-height:0;gap:calc(var(--u)*.8)}
+  .ux .su-steps{flex:1;min-height:0;gap:calc(var(--u)*.5)}
+  .ux .su-s{flex:1 1 0;min-height:0;max-height:calc(var(--u)*5.2);padding:0 calc(var(--u)*1);gap:calc(var(--u)*.9);border-radius:calc(var(--u)*1);grid-template-columns:calc(var(--u)*2.4) minmax(0,1fr) auto}
+  .ux .su-steps{justify-content:center}
+  .ux .su-s b{width:calc(var(--u)*2.4);height:calc(var(--u)*2.4);font-size:var(--t-body)}
+  .ux .su-s span{font-size:calc(var(--u)*1.3)}
+  .ux .su-s small{font-size:var(--t-tiny)}
+  .ux .su-win{flex:1;min-height:0;display:flex;flex-direction:column;border-radius:calc(var(--u)*1.2)}
+  .ux .su-bar{padding:calc(var(--u)*.55) calc(var(--u)*.9)}
+  .ux .su-url{font-size:var(--t-small)}
+  .ux .su-body{flex:1;min-height:0;overflow:auto;justify-content:safe center;font-size:calc(var(--u)*1.35);padding:calc(var(--u)*1.4) calc(var(--u)*2);gap:calc(var(--u)*.9)}
+  .ux .su-box,.ux .su-tag{font-size:.85em}
+  .ux .su-dlg{max-width:26em}
+  .ux .cl-pr button,.ux .cl-pr a{font-size:.72em}
+  .ux .su-txt{font-size:calc(var(--u)*1.35)}
+  .ux .su-right .pv-row .btn{font-size:var(--t-body)}
+
+  /* 20 · AlphaFold */
+  #sAF.ux .af-view{width:min(100cqw,calc(100cqh - var(--u)*2.2))}
+  #sAF.ux .af-cr{font-size:var(--t-tiny)}
+  #sAF.ux .af-lab{font-size:var(--t-small)}
+  #sAF.ux .af-leg{font-size:var(--t-tiny)}
+  #sAF.ux .af-h{font-size:calc(var(--u)*2.3)}
+  #sAF.ux .af-p{font-size:calc(var(--u)*1.22)}
+  #sAF.ux .af-seq{font-size:var(--t-tiny)}
+  #sAF.ux .af-note{font-size:var(--t-small)}
+  #sAF.ux .af-big b{font-size:calc(var(--u)*2)}
+  #sAF.ux .af-big span{font-size:var(--t-tiny)}
+  #sAF.ux .af-pb,#sAF.ux .af-links a{font-size:var(--t-small)}
+  #sAF.ux .af-cap,#sAF.ux .af-dm{font-size:var(--t-tiny)}
+
+  /* 21 · retrosintesi: la finestra di ricerca prende tutta l'altezza libera */
+  #sRS.ux .rs-win{flex:1 1 0;min-height:0;border-radius:calc(var(--u)*1.2)}
+  #sRS.ux .rs-bar{font-size:var(--t-tiny);padding:.5em 1em}
+  #sRS.ux .rs-body{flex:1;min-height:0;height:auto;container-type:size}
+  #sRS.ux .rs-tm .m{height:calc(100cqh - var(--u)*7)}
+  #sRS.ux .rs-big svg{max-height:calc(100cqh - var(--u)*2.5)}
+  #sRS.ux .rs-pr .t b{font-size:var(--t-small)}
+  #sRS.ux .rs-pr small{font-size:var(--t-tiny)}
+  #sRS.ux .rs-low{flex:none;min-height:calc(var(--u)*12.5);margin-top:0;align-items:start;gap:calc(var(--u)*2.6)}
+  #sRS.ux .rs-low .dr-txt{gap:calc(var(--u)*.5)}
+  #sRS.ux .rs-h{font-size:calc(var(--u)*2.1)}
+  #sRS.ux .rs-p{font-size:var(--t-body)}
+  #sRS.ux .rs-pat,#sRS.ux .rs-info{font-size:var(--t-small)}
+  #sRS.ux .rs-rt div>b{font-size:var(--t-body)}
+  #sRS.ux .rs-rt small,#sRS.ux .rs-leg,#sRS.ux .rs-tools,#sRS.ux .rs-cmp{font-size:var(--t-small)}
+
+  /* 22-26 · etica e nuvola */
+  .ux .et-tab{font-size:var(--t-small);padding:.4em 1em}
+  .ux .et-body{align-items:stretch;gap:calc(var(--u)*2.6)}
+  .ux .dl-l,.ux .dl-r{min-height:0;gap:calc(var(--u)*1)}
+  .ux .et-case{padding:calc(var(--u)*.9) calc(var(--u)*1.4);border-radius:0 calc(var(--u)*1.2) calc(var(--u)*1.2) 0}
+  .ux .et-case span{font-size:var(--t-tiny)}
+  .ux .et-case h3{font-size:calc(var(--u)*2)}
+  .ux .et-case h3.co-q{font-size:calc(var(--u)*1.4)}
+  .ux .dl-r>.et-wait,.ux .dl-r>.et-fact,.ux .pr-side>.et-wait,.ux .pr-side>.et-fact{flex:1;min-height:0}
+  .ux .et-wait{align-items:center;justify-content:center;text-align:center;gap:calc(var(--u)*1.3);padding:calc(var(--u)*2);border-radius:calc(var(--u)*1.4)}
+  .ux .et-wait::before{content:var(--ic,'🗳️');font-size:calc(var(--u)*4.5);line-height:1}
+  .ux .et-wait p{font-size:var(--t-lead);max-width:22em}
+  .ux .et-wait .btn{font-size:calc(var(--u)*1.35);padding:.7em 1.5em}
+  .ux .et-fact{display:flex;flex-direction:column;justify-content:center;gap:.4em;overflow:auto;padding:calc(var(--u)*1.6) calc(var(--u)*2);border-radius:0 calc(var(--u)*1.4) calc(var(--u)*1.4) 0}
+  .ux .et-fact span{font-size:var(--t-small)}
+  .ux .et-fact p{font-size:var(--t-lead)}
+  .ux .dl-r .dr-nav .btn{flex:1;font-size:var(--t-body)}
+  #sDL{--ic:'🤔'}#sCO{--ic:'⚖️'}#sPR{--ic:'🔒'}
+  #sDL.ux .dl-hist{flex:1;height:auto;min-height:0;gap:calc(var(--u)*.9)}
+  #sDL.ux .dl-col .v{font-size:calc(var(--u)*1.6)}
+  #sDL.ux .dl-col .e{font-size:calc(var(--u)*2.2)}
+  #sDL.ux .dl-col small{font-size:var(--t-small)}
+  #sDL.ux .dl-bw{border-radius:calc(var(--u)*1)}
+  #sDL.ux .dl-grad{height:calc(var(--u)*.9)}
+  #sDL.ux .dl-grad i{width:calc(var(--u)*1.7);height:calc(var(--u)*1.7)}
+  #sDL.ux .dl-temp p{font-size:var(--t-body)}
+  #sCO.ux .co-stack{height:calc(var(--u)*5.5);border-radius:calc(var(--u)*1.1)}
+  #sCO.ux .co-stack i{font-size:calc(var(--u)*1.6)}
+  #sCO.ux .co-stack em{font-size:var(--t-body)}
+  #sCO.ux .co-rows{flex:1;min-height:0;justify-content:space-evenly;gap:calc(var(--u)*.7)}
+  #sCO.ux .co-row{font-size:calc(var(--u)*1.35);grid-template-columns:minmax(0,14em) 1fr 3.4em;gap:calc(var(--u)*1)}
+  #sCO.ux .co-b{height:calc(var(--u)*1.5);border-radius:calc(var(--u)*.75)}
+  #sCO.ux .co-b i{border-radius:calc(var(--u)*.75)}
+  #sPR.ux .et-body{grid-template-columns:minmax(0,2.4fr) minmax(0,1fr)}
+  #sPR.ux .pr-grid{max-height:none;height:100%;min-height:0;gap:calc(var(--u)*1)}
+  #sPR.ux .pr-c{padding:calc(var(--u)*1) calc(var(--u)*1.2);gap:calc(var(--u)*.5);border-radius:calc(var(--u)*1.2)}
+  #sPR.ux .pr-c p{font-size:calc(var(--u)*1.5)}
+  #sPR.ux .pr-c small{font-size:var(--t-tiny)}
+  #sPR.ux .pr-c em{font-size:var(--t-tiny)}
+  #sPR.ux .pr-b{height:calc(var(--u)*.75)}
+  #sPR.ux .pr-side{align-items:stretch;min-height:0;gap:calc(var(--u)*1)}
+  #sPR.ux .et-fact p{font-size:var(--t-body)}
+  #sPR.ux .pr-rule{font-size:var(--t-body);padding:calc(var(--u)*1) calc(var(--u)*1.2);border-radius:calc(var(--u)*1.2)}
+  #sDB.ux .db-motion{font-size:calc(var(--u)*2)!important}
+  #sDB.ux .db-pb{font-size:var(--t-small)}
+  #sDB.ux .db-th{padding:calc(var(--u)*.6) calc(var(--u)*1)}
+  #sDB.ux .db-th b{font-size:calc(var(--u)*1.5)}
+  #sDB.ux .db-th span,#sDB.ux .db-help{font-size:var(--t-tiny)}
+  #sDB.ux .db-card p{font-size:calc(var(--u)*1.3)}
+  #sDB.ux .db-cards{padding:calc(var(--u)*.7);gap:calc(var(--u)*.6)}
+  #sDB.ux .db-vote p{font-size:var(--t-body)}
+  #sDB.ux .db-vb{height:calc(var(--u)*2.4)}
+  #sDB.ux .db-empty{font-size:var(--t-lead)}
+  #sDB.ux .db-empty::before{content:'💬';display:block;font-size:calc(var(--u)*4);margin-bottom:.3em}
+  #sWC.ux .wc-foot{font-size:var(--t-small)}
+}
+
+/* logo di Fondazione VITA: su sfondo scuro sta su una scheda bianca (il testo del logo è nero) */
+.brand-card{background:#fff;border-radius:16px;box-shadow:0 14px 40px rgba(0,0,0,.25);line-height:0}
+.brand-card img{display:block;height:100%;width:auto}
+.brand-cover{height:clamp(64px,10vh,112px);padding:clamp(8px,1.2vh,14px) clamp(14px,1.8vh,22px);margin-bottom:clamp(.4rem,2vh,1.4rem)}
+.brand-pause{height:clamp(52px,7vh,80px);padding:8px 16px;margin-top:clamp(.6rem,2vh,1.4rem)}
+.brand-inline{height:max(2.2em,calc(var(--u,12px)*3.4));width:auto;vertical-align:middle;margin:0 .3em}
+.wc-thx{display:inline-flex;align-items:center;gap:.1em}
+.brand-nav{flex:none;display:flex;align-items:center;height:2.1rem;background:#fff;border-radius:8px;padding:3px 8px;margin-left:.2rem}
+.brand-nav img{height:100%;width:auto;display:block}
+html.vote .brand-nav{display:none}
+
+/* nuvola: prima delle risposte, il QR grande al centro */
+.wc-wait{position:absolute;inset:0;display:none;align-items:center;justify-content:center;gap:calc(var(--u,12px)*3);padding:2em;text-align:left}
+.wc-box.empty .wc-wait{display:flex}
+.wc-wait .tu-qr{padding:calc(var(--u,12px)*.8);border:2px solid var(--border);border-radius:calc(var(--u,12px)*1.2);box-shadow:0 14px 40px rgba(27,42,74,.12)}
+.wc-wait .tu-qr img,.wc-wait .tu-qr canvas{width:min(max(170px,calc(var(--u,12px)*22)),48vh)!important;height:min(max(170px,calc(var(--u,12px)*22)),48vh)!important}
+.wc-wait .tu-qr:empty{display:none}
+.wc-wk{margin:0;font:600 var(--t-kick,.8rem) var(--ff-head);letter-spacing:.16em;text-transform:uppercase;color:#1E9E58}
+.wc-wh{margin:.3em 0;font:700 max(1.25rem,calc(var(--u,12px)*2.6))/1.15 var(--ff-head);color:var(--navy);max-width:14em}
+.wc-wr{margin:0;font:700 max(1rem,calc(var(--u,12px)*1.6)) var(--ff-head);color:var(--gray);letter-spacing:.06em}
+@media (max-width:900px){.wc-wait{flex-direction:column;text-align:center}}
+
+/* stati vuoti: barre «fantasma» che respirano, finché non arrivano i voti */
+.dl-hist.empty .dl-bw i{background:#D5DEE9!important;height:var(--gh,40%)!important;transition:none}
+.dl-hist.empty .dl-col:nth-child(1){--gh:30%;--gd:0s}.dl-hist.empty .dl-col:nth-child(2){--gh:55%;--gd:.2s}.dl-hist.empty .dl-col:nth-child(3){--gh:78%;--gd:.4s}.dl-hist.empty .dl-col:nth-child(4){--gh:48%;--gd:.6s}.dl-hist.empty .dl-col:nth-child(5){--gh:26%;--gd:.8s}
+.co-stack:has(em){background:linear-gradient(90deg,#EEF2F7 30%,#F9FBFD 50%,#EEF2F7 70%) 0 0/250% 100%}
+
+/* movimento: entrata, cambio di passo, attese */
+@media (prefers-reduced-motion:no-preference){
+  .ux.current>*{animation:uxIn .6s cubic-bezier(.2,.8,.2,1) both}
+  .ux.current>*:nth-child(2){animation-delay:.07s}
+  .ux.current>*:nth-child(3){animation-delay:.14s}
+  .ux.current>*:nth-child(4){animation-delay:.21s}
+  .ux.current>*:nth-child(n+5){animation-delay:.28s}
+  .ux-swap>*:not(.dr-nav):not(.w6-nav){animation:uxSwap .45s cubic-bezier(.2,.8,.2,1) both}
+  .ux-swap>*:nth-child(2){animation-delay:.04s}.ux-swap>*:nth-child(3){animation-delay:.08s}.ux-swap>*:nth-child(n+4){animation-delay:.12s}
+  .ux .et-wait::before,#sDB .db-empty::before{animation:uxBob 2.6s ease-in-out infinite}
+  .dl-hist.empty .dl-bw i{animation:uxGhost 2.4s ease-in-out var(--gd,0s) infinite}
+  .co-stack:has(em){animation:uxShim 1.8s linear infinite}
+  .wc-box.empty .wc-wait .tu-qr{animation:uxPulse 2.8s ease-in-out infinite}
+  .ux .su-s,.ux .st-mv,.ux .et-tab,.ux .pv-chip,.ux .au-tab,.ux .pa-o,.ux .fk-it,.ux .pr-c{transition:transform .2s,box-shadow .2s,border-color .2s,opacity .2s,background .2s}
+  .ux .pv-chip:hover,.ux .et-tab:hover,.ux .au-tab:hover{transform:translateY(-2px)}
+  .ux .dr-step.on .dr-dot{animation:uxRing 2.6s ease-in-out infinite}
+  .ux .pa-o:hover,.ux .pr-c:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(27,42,74,.1)}
+}
+@keyframes uxIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes uxSwap{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
+@keyframes uxBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes uxRing{0%,100%{box-shadow:0 0 0 7px color-mix(in srgb,var(--c) 22%,transparent)}50%{box-shadow:0 0 0 13px color-mix(in srgb,var(--c) 8%,transparent)}}
+@keyframes uxGhost{0%,100%{opacity:.35}50%{opacity:.9}}
+@keyframes uxShim{from{background-position:100% 0}to{background-position:-150% 0}}
+@keyframes uxPulse{0%,100%{box-shadow:0 14px 40px rgba(27,42,74,.12),0 0 0 0 rgba(46,204,113,.35)}50%{box-shadow:0 14px 40px rgba(27,42,74,.12),0 0 0 calc(var(--u,12px)*1.2) rgba(46,204,113,0)}}
 </style>
 
 <div id="deck">
 
 <!-- 1 COVER -->
 <section class="slide center dark s-cover" data-section="Apertura">
+  <div class="brand-card brand-cover"><img src="img/brand/fondazione-vita.png" alt="Fondazione VITA · ITS Nuove Tecnologie della Vita"></div>
   <p class="fz-kicker" style="color:var(--orange)">Workshop Interattivo</p>
   <h1 class="fz-h1">Introduzione<br>all'Intelligenza Artificiale</h1>
   <p class="fz-lead" style="color:var(--muted);max-width:30ch">Da dove viene, come funziona e come usarla per studiare meglio e automatizzare tutto</p>
@@ -1935,7 +2365,7 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
     <span style="width:14px;height:14px;border-radius:50%;background:var(--cyan)"></span>
     <span style="width:14px;height:14px;border-radius:50%;background:#fff"></span>
   </div>
-  <p class="fz-body" style="color:#8AAFCF;margin-top:1.4em">Fondazione ITS Vita · Siena · 3 ore</p>
+  <p class="fz-body" style="color:#8AAFCF;margin-top:1.4em">Fondazione VITA · Siena · 3 ore</p>
   <p class="fz-small" style="color:#6f93b5">Usa le frecce ← → (o scorri) per navigare · tasto ☰ per l'indice</p>
 </section>
 
@@ -1964,8 +2394,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 4 BRAIN -->
-<section class="slide darktext s-light" data-section="Storia e fondamenti" id="s4">
-  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Il cervello: l'ispirazione originale</h2>
+<section class="slide darktext s-light ux" data-section="Storia e fondamenti" id="s4">
+  <header class="ux-hd"><div><p class="ux-kick">Storia e fondamenti</p><h2 class="fz-h2">Il cervello: l'ispirazione originale</h2></div></header>
   <div class="n4-main">
     <div class="n4-left">
       <svg class="n4-svg" id="n4Svg" viewBox="0 -30 720 632" preserveAspectRatio="xMidYMid meet" aria-label="Neurone biologico e neurone artificiale a confronto">
@@ -2058,8 +2488,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 6 WINTER -->
-<section class="slide dark s-navygrad" data-section="Storia e fondamenti" id="s6">
-  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Inverno dell'IA e nuova primavera</h2>
+<section class="slide dark s-navygrad ux" data-section="Storia e fondamenti" id="s6">
+  <header class="ux-hd"><div><p class="ux-kick">Storia e fondamenti</p><h2 class="fz-h2">Inverno dell'IA e nuova primavera</h2></div></header>
   <div class="w6-steps" id="w6Steps"></div>
   <div class="w6-stage">
     <div class="w6-vis"><svg class="w6-svg" id="w6Svg" viewBox="0 0 400 400" aria-hidden="true"></svg></div>
@@ -2074,11 +2504,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 7 TAXONOMY -->
-<section class="slide darktext s-light" data-section="Storia e fondamenti" id="s7">
-  <div class="tx-top">
-    <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">La famiglia dell'Intelligenza Artificiale</h2>
-    <p class="tx-hint">Passate sopra un cerchio per scoprire cos'è</p>
-  </div>
+<section class="slide darktext s-light ux" data-section="Storia e fondamenti" id="s7">
+  <header class="ux-hd"><div><p class="ux-kick">Storia e fondamenti</p><h2 class="fz-h2">La famiglia dell'Intelligenza Artificiale</h2></div><p class="tx-hint ux-meta">👆 Passate sopra un cerchio per scoprire cos'è</p></header>
   <div class="tx-stage">
     <div class="tx-vis"><svg class="tx-svg" id="txSvg" viewBox="0 0 500 500" aria-label="Cerchi uno dentro l'altro: intelligenza artificiale, machine learning, deep learning, AI generativa" onmouseleave="txOut()"></svg></div>
     <div class="tx-card" id="txCard"></div>
@@ -2086,11 +2513,10 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 8 HOWLEARN -->
-<section class="slide darktext s-white" data-section="Come funziona" id="s8">
-  <div class="nn-top">
-    <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Come impara una rete neurale?</h2>
-    <div class="nn-ctl"><button class="btn cyan" id="nnPlay" onclick="nnToggle()">Pausa</button><button class="btn ghost" onclick="nnRestart()">Ricomincia</button></div>
-  </div>
+<section class="slide darktext s-white ux" data-section="Come funziona" id="s8">
+  <header class="ux-hd"><div><p class="ux-kick">Come funziona</p><h2 class="fz-h2">Come impara una rete neurale?</h2></div>
+    <div class="nn-ctl ux-meta"><button class="btn cyan" id="nnPlay" onclick="nnToggle()">Pausa</button><button class="btn ghost" onclick="nnRestart()">Ricomincia</button></div>
+  </header>
   <div class="nn-phases" id="nnPh">
     <span data-p="0"><b>1</b>Legge una frase</span><i></i>
     <span data-p="1"><b>2</b>Indovina la parola dopo</span><i></i>
@@ -2110,10 +2536,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 9 ACT1 Allena la tua AI (disegni) -->
-<section class="slide darktext s-light" data-section="Come funziona" id="s9" data-st="0">
-  <div class="dr-top">
-    <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">ATTIVITÀ · 15 min</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Allena la tua AI a riconoscere i disegni</h2></div>
-  </div>
+<section class="slide darktext s-light ux" data-section="Come funziona" id="s9" data-st="0">
+  <header class="ux-hd"><div><p class="ux-kick"><span class="ux-chip">Attività · 15 min</span>Come funziona</p><h2 class="fz-h2">Allena la tua AI a riconoscere i disegni</h2></div></header>
   <div class="dr-steps" id="drSteps"></div>
   <div class="dr-stage">
     <div class="dr-vis">
@@ -2135,8 +2559,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 10 CNN: come l'AI vede un'immagine -->
-<section class="slide darktext s-light" data-section="Come funziona" id="s10">
-  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Come fa l'AI a "vedere" una foto?</h2>
+<section class="slide darktext s-light ux" data-section="Come funziona" id="s10">
+  <header class="ux-hd"><div><p class="ux-kick">Come funziona</p><h2 class="fz-h2">Come fa l'AI a "vedere" una foto?</h2></div></header>
   <div class="dr-steps cv-steps" id="cvSteps"></div>
   <div class="dr-stage">
     <div class="dr-vis"><canvas class="cv-cv" id="cvCv" width="480" height="480" aria-label="La foto di un gatto, vista dall'AI strato per strato"></canvas></div>
@@ -2151,8 +2575,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 12 GAN: il falsario contro l'esperto -->
-<section class="slide darktext s-light" data-section="AI generativa" id="s12">
-  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">GAN: il falsario contro l'esperto</h2>
+<section class="slide darktext s-light ux" data-section="AI generativa" id="s12">
+  <header class="ux-hd"><div><p class="ux-kick">AI generativa</p><h2 class="fz-h2">GAN: il falsario contro l'esperto</h2></div></header>
   <div class="gn-intro"><div class="gn-it"><p class="gn-ik">La sfida</p><h3 class="gn-ih">Due AI, una contro l'altra</h3></div><p class="gn-ip">Una <b>GAN</b> è un modo di allenare un'AI a creare immagini: due reti neurali giocano una contro l'altra. Il <b>falsario</b> (il <i>generatore</i>) dipinge un gatto finto. L'<b>esperto</b> (il <i>discriminatore</i>) deve capire se è vero o falso. Ogni volta che perde, il falsario impara.</p><div class="gn-acr"><div><b>G</b>enerative<span>crea cose nuove</span></div><div><b>A</b>dversarial<span>due reti che si sfidano</span></div><div><b>N</b>etwork<span>rete neurale</span></div></div><p class="gn-why"><b>Perché falsario ed esperto?</b> Chi l'ha inventata, Ian Goodfellow nel 2014, la spiegava così: falsari che stampano banconote false contro la polizia che le deve scoprire. Più la polizia diventa brava, più i falsari devono migliorare.</p></div>
   <div class="dr-steps cv-steps gn-steps" id="gnSteps"></div>
   <div class="dr-stage">
@@ -2175,8 +2599,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 13 ACT3 Crea un'immagine con l'AI -->
-<section class="slide darktext s-light" data-section="AI generativa" id="s13">
-  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">ATTIVITÀ · 10 min</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Create un'immagine con l'AI</h2></div>
+<section class="slide darktext s-light ux" data-section="AI generativa" id="s13">
+  <header class="ux-hd"><div><p class="ux-kick"><span class="ux-chip">Attività · 10 min</span>AI generativa</p><h2 class="fz-h2">Create un'immagine con l'AI</h2></div></header>
   <div class="pa-stage">
     <div class="pa-left">
       <p class="pa-k">Votate dal telefono una parola per ogni casella</p>
@@ -2196,8 +2620,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 14 DEEPFAKE: un volto sopra un altro, dal vivo -->
-<section class="slide darktext s-light" data-section="AI generativa" id="s14">
-  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Deepfake: quando l'AI inganna</h2>
+<section class="slide darktext s-light ux" data-section="AI generativa" id="s14">
+  <header class="ux-hd"><div><p class="ux-kick">AI generativa</p><h2 class="fz-h2">Deepfake: quando l'AI inganna</h2></div></header>
   <div class="fk-stage">
     <div class="fk-left">
       <div class="fk-cam" id="fkCam"><canvas id="fkCv" width="640" height="480" aria-label="Video dalla camera con il volto sostituito"></canvas><video id="fkVid" playsinline muted></video><div class="fk-off" id="fkOff"></div><span class="fk-badge" id="fkBadge"></span></div>
@@ -2447,32 +2871,33 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
   <h2 class="fz-h1">Pausa!</h2>
   <p class="fz-lead" style="opacity:.9">Ci rivediamo tra 15 minuti</p>
   <div class="panel-t fz-lead" style="max-width:40ch">Nel frattempo: esplorate gli strumenti che avete usato, generate altre immagini o provate Teachable Machine con oggetti diversi!</div>
+  <div class="brand-card brand-pause"><img src="img/brand/fondazione-vita.png" alt="Fondazione VITA · ITS Nuove Tecnologie della Vita"></div>
 </section>
 
 <!-- 17 MIGLIORA IL PROMPT: un prompt pigro diventa un prompt ottimo -->
-<section class="slide darktext s-light" data-section="Usare l'AI" id="sPV">
-  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">DAL VIVO</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Dal prompt pigro al prompt perfetto</h2></div>
+<section class="slide darktext s-light ux" data-section="Usare l'AI" id="sPV">
+  <header class="ux-hd"><div><p class="ux-kick"><span class="ux-chip">Dal vivo</span>Usare l'AI</p><h2 class="fz-h2">Dal prompt pigro al prompt perfetto</h2></div></header>
   <div class="pv-stage">
-    <div class="pv-col">
+    <div class="pv-col pv-lazy">
       <p class="pv-lab bad">😴 Prompt pigro</p>
-      <textarea class="pv-in" id="pvIn" maxlength="140" placeholder="Scrivete un prompt come lo scrivereste voi… es. «riassunto promessi sposi»" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();pvGo()}"></textarea>
-      <div class="pv-row"><button class="btn" id="pvBtn" onclick="pvGo()">✨ Miglioralo</button><a class="btn ghost pv-gpt" id="pvGptBad" target="_blank" rel="noopener">Prova su ChatGPT ↗</a></div>
-      <p class="pv-k2">Esempi da provare</p>
-      <div class="pv-feed" id="pvFeed"></div>
+      <div class="pv-bar">
+        <textarea class="pv-in" id="pvIn" maxlength="140" rows="1" placeholder="Scrivete un prompt come lo scrivereste voi… es. «riassunto promessi sposi»" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();pvGo()}"></textarea>
+        <div class="pv-row"><button class="btn" id="pvBtn" onclick="pvGo()">✨ Miglioralo</button><a class="btn ghost pv-gpt" id="pvGptBad" target="_blank" rel="noopener">Prova su ChatGPT ↗</a></div>
+      </div>
+      <div class="pv-ex"><p class="pv-k2">Esempi da provare</p><div class="pv-feed" id="pvFeed"></div></div>
     </div>
-    <div class="pv-arrow">→</div>
-    <div class="pv-col">
-      <p class="pv-lab good">🎯 Prompt migliorato <small id="pvSrc"></small></p>
+    <div class="pv-arrow" aria-hidden="true"><span>↓</span><em>ruolo · contesto · compito · formato · esempio</em></div>
+    <div class="pv-col pv-good">
+      <div class="pv-gh"><p class="pv-lab good">🎯 Prompt migliorato <small id="pvSrc"></small></p><div class="pv-row"><button class="btn ghost" id="pvCopy" onclick="pvCopy()">📋 Copia</button><a class="btn pv-gpt" id="pvGptGood" target="_blank" rel="noopener">Prova su ChatGPT ↗</a></div></div>
       <div class="pv-out" id="pvOut"></div>
-      <div class="pv-row"><button class="btn ghost" id="pvCopy" onclick="pvCopy()">📋 Copia</button><a class="btn pv-gpt" id="pvGptGood" target="_blank" rel="noopener">Prova su ChatGPT ↗</a></div>
       <p class="pv-tip">💡 Cliccate su ogni pezzo per cambiarlo. Le parti tra <b>[parentesi]</b> le completate voi: l'AI non può sapere cosa state studiando.</p>
     </div>
   </div>
 </section>
 
 <!-- 19 STUDIARE CON L'AI: tre mosse e il prompt per farsi fare le flashcard da Claude -->
-<section class="slide darktext s-light" data-section="Usare l'AI" id="sST">
-  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">DAL VIVO</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Studiare con l'AI (senza farla studiare al posto vostro)</h2></div>
+<section class="slide darktext s-light ux" data-section="Usare l'AI" id="sST">
+  <header class="ux-hd"><div><p class="ux-kick"><span class="ux-chip">Dal vivo</span>Usare l'AI</p><h2 class="fz-h2">Studiare con l'AI (senza farla studiare al posto vostro)</h2></div></header>
   <div class="st-stage">
     <div class="st-left">
       <p class="pv-k2">Studiare bene = 3 mosse <span>· cliccatene una</span></p>
@@ -2503,8 +2928,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 21 AUTOMAZIONE: il briefing del mattino -->
-<section class="slide darktext s-light" data-section="Automatizzare" id="sAU1">
-  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Un'automazione vera: il briefing del mattino</h2><span class="au-rule">«<b>Quando</b> succede questo → <b>fai</b> quello»</span></div>
+<section class="slide darktext s-light ux" data-section="Automatizzare" id="sAU1">
+  <header class="ux-hd"><div><p class="ux-kick">Automatizzare</p><h2 class="fz-h2">Un'automazione vera: il briefing del mattino</h2></div><div class="ux-meta"><span class="au-rule">«<b>Quando</b> succede questo → <b>fai</b> quello»</span></div></header>
   <p class="bd-sent"><em>Ogni mattina alle 7:30</em> l'AI legge la tua agenda e le email arrivate nella notte, <em>scarta</em> il rumore e <em>ti scrive su Telegram</em>: cosa conta oggi.</p>
   <div class="br-who"><span>👩‍💼 <b>Laura</b>, CEO di un'azienda di 40 persone</span><span>📅 4 riunioni oggi</span><span>✉️ 23 email non lette</span><span>⏱ 20 minuti per leggerle tutte</span></div>
   <div class="au-flow" id="auFlow"></div>
@@ -2520,8 +2945,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 21c MCP: l'AI che usa i vostri strumenti -->
-<section class="slide darktext s-light" data-section="Automatizzare" id="sMCP">
-  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">MCP: diamo le mani all'AI</h2><span class="au-rule">come una presa <b>USB-C</b>: un attacco, tanti strumenti</span><span class="au-rule">lo stesso briefing, ora <b>a parole</b></span></div>
+<section class="slide darktext s-light ux" data-section="Automatizzare" id="sMCP">
+  <header class="ux-hd"><div><p class="ux-kick">Automatizzare</p><h2 class="fz-h2">MCP: diamo le mani all'AI</h2></div><div class="ux-meta"><span class="au-rule">come una presa <b>USB-C</b>: un attacco, tanti strumenti</span><span class="au-rule">lo stesso briefing, ora <b>a parole</b></span></div></header>
   <div class="mc-stage">
     <div class="mc-left">
       <svg class="mc-hub" id="mcHub" viewBox="0 0 400 384" aria-label="Claude collegato con MCP a Zapier, Gmail, Calendario, Telegram, Fogli e Drive"></svg>
@@ -2540,8 +2965,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 21c2 IL BRIEFING CON CLAUDE: connettori, progetto, prompt, permessi -->
-<section class="slide darktext s-light" data-section="Automatizzare" id="sCL">
-  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge" style="background:#D97757">CON CLAUDE</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Il briefing con Claude: come si prepara</h2></div>
+<section class="slide darktext s-light ux" data-section="Automatizzare" id="sCL">
+  <header class="ux-hd"><div><p class="ux-kick"><span class="ux-chip" style="background:#D97757">Con Claude</span>Automatizzare</p><h2 class="fz-h2">Il briefing con Claude: come si prepara</h2></div></header>
   <div class="su-stage">
     <div class="su-left">
       <div class="su-steps" id="clSteps"></div>
@@ -2556,8 +2981,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 21d COME SI COSTRUISCE: il briefing del mattino, passo per passo -->
-<section class="slide darktext s-light" data-section="Automatizzare" id="sSU">
-  <div class="row" style="align-items:center;gap:.8em;flex-wrap:wrap"><span class="dr-badge">DAL VIVO</span><h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Costruiamolo insieme: 20 minuti, zero euro</h2></div>
+<section class="slide darktext s-light ux" data-section="Automatizzare" id="sSU">
+  <header class="ux-hd"><div><p class="ux-kick"><span class="ux-chip">Dal vivo</span>Automatizzare</p><h2 class="fz-h2">Costruiamolo insieme: 20 minuti, zero euro</h2></div></header>
   <div class="su-stage">
     <div class="su-left">
       <div class="su-steps" id="suSteps"></div>
@@ -2572,8 +2997,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 22 ALPHAFOLD: dalla sequenza alla forma (strutture vere dell'AlphaFold DB) -->
-<section class="slide darktext s-light" data-section="AI e scienza" id="sAF">
-  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">AlphaFold: l'AI che ha risolto un problema di 50 anni</h2>
+<section class="slide darktext s-light ux" data-section="AI e scienza" id="sAF">
+  <header class="ux-hd"><div><p class="ux-kick">AI e scienza</p><h2 class="fz-h2">AlphaFold: l'AI che ha risolto un problema di 50 anni</h2></div></header>
   <div class="dr-steps af-steps" id="afSteps"></div>
   <div class="af-stage">
     <div class="af-left">
@@ -2596,8 +3021,8 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 22b RETROSINTESI: dalla molecola agli ingredienti (disegni RDKit, strade vere Boots e BHC) -->
-<section class="slide darktext s-light" data-section="AI e scienza" id="sRS">
-  <h2 class="fz-h2" style="font-size:clamp(1.3rem,2.6vw,2.1rem)">Retrosintesi: l'AI che cucina al contrario</h2>
+<section class="slide darktext s-light ux" data-section="AI e scienza" id="sRS">
+  <header class="ux-hd"><div><p class="ux-kick">AI e scienza</p><h2 class="fz-h2">Retrosintesi: l'AI che cucina al contrario</h2></div></header>
   <div class="dr-steps rs-steps" id="rsSteps"></div>
   <div class="rs-win">
     <div class="rs-bar"><i></i><i></i><i></i><b>Ricerca retrosintetica · bersaglio: ibuprofene</b><span class="rs-log" id="rsLog"></span><span class="rs-stat" id="rsStat"></span></div>
@@ -2622,27 +3047,27 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 23 DILEMMI: si vota dal telefono su una scala (stanza ?etica=, righe E) -->
-<section class="slide darktext s-light" data-section="Etica" id="sDL">
+<section class="slide darktext s-light ux" data-section="Etica" id="sDL" style="--sc:#8E44AD">
   <div class="et-head"><div><p class="et-kick" style="--c:#8E44AD">Etica · 1 di 4</p><h2 class="fz-h2 et-h2">Dilemmi: voi cosa fareste?</h2></div><div class="et-join" id="etJdil"></div></div>
   <div class="et-tabs" id="dlTabs"></div>
   <div class="et-body" id="dlMain"></div>
 </section>
 
 <!-- 24 DI CHI È LA COLPA: 10 gettoni di colpa da distribuire (righe B) -->
-<section class="slide darktext s-light" data-section="Etica" id="sCO">
+<section class="slide darktext s-light ux" data-section="Etica" id="sCO" style="--sc:#E74C3C">
   <div class="et-head"><div><p class="et-kick" style="--c:#E74C3C">Etica · 2 di 4</p><h2 class="fz-h2 et-h2">Di chi è la colpa?</h2></div><div class="et-join" id="etJcol"></div></div>
   <div class="et-tabs" id="coTabs"></div>
   <div class="et-body" id="coMain"></div>
 </section>
 
 <!-- 25 COSA SA DI TE: lo incolleresti in un chatbot? (righe K) -->
-<section class="slide darktext s-light" data-section="Etica" id="sPR">
+<section class="slide darktext s-light ux" data-section="Etica" id="sPR" style="--sc:#00A6C8">
   <div class="et-head"><div><p class="et-kick" style="--c:#00A6C8">Etica · 3 di 4</p><h2 class="fz-h2 et-h2">Cosa sa di te: lo incolleresti in un chatbot?</h2></div><div class="et-join" id="etJprv"></div></div>
   <div class="et-body" id="prMain"></div>
 </section>
 
 <!-- 26 DIBATTITO: squadre a caso, argomenti dal telefono (righe X) -->
-<section class="slide darktext s-light" data-section="Etica" id="sDB">
+<section class="slide darktext s-light ux" data-section="Etica" id="sDB" style="--sc:#FF6B35">
   <div class="et-head"><div><p class="et-kick" style="--c:#FF6B35">Etica · 4 di 4 · il dibattito</p><h2 class="fz-h2 et-h2 db-motion" id="dbMotion"></h2></div><div class="et-join" id="etJdeb"></div></div>
   <div class="db-bar">
     <div class="db-pick" id="dbPick"></div>
@@ -2653,10 +3078,10 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
 </section>
 
 <!-- 27 NUVOLA DI PAROLE: la chiusura (righe W) -->
-<section class="slide darktext s-light" data-section="Fine" id="sWC">
+<section class="slide darktext s-light ux" data-section="Fine" id="sWC" style="--sc:#2ECC71">
   <div class="et-head"><div><p class="et-kick" style="--c:#2ECC71">Per chiudere</p><h2 class="fz-h2 et-h2">Una parola per l'AI, dopo oggi</h2></div><div class="et-join" id="etJwc"></div></div>
-  <div class="wc-box" id="wcBox"><div class="wc-cloud" id="wcCloud"></div></div>
-  <div class="wc-foot"><span id="wcN"></span><button class="dr-reset" onclick="etReset('wc')">↺ Nuova nuvola</button><span class="wc-thx">Grazie! · Workshop a cura di <b>Fondazione ITS Vita</b> — Siena</span></div>
+  <div class="wc-box" id="wcBox"><div class="wc-wait" id="wcWait"><div class="tu-qr" id="wcQr"></div><div><p class="wc-wk">Inquadrate il codice</p><p class="wc-wh">Una parola sola.<br>Più persone la scelgono, più diventa grande.</p><p class="wc-wr" id="wcRoom"></p></div></div><div class="wc-cloud" id="wcCloud"></div></div>
+  <div class="wc-foot"><span id="wcN"></span><button class="dr-reset" onclick="etReset('wc')">↺ Nuova nuvola</button><span class="wc-thx">Grazie! · Workshop a cura di <img class="brand-inline" src="img/brand/fondazione-vita.png" alt="Fondazione VITA · ITS Nuove Tecnologie della Vita"> Siena</span></div>
 </section>
 
 </div><!-- /deck -->
@@ -2671,6 +3096,7 @@ html.vote.stm,html.vote.stm body{background:#F5F7FA}
   <span id="counter">1 / 27</span>
   <button id="nextBtn" onclick="next()" title="Successiva">›</button>
   <span id="section-label"></span>
+  <span class="brand-nav hide-sm"><img src="img/brand/fondazione-vita.png" alt="Fondazione VITA"></span>
   <button class="hide-sm" onclick="toggleFs()" title="Schermo intero" aria-label="Schermo intero"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 </div>
 
@@ -4600,7 +5026,7 @@ var AU_D=['<pre>⏰ Martedì 14 ottobre, ore 7:30.\nNessuno preme niente: l\'aut
   '<pre>👤 Laura legge il briefing col caffè, risponde a Elena e ad Alfa,\n   ed entra alla riunione delle 9 già preparata.\n\nL\'AI ha messo in ordine. Le decisioni restano sue.</pre>'];
 var AU={i:-1,timer:null};
 function auInit(){if(!G('auFlow'))return;
-  G('auPrompt').innerHTML=[['#FF6B35','Sei l\'assistente personale di una CEO molto impegnata.'],['#00A6C8','Ogni mattina ricevi la sua agenda di oggi e le email arrivate dalla sera prima.'],['#2ECC71','Dimmi cosa conta oggi: le 3 priorità, cosa preparare per ogni riunione, a chi rispondere e perché.'],['#8E44AD','Un messaggio solo da leggere sul telefono: massimo 150 parole, elenchi puntati, prima le cose urgenti.'],['#E67E22','Ignora newsletter e notifiche. Non inventare: se un\'informazione manca, dillo.']].map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ');
+  G('auPrompt').innerHTML='<div>'+[['#FF6B35','Sei l\'assistente personale di una CEO molto impegnata.'],['#00A6C8','Ogni mattina ricevi la sua agenda di oggi e le email arrivate dalla sera prima.'],['#2ECC71','Dimmi cosa conta oggi: le 3 priorità, cosa preparare per ogni riunione, a chi rispondere e perché.'],['#8E44AD','Un messaggio solo da leggere sul telefono: massimo 150 parole, elenchi puntati, prima le cose urgenti.'],['#E67E22','Ignora newsletter e notifiche. Non inventare: se un\'informazione manca, dillo.']].map(function(p){return '<span style="--c:'+p[0]+'">'+esc(p[1])+'</span>'}).join(' ')+'</div>';
   var d=G('auDemo');d.innerHTML='<span style="font-size:1.6rem">🎬</span><div><b>'+(AU_DEMO.title||'Ora la vediamo funzionare davvero')+'</b><p>'+(AU_DEMO.url?'Il briefing vero di stamattina.':'Calendario + Gmail + l\'AI gratuita di Google, e il briefing arriva su Telegram. Costo: zero.')+'</p></div>'+(AU_DEMO.url?'<a class="btn" href="'+AU_DEMO.url+'" target="_blank" rel="noopener">Apri la demo ↗</a>':'<span class="btn" style="opacity:.55;cursor:default">In arrivo</span>');auDraw()}
 function auDraw(){var i=AU.i,h='';AU_ST.forEach(function(p,k){var T=AU_T[p.t];if(k)h+='<div class="au-arr'+(k<=i?' on':'')+'">→</div>';
     h+='<div class="au-n'+(k===i?' on':k<i?' done':'')+'" style="--tc:'+T[1]+'"><span class="k">'+T[0]+'</span><b>'+p.b+'</b><span>'+p.s+'</span><small>'+p.tool+'</small></div>'});G('auFlow').innerHTML=h;
@@ -4712,12 +5138,12 @@ function mcDraw(){var S=MC_S[MC.s],h='<div class="mc-u">'+esc(S.q)+'</div>',on=n
     if(p.perm&&k===MC.i&&MC.wait)h+='<div class="mc-perm"><p>✋ '+p.perm+'</p><div><button class="mc-ok" onclick="mcAllow()">Consenti</button><button class="mc-no" onclick="mcDeny()">Non ora</button></div></div>';
     if(p.perm&&(k<MC.i||!MC.wait))h+='<div class="mc-tool" style="border-left-color:#2ECC71;background:#F0FBF5"><b>✓ Permesso concesso da voi</b></div>'}
   if(MC.i>=S.st.length)h+='<div class="mc-a"><i>✳</i><p>'+S.a+'</p></div>';
-  G('mcChat').innerHTML=h;mcHub(MC.i<S.st.length?on:null)}
+  var c=G('mcChat');c.innerHTML=h;c.scrollTop=c.scrollHeight;mcHub(MC.i<S.st.length?on:null)}
 function mcNext(){var S=MC_S[MC.s];if(MC.wait)return;MC.i++;if(MC.i<S.st.length&&S.st[MC.i].perm){MC.wait=true;mcDraw();return}mcDraw();
   if(MC.i<S.st.length)MC.timer=setTimeout(mcNext,1700);else{G('mcGo').textContent='✓ Completato';G('mcGo').disabled=true}}
 function mcGo(){if(MC.i>=0)return;G('mcGo').disabled=true;G('mcGo').textContent='Claude sta lavorando…';mcNext()}
 function mcAllow(){MC.wait=false;mcDraw();MC.timer=setTimeout(mcNext,900)}
-function mcDeny(){MC.wait=false;clearTimeout(MC.timer);var S=MC_S[MC.s];G('mcChat').insertAdjacentHTML('beforeend','<div class="mc-a"><i>✳</i><p>Va bene, mi fermo qui: non ho mandato niente. Volete che cambi qualcosa prima?</p></div>');G('mcGo').textContent='Fermato da voi';mcHub(null)}
+function mcDeny(){MC.wait=false;clearTimeout(MC.timer);var S=MC_S[MC.s];G('mcChat').insertAdjacentHTML('beforeend','<div class="mc-a"><i>✳</i><p>Va bene, mi fermo qui: non ho mandato niente. Volete che cambi qualcosa prima?</p></div>');G('mcChat').scrollTop=G('mcChat').scrollHeight;G('mcGo').textContent='Fermato da voi';mcHub(null)}
 
 
 /* timeline a cerchi, usata da AlphaFold e retrosintesi */
@@ -4956,7 +5382,7 @@ var ET_P=[['Il testo del tuo tema, per farti correggere gli errori',1,'Nessun da
  ['Il tuo CV, dopo aver tolto indirizzo e telefono',1,'Bene così: hai tolto quello che non serviva.']];
 var ET_M=['A scuola l’AI dovrebbe essere permessa per fare i compiti','Le aziende possono addestrare l’AI sulle opere degli artisti senza chiedere il permesso','L’AI dovrebbe poter decidere chi assumere','Tutto quello che crea un’AI deve avere l’etichetta «fatto con l’AI»','Tra 10 anni l’AI avrà creato più lavoro di quanto ne abbia tolto'];
 var ET_T=[['FAVOREVOLI','#2E86DE','👍'],['CONTRARI','#FF6B35','👎']];
-var ET={g:{},i:{dil:0,col:0},rv:{dil:{},col:{},prv:0},m:0,mc:'',ph:'arg',rows:{},hid:{},key:'',cur:null,pk:false};
+var ET={g:{},i:{dil:0,col:0},rv:{dil:{},col:{},prv:0},m:0,mc:'',ph:'arg',rows:{},hid:{},key:'',cur:null,pk:false,pk_:{}};
 function etUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?etica='+vtRoom():''}
 function etGenLoad(){try{var sv=JSON.parse(localStorage.getItem('etGen')||'null');if(sv&&sv.r===vtRoom()&&sv.g)ET.g=sv.g}catch(e){}
   for(var a in ET_L)if(!ET.g[a])ET.g[a]=etNewCode();etGenSave()}
@@ -4966,7 +5392,9 @@ function etReset(a){if(!confirm('Cancellare le risposte di questa attività e ri
   if(a==='dil')ET.rv.dil={};if(a==='col')ET.rv.col={};if(a==='prv')ET.rv.prv=0;if(a==='deb'){ET.hid={};ET.ph='arg'}etRender(a);etSync()}
 function etJoin(a){var e=G('etJ'+a);if(!e)return;var u=etUrl();
   e.innerHTML=vtOn()&&u?'<div class="tu-qr" id="etQ'+a+'"></div><p>Inquadrate il codice<b class="big">Stanza '+vtRoom()+'</b><span id="etN'+a+'">0 telefoni</span></p>':'<p class="et-off">Il voto dal telefono funziona nella versione online.<br>Senza internet: alzata di mano.</p>';
-  if(vtOn()&&u){var q=G('etQ'+a);q.setAttribute('data-qr',u);q.setAttribute('data-size','96');vtQr(q,u,96)}}
+  if(vtOn()&&u){var q=G('etQ'+a);q.setAttribute('data-qr',u);q.setAttribute('data-size','96');vtQr(q,u,96)}
+  /* nuvola: finché nessuno ha scritto, il QR grande sta al centro della slide */
+  if(a==='wc'&&G('wcQr')){var wq=G('wcQr');if(vtOn()&&u){wq.setAttribute('data-qr',u);wq.setAttribute('data-size','320');vtQr(wq,u,320);G('wcRoom').textContent='Stanza '+vtRoom()}else{wq.innerHTML='';G('wcRoom').textContent='Senza internet: dite la vostra parola ad alta voce.'}}}
 function etCount(a,n,w){var e=G('etN'+a);if(e)e.textContent=n+' '+(n===1?'telefono':'telefoni')+(w?' · '+w:'')}
 function etInit(){if(!G('sDL'))return;etGenLoad();for(var a in ET_L)etJoin(a);
   G('dlTabs').innerHTML=ET_D.map(function(d,k){return '<button class="et-tab" onclick="ET.i.dil='+k+';etRender(\'dil\');etSync()">'+(k+1)+' · '+d.t+'</button>'}).join('')+'<button class="dr-reset" onclick="etReset(\'dil\')">↺ Nuova classe</button>';
@@ -4980,7 +5408,9 @@ function etSync(){if(!vtOn()||ET_ROOM)return;var a=etCur();if(a!==ET.cur){ET.cur
   else if(a==='deb'){st.m=dbMotion();st.ph=ET.ph;st.n=dbTeams()}
   var k=JSON.stringify(st);if(k===ET.key)return;ET.key=k;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'ES',state:st,updated_at:new Date().toISOString()}).then(function(){})})}
 function etPull(a){if(!vtOn())return;var g=ET.g[a];vtSb(function(sb){sb.from('vote_rooms').select('room,state').like('room',vtRoom()+ET_L[a]+'%').limit(1000).then(function(res){if(!res.data||g!==ET.g[a])return;
-  ET.rows[a]=res.data.filter(function(r){return r.room.length===8&&r.state&&r.state.g===g}).map(function(r){var s=r.state;s.id=r.room.slice(5);return s});etRender(a)})})}
+  var rows=res.data.filter(function(r){return r.room.length===8&&r.state&&r.state.g===g}).map(function(r){var s=r.state;s.id=r.room.slice(5);return s});
+  /* ridisegna solo se è arrivato qualcosa di nuovo: così carte e nuvola non rifanno l'animazione ogni 3 secondi */
+  var k=JSON.stringify(rows);if(ET.pk_[a]===k)return;ET.pk_[a]=k;ET.rows[a]=rows;etRender(a)})})}
 function etRender(a){if(a==='dil')dlDraw();else if(a==='col')coDraw();else if(a==='prv')prDraw();else if(a==='deb')dbDraw();else if(a==='wc')wcDraw()}
 function etTabs(id,i,rv){[].forEach.call(document.querySelectorAll('#'+id+' .et-tab'),function(b,k){b.classList.toggle('on',k===i);b.classList.toggle('seen',!!rv[k])})}
 /* 1 · dilemmi */
@@ -4990,7 +5420,7 @@ function dlDraw(){var i=ET.i.dil,d=ET_D[i],rows=ET.rows.dil||[],c=[0,0,0,0,0],n=
   var mood=!n?'In attesa delle risposte…':sd<.8?'Siete quasi tutti d’accordo':sd<1.25?'Opinioni diverse':'La classe è divisa!';
   var rv=!!ET.rv.dil[i];
   G('dlMain').innerHTML='<div class="dl-l"><div class="et-case"><span>Dilemma '+(i+1)+' di '+ET_D.length+'</span><h3>'+d.q+'</h3></div>'+
-    '<div class="dl-hist">'+ET_SC.map(function(s,k){var p=n?Math.round(c[k]/n*100):0;return '<div class="dl-col"><b class="v">'+(n?p+'%':'')+'</b><div class="dl-bw"><i style="height:'+(c[k]/mx*100)+'%;background:'+s[2]+'"></i></div><span class="e">'+s[0]+'</span><small>'+s[1]+'</small></div>'}).join('')+'</div>'+
+    '<div class="dl-hist'+(n?'':' empty')+'">'+ET_SC.map(function(s,k){var p=n?Math.round(c[k]/n*100):0;return '<div class="dl-col"><b class="v">'+(n?p+'%':'')+'</b><div class="dl-bw"><i style="height:'+(c[k]/mx*100)+'%;background:'+s[2]+'"></i></div><span class="e">'+s[0]+'</span><small>'+s[1]+'</small></div>'}).join('')+'</div>'+
     '<div class="dl-temp"><div class="dl-grad"><i style="left:'+(mean/4*100)+'%;opacity:'+(n?1:0)+'"></i></div><p><b>'+mood+'</b>'+(n?' · '+n+(n===1?' risposta':' risposte'):'')+'</p></div></div>'+
     '<div class="dl-r">'+(rv?'<div class="et-fact"><span>Cosa è successo davvero</span><p>'+d.f+'</p></div>':'<div class="et-wait"><p>Votate dal telefono: <b>va bene</b> o <b>mai</b>? Poi parlatene: chi ha votato agli estremi spiega perché.</p><button class="btn" onclick="ET.rv.dil['+i+']=1;dlDraw();etSync()">🔍 Cosa è successo davvero</button></div>')+
     '<div class="dr-nav"><button class="btn ghost" '+(i?'':'disabled')+' onclick="ET.i.dil--;dlDraw();etSync()">← Dilemma prima</button><button class="btn ghost" '+(i<ET_D.length-1?'':'disabled')+' onclick="ET.i.dil++;dlDraw();etSync()">Dilemma dopo →</button></div></div>'}
@@ -5028,7 +5458,7 @@ function dbBig(id,k){var c=null;(ET.rows.deb||[]).forEach(function(r){(r.a||[]).
 function wcNorm(w){return String(w||'').toLowerCase().replace(/[^\p{L}\p{N}' ]/gu,'').replace(/\s+/g,' ').trim().slice(0,24)}
 function wcDraw(){var rows=ET.rows.wc||[],cnt={},box=G('wcCloud');rows.forEach(function(r){var seen={};(r.w||[]).forEach(function(w){w=wcNorm(w);if(w&&!seen[w]&&!(ET.hid['w:'+w])){seen[w]=1;cnt[w]=(cnt[w]||0)+1}})});
   var ws=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]||a.localeCompare(b)}).slice(0,70);etCount('wc',rows.length);G('wcN').textContent=ws.length?ws.length+' parole diverse da '+rows.length+(rows.length===1?' persona':' persone'):'';
-  var W=box.clientWidth,H=box.clientHeight;if(!W||!H)return;if(!ws.length){box.innerHTML='<p class="wc-empty">Scrivete una parola dal telefono: più persone la scelgono, più diventa grande.</p>';return}
+  var W=box.clientWidth,H=box.clientHeight;G('wcBox').classList.toggle('empty',!ws.length);if(!W||!H)return;if(!ws.length){box.innerHTML='';return}
   var mx=cnt[ws[0]],mn=cnt[ws[ws.length-1]],cv=wcDraw.cv||(wcDraw.cv=document.createElement('canvas')),g=cv.getContext('2d'),placed=[],h='',pal=['#1B2A4A','#FF6B35','#2E86DE','#8E44AD','#1E9E58','#E74C3C','#00A6C8'];
   var base=Math.min(W/9,H/4.2);
   ws.forEach(function(w,k){var f=mx===mn?.7:(cnt[w]-mn)/(mx-mn),fs=Math.max(14,base*(.32+.68*Math.sqrt(f)));if(ws.length>35)fs*=.85;g.font='700 '+fs+'px Fredoka, sans-serif';var tw=g.measureText(w).width+fs*.3,th=fs*1.05;
@@ -5088,5 +5518,12 @@ w6Init();
 txInit();
 nnInit();
 if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM)drInit();
+/* UX v2: quando cambia il passo, il testo entra con un piccolo scorrimento (solo se il titolo cambia davvero) */
+(function(){if(!window.MutationObserver)return;
+  ['w6H','drH','cvH','gnH','afH','rsH','suTxt','clTxt'].forEach(function(id){var el=G(id);if(!el)return;var box=/Txt$/.test(id)?el:(el.closest('.dr-txt,.w6-txt')||el.parentNode),last=el.textContent,t=0;
+    new MutationObserver(function(){var now=el.textContent;if(now===last)return;last=now;if(!box.closest('.slide.current'))return;
+      box.classList.remove('ux-swap');void box.offsetWidth;box.classList.add('ux-swap');clearTimeout(t);t=setTimeout(function(){box.classList.remove('ux-swap')},800)}).observe(el,{childList:true,characterData:true,subtree:true})})})();
+/* la finestra della retrosintesi ora è elastica: si ridisegna l'albero quando cambia misura (anche quando la slide appare) */
+if(window.ResizeObserver&&G('rsBody'))new ResizeObserver(function(){if(RS.ready)rsLayout()}).observe(G('rsBody'));
 if(VOTE_ROOM)vtPhone();else if(AG_ROOM)agPhone();else if(DR_ROOM)drPhone();else if(GT_ROOM)gtPhone();else if(PA_ROOM)paPhone();else if(ST_ROOM)stPhone();else if(ET_ROOM)etPhone();
 </script>
