@@ -2782,6 +2782,14 @@ html.vote.drm,html.vote.drm body,html.vote.gtm,html.vote.gtm body,html.vote.pam,
 .gz-by b{color:#F4F2EC;font-weight:700}
 .cr-foot{position:fixed;left:0;right:0;bottom:64px;margin:0;text-align:center;font:600 .72rem 'Source Sans 3','Nunito Sans',sans-serif;color:#8A8F99;pointer-events:none;z-index:80}
 html.vote #vtApp{padding-bottom:116px}
+
+/* slide quiz */
+.qz-body{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:calc(var(--u,12px)*5);align-items:center}
+.qz-lead{margin:0;max-width:30em;font-size:var(--t-lead,1.2rem);line-height:1.55;color:var(--ink-2,#535A68)}
+.qz-url{display:inline-block;margin-top:1.2em;font:600 var(--t-lead,1.2rem) var(--ff-body);color:var(--ink,#151B2C);text-underline-offset:4px}
+.qz-qr{padding:calc(var(--u,12px)*1.2)!important;background:#fff;border:1px solid var(--border,#DCD7CB)!important;border-radius:4px}
+.qz-qr img,.qz-qr canvas{width:min(calc(var(--u,12px)*30),58vh)!important;height:min(calc(var(--u,12px)*30),58vh)!important}
+@media (max-width:900px){.qz-body{grid-template-columns:1fr;justify-items:start}}
 </style>
 
 <!-- icone: Lucide (lucide.dev), licenza ISC -->
@@ -3515,6 +3523,18 @@ html.vote #vtApp{padding-bottom:116px}
   <div class="et-head"><div><p class="et-kick" style="--c:#2ECC71">Per chiudere</p><h2 class="fz-h2 et-h2">Una parola per l'AI, dopo oggi</h2></div><div class="et-join" id="etJwc"></div></div>
   <div class="wc-box" id="wcBox"><div class="wc-wait" id="wcWait"><div class="tu-qr" id="wcQr"></div><div><p class="wc-wk">Inquadrate il codice</p><p class="wc-wh">Una parola sola.<br>Più persone la scelgono, più diventa grande.</p><p class="wc-wr" id="wcRoom"></p></div></div><div class="wc-cloud" id="wcCloud"></div></div>
   <div class="wc-foot"><span id="wcN"></span><button class="dr-reset" onclick="etReset('wc')">↺ Nuova nuvola</button><span class="wc-thx">Grazie! · Workshop a cura di Martina Cesarini per <img class="brand-inline" src="img/brand/fondazione-vita.png" alt="Fondazione VITA · ITS Nuove Tecnologie della Vita"><img class="brand-inline bi-s" src="img/brand/fondazione-saihub.png" alt="Fondazione SAIHUB"> Siena</span></div>
+</section>
+
+<!-- 27b QUIZ per la ricerca (Google Form) -->
+<section class="slide darktext s-light ux" data-section="Fine" id="sQZ" style="--sc:#662483">
+  <header class="ux-hd"><div><p class="ux-kick"><span class="ux-chip">Quiz</span>Per la ricerca</p><h2 class="fz-h2">Come definire l’intelligenza artificiale (IA)?</h2></div></header>
+  <div class="qz-body">
+    <div class="qz-txt">
+      <p class="qz-lead">Un breve questionario per una ricerca sul workshop. Inquadrate il codice con il telefono e rispondete: bastano pochi minuti.</p>
+      <a class="qz-url" href="https://forms.gle/s4eokTR1B1TvPjHg7" target="_blank" rel="noopener">forms.gle/s4eokTR1B1TvPjHg7</a>
+    </div>
+    <div class="qz-qr tu-qr" id="qzQr" data-qr="https://forms.gle/s4eokTR1B1TvPjHg7" data-size="420"></div>
+  </div>
 </section>
 
 <!-- 28 GRAZIE: la chiusura (anche i telefoni dicono grazie) -->
@@ -6044,12 +6064,12 @@ function uxWatch(root,cond){if(!root||!window.MutationObserver)return;var go=fun
    Le chiavi nel database: STANZA+'NW' = attività sullo schermo; STANZA+'U'+telefono = nome. */
 var NW_ROOM=(function(){try{var r=new URLSearchParams(location.search).get('stanza');return r?r.toUpperCase().replace(/[^A-Z0-9]/g,'').slice(0,4)||null:null}catch(e){return null}})();
 var NW={k:'',mounted:null};
-var NW_ACT={fn:['Grazie',function(){var app=nwApp();app.innerHTML=nwHead(NW_ROOM)+'<h1 class="nw-h gz-ph">Grazie'+(nmGet()?', <em>'+esc(nmGet().split(' ')[0])+'</em>':'')+'!</h1><p class="nw-p">Il workshop è finito. Grazie per aver partecipato: potete chiudere questa pagina.</p>'}],tu:['Il gioco dell\'imitazione',function(){VOTE_ROOM=NW_ROOM;vtPhone()}],ag:['La sfida ad AlphaGo',function(){AG_ROOM=NW_ROOM;agPhone()}],
+var NW_ACT={qz:['Quiz',function(){var app=nwApp();app.innerHTML=nwHead(NW_ROOM)+'<h1 class="nw-h">Il quiz</h1><p class="nw-p">Come definire l’intelligenza artificiale? Un breve questionario per una ricerca sul workshop.</p><a class="nw-btn" style="text-align:center;text-decoration:none" href="https://forms.gle/s4eokTR1B1TvPjHg7" target="_blank" rel="noopener">Apri il quiz</a>'}],fn:['Grazie',function(){var app=nwApp();app.innerHTML=nwHead(NW_ROOM)+'<h1 class="nw-h gz-ph">Grazie'+(nmGet()?', <em>'+esc(nmGet().split(' ')[0])+'</em>':'')+'!</h1><p class="nw-p">Il workshop è finito. Grazie per aver partecipato: potete chiudere questa pagina.</p>'}],tu:['Il gioco dell\'imitazione',function(){VOTE_ROOM=NW_ROOM;vtPhone()}],ag:['La sfida ad AlphaGo',function(){AG_ROOM=NW_ROOM;agPhone()}],
   dr:['Allena la tua AI',function(){DR_ROOM=NW_ROOM;drPhone()}],gt:['Il gatto vero',function(){GT_ROOM=NW_ROOM;gtPhone()}],pa:['Create un\'immagine',function(){PA_ROOM=NW_ROOM;paPhone()}],
   st:['Studiare con l\'AI',function(){ST_ROOM=NW_ROOM;stPhone()}],et:['Etica',function(){ET_ROOM=NW_ROOM;etPhone()}]};
 function nwUrl(){var base=VOTE_PAGE||(/^https?:$/.test(location.protocol)?location.origin+location.pathname:'');return base?base+'?stanza='+vtRoom():''}
 /* proiettore: quale attività c'è sullo schermo adesso (nessuna = '') */
-function nwNow(){var on=function(id){var x=G(id);return !!(x&&x.classList.contains('current'))};if(on('sEND'))return 'fn';
+function nwNow(){var on=function(id){var x=G(id);return !!(x&&x.classList.contains('current'))};if(on('sEND'))return 'fn';if(on('sQZ'))return 'qz';
   if(on('s3'))return hsCur===1&&TU.mode==='q'?'tu':hsCur===4?'ag':'';
   if(on('s9'))return 'dr';if(on('s12'))return 'gt';if(on('s13'))return 'pa';if(on('sST'))return 'st';
   return ['sDL','sCO','sPR','sDB','sWC'].some(on)?'et':''}
@@ -6097,6 +6117,7 @@ function gzDraw(){var e=G('gzWords'),s=G('sEND');if(!e||!s||!s.classList.contain
   var ws=Object.keys(cnt).sort(function(a,b){return cnt[b]-cnt[a]||a.localeCompare(b)}).slice(0,5),h=ws.length?'<span>Le vostre parole per l’AI</span>'+ws.map(function(w){return '<b>'+esc(w)+'</b>'}).join(''):'';
   if(e.innerHTML!==h)e.innerHTML=h}
 setInterval(gzDraw,1500);
+vtQr(G('qzQr'),'https://forms.gle/s4eokTR1B1TvPjHg7',420);
 /* ---- telefono: schermata del nome, attesa, cambio di attività ---- */
 function nwApp(){var a=G('vtApp');if(!a){a=document.createElement('div');a.id='vtApp';document.body.appendChild(a)}a.className='nw';return a}
 /* firma in fondo a ogni pagina del telefono */
