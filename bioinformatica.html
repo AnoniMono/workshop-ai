@@ -5959,39 +5959,73 @@ function prBond(){var L=function(x1,x2,y1,y2){return '<line x1="'+x1+'" y1="'+(y
 function prJoin(){var s=G('prBond'),on=!s.classList.contains('j');s.classList.toggle('j',on);
   G('prJ').textContent=on?'← Separa':'Unisci →';
   G('prCap').innerHTML=on?'Uniti dal <b>legame peptidico</b> (in verde). OH e H se ne vanno insieme: sono una molecola d’acqua.':'Due amminoacidi: R₁ e R₂ sono le parti che li rendono diversi. Il primo finisce con OH, il secondo comincia con H.'}
-var PR_L=[['Primaria','l’ordine dei mattoni, uno dopo l’altro. Qui l’inizio della catena dell’emoglobina.'],
- ['Secondaria','tratti di catena che si avvolgono a elica (α) o si affiancano a foglietto (β).'],
- ['Terziaria','eliche e foglietti si impacchettano in una sola forma 3D.'],
- ['Quaternaria','più catene lavorano insieme. L’emoglobina ne ha quattro, due α e due β.']];
+var PR_L=[['Primaria','l’ordine dei mattoni, uno dopo l’altro, come lettere in una parola.'],
+ ['Secondaria','la stessa catena: un tratto si avvolge a elica (α), un altro si ripiega a foglietto (β).'],
+ ['Terziaria','eliche e foglietti si impacchettano in una sola forma 3D compatta.'],
+ ['Quaternaria','più catene si uniscono in una sola macchina. L’emoglobina, per esempio, ne ha quattro.']];
+/* La stessa catena di 160 punti cambia forma da un livello all'altro.
+   Indici: 0-15 coda, 16-75 elica, 76-85 ansa, 86-105 / 112-131 / 138-159 filamenti β, in mezzo le curve. */
+var PR_R={A:[0,16],H:[16,76],L1:[76,86],S1:[86,106],T1:[106,112],S2:[112,132],T2:[132,138],S3:[138,160]};
+var PR_P=[{bd:1,c:0,hw:4,sw:4,ar:0,bl:0,cp:0,l2:0,l3:0,l4:0},{bd:0,c:1,hw:6,sw:14,ar:1,bl:0,cp:0,l2:1,l3:0,l4:0},
+ {bd:0,c:1,hw:5,sw:11,ar:1,bl:1,cp:0,l2:0,l3:1,l4:0},{bd:0,c:1,hw:3,sw:6,ar:1,bl:0,cp:1,l2:0,l3:0,l4:1}];
+function prBz(a,c,b,n){var o=[];for(var k=0;k<n;k++){var t=(k+.5)/n,u=1-t;o.push([u*u*a[0]+2*u*t*c[0]+t*t*b[0],u*u*a[1]+2*u*t*c[1]+t*t*b[1]])}return o}
+function prLn(a,b,n){return prBz(a,[(a[0]+b[0])/2,(a[1]+b[1])/2],b,n)}
+function prHx(x0,len,y0,r,amp,turns,n){var o=[];for(var k=0;k<n;k++){var t=k/(n-1),a=2*Math.PI*turns*t;o.push([x0+len*t+r*Math.cos(a),y0+amp*Math.sin(a)])}return o}
+function prShape(lv){var P=[];
+  if(lv===1){for(var i=0;i<160;i++){var t=i/159;P.push([70+500*t,180+24*Math.sin(t*Math.PI*3)])}return P}
+  if(lv===2)P=[].concat(prBz([40,262],[40,180],[92,180],16),prHx(70,230,180,22,60,5,60),prBz([322,180],[360,180],[360,110],10),
+    prLn([360,110],[580,110],20),prBz([580,110],[640,142],[580,175],6),prLn([580,175],[360,175],20),prBz([360,175],[300,207],[360,240],6),prLn([360,240],[580,240],22));
+  else{P=[].concat(prBz([130,280],[90,140],[184,110],16),prHx(170,170,110,14,38,4,60),prBz([354,110],[420,140],[300,185],10),
+    prLn([300,185],[470,185],20),prBz([470,185],[505,202],[470,220],6),prLn([470,220],[300,220],20),prBz([300,220],[265,237],[300,255],6),prLn([300,255],[470,255],22));
+    if(lv===4)P=prQuad(P,190,108)}
+  return P}
+function prQuad(P,cx,cy){return P.map(function(p){return [cx+(p[0]-300)*.5,cy+(p[1]-185)*.5]})}
+function prD(P,rs){return rs.map(function(r){var a=PR_R[r],s=Math.max(0,a[0]-1);return 'M'+P.slice(s,a[1]).map(function(p){return p[0].toFixed(1)+' '+p[1].toFixed(1)}).join('L')}).join('')}
+function prMix(a,b,t){var h=function(c){return [1,3,5].map(function(i){return parseInt(c.substr(i,2),16)})},x=h(a),y=h(b);
+  return 'rgb('+x.map(function(v,i){return Math.round(v+(y[i]-v)*t)}).join(',')+')'}
+var PR_SEQ='MKVLAGSPTEFL';
 function prLevels(){
-  G('prView').innerHTML='<div class="pr-tool">'+PR_L.map(function(l,k){return '<button class="at-act'+(PR.lv===k+1?' on':'')+'" onclick="PR.lv='+(k+1)+';prLevels()">'+(k+1)+' · '+l[0]+'</button>'}).join('')+'</div>'+
-   '<svg class="pr-art pr-lv" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet">'+prLvArt(PR.lv)+'</svg>'+
-   '<p class="at-cap"><b>'+PR_L[PR.lv-1][0]+'</b>: '+PR_L[PR.lv-1][1]+'</p>'}
-function prHelix(x0,len,y0,r,amp,turns,col,w){var d='';for(var k=0;k<=240;k++){var t=k/240,a=2*Math.PI*turns*t;
-    d+=(k?'L':'M')+(x0+len*t+r*Math.cos(a)).toFixed(1)+' '+(y0+amp*Math.sin(a)).toFixed(1)}
-  return '<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round" stroke-linejoin="round"/>'}
-function prArrow(x1,x2,y,h,col){var dir=x2>x1?1:-1,hx=x2-dir*34;
-  return '<polygon points="'+[[x1,y-h],[hx,y-h],[hx,y-h*2],[x2,y],[hx,y+h*2],[hx,y+h],[x1,y+h]].map(function(p){return p.join(',')}).join(' ')+'" fill="'+col+'" stroke="'+col+'" stroke-width="2" stroke-linejoin="round"/>'}
-function prLvArt(n){var S='',ink='#151B2C';
-  if(n===1){var seq='MVLSPADKTNVK',pts=[];for(var k=0;k<12;k++)pts.push([72+k*45,180+22*Math.sin(k*.9)]);
-    S+='<path d="M'+pts.map(function(p){return p[0]+' '+p[1].toFixed(1)}).join(' L')+'" fill="none" stroke="#C9C3B6" stroke-width="4"/>';
-    pts.forEach(function(p,k){S+='<circle cx="'+p[0]+'" cy="'+p[1].toFixed(1)+'" r="19" fill="'+('VLAF'.indexOf(seq[k])>=0?'#FDEBDD':'#EEF1F6')+'" stroke="#8A94A6" stroke-width="2" style="animation-delay:'+(k*40)+'ms"/>'+
-      '<text x="'+p[0]+'" y="'+(p[1]+7).toFixed(1)+'" text-anchor="middle" fill="'+ink+'">'+seq[k]+'</text>'})}
-  if(n===2){S+=prHelix(70,230,175,24,64,5,'#662483',6)+
-    prArrow(360,590,110,11,'#0F70B7')+prArrow(590,360,175,11,'#0F70B7')+prArrow(360,590,240,11,'#0F70B7')+
-    '<path d="M590 110 C 625 110, 625 175, 590 175 M360 175 C 325 175, 325 240, 360 240" fill="none" stroke="#0F70B7" stroke-width="4"/>'+
-    '<text x="185" y="300" text-anchor="middle" fill="#662483">α elica</text><text x="475" y="300" text-anchor="middle" fill="#0F70B7">foglietto β</text>'}
-  if(n===3){S+='<ellipse cx="320" cy="180" rx="250" ry="150" fill="#F4F5F8" stroke="#DCD7CB" stroke-width="2"/>'+
-    '<path d="M120 240 C 90 180, 110 120, 150 118 M335 118 C 390 122, 330 170, 300 172 M470 172 C 505 172, 505 212, 470 212 M300 212 C 265 212, 265 252, 300 252 M470 252 C 520 252, 520 300, 440 305" fill="none" stroke="'+ink+'" stroke-width="3" stroke-linecap="round"/>'+
-    prHelix(150,180,118,15,40,4,'#662483',5)+prArrow(300,470,172,9,'#0F70B7')+prArrow(470,300,212,9,'#0F70B7')+prArrow(300,470,252,9,'#0F70B7')+
-    '<text x="320" y="352" text-anchor="middle" fill="'+ink+'">una sola catena, piegata</text>'}
-  if(n===4){[[215,120,'#0F70B7','α'],[425,120,'#662483','β'],[215,245,'#662483','β'],[425,245,'#0F70B7','α']].forEach(function(b,k){
-      S+='<ellipse cx="'+b[0]+'" cy="'+b[1]+'" rx="102" ry="60" fill="'+b[2]+'" fill-opacity=".12" stroke="'+b[2]+'" stroke-width="3" style="animation-delay:'+(k*90)+'ms"/>'+
-        prHelix(b[0]-60,90,b[1]-8,9,22,3,b[2],3.5)+
-        '<polygon points="'+(b[0]+48)+','+(b[1]+8)+' '+(b[0]+60)+','+(b[1]-4)+' '+(b[0]+72)+','+(b[1]+8)+' '+(b[0]+60)+','+(b[1]+20)+'" fill="#C62828"/>'+
-        '<text x="'+(b[0]-6)+'" y="'+(b[1]+44)+'" text-anchor="middle" fill="'+b[2]+'">'+b[3]+'</text>'});
-    S+='<text x="320" y="350" text-anchor="middle" fill="#C62828" style="font-size:17px">in rosso il gruppo eme, che lega l’ossigeno</text>'}
-  return S}
+  G('prView').innerHTML='<div class="pr-tool">'+PR_L.map(function(l,k){return '<button class="at-act" onclick="prLv('+(k+1)+')">'+(k+1)+' · '+l[0]+'</button>'}).join('')+'</div>'+
+   '<svg class="pr-art" id="prLvSvg" viewBox="0 0 640 370" preserveAspectRatio="xMidYMid meet">'+
+    '<ellipse id="prBl" cx="300" cy="185" rx="232" ry="138" fill="#F4F5F8" stroke="#DCD7CB" stroke-width="2"/>'+
+    '<g id="prCp">'+[[190,108,'#0F70B7'],[450,108,'#662483'],[190,268,'#662483'],[450,268,'#0F70B7']].map(function(q,k){
+      var P=prQuad(prShape(3),q[0],q[1]);
+      return '<ellipse cx="'+q[0]+'" cy="'+q[1]+'" rx="124" ry="74" fill="'+q[2]+'" fill-opacity=".08" stroke="'+q[2]+'" stroke-width="2.5"/>'+
+       (k?'<path d="'+prD(P,['A','H','L1','S1','T1','S2','T2','S3'])+'" fill="none" stroke="'+q[2]+'" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round"/>':'')+
+       '<text x="'+q[0]+'" y="'+(q[1]+64)+'" text-anchor="middle" font-size="15" font-weight="700" fill="'+q[2]+'">catena '+(k+1)+'</text>'}).join('')+'</g>'+
+    '<path id="prPL" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path id="prPS" fill="none" stroke-linejoin="round"/><path id="prPH" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'+
+    '<g id="prAr"></g><g id="prBd"></g>'+
+    '<g id="prT2" font-size="20" font-weight="700"><text x="196" y="292" text-anchor="middle" fill="#662483">α elica</text><text x="470" y="292" text-anchor="middle" fill="#0F70B7">foglietto β</text></g>'+
+    '<text id="prT3" x="300" y="352" text-anchor="middle" font-size="20" font-weight="700" fill="#151B2C">una sola catena, piegata</text>'+
+    '<text id="prT4" x="320" y="364" text-anchor="middle" font-size="18" font-weight="700" fill="#151B2C">quattro catene, una sola macchina</text>'+
+   '</svg><p class="at-cap" id="prLvCap"></p>';
+  var b='';for(var k=0;k<12;k++)b+='<g><circle r="17" stroke-width="2"/><text y="6" text-anchor="middle" font-size="17" font-weight="700" fill="#151B2C">'+PR_SEQ[k]+'</text></g>';
+  G('prBd').innerHTML=b;
+  PR.cur=null;prLv(PR.lv||1,true)}
+/* anima dalla forma attuale a quella del livello n */
+function prLv(n,now){PR.lv=n;
+  [].forEach.call(document.querySelectorAll('#prView .pr-tool .at-act'),function(e,k){e.classList.toggle('on',k===n-1)});
+  G('prLvCap').innerHTML='<b>'+PR_L[n-1][0]+'</b>: '+PR_L[n-1][1];
+  var to={P:prShape(n),p:PR_P[n-1]},from=PR.cur||to;cancelAnimationFrame(PR.raf);
+  if(now){prPaint(to);return}
+  var t0=performance.now(),D=1400,step=function(tm){var t=Math.min(1,(tm-t0)/D),e=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2,q={P:[],p:{}};
+    for(var i=0;i<160;i++)q.P.push([from.P[i][0]+(to.P[i][0]-from.P[i][0])*e,from.P[i][1]+(to.P[i][1]-from.P[i][1])*e]);
+    for(var k in to.p)q.p[k]=from.p[k]+(to.p[k]-from.p[k])*e;
+    prPaint(q);if(t<1)PR.raf=requestAnimationFrame(step)};
+  PR.raf=requestAnimationFrame(step)}
+function prPaint(q){var P=q.P,p=q.p,g='#8A94A6';PR.cur=q;if(!G('prPL'))return;
+  var L=G('prPL'),S=G('prPS'),H=G('prPH');
+  L.setAttribute('d',prD(P,['A','L1','T1','T2']));L.setAttribute('stroke',prMix(g,'#151B2C',p.c));L.setAttribute('stroke-width',3.5);
+  H.setAttribute('d',prD(P,['H']));H.setAttribute('stroke',prMix(g,'#662483',p.c));H.setAttribute('stroke-width',p.hw);
+  S.setAttribute('d',prD(P,['S1','S2','S3']));S.setAttribute('stroke',prMix(g,'#0F70B7',p.c));S.setAttribute('stroke-width',p.sw);
+  var ar='';['S1','S2','S3'].forEach(function(r){var a=PR_R[r],e=P[a[1]-1],f=P[a[1]-4],dx=e[0]-f[0],dy=e[1]-f[1],m=Math.hypot(dx,dy)||1,ux=dx/m,uy=dy/m,s=p.sw*1.1+2;
+    ar+='<polygon points="'+[[e[0]+ux*s,e[1]+uy*s],[e[0]-uy*s,e[1]+ux*s],[e[0]+uy*s,e[1]-ux*s]].map(function(v){return v[0].toFixed(1)+','+v[1].toFixed(1)}).join(' ')+'" fill="#0F70B7"/>'});
+  var A=G('prAr');A.innerHTML=ar;A.setAttribute('opacity',p.ar);
+  [].forEach.call(G('prBd').children,function(b,k){var x=P[Math.round(k*159/11)];b.setAttribute('transform','translate('+x[0].toFixed(1)+' '+x[1].toFixed(1)+')');b.setAttribute('opacity',p.bd);
+    var c=b.firstChild,hy='VLAF'.indexOf(PR_SEQ[k])>=0;c.setAttribute('fill',hy?'#FDEBDD':'#EEF1F6');c.setAttribute('stroke',hy?'#E7A36E':'#8A94A6')});
+  G('prBd').style.display=p.bd<.01?'none':'';
+  G('prBl').setAttribute('opacity',p.bl);G('prCp').setAttribute('opacity',p.cp);
+  G('prT2').setAttribute('opacity',p.l2);G('prT3').setAttribute('opacity',p.l3);G('prT4').setAttribute('opacity',p.l4)}
 function prWork(){G('prView').innerHTML=tgSvg('','')+
   '<p class="at-cap">Ogni proteina ha la sua <b>tasca</b>, il sito attivo. Nella prossima slide: che cosa ci entra?</p>';
   G('prView').querySelector('.tg-pk').style.stroke='#FF6B35'}
