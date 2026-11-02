@@ -3,11 +3,69 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Workshop AI</title>
-<script>location.replace('ai-workshop.html' + location.search + location.hash);</script>
-<meta http-equiv="refresh" content="0; url=ai-workshop.html">
+<title>SAIHUB School · Workshop</title>
+<meta name="description" content="I moduli del workshop SAIHUB School: intelligenza artificiale, bioinformatica, stampa 3D e robotica">
+<script>/* i vecchi link con ?stanza= portavano al workshop AI: continuano a farlo */
+if(/[?&]stanza=/.test(location.search))location.replace('ai-workshop.html'+location.search+location.hash);</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+:root{--paper:#F4F2EC;--ink:#151B2C;--muted:#5D6272;--rule:#CFCBC0;--accent:#D60B52;--ff-disp:'Newsreader',Georgia,serif;--ff-body:'Source Sans 3',system-ui,Arial,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{background:var(--paper);color:var(--ink);font:400 clamp(1rem,1.15vw,1.15rem)/1.5 var(--ff-body);display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;padding:clamp(1.25rem,4vh,3rem) clamp(1rem,5vw,5rem)}
+header{display:flex;justify-content:space-between;align-items:center;gap:1rem 2rem;flex-wrap:wrap;padding-bottom:clamp(1rem,2.5vh,1.6rem);border-bottom:1px solid var(--ink)}
+.brand{display:flex;align-items:center;gap:clamp(.9rem,2vw,1.6rem)}
+.brand img{display:block;height:clamp(34px,5vh,52px);width:auto}
+.brand i{width:1px;align-self:stretch;background:var(--rule)}
+header p{margin:0;text-align:right;font-weight:600;color:var(--muted)}
+main{flex:1;display:flex;flex-direction:column;justify-content:center;padding:clamp(1.5rem,5vh,4rem) 0}
+h1{margin:0 0 clamp(1.5rem,5vh,3.5rem);font:500 clamp(2.4rem,min(6vw,10vh),5.6rem)/1 var(--ff-disp);letter-spacing:-.025em;max-width:16ch}
+h1 em{font-style:italic;color:var(--accent)}
+ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+li{border-bottom:1px solid var(--rule)}
+li a{display:grid;grid-template-columns:clamp(3rem,7vw,6rem) 1fr auto;align-items:center;gap:0 clamp(1rem,3vw,2.5rem);padding:clamp(1rem,3vh,1.8rem) 0;color:inherit;text-decoration:none}
+.n{font:500 clamp(2rem,4.5vw,3.6rem)/1 var(--ff-disp);color:var(--muted);transition:color .2s}
+.t{margin:0;font:500 clamp(1.5rem,2.7vw,2.4rem)/1.1 var(--ff-disp);letter-spacing:-.015em}
+.d{margin:.35em 0 0;color:var(--muted);max-width:60ch}
+.go{width:clamp(1.6rem,2.4vw,2.2rem);height:auto;color:var(--ink);transition:transform .2s}
+li a:hover .n,li a:focus-visible .n{color:var(--accent)}
+li a:hover .go,li a:focus-visible .go{transform:translateX(.35rem)}
+li a:hover .t,li a:focus-visible .t{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:.15em}
+li a:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+footer{display:flex;justify-content:space-between;gap:.5rem 2rem;flex-wrap:wrap;padding-top:1rem;border-top:1px solid var(--rule);font-size:.9rem;color:var(--muted)}
+@media (max-width:640px){header p{text-align:left}li a{grid-template-columns:2.6rem 1fr auto}.d{font-size:.95rem}}
+</style>
 </head>
-<body style="font-family:system-ui,sans-serif;padding:2rem">
-<p>Apro il workshop… <a href="ai-workshop.html">clicca qui se non si apre da solo</a>.</p>
+<body>
+<header>
+  <div class="brand"><img src="img/brand/fondazione-vita.png" alt="Fondazione VITA · ITS Nuove Tecnologie della Vita"><i></i><img src="img/brand/fondazione-saihub.png" alt="Fondazione SAIHUB"></div>
+  <p>SAIHUB School<br>Siena</p>
+</header>
+<main>
+  <h1>Tre moduli, un filo: <em>l'intelligenza artificiale</em></h1>
+  <ol>
+    <li><a href="ai-workshop.html">
+      <span class="n">1</span>
+      <div><p class="t">Introduzione all'Intelligenza Artificiale</p><p class="d">Da dove viene, come funziona e come usarla per studiare meglio e automatizzare.</p></div>
+      <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a></li>
+    <li><a href="bioinformatica.html">
+      <span class="n">2</span>
+      <div><p class="t">Bioinformatica e AI</p><p class="d">DNA e proteine letti al computer, e cosa cambia quando a farlo è l'intelligenza artificiale.</p></div>
+      <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a></li>
+    <li><a href="stampa-3d-robotica.html">
+      <span class="n">3</span>
+      <div><p class="t">Stampa 3D e Robotica</p><p class="d">Dall'idea all'oggetto stampato e alla macchina che si muove, con l'AI che aiuta a progettare.</p></div>
+      <svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a></li>
+  </ol>
+</main>
+<footer>
+  <span>Workshop a cura di Martina Cesarini per Fondazione VITA e Fondazione SAIHUB</span>
+  <span>© 2026 Martina Cesarini</span>
+</footer>
 </body>
 </html>
