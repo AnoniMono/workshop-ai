@@ -2958,6 +2958,102 @@ html.vote #vtApp{padding-bottom:116px}
   .tg-pick{grid-template-columns:1fr}
 }
 
+/* ---- PC dei ragazzi ---- */
+.cl-ov{position:fixed;inset:0;z-index:300;background:rgba(11,20,38,.55);display:none;align-items:center;justify-content:center;padding:1rem}
+.cl-ov.on{display:flex}
+.cl-card{position:relative;width:min(56rem,100%);max-height:calc(100vh - 2rem);overflow:auto;background:#F4F2EC;color:#151B2C;border-radius:4px;padding:clamp(1.2rem,3vw,2.4rem);font-family:'Source Sans 3',sans-serif}
+.cl-card h3{margin:.2em 0 .6em;font:500 clamp(1.6rem,2.6vw,2.4rem)/1.1 'Newsreader',Georgia,serif}
+.cl-k{margin:0;font-weight:700;color:#FF6B35;font-size:.95rem}
+.cl-x{position:absolute;top:.8rem;right:.8rem;border:0;background:none;cursor:pointer;color:#151B2C;padding:.4rem}.cl-x .ic{width:1.4rem;height:1.4rem}
+.cl-grid{display:grid;grid-template-columns:1fr auto;gap:1.6rem;align-items:start}
+.cl-url{margin:0 0 .8em;font:600 clamp(1.1rem,1.8vw,1.6rem)/1.3 ui-monospace,Consolas,monospace;word-break:break-all;padding:.6em .8em;background:#fff;border:1px solid #D9D4C8}
+.cl-p{margin:0 0 .8em;font-size:1.05rem;line-height:1.5;color:#535A68}.cl-p b{color:#151B2C}
+.cl-n{margin:0;font-weight:700}
+.cl-qr{background:#fff;padding:10px;border:1px solid #D9D4C8}
+.cl-pg{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-top:1.4rem;padding-top:1rem;border-top:1px solid #D9D4C8}.cl-pg p{margin:0}
+.cl-l{margin:1rem 0 0;font-size:.95rem;color:#535A68;display:flex;flex-wrap:wrap;gap:.4rem;align-items:center}
+.cl-l span{display:inline-flex;align-items:center;gap:.3em;padding:.2em .3em .2em .7em;border:1px solid #D9D4C8;background:#fff;color:#151B2C;font-weight:600}
+.cl-l button{border:0;background:none;cursor:pointer;padding:.1em;color:#535A68}
+.cl-nm{width:min(30rem,100%)}.cl-nm input{width:100%;font:inherit;font-size:1.3rem;padding:.6em .8em;border:1px solid #151B2C;border-radius:3px;margin-bottom:.4em;box-sizing:border-box}
+.cl-err{min-height:1.4em;margin:0 0 .6em;color:#C62828;font-weight:600}
+.cl-chip{position:fixed;right:14px;top:12px;margin:0;display:none;align-items:center;gap:.4em;padding:.35em .8em;background:#0B8E36;color:#fff;font:700 .78rem 'Source Sans 3',sans-serif;border-radius:3px;z-index:90;pointer-events:none}
+.cl-chip.on{display:flex}
+html.clpc .cl-chip{display:none!important}
+.cl-badge{position:fixed;left:12px;bottom:66px;margin:0;display:flex;align-items:center;gap:.7em;padding:.45em .8em;background:#151B2C;color:#F4F2EC;font:600 .82rem 'Source Sans 3',sans-serif;border-radius:3px;z-index:95}
+.cl-badge span{color:rgba(244,242,236,.6)}.cl-badge i{font-style:normal;color:#FFB24A}.cl-badge.free i{color:#7BE29B}
+.cl-toast{position:fixed;left:50%;top:1.2rem;transform:translate(-50%,-150%);margin:0;padding:.7em 1.1em;background:#C62828;color:#fff;font:700 1rem 'Source Sans 3',sans-serif;border-radius:3px;z-index:320;transition:transform .3s}
+.cl-toast.on{transform:translate(-50%,0)}
+@media (max-width:700px){.cl-grid{grid-template-columns:1fr}.cl-qr{display:none}}
+
+/* ---- quiz ---- */
+.qq{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(260px,.85fr);gap:calc(var(--u,10px)*3)}
+.qq-card{display:flex;flex-direction:column;gap:calc(var(--u,10px)*1.1);min-height:0;overflow:auto}
+.qq-dots{display:flex;gap:.45em}
+.qq-dots button{width:calc(var(--u,10px)*1.5);height:calc(var(--u,10px)*1.5);min-width:12px;min-height:12px;border-radius:50%;border:2px solid #C9C3B6;background:#fff;padding:0;cursor:pointer}
+.qq-dots button.ok{background:#0B8E36;border-color:#0B8E36}.qq-dots button.ko{background:#C62828;border-color:#C62828}
+.qq-dots button.cur{outline:2px solid var(--ink);outline-offset:2px}
+.qq-k{margin:0;font-weight:700;font-size:var(--t-small);color:var(--sc)}
+.qq-q{margin:0;font:500 calc(var(--u,10px)*3.1)/1.15 var(--ff-disp);letter-spacing:-.01em;color:var(--ink);max-width:28em}
+.qq-o{display:grid;grid-template-columns:1fr 1fr;gap:calc(var(--u,10px)*.8);margin-top:calc(var(--u,10px)*.6)}
+.qq-b{display:flex;align-items:center;gap:.9em;text-align:left;padding:calc(var(--u,10px)*1.1) calc(var(--u,10px)*1.3);border:1px solid var(--rule);border-radius:3px;background:#fff;font:inherit;font-size:var(--t-lead);color:var(--ink);cursor:pointer;transition:border-color .2s,background-color .2s}
+.qq-b i{flex:none;width:1.8em;height:1.8em;border-radius:50%;display:flex;align-items:center;justify-content:center;font:500 .85em/1 var(--ff-disp);font-style:normal;border:1.5px solid var(--ink)}
+.qq-b:hover:not(:disabled){border-color:var(--ink)}
+.qq-b.ok{background:#EEF7F0;border-color:#0B8E36}.qq-b.ok i{background:#0B8E36;border-color:#0B8E36;color:#fff}
+.qq-b.ko{background:#FBF0EF;border-color:#C62828}.qq-b.ko i{background:#C62828;border-color:#C62828;color:#fff}
+.qq-b.off{opacity:.45}.qq-b:disabled{cursor:default}
+.qq-e{padding:calc(var(--u,10px)*1) calc(var(--u,10px)*1.3);font-size:var(--t-body);line-height:1.45;color:var(--ink-2);border-top:2px solid #0B8E36;background:#fff}
+.qq-e.ko{border-top-color:#C62828}.qq-e b{color:var(--ink)}
+.qq-nav{display:flex}
+.qq-big{margin:0;font:500 calc(var(--u,10px)*11)/.9 var(--ff-disp);color:var(--ink)}.qq-big small{font-size:.3em;color:var(--ink-2)}
+.qq-msg{margin:0;font-size:var(--t-lead);color:var(--ink-2)}
+.qq-rev{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.qq-rev li{display:flex;gap:.7em;align-items:flex-start;padding:.5em 0;border-bottom:1px solid var(--rule);font-size:var(--t-small);color:var(--ink);cursor:pointer}
+.qq-rev li.ok .ic{color:#0B8E36}.qq-rev li.ko .ic{color:#C62828}
+.qq-side{display:flex;flex-direction:column;gap:calc(var(--u,10px)*.8);min-height:0;overflow:auto;padding-left:calc(var(--u,10px)*2.4);border-left:1px solid var(--rule)}
+.qq-sk{margin:0;font-weight:700;font-size:var(--t-small);color:var(--ink-2)}
+.qq-me{padding-bottom:calc(var(--u,10px)*.8);border-bottom:1px solid var(--rule)}.qq-me p{margin:0;font-size:var(--t-small);color:var(--ink-2)}
+.qq-me b{font:500 calc(var(--u,10px)*5)/1 var(--ff-disp);color:var(--ink)}.qq-me small{font-size:.35em;color:var(--ink-2)}
+.qq-lb{list-style:none;margin:0;padding:0}
+.qq-lb li{position:relative;display:grid;grid-template-columns:2em 1fr auto;align-items:center;gap:.4em;padding:.5em 0;border-bottom:1px solid var(--rule);font-size:var(--t-body)}
+.qq-lb li i{font:500 1.05em/1 var(--ff-disp);font-style:normal;color:var(--ink-2)}
+.qq-lb li span{font-weight:600;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.qq-lb li b{font:500 1.2em/1 var(--ff-disp)}
+.qq-lb li em{position:absolute;left:2em;bottom:0;height:2px;width:calc((100% - 2em)*var(--w));background:var(--sc)}
+.qq-lb li.me{background:#fff}.qq-lb li.me span{color:var(--sc)}
+.qq-lb li:first-child i{color:var(--sc)}
+.qq-ft,.qq-none{margin:0;font-size:var(--t-small);color:var(--ink-2);line-height:1.45}
+.qq-per p{margin:0 0 .4em;font-size:var(--t-tiny);font-weight:700;color:var(--ink-2)}
+.qq-per{display:flex;flex-wrap:wrap;gap:.3em;align-items:flex-end}.qq-per p{flex-basis:100%}
+.qq-per span{display:flex;flex-direction:column;align-items:center;gap:.2em;width:1.8em}
+.qq-per em{width:100%;height:calc(var(--u,10px)*4*var(--h) + 2px);background:#0B8E36}
+.qq-per i{font-style:normal;font-size:var(--t-tiny);color:var(--ink-2)}
+@media (max-width:900px){.qq{grid-template-columns:1fr;overflow:auto}.qq-o{grid-template-columns:1fr}.qq-side{border-left:0;padding-left:0;border-top:1px solid var(--rule);padding-top:1rem}.qq-q{font-size:1.5rem}}
+
+/* ---- laboratorio PyMOL ---- */
+.py-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(320px,1fr);gap:calc(var(--u,10px)*2.2)}
+.py-view{position:relative;min-height:0;background:#0B1426;border-radius:4px;overflow:hidden}
+.py-3d{position:absolute;inset:0}
+.py-hint{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6em;margin:0;color:rgba(244,242,236,.75);font-size:var(--t-lead);text-align:center;pointer-events:none;padding:1em}
+.py-hint code{font:600 1.3em ui-monospace,Consolas,monospace;color:#FFB24A}
+.py-side{display:flex;flex-direction:column;gap:calc(var(--u,10px)*.9);min-height:0}
+.py-dots{display:flex;gap:4px}.py-dots i{flex:1;height:6px;background:#DCD7CB}.py-dots i.ok{background:#0B8E36}.py-dots i.cur{background:var(--sc)}
+.py-mis{display:flex;flex-direction:column;gap:.4em}
+.py-mis h3{margin:0;font:500 calc(var(--u,10px)*2.4)/1.1 var(--ff-disp);color:var(--ink)}
+.py-mis p{margin:0;font-size:var(--t-body);line-height:1.45;color:var(--ink-2)}.py-mis p b{color:var(--ink)}
+.py-mis .py-mk{font-weight:700;font-size:var(--t-small);color:var(--sc)}
+.py-hb{align-self:flex-start;font:inherit;font-size:var(--t-small);font-weight:700;padding:.3em .8em;border:1px solid var(--ink);background:#fff;color:var(--ink);border-radius:3px;cursor:pointer}
+.py-cmds{display:none;flex-direction:column;gap:3px}.py-cmds.on{display:flex}
+.py-cmds code{display:block;padding:.35em .6em;background:#fff;border:1px solid var(--rule);font:600 var(--t-small) ui-monospace,Consolas,monospace;color:#151B2C;cursor:pointer;white-space:pre-wrap;word-break:break-word}
+.py-cmds code:hover{border-color:var(--ink)}
+.py-con{flex:1;min-height:calc(var(--u,10px)*12);display:flex;flex-direction:column;background:#0F1626;border-radius:4px;overflow:hidden}
+.py-log{flex:1;min-height:0;overflow:auto;padding:.7em .9em;font:500 max(.78rem,calc(var(--u,10px)*.95))/1.45 ui-monospace,Consolas,monospace;color:#C9D1DE}
+.py-log p{margin:0;white-space:pre-wrap;word-break:break-word}
+.py-log .py-c{color:#fff;font-weight:700;margin-top:.35em}.py-log .py-e{color:#FF8A80}.py-log .py-ok{color:#7BE29B;font-weight:700}.py-log .py-i{color:#8FA0BA}
+.py-in{display:flex;align-items:center;gap:.5em;padding:.55em .9em;border-top:1px solid #26314A}
+.py-in label{font:700 max(.8rem,calc(var(--u,10px)*1)) ui-monospace,Consolas,monospace;color:#FFB24A}
+.py-in input{flex:1;min-width:0;background:none;border:0;outline:none;color:#fff;font:600 max(.85rem,calc(var(--u,10px)*1.1)) ui-monospace,Consolas,monospace}
+@media (max-width:900px){.py-stage{grid-template-columns:1fr;grid-template-rows:minmax(240px,40vh) auto}.py-con{min-height:16rem}}
+
 /* ---- Teoria (AlphaFold e retrosintesi): il palco si tocca ---- */
 .at-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(290px,.9fr);gap:clamp(1rem,2.4vw,2.4rem);align-items:stretch}
 .at-view{position:relative;min-height:0;overflow:hidden;border:1px solid var(--border,#DCD7CB);border-radius:4px;background:#fff;display:flex;align-items:center;justify-content:center;padding:clamp(.6rem,1.6vh,1.2rem)}
@@ -3167,6 +3263,12 @@ html.vote #vtApp{padding-bottom:116px}
   <p class="af-cr">Schema qualitativo della concentrazione nel sangue, non dati clinici. Paxlovid (Pfizer): autorizzato in Europa a gennaio 2022.</p>
 </section>
 
+<!-- QUIZ · parte 1 -->
+<section class="slide darktext s-light ux" data-section="Quiz" id="sQ1">
+  <header class="ux-hd"><div><p class="ux-kick">Quiz · parte 1</p><h2 class="fz-h2">Le proteine e il virus</h2></div><p class="og-meta">Rispondete sul vostro PC · sette domande</p></header>
+  <div class="qq" data-quiz="q1"></div>
+</section>
+
 <!-- GLI STRUMENTI · c'è laboratorio e laboratorio -->
 <section class="slide darktext s-light ux" data-section="Gli strumenti" id="sLB">
   <header class="ux-hd"><div><p class="ux-kick">Gli strumenti</p><h2 class="fz-h2">C’è laboratorio e laboratorio</h2></div></header>
@@ -3229,6 +3331,20 @@ html.vote #vtApp{padding-bottom:116px}
     </div>
   </div>
   <p class="af-cr">Struttura e punteggi veri: AlphaFold DB (EMBL-EBI e Google DeepMind), CC BY 4.0 · proteina p53, UniProt P04637</p>
+</section>
+
+<!-- LABORATORIO · PyMOL nel browser -->
+<section class="slide darktext s-light ux" data-section="Laboratorio PyMOL" id="sPY">
+  <header class="ux-hd"><div><p class="ux-kick">Laboratorio</p><h2 class="fz-h2">PyMOL: mettete le mani sulla Mpro</h2></div><p class="og-meta" id="pyMeta"></p></header>
+  <div class="py-stage">
+    <div class="py-view"><div class="py-3d" id="py3d"></div><p class="py-hint" id="pyHint">Scrivete nella console<code>fetch 8H82</code>e premete Invio</p></div>
+    <div class="py-side">
+      <div class="py-dots" id="pyDots"></div>
+      <div class="py-mis" id="pyMis"></div>
+      <div class="py-con"><div class="py-log" id="pyLog"></div><div class="py-in"><label for="pyIn">PyMOL&gt;</label><input id="pyIn" spellcheck="false" autocomplete="off" autocapitalize="off" placeholder="scrivete un comando…"></div></div>
+    </div>
+  </div>
+  <p class="af-cr">Stessi comandi di PyMOL (selezione, rappresentazioni, colori, distanze), eseguiti nel browser sulla struttura PDB 8H82. Le cariche sono un calcolo semplificato.</p>
 </section>
 
 <!-- TEORIA · RETROSINTESI: cinque passi, ognuno si tocca -->
@@ -3305,6 +3421,7 @@ html.vote #vtApp{padding-bottom:116px}
   <span id="section-label"></span>
   <span class="nav-cr">© 2026 Martina Cesarini</span>
   <span class="brand-nav"><img src="img/brand/fondazione-vita-white.png" alt="Fondazione VITA"><i></i><img class="bn-s" src="img/brand/fondazione-saihub-wordmark-white.png" alt="Fondazione SAIHUB"></span>
+  <button class="hide-sm" id="clBtn" onclick="pkPanel()" title="PC dei ragazzi" aria-label="PC dei ragazzi"><svg class="ic" style="width:22px;height:22px" aria-hidden="true"><use href="#i-users"/></svg></button>
   <button class="hide-sm" onclick="toggleFs()" title="Schermo intero" aria-label="Schermo intero"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 </div>
 
@@ -4355,7 +4472,7 @@ function agTrainBtn(n){var wb=AG.wr;agTrainN(n);AG.wr=agEval();AGV.ver++;AGV.his
     bars:[['Vittorie',wb,AG.wr]],toast:'+'+n+' partite: vittorie '+wb+'% → '+AG.wr+'%'})}
 
 /* apre e chiude le stanze sui telefoni quando l'insegnante entra o esce */
-function roomsSync(){if(!vtOn()||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM||PA_ROOM||ST_ROOM||ET_ROOM||NW_ROOM)return;nwPublish();var sST=G('sST');if(sST&&sST.classList.contains('current')){var tT=stText(),tKey=tT+'|'+ST.m+'|'+ST.att;if(tKey!==ST.pub){ST.pub=tKey;var tSt={t:tT,m:ST.m,att:ST.att?ST_ATT[ST.att][0]:'',topic:(G('stTopic').value||'').trim()};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'TS',state:tSt,updated_at:new Date().toISOString()}).then(function(){})})}}var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
+function roomsSync(){if(!vtOn()||PK_ROOM||VOTE_ROOM||AG_ROOM||DR_ROOM||GT_ROOM||PA_ROOM||ST_ROOM||ET_ROOM||NW_ROOM)return;nwPublish();var sST=G('sST');if(sST&&sST.classList.contains('current')){var tT=stText(),tKey=tT+'|'+ST.m+'|'+ST.att;if(tKey!==ST.pub){ST.pub=tKey;var tSt={t:tT,m:ST.m,att:ST.att?ST_ATT[ST.att][0]:'',topic:(G('stTopic').value||'').trim()};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'TS',state:tSt,updated_at:new Date().toISOString()}).then(function(){})})}}var s9=G('s9'),dOpen=!!(s9&&s9.classList.contains('current')&&DRV.step===1),dKey=dOpen+DRV.gen;if(dKey!==DRV.open){DRV.open=dKey;vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'DS',state:{open:dOpen,g:DRV.gen},updated_at:new Date().toISOString()}).then(function(){})})}var s12=G('s12'),cOpen=!!(s12&&s12.classList.contains('current')&&GN.i===4&&!GN.idle);if(GN.cg){var cKey=cOpen+'|'+GN.cg+'|'+GN.crev;if(cKey!==GN.cKey){GN.cKey=cKey;var cSt={open:cOpen,g:GN.cg,o:GN.cord,rev:GN.crev};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'CS',state:cSt,updated_at:new Date().toISOString()}).then(function(){})})}}
   var s13=G('s13'),pOpen=!!(s13&&s13.classList.contains('current'));if(PA.g){var pKey=pOpen+'|'+PA.g+'|'+PA.ph;if(pKey!==PA.key){PA.key=pKey;var pSt={open:pOpen,g:PA.g,o:PA.o,ph:PA.ph,s:PA.ph==='gen'?PA.sent:''};vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'PS',state:pSt,updated_at:new Date().toISOString()}).then(function(){})})}}
     var s3=G('s3'),on3=!!(s3&&s3.classList.contains('current'));
   var tOpen=on3&&hsCur===1&&TU.mode==='q';if(VT.pub&&tOpen!==VT.open)vtState(Object.assign({},VT.state,{open:tOpen}));
@@ -6127,7 +6244,7 @@ function mpBoot(){if(MP.v){MP.v.resize();MP.v.render();return}if(MP.busy)return;
 function mpGo(i,first){MP.i=i;mpText(i);var v=MP.v;if(!v)return;
   var P={hetflag:false},D={resn:'4WI'},C={resn:'CYS',resi:145},H={resn:'HIS',resi:41},ms=first?0:900;
   var lab=function(t,sel,bg,fg){v.addLabel(t,{font:'Source Sans 3',fontSize:20,fontColor:fg||'#fff',backgroundColor:bg,backgroundOpacity:.95,borderThickness:0,inFront:true,alignment:'center'},sel)};
-  v.removeAllSurfaces();v.removeAllLabels();
+  v.removeAllSurfaces();v.removeAllLabels();v.setStyle({resn:'HOH'},{});
   if(i===0){v.setStyle(P,{cartoon:{color:'#7FA7D9'}});v.setStyle(D,{});v.zoomTo(P,ms)}
   if(i===1){v.setStyle(P,{cartoon:{color:'#5D7396',opacity:.75}});v.setStyle(D,{});
     v.addStyle(C,{stick:{colorscheme:'orangeCarbon',radius:.3}});v.addStyle(H,{stick:{colorscheme:'magentaCarbon',radius:.3}});
@@ -6186,6 +6303,262 @@ function lbRun(){LB.t.forEach(clearTimeout);LB.t=[];var li=document.querySelecto
   [].forEach.call(li,function(e){e.classList.remove('on')});
   [].forEach.call(li,function(e,k){LB.t.push(setTimeout(function(){e.classList.add('on')},250+k*650))});
   G('lbGo').textContent='Rivedi'}
+
+
+/* ================= I PC dei ragazzi: seguono il docente, pagine libere ================= */
+/* link ?classe=CODICE: il PC del ragazzo apre tutto il deck, chiede il nome e segue la slide del proiettore.
+   Il docente può rendere «libere» alcune pagine: lì il ragazzo può andare per conto suo. */
+var PK_ROOM=(function(){try{var c=new URLSearchParams(location.search).get('classe');return c&&/^[A-Za-z0-9]{4}$/.test(c)?c.toUpperCase():''}catch(e){return ''}})();
+var PK={s:0,u:[],k:'',t:0,poll:0,warn:0};
+function pkSlides(){return [].slice.call(document.querySelectorAll('.slide'))}
+function pkIdx(){var a=pkSlides();for(var i=0;i<a.length;i++)if(a[i].classList.contains('current'))return i+1;return 1}
+function pkUrl(){return (VOTE_PAGE||location.origin+location.pathname)+'?classe='+vtRoom()}
+function pkInit(){
+  if(PK_ROOM){VT.room=PK_ROOM;document.documentElement.classList.add('clpc');var b=G('clBtn');if(b)b.style.display='none';
+    if(!nmGet())pkName();else nmRoster(PK_ROOM);pkBadge();pkPoll();setInterval(function(){if(!document.hidden)pkPoll()},2000);setInterval(pkGuard,300);return}
+  try{var u=JSON.parse(localStorage.getItem('pkFree')||'null');PK.u=Array.isArray(u)?u:['sPY']}catch(e){PK.u=['sPY']}
+  if(vtOn()&&!VOTE_ROOM&&!NW_ROOM){setInterval(pkPublish,1500)}
+  setInterval(pkChip,500)}
+function pkPublish(){var s=pkIdx(),k=vtRoom()+'|'+s+'|'+PK.u.join(',');if(k===PK.k&&Date.now()-PK.t<15000)return;PK.k=k;PK.t=Date.now();
+  vtSb(function(sb){sb.from('vote_rooms').upsert({room:vtRoom()+'PK',state:{s:s,u:PK.u},updated_at:new Date().toISOString()}).then(function(r){if(r.error)PK.k=''})})}
+function pkChip(){var c=G('pkChip'),sl=pkSlides()[pkIdx()-1];if(!c){c=document.createElement('p');c.id='pkChip';c.className='cl-chip';document.body.appendChild(c)}
+  var free=sl&&PK.u.indexOf(sl.id)>=0;c.classList.toggle('on',free);c.innerHTML=free?'<svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Pagina libera sui PC':''}
+/* pannello del docente */
+function pkPanel(){var o=G('clOv');if(!o){o=document.createElement('div');o.id='clOv';o.className='cl-ov';o.onclick=function(e){if(e.target===o)o.classList.remove('on')};document.body.appendChild(o)}
+  var sl=pkSlides()[pkIdx()-1],free=PK.u.indexOf(sl.id)>=0,tt=function(s){var h=s.querySelector('h2,h1');return h?h.textContent.trim():(s.getAttribute('data-section')||'')};
+  o.innerHTML='<div class="cl-card"><button class="cl-x" onclick="G(\'clOv\').classList.remove(\'on\')" aria-label="Chiudi"><svg class="ic"><use href="#i-x"/></svg></button>'+
+   '<p class="cl-k">I PC dei ragazzi</p><h3>Aprite questo indirizzo sui PC</h3>'+
+   '<div class="cl-grid"><div><p class="cl-url">'+pkUrl().replace(/^https?:\/\//,'')+'</p>'+
+   '<p class="cl-p">Ognuno scrive il suo nome. Poi il PC <b>segue la vostra slide</b>: quando andate avanti voi, vanno avanti anche loro. Nelle pagine libere possono muoversi da soli.</p>'+
+   '<p class="cl-n" id="clN">'+(vtOn()?'…':'Collegamento non disponibile')+'</p></div><div class="cl-qr" id="clQr"></div></div>'+
+   '<div class="cl-pg"><p><b>Questa pagina</b> · '+pkIdx()+' · '+tt(sl)+'</p><button class="btn'+(free?' ghost':'')+'" onclick="pkFree(\''+sl.id+'\')">'+(free?'Blocca questa pagina':'Rendi libera questa pagina')+'</button></div>'+
+   '<p class="cl-l">Pagine libere: '+(PK.u.length?PK.u.map(function(id){var s=G(id);if(!s)return '';return '<span>'+(pkSlides().indexOf(s)+1)+' · '+tt(s)+'<button onclick="pkFree(\''+id+'\')" aria-label="Blocca"><svg class="ic"><use href="#i-x"/></svg></button></span>'}).join(''):'nessuna')+'</p></div>';
+  o.classList.add('on');vtQr(G('clQr'),pkUrl(),220);
+  var upd=function(){var n=Object.keys(NM.map).length,e=G('clN');if(e)e.textContent=n?n+(n===1?' persona collegata':' persone collegate')+' (telefoni e PC)':'Nessuno ancora collegato'};
+  if(vtOn()){NM.k='';nmPull(upd)}}
+function pkFree(id){var i=PK.u.indexOf(id);if(i>=0)PK.u.splice(i,1);else PK.u.push(id);try{localStorage.setItem('pkFree',JSON.stringify(PK.u))}catch(e){}PK.k='';pkPublish();pkPanel()}
+/* PC del ragazzo */
+function pkName(){var o=document.createElement('div');o.id='clNm';o.className='cl-ov on';
+  o.innerHTML='<form class="cl-card cl-nm" onsubmit="return pkNameOk()"><p class="cl-k">Classe '+PK_ROOM+'</p><h3>Come ti chiami?</h3><p class="cl-p">Nome e iniziale del cognome. Il tuo nome comparirà sul proiettore accanto ai risultati.</p>'+
+   '<input id="clIn" maxlength="24" autocomplete="off" placeholder="Es. Giulia R."><p class="cl-err" id="clErr"></p><button class="btn">Entra</button></form>';
+  document.body.appendChild(o);setTimeout(function(){var i=G('clIn');if(i)i.focus()},100)}
+function pkNameOk(){var v=nmClean(G('clIn').value);
+  if(v.length<2){G('clErr').textContent='Scrivi almeno due lettere.';return false}
+  if(bwBad(v)){G('clErr').textContent='Questo nome non va bene: scrivi il tuo nome vero.';return false}
+  try{localStorage.setItem('wsName',v)}catch(e){}nmRoster(PK_ROOM);G('clNm').remove();pkBadge();return false}
+function pkBadge(){var b=G('pkBadge');if(!b){b=document.createElement('p');b.id='pkBadge';b.className='cl-badge';document.body.appendChild(b)}
+  var sl=pkSlides()[pkIdx()-1],free=PK.s&&sl&&PK.u.indexOf(sl.id)>=0;
+  b.innerHTML='<b>'+(nmGet()||'…')+'</b><span>Classe '+PK_ROOM+'</span><i>'+(!PK.s?'In attesa del docente':(free?'Pagina libera: puoi esplorare':'Segui il docente'))+'</i>';
+  b.classList.toggle('free',!!free)}
+function pkPoll(){if(!vtOn())return;vtSb(function(sb){sb.from('vote_rooms').select('state').eq('room',PK_ROOM+'PK').maybeSingle().then(function(r){var st=r.data&&r.data.state;if(!st)return;
+  PK.u=st.u||[];if(st.s!==PK.s){PK.s=st.s;if(pkIdx()!==PK.s)location.hash='#'+PK.s}pkBadge()})})}
+function pkGuard(){if(!PK.s)return;var i=pkIdx();if(i===PK.s)return;var sl=pkSlides()[i-1];if(sl&&PK.u.indexOf(sl.id)>=0){pkBadge();return}
+  location.hash='#'+PK.s;if(Date.now()-PK.warn>2500){PK.warn=Date.now();pkToast('Questa pagina non è ancora libera: segui il docente.')}pkBadge()}
+function pkToast(t){var e=G('pkToast');if(!e){e=document.createElement('p');e.id='pkToast';e.className='cl-toast';document.body.appendChild(e)}e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(function(){e.classList.remove('on')},2600)}
+
+/* ---- i dati di ogni ragazzo (quiz e laboratorio): una riga per PC ---- */
+var KS={d:null,t:0};
+function ksGet(){if(!KS.d){try{KS.d=JSON.parse(localStorage.getItem('ks_'+vtRoom())||'{}')||{}}catch(e){KS.d={}}}return KS.d}
+function ksSave(){try{localStorage.setItem('ks_'+vtRoom(),JSON.stringify(KS.d))}catch(e){}if(!PK_ROOM||!vtOn())return;clearTimeout(KS.t);
+  KS.t=setTimeout(function(){vtSb(function(sb){sb.from('vote_rooms').upsert({room:PK_ROOM+'Z'+phId(),state:{n:nmGet(),d:KS.d},updated_at:new Date().toISOString()}).then(function(){})})},300)}
+function ksPull(cb){if(!vtOn())return cb([]);vtSb(function(sb){sb.from('vote_rooms').select('room,state').like('room',vtRoom()+'Z%').limit(1000).then(function(r){
+  cb((r.data||[]).filter(function(x){return x.room.length===8&&x.state&&x.state.d}).map(function(x){return {id:x.room.slice(5),n:x.state.n||'',d:x.state.d}}))})})}
+function ksName(n){return !n?'senza nome':(bwBad(n)?'nome non valido':n)}
+
+/* ================= Quiz: ognuno sul suo PC, la classifica sul proiettore ================= */
+var QZ_D={
+ q1:{t:'Le proteine e il virus',qs:[
+  {q:'Con quanti tipi di amminoacidi sono costruite le proteine degli esseri viventi?',o:['4','20','64','Migliaia'],a:1,e:'Sono 20 mattoni standard: cambiano solo l’ordine e la lunghezza della catena.'},
+  {q:'Quando due amminoacidi si uniscono con un legame peptidico, che cosa si libera?',o:['Una molecola d’acqua','Una molecola di ossigeno','Anidride carbonica','Niente'],a:0,e:'L’OH di un amminoacido e un H dell’altro escono insieme: H₂O.'},
+  {q:'Che cos’è la struttura terziaria di una proteina?',o:['L’ordine dei mattoni','Le eliche e i foglietti','La forma 3D di tutta la catena','Più catene unite insieme'],a:2,e:'Primaria = sequenza, secondaria = eliche e foglietti, terziaria = forma 3D completa, quaternaria = più catene.'},
+  {q:'Gli amminoacidi che evitano l’acqua, nella proteina ripiegata, dove si trovano?',o:['In superficie','Soprattutto all’interno','Fuori dalla proteina','In posti a caso'],a:1,e:'Si nascondono all’interno, lontano dall’acqua: è una delle forze che fanno ripiegare la catena.'},
+  {q:'Che cosa fa la Mpro nel ciclo del virus?',o:['Fa entrare il virus nella cellula','Copia l’RNA del virus','Taglia la catena lunga in pezzi che funzionano','Costruisce l’involucro del virus'],a:2,e:'È la forbice molecolare: senza il suo taglio il virus non può andare avanti.'},
+  {q:'A quale amminoacido della Mpro si lega il nirmatrelvir?',o:['Istidina 41','Cisteina 145','Glutammato 166','Glicina 143'],a:1,e:'Allo zolfo della Cys145, con un legame covalente reversibile.'},
+  {q:'Perché nel Paxlovid c’è anche il ritonavir?',o:['Perché uccide il virus','Perché rallenta l’enzima del fegato che smaltirebbe il nirmatrelvir','Perché toglie la febbre','Perché fa entrare il farmaco nelle cellule'],a:1,e:'Il ritonavir blocca il CYP3A4: così il nirmatrelvir resta nel sangue sopra il livello utile.'}]}};
+var QZ={};
+function qzInit(){[].forEach.call(document.querySelectorAll('[data-quiz]'),function(el){var id=el.getAttribute('data-quiz');if(!QZ_D[id])return;
+  QZ[id]={i:0,rows:[],sec:el.closest('.slide').id};var a=qzMine(id),n=QZ_D[id].qs.length;QZ[id].i=Math.min(a.filter(function(x){return x!==null&&x!==undefined}).length,n);
+  el.innerHTML='<div class="qq-card" id="qqC_'+id+'"></div><aside class="qq-side" id="qqS_'+id+'"></aside>';qzDraw(id);qzSide(id);
+  slShow(QZ[id].sec,function(){qzPull(id)});setInterval(function(){var s=G(QZ[id].sec);if(s&&s.classList.contains('current')&&!document.hidden)qzPull(id)},3000)})}
+function qzMine(id){var d=ksGet();if(!Array.isArray(d[id]))d[id]=[];return d[id]}
+function qzScore(D,a){var c=0;D.qs.forEach(function(q,k){if(a&&a[k]===q.a)c++});return c}
+function qzDraw(id){var D=QZ_D[id],a=qzMine(id),n=D.qs.length,i=QZ[id].i,C=G('qqC_'+id),L='ABCD';
+  var dots='<div class="qq-dots">'+D.qs.map(function(q,k){var x=a[k],c=x===undefined||x===null?'':(x===q.a?'ok':'ko');return '<button class="'+c+(k===i?' cur':'')+'" onclick="qzAt(\''+id+'\','+k+')" aria-label="Domanda '+(k+1)+'"></button>'}).join('')+'</div>';
+  if(i>=n){var sc=qzScore(D,a);
+    C.innerHTML=dots+'<p class="qq-k">Risultato</p><p class="qq-big">'+sc+'<small> su '+n+'</small></p><p class="qq-msg">'+(sc===n?'Tutte giuste. Perfetto.':sc>=n-2?'Ottimo lavoro: rivedi quelle sbagliate.':'Rivedi le risposte con le spiegazioni: cliccate i pallini qui sopra.')+'</p>'+
+      '<ol class="qq-rev">'+D.qs.map(function(q,k){var ok=a[k]===q.a;return '<li class="'+(ok?'ok':'ko')+'" onclick="qzAt(\''+id+'\','+k+')"><svg class="ic"><use href="#i-'+(ok?'check':'x')+'"/></svg>'+q.q+'</li>'}).join('')+'</ol>';return}
+  var q=D.qs[i],x=a[i],done=x!==undefined&&x!==null;
+  C.innerHTML=dots+'<p class="qq-k">Domanda '+(i+1)+' di '+n+'</p><h3 class="qq-q">'+q.q+'</h3>'+
+   '<div class="qq-o">'+q.o.map(function(o,k){var c=done?(k===q.a?' ok':(k===x?' ko':' off')):'';return '<button class="qq-b'+c+'"'+(done?' disabled':'')+' onclick="qzAns(\''+id+'\','+k+')"><i>'+L[k]+'</i><span>'+o+'</span></button>'}).join('')+'</div>'+
+   (done?'<div class="qq-e '+(x===q.a?'ok':'ko')+'"><b>'+(x===q.a?'Giusto.':'Non è questa.')+'</b> '+q.e+'</div><div class="qq-nav"><button class="btn" onclick="qzAt(\''+id+'\','+(i+1)+')">'+(i+1<n?'Avanti →':'Vedi il risultato')+'</button></div>':'')}
+function qzAns(id,k){var a=qzMine(id),i=QZ[id].i;if(a[i]!==undefined&&a[i]!==null)return;a[i]=k;
+  if(a.filter(function(x){return x!==null&&x!==undefined}).length===QZ_D[id].qs.length)ksGet()[id+'t']=Date.now();ksSave();qzDraw(id);qzSide(id)}
+function qzAt(id,k){var a=qzMine(id);for(var j=0;j<k;j++)if(a[j]===undefined||a[j]===null){k=j;break}QZ[id].i=k;qzDraw(id)}
+function qzPull(id){ksPull(function(rows){QZ[id].rows=rows;qzSide(id)})}
+function qzSide(id){var S=G('qqS_'+id),D=QZ_D[id],n=D.qs.length,me=PK_ROOM?phId():'';if(!S)return;
+  var rows=QZ[id].rows.filter(function(r){return Array.isArray(r.d[id])&&r.d[id].some(function(x){return x!==null})}).map(function(r){
+    var a=r.d[id];return {id:r.id,n:ksName(r.n),s:qzScore(D,a),c:a.filter(function(x){return x!==null&&x!==undefined}).length,t:r.d[id+'t']||9e15}});
+  rows.sort(function(x,y){return y.s-x.s||y.c-x.c||x.t-y.t});
+  var own=PK_ROOM?'<div class="qq-me"><p>Il tuo punteggio</p><b>'+qzScore(D,qzMine(id))+'<small> su '+n+'</small></b></div>':'';
+  var fin=rows.filter(function(r){return r.c===n}).length;
+  var body=rows.length?'<ol class="qq-lb">'+rows.slice(0,10).map(function(r,k){return '<li class="'+(r.id===me?'me':'')+'"><i>'+(k+1)+'</i><span>'+r.n+'</span><b>'+r.s+'</b><em style="--w:'+(r.s/n)+'"></em></li>'}).join('')+'</ol>'+
+      '<p class="qq-ft">'+rows.length+(rows.length===1?' persona ha':' persone hanno')+' risposto · '+fin+' '+(fin===1?'ha':'hanno')+' finito</p>':
+    '<p class="qq-none">'+(PK_ROOM?'Qui compare la classifica della classe.':(vtOn()?'Nessuna risposta ancora. Collegate i PC dei ragazzi con il pulsante in basso a destra.':'La classifica compare quando i PC sono collegati.'))+'</p>';
+  var per='';if(rows.length&&!PK_ROOM){per='<div class="qq-per"><p>Risposte giuste per domanda</p>'+D.qs.map(function(q,k){var t=0,g=0;QZ[id].rows.forEach(function(r){var x=(r.d[id]||[])[k];if(x!==null&&x!==undefined){t++;if(x===q.a)g++}});
+    return '<span title="Domanda '+(k+1)+'"><em style="--h:'+(t?g/t:0)+'"></em><i>'+(k+1)+'</i></span>'}).join('')+'</div>'}
+  S.innerHTML=own+'<p class="qq-sk">La classe</p>'+body+per}
+
+/* ================= Laboratorio PyMOL nel browser (sulla struttura vera 8H82) ================= */
+var PY={v:null,A:[],on:false,sel:{},obj:{},lab:{},hist:[],hi:0,m:0,fl:{},busy:false,esp:false};
+var PY_COL={yellow:'#FFFF00',orange:'#FF8000',magenta:'#FF00FF',cyan:'#00FFFF',red:'#FF3333',green:'#33FF33',blue:'#3333FF',white:'#FFFFFF',grey:'#808080',gray:'#808080',
+  purple:'#BF00BF',pink:'#FFA6C9',salmon:'#FF9999',wheat:'#E6CC99',black:'#000000',lime:'#80FF00',teal:'#00BFBF',slate:'#8080FF',violet:'#E699E6',brown:'#A6704D',marine:'#0080FF',forest:'#1A9919'};
+var PY_EL={N:'#3333FF',O:'#FF4C4C',S:'#E6C540',F:'#B3FFFF',H:'#E6E6E6'};
+var PY_M=[
+ {t:'Scaricate la proteina',w:'Ogni struttura del Protein Data Bank ha un codice di quattro caratteri. La Mpro con il farmaco è la <b>8H82</b>.',c:['fetch 8H82'],ok:function(){return PY.on}},
+ {t:'Togliete l’acqua',w:'I puntini rossi sono molecole d’acqua rimaste nel cristallo. Non ci servono: toglietele.',c:['remove resn HOH'],ok:function(){return PY.on&&!PY.A.some(function(a){return a.alive&&a.sol})}},
+ {t:'Disegnate a nastri',w:'Le linee mostrano ogni atomo e confondono. I nastri (<i>cartoon</i>) mostrano eliche e foglietti; <b>util.cbc</b> colora per catena.',c:['hide everything','show cartoon','util.cbc'],
+  ok:function(){var ca=PY.A.filter(function(a){return a.alive&&a.poly&&a.name==='CA'});return ca.length&&ca.every(function(a){return a.rep.cartoon})&&!PY.A.some(function(a){return a.alive&&a.poly&&a.rep.lines})}},
+ {t:'Chi c’è nella tasca?',w:'Nel file, oltre alla proteina, c’è un’altra molecola. Chiedete a PyMOL come si chiama: il codice che esce è quello dell’inibitore.',c:['iterate hetatm and not solvent, print(resn)'],ok:function(){return !!PY.fl.iter}},
+ {t:'Selezionate l’inibitore',w:'Create una selezione chiamata <b>inibitore</b>. Al posto di NOME scrivete il codice che avete appena trovato.',c:['select inibitore, resn NOME'],ok:function(){return pySame('inibitore',function(a){return a.resn==='4WI'})}},
+ {t:'Mettetelo in evidenza',w:'Bastoncini (<i>sticks</i>) e colore giallo: lo ritroverete così in tutte le immagini.',c:['show sticks, inibitore','color yellow, inibitore'],
+  ok:function(){var L=PY.A.filter(function(a){return a.alive&&a.resn==='4WI'});return L.length&&L.every(function(a){return a.rep.sticks&&a.col===PY_COL.yellow})}},
+ {t:'Chi lo tiene fermo?',w:'Selezionate i residui della proteina con almeno un atomo a meno di <b>5 Å</b> dall’inibitore, mostrateli e avvicinatevi.',c:['select residui_vicini, byres (polymer within 5 of inibitore)','show sticks, residui_vicini','zoom inibitore'],
+  ok:function(){var s=PY.sel.residui_vicini;if(!s||!PY.exp)return false;return pySameSet(s,PY.exp)&&PY.A.every(function(a){return !s[a.i]||a.rep.sticks})}},
+ {t:'Il sito catalitico',w:'Cys145 e His41 sono i due amminoacidi che tagliano. Coloratele come nelle slide e scriveteci sopra il nome.',c:['select sito_catalitico, (resn CYS and resi 145) or (resn HIS and resi 41)','show sticks, sito_catalitico','color orange, resn CYS and sito_catalitico','color magenta, resn HIS and sito_catalitico','label sito_catalitico and name CA, "%s%s" % (resn, resi)'],
+  ok:function(){var ok=pySame('sito_catalitico',function(a){return a.poly&&((a.resn==='CYS'&&a.resi===145)||(a.resn==='HIS'&&a.resi===41))});if(!ok)return false;
+    var c=PY.A.filter(function(a){return a.alive&&a.resi===145&&a.resn==='CYS'}),h=PY.A.filter(function(a){return a.alive&&a.resi===41&&a.resn==='HIS'});
+    return c.every(function(a){return a.col===PY_COL.orange})&&h.every(function(a){return a.col===PY_COL.magenta})&&Object.keys(PY.lab).length>=2}},
+ {t:'I legami a idrogeno',w:'Cercate le coppie di atomi polari (azoto e ossigeno) a meno di <b>3,5 Å</b> tra farmaco e proteina: sono i legami a idrogeno che lo trattengono.',c:['distance legami_H, inibitore, polymer, 3.5, mode=2','color cyan, legami_H'],
+  ok:function(){var o=PY.obj.legami_H;return !!(o&&o.p.length)}},
+ {t:'La superficie',w:'Mostrate la superficie della proteina: si vede la forma della tasca con il farmaco dentro.',c:['show surface, polymer','zoom all'],ok:function(){return PY.A.some(function(a){return a.alive&&a.poly&&a.rep.surface})}},
+ {t:'Le cariche',w:'Colorate la superficie secondo la carica elettrica: <b>rosso</b> negativo, <b>blu</b> positivo. Anche queste attrazioni tengono il farmaco al suo posto.',c:['util.protein_vacuum_esp("8H82", mode=2)'],ok:function(){return PY.esp}}];
+function pyInit(){if(!G('pyIn'))return;pyLog('PyMOL nel browser · laboratorio sulla struttura vera 8H82. Scrivete i comandi e premete Invio. «help» per l’elenco.','i');pyMis();
+  var i=G('pyIn');i.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();var v=i.value;if(!v.trim())return;PY.hist.push(v);PY.hi=PY.hist.length;i.value='';pyRun(v)}
+    else if(e.key==='ArrowUp'){if(PY.hi>0){PY.hi--;i.value=PY.hist[PY.hi]}e.preventDefault()}else if(e.key==='ArrowDown'){if(PY.hi<PY.hist.length){PY.hi++;i.value=PY.hist[PY.hi]||''}e.preventDefault()}});
+  slShow('sPY',pyBoot);setInterval(function(){var s=G('sPY');if(!PK_ROOM&&s&&s.classList.contains('current')&&!document.hidden)pyClass()},4000)}
+function pyBoot(){if(PY.v){PY.v.resize();PY.v.render();return}if(PY.busy)return;PY.busy=true;var n=0,dead=false;
+  var fail=function(){if(dead)return;dead=true;pyLog('Il visualizzatore 3D non si carica: serve la connessione a internet. I comandi sono gli stessi in PyMOL vero.','e')};
+  var go=function(){if(++n<2||dead)return;if(!window.$3Dmol||!window.MP_DATA)return fail();PY.v=$3Dmol.createViewer(G('py3d'),{backgroundColor:'#0B1426',antialias:true});PY.v.render()};
+  if(window.MP_DATA)go();else afLoadScript('img/mp/mp-data.js',go,fail);
+  if(window.$3Dmol)go();else afLoadScript('https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.5.5/3Dmol-min.js',go,fail)}
+function pyLog(t,c){var L=G('pyLog');if(!L)return;var p=document.createElement('p');p.className='py-'+(c||'o');p.textContent=t;L.appendChild(p);L.scrollTop=L.scrollHeight}
+function pyAtoms(){var A=[];MP_DATA.pdb.split('\n').forEach(function(l){if(!/^(ATOM|HETATM)/.test(l))return;
+  var el=(l.substr(76,2).trim()||l.substr(12,2).trim()).replace(/[^A-Za-z]/g,'').toUpperCase(),a={i:A.length,serial:+l.substr(6,5),name:l.substr(12,4).trim(),resn:l.substr(17,3).trim(),chain:l.substr(21,1),resi:+l.substr(22,4),
+    x:+l.substr(30,8),y:+l.substr(38,8),z:+l.substr(46,8),E:el,het:l[0]==='H'};
+  a.sol=a.resn==='HOH';a.poly=!a.het;a.alive=true;a.rep={lines:!a.sol,nb:a.sol};a.col=a.E==='C'?PY_COL.green:(PY_EL[a.E]||PY_COL.green);A.push(a)});return A}
+/* ---- selezioni in stile PyMOL ---- */
+function pyTok(s){var t=[],re=/\s*(\(|\)|&|\||!|[^\s()&|!]+)/g,m;while((m=re.exec(s)))t.push(m[1]);return t}
+function pySel(s){var A=PY.A,n=A.length,T=pyTok(s),p=0;
+  var mk=function(f){var r=new Uint8Array(n);for(var k=0;k<n;k++)if(A[k].alive&&f(A[k]))r[k]=1;return r};
+  var peek=function(){return (T[p]||'').toLowerCase()},take=function(){return T[p++]};
+  var or=function(){var a=and();while(peek()==='or'||peek()==='|'){p++;var b=and();for(var k=0;k<n;k++)a[k]=a[k]|b[k]}return a};
+  var and=function(){var a=not();while(peek()==='and'||peek()==='&'){p++;var b=not();for(var k=0;k<n;k++)a[k]=a[k]&b[k]}return a};
+  var not=function(){if(peek()==='not'||peek()==='!'){p++;var a=not();return mk(function(x){return !a[x.i]})}return post()};
+  var post=function(){var a=prim();while(peek()==='within'){p++;var d=parseFloat(take());if(isNaN(d))throw 'dopo «within» serve una distanza in Å';if(peek()!=='of')throw 'manca «of» dopo la distanza';p++;var b=not();a=pyNear(a,b,d)}return a};
+  var vals=function(){var v=take();if(v===undefined)throw 'manca un valore';return v.split('+')};
+  var prim=function(){var w=take();if(w===undefined)throw 'la selezione è incompleta';var l=w.toLowerCase();
+    if(w==='('){var a=or();if(take()!==')')throw 'manca una parentesi chiusa';return a}
+    if(l==='byres'){var b=not(),R={};A.forEach(function(x){if(b[x.i])R[x.chain+'|'+x.resi+'|'+x.het]=1});return mk(function(x){return R[x.chain+'|'+x.resi+'|'+x.het]})}
+    if(l==='resn'){var v=vals().map(function(x){return x.toUpperCase()});return mk(function(x){return v.indexOf(x.resn)>=0})}
+    if(l==='resi'){var r=vals().map(function(x){var q=x.split('-');return [+q[0],+(q[1]||q[0])]});if(r.some(function(q){return isNaN(q[0])||isNaN(q[1])}))throw 'resi vuole un numero, es. resi 145';return mk(function(x){return r.some(function(q){return x.resi>=q[0]&&x.resi<=q[1]})})}
+    if(l==='name'){var nm=vals().map(function(x){return x.toUpperCase()});return mk(function(x){return nm.indexOf(x.name)>=0})}
+    if(l==='chain'){var ch=vals();return mk(function(x){return ch.indexOf(x.chain)>=0})}
+    if(l==='elem'){var el=vals().map(function(x){return x.toUpperCase()});return mk(function(x){return el.indexOf(x.E)>=0})}
+    if(l==='polymer'||l==='protein')return mk(function(x){return x.poly});
+    if(l==='hetatm')return mk(function(x){return x.het});
+    if(l==='solvent')return mk(function(x){return x.sol});
+    if(l==='organic')return mk(function(x){return x.het&&!x.sol});
+    if(l==='all'||l==='*'||l==='8h82')return mk(function(){return 1});
+    if(PY.sel[w])return mk(function(x){return PY.sel[w][x.i]});
+    throw 'non conosco «'+w+'»'+(/^nome$/i.test(w)?'':'')};
+  var r=or();if(p<T.length)throw 'non capisco «'+T.slice(p).join(' ')+'»';return r}
+function pyNear(a,b,d){var A=PY.A,B=A.filter(function(x){return b[x.i]}),d2=d*d;return Uint8Array.from(A.map(function(x){if(!a[x.i])return 0;
+  for(var k=0;k<B.length;k++){var y=B[k],dx=x.x-y.x,dy=x.y-y.y,dz=x.z-y.z;if(dx*dx+dy*dy+dz*dz<=d2)return 1}return 0}))}
+function pyCount(s){var c=0;for(var k=0;k<s.length;k++)c+=s[k];return c}
+function pySame(nm,f){var s=PY.sel[nm];if(!s)return false;return PY.A.every(function(a){return !a.alive||(!!s[a.i])===!!f(a)})}
+function pySameSet(s,t){for(var k=0;k<s.length;k++)if(!!s[k]!==!!t[k]&&PY.A[k].alive)return false;return true}
+function pyArgs(s){var o=[],d=0,q='',c='';for(var i=0;i<s.length;i++){var h=s[i];if(q){c+=h;if(h===q)q='';continue}if(h==='"'||h==="'"){q=h;c+=h;continue}
+  if(h==='(')d++;if(h===')')d--;if(h===','&&!d){o.push(c.trim());c='';continue}c+=h}if(c.trim())o.push(c.trim());return o}
+/* ---- i comandi ---- */
+function pyRun(src){pyLog('PyMOL> '+src,'c');src.split(/\n|;/).forEach(function(c){c=c.trim();if(!c)return;try{pyCmd(c)}catch(e){pyLog(' Errore: '+e,'e')}});pyDraw();pyCheck()}
+function pyNeed(){if(!PY.on)throw 'prima caricate la proteina con: fetch 8H82'}
+function pyCmd(c){var m=c.match(/^([A-Za-z_.]+)\s*(.*)$/);if(!m)throw 'comando non valido';var cmd=m[1].toLowerCase(),rest=m[2],a=pyArgs(rest.replace(/^\(|\)$/g,function(x){return /^util\./.test(cmd)?'':x}));
+  if(cmd==='help'){pyLog(' Comandi: fetch, remove, hide, show, select, iterate, color, util.cbc, zoom, orient, label, distance, util.protein_vacuum_esp, delete, bg_color, ricomincia');return}
+  if(cmd==='ricomincia'||cmd==='reinitialize'){pyReset();pyLog(' Tutto da capo.','i');return}
+  if(cmd==='fetch'){var id=(a[0]||'').toUpperCase();if(!id)throw 'scrivete il codice: fetch 8H82';if(id!=='8H82')throw 'in questo laboratorio c’è solo la 8H82. Le altre si aprono in PyMOL vero.';
+    if(!PY.v){if(!window.$3Dmol||!window.MP_DATA)throw 'il visualizzatore non è ancora pronto: riprovate tra un attimo';}
+    if(PY.on){pyLog(' La 8H82 è già caricata.','o');return}
+    PY.A=pyAtoms();PY.v.removeAllModels();PY.v.addModel(MP_DATA.pdb,'pdb');PY.on=true;
+    var L={};PY.A.forEach(function(x){if(x.resn==='4WI')L[x.i]=1});PY.exp=pyNear(Uint8Array.from(PY.A.map(function(x){return x.poly?1:0})),Uint8Array.from(PY.A.map(function(x){return L[x.i]?1:0})),5);
+    var R={};PY.A.forEach(function(x){if(PY.exp[x.i])R[x.resi]=1});PY.exp=Uint8Array.from(PY.A.map(function(x){return x.poly&&R[x.resi]?1:0}));
+    pyLog(' TITLE  Mpro del SARS-CoV-2 (mutante E166V) con l’inibitore nirmatrelvir','o');pyLog(' ObjectMolecule: «8H82» caricato, '+PY.A.length+' atomi.','o');PY.zoom=1;return}
+  pyNeed();
+  if(cmd==='remove'){var s=pySel(a[0]||'none'),k=0;PY.A.forEach(function(x){if(s[x.i]){x.alive=false;k++}});pyLog(' Remove: eliminati '+k+' atomi dal modello «8H82».','o');return}
+  if(cmd==='hide'||cmd==='show'){var rep=(a[0]||'everything').toLowerCase(),on=cmd==='show';
+    if(a[1]&&PY.obj[a[1]]){if(rep==='labels'||rep==='dashes')PY.obj[a[1]][rep==='labels'?'l':'h']=rep==='labels'?on:!on;return}
+    var s2=a[1]?pySel(a[1]):pySel('all'),R2={lines:1,sticks:1,cartoon:1,surface:1,spheres:1,labels:1,everything:1,nonbonded:1,ribbon:1};if(!R2[rep])throw 'rappresentazione sconosciuta «'+rep+'» (lines, sticks, cartoon, surface, spheres, labels)';
+    if(rep==='ribbon')rep='cartoon';
+    PY.A.forEach(function(x){if(!s2[x.i])return;if(rep==='everything'){if(on)throw 'si usa «hide everything», non «show everything»';x.rep={};delete PY.lab[x.serial]}else if(rep==='labels'){if(!on)delete PY.lab[x.serial]}else if(rep==='nonbonded')x.rep.nb=on;else x.rep[rep]=on});
+    if(rep==='surface'&&!on)PY.esp=false;return}
+  if(cmd==='select'){if(a.length<2)throw 'si scrive: select nome, selezione';var nm=a[0];if(!/^[A-Za-z_][A-Za-z0-9_]*$/.test(nm))throw 'nome di selezione non valido';
+    var s3=pySel(a[1]),k3=pyCount(s3);PY.sel[nm]=s3;pyLog(' Selector: selezione «'+nm+'» definita con '+k3+' atomi.','o');
+    if(!k3)pyLog(' Attenzione: nessun atomo. '+(/NOME/i.test(a[1])?'Al posto di NOME scrivete il codice trovato con iterate.':'Controllate i valori.'),'e');return}
+  if(cmd==='iterate'){if(a.length<2)throw 'si scrive: iterate selezione, print(resn)';var s4=pySel(a[0]),f=(a[1].match(/^print\((\w+)\)$/)||[])[1];if(!f||['resn','resi','name','chain','elem'].indexOf(f)<0)throw 'qui si può stampare resn, resi, name, chain o elem: print(resn)';
+    var out=PY.A.filter(function(x){return s4[x.i]}).map(function(x){return String(f==='elem'?x.E:x[f])});if(!out.length){pyLog(' (nessun atomo)','o');return}
+    out.slice(0,4).forEach(function(v){pyLog(v,'o')});if(out.length>4)pyLog(' … altre '+(out.length-4)+' righe: una per ogni atomo della selezione','i');
+    if(f==='resn'&&out.indexOf('4WI')>=0&&out.indexOf('HOH')<0)PY.fl.iter=1;return}
+  if(cmd==='color'||cmd==='colour'){var col=PY_COL[(a[0]||'').toLowerCase()];if(!col)throw 'colore sconosciuto «'+(a[0]||'')+'»';
+    if(a[1]&&PY.obj[a[1]]){PY.obj[a[1]].c=col;return}var s5=pySel(a[1]||'all'),k5=0;PY.A.forEach(function(x){if(s5[x.i]){x.col=col;k5++}});pyLog(' Executive: colorati '+k5+' atomi.','o');return}
+  if(cmd==='util.cbc'){PY.A.forEach(function(x){if(x.E==='C'&&x.poly)x.col=PY_COL.green});return}
+  if(cmd==='zoom'||cmd==='orient'){PY.zsel=a[0]?pySel(a[0]):null;if(PY.zsel&&!pyCount(PY.zsel))throw 'la selezione è vuota';PY.zbuf=a[1]?parseFloat(a[1]):0;PY.zgo=1;return}
+  if(cmd==='label'){if(a.length<2)throw 'si scrive: label selezione, "testo"';var s6=pySel(a[0]),ex=a[1],mm=ex.match(/^(["'])(.*)\1\s*%\s*\((.*)\)$/),f6,fmt;
+    if(mm){fmt=mm[2];f6=mm[3].split(',').map(function(x){return x.trim()})}else if(/^["'].*["']$/.test(ex)){fmt=ex.slice(1,-1);f6=[]}else{fmt='%s';f6=[ex]}
+    PY.A.forEach(function(x){if(!s6[x.i])return;var j=0;PY.lab[x.serial]=fmt.replace(/%s/g,function(){var k=f6[j++];return k==='elem'?x.E:(x[k]!==undefined?x[k]:'')})});return}
+  if(cmd==='distance'||cmd==='dist'){if(a.length<3)throw 'si scrive: distance nome, sel1, sel2, 3.5, mode=2';var nm7=a[0],s7=pySel(a[1]),t7=pySel(a[2]),cut=parseFloat(a[3]||'3.5'),P=[];
+    var X=PY.A.filter(function(x){return s7[x.i]&&(x.E==='N'||x.E==='O')}),Y=PY.A.filter(function(x){return t7[x.i]&&(x.E==='N'||x.E==='O')});
+    X.forEach(function(x){Y.forEach(function(y){if(x.resi===y.resi&&x.het===y.het)return;var d=Math.hypot(x.x-y.x,x.y-y.y,x.z-y.z);if(d<=cut&&d>.5)P.push([x,y,d])})});
+    PY.obj[nm7]={p:P,c:PY_COL.yellow,l:true,h:false};pyLog(' Executive: oggetto «'+nm7+'» creato: '+P.length+' contatti polari entro '+cut+' Å.','o');return}
+  if(cmd==='util.protein_vacuum_esp'){PY.A.forEach(function(x){if(x.poly&&x.alive)x.rep.surface=true});PY.esp=true;pyLog(' Superficie colorata per carica: rosso negativo, blu positivo (calcolo semplificato).','o');return}
+  if(cmd==='delete'){var nm8=a[0];if(PY.sel[nm8])delete PY.sel[nm8];else if(PY.obj[nm8])delete PY.obj[nm8];else throw 'non trovo «'+nm8+'»';return}
+  if(cmd==='bg_color'){var b=PY_COL[(a[0]||'').toLowerCase()];if(!b)throw 'colore sconosciuto';PY.v.setBackgroundColor(b);return}
+  throw 'il comando «'+cmd+'» in questo laboratorio non c’è: provatelo in PyMOL vero. Scrivete help per l’elenco.'}
+function pyEsp(){var Q=[];PY.A.forEach(function(x){if(!x.alive||!x.poly)return;var q=0;
+    if(x.resn==='LYS'&&x.name==='NZ')q=1;if(x.resn==='ARG'&&/^(NH1|NH2|NE)$/.test(x.name))q=1/3;if(x.resn==='ASP'&&/^OD[12]$/.test(x.name))q=-.5;if(x.resn==='GLU'&&/^OE[12]$/.test(x.name))q=-.5;if(x.name==='OXT')q=-1;
+    if(q)Q.push([x,q])});
+  var m=PY.v.getModel(),byS={};m.selectedAtoms({}).forEach(function(t){byS[t.serial]=t});
+  PY.A.forEach(function(x){var t=byS[x.serial];if(!t)return;var v=0;Q.forEach(function(c){var y=c[0],d=Math.max(2,Math.hypot(x.x-y.x,x.y-y.y,x.z-y.z));if(d<10)v+=c[1]/d});t.b=Math.max(-1,Math.min(1,v*3))})}
+function pyDraw(){var v=PY.v;if(!v||!PY.on)return;v.setStyle({},{});v.removeAllSurfaces();v.removeAllLabels();v.removeAllShapes();var grp={},cc={};
+  PY.A.forEach(function(x){if(x.alive&&x.name==='CA')cc[x.resi]=x.col});
+  PY.A.forEach(function(x){if(!x.alive)return;var r=x.rep,s={};if(r.lines)s.line={color:x.col};if(r.sticks)s.stick={color:x.col,radius:.2};if(r.spheres)s.sphere={color:x.col,scale:.9};else if(r.nb)s.sphere={color:x.col,radius:.2};
+    if(r.cartoon&&x.poly)s.cartoon={color:cc[x.resi]||x.col};var k=JSON.stringify(s);if(k==='{}')return;(grp[k]=grp[k]||[]).push(x.serial)});
+  for(var k in grp)v.setStyle({serial:grp[k]},JSON.parse(k));
+  var sf=PY.A.filter(function(x){return x.alive&&x.rep.surface});
+  if(sf.length){var cnt={};sf.forEach(function(x){cnt[x.col]=(cnt[x.col]||0)+1});var main=Object.keys(cnt).sort(function(p,q){return cnt[q]-cnt[p]})[0];
+    if(PY.esp){pyEsp();v.addSurface($3Dmol.SurfaceType.VDW,{opacity:.95,colorscheme:{prop:'b',gradient:'rwb',min:-1,max:1}},{serial:sf.map(function(x){return x.serial})})}
+    else v.addSurface($3Dmol.SurfaceType.VDW,{opacity:.9,color:main},{serial:sf.map(function(x){return x.serial})})}
+  var byS={};PY.A.forEach(function(x){byS[x.serial]=x});
+  for(var s in PY.lab){var x=byS[s];if(x&&x.alive)v.addLabel(PY.lab[s],{position:{x:x.x,y:x.y,z:x.z},fontSize:16,fontColor:'#fff',backgroundColor:'#151B2C',backgroundOpacity:.85,borderThickness:0,inFront:true})}
+  for(var n in PY.obj){var o=PY.obj[n];if(o.h)continue;o.p.forEach(function(q){var a=q[0],b=q[1];if(!a.alive||!b.alive)return;
+    v.addCylinder({start:{x:a.x,y:a.y,z:a.z},end:{x:b.x,y:b.y,z:b.z},radius:.06,color:o.c,dashed:true,dashLength:.25,gapLength:.2,fromCap:1,toCap:1});
+    if(o.l)v.addLabel(q[2].toFixed(1),{position:{x:(a.x+b.x)/2,y:(a.y+b.y)/2,z:(a.z+b.z)/2},fontSize:13,fontColor:o.c,backgroundOpacity:0,inFront:true})})}
+  if(PY.zgo||PY.zoom){PY.zgo=0;PY.zoom=0;var zs=PY.zsel?{serial:PY.A.filter(function(x){return PY.zsel[x.i]}).map(function(x){return x.serial})}:{};v.zoomTo(zs,600);if(PY.zbuf)v.zoom(1/(1+PY.zbuf/12),600)}
+  v.render();G('pyHint').style.display='none'}
+function pyReset(){if(PY.v){PY.v.removeAllModels();PY.v.removeAllSurfaces();PY.v.removeAllLabels();PY.v.removeAllShapes();PY.v.setBackgroundColor('#0B1426');PY.v.render()}
+  PY.A=[];PY.on=false;PY.sel={};PY.obj={};PY.lab={};PY.fl={};PY.esp=false;PY.m=0;G('pyHint').style.display='';pyMis()}
+function pyCheck(){var m0=PY.m;while(PY.m<PY_M.length&&PY_M[PY.m].ok())PY.m++;
+  if(PY.m>m0){pyLog(PY.m>=PY_M.length?' ✓ Tutte le missioni completate. Bravi!':' ✓ Missione '+PY.m+' completata.','ok');var d=ksGet();d.py=Math.max(d.py||0,PY.m);ksSave()}pyMis()}
+function pyMis(){var M=G('pyMis');if(!M)return;var i=PY.m,n=PY_M.length,m=PY_M[Math.min(i,n-1)];
+  G('pyDots').innerHTML=PY_M.map(function(x,k){return '<i class="'+(k<i?'ok':(k===i?'cur':''))+'" title="'+(k+1)+' · '+x.t+'"></i>'}).join('');
+  if(PK_ROOM)G('pyMeta').textContent=i>=n?'Laboratorio completato':'Missione '+(i+1)+' di '+n;
+  if(i>=n){M.innerHTML='<p class="py-mk">Fatto</p><h3>Laboratorio completato</h3><p>Avete rifatto l’analisi di un vero articolo scientifico: proteina, inibitore, sito catalitico, legami e cariche. Esplorate liberamente con i comandi, oppure scrivete <b>ricomincia</b>.</p>';return}
+  M.innerHTML='<p class="py-mk">Missione '+(i+1)+' di '+n+'</p><h3>'+m.t+'</h3><p>'+m.w+'</p>'+
+   '<button class="py-hb" onclick="this.nextElementSibling.classList.toggle(\'on\');this.textContent=this.nextElementSibling.classList.contains(\'on\')?\'Nascondi i comandi\':\'Mostra i comandi\'">Mostra i comandi</button>'+
+   '<div class="py-cmds">'+m.c.map(function(c){return '<code onclick="pyUse(this)" title="Clicca per metterlo nella console">'+c.replace(/&/g,'&amp;').replace(/</g,'&lt;')+'</code>'}).join('')+'</div>'}
+function pyUse(e){var i=G('pyIn');i.value=e.textContent;i.focus()}
+function pyClass(){ksPull(function(rows){var r=rows.filter(function(x){return x.d.py!==undefined}),e=G('pyMeta');if(!e)return;
+  if(!r.length){e.textContent=vtOn()?'Nessun PC al lavoro, per ora':'';return}var n=PY_M.length,h=new Array(n+1).fill(0);r.forEach(function(x){h[Math.min(n,x.d.py)]++});
+  var fin=h[n],avg=r.reduce(function(s,x){return s+Math.min(n,x.d.py)},0)/r.length;
+  e.innerHTML='La classe: <b>'+r.length+'</b> PC · media <b>'+avg.toFixed(1)+'</b> missioni · <b>'+fin+'</b> '+(fin===1?'ha':'hanno')+' finito'})}
 
 /* ---------------- Teoria · AlphaFold: sei passi, ognuno si tocca ----------------
    Tutto con i dati già nel repository: sequenze, allineamenti, strutture, punteggi. */
@@ -6715,7 +7088,7 @@ function pxVsAI(){if(!PX.done||PX.ai)return;PX.ai=true;
 function pxToast(t){var e=G('pxToast');if(!e)return;e.textContent=t;e.classList.add('on');
   clearTimeout(PX.tt);PX.tt=setTimeout(function(){e.classList.remove('on')},2600)}
 
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM&&!ET_ROOM&&!NW_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit();afInit();rsInit();etInit();ogInit();prInit();tgInit();cvInit2();mpInit();plInit();lbInit();atInit();afgInit();rtInit();pxInit()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM&&!ET_ROOM&&!NW_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit();afInit();rsInit();etInit();ogInit();prInit();tgInit();cvInit2();mpInit();plInit();lbInit();qzInit();pyInit();pkInit();atInit();afgInit();rtInit();pxInit()}
 if(G('ttPanel'))fdBoot();
 if(G('muTl'))hsInit();
 n4Init();
