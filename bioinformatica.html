@@ -2790,6 +2790,74 @@ html.vote #vtApp{padding-bottom:116px}
 .qz-qr{padding:calc(var(--u,12px)*1.2)!important;background:#fff;border:1px solid var(--border,#DCD7CB)!important;border-radius:4px}
 .qz-qr img,.qz-qr canvas{width:min(calc(var(--u,12px)*30),58vh)!important;height:min(calc(var(--u,12px)*30),58vh)!important}
 @media (max-width:900px){.qz-body{grid-template-columns:1fr;justify-items:start}}
+
+/* ---- Sfida AlphaFold: indovina dove l'AI è sicura ---- */
+.afg-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.95fr);gap:clamp(1rem,2.4vw,2.4rem);align-items:stretch}
+.afg-view{position:relative;min-height:0;border-radius:4px;overflow:hidden;background:#0B1426}
+.afg-view canvas{position:absolute;inset:0;width:100%;height:100%}
+.afg-view .af-3d{opacity:1;pointer-events:auto}
+.afg-leg{position:absolute;left:.7em;bottom:.7em;z-index:3;display:none;flex-direction:column;gap:.15em;background:rgba(11,20,38,.82);color:#E8EEF7;border-radius:10px;padding:.45em .7em;font-size:.72rem;font-weight:700}
+.afg-leg.on{display:flex}
+.afg-leg i{display:inline-block;width:.85em;height:.85em;border-radius:3px;margin-right:.45em;vertical-align:-.1em}
+.afg-side{display:flex;flex-direction:column;gap:clamp(.5rem,1.3vh,.9rem);min-width:0;min-height:0}
+.afg-h{font-size:clamp(1.4rem,2.6vw,2.1rem)}
+.afg-p{font-size:clamp(.95rem,1.35vw,1.1rem)}
+.afg-zones{display:flex;flex-direction:column;gap:.4em;overflow:auto;min-height:0;flex:1 1 auto}
+.afg-z span{line-height:1.3}
+.afg-z{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.25em .8em;text-align:left;padding:.45em .7em;border:1px solid var(--border,#DCD7CB);border-radius:4px;background:#fff;cursor:pointer;font:inherit;color:var(--navy);transition:border-color .2s,background-color .2s}
+.afg-z:hover:not(:disabled){border-color:var(--navy)}
+.afg-z.on{border-color:var(--navy);background:#F2F4F8;box-shadow:inset 3px 0 0 var(--navy)}
+.afg-z:disabled{cursor:default}
+.afg-z b{font-family:var(--ff-head);font-size:1.02rem}
+.afg-z span{font-size:.85rem;color:var(--gray)}
+.afg-z .afg-rng{font-variant-numeric:tabular-nums;font-size:.78rem;color:var(--gray);white-space:nowrap}
+.afg-z .afg-res{grid-column:3;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap}
+.afg-z.right{background:#EAF6EE;border-color:#0B8E36}
+.afg-z.right .afg-res{color:#0B8E36}
+.afg-z.wrong{background:#FDEFEF;border-color:#C62828}
+.afg-z.wrong .afg-res{color:#C62828}
+.afg-score{margin:0;font-family:var(--ff-head);font-weight:800;font-size:clamp(1rem,1.7vw,1.3rem);color:var(--navy);white-space:nowrap}
+@media (max-width:900px){.afg-stage{grid-template-columns:1fr;grid-template-rows:minmax(180px,34vh) auto}}
+
+/* ---- Sfida retrosintesi: tu contro l'AI ---- */
+.px-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(300px,.9fr);gap:clamp(1rem,2.4vw,2.4rem);align-items:stretch}
+.px-board{position:relative;min-height:0;overflow:auto;background:#fff;border:1px solid var(--border,#DCD7CB);border-radius:4px}
+.px-tree{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;padding:clamp(.6rem,1.6vh,1.2rem) clamp(1.4rem,3vw,2.6rem);min-height:100%;min-width:max-content;margin:0 auto}
+.px-row{display:flex;align-items:flex-start;justify-content:center;gap:clamp(.6rem,1.6vw,1.6rem)}
+.px-mol{position:relative;display:flex;flex-direction:column;align-items:center;gap:.25em;padding:.5em .7em .45em;border:1px solid var(--border,#DCD7CB);border-radius:4px;background:#fff;transition:border-color .25s,box-shadow .25s}
+.px-mol.buy{border-color:#0B8E36;background:#F3FAF5}
+.px-mol.open{border-color:var(--navy)}
+.px-mol.ai{border-style:dashed;opacity:.92}
+/* .px-draw = il disegno della molecola; l'icona del bottone non c'entra */
+.px-mol>.px-draw{display:block;height:auto;max-width:100%;width:clamp(170px,17vw,260px)}
+/* finché c'è solo lei, la molecola intera occupa tutto lo spazio che può */
+.px-tree.solo .px-mol>.px-draw{width:min(60vw,720px)}
+.px-tag{font-family:var(--ff-head);font-weight:700;font-size:.82rem;color:var(--navy);text-align:center;line-height:1.2}
+.px-sub{font-size:.72rem;color:var(--gray);text-align:center;font-variant-numeric:tabular-nums}
+.px-mol.buy .px-sub{color:#0B8E36;font-weight:700}
+.px-cut{display:inline-flex;align-self:center;flex:0 0 auto;width:auto;min-width:0;max-width:max-content;align-items:center;justify-content:center;gap:.45em;margin-top:.35em;padding:.32em .95em;border-radius:999px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer;font:inherit;font-weight:700;font-size:.8rem;transition:background-color .18s,color .18s}
+.px-mol .px-cut svg{width:1.05em;height:1.05em;min-width:0;flex:none}
+.px-cut:hover{background:var(--navy);color:#fff}
+.px-cut.px-pulse{animation:pxPulse 2.4s ease-in-out infinite}
+@keyframes pxPulse{0%,100%{box-shadow:0 0 0 0 rgba(21,27,44,0)}50%{box-shadow:0 0 0 .35em rgba(21,27,44,.09)}}
+.px-link{stroke:#C9C3B6;stroke-width:1.5;fill:none}
+.px-arm{position:relative;display:flex;flex-direction:column;align-items:center}
+.px-join{width:1px;height:1.1rem;background:#C9C3B6}
+.px-side{display:flex;flex-direction:column;gap:clamp(.5rem,1.3vh,.9rem);min-width:0;min-height:0}
+.px-h{font-size:clamp(1.4rem,2.6vw,2.1rem)}
+.px-p{font-size:clamp(.95rem,1.35vw,1.1rem)}
+.px-sheet{flex:1;min-height:0;overflow:auto;display:flex;flex-direction:column;gap:.45em}
+.px-stat{display:flex;justify-content:space-between;gap:1em;padding:.5em .75em;border:1px solid var(--border,#DCD7CB);border-radius:4px;background:#fff;font-size:.9rem}
+.px-stat b{font-family:var(--ff-head);font-variant-numeric:tabular-nums}
+.px-stat.win{border-color:#0B8E36;background:#EAF6EE}
+.px-stat.lose{border-color:#C62828;background:#FDEFEF}
+.px-stat.tie{border-color:var(--navy);background:#F2F4F8}
+.px-note{margin:0;font-size:.85rem;color:var(--gray);line-height:1.45}
+.px-score{margin:0;font-family:var(--ff-head);font-weight:800;font-size:clamp(1rem,1.7vw,1.3rem);color:var(--navy);white-space:nowrap;font-variant-numeric:tabular-nums}
+.px-toast{position:absolute;left:50%;bottom:1rem;transform:translateX(-50%) translateY(.6rem);z-index:6;background:var(--navy);color:#fff;padding:.5em 1em;border-radius:999px;font-size:.88rem;font-weight:700;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;max-width:88%;text-align:center}
+.px-toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+@media (max-width:900px){.px-stage{grid-template-columns:1fr;grid-template-rows:minmax(200px,38vh) auto}}
+@media (prefers-reduced-motion:reduce){.px-cut.px-pulse{animation:none}}
 </style>
 
 <!-- icone: Lucide (lucide.dev), licenza ISC -->
@@ -2809,6 +2877,46 @@ html.vote #vtApp{padding-bottom:116px}
 </section>
 
 <!-- I CONTENUTI DEL MODULO VANNO QUI (prima e dopo la pausa) -->
+
+<!-- SFIDA 1 · ALPHAFOLD: indovina dove l'AI è sicura di sé -->
+<section class="slide darktext s-light ux" data-section="Sfida AlphaFold" id="sAFG">
+  <header class="ux-hd"><div><p class="ux-kick">Sfida · AlphaFold</p><h2 class="fz-h2">Dove l'AI è sicura di sé?</h2></div><p class="afg-score" id="afgScore"></p></header>
+  <div class="afg-stage">
+    <div class="afg-view" id="afgView">
+      <div class="af-3d on" id="afg3d"></div>
+      <canvas id="afgCv"></canvas>
+      <span class="af-lab" id="afgLab">p53 · 393 amminoacidi</span>
+      <div class="afg-leg" id="afgLeg"><b>Quanto è sicura (pLDDT)</b><span><i style="background:#0053D6"></i>molto alta</span><span><i style="background:#65CBF3"></i>alta</span><span><i style="background:#FFDB13"></i>bassa</span><span><i style="background:#FF7D45"></i>molto bassa</span></div>
+    </div>
+    <div class="afg-side">
+      <p class="dr-kick" id="afgKick">Passo 1 di 3</p>
+      <h3 class="dr-h afg-h" id="afgH">Scegli 3 zone</h3>
+      <p class="dr-p afg-p" id="afgP">Questa è una proteina vera, prevista da AlphaFold. Scegli le <b>3 zone</b> in cui pensi che l'AI abbia indovinato la forma con più sicurezza.</p>
+      <div class="afg-zones" id="afgZones"></div>
+      <div class="dr-nav"><button class="btn ghost" id="afgReset" onclick="afgReset()">Ricomincia</button><button class="btn" id="afgGo" onclick="afgReveal()" disabled>Scopri →</button></div>
+    </div>
+  </div>
+  <p class="af-cr">Struttura e punteggi veri: AlphaFold DB (EMBL-EBI e Google DeepMind), CC BY 4.0 · proteina p53, UniProt P04637</p>
+</section>
+
+<!-- SFIDA 2 · RETROSINTESI: la tua strada contro quella dell'AI -->
+<section class="slide darktext s-light ux" data-section="Sfida retrosintesi" id="sPX">
+  <header class="ux-hd"><div><p class="ux-kick">Sfida · Retrosintesi</p><h2 class="fz-h2">Tu contro l'AI: smonta la molecola</h2></div><p class="px-score" id="pxScore"></p></header>
+  <div class="px-stage">
+    <div class="px-board" id="pxBoard">
+      <div class="px-tree" id="pxTree"></div>
+      <div class="px-toast" id="pxToast"></div>
+    </div>
+    <div class="px-side">
+      <p class="dr-kick" id="pxKick">La tua strada</p>
+      <h3 class="dr-h px-h" id="pxH">Taglia un legame</h3>
+      <p class="dr-p px-p" id="pxP">Clicca una <b>forbice</b> per spezzare la molecola in due pezzi. Vai avanti finché ogni ramo finisce su un pezzo <b>verde</b>, che si compra già pronto.</p>
+      <div class="px-sheet" id="pxSheet"></div>
+      <div class="dr-nav"><button class="btn ghost" id="pxReset" onclick="pxReset()">Ricomincia</button><button class="btn" id="pxAI" onclick="pxVsAI()" disabled>Confronta con l'AI →</button></div>
+    </div>
+  </div>
+  <p class="af-cr">Molecola: nirmatrelvir, il principio attivo del Paxlovid · i tagli sono quelli classici della retrosintesi (E. J. Corey, Nobel 1990) · i prezzi sono indicativi, servono solo per il gioco</p>
+</section>
 
 <!-- PAUSA -->
 <section class="slide dark s-cover pz2" data-section="Pausa">
@@ -5434,7 +5542,223 @@ function nwPoll(){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('ro
 function nwPhone(){document.documentElement.classList.add('vote','nwm');
   var go=function(){nmBadge();nwWait();if(!vtOn())return;nwPoll();setInterval(function(){if(!document.hidden)nwPoll()},3000)};
   if(!nmGet()||nmEditing())nmForm(NW_ROOM,go);else{nmRoster(NW_ROOM);go()}}
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM&&!ET_ROOM&&!NW_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit();afInit();rsInit();etInit()}
+/* ---------------- Sfida 1 · AlphaFold: dove l'AI è sicura di sé ----------------
+   Niente account e niente chiamate esterne: struttura e punteggi sono già nel file
+   img/af/af-data.js (AlphaFold DB, CC BY 4.0). Si gioca in tre passi: scegli tre
+   zone, scopri i punteggi veri, leggi perché le code sono arancioni. */
+var AFG={pick:[],done:false,v3:null,R:null,raf:0,prot:'P04637',
+  still:(function(){try{return /[?&]fermo=1/.test(location.search)||matchMedia('(prefers-reduced-motion:reduce)').matches}catch(e){return false}})()};
+/* le cinque zone di p53: estremi veri, la media del pLDDT la calcoliamo dai dati */
+var AFG_Z=[
+ {id:'t1',a:1,b:93,n:'La coda iniziale',d:'il primo pezzo della catena'},
+ {id:'co',a:95,b:292,n:'Il cuore centrale',d:'la parte che afferra il DNA'},
+ {id:'li',a:294,b:323,n:'Il collegamento',d:'il tratto che unisce le due parti'},
+ {id:'el',a:326,b:355,n:'L\'elica finale',d:'un breve avvolgimento compatto'},
+ {id:'t2',a:357,b:393,n:'La coda finale',d:'l\'ultimo pezzo della catena'}];
+function afgAvg(z){var pl=AF_DATA.plddt[AFG.prot].slice(z.a-1,z.b);return Math.round(pl.reduce(function(a,b){return a+b},0)/pl.length)}
+function afgInit(){if(!G('afgZones'))return;
+  G('afgZones').innerHTML='<p class="px-note">Carico la struttura…</p>';
+  /* i dati di AlphaFold stanno nel repository: nessun account, nessuna chiamata esterna */
+  afLoadScript('img/af/af-data.js',afgReady,function(){
+    G('afgZones').innerHTML='<p class="px-note">Non trovo i dati di AlphaFold (img/af/af-data.js).</p>'});
+  afLoadScript('https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.5.5/3Dmol-min.js',function(){AFG.lib=true;if(AFG.ready)afg3D(AFG.done)})}
+function afgReady(){AFG.ready=true;
+  AFG_Z.forEach(function(z){z.avg=afgAvg(z)});
+  /* la risposta giusta: le tre zone col punteggio più alto */
+  AFG.best=AFG_Z.slice().sort(function(a,b){return b.avg-a.avg}).slice(0,3).map(function(z){return z.id});
+  afgRender();afgScore();afgCanvas();afg3D(false)}
+function afgRender(){if(!AFG.ready)return;
+  G('afgZones').innerHTML=AFG_Z.map(function(z){
+    var on=AFG.pick.indexOf(z.id)>=0,cls='afg-z'+(on?' on':'');
+    if(AFG.done)cls+=(AFG.best.indexOf(z.id)>=0?' right':(on?' wrong':''));
+    var res=AFG.done?'<span class="afg-res">'+z.avg+'/100</span>':(on?'<span class="afg-res">✓</span>':'');
+    return '<button class="'+cls+'"'+(AFG.done?' disabled':'')+' onclick="afgPick(\''+z.id+'\')">'+
+      '<b>'+z.n+'</b><span class="afg-rng">amminoacidi '+z.a+'–'+z.b+'</span>'+res+
+      '<span style="grid-column:1/3">'+z.d+'</span></button>'}).join('')}
+function afgScore(){var g=G('afgScore');if(!g)return;
+  g.textContent=AFG.done?'':(AFG.pick.length+' / 3 scelte')}
+function afgPick(id){if(AFG.done||!AFG.ready)return;var i=AFG.pick.indexOf(id);
+  if(i>=0)AFG.pick.splice(i,1);else{if(AFG.pick.length>=3)return;AFG.pick.push(id)}
+  G('afgGo').disabled=AFG.pick.length!==3;afgRender();afgScore()}
+function afgReveal(){if(AFG.done||AFG.pick.length!==3)return;AFG.done=true;
+  var hit=AFG.pick.filter(function(id){return AFG.best.indexOf(id)>=0}).length;
+  G('afgGo').disabled=true;G('afgLeg').classList.add('on');
+  G('afgKick').textContent='Passo 3 di 3';
+  G('afgScore').textContent=hit+' zone su 3';
+  G('afgH').textContent=hit===3?'Tre su tre.':hit===0?'Nessuna, ma guarda perché.':hit+' su 3.';
+  G('afgP').innerHTML='Adesso la proteina è colorata con i punteggi veri: <b style="color:#0053D6">blu</b> dove AlphaFold è sicura, <b style="color:#FF7D45">arancione</b> dove non lo è. '+
+    'Le parti arancioni non sono errori: quei pezzi, <b>anche nella realtà</b>, non hanno una forma fissa, si muovono come spaghetti. '+
+    'Un\'AI scientifica non si limita a rispondere: dice anche <b>quanto fidarsi</b> di ogni parte della risposta.';
+  afgRender();afg3D(true)}
+function afgReset(){if(!AFG.ready)return;AFG.pick=[];AFG.done=false;
+  G('afgGo').disabled=true;G('afgLeg').classList.remove('on');
+  G('afgKick').textContent='Passo 1 di 3';G('afgH').textContent='Scegli 3 zone';
+  G('afgP').innerHTML='Questa è una proteina vera, prevista da AlphaFold. Scegli le <b>3 zone</b> in cui pensi che l\'AI abbia indovinato la forma con più sicurezza.';
+  afgRender();afgScore();afg3D(false)}
+/* 3D vero quando la libreria c'è; prima del "Scopri" la proteina è tutta grigia */
+function afg3D(colored){var el=G('afg3d');if(!el||!AFG.ready)return false;
+  if(!AFG.lib||!window.$3Dmol){el.classList.remove('on');afgDraw();return false}
+  if(!AFG.v3)AFG.v3=$3Dmol.createViewer(el,{backgroundColor:'#0B1426',antialias:true});
+  var v=AFG.v3;v.removeAllModels();v.addModel(AF_DATA.pdb[AFG.prot],'pdb');
+  v.setStyle({},{cartoon:colored?{colorfunc:function(a){return afCol(a.b)},thickness:.55}:{color:'#8A93A6',thickness:.55}});
+  v.zoomTo();v.zoom(1.05);v.render();
+  /* ?fermo=1 toglie la rotazione: serve per le prove e per chi soffre il movimento */
+  if(!AFG.still)v.spin('y',.4);
+  el.classList.add('on');return true}
+/* riserva: se 3Dmol non si carica, disegniamo la catena su canvas */
+function afgCanvas(){var cv=G('afgCv');if(!cv)return;
+  var P=AF_DATA.pdb[AFG.prot].split('\n').filter(function(l){return l.slice(12,16)===' CA '})
+    .map(function(l){return [+l.slice(30,38),+l.slice(38,46),+l.slice(46,54)]});
+  var c=[0,0,0];P.forEach(function(p){c[0]+=p[0];c[1]+=p[1];c[2]+=p[2]});
+  c=c.map(function(v){return v/P.length});
+  AFG.R={p:P.map(function(p){return [p[0]-c[0],p[1]-c[1],p[2]-c[2]]}),rot:0};
+  afgDraw();if(!AFG.still)afgLoop()}
+/* gira solo quando la slide è davvero sullo schermo: niente batteria sprecata */
+function afgLoop(){var s=G('sAFG');
+  if(s&&s.classList.contains('current')&&!AFG.still)afgDraw();
+  AFG.raf=requestAnimationFrame(afgLoop)}
+function afgDraw(){var R=AFG.R,cv=G('afgCv');if(!R||!cv)return;
+  if(G('afg3d').classList.contains('on')){cv.style.opacity='0';return}
+  cv.style.opacity='1';
+  var dpr=window.devicePixelRatio||1,W=cv.clientWidth*dpr,H=cv.clientHeight*dpr;if(!W)return;
+  if(cv.width!==W){cv.width=W;cv.height=H}
+  var g=cv.getContext('2d');g.clearRect(0,0,W,H);
+  R.rot+=.004;var ca=Math.cos(R.rot),sa=Math.sin(R.rot);
+  var pts=R.p.map(function(p){var x=p[0]*ca-p[2]*sa,z=p[0]*sa+p[2]*ca;return [x,p[1],z]});
+  var mx=1;pts.forEach(function(p){mx=Math.max(mx,Math.abs(p[0]),Math.abs(p[1]))});
+  var s=Math.min(W,H)*.42/mx,pl=AF_DATA.plddt[AFG.prot];
+  g.lineCap='round';g.lineJoin='round';
+  pts.forEach(function(p,i){if(!i)return;var q=pts[i-1];
+    g.strokeStyle=AFG.done?afCol(pl[i]):'#8A93A6';
+    g.lineWidth=Math.max(1.5,3.1*dpr*(1+ (p[2]/mx)*.25));
+    g.beginPath();g.moveTo(W/2+q[0]*s,H/2-q[1]*s);g.lineTo(W/2+p[0]*s,H/2-p[1]*s);g.stroke()})}
+
+/* ---------------- Sfida 2 · Retrosintesi: la tua strada contro quella dell'AI ----
+   Un puzzle di tagli, non una procedura di laboratorio: si decide DOVE spezzare la
+   molecola, come insegna la retrosintesi di Corey. Niente reagenti, niente condizioni.
+   Tutti i disegni sono SVG scritti a mano qui dentro: nessuna libreria da scaricare. */
+var PX={cuts:0,done:false,nodes:{},ai:false};
+/* l'albero: ogni nodo sa in cosa si spezza e quanto costa se lo si compra già pronto */
+var PX_T={
+ NIR:{n:'Nirmatrelvir',s:'il principio attivo del Paxlovid',w:499,buy:false,cut:'legame ammidico',
+      /* due modi di cominciare: uno taglia in mezzo, l'altro stacca un pezzo alla volta */
+      ways:[{id:'mid',n:'Taglia in mezzo',d:'due metà più o meno uguali',kids:['AMM','PRO2'],cuts:1},
+            {id:'end',n:'Stacca dalla punta',d:'un pezzo per volta, dalla testa',kids:['NITR','REST'],cuts:1}],
+      why:'La molecola è lunga: conviene spezzarla dove i pezzi si riattaccano più facilmente, cioè sui <b>legami ammidici</b>, gli stessi che tengono insieme le proteine.'},
+ AMM:{n:'Pezzo S1',s:'si incastra nella prima tasca',w:169,buy:false,kids:['NITR','LAT'],cut:'legame ammidico',cost:1,
+      why:'Anche questo pezzo si può dividere ancora: resta un legame ammidico da tagliare.'},
+ REST:{n:'Il resto della catena',s:'tutto tranne la punta',w:429,buy:false,kids:['LAT','PRO3'],cut:'legame ammidico',cost:1,
+      why:'Staccando un pezzo alla volta si arriva lo stesso in fondo, ma i pezzi che restano sono più grandi e più cari.'},
+ /* stessa parte rigida, ma tagliata peggio: resta un pezzo grosso da comprare, e costa di più */
+ PRO3:{n:'Blocco rigido intero',s:'la parte difficile, non divisa',w:330,buy:true,price:21,
+      why:'Comprato tutto intero costa più dei tre pezzi separati: tagliare meglio conviene.'},
+ NITR:{n:'Testa reattiva',s:'la punta che blocca l\'enzima',w:70,buy:true,price:3,
+      why:'È piccola e si compra già pronta: il ramo finisce qui.'},
+ LAT:{n:'Anello S1',s:'entra nella tasca più profonda',w:99,buy:true,price:5,
+      why:'Un anello semplice, disponibile in catalogo.'},
+ PRO2:{n:'Pezzo S2+S4',s:'la parte rigida con il cappuccio',w:330,buy:false,kids:['BIC','TLEU','CAP'],cut:'due legami ammidici',cost:2,
+      why:'Qui i tagli sono due e si fanno insieme: restano tre pezzi tutti acquistabili.'},
+ BIC:{n:'Anello doppio',s:'la parte rigida, tasca S2',w:141,buy:true,price:12,
+      why:'È il pezzo più caro: la sua forma rigida è difficile da costruire.'},
+ TLEU:{n:'Blocco centrale',s:'il raccordo fra le tasche',w:131,buy:true,price:4,
+      why:'Un mattoncino comune, molto economico.'},
+ CAP:{n:'Cappuccio finale',s:'chiude la molecola, tasca S4',w:114,buy:true,price:2,
+      why:'Il pezzo più semplice ed economico dei tre.'}};
+/* la strada dell'AI: più tagli, ma pezzi piccoli e più economici */
+var PX_AI={cuts:4,cost:26,way:'mid'};
+/* disegni: ogni molecola è uno scheletro di linee e vertici, in stile formula di struttura */
+var PX_SVG={
+ NIR:'<svg class="px-draw" viewBox="0 0 430 96" width="340" height="76" aria-label="Nirmatrelvir"><g fill="none" stroke="#151B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 62l20-12 20 12 20-12"/><path d="M74 50v-16"/><text x="74" y="30" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M94 62h18"/><text x="103" y="78" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text><path d="M112 62l20-12 20 12"/><path d="M152 62v16"/><path d="M172 50l20 12 20-12 20 12"/><circle cx="192" cy="62" r="13"/><path d="M232 62h18"/><text x="241" y="78" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text><path d="M250 62l20-12"/><path d="M270 50l16-10 16 10-16 10z"/><path d="M302 50l20 12"/><text x="322" y="78" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M322 62l20-12 20 12"/><path d="M362 50v-14"/><text x="362" y="30" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">F</text><path d="M382 62h22"/></g></svg>',
+ REST:'<svg class="px-draw" viewBox="0 0 310 96" width="250" height="76" aria-label="Il resto della catena"><g fill="none" stroke="#151B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="34" cy="58" r="15"/><path d="M34 43v-12"/><text x="34" y="28" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M49 58h18"/><text x="58" y="76" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text><path d="M67 58l18-10 18 10-18 10z"/><path d="M103 58l20 10"/><text x="123" y="84" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text><path d="M123 68l20-12 20 12"/><path d="M143 56v-16"/><text x="143" y="34" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M163 68h20"/><path d="M183 68l20-12 20 12"/><path d="M203 56v-14"/><text x="203" y="36" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M223 68h20"/><path d="M243 68l20-12 20 12"/><text x="296" y="62" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">F</text></g></svg>',
+ AMM:'<svg class="px-draw" viewBox="0 0 190 92" width="170" height="82" aria-label="Pezzo S1"><g fill="none" stroke="#151B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 58l20-12 20 12"/><path d="M34 46v-14"/><text x="34" y="27" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M54 58h16"/><text x="62" y="74" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text><path d="M70 58l20-12 20 12"/><circle cx="130" cy="52" r="15"/><path d="M110 58l10-4"/><path d="M90 46v-16"/><text x="90" y="25" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text></g></svg>',
+ PRO2:'<svg class="px-draw" viewBox="0 0 250 92" width="200" height="76" aria-label="Pezzo S2 e S4"><g fill="none" stroke="#151B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 54l18-10 18 10-18 10z"/><path d="M34 44v-12"/><path d="M52 54l20 12"/><text x="72" y="82" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text><path d="M72 66l20-12 20 12"/><path d="M92 54v-16"/><text x="92" y="32" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M112 66h18"/><path d="M130 66l20-12 20 12"/><path d="M150 54v-14"/><text x="150" y="34" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M170 66h20"/><path d="M190 66l20-12 20 12"/><text x="230" y="58" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">F</text></g></svg>',
+ NITR:'<svg class="px-draw" viewBox="0 0 120 80" width="110" height="72" aria-label="Testa reattiva"><g fill="none" stroke="#151B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 52l20-12 20 12 20-12"/><path d="M36 40v-14"/><text x="36" y="22" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text><path d="M76 40h22"/><path d="M80 34h18M80 46h18"/><text x="108" y="44" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text></g></svg>',
+ LAT:'<svg class="px-draw" viewBox="0 0 110 86" width="104" height="80" aria-label="Anello S1"><g fill="none" stroke="#151B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="52" cy="46" r="20"/><path d="M52 26v-12"/><text x="52" y="12" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M32 46H16"/><text x="12" y="50" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text><path d="M72 46h18"/></g></svg>',
+ PRO3:'<svg class="px-draw" viewBox="0 0 250 92" width="205" height="76" aria-label="Blocco rigido intero"><g fill="none" stroke="#151B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 54l18-10 18 10-18 10z"/><path d="M34 44v-12"/><path d="M52 54l20 12"/><text x="72" y="82" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text><path d="M72 66l20-12 20 12"/><path d="M92 54v-16"/><text x="92" y="32" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M112 66h18"/><path d="M130 66l20-12 20 12"/><path d="M150 54v-14"/><text x="150" y="34" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M170 66h20"/><path d="M190 66l20-12 20 12"/><text x="230" y="58" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">F</text></g></svg>',
+ BIC:'<svg class="px-draw" viewBox="0 0 130 86" width="116" height="78" aria-label="Anello doppio"><g fill="none" stroke="#151B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 50l20-14 20 14-20 14z"/><path d="M42 36l18-12 18 12-18 12z"/><path d="M62 50l22 10"/><text x="92" y="66" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text><path d="M42 36v-12M60 24v-10"/></g></svg>',
+ TLEU:'<svg class="px-draw" viewBox="0 0 120 80" width="108" height="72" aria-label="Blocco centrale"><g fill="none" stroke="#151B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 52l20-12 20 12 20-12"/><path d="M38 40v-14M24 30h28"/><path d="M58 52v14"/><text x="58" y="76" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text><path d="M78 40h20"/><text x="104" y="44" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text></g></svg>',
+ CAP:'<svg class="px-draw" viewBox="0 0 110 76" width="100" height="68" aria-label="Cappuccio finale"><g fill="none" stroke="#151B2C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 46l20-12 20 12"/><path d="M38 34v-14"/><text x="38" y="16" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M58 46l18 10M58 46l18-10M58 46h-2"/><text x="84" y="62" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">F</text><text x="84" y="34" font-size="11" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">F</text></g></svg>'};
+var PX_SCI='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4L8.12 15.88M14.47 14.48L20 20M8.12 8.12L12 12"/></svg>';
+function pxInit(){if(!G('pxTree'))return;pxReset()}
+/* chiede quale strada prendere: è qui che la sfida si decide */
+function pxAsk(id){var N=PX_T[id];
+  G('pxKick').textContent='Scegli la strada';
+  G('pxH').textContent='Da dove tagli?';
+  G('pxP').innerHTML='Ci sono <b>due modi</b> di spezzare questa molecola. Uno porta a meno tagli dell\'altro: prova a capire quale.';
+  G('pxSheet').innerHTML=N.ways.map(function(w){
+    return '<button class="afg-z" onclick="pxCut(\''+id+'\',\''+w.id+'\')">'+
+      '<b>'+w.n+'</b><span class="afg-rng"></span><span style="grid-column:1/3">'+w.d+'</span></button>'}).join('')}
+function pxReset(){PX={cuts:0,done:false,ai:false,open:{},way:{}};
+  G('pxAI').disabled=true;
+  G('pxKick').textContent='La tua strada';G('pxH').textContent='Taglia un legame';
+  G('pxP').innerHTML='Clicca una <b>forbice</b> per spezzare la molecola in due pezzi. Vai avanti finché ogni ramo finisce su un pezzo <b>verde</b>, che si compra già pronto.';
+  pxDraw();pxSheet()}
+/* i figli di un nodo: fissi, oppure quelli della strada scelta */
+function pxKids(id){var N=PX_T[id];if(N.buy)return [];
+  if(N.ways){var w=N.ways.filter(function(x){return x.id===PX.way[id]})[0];return w?w.kids:[]}
+  return N.kids||[]}
+/* un nodo è "aperto" quando è stato tagliato: mostra i figli al posto suo */
+function pxCut(id,way){var N=PX_T[id];if(!N||N.buy||PX.open[id])return;
+  if(N.ways&&!way){pxAsk(id);return}
+  if(way){PX.way[id]=way;
+    G('pxKick').textContent='La tua strada';G('pxH').textContent='Continua a tagliare';
+    G('pxP').innerHTML='Ogni ramo deve finire su un pezzo <b>verde</b>, che si compra già pronto. I pezzi grigi sono ancora troppo grandi.'}
+  PX.open[id]=true;PX.cuts+=(N.cost||1);
+  pxToast((N.cost||1)>1?(N.cost+' tagli insieme.'):'Taglio su un '+N.cut+'.');
+  pxDraw();pxSheet();
+  if(pxSolved()){PX.done=true;G('pxAI').disabled=false;
+    G('pxKick').textContent='Strada completata';G('pxH').textContent='Ogni ramo è verde.';
+    G('pxP').innerHTML='Hai smontato la molecola in <b>'+PX.cuts+' tagli</b>. Adesso guarda la strada che propone l\'AI e confrontala con la tua.'}}
+function pxSolved(){var ok=true;
+  (function walk(id){var N=PX_T[id];if(N.buy)return;
+    if(!PX.open[id]){ok=false;return}pxKids(id).forEach(walk)})('NIR');
+  return ok}
+function pxLeaves(){var out=[];
+  (function walk(id){var N=PX_T[id];
+    if(N.buy||!PX.open[id]){out.push(id);return}pxKids(id).forEach(walk)})('NIR');
+  return out}
+function pxDraw(){
+  var rows=[],level=['NIR'];
+  while(level.length){
+    rows.push(level.slice());
+    var nx=[];level.forEach(function(id){var N=PX_T[id];
+      if(!N.buy&&PX.open[id])pxKids(id).forEach(function(k){nx.push(k)})});
+    level=nx}
+  var html=rows.map(function(row,ri){
+    return (ri?'<div class="px-join"></div>':'')+'<div class="px-row">'+row.map(function(id){
+      var N=PX_T[id],cls='px-mol'+(N.buy?' buy':(PX.open[id]?' open':''));
+      var cut=(!N.buy&&!PX.open[id])?'<button class="px-cut px-pulse" aria-label="Taglia '+N.n+'" onclick="pxCut(\''+id+'\')">'+PX_SCI+'Taglia</button>':'';
+      return '<div class="'+cls+'">'+(PX_SVG[id]||'')+
+        '<span class="px-tag">'+N.n+'</span><span class="px-sub">'+(N.buy?'si compra · '+N.price+' €':N.s)+'</span>'+cut+'</div>'}).join('')+'</div>'}).join('');
+  G('pxTree').className='px-tree'+(rows.length===1?' solo':'');
+  G('pxTree').innerHTML=html;
+  G('pxScore').textContent=PX.cuts+(PX.cuts===1?' taglio':' tagli')}
+function pxSheet(){var lv=pxLeaves(),buyable=lv.filter(function(id){return PX_T[id].buy});
+  var cost=buyable.reduce(function(a,id){return a+PX_T[id].price},0);
+  var h='<div class="px-stat"><span>Tagli fatti</span><b>'+PX.cuts+'</b></div>'+
+        '<div class="px-stat"><span>Pezzi da comprare</span><b>'+buyable.length+' su '+lv.length+'</b></div>'+
+        '<div class="px-stat"><span>Costo dei pezzi</span><b>'+cost+' €</b></div>';
+  if(!PX.done){var open=lv.filter(function(id){return !PX_T[id].buy});
+    h+='<p class="px-note">'+(open.length?'Restano <b>'+open.length+'</b> pezzi troppo grandi: continua a tagliare.':'')+'</p>'}
+  if(PX.ai){
+    /* il confronto vero è sul costo: meno tagli non vuol dire strada migliore */
+    var win=cost<PX_AI.cost?'win':cost>PX_AI.cost?'lose':'tie';
+    h+='<div class="px-stat '+win+'"><span>La strada dell\'AI</span><b>'+PX_AI.cuts+' tagli · '+PX_AI.cost+' €</b></div>'+
+       '<p class="px-note">'+(
+        win==='tie'?'<b>Pareggio.</b> Hai trovato la stessa strada dell\'AI: quattro tagli, cinque pezzi piccoli, tutti economici.':
+        win==='lose'?'Hai fatto <b>meno tagli</b> ('+PX.cuts+' invece di '+PX_AI.cuts+'), ma ti costa <b>'+(cost-PX_AI.cost)+' € in più</b>: ti sei fermato prima e il pezzo grosso che resta va comprato già fatto, e si paga. <b>Meno passaggi non vuol dire strada migliore.</b>':
+        'La tua strada costa <b>'+(PX_AI.cost-cost)+' € in meno</b> di quella dell\'AI.')+'</p>';
+  }
+  G('pxSheet').innerHTML=h}
+function pxVsAI(){if(!PX.done||PX.ai)return;PX.ai=true;
+  G('pxAI').disabled=true;G('pxKick').textContent='Tu contro l\'AI';
+  G('pxH').textContent='Chi ha scelto meglio?';
+  G('pxP').innerHTML='I programmi di retrosintesi (come <b>AiZynthFinder</b>, gratuito e aperto) provano migliaia di strade e tengono la più corta. Hanno imparato <b>dai milioni di reazioni già pubblicate</b>: non inventano la chimica, riconoscono gli schemi che funzionano. La prova finale resta il laboratorio.';
+  pxSheet();pxToast('Strada dell\'AI: '+PX_AI.cuts+' tagli.')}
+function pxToast(t){var e=G('pxToast');if(!e)return;e.textContent=t;e.classList.add('on');
+  clearTimeout(PX.tt);PX.tt=setTimeout(function(){e.classList.remove('on')},2600)}
+
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM&&!ET_ROOM&&!NW_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit();afInit();rsInit();etInit();afgInit();pxInit()}
 if(G('ttPanel'))fdBoot();
 if(G('muTl'))hsInit();
 n4Init();
