@@ -2791,6 +2791,173 @@ html.vote #vtApp{padding-bottom:116px}
 .qz-qr img,.qz-qr canvas{width:min(calc(var(--u,12px)*30),58vh)!important;height:min(calc(var(--u,12px)*30),58vh)!important}
 @media (max-width:900px){.qz-body{grid-template-columns:1fr;justify-items:start}}
 
+/* ---- Prima parte del modulo 2: apertura, proteine, bersaglio, virus, Mpro, Paxlovid, laboratori ---- */
+.og-meta{margin:0;font:600 var(--t-small)/1.3 var(--ff-body);color:var(--ink-2)}
+
+/* apertura: tre colonne divise da filetti, niente riquadri */
+.og-cols{flex:1;min-height:0;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr)}
+.og-col{display:flex;flex-direction:column;gap:calc(var(--u,10px)*1.1);padding:calc(var(--u,10px)*1.6) calc(var(--u,10px)*2.4);border-left:1px solid var(--rule);cursor:pointer;min-height:0;transition:background-color .25s}
+.og-col:first-child{border-left:0;padding-left:0}
+.og-col:hover{background:rgba(255,255,255,.55)}
+.og-n{font:500 calc(var(--u,10px)*11)/.8 var(--ff-disp);letter-spacing:-.04em;color:var(--sc)}
+.og-col h3{margin:calc(var(--u,10px)*1.2) 0 0;font:500 var(--t-h)/1.05 var(--ff-disp);letter-spacing:-.015em;color:var(--ink)}
+.og-col>p{margin:0;font-size:var(--t-lead);line-height:1.45;color:var(--ink-2);max-width:24em}
+.og-col>p b{color:var(--ink)}
+.og-col ul{list-style:none;margin:auto 0 0;padding:0;border-top:1px solid var(--rule)}
+.og-col ul li{padding:calc(var(--u,10px)*.75) 0;border-bottom:1px solid var(--rule);font-size:var(--t-body);font-weight:600;color:var(--ink)}
+.og-d{display:flex;justify-content:space-between;align-items:center;font:600 var(--t-small)/1 var(--ff-body);color:var(--ink-2)}
+.og-d b{color:var(--sc);font-weight:700}
+
+/* proteine */
+.pr-view{padding:calc(var(--u,10px)*2)}
+.pr-aa{width:100%;height:100%;display:grid;grid-template-columns:repeat(5,1fr);grid-template-rows:repeat(4,1fr);gap:calc(var(--u,10px)*.7);padding-bottom:calc(var(--u,10px)*2.6)}
+.pr-aa button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.25em;border:1px solid var(--rule);border-radius:3px;background:#F7F8FA;font:inherit;color:var(--ink);cursor:pointer;transition:border-color .2s,background-color .2s}
+.pr-aa button b{font:500 calc(var(--u,10px)*3.2)/1 var(--ff-disp)}
+.pr-aa button span{font-size:var(--t-tiny);color:var(--ink-2)}
+.pr-aa button.h{background:#FDEBDD;border-color:#F3C9A6}
+.pr-aa button.h b{color:#B3550F}
+.pr-aa button:hover,.pr-aa button.on{border-color:var(--ink)}
+.pr-aa button.on{outline:2px solid var(--ink);outline-offset:1px}
+.pr-tool{position:absolute;top:calc(var(--u,10px)*1.2);left:calc(var(--u,10px)*1.2);right:calc(var(--u,10px)*1.2);display:flex;gap:.4em;flex-wrap:wrap;z-index:2}
+.pr-art{width:100%;height:100%;padding:calc(var(--u,10px)*3) 0}
+.pr-art text{font-family:'Source Sans 3',sans-serif}
+.pr-bond text{font-size:30px;font-weight:600;fill:#151B2C}
+.pr-bond .sm{font-size:22px;fill:#535A68}
+.pr-bond line{stroke:#151B2C;stroke-width:2.6}
+.pr-bond g{transition:transform 1s cubic-bezier(.6,0,.3,1),opacity .6s}
+.pr-bond .pr-oh text,.pr-bond .pr-hh text{fill:#C2410C}
+.pr-bond .pr-oh line,.pr-bond .pr-hh line{stroke:#C2410C}
+.pr-bond.j .pr-g2{transform:translateX(-165px)}
+.pr-bond.j .pr-all{transform:translateX(82px)}
+.pr-bond.j .pr-oh{transform:translate(50px,95px);opacity:0}
+.pr-bond.j .pr-hh{transform:translate(-60px,95px);opacity:0}
+.pr-bond .pr-wa,.pr-bond .pr-pep{opacity:0;transition:opacity .6s .8s}
+.pr-bond.j .pr-wa,.pr-bond.j .pr-pep{opacity:1}
+.pr-bond .pr-pep line{stroke:#0B8E36;stroke-width:5}
+.pr-bond .pr-pep text{fill:#0B8E36;font-size:22px;font-weight:700}
+.pr-bond .pr-wa text{fill:#C2410C;font-size:26px}
+.pr-lv path,.pr-lv circle,.pr-lv polygon{animation:prDraw .9s cubic-bezier(.5,0,.3,1) both}
+@keyframes prDraw{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.pr-lv text{font-size:20px;font-weight:700}
+
+/* bersaglio: chiave e serratura */
+.tg-view{padding:0}
+.tg-svg{width:100%;height:100%}
+.tg-svg text{font-family:'Source Sans 3',sans-serif}
+.tg-mol{transition:transform .85s cubic-bezier(.55,0,.3,1),opacity .35s}
+.tg-pk{fill:none;stroke:#8A94A6;stroke-width:3;stroke-linejoin:round;transition:stroke .3s}
+.tg-svg.fit .tg-pk{stroke:#0B8E36;stroke-width:4}
+.tg-svg.bad .tg-pk{stroke:#C62828}
+.tg-pick{display:grid;grid-template-columns:1fr 1fr;gap:.5em;min-height:0}
+.tg-opt{display:grid;grid-template-columns:auto 1fr auto;align-items:center;align-content:start;gap:.2em .7em;text-align:left;padding:.6em .8em;border:1px solid var(--border,#DCD7CB);border-radius:3px;background:#fff;cursor:pointer;font:inherit;color:var(--ink);transition:border-color .2s,background-color .2s}
+.tg-opt:hover:not(:disabled){border-color:var(--ink)}
+.tg-opt svg{width:calc(var(--u,10px)*3.4);height:calc(var(--u,10px)*3.4);min-width:2.2rem;min-height:2.2rem}
+.tg-opt b{font-size:var(--t-body)}
+.tg-opt span{grid-column:1/4;line-height:1.35;font-size:var(--t-small);color:var(--ink-2)}
+.tg-opt em{grid-column:3;grid-row:1;font-style:normal;font-weight:700;font-size:var(--t-small)}
+.tg-opt.fit{background:#EEF7F0;border-color:#0B8E36}.tg-opt.fit em{color:#0B8E36}
+.tg-opt.bad{background:#FBF0EF;border-color:#D9A39E}.tg-opt.bad em{color:#C62828}
+.tg-opt:disabled{cursor:default}
+
+/* virus: la cellula con le cinque tappe */
+.cv-view{padding:0;background:#fff}
+.cv-cell{position:absolute;left:8%;right:4%;top:13%;bottom:5%;border-radius:50%;border:2px solid #C9C3B6;background:#FBFAF7;box-shadow:inset 0 0 0 9px #fff,inset 0 0 0 10px #E6E2D8}
+.cv-nuc{position:absolute;left:44%;top:56%;width:20%;height:24%;border-radius:50%;border:1px dashed #D2CCC0;display:flex;align-items:center;justify-content:center;font-size:var(--t-tiny);color:#A8A294}
+.cv-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.cv-lines path{fill:none;stroke-width:3;stroke-linecap:round;transition:stroke .4s}
+.cv-st{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:.35em;border:0;background:none;padding:0;font:inherit;cursor:pointer;z-index:2}
+.cv-st i{width:calc(var(--u,10px)*4.4);height:calc(var(--u,10px)*4.4);min-width:2.4rem;min-height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font:500 calc(var(--u,10px)*2)/1 var(--ff-disp);font-style:normal;background:#fff;border:2px solid #C9C3B6;color:#A8A294;transition:background-color .35s,border-color .35s,color .35s}
+.cv-st b{font-size:var(--t-small);font-weight:700;color:#A8A294;white-space:nowrap;background:#FBFAF7;padding:0 .3em;transition:color .35s}
+.cv-st.done i{border-color:var(--ink);color:var(--ink)}
+.cv-st.done b,.cv-st.on b{color:var(--ink)}
+.cv-st.on i{background:var(--sc);border-color:var(--sc);color:#fff}
+.cv-st.blk i{background:#C62828;border-color:#C62828;color:#fff}
+.cv-st.blk b{color:#C62828}
+.cv-st.stop i{border-style:dashed;border-color:#D8D2C6;color:#C9C3B6;background:#fff}
+.cv-st.stop b{color:#C9C3B6;text-decoration:line-through}
+.cv-vir{position:absolute;width:calc(var(--u,10px)*6.5);min-width:3.4rem;aspect-ratio:1;transform:translate(-50%,-50%);color:var(--sc)}
+.cv-vir.out{transition:opacity .4s}
+.cv-vir.off{opacity:.15}
+.cv-poly{position:absolute;left:25%;top:84%;width:44%;display:flex;gap:2px;transform:translateY(-50%);transition:gap .6s}
+.cv-poly i{flex:1;height:calc(var(--u,10px)*1.1);min-height:7px;background:#C9C3B6;transition:background-color .4s,transform .6s}
+.cv-poly.on i{background:var(--ink)}
+.cv-poly.cut{gap:calc(var(--u,10px)*1.2)}
+.cv-poly.cut i{background:#0B8E36}
+.cv-poly.px i{background:#C62828}
+.cv-pl{position:absolute;left:25%;top:84%;transform:translateY(calc(-50% - calc(var(--u,10px)*2)));font-size:var(--t-tiny);font-weight:700;color:var(--ink-2)}
+.cv-pxb{align-self:flex-start;margin-top:auto}
+.cv-pxb.on{background:#C62828;border-color:#C62828;color:#fff}
+
+/* Mpro in 3D */
+.mp-view{padding:0;background:#0B1426;border-color:#0B1426}
+.mp-3d{position:absolute;inset:0}
+.mp-3d canvas{outline:none}
+.mp-tag{position:absolute;left:calc(var(--u,10px)*1.4);bottom:calc(var(--u,10px)*1.2);margin:0;font-size:var(--t-small);color:rgba(244,242,236,.72);pointer-events:none;z-index:2}
+.mp-tag b{color:#F4F2EC}
+.mp-tabs{list-style:none;margin:0 0 calc(var(--u,10px)*.6);padding:0;border-top:1px solid var(--rule)}
+.mp-tabs li{display:flex;align-items:center;gap:.8em;padding:calc(var(--u,10px)*.8) 0;border-bottom:1px solid var(--rule);cursor:pointer;font-size:var(--t-body);font-weight:600;color:var(--ink-2);transition:color .2s}
+.mp-tabs li i{font:500 calc(var(--u,10px)*1.7)/1 var(--ff-disp);font-style:normal;width:1.4em;color:#A8A294}
+.mp-tabs li:hover{color:var(--ink)}
+.mp-tabs li.on{color:var(--ink)}
+.mp-tabs li.on i{color:var(--sc)}
+.mp-tabs li .sw{margin-left:auto;width:.8em;height:.8em;border-radius:50%;flex:none}
+
+/* Paxlovid */
+.pl-view{padding:calc(var(--u,10px)*1.6)}
+.pl-svg{width:100%;height:100%}
+.pl-svg text{font-family:'Source Sans 3',sans-serif}
+.pl-cur{fill:none;stroke-width:4;stroke-linejoin:round;stroke-linecap:round;transition:opacity .4s}
+.pl-draw{stroke-dasharray:1;stroke-dashoffset:1;animation:plDraw 1.6s cubic-bezier(.4,0,.2,1) forwards}
+@keyframes plDraw{to{stroke-dashoffset:0}}
+.pl-two{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule);counter-reset:pl}
+.pl-two li{display:grid;grid-template-columns:auto 1fr;gap:.15em .8em;padding:calc(var(--u,10px)*.9) 0;border-bottom:1px solid var(--rule);counter-increment:pl}
+.pl-two li::before{content:counter(pl);grid-row:1/3;font:500 calc(var(--u,10px)*2.4)/1 var(--ff-disp);color:var(--sc)}
+.pl-two b{font-size:var(--t-body);color:var(--ink)}
+.pl-two span{font-size:var(--t-small);line-height:1.45;color:var(--ink-2)}
+.pl-two span b{font-size:inherit}
+.pl-sw{display:flex;border:1px solid var(--ink);border-radius:3px;overflow:hidden;align-self:flex-start}
+.pl-sw button{font:inherit;font-size:var(--t-small);font-weight:700;padding:.55em 1em;border:0;background:#fff;color:var(--ink);cursor:pointer}
+.pl-sw button+button{border-left:1px solid var(--ink)}
+.pl-sw button.on{background:var(--ink);color:#fff}
+
+/* laboratori */
+.lb-two{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:minmax(0,1fr)}
+.lb-half{display:flex;flex-direction:column;gap:calc(var(--u,10px)*.8);padding:calc(var(--u,10px)*1.4) calc(var(--u,10px)*3) calc(var(--u,10px)*1.4) 0;min-height:0}
+.lb-half+.lb-half{padding:calc(var(--u,10px)*1.4) 0 calc(var(--u,10px)*1.4) calc(var(--u,10px)*3);border-left:1px solid var(--rule)}
+.lb-k{margin:0;display:flex;align-items:center;gap:.6em;font-size:var(--t-body);font-weight:700;color:var(--sc)}
+.lb-k .ic{width:1.5em;height:1.5em}
+.lb-n{margin:0;font:500 calc(var(--u,10px)*5.2)/.95 var(--ff-disp);letter-spacing:-.03em;color:var(--ink);white-space:nowrap}
+.lb-n small{font-size:.36em;letter-spacing:0;color:var(--ink-2);margin-right:.35em}
+.lb-u{margin:0;font-size:var(--t-lead);line-height:1.35;color:var(--ink-2);max-width:22em}
+.lb-u b{color:var(--ink)}
+.lb-l{margin:auto 0 0;padding:0;list-style:none;counter-reset:lb;border-top:1px solid var(--rule)}
+.lb-l li{counter-increment:lb;position:relative;padding-left:1.6em!important;padding:calc(var(--u,10px)*.65) 0;border-bottom:1px solid var(--rule);font-size:var(--t-body);line-height:1.4;color:var(--ink-2)}
+.lb-l li::before{content:counter(lb);position:absolute;left:0;font:500 1.1em/1.25 var(--ff-disp);color:var(--sc)}
+.lb-l b{color:var(--ink)}
+.lb-fun{padding-top:calc(var(--u,10px)*1.2);border-top:2px solid var(--ink);display:flex;flex-direction:column;gap:calc(var(--u,10px)*.9)}
+.lb-fh{display:flex;align-items:center;justify-content:space-between;gap:1em}
+.lb-fh p{margin:0;font-size:var(--t-body);color:var(--ink-2)}
+.lb-fh p b{color:var(--ink)}
+.lb-st{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:calc(var(--u,10px)*.8)}
+.lb-st li{display:flex;flex-direction:column;gap:.3em;opacity:.35;transition:opacity .5s}
+.lb-st li.on{opacity:1}
+.lb-st li i{display:block;height:calc(var(--u,10px)*.7);min-height:5px;background:var(--c);transform-origin:left;transform:scaleX(var(--w));transition:transform .8s cubic-bezier(.5,0,.3,1)}
+.lb-st li:not(.on) i{transform:scaleX(0)}
+.lb-st li b{font:500 calc(var(--u,10px)*2.6)/1 var(--ff-disp);color:var(--ink)}
+.lb-st li span{font-size:var(--t-small);color:var(--ink-2);line-height:1.3}
+.lb-st li em{font-style:normal;font-size:var(--t-tiny);font-weight:700;color:var(--c)}
+
+@media (max-width:900px){
+  .og-cols,.lb-two{grid-template-columns:1fr;overflow:auto}
+  .og-col{border-left:0;border-top:1px solid var(--rule);padding:1rem 0}
+  .og-n{font-size:3.4rem}
+  .lb-half,.lb-half+.lb-half{padding:1rem 0;border-left:0}
+  .lb-half+.lb-half{border-top:1px solid var(--rule)}
+  .lb-st{grid-template-columns:1fr 1fr}
+  .pr-aa{grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(5,1fr)}
+  .tg-pick{grid-template-columns:1fr}
+}
+
 /* ---- Teoria (AlphaFold e retrosintesi): il palco si tocca ---- */
 .at-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(290px,.9fr);gap:clamp(1rem,2.4vw,2.4rem);align-items:stretch}
 .at-view{position:relative;min-height:0;overflow:hidden;border:1px solid var(--border,#DCD7CB);border-radius:4px;background:#fff;display:flex;align-items:center;justify-content:center;padding:clamp(.6rem,1.6vh,1.2rem)}
@@ -2911,6 +3078,117 @@ html.vote #vtApp{padding-bottom:116px}
     <p class="cv2-lead">Come si leggono DNA e proteine con il computer, e cosa cambia quando a farlo è l'intelligenza artificiale.</p>
   </div>
   <svg class="cv2-art" viewBox="68 80 574 750" preserveAspectRatio="xMaxYMax meet" aria-hidden="true"><defs><linearGradient id="cvG" gradientUnits="userSpaceOnUse" x1="80" y1="0" x2="640" y2="0"><stop offset="0" stop-color="#F9B233"/><stop offset="1" stop-color="#E61873"/></linearGradient></defs><g fill="none" stroke="url(#cvG)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path pathLength="1" style="--d:0ms" d="M140 830V560L80 500V300"/><path pathLength="1" style="--d:90ms" d="M190 830V520L150 480V230"/><path pathLength="1" style="--d:180ms" d="M240 830V480L220 460V170"/><path pathLength="1" style="--d:270ms" d="M290 830V430L290 430V100"/><path pathLength="1" style="--d:360ms" d="M340 830V470L360 450V150"/><path pathLength="1" style="--d:450ms" d="M390 830V510L430 470V220"/><path pathLength="1" style="--d:540ms" d="M440 830V550L500 490V290"/><path pathLength="1" style="--d:630ms" d="M490 830V600L570 520V370"/><path pathLength="1" style="--d:720ms" d="M540 830V650L630 560V450"/><circle style="--d:900ms" cx="80" cy="291" r="9"/><circle style="--d:990ms" cx="150" cy="221" r="9"/><circle style="--d:1080ms" cx="220" cy="161" r="9"/><circle style="--d:1170ms" cx="290" cy="91" r="9"/><circle style="--d:1260ms" cx="360" cy="141" r="9"/><circle style="--d:1350ms" cx="430" cy="211" r="9"/><circle style="--d:1440ms" cx="500" cy="281" r="9"/><circle style="--d:1530ms" cx="570" cy="361" r="9"/><circle style="--d:1620ms" cx="630" cy="441" r="9"/></g></svg>
+</section>
+
+<!-- APERTURA · di cosa ci occupiamo oggi -->
+<section class="slide darktext s-light ux" data-section="Apertura" id="sOG">
+  <header class="ux-hd"><div><p class="ux-kick">Apertura</p><h2 class="fz-h2">Di cosa ci occupiamo oggi</h2></div><p class="og-meta">Tre parti, con una pausa a metà</p></header>
+  <ol class="og-cols" id="ogGrid"></ol>
+</section>
+
+<!-- LE BASI · le proteine, dal mattone alla macchina -->
+<section class="slide darktext s-light ux" data-section="Le basi" id="sPR2">
+  <header class="ux-hd"><div><p class="ux-kick">Le basi</p><h2 class="fz-h2">Che cosa sono le proteine</h2></div></header>
+  <div class="dr-steps af-steps pr-steps" id="prSteps"></div>
+  <div class="at-stage">
+    <div class="at-view pr-view" id="prView"></div>
+    <div class="at-side">
+      <p class="dr-kick" id="prKick"></p>
+      <h3 class="dr-h at-h" id="prH"></h3>
+      <p class="dr-p at-p" id="prP"></p>
+      <p class="at-do" id="prDo"></p>
+      <div class="dr-nav"><button class="btn ghost" id="prPrev" onclick="prGo(PR.i-1)">← Indietro</button><button class="btn" id="prNext" onclick="prGo(PR.i+1)">Avanti →</button></div>
+    </div>
+  </div>
+  <p class="af-cr" id="prCr"></p>
+</section>
+
+<!-- LE BASI · il bersaglio dei farmaci: chiave e serratura -->
+<section class="slide darktext s-light ux" data-section="Le basi" id="sTG">
+  <header class="ux-hd"><div><p class="ux-kick">Le basi</p><h2 class="fz-h2">Il bersaglio dei farmaci</h2></div><p class="og-meta" id="tgScore"></p></header>
+  <div class="at-stage">
+    <div class="at-view tg-view" id="tgView"></div>
+    <div class="at-side">
+      <p class="dr-kick" id="tgKick">Prova tu</p>
+      <h3 class="dr-h at-h" id="tgH">Quale molecola entra?</h3>
+      <p class="dr-p at-p" id="tgP">La proteina ha una <b>tasca</b>, il sito attivo: è lì che fa il suo lavoro. Un farmaco funziona se <b>si incastra</b> nella tasca e la occupa. Scegli una molecola e guarda che cosa succede.</p>
+      <div class="tg-pick" id="tgPick"></div>
+      <div class="dr-nav"><button class="btn ghost" onclick="tgReset()">Ricomincia</button></div>
+    </div>
+  </div>
+  <p class="af-cr">Schema concettuale: la forma della tasca decide quale molecola si lega. È il principio «chiave e serratura» (Emil Fischer, 1894).</p>
+</section>
+
+<!-- IL CASO COVID · il ciclo del virus nella cellula -->
+<section class="slide darktext s-light ux" data-section="Il caso COVID" id="sCV">
+  <header class="ux-hd"><div><p class="ux-kick">Il caso COVID</p><h2 class="fz-h2">Come si moltiplica il virus</h2></div></header>
+  <div class="at-stage">
+    <div class="at-view cv-view" id="cvMap"></div>
+    <div class="at-side">
+      <p class="dr-kick" id="cvKick"></p>
+      <h3 class="dr-h at-h" id="cvH"></h3>
+      <p class="dr-p at-p" id="cvP"></p>
+      <p class="at-do" id="cvDo"></p>
+      <div class="dr-nav"><button class="btn ghost" id="cvPrev" onclick="cvGo(CVC.i-1)">← Indietro</button><button class="btn" id="cvNext" onclick="cvGo(CVC.i+1)">Avanti →</button></div>
+      <button class="btn ghost cv-pxb" id="cvPx" onclick="cvPax()">Aggiungi il Paxlovid</button>
+    </div>
+  </div>
+  <p class="af-cr">Schema semplificato del ciclo del SARS-CoV-2 dentro una cellula.</p>
+</section>
+
+<!-- IL CASO COVID · la Mpro in 3D (PDB 8H82) -->
+<section class="slide darktext s-light ux" data-section="Il caso COVID" id="sMP">
+  <header class="ux-hd"><div><p class="ux-kick">Il caso COVID</p><h2 class="fz-h2">Il nostro bersaglio: la Mpro</h2></div><p class="og-meta">Trascina per ruotare · rotella per lo zoom</p></header>
+  <div class="at-stage">
+    <div class="at-view mp-view"><div class="mp-3d" id="mp3d"></div><p class="mp-tag" id="mpTag"></p></div>
+    <div class="at-side">
+      <ol class="mp-tabs" id="mpTabs"></ol>
+      <h3 class="dr-h at-h" id="mpH"></h3>
+      <p class="dr-p at-p" id="mpP"></p>
+    </div>
+  </div>
+  <p class="af-cr">PDB 8H82: Mpro del SARS-CoV-2 (mutante E166V) con nirmatrelvir, raggi X a 1,93 Å. Dati RCSB Protein Data Bank. È la stessa struttura che aprirete in PyMOL.</p>
+</section>
+
+<!-- IL CASO COVID · la soluzione: Paxlovid -->
+<section class="slide darktext s-light ux" data-section="Il caso COVID" id="sPXL">
+  <header class="ux-hd"><div><p class="ux-kick">Il caso COVID</p><h2 class="fz-h2">La soluzione: il Paxlovid</h2></div></header>
+  <div class="at-stage">
+    <div class="at-view pl-view" id="plView"></div>
+    <div class="at-side">
+      <ol class="pl-two">
+        <li><b>Nirmatrelvir</b><span>Si incastra nella tasca della Mpro e si lega allo zolfo della Cys145 con un legame covalente <b>reversibile</b>. In 8H82 i due atomi distano 1,77 Å.</span></li>
+        <li><b>Ritonavir</b><span>Non tocca il virus. Rallenta il <b>CYP3A4</b>, l’enzima del fegato che smaltirebbe il nirmatrelvir in poche ore.</span></li>
+      </ol>
+      <div class="pl-sw" role="group" aria-label="Ritonavir"><button id="plOff" onclick="plSet(0)">Solo nirmatrelvir</button><button id="plOn" onclick="plSet(1)">Con ritonavir</button></div>
+      <p class="dr-p at-p" id="plP"></p>
+    </div>
+  </div>
+  <p class="af-cr">Schema qualitativo della concentrazione nel sangue, non dati clinici. Paxlovid (Pfizer): autorizzato in Europa a gennaio 2022.</p>
+</section>
+
+<!-- GLI STRUMENTI · c'è laboratorio e laboratorio -->
+<section class="slide darktext s-light ux" data-section="Gli strumenti" id="sLB">
+  <header class="ux-hd"><div><p class="ux-kick">Gli strumenti</p><h2 class="fz-h2">C’è laboratorio e laboratorio</h2></div></header>
+  <div class="lb-two">
+    <div class="lb-half">
+      <p class="lb-k"><svg class="ic" aria-hidden="true"><use href="#i-microscope"/></svg>In vitro · il bancone</p>
+      <p class="lb-n"><small>oltre</small>220.000</p>
+      <p class="lb-u">strutture <b>misurate</b> in cinquant’anni, raccolte nel Protein Data Bank</p>
+      <ol class="lb-l"><li>Si produce e si purifica la proteina.</li><li>Se ne fa un cristallo e lo si colpisce con i raggi X, o la si fotografa al crio-microscopio.</li><li>Servono mesi, a volte anni. Ma il risultato è una <b>misura</b>.</li></ol>
+    </div>
+    <div class="lb-half">
+      <p class="lb-k"><svg class="ic" aria-hidden="true"><use href="#i-server"/></svg>In silico · il computer</p>
+      <p class="lb-n"><small>oltre</small>200 milioni</p>
+      <p class="lb-u">strutture <b>previste</b> da AlphaFold, una per quasi ogni proteina conosciuta</p>
+      <ol class="lb-l"><li>Si parte dalla sola sequenza.</li><li>AlphaFold prevede la forma in pochi minuti.</li><li>Il virtual screening prova milioni di molecole sulla tasca. Il risultato è una <b>previsione</b>.</li></ol>
+    </div>
+  </div>
+  <div class="lb-fun">
+    <div class="lb-fh"><p><b>Dal milione all’uno.</b> Come lavorano insieme quando si cerca un farmaco.</p><button class="btn" id="lbGo" onclick="lbRun()">Avvia</button></div>
+    <ol class="lb-st" id="lbSt"></ol>
+  </div>
+  <p class="af-cr">Ordini di grandezza indicativi. Dati: RCSB PDB (strutture sperimentali), AlphaFold Protein Structure Database (EMBL-EBI e Google DeepMind).</p>
 </section>
 
 <!-- I CONTENUTI DEL MODULO VANNO QUI (prima e dopo la pausa) -->
@@ -5613,6 +5891,268 @@ function nwPoll(){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('ro
 function nwPhone(){document.documentElement.classList.add('vote','nwm');
   var go=function(){nmBadge();nwWait();if(!vtOn())return;nwPoll();setInterval(function(){if(!document.hidden)nwPoll()},3000)};
   if(!nmGet()||nmEditing())nmForm(NW_ROOM,go);else{nmRoster(NW_ROOM);go()}}
+/* ---------------- Prima parte: helper comune ---------------- */
+/* chiama fn ogni volta che la slide diventa quella corrente */
+function slShow(id,fn){var s=G(id);if(!s)return;var was=s.classList.contains('current');
+  new MutationObserver(function(){var on=s.classList.contains('current');if(on&&!was)setTimeout(fn,80);was=on}).observe(s,{attributes:true,attributeFilter:['class']});
+  if(was)setTimeout(fn,80)}
+function slGo(id){var a=[].slice.call(document.querySelectorAll('.slide')),i=a.indexOf(G(id));if(i>=0)location.hash='#'+(i+1)}
+
+/* ---------------- Apertura: le tre parti di oggi ---------------- */
+var OG_C=[
+ {n:'01',t:'Le proteine',d:'circa 45 minuti',go:'sPR2',p:'Come è fatta la macchina che fa funzionare le cellule, e perché la sua <b>forma</b> decide tutto.',
+  l:['Che cosa sono le proteine','Il bersaglio dei farmaci','Il virus e la sua forbice','Il Paxlovid']},
+ {n:'02',t:'L’AI che prevede',d:'circa 40 minuti',go:'sLB',p:'Come <b>AlphaFold</b> indovina la forma di una proteina in pochi minuti, e come dice quanto fidarsi.',
+  l:['Laboratorio e laboratorio','Il Protein Data Bank','AlphaFold: teoria e sfida','PyMOL, al computer']},
+ {n:'03',t:'Come nasce un farmaco',d:'circa 45 minuti',go:'sRT',p:'Dal bersaglio alla molecola: la <b>retrosintesi</b>, e dove l’AI aiuta davvero.',
+  l:['Retrosintesi: teoria e sfida','HIV e antidolorifici','Chi fa questi mestieri','Il quiz finale']}];
+function ogInit(){var g=G('ogGrid');if(!g)return;
+  g.innerHTML=OG_C.map(function(c){
+    return '<li class="og-col" onclick="slGo(\''+c.go+'\')"><span class="og-n">'+c.n+'</span><h3>'+c.t+'</h3><p>'+c.p+'</p>'+
+      '<ul>'+c.l.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul>'+
+      '<span class="og-d">'+c.d+'<b>Vai →</b></span></li>'}).join('')}
+
+/* ---------------- Le proteine: dal mattone alla macchina ---------------- */
+var PR={i:0,lv:1};
+var PR_S=[
+ {c:'#FF6B35',s:'I mattoni',k:'Passo 1 · Gli amminoacidi',h:'Venti mattoni, nient’altro',
+  p:'Tutte le proteine di tutti gli esseri viventi sono fatte con gli stessi <b>20 mattoni</b>, gli amminoacidi. Cambiano solo l’ordine e la lunghezza. È come l’alfabeto: con 21 lettere si scrive qualunque libro.',
+  d:'Clicca un mattone: alcuni stanno bene in acqua, altri la evitano.'},
+ {c:'#FF6B35',s:'La catena',k:'Passo 2 · Il legame peptidico',h:'Si attaccano in fila',
+  p:'Due amminoacidi si uniscono con un <b>legame peptidico</b> e intanto si libera una molecola d’acqua. Ripetendo si ottiene una catena: corta è un <b>peptide</b>, lunga centinaia di mattoni è una <b>proteina</b>. Il legame è sempre lo stesso: cambia solo l’ordine dei mattoni.',
+  d:'Premi «Unisci» e guarda formarsi il legame.'},
+ {c:'#FF6B35',s:'I livelli',k:'Passo 3 · I livelli di struttura',h:'Quattro livelli, uno dentro l’altro',
+  p:'La catena non resta stesa. <b>Primaria</b>: l’ordine dei mattoni. <b>Secondaria</b>: tratti che si avvolgono a elica o si affiancano a foglietto. <b>Terziaria</b>: tutta la catena si impacchetta in una forma 3D. <b>Quaternaria</b>: più catene lavorano insieme.',
+  d:'Sali di livello con i pulsanti sopra il disegno.'},
+ {c:'#FF6B35',s:'La macchina',k:'Passo 4 · A cosa serve',h:'La forma è la funzione',
+  p:'Una volta piegata, la proteina <b>lavora</b>: trasporta, taglia, costruisce, riconosce. E lavora in un punto preciso, una <b>tasca</b> fatta su misura per la molecola che deve trattare. Se cambia la forma, cambia il lavoro: per questo conoscerla vale tanto.',
+  d:'Nella prossima slide: che cosa entra nella tasca?'}];
+var PR_AA=[['G','Glicina',0],['A','Alanina',1],['V','Valina',1],['L','Leucina',1],['I','Isoleucina',1],
+ ['P','Prolina',1],['F','Fenilalanina',1],['W','Triptofano',1],['M','Metionina',1],['C','Cisteina',1,'Ricordatela: nella Mpro del virus è la Cys145, quella che taglia.'],
+ ['S','Serina',0],['T','Treonina',0],['Y','Tirosina',0],['N','Asparagina',0],['Q','Glutammina',0],
+ ['D','Acido aspartico',0],['E','Acido glutammico',0],['K','Lisina',0],['R','Arginina',0],['H','Istidina',0,'Anche lei tornerà: nella Mpro è la His41.']];
+function prInit(){if(!G('prSteps'))return;afSteps('prSteps',PR_S,'prGo');prGo(atDeep('ppasso',PR_S.length))}
+function prGo(i){if(i<0||i>=PR_S.length)return;PR.i=i;var s=PR_S[i];
+  afHead('prSteps',PR_S,i,'sPR2');
+  G('prKick').textContent=s.k;G('prH').textContent=s.h;G('prP').innerHTML=s.p;G('prDo').textContent=s.d||'';
+  G('prPrev').disabled=i===0;G('prNext').disabled=i===PR_S.length-1;
+  G('prCr').textContent=i===0?'I 20 amminoacidi standard, con nome e lettera. In arancione quelli idrofobici («evitano l’acqua»).':'Schemi concettuali, non in scala atomica.';
+  [prBricks,prBond,prLevels,prWork][i]()}
+function prBricks(){G('prView').innerHTML='<div class="pr-aa">'+PR_AA.map(function(a,k){
+    return '<button class="'+(a[2]?'h':'')+'" id="prA'+k+'" onclick="prAA('+k+')"><b>'+a[0]+'</b><span>'+a[1]+'</span></button>'}).join('')+'</div>'+
+  '<p class="at-cap" id="prCap">In <b style="color:#B3550F">arancione</b> quelli che evitano l’acqua: nella proteina finita stanno nascosti all’interno.</p>'}
+function prAA(k){var a=PR_AA[k];[].forEach.call(document.querySelectorAll('.pr-aa button'),function(b,j){b.classList.toggle('on',j===k)});
+  G('prCap').innerHTML='<b>'+a[0]+' · '+a[1]+'</b> — '+(a[2]?'evita l’acqua: finisce <b>dentro</b> la proteina.':'sta bene in acqua: resta <b>in superficie</b>.')+(a[3]?' '+a[3]:'')}
+function prAtom(x,t,cls){return '<text x="'+x+'" y="160" text-anchor="middle"'+(cls?' class="'+cls+'"':'')+'>'+t+'</text>'}
+function prBond(){var L=function(x1,x2,y1,y2){return '<line x1="'+x1+'" y1="'+(y1||150)+'" x2="'+x2+'" y2="'+(y2||150)+'"/>'};
+  var aa=function(cx,r){return prAtom(cx,'C')+L(cx,cx,124,100)+'<text x="'+cx+'" y="90" text-anchor="middle" class="sm">'+r+'</text>'+L(cx,cx,166,186)+'<text x="'+cx+'" y="210" text-anchor="middle" class="sm">H</text>'};
+  var co=function(cx){return prAtom(cx,'C')+'<line x1="'+(cx-4)+'" y1="166" x2="'+(cx-4)+'" y2="196"/><line x1="'+(cx+4)+'" y1="166" x2="'+(cx+4)+'" y2="196"/>'+prAtom(cx,'O').replace('y="160"','y="222"')};
+  G('prView').innerHTML='<div class="pr-tool"><button class="at-act" id="prJ" onclick="prJoin()">Unisci →</button></div>'+
+  '<svg class="pr-art pr-bond" id="prBond" viewBox="0 0 700 300" preserveAspectRatio="xMidYMid meet"><g class="pr-all">'+
+   '<g>'+prAtom(42,'H₂N')+L(70,94)+aa(112,'R₁')+L(130,162)+co(180)+L(198,230)+'</g>'+
+   '<g class="pr-oh">'+prAtom(258,'OH')+'</g>'+
+   '<g class="pr-g2"><g class="pr-hh">'+prAtom(365,'H')+L(380,398)+'</g>'+prAtom(415,'N')+L(415,415,166,186)+'<text x="415" y="210" text-anchor="middle" class="sm">H</text>'+
+     L(432,462)+aa(480,'R₂')+L(498,532)+co(550)+L(568,600)+prAtom(628,'OH')+'</g>'+
+   '<g class="pr-pep"><line x1="198" y1="150" x2="236" y2="150"/><text x="216" y="62" text-anchor="middle">legame peptidico</text><line x1="216" y1="70" x2="216" y2="132" style="stroke-width:1.5;stroke-dasharray:3 4"/></g>'+
+   '<g class="pr-wa"><text x="300" y="275" text-anchor="middle">+ H₂O</text></g>'+
+  '</g></svg><p class="at-cap" id="prCap">Due amminoacidi: R₁ e R₂ sono le parti che li rendono diversi. Il primo finisce con OH, il secondo comincia con H.</p>'}
+function prJoin(){var s=G('prBond'),on=!s.classList.contains('j');s.classList.toggle('j',on);
+  G('prJ').textContent=on?'← Separa':'Unisci →';
+  G('prCap').innerHTML=on?'Uniti dal <b>legame peptidico</b> (in verde). OH e H se ne vanno insieme: sono una molecola d’acqua.':'Due amminoacidi: R₁ e R₂ sono le parti che li rendono diversi. Il primo finisce con OH, il secondo comincia con H.'}
+var PR_L=[['Primaria','l’ordine dei mattoni, uno dopo l’altro. Qui l’inizio della catena dell’emoglobina.'],
+ ['Secondaria','tratti di catena che si avvolgono a elica (α) o si affiancano a foglietto (β).'],
+ ['Terziaria','eliche e foglietti si impacchettano in una sola forma 3D.'],
+ ['Quaternaria','più catene lavorano insieme. L’emoglobina ne ha quattro, due α e due β.']];
+function prLevels(){
+  G('prView').innerHTML='<div class="pr-tool">'+PR_L.map(function(l,k){return '<button class="at-act'+(PR.lv===k+1?' on':'')+'" onclick="PR.lv='+(k+1)+';prLevels()">'+(k+1)+' · '+l[0]+'</button>'}).join('')+'</div>'+
+   '<svg class="pr-art pr-lv" viewBox="0 0 640 360" preserveAspectRatio="xMidYMid meet">'+prLvArt(PR.lv)+'</svg>'+
+   '<p class="at-cap"><b>'+PR_L[PR.lv-1][0]+'</b>: '+PR_L[PR.lv-1][1]+'</p>'}
+function prHelix(x0,len,y0,r,amp,turns,col,w){var d='';for(var k=0;k<=240;k++){var t=k/240,a=2*Math.PI*turns*t;
+    d+=(k?'L':'M')+(x0+len*t+r*Math.cos(a)).toFixed(1)+' '+(y0+amp*Math.sin(a)).toFixed(1)}
+  return '<path d="'+d+'" fill="none" stroke="'+col+'" stroke-width="'+w+'" stroke-linecap="round" stroke-linejoin="round"/>'}
+function prArrow(x1,x2,y,h,col){var dir=x2>x1?1:-1,hx=x2-dir*34;
+  return '<polygon points="'+[[x1,y-h],[hx,y-h],[hx,y-h*2],[x2,y],[hx,y+h*2],[hx,y+h],[x1,y+h]].map(function(p){return p.join(',')}).join(' ')+'" fill="'+col+'" stroke="'+col+'" stroke-width="2" stroke-linejoin="round"/>'}
+function prLvArt(n){var S='',ink='#151B2C';
+  if(n===1){var seq='MVLSPADKTNVK',pts=[];for(var k=0;k<12;k++)pts.push([72+k*45,180+22*Math.sin(k*.9)]);
+    S+='<path d="M'+pts.map(function(p){return p[0]+' '+p[1].toFixed(1)}).join(' L')+'" fill="none" stroke="#C9C3B6" stroke-width="4"/>';
+    pts.forEach(function(p,k){S+='<circle cx="'+p[0]+'" cy="'+p[1].toFixed(1)+'" r="19" fill="'+('VLAF'.indexOf(seq[k])>=0?'#FDEBDD':'#EEF1F6')+'" stroke="#8A94A6" stroke-width="2" style="animation-delay:'+(k*40)+'ms"/>'+
+      '<text x="'+p[0]+'" y="'+(p[1]+7).toFixed(1)+'" text-anchor="middle" fill="'+ink+'">'+seq[k]+'</text>'})}
+  if(n===2){S+=prHelix(70,230,175,24,64,5,'#662483',6)+
+    prArrow(360,590,110,11,'#0F70B7')+prArrow(590,360,175,11,'#0F70B7')+prArrow(360,590,240,11,'#0F70B7')+
+    '<path d="M590 110 C 625 110, 625 175, 590 175 M360 175 C 325 175, 325 240, 360 240" fill="none" stroke="#0F70B7" stroke-width="4"/>'+
+    '<text x="185" y="300" text-anchor="middle" fill="#662483">α elica</text><text x="475" y="300" text-anchor="middle" fill="#0F70B7">foglietto β</text>'}
+  if(n===3){S+='<ellipse cx="320" cy="180" rx="250" ry="150" fill="#F4F5F8" stroke="#DCD7CB" stroke-width="2"/>'+
+    '<path d="M120 240 C 90 180, 110 120, 150 118 M335 118 C 390 122, 330 170, 300 172 M470 172 C 505 172, 505 212, 470 212 M300 212 C 265 212, 265 252, 300 252 M470 252 C 520 252, 520 300, 440 305" fill="none" stroke="'+ink+'" stroke-width="3" stroke-linecap="round"/>'+
+    prHelix(150,180,118,15,40,4,'#662483',5)+prArrow(300,470,172,9,'#0F70B7')+prArrow(470,300,212,9,'#0F70B7')+prArrow(300,470,252,9,'#0F70B7')+
+    '<text x="320" y="352" text-anchor="middle" fill="'+ink+'">una sola catena, piegata</text>'}
+  if(n===4){[[215,120,'#0F70B7','α'],[425,120,'#662483','β'],[215,245,'#662483','β'],[425,245,'#0F70B7','α']].forEach(function(b,k){
+      S+='<ellipse cx="'+b[0]+'" cy="'+b[1]+'" rx="102" ry="60" fill="'+b[2]+'" fill-opacity=".12" stroke="'+b[2]+'" stroke-width="3" style="animation-delay:'+(k*90)+'ms"/>'+
+        prHelix(b[0]-60,90,b[1]-8,9,22,3,b[2],3.5)+
+        '<polygon points="'+(b[0]+48)+','+(b[1]+8)+' '+(b[0]+60)+','+(b[1]-4)+' '+(b[0]+72)+','+(b[1]+8)+' '+(b[0]+60)+','+(b[1]+20)+'" fill="#C62828"/>'+
+        '<text x="'+(b[0]-6)+'" y="'+(b[1]+44)+'" text-anchor="middle" fill="'+b[2]+'">'+b[3]+'</text>'});
+    S+='<text x="320" y="350" text-anchor="middle" fill="#C62828" style="font-size:17px">in rosso il gruppo eme, che lega l’ossigeno</text>'}
+  return S}
+function prWork(){G('prView').innerHTML=tgSvg('','')+
+  '<p class="at-cap">Ogni proteina ha la sua <b>tasca</b>, il sito attivo. Nella prossima slide: che cosa ci entra?</p>';
+  G('prView').querySelector('.tg-pk').style.stroke='#FF6B35'}
+
+/* ---------------- Il bersaglio: chiave e serratura ---------------- */
+var TG={done:{},busy:false};
+var TG_POCKET='M240 158 L256 252 L286 252 L286 222 L314 222 L314 252 L344 252 L360 158';
+var TG_M=[
+ {id:'ok',n:'Molecola A',d:'ha la forma della tasca, al contrario',fit:true,end:0,
+  art:'<path d="M232 128 L368 128 L368 158 L358 158 L343 250 L315 250 L315 220 L285 220 L285 250 L257 250 L242 158 L232 158 Z"/>'},
+ {id:'big',n:'Molecola B',d:'grande e squadrata',fit:false,end:0,why:'Troppo grande: resta appoggiata fuori dalla tasca.',
+  art:'<path d="M200 78 L400 78 L400 156 L200 156 Z"/>'},
+ {id:'sml',n:'Molecola C',d:'piccola e tonda',fit:false,end:0,away:true,why:'Troppo piccola: entra ma non tocca le pareti, e se ne va.',
+  art:'<circle cx="271" cy="237" r="13"/>'},
+ {id:'shp',n:'Molecola D',d:'giusta di misura, con una punta sotto',fit:false,end:-62,why:'La punta sbatte contro il fondo: non arriva a incastrarsi.',
+  art:'<path d="M232 128 L368 128 L368 158 L358 158 L343 250 L315 250 L315 282 L285 282 L285 250 L257 250 L242 158 L232 158 Z"/>'}];
+function tgSvg(cls,mol){
+  return '<svg class="tg-svg '+cls+'" viewBox="0 0 600 470" preserveAspectRatio="xMidYMid meet">'+
+   '<path d="M70 410 C40 330 50 210 140 175 C175 162 210 158 240 158 L256 252 L286 252 L286 222 L314 222 L314 252 L344 252 L360 158 C400 158 440 160 470 175 C555 215 565 330 530 410 Z" fill="#EEF1F6" stroke="#8A94A6" stroke-width="3" stroke-linejoin="round"/>'+
+   '<path class="tg-pk" d="'+TG_POCKET+'"/>'+
+   '<line x1="352" y1="196" x2="440" y2="96" stroke="#8A94A6" stroke-width="1.5"/><text x="446" y="92" font-size="19" font-weight="700" fill="#535A68">sito attivo</text>'+
+   '<text x="300" y="340" text-anchor="middle" font-size="22" font-weight="700" fill="#8A94A6">la proteina</text>'+
+   (mol||'')+'</svg>'}
+function tgInit(){if(!G('tgPick'))return;tgReset()}
+function tgReset(){TG={done:{},busy:false};G('tgView').innerHTML=tgSvg('','')+'<p class="at-cap" id="tgCap">Scegli una molecola a destra.</p>';tgPick();
+  G('tgKick').textContent='Prova tu';G('tgH').textContent='Quale molecola entra?';
+  G('tgP').innerHTML='La proteina ha una <b>tasca</b>, il sito attivo: è lì che fa il suo lavoro. Un farmaco funziona se <b>si incastra</b> nella tasca e la occupa. Scegli una molecola e guarda che cosa succede.'}
+function tgPick(){var n=Object.keys(TG.done).length;
+  G('tgPick').innerHTML=TG_M.map(function(m){var st=TG.done[m.id];
+    return '<button class="tg-opt'+(st?(m.fit?' fit':' bad'):'')+'"'+(st||TG.busy?' disabled':'')+' onclick="tgTry(\''+m.id+'\')">'+
+     '<svg viewBox="190 68 220 224" aria-hidden="true"><g fill="#F4D03F" stroke="#151B2C" stroke-width="5" stroke-linejoin="round">'+m.art+'</g></svg>'+
+     '<b>'+m.n+'</b>'+(st?'<em>'+(m.fit?'entra':'non entra')+'</em>':'')+'<span>'+(st&&!m.fit?m.why:m.d)+'</span></button>'}).join('');
+  G('tgScore').textContent=TG.done.ok?(n===1?'Trovata al primo colpo':'Trovata in '+n+' tentativi'):(n?n+' di 4 provate':'')}
+function tgTry(id){if(TG.busy||TG.done[id])return;var m=TG_M.filter(function(x){return x.id===id})[0];TG.busy=true;tgPick();
+  G('tgView').innerHTML=tgSvg('','<g class="tg-mol" id="tgMol" style="transform:translateY(-300px);opacity:0"><g fill="#F4D03F" stroke="#9A7B00" stroke-width="3" stroke-linejoin="round">'+m.art+'</g></g>')+'<p class="at-cap" id="tgCap">…</p>';
+  var g=G('tgMol');g.getBoundingClientRect();
+  requestAnimationFrame(function(){g.style.transform='translateY('+m.end+'px)';g.style.opacity=1});
+  var done=function(){TG.done[id]=1;TG.busy=false;var s=G('tgView').querySelector('.tg-svg');s.classList.add(m.fit?'fit':'bad');tgPick();
+    G('tgCap').innerHTML=m.fit?'<b style="color:#0B8E36">Incastrata.</b> La tasca è occupata: la proteina non può più lavorare.':m.why;
+    if(m.fit){G('tgKick').textContent='Trovata';G('tgH').textContent='Questa si incastra.';
+      G('tgP').innerHTML='Solo una molecola con la <b>forma complementare</b> alla tasca ci entra e ci resta. Trovarla è, in una frase, il mestiere di chi progetta farmaci. E per farlo <b>bisogna conoscere la forma della tasca</b>: per questo la struttura 3D di una proteina vale tanto.'}};
+  setTimeout(function(){if(m.away){g.style.transition='transform 1s cubic-bezier(.5,0,.6,1),opacity .8s .3s';g.style.transform='translateY(-260px)';g.style.opacity=0;setTimeout(done,1000)}else done()},950)}
+
+/* ---------------- Il ciclo del virus nella cellula ---------------- */
+var CVC={i:0,px:false};
+var CVC_S=[
+ {k:'Passo 1 di 5',h:'Il virus entra',p:'Il SARS-CoV-2 si aggancia alla cellula con le sue punte, attraverso il recettore <b>ACE2</b>, e ci rilascia dentro il suo <b>RNA</b>: le istruzioni per costruire altri virus.'},
+ {k:'Passo 2 di 5',h:'Una catena gigante',p:'La cellula legge quell’RNA come se fosse suo e produce una <b>catena unica lunghissima</b>, la poliproteina. Così com’è non serve a niente: va tagliata nei pezzi giusti.'},
+ {k:'Passo 3 di 5',h:'La forbice del virus',p:'Qui entra in scena la <b>Mpro</b>, la proteasi principale: è la <b>forbice molecolare</b> che taglia la catena in pezzi che funzionano. Senza questo taglio il virus non va avanti. <b>È il nostro bersaglio.</b>'},
+ {k:'Passo 4 di 5',h:'Si costruiscono le copie',p:'Tra i pezzi tagliati c’è la macchina che <b>copia l’RNA</b>. Il virus moltiplica le sue istruzioni e costruisce tutte le parti dei nuovi virus.'},
+ {k:'Passo 5 di 5',h:'Escono i nuovi virus',p:'Le parti si assemblano in nuovi virus, che escono dalla cellula e ne infettano altre. <b>Se si blocca il passo 3 si ferma tutto</b>: è quello che fa il Paxlovid.'}];
+var CV_P=[[21,27,'Entra'],[27,62,'Catena lunga'],[50,40,'Mpro taglia'],[70,64,'Copie'],[83,27,'Escono']];
+var CV_SEG=['M10 12 L21 27','M21 27 C20 45 22 58 27 62','M27 62 C34 68 42 42 50 40','M50 40 C58 38 62 66 70 64','M70 64 C80 62 86 44 83 27','M83 27 L93 10'];
+function cvVirus(x,y,cls){var s='<svg class="cv-vir '+(cls||'')+'" style="left:'+x+'%;top:'+y+'%" viewBox="0 0 48 48" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">';
+  for(var k=0;k<10;k++){var a=k*Math.PI/5,c=Math.cos(a),n=Math.sin(a);
+    s+='<line x1="'+(24+13*c).toFixed(1)+'" y1="'+(24+13*n).toFixed(1)+'" x2="'+(24+19*c).toFixed(1)+'" y2="'+(24+19*n).toFixed(1)+'"/><circle cx="'+(24+20.5*c).toFixed(1)+'" cy="'+(24+20.5*n).toFixed(1)+'" r="2" fill="currentColor"/>'}
+  return s+'<circle cx="24" cy="24" r="12" fill="#fff"/><path d="M17 24c2-4 5 4 7 0s5 4 7 0"/></g></svg>'}
+function cvInit2(){if(!G('cvMap'))return;cvGo(0)}
+function cvGo(i){if(i<0||i>=CVC_S.length)return;CVC.i=i;var s=CVC_S[i];
+  G('cvKick').textContent=s.k;G('cvH').textContent=s.h;G('cvP').innerHTML=s.p;
+  G('cvPrev').disabled=i===0;G('cvNext').disabled=i===CVC_S.length-1;cvDraw2()}
+function cvPax(){CVC.px=!CVC.px;var b=G('cvPx');b.classList.toggle('on',CVC.px);b.textContent=CVC.px?'Togli il Paxlovid':'Aggiungi il Paxlovid';cvDraw2()}
+function cvDraw2(){var i=CVC.i,px=CVC.px;
+  var h='<div class="cv-cell"></div><svg class="cv-lines" viewBox="0 0 100 100" preserveAspectRatio="none">'+
+   CV_SEG.map(function(d,k){var on=k===0||k<=i||(k===5&&i>=4),dead=px&&k>=3;
+     return '<path d="'+d+'" vector-effect="non-scaling-stroke" stroke="'+(dead?'#E9C4C0':(on?'#151B2C':'#E6E2D8'))+'"'+(dead?' stroke-dasharray="6 6"':'')+'/>'}).join('')+'</svg>'+
+   cvVirus(9,11,'')+cvVirus(94,9,'out'+(i>=4&&!px?'':' off'))+cvVirus(88,4,'out'+(i>=4&&!px?'':' off'));
+  CV_P.forEach(function(p,k){var cls=k===i?'on':(k<i?'done':'');if(px&&k===2)cls='blk';if(px&&k>2)cls='stop';
+    h+='<button class="cv-st '+cls+'" style="left:'+p[0]+'%;top:'+p[1]+'%" onclick="cvGo('+k+')"><i>'+(k+1)+'</i><b>'+(px&&k===2?'Mpro bloccata':p[2])+'</b></button>'});
+  if(i>=1){var cut=i>=2&&!px,blk=i>=2&&px;
+    h+='<p class="cv-pl">'+(blk?'con il Paxlovid la catena resta intera e non funziona':(cut?'la catena tagliata in pezzi che funzionano':'la poliproteina: una catena unica'))+'</p>'+
+      '<div class="cv-poly on'+(cut?' cut':'')+(blk?' px':'')+'">'+'<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>'+'</div>'}
+  G('cvMap').innerHTML=h;
+  G('cvDo').innerHTML='<span>'+(px?'<b>Con il Paxlovid</b> la forbice è bloccata: niente pezzi, niente copie, niente nuovi virus.':(i>=2?'Ora prova «Aggiungi il Paxlovid».':'Clicca le tappe o usa Avanti.'))+'</span>'}
+
+/* ---------------- La Mpro in 3D (PDB 8H82) ---------------- */
+var MP={i:0,v:null,busy:false};
+var MP_V=[
+ {t:'La proteina',sw:'#7FA7D9',h:'Una forbice di 306 mattoni',tag:'<b>Mpro</b> · una catena di 306 amminoacidi',
+  p:'La Mpro, la <b>proteasi principale</b> del virus, è una sola catena di 306 amminoacidi, qui disegnata a nastri. Il suo lavoro è tagliare la catena lunga del passo 2 in <b>11 punti</b> precisi. Nella cellula lavora in coppia, due copie unite: qui ne vedete una.'},
+ {t:'Il sito attivo',sw:'#F28C28',h:'I due amminoacidi che tagliano',tag:'<b>His41</b> e <b>Cys145</b> · la diade catalitica',
+  p:'Il taglio lo fanno due amminoacidi della tasca: l’<b>istidina 41</b> e la <b>cisteina 145</b>. La cisteina attacca la catena da tagliare con il suo atomo di zolfo; l’istidina la aiuta. Gli stessi colori dei comandi PyMOL: arancione la cisteina, magenta l’istidina.'},
+ {t:'Il farmaco',sw:'#F4D03F',h:'Il nirmatrelvir nella tasca',tag:'<b>Nirmatrelvir</b> · in grigio i residui entro 5 Å',
+  p:'In giallo il <b>nirmatrelvir</b>, il principio attivo del Paxlovid: occupa il posto della catena da tagliare ed è legato alla Cys145. In grigio i residui a meno di <b>5 Å</b> dal farmaco, quelli che lo tengono fermo. In questa struttura il residuo 166 è mutato (E166V): è una mutazione studiata perché rende il virus meno sensibile al farmaco.'},
+ {t:'La superficie',sw:'#DCE3EE',h:'La tasca vista da fuori',tag:'Superficie della proteina · farmaco in giallo',
+  p:'Con la <b>superficie</b> si vede la forma vera della tasca e il farmaco che ci sta dentro, come la chiave nella serratura della slide sul bersaglio. In PyMOL la otterrete con <b>show surface</b>.'}];
+function mpInit(){if(!G('mpTabs'))return;
+  G('mpTabs').innerHTML=MP_V.map(function(m,k){return '<li onclick="mpGo('+k+')"><i>'+(k+1)+'</i>'+m.t+'<span class="sw" style="background:'+m.sw+'"></span></li>'}).join('');
+  mpText(0);slShow('sMP',mpBoot)}
+function mpText(i){[].forEach.call(document.querySelectorAll('#mpTabs li'),function(li,k){li.classList.toggle('on',k===i)});
+  var m=MP_V[i];G('mpH').textContent=m.h;G('mpP').innerHTML=m.p;G('mpTag').innerHTML=m.tag}
+function mpBoot(){if(MP.v){MP.v.resize();MP.v.render();return}if(MP.busy)return;MP.busy=true;
+  var n=0,dead=false,fail=function(){if(dead)return;dead=true;
+    G('mp3d').innerHTML='<p style="color:#F4F2EC;padding:2em;margin:0">Il modello 3D non si è caricato: serve la connessione a internet. In PyMOL la stessa struttura si apre con <b>fetch 8H82</b>.</p>'};
+  var go=function(){if(++n<2||dead)return;if(!window.$3Dmol||!window.MP_DATA)return fail();
+    MP.v=$3Dmol.createViewer(G('mp3d'),{backgroundColor:'#0B1426',antialias:true});MP.v.addModel(MP_DATA.pdb,'pdb');mpGo(MP.i,true)};
+  if(window.MP_DATA)go();else afLoadScript('img/mp/mp-data.js',go,fail);
+  if(window.$3Dmol)go();else afLoadScript('https://cdnjs.cloudflare.com/ajax/libs/3Dmol/2.5.5/3Dmol-min.js',go,fail)}
+function mpGo(i,first){MP.i=i;mpText(i);var v=MP.v;if(!v)return;
+  var P={hetflag:false},D={resn:'4WI'},C={resn:'CYS',resi:145},H={resn:'HIS',resi:41},ms=first?0:900;
+  var lab=function(t,sel,bg,fg){v.addLabel(t,{font:'Source Sans 3',fontSize:20,fontColor:fg||'#fff',backgroundColor:bg,backgroundOpacity:.95,borderThickness:0,inFront:true,alignment:'center'},sel)};
+  v.removeAllSurfaces();v.removeAllLabels();
+  if(i===0){v.setStyle(P,{cartoon:{color:'#7FA7D9'}});v.setStyle(D,{});v.zoomTo(P,ms)}
+  if(i===1){v.setStyle(P,{cartoon:{color:'#5D7396',opacity:.75}});v.setStyle(D,{});
+    v.addStyle(C,{stick:{colorscheme:'orangeCarbon',radius:.3}});v.addStyle(H,{stick:{colorscheme:'magentaCarbon',radius:.3}});
+    lab('Cys145',{resi:145,atom:'SG'},'#F28C28','#151B2C');lab('His41',{resi:41,atom:'NE2'},'#C2185B');
+    v.zoomTo({within:{distance:10,sel:{resi:[41,145]}}},ms)}
+  if(i===2){v.setStyle(P,{cartoon:{color:'#5D7396',opacity:.55}});
+    v.addStyle({byres:true,within:{distance:5,sel:D},hetflag:false},{stick:{colorscheme:'grayCarbon',radius:.14}});
+    v.addStyle(C,{stick:{colorscheme:'orangeCarbon',radius:.24}});v.setStyle(D,{stick:{colorscheme:'yellowCarbon',radius:.3}});
+    lab('nirmatrelvir',D,'#F4D03F','#151B2C');lab('Cys145',{resi:145,atom:'SG'},'#F28C28','#151B2C');
+    v.zoomTo({within:{distance:7,sel:D}},ms)}
+  if(i===3){v.setStyle(P,{cartoon:{color:'#5D7396'}});v.setStyle(D,{stick:{colorscheme:'yellowCarbon',radius:.32}});
+    v.addSurface($3Dmol.SurfaceType.VDW,{opacity:.94,color:'#DCE3EE'},P);
+    v.zoomTo({within:{distance:18,sel:D}},ms)}
+  v.render()}
+
+/* ---------------- Paxlovid: quanto resta il farmaco nel sangue ---------------- */
+var PL={on:1};
+function plInit(){if(!G('plView'))return;plSet(1,true);slShow('sPXL',function(){plDraw(true)})}
+function plSet(on,quiet){PL.on=on;G('plOn').classList.toggle('on',!!on);G('plOff').classList.toggle('on',!on);
+  G('plP').innerHTML=on?'<b>Con il ritonavir</b> il nirmatrelvir resta sopra il livello utile per tutte le 12 ore, fino alla compressa successiva. Per lo stesso motivo il ritonavir rallenta anche altri farmaci: il medico controlla sempre che cosa prende il paziente.':
+    '<b>Senza ritonavir</b> il fegato smaltisce il nirmatrelvir in fretta: dopo poche ore scende sotto il livello utile, e per il resto della giornata il virus torna a moltiplicarsi.';
+  if(!quiet)plDraw(true)}
+function plCurve(ke){var ka=1.5,pts=[];for(var k=0;k<=240;k++){var t=k/10,c=0;
+    [0,12].forEach(function(d){if(t>=d)c+=ka/(ka-ke)*(Math.exp(-ke*(t-d))-Math.exp(-ka*(t-d)))});pts.push([t,c])}return pts}
+function plDraw(anim){var X0=70,X1=610,Y0=40,Y1=320,top=1.12,thr=.22;
+  var x=function(t){return X0+(X1-X0)*t/24},y=function(c){return Y1-(Y1-Y0)*c/top};
+  var path=function(pts){return 'M'+pts.map(function(p){return x(p[0]).toFixed(1)+' '+y(p[1]).toFixed(1)}).join(' L')};
+  var on=plCurve(Math.LN2/6),off=plCurve(Math.LN2/2),cur=PL.on?on:off,col=PL.on?'#0B8E36':'#C2410C',ghost=PL.on?off:on;
+  var low='';if(!PL.on){var seg=[];cur.forEach(function(p){if(p[1]<thr)seg.push(p);else if(seg.length){low+=plLow(seg,x,y,thr);seg=[]}});if(seg.length)low+=plLow(seg,x,y,thr)}
+  var s='<svg class="pl-svg" viewBox="0 0 640 380" preserveAspectRatio="xMidYMid meet">'+
+   '<line x1="'+X0+'" y1="'+Y1+'" x2="'+X1+'" y2="'+Y1+'" stroke="#151B2C" stroke-width="1.5"/><line x1="'+X0+'" y1="'+Y0+'" x2="'+X0+'" y2="'+Y1+'" stroke="#151B2C" stroke-width="1.5"/>'+
+   [0,6,12,18,24].map(function(t){return '<line x1="'+x(t)+'" y1="'+Y1+'" x2="'+x(t)+'" y2="'+(Y1+6)+'" stroke="#151B2C"/><text x="'+x(t)+'" y="'+(Y1+26)+'" text-anchor="middle" font-size="16" fill="#535A68">'+t+' h</text>'}).join('')+
+   '<text x="'+X0+'" y="'+(Y0-14)+'" font-size="16" font-weight="700" fill="#535A68">nirmatrelvir nel sangue</text>'+
+   low+
+   '<line x1="'+X0+'" y1="'+y(thr)+'" x2="'+X1+'" y2="'+y(thr)+'" stroke="#151B2C" stroke-width="1.5" stroke-dasharray="6 6"/>'+
+   '<text x="'+(X1-4)+'" y="'+(y(thr)-8)+'" text-anchor="end" font-size="15" font-weight="700" fill="#151B2C">livello che ferma il virus</text>'+
+   '<path d="'+path(ghost)+'" fill="none" stroke="#C9C3B6" stroke-width="2.5" stroke-dasharray="2 6" stroke-linecap="round"/>'+
+   '<path class="pl-cur'+(anim?' pl-draw':'')+'" pathLength="1" d="'+path(cur)+'" stroke="'+col+'"/>'+
+   [0,12].map(function(t){return '<g><path d="M'+x(t)+' '+(Y1+34)+' l0 -10" stroke="#151B2C" stroke-width="2"/><rect x="'+(x(t)-14)+'" y="'+(Y1+34)+'" width="28" height="12" rx="6" fill="#151B2C"/></g>'}).join('')+
+   '<text x="'+(x(0)+22)+'" y="'+(Y1+46)+'" font-size="14" fill="#535A68">compressa</text><text x="'+(x(12)+22)+'" y="'+(Y1+46)+'" font-size="14" fill="#535A68">compressa</text>'+
+   '</svg>';
+  G('plView').innerHTML=s}
+function plLow(seg,x,y,thr){return '<path d="M'+x(seg[0][0]).toFixed(1)+' '+y(thr).toFixed(1)+' L'+seg.map(function(p){return x(p[0]).toFixed(1)+' '+y(p[1]).toFixed(1)}).join(' L')+' L'+x(seg[seg.length-1][0]).toFixed(1)+' '+y(thr).toFixed(1)+' Z" fill="#C2410C" fill-opacity=".14"/>'}
+
+/* ---------------- Laboratorio e laboratorio: dal milione all'uno ---------------- */
+var LB_S=[
+ {n:'1.000.000',t:'molecole provate sulla tasca, al computer',e:'in silico',c:'#662483',w:1},
+ {n:'10.000',t:'le più promettenti, simulate con più precisione',e:'in silico',c:'#662483',w:.8},
+ {n:'100',t:'sintetizzate e provate in provetta',e:'in vitro',c:'#0B8E36',w:.6},
+ {n:'10',t:'provate su cellule e su modelli animali',e:'in vitro e in vivo',c:'#0B8E36',w:.4},
+ {n:'1',t:'candidato che arriva agli studi clinici',e:'sull’uomo',c:'#151B2C',w:.2}];
+var LB={t:[]};
+function lbInit(){if(!G('lbSt'))return;
+  G('lbSt').innerHTML=LB_S.map(function(s){return '<li style="--c:'+s.c+';--w:'+s.w+'"><i></i><em>'+s.e+'</em><b>'+s.n+'</b><span>'+s.t+'</span></li>'}).join('')}
+function lbRun(){LB.t.forEach(clearTimeout);LB.t=[];var li=document.querySelectorAll('#lbSt li');
+  [].forEach.call(li,function(e){e.classList.remove('on')});
+  [].forEach.call(li,function(e,k){LB.t.push(setTimeout(function(){e.classList.add('on')},250+k*650))});
+  G('lbGo').textContent='Rivedi'}
+
 /* ---------------- Teoria · AlphaFold: sei passi, ognuno si tocca ----------------
    Tutto con i dati già nel repository: sequenze, allineamenti, strutture, punteggi. */
 var AT={i:0,ready:false,sel:null,lib:false,v3:null,fold:0};
@@ -6141,7 +6681,7 @@ function pxVsAI(){if(!PX.done||PX.ai)return;PX.ai=true;
 function pxToast(t){var e=G('pxToast');if(!e)return;e.textContent=t;e.classList.add('on');
   clearTimeout(PX.tt);PX.tt=setTimeout(function(){e.classList.remove('on')},2600)}
 
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM&&!ET_ROOM&&!NW_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit();afInit();rsInit();etInit();atInit();afgInit();rtInit();pxInit()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM&&!ET_ROOM&&!NW_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit();afInit();rsInit();etInit();ogInit();prInit();tgInit();cvInit2();mpInit();plInit();lbInit();atInit();afgInit();rtInit();pxInit()}
 if(G('ttPanel'))fdBoot();
 if(G('muTl'))hsInit();
 n4Init();
