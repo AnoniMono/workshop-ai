@@ -2791,6 +2791,43 @@ html.vote #vtApp{padding-bottom:116px}
 .qz-qr img,.qz-qr canvas{width:min(calc(var(--u,12px)*30),58vh)!important;height:min(calc(var(--u,12px)*30),58vh)!important}
 @media (max-width:900px){.qz-body{grid-template-columns:1fr;justify-items:start}}
 
+/* ---- Teoria (AlphaFold e retrosintesi): il palco si tocca ---- */
+.at-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(290px,.9fr);gap:clamp(1rem,2.4vw,2.4rem);align-items:stretch}
+.at-view{position:relative;min-height:0;overflow:hidden;border:1px solid var(--border,#DCD7CB);border-radius:4px;background:#fff;display:flex;align-items:center;justify-content:center;padding:clamp(.6rem,1.6vh,1.2rem)}
+.at-side{display:flex;flex-direction:column;gap:clamp(.4rem,1.1vh,.8rem);min-width:0;min-height:0}
+.at-h{font-size:clamp(1.35rem,2.5vw,2rem)}
+.at-p{font-size:clamp(.92rem,1.3vw,1.08rem);overflow:auto;min-height:0}
+.at-do{margin:0;font-size:.88rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:.5em}
+.at-do::before{content:'';width:.6em;height:.6em;border-radius:50%;background:var(--sc,var(--orange,#FF6B35));flex:none}
+.at-do:empty{display:none}
+/* la catena di amminoacidi: lettere che si possono toccare */
+.at-chain{display:flex;flex-wrap:wrap;gap:.22em;justify-content:center;align-content:center;max-height:100%;overflow:auto;padding:.2em;font-size:clamp(1rem,1.9vw,1.6rem)}
+.at-aa{width:1.55em;height:1.55em;display:flex;align-items:center;justify-content:center;border-radius:3px;font-family:var(--ff-mono,ui-monospace,Consolas,monospace);font-size:.52em;font-weight:700;background:#EEF1F6;color:var(--navy);cursor:pointer;border:1px solid transparent;transition:transform .15s,background-color .2s,border-color .2s}
+.at-aa:hover{transform:scale(1.18);border-color:var(--navy);z-index:2}
+.at-aa.water{background:#FDE3CE;color:#B3550F}
+.at-aa.pair{background:#0B8E36;color:#fff}
+.at-aa.on{outline:2px solid var(--navy);outline-offset:1px}
+.at-cap{position:absolute;left:.7em;bottom:.7em;right:.7em;margin:0;font-size:.76rem;color:var(--gray);text-align:center;pointer-events:none}
+/* tabella coppie che cambiano insieme */
+.at-msa{border-collapse:collapse;font-family:var(--ff-mono,ui-monospace,Consolas,monospace);font-size:clamp(.55rem,.95vw,.78rem)}
+.at-msa th{font-family:var(--ff-body);font-weight:700;color:var(--gray);padding:.15em .4em;text-align:left;white-space:nowrap}
+.at-msa td{width:1.5em;height:1.5em;text-align:center;color:var(--navy);border:1px solid #EDEFF3}
+.at-msa td.hit{background:#0B8E36;color:#fff;font-weight:700}
+.at-msa td.dim{opacity:.33}
+/* i bottoni che fanno succedere qualcosa dentro il palco */
+.at-acts{display:flex;flex-wrap:wrap;gap:.4em}
+.at-act{font:inherit;font-size:.84rem;font-weight:700;padding:.34em .9em;border-radius:999px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer;transition:background-color .18s,color .18s}
+.at-act:hover,.at-act.on{background:var(--navy);color:#fff}
+/* l'albero della retrosintesi che si apre da solo */
+.at-tree{display:flex;flex-direction:column;align-items:center;gap:.45rem;width:100%;overflow:auto;max-height:100%}
+.at-node{padding:.4em .8em;border:1px solid var(--border,#DCD7CB);border-radius:4px;background:#fff;font-size:.84rem;font-weight:700;color:var(--navy);text-align:center;transition:border-color .3s,background-color .3s,opacity .4s}
+.at-node.buy{border-color:#0B8E36;background:#F3FAF5;color:#0B8E36}
+.at-node.dead{border-style:dashed;color:var(--gray);opacity:.5}
+.at-node.pick{border-color:var(--navy);box-shadow:0 0 0 3px rgba(21,27,44,.08)}
+.at-lvl{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:center}
+.at-grow{width:1px;height:.8rem;background:#C9C3B6}
+@media (max-width:900px){.at-stage{grid-template-columns:1fr;grid-template-rows:minmax(170px,32vh) auto}}
+
 /* ---- Sfida AlphaFold: indovina dove l'AI è sicura ---- */
 .afg-stage{flex:1;min-height:0;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(300px,.95fr);gap:clamp(1rem,2.4vw,2.4rem);align-items:stretch}
 .afg-view{position:relative;min-height:0;border-radius:4px;overflow:hidden;background:#0B1426}
@@ -2878,6 +2915,23 @@ html.vote #vtApp{padding-bottom:116px}
 
 <!-- I CONTENUTI DEL MODULO VANNO QUI (prima e dopo la pausa) -->
 
+<!-- TEORIA · ALPHAFOLD: sei passi, ognuno si tocca -->
+<section class="slide darktext s-light ux" data-section="AlphaFold" id="sAT">
+  <header class="ux-hd"><div><p class="ux-kick">AlphaFold</p><h2 class="fz-h2">Come fa l'AI a indovinare la forma</h2></div></header>
+  <div class="dr-steps af-steps" id="atSteps"></div>
+  <div class="at-stage">
+    <div class="at-view" id="atView"></div>
+    <div class="at-side">
+      <p class="dr-kick" id="atKick"></p>
+      <h3 class="dr-h at-h" id="atH"></h3>
+      <p class="dr-p at-p" id="atP"></p>
+      <p class="at-do" id="atDo"></p>
+      <div class="dr-nav"><button class="btn ghost" id="atPrev" onclick="atGo(AT.i-1)">← Indietro</button><button class="btn" id="atNext" onclick="atGo(AT.i+1)">Avanti →</button></div>
+    </div>
+  </div>
+  <p class="af-cr" id="atCr"></p>
+</section>
+
 <!-- SFIDA 1 · ALPHAFOLD: indovina dove l'AI è sicura di sé -->
 <section class="slide darktext s-light ux" data-section="Sfida AlphaFold" id="sAFG">
   <header class="ux-hd"><div><p class="ux-kick">Sfida · AlphaFold</p><h2 class="fz-h2">Dove l'AI è sicura di sé?</h2></div><p class="afg-score" id="afgScore"></p></header>
@@ -2897,6 +2951,23 @@ html.vote #vtApp{padding-bottom:116px}
     </div>
   </div>
   <p class="af-cr">Struttura e punteggi veri: AlphaFold DB (EMBL-EBI e Google DeepMind), CC BY 4.0 · proteina p53, UniProt P04637</p>
+</section>
+
+<!-- TEORIA · RETROSINTESI: cinque passi, ognuno si tocca -->
+<section class="slide darktext s-light ux" data-section="Retrosintesi" id="sRT">
+  <header class="ux-hd"><div><p class="ux-kick">Retrosintesi</p><h2 class="fz-h2">Leggere la ricetta dalla fine</h2></div></header>
+  <div class="dr-steps rs-steps" id="rtSteps"></div>
+  <div class="at-stage">
+    <div class="at-view" id="rtView"></div>
+    <div class="at-side">
+      <p class="dr-kick" id="rtKick"></p>
+      <h3 class="dr-h at-h" id="rtH"></h3>
+      <p class="dr-p at-p" id="rtP"></p>
+      <p class="at-do" id="rtDo"></p>
+      <div class="dr-nav"><button class="btn ghost" id="rtPrev" onclick="rtGo(RT.i-1)">← Indietro</button><button class="btn" id="rtNext" onclick="rtGo(RT.i+1)">Avanti →</button></div>
+    </div>
+  </div>
+  <p class="af-cr" id="rtCr"></p>
 </section>
 
 <!-- SFIDA 2 · RETROSINTESI: la tua strada contro quella dell'AI -->
@@ -5542,6 +5613,177 @@ function nwPoll(){vtSb(function(sb){sb.from('vote_rooms').select('state').eq('ro
 function nwPhone(){document.documentElement.classList.add('vote','nwm');
   var go=function(){nmBadge();nwWait();if(!vtOn())return;nwPoll();setInterval(function(){if(!document.hidden)nwPoll()},3000)};
   if(!nmGet()||nmEditing())nmForm(NW_ROOM,go);else{nmRoster(NW_ROOM);go()}}
+/* ---------------- Teoria · AlphaFold: sei passi, ognuno si tocca ----------------
+   Tutto con i dati già nel repository: sequenze, allineamenti, strutture, punteggi. */
+var AT={i:0,ready:false,sel:null,lib:false,v3:null,fold:0};
+var AT_S=[
+ {c:'#8A94A6',s:'La catena',k:'Passo 1 · Che cos\'è una proteina',h:'Una collana di 20 perline',
+  p:'Le proteine fanno quasi tutto nelle cellule: portano l\'ossigeno, digeriscono il cibo, combattono i virus. Ognuna è una <b>catena di amminoacidi</b>: esistono 20 tipi, e ognuno si scrive con una lettera. Questa è l\'<b>emoglobina</b> vera, 142 lettere.',
+  d:'Passa il dito su una lettera: ti dice che amminoacido è.'},
+ {c:'#8A94A6',s:'Il ripiegamento',k:'Passo 2 · Il problema',h:'La forma decide tutto',
+  p:'Una catena stesa non serve a niente. Per funzionare si <b>ripiega</b> in una forma 3D precisa, e <b>è la forma che decide cosa fa</b>: la tasca dove entra l\'ossigeno, il punto dove agisce un farmaco. Nel 1961 <b>Anfinsen</b> mostrò che la forma è già scritta nella sequenza: srotolò una proteina e lei si ripiegò da sola, identica.',
+  d:'Premi «Ripiega» e guarda la catena chiudersi nella forma vera.'},
+ {c:'#FF6B35',s:'Troppe forme',k:'Passo 3 · Perché era difficile',h:'Più forme che atomi nell\'universo',
+  p:'Nel 1969 <b>Levinthal</b> fece un conto: se una proteina provasse una per una tutte le forme possibili, ci metterebbe più dell\'<b>età dell\'universo</b>. Invece si ripiega in una frazione di secondo. Provarle tutte, cioè la forza bruta, qui non funziona. Per 50 anni la forma si è scoperta in laboratorio: mesi di lavoro e costi altissimi per una sola proteina.',
+  d:'Muovi il cursore: ogni snodo in più moltiplica le forme possibili.'},
+ {c:'#FF6B35',s:'L\'indizio',k:'Passo 4 · L\'idea che cambia tutto',h:'L\'evoluzione ha già risposto',
+  p:'La stessa proteina esiste in migliaia di specie, con sequenze un po\' diverse. Allineandole si scopre che <b>certe coppie di posizioni cambiano sempre insieme</b>. Perché? Se nella forma ripiegata quei due punti <b>si toccano</b>, quando uno cambia l\'altro deve adattarsi, altrimenti la proteina non funziona più. Coppie che cambiano insieme = punti vicini nello spazio.',
+  d:'Clicca una colonna: si accendono le posizioni che cambiano con lei.'},
+ {c:'#2ECC71',s:'La rete',k:'Passo 5 · Come è fatta',h:'Parente stretta di ChatGPT',
+  p:'AlphaFold usa l\'<b>attenzione</b>, lo stesso meccanismo dei modelli che scrivono testo: lì ogni parola guarda tutte le altre, qui <b>ogni amminoacido guarda tutti gli altri</b>. È stata allenata sulle circa 170.000 strutture vere della Protein Data Bank, correggendosi finché le previsioni non coincidevano con la realtà. Poi rimette il risultato dentro di sé e lo rifinisce, tre volte.',
+  d:'Premi i tre giri di rifinitura e guarda la sicurezza salire.'},
+ {c:'#2ECC71',s:'Il risultato',k:'Passo 6 · Cosa è successo',h:'Da 200.000 a 214 milioni',
+  p:'Nel 2020 ad AlphaFold 2 bastarono <b>pochi minuti</b> per previsioni precise quanto un esperimento. Nel 2021 le previsioni diventano pubbliche e gratuite: nel 2022 l\'archivio arriva a <b>oltre 214 milioni di strutture</b>, contro le 200.000 ottenute in cinquant\'anni di laboratorio. Nel <b>2024</b> il Nobel per la chimica va a Hassabis e Jumper per AlphaFold, e a David Baker che fa il passo inverso: <b>progettare</b> proteine nuove.',
+  d:'Confronta i due archivi: laboratorio contro AI.'}];
+/* ?passo=N apre direttamente il passo N: comodo per riprendere la lezione */
+function atDeep(key,max){try{var v=+new URLSearchParams(location.search).get(key);
+  return (v>=1&&v<=max)?v-1:0}catch(e){return 0}}
+function atInit(){if(!G('atSteps'))return;
+  afSteps('atSteps',AT_S,'atGo');
+  G('atView').innerHTML='<p class="px-note">Carico i dati…</p>';
+  afLoadScript('img/af/af-data.js',function(){AT.ready=true;atGo(atDeep('passo',AT_S.length))},
+    function(){G('atView').innerHTML='<p class="px-note">Non trovo i dati (img/af/af-data.js).</p>'})}
+function atGo(i){if(!AT.ready||i<0||i>=AT_S.length)return;AT.i=i;var s=AT_S[i];
+  afHead('atSteps',AT_S,i,'sAT');
+  G('atKick').textContent=s.k;G('atH').textContent=s.h;G('atP').innerHTML=s.p;G('atDo').textContent=s.d||'';
+  G('atPrev').disabled=i===0;G('atNext').disabled=i===AT_S.length-1;
+  G('atCr').textContent=
+    (i===0||i===1)?'Sequenza e struttura vere dell\'emoglobina umana (UniProt P69905, AlphaFold DB CC BY 4.0)':
+    (i===2)?'Il conto di Levinthal: 3 orientamenti per snodo, 10¹³ tentativi al secondo. Ordini di grandezza, non misure.':
+    (i===3)?'Allineamento di sequenze vere (UniProt); le coppie evidenziate sono quelle della slide del modulo 1.':
+    (i===4)?'Punteggi pLDDT veri (AlphaFold DB, CC BY 4.0); i giri di rifinitura sono una ricostruzione didattica.':
+    'Numeri pubblici: Protein Data Bank e AlphaFold DB (EMBL-EBI), 2022.';
+  AT.sel=null;atStage()}
+function atStage(){var v=G('atView'),i=AT.i;
+  if(i===0||i===1)return atChain();
+  if(i===2)return atLevinthal();
+  if(i===3)return atPairs();
+  if(i===4)return atRefine();
+  return atArchive()}
+/* passo 1-2: la catena vera, lettera per lettera */
+var AT_NAMES={A:'Alanina',R:'Arginina',N:'Asparagina',D:'Acido aspartico',C:'Cisteina',E:'Acido glutammico',Q:'Glutammina',G:'Glicina',H:'Istidina',I:'Isoleucina',L:'Leucina',K:'Lisina',M:'Metionina',F:'Fenilalanina',P:'Prolina',S:'Serina',T:'Treonina',W:'Triptofano',Y:'Tirosina',V:'Valina'};
+function atChain(){var seq=AF_DATA.seq.P69905,v=G('atView');
+  var html='<div class="at-chain">'+seq.split('').map(function(a,k){
+    var wet='AVLIMFWC'.indexOf(a)>=0?' water':'';
+    return '<span class="at-aa'+wet+'" data-k="'+k+'" onmouseenter="atAA('+k+')" onclick="atAA('+k+')">'+a+'</span>'}).join('')+'</div>'+
+    '<p class="at-cap" id="atCap">'+(AT.i===1?'In arancione gli amminoacidi che «odiano» l\'acqua: nella forma finale finiscono nascosti all\'interno.':'142 amminoacidi, uno dopo l\'altro.')+'</p>';
+  if(AT.i===1)html+='<div class="at-acts" style="position:absolute;top:.7em;left:.7em"><button class="at-act" onclick="atFold()">Ripiega →</button></div>';
+  v.innerHTML=html;
+  if(AT.i===1&&AT.folded)atFold()}
+function atAA(k){var seq=AF_DATA.seq.P69905,a=seq[k],c=G('atCap');if(!c)return;
+  c.textContent=(k+1)+'ª lettera: '+a+' · '+(AT_NAMES[a]||'?')+('AVLIMFWC'.indexOf(a)>=0?' — odia l\'acqua, finisce all\'interno':' — sta volentieri in acqua, resta in superficie')}
+/* il ripiegamento vero: la catena di CA si chiude nella forma reale */
+function atFold(){AT.folded=true;var v=G('atView');
+  v.innerHTML='<canvas id="atCv" style="position:absolute;inset:0;width:100%;height:100%"></canvas>'+
+   '<p class="at-cap">La stessa catena, ripiegata nella forma vera dell\'emoglobina. La forma è <b>già scritta</b> nella sequenza.</p>'+
+   '<div class="at-acts" style="position:absolute;top:.7em;left:.7em"><button class="at-act" onclick="AT.folded=false;atChain()">← Srotola</button></div>';
+  atFoldDraw(performance.now())}
+function atFoldDraw(t0){var cv=G('atCv');if(!cv)return;
+  var P=afCA?afCA('P69905'):null;if(!P)return;
+  var dpr=window.devicePixelRatio||1;
+  var step=function(now){
+    if(!G('atCv'))return;
+    var f=Math.min(1,(now-t0)/2200);
+    var W=cv.clientWidth*dpr,H=cv.clientHeight*dpr;if(cv.width!==W){cv.width=W;cv.height=H}
+    var g=cv.getContext('2d');g.clearRect(0,0,W,H);
+    var rot=now/2600,ca=Math.cos(rot),sa=Math.sin(rot);
+    var mx=1,pts=P.map(function(p,k){
+      /* da catena stesa (f=0) a forma vera (f=1) */
+      var line=[(k-P.length/2)*1.25,0,0];
+      var x=line[0]+(p[0]-line[0])*f,y=line[1]+(p[1]-line[1])*f,z=line[2]+(p[2]-line[2])*f;
+      var rx=x*ca-z*sa,rz=x*sa+z*ca;mx=Math.max(mx,Math.abs(rx),Math.abs(y));return [rx,y,rz]});
+    var s=Math.min(W,H)*.42/mx;g.lineCap='round';g.lineJoin='round';
+    pts.forEach(function(p,k){if(!k)return;var q=pts[k-1];
+      g.strokeStyle='AVLIMFWC'.indexOf(AF_DATA.seq.P69905[k])>=0?'#E8701A':'#5BA7D9';
+      g.lineWidth=Math.max(1.4,3*dpr);
+      g.beginPath();g.moveTo(W/2+q[0]*s,H/2-q[1]*s);g.lineTo(W/2+p[0]*s,H/2-p[1]*s);g.stroke()});
+    requestAnimationFrame(step)};
+  requestAnimationFrame(step)}
+/* passo 3: quante forme? il cursore mostra l'esplosione */
+function atLevinthal(){G('atView').innerHTML=
+  '<div style="text-align:center;width:100%;max-width:34em">'+
+  '<p style="margin:0 0 .6em;font-size:.9rem;color:var(--gray)">Amminoacidi nella catena: <b id="atN" style="color:var(--navy);font-size:1.1rem">10</b></p>'+
+  '<input type="range" min="2" max="142" value="10" id="atR" oninput="atLev()" style="width:100%">'+
+  '<p style="margin:.9em 0 .2em;font-family:var(--ff-head);font-weight:800;font-size:clamp(1.3rem,3.2vw,2.3rem);color:var(--navy);line-height:1.1" id="atForms">59.049 forme</p>'+
+  '<p style="margin:0;font-size:.9rem;color:var(--gray)" id="atTime">una frazione di secondo per provarle tutte</p></div>'+
+  '<p class="at-cap">Ogni snodo in più <b>moltiplica</b> le possibilità: è il paradosso di Levinthal.</p>';
+  atLev()}
+function atLev(){var n=+G('atR').value;G('atN').textContent=n;
+  /* 3 orientamenti per snodo, il conto classico di Levinthal */
+  var log10=(n-1)*Math.log10(3);
+  G('atForms').innerHTML=log10<15?Math.round(Math.pow(10,log10)).toLocaleString('it-IT')+' forme':'10<sup>'+Math.round(log10)+'</sup> forme';
+  /* a 10^13 tentativi al secondo */
+  var sec=Math.pow(10,log10-13),txt;
+  if(sec<1)txt='una frazione di secondo per provarle tutte';
+  else if(sec<3600)txt=Math.round(sec)+' secondi per provarle tutte';
+  else if(sec<3.15e7)txt=Math.round(sec/86400)+' giorni per provarle tutte';
+  else{var y=sec/3.15e7;txt=y>1.4e10?('10<sup>'+Math.round(Math.log10(y))+'</sup> anni: più dell\'età dell\'universo'):(Math.round(y).toLocaleString('it-IT')+' anni per provarle tutte')}
+  G('atTime').innerHTML=txt}
+/* passo 4: le colonne che cambiano insieme */
+/* le righe sono [nome, sequenza]; AF_PAIRS usa posizioni che partono da 1 */
+function atPairs(){var rows=AF_DATA.msa;if(!rows||!rows.length){G('atView').innerHTML='<p class="px-note">Allineamento non disponibile.</p>';return}
+  /* mostriamo una finestra intorno alle coppie vere, altrimenti 142 colonne non ci stanno */
+  var win=[],P=AF_PAIRS;
+  P.forEach(function(p){for(var k=p[0]-4;k<=p[0]+3;k++)win.push(k);for(var k2=p[1]-4;k2<=p[1]+3;k2++)win.push(k2)});
+  win=win.filter(function(v,k,a){return v>=1&&v<=rows[0][1].length&&a.indexOf(v)===k}).sort(function(a,b){return a-b});
+  var html='<div style="overflow:auto;max-height:100%;width:100%"><table class="at-msa"><tr><th></th>';
+  win.forEach(function(c,k){
+    var gap=k&&c!==win[k-1]+1;
+    html+=(gap?'<th style="color:#C9C3B6">⋯</th>':'')+'<th style="cursor:pointer" onclick="atPair('+c+')">'+c+'</th>'});
+  html+='</tr>';
+  rows.forEach(function(r){
+    html+='<tr><th>'+r[0]+'</th>';
+    win.forEach(function(c,k){
+      var gap=k&&c!==win[k-1]+1;
+      html+=(gap?'<td style="border:none;color:#C9C3B6">⋯</td>':'')+'<td data-c="'+c+'">'+r[1][c-1]+'</td>'});
+    html+='</tr>'});
+  html+='</table></div><p class="at-cap" id="atCap">Clicca il numero di una colonna: si accende la colonna che cambia <b>insieme</b> a lei.</p>';
+  G('atView').innerHTML=html;
+  if(AT.sel!==null)atPair(AT.sel)}
+function atPair(c){AT.sel=c;
+  var P=(typeof AF_PAIRS!=='undefined')?AF_PAIRS:[];
+  var mate=null;P.forEach(function(p){if(p[0]===c)mate=p[1];if(p[1]===c)mate=p[0]});
+  [].forEach.call(document.querySelectorAll('#atView td'),function(td){
+    var k=+td.getAttribute('data-c');
+    td.className=(k===c||k===mate)?'hit':'dim'});
+  var cap=G('atCap');if(cap)cap.innerHTML=mate===null
+    ?'La colonna <b>'+c+'</b> cambia per conto suo: probabilmente non tocca nessuno.'
+    :'Le colonne <b>'+c+'</b> e <b>'+mate+'</b> cambiano insieme → nella forma ripiegata <b>si toccano</b>.'}
+/* passo 5: i tre giri di rifinitura, con i punteggi veri */
+function atRefine(){AT.round=AT.round||0;
+  G('atView').innerHTML='<div style="width:100%;text-align:center">'+
+   '<div class="at-acts" style="justify-content:center;margin-bottom:.8em">'+
+   [1,2,3].map(function(r){return '<button class="at-act'+(AT.round>=r?' on':'')+'" onclick="atRound('+r+')">Giro '+r+'</button>'}).join('')+'</div>'+
+   '<canvas id="atRC" style="width:100%;height:clamp(110px,22vh,210px)"></canvas>'+
+   '<p style="margin:.6em 0 0;font-size:.9rem;color:var(--gray)">Sicurezza media: <b id="atRV" style="color:var(--navy);font-size:1.15rem">—</b></p></div>'+
+   '<p class="at-cap">A ogni giro la previsione si assesta: i punteggi bassi salgono, la forma si stabilizza.</p>';
+  atRoundDraw()}
+function atRound(r){AT.round=r;atRefine()}
+function atRoundDraw(){var c=G('atRC');if(!c)return;
+  var pl=AF_DATA.plddt.P69905,r=AT.round||0;
+  var dpr=window.devicePixelRatio||1,W=c.clientWidth*dpr,H=c.clientHeight*dpr;c.width=W;c.height=H;
+  var g=c.getContext('2d'),n=pl.length;
+  /* giro 0 = previsione grezza, giro 3 = punteggi veri */
+  var vals=pl.map(function(v,k){var raw=35+((k*37)%30);return raw+(v-raw)*(r/3)});
+  g.clearRect(0,0,W,H);
+  [50,70,90].forEach(function(y){g.strokeStyle='#EDEFF3';g.lineWidth=1*dpr;g.beginPath();
+    g.moveTo(0,H-y/100*H);g.lineTo(W,H-y/100*H);g.stroke()});
+  g.lineWidth=2.4*dpr;g.lineJoin='round';
+  vals.forEach(function(v,k){if(!k)return;
+    g.strokeStyle=afCol(v);g.beginPath();
+    g.moveTo((k-1)/(n-1)*W,H-vals[k-1]/100*H);g.lineTo(k/(n-1)*W,H-v/100*H);g.stroke()});
+  G('atRV').textContent=Math.round(vals.reduce(function(a,b){return a+b},0)/n)+' / 100'}
+/* passo 6: i due archivi a confronto */
+function atArchive(){G('atView').innerHTML=
+ '<div style="width:100%;max-width:30em">'+
+ [['Laboratorio, 50 anni','200.000',200000,'#8A94A6'],['AlphaFold, 1 anno','214.000.000',214000000,'#0B8E36']]
+ .map(function(r){var w=Math.max(1.5,Math.sqrt(r[2]/214000000)*100);
+  return '<p style="margin:0 0 .3em;font-size:.88rem;color:var(--gray)">'+r[0]+'</p>'+
+   '<div style="height:1.5em;background:#EEF1F6;border-radius:3px;overflow:hidden;margin-bottom:.9em">'+
+   '<i style="display:block;height:100%;width:'+w+'%;background:'+r[3]+';border-radius:3px;transition:width 1.2s var(--ease-out,ease)"></i></div>'+
+   '<p style="margin:-.7em 0 1em;font-family:var(--ff-head);font-weight:800;font-size:1.25rem;color:'+r[3]+'">'+r[1]+' strutture</p>'}).join('')+
+ '</div><p class="at-cap">Le barre sono in scala di radice quadrata: in scala reale la prima sarebbe invisibile.</p>'}
+
 /* ---------------- Sfida 1 · AlphaFold: dove l'AI è sicura di sé ----------------
    Niente account e niente chiamate esterne: struttura e punteggi sono già nel file
    img/af/af-data.js (AlphaFold DB, CC BY 4.0). Si gioca in tre passi: scegli tre
@@ -5632,6 +5874,147 @@ function afgDraw(){var R=AFG.R,cv=G('afgCv');if(!R||!cv)return;
     g.strokeStyle=AFG.done?afCol(pl[i]):'#8A93A6';
     g.lineWidth=Math.max(1.5,3.1*dpr*(1+ (p[2]/mx)*.25));
     g.beginPath();g.moveTo(W/2+q[0]*s,H/2-q[1]*s);g.lineTo(W/2+p[0]*s,H/2-p[1]*s);g.stroke()})}
+
+/* ---------------- Teoria · Retrosintesi: cinque passi, ognuno si tocca ----------
+   Si resta sul piano del ragionamento: DOVE si taglia e perché. Niente reagenti,
+   niente condizioni di reazione: è il modo in cui la retrosintesi si insegna. */
+var RT={i:0,tree:0,timer:null};
+var RT_S=[
+ {c:'#8A94A6',s:'Il problema',k:'Passo 1 · La domanda del chimico',h:'So cosa voglio. E adesso?',
+  p:'Sapere qual è la molecola giusta non basta: bisogna <b>riuscire a fabbricarla</b>. Il chimico ha davanti la domanda opposta a quella del biologo: da quali ingredienti, che si possono comprare, si arriva a questa molecola? Partire dagli ingredienti e provare in avanti è come cercare l\'uscita di un labirinto entrando dall\'ingresso: infinite strade sbagliate.',
+  d:'Guarda la differenza fra cercare in avanti e cercare all\'indietro.'},
+ {c:'#8A94A6',s:'Corey',k:'Passo 2 · L\'idea',h:'Leggere la ricetta dalla fine',
+  p:'Negli anni Sessanta <b>Elias James Corey</b> capovolge il problema: si parte dalla <b>molecola finita</b> e la si smonta all\'indietro, un pezzo alla volta, finché non restano pezzi che si comprano. Ogni taglio immaginario si chiama <b>disconnessione</b>, e i pezzi che ne escono <b>sintoni</b>. È una ricetta letta dalla fine. Corey vince il Nobel per la chimica nel <b>1990</b>.',
+  d:'Taglia tu la molecola di esempio e guarda nascere i due pezzi.'},
+ {c:'#FF6B35',s:'L\'albero',k:'Passo 3 · Perché serve una macchina',h:'Ogni taglio apre altre strade',
+  p:'Il problema è che le disconnessioni possibili sono tante, e ogni pezzo si può tagliare ancora. Le strade si moltiplicano a ogni livello: è un <b>albero</b> che esplode, esattamente come le forme della proteina nel passo di Levinthal. Un chimico esperto ne esplora a mente qualche decina. Un computer può esplorarne <b>milioni</b>.',
+  d:'Premi «Espandi» e guarda l\'albero crescere di livello in livello.'},
+ {c:'#FF6B35',s:'Il primo tentativo',k:'Passo 4 · La prima AI della chimica',h:'LHASA, 1969: regole scritte a mano',
+  p:'Sempre Corey, nel <b>1969</b>, costruisce il primo programma che propone le mosse all\'indietro: si chiamerà <b>LHASA</b>. Ma le regole erano <b>scritte a mano</b> una per una, come per i primi programmi di scacchi. La chimica reale è troppo varia: le regole scritte a mano non bastano mai. È lo stesso muro contro cui sbatterono tutti i sistemi a regole.',
+  d:'Prova ad aggiungere regole a mano: la copertura non arriva mai al 100%.'},
+ {c:'#2ECC71',s:'L\'AI di oggi',k:'Passo 5 · Come funziona adesso',h:'Imparare da milioni di reazioni',
+  p:'I programmi di oggi <b>non ricevono le regole</b>: le ricavano da <b>milioni di reazioni già pubblicate</b> nei brevetti e negli articoli. Poi esplorano l\'albero come AlphaGo esplora le mosse, tenendo i rami più promettenti (<b>Segler, Nature 2018</b>). Strumenti veri e gratuiti: <b>AiZynthFinder</b> (AstraZeneca, codice aperto) e <b>ASKCOS</b> (MIT). Propongono la strada; la prova finale resta il laboratorio.',
+  d:'Confronta le due ricerche: a caso e guidata dall\'esperienza.'}];
+function rtInit(){if(!G('rtSteps'))return;afSteps('rtSteps',RT_S,'rtGo');rtGo(atDeep('rpasso',RT_S.length))}
+function rtGo(i){if(i<0||i>=RT_S.length)return;RT.i=i;var s=RT_S[i];
+  if(RT.timer){clearInterval(RT.timer);RT.timer=null}
+  afHead('rtSteps',RT_S,i,'sRT');
+  G('rtKick').textContent=s.k;G('rtH').textContent=s.h;G('rtP').innerHTML=s.p;G('rtDo').textContent=s.d||'';
+  G('rtPrev').disabled=i===0;G('rtNext').disabled=i===RT_S.length-1;
+  G('rtCr').textContent='Schemi concettuali: si mostra quali legami si tagliano e perché, non come si eseguono le reazioni.';
+  rtStage()}
+function rtStage(){var i=RT.i;
+  if(i===0)return rtMaze();
+  if(i===1)return rtCut();
+  if(i===2)return rtTree();
+  if(i===3)return rtRules();
+  return rtSearch()}
+/* passo 1: avanti contro indietro */
+function rtMaze(){G('rtView').innerHTML=
+ '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;width:100%;max-width:34em;text-align:center">'+
+ '<div><p style="margin:0 0 .5em;font-weight:700;color:#C62828">In avanti</p>'+
+ '<svg viewBox="0 0 120 120" style="width:100%;max-height:26vh"><g fill="none" stroke="#C62828" stroke-width="2" stroke-linecap="round" opacity=".55">'+
+ '<path d="M60 112V92M60 92L30 72M60 92L90 72M30 72L14 50M30 72L44 50M90 72L76 50M90 72L106 50M14 50L6 28M14 50L22 28M44 50L38 28M44 50L52 28M76 50L70 28M76 50L84 28M106 50L100 28M106 50L114 28"/></g>'+
+ '<circle cx="60" cy="112" r="5" fill="#C62828"/>'+
+ '<g fill="#C9C3B6">'+[6,22,38,52,70,84,100,114].map(function(x){return '<circle cx="'+x+'" cy="26" r="3.2"/>'}).join('')+'</g>'+
+ '<circle cx="38" cy="26" r="4.6" fill="none" stroke="#0B8E36" stroke-width="2.4"/></svg>'+
+ '<p style="margin:.5em 0 0;font-size:.82rem;color:var(--gray)">Provi tutte le strade. Una sola arriva.</p></div>'+
+ '<div><p style="margin:0 0 .5em;font-weight:700;color:#0B8E36">All\'indietro</p>'+
+ '<svg viewBox="0 0 120 120" style="width:100%;max-height:26vh"><g fill="none" stroke="#C9C3B6" stroke-width="2" stroke-linecap="round" opacity=".4">'+
+ '<path d="M60 112V92M60 92L30 72M60 92L90 72M30 72L14 50M30 72L44 50M90 72L76 50M90 72L106 50"/></g>'+
+ '<g fill="none" stroke="#0B8E36" stroke-width="3" stroke-linecap="round"><path d="M38 28L44 50M44 50L30 72M30 72L60 92M60 92V112"/></g>'+
+ '<circle cx="38" cy="26" r="5" fill="#0B8E36"/><circle cx="60" cy="112" r="5" fill="#0B8E36"/></svg>'+
+ '<p style="margin:.5em 0 0;font-size:.82rem;color:var(--gray)">Parti dalla meta: la strada si accorcia.</p></div></div>'+
+ '<p class="at-cap">Stessa mappa, verso opposto. Partire dal traguardo elimina subito le strade inutili.</p>'}
+/* passo 2: una disconnessione, fatta dallo studente */
+function rtCut(){G('rtView').innerHTML=
+ '<div style="width:100%;text-align:center" id="rtCutBox">'+
+ '<svg viewBox="0 0 300 80" style="width:min(100%,30em)"><g fill="none" stroke="#151B2C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'+
+ '<path d="M20 50l22-13 22 13 22-13"/><path d="M86 37v-15"/><text x="86" y="18" font-size="12" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text>'+
+ '<path d="M108 50h22" id="rtBond" stroke-dasharray="0"/>'+
+ '<text x="119" y="68" font-size="12" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text>'+
+ '<path d="M130 50l22-13 22 13 22-13 22 13"/></g></svg>'+
+ '<div class="at-acts" style="justify-content:center;margin-top:.6em"><button class="at-act" onclick="rtCutGo()">✂ Disconnetti qui</button></div></div>'+
+ '<p class="at-cap" id="rtCap">Il legame segnato è il punto più comodo da tagliare: è il più facile da <b>rifare</b> al contrario.</p>'}
+function rtCutGo(){G('rtCutBox').innerHTML=
+ '<div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap">'+
+ '<svg viewBox="0 0 130 80" style="width:min(42%,14em)"><g fill="none" stroke="#151B2C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'+
+ '<path d="M20 50l22-13 22 13 22-13"/><path d="M86 37v-15"/><text x="86" y="18" font-size="12" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">O</text><path d="M86 37l18 10"/></g></svg>'+
+ '<span style="font-size:1.6rem;color:var(--gray)">+</span>'+
+ '<svg viewBox="0 0 130 80" style="width:min(42%,14em)"><g fill="none" stroke="#151B2C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">'+
+ '<text x="16" y="56" font-size="12" fill="#151B2C" stroke="none" text-anchor="middle" font-family="sans-serif">N</text>'+
+ '<path d="M26 50l22-13 22 13 22-13 22 13"/></g></svg></div>';
+ G('rtCap').innerHTML='Due <b>sintoni</b>: i pezzi ideali che, rimessi insieme, ridanno la molecola di partenza. Ora la domanda è se si comprano.'}
+/* passo 3: l'albero che esplode */
+function rtTree(){RT.tree=1;rtTreeDraw();
+  G('rtView').innerHTML='<div style="width:100%;text-align:center">'+
+   '<div class="at-tree" id="rtTr"></div>'+
+   '<div class="at-acts" style="justify-content:center;margin-top:.6em">'+
+   '<button class="at-act" onclick="rtGrow()">Espandi un livello →</button>'+
+   '<button class="at-act" onclick="RT.tree=1;rtTreeDraw()">Ricomincia</button></div></div>'+
+   '<p class="at-cap" id="rtCap">Un livello: 1 molecola.</p>';
+  rtTreeDraw()}
+function rtGrow(){RT.tree=Math.min(5,(RT.tree||1)+1);rtTreeDraw()}
+function rtTreeDraw(){var el=G('rtTr');if(!el)return;
+  var L=RT.tree||1,h='';
+  for(var d=0;d<L;d++){
+    var n=Math.pow(3,d),show=Math.min(n,13);
+    h+=(d?'<div class="at-grow"></div>':'')+'<div class="at-lvl">';
+    for(var k=0;k<show;k++)h+='<span class="at-node'+(d===L-1&&L>1?' pick':'')+'" style="padding:.25em .5em;font-size:.72rem">·</span>';
+    if(n>show)h+='<span style="align-self:center;color:var(--gray);font-size:.8rem">+'+(n-show).toLocaleString('it-IT')+'</span>';
+    h+='</div>'}
+  el.innerHTML=h;
+  var tot=0;for(var d2=0;d2<L;d2++)tot+=Math.pow(3,d2);
+  var cap=G('rtCap');if(cap)cap.innerHTML=L+(L===1?' livello':' livelli')+': <b>'+tot.toLocaleString('it-IT')+'</b> molecole da valutare'+(L>=4?'. E siamo solo all\'inizio.':'.')}
+/* passo 4: le regole scritte a mano non bastano */
+function rtRules(){RT.rules=RT.rules||0;
+  G('rtView').innerHTML='<div style="width:100%;max-width:26em;text-align:center">'+
+   '<p style="margin:0 0 .3em;font-size:.88rem;color:var(--gray)">Regole scritte a mano: <b id="rtRN" style="color:var(--navy);font-size:1.1rem">0</b></p>'+
+   '<div style="height:1.4em;background:#EEF1F6;border-radius:3px;overflow:hidden">'+
+   '<i id="rtRB" style="display:block;height:100%;width:0;background:#FF6B35;transition:width .5s var(--ease-out,ease)"></i></div>'+
+   '<p style="margin:.5em 0 0;font-family:var(--ff-head);font-weight:800;font-size:1.3rem;color:var(--navy)" id="rtRP">0% della chimica coperta</p>'+
+   '<div class="at-acts" style="justify-content:center;margin-top:.8em">'+
+   '<button class="at-act" onclick="rtAddRule(10)">+10 regole</button>'+
+   '<button class="at-act" onclick="rtAddRule(100)">+100 regole</button>'+
+   '<button class="at-act" onclick="RT.rules=0;rtRuleDraw()">Ricomincia</button></div></div>'+
+   '<p class="at-cap">Ogni regola in più copre un pezzetto sempre più piccolo: la curva si appiattisce e non arriva mai in cima.</p>';
+  rtRuleDraw()}
+function rtAddRule(n){RT.rules=Math.min(5000,(RT.rules||0)+n);rtRuleDraw()}
+function rtRuleDraw(){var n=RT.rules||0;
+  /* rendimenti decrescenti: ogni regola copre sempre meno casi nuovi */
+  var pct=100*(1-Math.exp(-n/900));
+  var el=G('rtRN');if(!el)return;
+  el.textContent=n.toLocaleString('it-IT');
+  G('rtRB').style.width=pct+'%';
+  G('rtRP').textContent=pct.toFixed(1)+'% della chimica coperta'}
+/* passo 5: ricerca a caso contro ricerca guidata */
+function rtSearch(){
+  G('rtView').innerHTML='<div style="width:100%;max-width:32em;text-align:center">'+
+   '<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">'+
+   '<div><p style="margin:0 0 .4em;font-weight:700;font-size:.9rem;color:#C62828">A caso</p>'+
+   '<canvas id="rtC1" style="width:100%;height:clamp(90px,17vh,150px)"></canvas></div>'+
+   '<div><p style="margin:0 0 .4em;font-weight:700;font-size:.9rem;color:#0B8E36">Guidata dall\'esperienza</p>'+
+   '<canvas id="rtC2" style="width:100%;height:clamp(90px,17vh,150px)"></canvas></div></div>'+
+   '<div class="at-acts" style="justify-content:center;margin-top:.7em"><button class="at-act" onclick="rtRun()">Cerca →</button></div>'+
+   '<p style="margin:.5em 0 0;font-size:.86rem;color:var(--gray)" id="rtRes">Due ricerche sullo stesso albero.</p></div>'+
+   '<p class="at-cap">A sinistra si provano rami a caso. A destra si parte dai rami che <b>in passato hanno funzionato</b>.</p>';
+  rtRun()}
+function rtRun(){
+  [['rtC1',false],['rtC2',true]].forEach(function(cfg){
+    var c=G(cfg[0]);if(!c)return;var smart=cfg[1];
+    var dpr=window.devicePixelRatio||1,W=c.clientWidth*dpr,H=c.clientHeight*dpr;c.width=W;c.height=H;
+    var g=c.getContext('2d');g.clearRect(0,0,W,H);
+    /* stesso albero per entrambe, ma la guidata concentra i tentativi */
+    var goalX=W*.72,n=smart?16:52,hit=0;
+    for(var k=0;k<n;k++){
+      var x=smart?(goalX+(Math.random()-.5)*W*.3):(Math.random()*W);
+      var y=H*.12+Math.random()*H*.76;
+      var near=Math.abs(x-goalX)<W*.09;
+      if(near)hit++;
+      g.strokeStyle=near?'#0B8E36':(smart?'rgba(11,142,54,.3)':'rgba(198,40,40,.28)');
+      g.lineWidth=1.6*dpr;g.beginPath();g.moveTo(W/2,H);g.lineTo(x,y);g.stroke()}
+    g.fillStyle='#0B8E36';g.beginPath();g.arc(goalX,H*.16,4.5*dpr,0,7);g.fill()});
+  var r=G('rtRes');if(r)r.innerHTML='La ricerca guidata prova <b>molte meno</b> strade per trovare la stessa soluzione: è lo stesso principio di AlphaGo.'}
 
 /* ---------------- Sfida 2 · Retrosintesi: la tua strada contro quella dell'AI ----
    Un puzzle di tagli, non una procedura di laboratorio: si decide DOVE spezzare la
@@ -5758,7 +6141,7 @@ function pxVsAI(){if(!PX.done||PX.ai)return;PX.ai=true;
 function pxToast(t){var e=G('pxToast');if(!e)return;e.textContent=t;e.classList.add('on');
   clearTimeout(PX.tt);PX.tt=setTimeout(function(){e.classList.remove('on')},2600)}
 
-cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM&&!ET_ROOM&&!NW_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit();afInit();rsInit();etInit();afgInit();pxInit()}
+cvInit();gnInit();if(!VOTE_ROOM&&!AG_ROOM&&!DR_ROOM&&!GT_ROOM&&!PA_ROOM&&!ST_ROOM&&!ET_ROOM&&!NW_ROOM){paInit();fkInit();pvInit();stInit();auInit();mcInit();clInit();suInit();afInit();rsInit();etInit();atInit();afgInit();rtInit();pxInit()}
 if(G('ttPanel'))fdBoot();
 if(G('muTl'))hsInit();
 n4Init();
