@@ -1,3 +1,4 @@
 claude_cowork_guide.pdf
 *.pdf
 .vscode/
+!disegni/**/*.pdf
